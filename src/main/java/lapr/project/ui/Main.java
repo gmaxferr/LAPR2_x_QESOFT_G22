@@ -7,20 +7,22 @@ import lapr.project.model.CalculatorExample;
  */
 class Main {
 
-	/**
-	 * Private constructor to hide implicit public one.
-	 */
-	private Main(){
+    /**
+     * Private constructor to hide implicit public one.
+     */
+    private Main() {
 
-	}
+    }
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
 
-		CalculatorExample calculatorExample = new CalculatorExample();
-		System.out.println(calculatorExample.sum(3, 5));
-	}
+        new NewJFrame();
+        
+        CalculatorExample calculatorExample = new CalculatorExample();
+        System.out.println(calculatorExample.sum(3, 5));
+    }
 
 }
