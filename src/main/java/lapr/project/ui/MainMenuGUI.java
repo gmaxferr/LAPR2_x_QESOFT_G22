@@ -1,5 +1,6 @@
-package gui;
+package lapr.project.ui;
 
+import lapr.project.ui.LoginGui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,10 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
-import obj.CentroDeExposicoes;
-import obj.Exposicao;
+import lapr.project.model.CentroExposicoes;
 import obj.Utilizador;
-import pprog_t1dh_g8.IO_BinFile;
 
 /**
  * Menu Principal disponivel a todos os utilizadores a partir do momento em que
@@ -36,7 +35,7 @@ import pprog_t1dh_g8.IO_BinFile;
  * @author Ricardo Catalao
  *
  */
-public class MainMenuGUI extends FrameBase {
+public class MainMenuGUI extends JFrame {
 
     JMenuBar menuBar;
     JMenu menu;
@@ -60,7 +59,7 @@ public class MainMenuGUI extends FrameBase {
      * @param saveFile - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public MainMenuGUI(CentroDeExposicoes ce, Utilizador utilizador, File saveFile) {
+    public MainMenuGUI(CentroExposicoes ce, Utilizador utilizador, File saveFile) {
         super("Main menu", ce, utilizador);
         this.saveFile = saveFile;
         criaBase();
@@ -214,7 +213,7 @@ public class MainMenuGUI extends FrameBase {
         ImageIcon iconeExpo = new ImageIcon("expo.png");
         buttonPanel.add(new JLabel(iconeExpo));
         //Botao candidaturas
-        button = criarBotaoCandidaturas();
+        button = criarButaoExecutarUCCriarCandidatura();
         button.setEnabled(true);
         button.setBackground(grey);
         button.setContentAreaFilled(true);
@@ -279,14 +278,14 @@ public class MainMenuGUI extends FrameBase {
      *
      * @return
      */
-    private JButton criarBotaoCandidaturas() {
+    private JButton criarButaoExecutarUCCriarCandidatura() {
         JButton button = new JButton("Candidaturas");
         Font font = button.getFont();
         button.setFont(new Font(font.getFontName(), Font.BOLD, font.getSize()));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                botaoCandidaturaAccionado();
+                new JFrameCriarCandidaturaUI(this, centroExposicoes, usernameExpositor);
             }
         });
         return button;
@@ -363,24 +362,6 @@ public class MainMenuGUI extends FrameBase {
             }
         });
         return button;
-    }
-
-    /**
-     * Descreve ações que o clique no botão candidatura desencadeia
-     */
-    public void botaoCandidaturaAccionado() {
-        JFrame childWindow = new SelectExpoGUI(this, ce, utilizador);
-        childWindow.setAlwaysOnTop(true);
-    }
-
-    /**
-     * Abre o menu dos mecanismos de atribuição de candidaturas
-     *
-     * @param selectedExpo - Exposição seleccionada
-     */
-    public void openCandidaturasGUI(Exposicao selectedExpo) {
-        new CandidaturasGUI(this, ce, utilizador, selectedExpo);
-        setVisible(false);
     }
 
     public void paint() {

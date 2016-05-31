@@ -1,5 +1,6 @@
-package gui;
+package lapr.project.ui;
 
+import gui.MainMenuGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import obj.CentroDeExposicoes;
+import lapr.project.model.CentroExposicoes;
+//import obj.CentroDeExposicoes;
 import obj.Utilizador;
 
 /**
@@ -42,7 +44,7 @@ public class LoginGui extends JFrame {
     private JButton helpButton;
     private ImageIcon iconeLogin = new ImageIcon("login.png");
     private ImageIcon iconeWelcome = new ImageIcon("Welcome.png");
-    CentroDeExposicoes ce;
+    CentroExposicoes centroExposicoes;
     Utilizador utilizador;
 
     private final Color background = new Color(0, 204, 102);
@@ -52,13 +54,13 @@ public class LoginGui extends JFrame {
      * Cria um GUI para o menu de Login recebendo como parametro o Centro de
      * Exposicoes (Contentor de toda a informação).
      *
-     * @param ce Centro de Exposições em que vamos iniciar sessão
+     * @param centroExposicoes Centro de Exposições em que vamos iniciar sessão
      * @param data - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public LoginGui(CentroDeExposicoes ce, File data) {
+    public LoginGui(CentroExposicoes centroExposicoes, File data) {
         super(FRAME_TITLE);
-        this.ce = ce;
+        this.centroExposicoes = centroExposicoes;
 
         createComponents(data);
         pack();
@@ -188,7 +190,7 @@ public class LoginGui extends JFrame {
             JOptionPane.showMessageDialog(null, "Login nao efetuado."
                     + "\nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
-            utilizador = utils.Utilitarios.autenticacao(user, pass, ce);
+            utilizador = utils.Utilitarios.autenticacao(user, pass, centroExposicoes);
             if (utilizador != null) {
                 JOptionPane.showMessageDialog(null, "Login efetuado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE, iconeWelcome);
                 loginEfetuadoComSuccesso(data);
@@ -203,7 +205,7 @@ public class LoginGui extends JFrame {
      * successo
      */
     private void loginEfetuadoComSuccesso(File data) {
-        new MainMenuGUI(ce, utilizador, data);
+        new MainMenuGUI(centroExposicoes, utilizador, data);
         dispose();
     }
 }
