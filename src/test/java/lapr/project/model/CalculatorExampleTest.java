@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.model.exemplo.CalculatorExample;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
 /**
  * Package location for Model concepts.
  */
-package lapr.project.model;
+package lapr.project.model.exemplo;

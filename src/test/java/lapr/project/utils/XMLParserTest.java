@@ -1,6 +1,7 @@
 package lapr.project.utils;
 
-import lapr.project.model.KeywordExample;
+import lapr.project.utils.exemplo.XMLParser;
+import lapr.project.model.exemplo.KeywordExample;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Test;
 import org.w3c.dom.Document;

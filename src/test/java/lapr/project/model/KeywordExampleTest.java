@@ -1,6 +1,7 @@
 package lapr.project.model;
 
-import lapr.project.utils.XMLParser;
+import lapr.project.model.exemplo.KeywordExample;
+import lapr.project.utils.exemplo.XMLParser;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

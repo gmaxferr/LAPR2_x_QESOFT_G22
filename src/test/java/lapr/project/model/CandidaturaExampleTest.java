@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.model.exemplo.KeywordExample;
+import lapr.project.model.exemplo.CandidaturaExample;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

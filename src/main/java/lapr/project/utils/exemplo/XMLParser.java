@@ -1,4 +1,4 @@
-package lapr.project.utils;
+package lapr.project.utils.exemplo;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

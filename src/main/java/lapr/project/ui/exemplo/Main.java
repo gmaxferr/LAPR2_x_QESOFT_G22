@@ -1,6 +1,6 @@
-package lapr.project.ui;
+package lapr.project.ui.exemplo;
 
-import lapr.project.model.CalculatorExample;
+import lapr.project.model.exemplo.CalculatorExample;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -18,8 +18,6 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        new NewJFrame();
         
         CalculatorExample calculatorExample = new CalculatorExample();
         System.out.println(calculatorExample.sum(3, 5));
