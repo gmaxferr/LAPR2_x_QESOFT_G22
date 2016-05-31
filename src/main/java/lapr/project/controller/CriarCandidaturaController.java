@@ -1,8 +1,8 @@
 package lapr.project.controller;
 
-import excecoes.AreaErradaException;
-import excecoes.NumeroConvitesErradoException;
-import excecoes.TelemovelEmpresaErradoException;
+import lapr.project.excecoes.AreaErradaException;
+import lapr.project.excecoes.NumeroConvitesErradoException;
+import lapr.project.excecoes.TelemovelEmpresaErradoException;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
