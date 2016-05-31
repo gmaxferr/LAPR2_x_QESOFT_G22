@@ -1,6 +1,5 @@
-package obj;
+package lapr.project.model;
 
-import exceptions.InvalidPasswordException;
 import crypt.CaesarsCypher;
 import java.io.Serializable;
 import java.util.Arrays;

@@ -1,12 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import lapr.project.controller.CriarCandidaturaController;
+import lapr.project.excecoes.AreaErradaException;
+import lapr.project.excecoes.NumeroConvitesErradoException;
+import lapr.project.excecoes.TelemovelEmpresaErradoException;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.ComboBoxModelDemonstracoes;
+import lapr.project.model.ComboBoxModelExposicoes;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.ListaDemonstracoes;
 
 /**
  *
@@ -16,16 +27,69 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private CardLayout cardLayout;
+    private CentroExposicoes centroExposicoesAtual;
+    private int numDemonstracoes;
+    private int numProdutos;
+    private String usernameExpositor;
+    private CriarCandidaturaController controller;
+    private List<Exposicao> listaExposicoes;
+    private ModeloListaProdutos modeloJListaProdutosCard2;
+    private List<Demonstracao> listaDemonstracoes;
+    private ModeloListaDemonstracoes listModelDemonstracoes;
+
+    private static final int LARGURA_JANELA_PASSO1 = 400;
+    private static final int ALTURA_JANELA_PASSO1 = 300;
+
+    private static final int LARGURA_JANELA_PASSO2 = 400;
+    private static final int ALTURA_JANELA_PASSO2 = 490;
+
+    private static final int LARGURA_JANELA_PASSO3 = 420;
+    private static final int ALTURA_JANELA_PASSO3 = 320;
+
+    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
+    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+    private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
+    private ComboBoxModelDemonstracoes modeloComboBoxDemonstracoes;
 
     /**
      * Creates new form JFrameCriarCandidaturaUI
+     *
+     * @param jFrameMenuPrincipal
+     * @param centroExposicoes
      */
-    public JFrameCriarCandidaturaUI(JFrame jFrameMenuPrincipal) {
+    public JFrameCriarCandidaturaUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameExpositor) {
+        super("Criar candidatura");
+
         this.cardLayout = (CardLayout) this.getLayout();
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
+        this.centroExposicoesAtual = centroExposicoes;
+        this.numDemonstracoes = 0;
+        this.numProdutos = 0;
+
+        this.usernameExpositor = usernameExpositor;
+        this.controller = new CriarCandidaturaController(centroExposicoes);
+        controller.getRegistoExposicoes();
+        this.listaExposicoes = controller.getListaExposicoes();
 
         initComponents();
+        alterarComportamentoFecharJanel();
+
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
+    }
+
+    private void alterarComportamentoFecharJanel() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -90,7 +154,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         jButtonCard3AdicionarDemonstracao = new javax.swing.JButton();
         jButtonCard3RemoverDemonstracao = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jListCard3ListaProdutos = new javax.swing.JList<>();
+        jListCard3ListaDemonstracoes = new javax.swing.JList<>();
         jButtonCard3Recuar = new javax.swing.JButton();
         jButtonCard3Terminar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -205,7 +269,12 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         );
 
         jComboBoxCard1EscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxCard1EscolherExposicao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCard1EscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
+        jComboBoxCard1EscolherExposicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCard1EscolherExposicaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
         card1.setLayout(card1Layout);
@@ -324,11 +393,8 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
         jLabel10.setText("Produtos a expor:");
 
-        jListCard2ListaProdutos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        this.modeloJListaProdutosCard2=new ModeloListaProdutos();
+        jListCard2ListaProdutos.setModel(this.modeloJListaProdutosCard2);
         jScrollPane3.setViewportView(jListCard2ListaProdutos);
 
         jButtonCard2AdicionarProduto.setText("Adicionar");
@@ -415,6 +481,11 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
         buttonGroupCard2ParticiparEmDemonstracoes.add(jRadioButtonCard2Nao);
         jRadioButtonCard2Nao.setText("Não");
+        jRadioButtonCard2Nao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonCard2NaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -513,7 +584,12 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         jLabel12.setFont(jLabelCard1Titulo.getFont());
         jLabel12.setText("Escolha as demonstrações pretendidas");
 
-        jComboBoxCard3EscolherDemonstracao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCard3EscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(listaDemonstracoes));
+        jComboBoxCard3EscolherDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCard3EscolherDemonstracaoActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -556,12 +632,9 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
             }
         });
 
-        jListCard3ListaProdutos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(jListCard3ListaProdutos);
+        listModelDemonstracoes = new ModeloListaDemonstracoes(new ListaDemonstracoes());
+        jListCard3ListaDemonstracoes.setModel(listModelDemonstracoes);
+        jScrollPane5.setViewportView(jListCard3ListaDemonstracoes);
 
         jButtonCard3Recuar.setText("Recuar");
         jButtonCard3Recuar.addActionListener(new java.awt.event.ActionListener() {
@@ -689,8 +762,23 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
-        this.cardLayout.show(this, "card2");
+        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            avancarParaCard2();
+            //jButtonRemoverProdutoCandidatura.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
+
+    private void avancarParaCard2() {
+        controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
+        controller.getRegistoCandidaturas();
+        controller.criarCandidatura(this.usernameExpositor);
+        controller.getRegistoProduto();
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card2");
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+    }
 
     private void jTextFieldCard2DadosEmpresaNomeEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard2DadosEmpresaNomeEmpresaActionPerformed
         // TODO add your handling code here:
@@ -701,11 +789,18 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCard2DadosCandidaturaNumeroConvitesActionPerformed
 
     private void jRadioButtonCard2SimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCard2SimActionPerformed
-        // TODO add your handling code here:
+        jButtonCard2Avancar.setText("Continuar");
+        jButtonCard2Avancar.setToolTipText("Passar para o passo seguinte. Define a candidatura com os dados atuais");
+
     }//GEN-LAST:event_jRadioButtonCard2SimActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
-        //Registar candidatura
+        if (listModelDemonstracoes.getSize() != 0) {
+            controller.atualizarListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
+            finalizarCandidatura();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
@@ -713,28 +808,155 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
-        this.cardLayout.show(this, "card3");
+        if (camposPorPreencher(jTextFieldCard2DadosCandidaturaArea,
+                jTextFieldCard2DadosEmpresaMorada,
+                jTextFieldCard2DadosEmpresaNomeEmpresa,
+                jTextFieldCard2DadosCandidaturaNumeroConvites,
+                jTextFieldCard2DadosEmpresaTelemovel) == false) {
+            try {
+                controller.setDados(jTextFieldCard2DadosEmpresaNomeEmpresa.getText(),
+                        jTextFieldCard2DadosEmpresaMorada.getText(),
+                        jTextFieldCard2DadosEmpresaTelemovel.getText(),
+                        jTextFieldCard2DadosCandidaturaArea.getText(),
+                        jTextFieldCard2DadosCandidaturaNumeroConvites.getText()
+                );
+                if (jRadioButtonCard2Sim.isSelected()) {
+                    controller.getRegistoDemonstracoes();
+                    listaDemonstracoes = controller.getListaDemonstracoes();
+                    if (!listaDemonstracoes.isEmpty()) {
+                        avancarParaCard3();
+                        //jMenuItemPreencherCampos.setEnabled(false);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não existem demonstrações a decorrer para a exposição escolhida", "Sem demonstrações", JOptionPane.WARNING_MESSAGE);
+                        jRadioButtonCard2Nao.setSelected(true);
+                    }
+                } else {
+                    controller.setListaProdutosCandidatura(modeloJListaProdutosCard2.getListaProdutos());
+                    finalizarCandidatura();
+                }
+            } catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException exception) {
+                JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
+    private boolean camposPorPreencher(JTextField textFieldArea, JTextField textFieldMorada, JTextField textFieldNomeEmpresa, JTextField textFieldNumConvites, JTextField textFieldTelemovelEmpresa) {
+        return textFieldArea.getText().isEmpty() || textFieldMorada.getText().isEmpty() || textFieldNomeEmpresa.getText().isEmpty() || textFieldNumConvites.getText().isEmpty() || textFieldTelemovelEmpresa.getText().isEmpty();
+    }
 
+    private void finalizarCandidatura() {
+        String[] opcoes2 = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(rootPane, "Criar candidatura com estes dados?", "Terminar", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+        if (resposta == 0) {
+            if (controller.registaCandidatura() == true) {
+                setVisible(false);
+                JOptionPane.showMessageDialog(rootPane, "Candidatura criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Já se candidatou a esta exposição!", "Erro", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+
+    private void avancarParaCard3() {
+        cardLayout.show(getContentPane(), "card3");
+        setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
+    }
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
-        this.cardLayout.show(this, "card2");
+        //jMenuItemPreencherCampos.setEnabled(true);
+        cardLayout.show(getContentPane(), "card2");
+        setSize(400, 490);
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3AdicionarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3AdicionarDemonstracaoActionPerformed
-        //Adicionar demo à jListCard3ListaProdutos
+        if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
+            boolean b = listModelDemonstracoes.addDemonstracao(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()));
+            if (b) {
+                numDemonstracoes++;
+                jButtonCard3RemoverDemonstracao.setEnabled(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma demonstracao selecionada.", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard3AdicionarDemonstracaoActionPerformed
 
     private void jButtonCard3RemoverDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RemoverDemonstracaoActionPerformed
-        //Remover demo da jListCard3ListaProdutos
+        if (!jListCard3ListaDemonstracoes.isSelectionEmpty()) {
+            listModelDemonstracoes.removeDemonstracao((String) jListCard3ListaDemonstracoes.getSelectedValue());
+            numDemonstracoes--;
+            if (numDemonstracoes == 0) {
+                jButtonCard3RemoverDemonstracao.setEnabled(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma demonstracao selecionada.", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard3RemoverDemonstracaoActionPerformed
 
     private void jButtonCard2AdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarProdutoActionPerformed
-        //Adicionar produto à jListCard2ListaProdutos
+        String input = JOptionPane.showInputDialog(rootPane,
+                "Introduza o produto que quer exibir",
+                "Adicionar produto",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (input != null && !input.replaceAll(" ", "").isEmpty()) {
+            boolean b = this.modeloJListaProdutosCard2.addProduto(input);
+            if (b == true) {
+                jButtonCard2RemoverProduto.setEnabled(true);
+                numProdutos++;
+            } else {
+                JOptionPane.showMessageDialog(rootPane,
+                        "Produto já existente!",
+                        "Erro",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } else if (input != null && input.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Tem de introduzir algo!",
+                    "Erro",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard2AdicionarProdutoActionPerformed
 
     private void jButtonCard2RemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RemoverProdutoActionPerformed
-        //Remover produto da jListCard2ListaProdutos
+        if (!jListCard2ListaProdutos.isSelectionEmpty()) {
+            modeloJListaProdutosCard2.removeProduto((String) jListCard2ListaProdutos.getSelectedValue());
+            numProdutos--;
+            if (numProdutos == 0) {
+                jButtonCard2RemoverProduto.setEnabled(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum produto selecionado", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard2RemoverProdutoActionPerformed
+
+    private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
+        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            Exposicao expo = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(expo.getDataInicio().toString());
+            jLabelCard1DataFim.setText(expo.getDataFim().toString());
+        } else {
+            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
+            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
+            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+        }
+    }//GEN-LAST:event_jComboBoxCard1EscolherExposicaoActionPerformed
+
+    private void jRadioButtonCard2NaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCard2NaoActionPerformed
+        jButtonCard2Avancar.setText("Finalizar Candidatura");
+        jButtonCard2Avancar.setToolTipText("Terminar candidatura. Cria a candidatura se todos os dados forem válidos.");
+
+    }//GEN-LAST:event_jRadioButtonCard2NaoActionPerformed
+
+    private void jComboBoxCard3EscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
+        if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
+            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getDescricao());
+        } else {
+            jTextAreaCard3DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
+        }
+    }//GEN-LAST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCard2ParticiparEmDemonstracoes;
@@ -771,7 +993,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JList<String> jListCard2ListaProdutos;
-    private javax.swing.JList<String> jListCard3ListaProdutos;
+    private javax.swing.JList<String> jListCard3ListaDemonstracoes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
