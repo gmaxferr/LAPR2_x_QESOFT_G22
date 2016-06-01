@@ -298,10 +298,10 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card1, "card2");
+        getContentPane().add(card1, "card1");
 
         jLabel3.setFont(jLabelCard1Titulo.getFont());
         jLabel3.setText("Escolha a candidatura pretendida");
@@ -471,7 +471,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         jLabel16.setFont(jLabelCard1Titulo.getFont());
         jLabel16.setText("Tome a sua decisão");
@@ -516,14 +516,14 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
 
-        getContentPane().add(card3, "card4");
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

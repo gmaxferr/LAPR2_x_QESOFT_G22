@@ -292,7 +292,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card1, "card2");
+        getContentPane().add(card1, "card1");
 
         jLabel3.setFont(jLabelCard1Titulo.getFont());
         jLabel3.setText("Escolha o mecanismo pretendido");
@@ -419,7 +419,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                         .addGap(19, 19, 19))))
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         jLabel5.setFont(jLabelCard1Titulo.getFont());
         jLabel5.setText("Distribuição gerada por candidatura");
@@ -509,7 +509,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        getContentPane().add(card3, "card4");
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

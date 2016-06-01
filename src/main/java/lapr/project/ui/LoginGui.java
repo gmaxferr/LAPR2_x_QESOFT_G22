@@ -187,7 +187,7 @@ public class LoginGui extends JFrame {
      * successo
      */
     private void loginEfetuadoComSuccesso() {
-        new MainMenuGUI(centroExposicoes, utilizador);
+        MainMenuGUI menu = new MainMenuGUI(centroExposicoes, utilizador);
         dispose();
     }
 }

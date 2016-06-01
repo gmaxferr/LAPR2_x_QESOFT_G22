@@ -14,6 +14,7 @@ import lapr.project.model.MyJFileChooser;
  * @author osori
  */
 public class Main {
+
     public static void main(String[] args) {
         MyJFileChooser.personalizarEmPortugues();
         FicheiroDados tratarFicheiro = new FicheiroDados();
@@ -23,6 +24,6 @@ public class Main {
             tratarFicheiro.lerDadosFicheiroTexto(centroExposicoes);
         }
 
-        LoginGui loginGUI = new LoginGui(centroExposicoes);
+        new LoginGui(centroExposicoes);
     }
 }

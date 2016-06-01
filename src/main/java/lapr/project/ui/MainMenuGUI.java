@@ -39,8 +39,6 @@ public class MainMenuGUI extends JFrame {
      *
      * @param centroExposicoes
      * @param utilizador - Utilizador que fez login
-     * @param saveFile - Ficheiro onde é guardada e lida toda a informação que o
-     * programa utiliza
      */
     public MainMenuGUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         super("Main menu");
@@ -272,6 +270,7 @@ public class MainMenuGUI extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 new JFrameCriarCandidaturaUI(thisJFrame, centroExposicoes, utilizador.getUsername());
             }
         });
