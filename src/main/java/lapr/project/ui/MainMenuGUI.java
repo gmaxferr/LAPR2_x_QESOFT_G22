@@ -191,7 +191,7 @@ public class MainMenuGUI extends JFrame {
 
         //Botao exposicoes
         button = criarBotaoExposicoes();
-        button.setEnabled(false);
+        button.setEnabled(true);
         button.setBackground(grey);
         button.setContentAreaFilled(true);
         buttonPanel.add(button);
@@ -207,7 +207,7 @@ public class MainMenuGUI extends JFrame {
         buttonPanel.add(new JLabel(iconeExpo));
         //Botao conflitos
         button = criarBotaoConflitos();
-        button.setEnabled(false);
+        button.setEnabled(true);
         button.setBackground(grey);
         button.setContentAreaFilled(true);
         buttonPanel.add(button);
@@ -215,7 +215,7 @@ public class MainMenuGUI extends JFrame {
         buttonPanel.add(new JLabel(iconeExpo));
         //Botao utilizadores
         button = criarBotaoUtilizadores();
-        button.setEnabled(false);
+        button.setEnabled(true);
         button.setBackground(grey);
         button.setContentAreaFilled(true);
         buttonPanel.add(button);
@@ -245,14 +245,15 @@ public class MainMenuGUI extends JFrame {
      * @return
      */
     private JButton criarBotaoExposicoes() {
-        JButton button = new JButton("Exposições");
+        JButton button = new JButton("Atribuir cand");
         Font font = button.getFont();
         button.setFont(new Font(font.getFontName(), Font.BOLD, font.getSize()));
         button.setPreferredSize(new Dimension(50, 50));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                setVisible(false);
+                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
             }
         });
         return button;
