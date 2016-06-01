@@ -1,16 +1,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Mecanismo;
-import lapr.project.model.MecanismoIteragivel;
-import lapr.project.model.MecanismoSimples;
-import lapr.project.model.RegistoAtribuicoes;
-import lapr.project.model.RegistoCandidaturas;
-import lapr.project.model.RegistoExposicoes;
-import lapr.project.model.RegistoMecanismos;
+import lapr.project.model.*;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidatura

@@ -3,7 +3,6 @@ package lapr.project.ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import lapr.project.model.*;
@@ -40,14 +39,12 @@ public class LoginGui extends JFrame {
      * Exposicoes (Contentor de toda a informação).
      *
      * @param centroExposicoes Centro de Exposições em que vamos iniciar sessão
-     * @param data - Ficheiro onde é guardada e lida toda a informação que o
-     * programa utiliza
      */
-    public LoginGui(CentroExposicoes centroExposicoes, File data) {
+    public LoginGui(CentroExposicoes centroExposicoes) {
         super(FRAME_TITLE);
         this.centroExposicoes = centroExposicoes;
 
-        createComponents(data);
+        createComponents();
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setResizable(false);
@@ -62,7 +59,7 @@ public class LoginGui extends JFrame {
      * @param data - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public void createComponents(File data) {
+    public void createComponents() {
         //Titulo do login
         JLabel title = new JLabel(FRAME_TITLE);
 
@@ -85,7 +82,7 @@ public class LoginGui extends JFrame {
         add(new LoginArea(), BorderLayout.CENTER);
 
         //Area de butoes
-        add(new ButtonArea(this, data), BorderLayout.SOUTH);
+        add(new ButtonArea(this), BorderLayout.SOUTH);
     }
 
     /**
@@ -124,7 +121,7 @@ public class LoginGui extends JFrame {
      */
     private class ButtonArea extends JPanel {
 
-        public ButtonArea(JFrame f, File data) {
+        public ButtonArea(JFrame f) {
             super(new FlowLayout(FlowLayout.CENTER, 20, 5));
             setBackground(background.darker());
 
@@ -134,7 +131,7 @@ public class LoginGui extends JFrame {
             loginButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    botaoLoginClicado(data);
+                    botaoLoginClicado();
                 }
             });
 
@@ -167,7 +164,7 @@ public class LoginGui extends JFrame {
      * @param data - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public void botaoLoginClicado(File data) {
+    public void botaoLoginClicado() {
         String user = usernameField.getText().trim();
         char[] pass = passwordField.getPassword();
 
@@ -178,7 +175,7 @@ public class LoginGui extends JFrame {
             utilizador = Utilitarios.autenticacao(user, pass, centroExposicoes);
             if (utilizador != null) {
                 JOptionPane.showMessageDialog(null, "Login efetuado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE, iconeWelcome);
-                loginEfetuadoComSuccesso(data);
+                loginEfetuadoComSuccesso();
             } else {
                 JOptionPane.showMessageDialog(null, "Login nao efetuado. Username e/ou password incorretos.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
@@ -189,8 +186,8 @@ public class LoginGui extends JFrame {
      * loginEfetuadoComSuccesso: O que acontece quando o login é efetuado com
      * successo
      */
-    private void loginEfetuadoComSuccesso(File data) {
-        new MainMenuGUI(centroExposicoes, utilizador, data);
+    private void loginEfetuadoComSuccesso() {
+        new MainMenuGUI(centroExposicoes, utilizador);
         dispose();
     }
 }

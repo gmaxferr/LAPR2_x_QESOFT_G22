@@ -1,8 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.excecoes.TelemovelEmpresaErradoException;
-import lapr.project.excecoes.NumeroConvitesErradoException;
-import lapr.project.excecoes.AreaErradaException;
+import lapr.project.exceptions.*;
 import java.io.Serializable;
 
 /**

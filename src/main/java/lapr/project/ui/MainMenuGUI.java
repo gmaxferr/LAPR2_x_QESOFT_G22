@@ -30,7 +30,6 @@ public class MainMenuGUI extends JFrame {
     private final Color background = new Color(0, 204, 102);
     private final Color grey = new Color(192, 192, 192);
 
-    private File saveFile;
     private final Utilizador utilizador;
     private final CentroExposicoes centroExposicoes;
     private final JFrame thisJFrame;
@@ -43,9 +42,8 @@ public class MainMenuGUI extends JFrame {
      * @param saveFile - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public MainMenuGUI(CentroExposicoes centroExposicoes, Utilizador utilizador, File saveFile) {
+    public MainMenuGUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         super("Main menu");
-        this.saveFile = saveFile;
         this.utilizador = utilizador;
         this.centroExposicoes = centroExposicoes;
         this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
@@ -152,7 +150,7 @@ public class MainMenuGUI extends JFrame {
      * @param data - ficheiro com a informação guardada
      */
     private void terminaSessao(File data) {
-        new LoginGui(centroExposicoes, data);
+        new LoginGui(centroExposicoes);
         dispose();
     }
 

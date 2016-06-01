@@ -21,7 +21,6 @@ import lapr.project.model.*;
 public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
-    private CardLayout cardLayout;
     private static final int CARD3_LARGURA_MINIMA = 400;
     private static final int CARD3_ALTURA_MINIMA = 240;
     private final String usernameFAE;
@@ -55,7 +54,6 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     public JFrameAvaliarCandidaturas(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
         super("Decidir candidaturas");
 
-        this.cardLayout = (CardLayout) this.getLayout();
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
         this.controller = new DecidirCandidaturaController(centroExposicoes);
@@ -545,6 +543,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
     private void avancarParaCard2() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
     }
@@ -554,6 +553,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
@@ -569,6 +569,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
         controller.setCandidatura(listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCand());
         atribuicaoEscolhida = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex());
         this.avaliacaoDaCandidatura = controller.getReferenciaAvaliacaoDesteFAE(atribuicaoEscolhida, usernameFAE);
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(CARD3_LARGURA_MINIMA, CARD3_ALTURA_MINIMA);
 
@@ -586,6 +587,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 //        }
 //    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       CardLayout cardLayout = (CardLayout) getContentPane().getLayout(); 
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
     }//GEN-LAST:event_jButton2ActionPerformed

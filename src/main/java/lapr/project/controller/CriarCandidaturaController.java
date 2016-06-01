@@ -1,18 +1,8 @@
 package lapr.project.controller;
 
-import lapr.project.excecoes.AreaErradaException;
-import lapr.project.excecoes.NumeroConvitesErradoException;
-import lapr.project.excecoes.TelemovelEmpresaErradoException;
+import lapr.project.exceptions.*;
 import java.util.List;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Produto;
-import lapr.project.model.RegistoCandidaturas;
-import lapr.project.model.RegistoDemonstracoes;
-import lapr.project.model.RegistoExposicoes;
-import lapr.project.model.RegistoProdutos;
+import lapr.project.model.*;
 
 /**
  * Representação do Controller do caso de uso - criar candidatura.

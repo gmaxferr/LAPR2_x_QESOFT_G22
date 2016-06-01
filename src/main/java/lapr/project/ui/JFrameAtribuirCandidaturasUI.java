@@ -21,7 +21,6 @@ import lapr.project.model.*;
 public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
-    private CardLayout cardLayout;
     private final String usernameOrganizador;
     private CentroExposicoes centroExposicoes;
     private AtribuirCandidaturaController controller;
@@ -57,7 +56,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     public JFrameAtribuirCandidaturasUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
         super("Atribuir candidaturas");
 
-        this.cardLayout = (CardLayout) this.getLayout();
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameOrganizador = usernameOrganizador;
         this.centroExposicoes = centroExposicoes;
@@ -522,14 +520,15 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
-
-        this.cardLayout.show(this, "card2");
+CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(this, "card2");
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
     private void avancarParaPasso2() {
         controller.setExposicao(listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex())); //entra com a expo escolhida da combobox
         controller.getRegistoMecanismos();
         listaMecanismos = controller.getListaMecanismos();
         preencherListaNomeMecanismos();
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
@@ -547,6 +546,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
@@ -581,10 +581,12 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
     private void avancarPasso3() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }//GEN-LAST:event_jButton3ActionPerformed

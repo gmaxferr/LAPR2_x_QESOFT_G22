@@ -1,0 +1,17 @@
+﻿Ricardo;ricardo.engineer@gmail.com;Ricardo;123456789;2
+Telma;98betBlabla@hotmail.com;Telma;ninguemSabe;5
+João;JohnPT@gmail.com;headshot;passwordSegura;6
+Ana Maria;114950@isep.ipp.pt;Ana;123;12
+António;114925@isep.ipp.pt;Toninho;password;0
+José;1663325@isep.ipp.pt;Tozé;password;2
+Ana;1154784@isep.ipp.pt;Anitas;password;4
+Rita;1168976@isep.ipp.pt;Rita95;password;4
+Ricardo Pacheco;1584526@isep.ipp.pt;Pacheco;password;1
+John;1256234@isep.ipp.pt;John;password;5
+Guedes;1232251@isep.ipp.pt;Guedes;password;10
+Bruno Ferreira;1256234@isep.ipp.pt;Bruninho;password;8
+Pedro Rocha;1256554@isep.ipp.pt;Rocha;password;2
+Miguel;1624565@isep.ipp.pt;Mike;password;0
+Jorge;5216325@isep.ipp.pt;Jonas;password;0
+Ricardo Sousa;2416325@isep.ipp.pt;Rick;password;1
+Mariana;123456@isep.ipp.pt;Mariana;password;3
