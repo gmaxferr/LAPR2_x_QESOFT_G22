@@ -135,12 +135,9 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        card1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha a exposição pretendida");
         jLabelCard1Titulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        card1.add(jLabelCard1Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 11, -1, -1));
 
         jButtonCard1Avancar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCard1Avancar.setText("Selecionar exposição");
@@ -149,7 +146,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 jButtonCard1AvancarActionPerformed(evt);
             }
         });
-        card1.add(jButtonCard1Avancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
 
         jButtonCard1Fechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCard1Fechar.setText("Cancelar");
@@ -158,7 +154,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 jButtonCard1FecharActionPerformed(evt);
             }
         });
-        card1.add(jButtonCard1Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 101, -1));
 
         jPanelCard1DescricaoExposicao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descricao", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanelCard1DescricaoExposicao.setLayout(new java.awt.BorderLayout());
@@ -178,8 +173,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextAreaCard1DescricaoExposicao);
 
         jPanelCard1DescricaoExposicao.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        card1.add(jPanelCard1DescricaoExposicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 362, 240));
 
         jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -219,8 +212,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 .addComponent(jLabelCard1DataFim))
         );
 
-        card1.add(jPanelCard1Duracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 90, -1, -1));
-
         jPanelCard1Local.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jScrollPane2.setBorder(null);
@@ -246,10 +237,8 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCard1LocalLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
-
-        card1.add(jPanelCard1Local, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 171, -1, 120));
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBoxEscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoesDoOrganizador));
@@ -258,7 +247,49 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                 jComboBoxEscolherExposicaoActionPerformed(evt);
             }
         });
-        card1.add(jComboBoxEscolherExposicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 49, 202, 29));
+
+        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
+        card1.setLayout(card1Layout);
+        card1Layout.setHorizontalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(jLabelCard1Titulo))
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonCard1Avancar))))
+        );
+        card1Layout.setVerticalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabelCard1Titulo)
+                .addGap(11, 11, 11)
+                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCard1Fechar)
+                            .addComponent(jButtonCard1Avancar)))))
+        );
 
         getContentPane().add(card1, "card1");
 
@@ -312,12 +343,12 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
             }
         });
 
-        jPanelCard2DadosAdicionais.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabelCard2DadosAdicionais.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCard2DadosAdicionais.setText("Introduza o número de ...");
-        jPanelCard2DadosAdicionais.add(jLabelCard2DadosAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 20));
-        jPanelCard2DadosAdicionais.add(jTextFieldDadosAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 40, -1));
+        jPanelCard2DadosAdicionais.add(jLabelCard2DadosAdicionais);
+
+        jTextFieldDadosAdicionais.setColumns(5);
+        jPanelCard2DadosAdicionais.add(jTextFieldDadosAdicionais);
 
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);

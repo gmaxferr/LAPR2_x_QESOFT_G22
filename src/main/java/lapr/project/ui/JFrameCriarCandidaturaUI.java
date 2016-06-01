@@ -317,11 +317,8 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
         getContentPane().add(card1, "card1");
 
-        card2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel3.setFont(jLabelCard1Titulo.getFont());
         jLabel3.setText("Introduza os dados necessários");
-        card2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, 37));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -373,8 +370,6 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        card2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 65, 520, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da candidatura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -467,13 +462,9 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        card2.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 208, 520, -1));
-
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Demonstrações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setText("Pretende participar em alguma demonstração?");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
 
         buttonGroupCard2ParticiparEmDemonstracoes.add(jRadioButtonCard2Sim);
         jRadioButtonCard2Sim.setText("Sim");
@@ -482,7 +473,6 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 jRadioButtonCard2SimActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadioButtonCard2Sim, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         buttonGroupCard2ParticiparEmDemonstracoes.add(jRadioButtonCard2Nao);
         jRadioButtonCard2Nao.setSelected(true);
@@ -492,9 +482,30 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 jRadioButtonCard2NaoActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadioButtonCard2Nao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
 
-        card2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 441, 310, 100));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel11))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jRadioButtonCard2Sim)
+                .addGap(39, 39, 39)
+                .addComponent(jRadioButtonCard2Nao))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel11)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButtonCard2Sim)
+                    .addComponent(jRadioButtonCard2Nao)))
+        );
 
         jButtonCard2Recuar.setText("Recuar");
         jButtonCard2Recuar.addActionListener(new java.awt.event.ActionListener() {
@@ -502,7 +513,6 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 jButtonCard2RecuarActionPerformed(evt);
             }
         });
-        card2.add(jButtonCard2Recuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, -1, -1));
 
         jButtonCard2Avancar.setText("Terminar");
         jButtonCard2Avancar.addActionListener(new java.awt.event.ActionListener() {
@@ -510,10 +520,53 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 jButtonCard2AvancarActionPerformed(evt);
             }
         });
-        card2.add(jButtonCard2Avancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 90, -1));
 
         jButtonCard2ValidarDados.setText("Validar dados introduzidos");
-        card2.add(jButtonCard2ValidarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 190, -1));
+
+        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
+        card2.setLayout(card2Layout);
+        card2Layout.setHorizontalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel3))
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCard2ValidarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addComponent(jButtonCard2Recuar)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButtonCard2Avancar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        card2Layout.setVerticalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jButtonCard2ValidarDados)
+                        .addGap(27, 27, 27)
+                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCard2Recuar)
+                            .addComponent(jButtonCard2Avancar)))))
+        );
 
         getContentPane().add(card2, "card2");
 
