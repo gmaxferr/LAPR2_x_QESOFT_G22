@@ -52,7 +52,7 @@ public class RegistoUtilizadores implements Serializable {
      */
     private boolean validarUtilizador(Utilizador utilizador) {
         for (Utilizador u : listaUtilizadores) {
-            if (u.getEmail().equalsIgnoreCase(utilizador.getEmail())
+            if (u.getE_mail().equalsIgnoreCase(utilizador.getE_mail())
                     || u.getUsername().equalsIgnoreCase(utilizador.getUsername())) {
                 return false;
             }

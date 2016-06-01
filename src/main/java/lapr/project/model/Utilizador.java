@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import crypt.CaesarsCypher;
+import exceptions.InvalidPasswordException;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -60,11 +61,14 @@ public class Utilizador implements Serializable {
      */
     public boolean isRepresentanteExpositor = false;
 
+    private boolean confirmacaoDoRegisto;
+
     /**
      * Construtor por defeito.
      */
     public Utilizador() {
         nAvaliacoesDesdeSempre = 0;
+        confirmacaoDoRegisto = false;
     }
 
     /**
@@ -111,6 +115,15 @@ public class Utilizador implements Serializable {
      */
     public String getUsername() {
         return username;
+    }
+
+    /**
+     * Retorna se o utilizador tem o seu registo confirmado
+     *
+     * @return true se estiver já confirmado e false caso contrário
+     */
+    public boolean getConfirmacaoRegisto() {
+        return this.confirmacaoDoRegisto;
     }
 
     /**
@@ -285,6 +298,16 @@ public class Utilizador implements Serializable {
      */
     public void setRepresentanteExpositor(boolean isRepresentanteExpositor) {
         this.isRepresentanteExpositor = isRepresentanteExpositor;
+    }
+
+    /**
+     * Confirma o registo de todos os utilizadores registados atualmente.
+     * Procedimento necessário para estarem aptos a exercerem qualquer função no
+     * centro de exposições. Este processo é realizado por um expositor mas está
+     * automatizado para facilitar os testes
+     */
+    public void confirmarRegistoUtilizador() {
+        this.confirmacaoDoRegisto = true;
     }
 
 }

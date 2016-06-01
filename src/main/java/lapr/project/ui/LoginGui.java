@@ -1,28 +1,13 @@
 package lapr.project.ui;
 
-import gui.MainMenuGUI;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import lapr.project.model.CentroExposicoes;
-//import obj.CentroDeExposicoes;
-import obj.Utilizador;
+import lapr.project.model.*;
+import lapr.project.utils.Utilitarios;
 
 /**
  *
@@ -190,7 +175,7 @@ public class LoginGui extends JFrame {
             JOptionPane.showMessageDialog(null, "Login nao efetuado."
                     + "\nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
-            utilizador = utils.Utilitarios.autenticacao(user, pass, centroExposicoes);
+            utilizador = Utilitarios.autenticacao(user, pass, centroExposicoes);
             if (utilizador != null) {
                 JOptionPane.showMessageDialog(null, "Login efetuado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE, iconeWelcome);
                 loginEfetuadoComSuccesso(data);

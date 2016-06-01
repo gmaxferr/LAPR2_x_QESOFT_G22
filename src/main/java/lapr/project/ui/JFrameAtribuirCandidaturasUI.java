@@ -6,18 +6,13 @@
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirCandidaturaController;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelMecanismos;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Mecanismo;
+import lapr.project.model.*;
 
 /**
  *
@@ -31,6 +26,11 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private CentroExposicoes centroExposicoes;
     private AtribuirCandidaturaController controller;
     private List<Exposicao> listaExposicoesDoOrganizador;
+    private List<Mecanismo> listaMecanismos;
+    private String[] listaNomeMecanismos;
+    private Mecanismo mecanismoEscolhido;
+    private List<Atribuicao> listaAtribuicoes;
+    private ModeloJTableDistribuicaoFAE modeloJTable;
 
     private static final int LARGURA_JANELA_PASSO1 = 400;
     private static final int ALTURA_JANELA_PASSO1 = 300;
@@ -46,11 +46,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private static final String DESCRICAO_MECANISMO_POR_OMISSAO = "A apresentar uma breve discrição sobre como o mecanismo funciona e este distribui os FAE's pelas candidaturas existentes.";
-    private List<Mecanismo> listaMecanismos;
-    private String[] listaNomeMecanismos;
-    private Mecanismo mecanismoEscolhido;
-    private List<Atribuicao> listaAtribuicoes;
-    private ModeloJTableDistribuicaoFAE modeloJTable;
 
     /**
      * Creates new form JFrameAtribuirCandidaturasUI
@@ -71,13 +66,13 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador(this.usernameOrganizador);
 
         initComponents();
-        alterarComportamentoFecharJanel();
+        alterarComportamentoFecharJFrame();
 
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
 
-    private void alterarComportamentoFecharJanel() {
+    private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
@@ -553,7 +548,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         cardLayout.show(getContentPane(), "card1");
-        setSize(new Dimension(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1));
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
@@ -591,7 +586,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         cardLayout.show(getContentPane(), "card2");
-        setSize(new Dimension(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2));
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

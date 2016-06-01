@@ -6,29 +6,31 @@
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DecidirCandidaturaController;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Avaliacao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Produto;
+import lapr.project.model.*;
 
 /**
  *
  * @author osori
  */
-public class JFrameDecidirCandidaturas extends javax.swing.JFrame {
+public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private CardLayout cardLayout;
+    private static final int CARD3_LARGURA_MINIMA = 400;
+    private static final int CARD3_ALTURA_MINIMA = 240;
+    private final String usernameFAE;
+    private final DecidirCandidaturaController controller;
+    private final List<Exposicao> listaExposicoes;
+    private JFrame jFrame;
+    private List<Atribuicao> listaAtribuicoesDoFAE;
+    private Atribuicao atribuicaoEscolhida;
+    private Avaliacao avaliacaoDaCandidatura;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
@@ -47,20 +49,10 @@ public class JFrameDecidirCandidaturas extends javax.swing.JFrame {
     private static final int CARD2_LARGURA_MINIMA = 480;
     private static final int CARD2_ALTURA_MINIMA = 450;
 
-    private static final int CARD3_LARGURA_MINIMA = 400;
-    private static final int CARD3_ALTURA_MINIMA = 240;
-    private final String usernameFAE;
-    private final DecidirCandidaturaController controller;
-    private final List<Exposicao> listaExposicoes;
-    private JFrame jFrame;
-    private List<Atribuicao> listaAtribuicoesDoFAE;
-    private Atribuicao atribuicaoEscolhida;
-    private Avaliacao avaliacaoDaCandidatura;
-
     /**
      * Creates new form JFrameDecidirCandidaturas
      */
-    public JFrameDecidirCandidaturas(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
+    public JFrameAvaliarCandidaturas(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
         super("Decidir candidaturas");
 
         this.cardLayout = (CardLayout) this.getLayout();
@@ -72,12 +64,13 @@ public class JFrameDecidirCandidaturas extends javax.swing.JFrame {
         this.jFrameMenuPrincipal = jFrame;
 
         initComponents();
-        alterarComportamentoFecharJanel();
+        alterarComportamentoFecharJFrame();
+        
         setVisible(true);
         setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }
 
-    private void alterarComportamentoFecharJanel() {
+    private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
@@ -624,7 +617,6 @@ public class JFrameDecidirCandidaturas extends javax.swing.JFrame {
 //        setVisible(false);
 //        jFrameMenuPrincipal.setVisible(true);
 //    }
-    
 //    private void voltarASelecionarExposicao() {
 //        cardLayout.show(getContentPane(), "card1");
 //        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
