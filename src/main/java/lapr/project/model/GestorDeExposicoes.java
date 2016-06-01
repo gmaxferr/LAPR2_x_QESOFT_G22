@@ -1,4 +1,4 @@
-package obj;
+package lapr.project.model;
 
 import lapr.project.model.Utilizador;
 
