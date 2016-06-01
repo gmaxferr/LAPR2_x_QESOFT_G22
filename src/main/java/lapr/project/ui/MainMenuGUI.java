@@ -1,32 +1,13 @@
 package lapr.project.ui;
 
-import lapr.project.ui.LoginGui;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import lapr.project.*;
 import lapr.project.model.CentroExposicoes;
-import obj.Utilizador;
+import lapr.project.model.Utilizador;
 
 /**
  * Menu Principal disponivel a todos os utilizadores a partir do momento em que
@@ -50,39 +31,46 @@ public class MainMenuGUI extends JFrame {
     private final Color grey = new Color(192, 192, 192);
 
     private File saveFile;
+    private final Utilizador utilizador;
+    private final CentroExposicoes centroExposicoes;
+    private final JFrame thisJFrame;
 
     /**
      * Janela principal depois de iniciar sessão
      *
-     * @param ce - Centro de Exposição
+     * @param centroExposicoes
      * @param utilizador - Utilizador que fez login
      * @param saveFile - Ficheiro onde é guardada e lida toda a informação que o
      * programa utiliza
      */
-    public MainMenuGUI(CentroExposicoes ce, Utilizador utilizador, File saveFile) {
-        super("Main menu", ce, utilizador);
+    public MainMenuGUI(CentroExposicoes centroExposicoes, Utilizador utilizador, File saveFile) {
+        super("Main menu");
         this.saveFile = saveFile;
+        this.utilizador = utilizador;
+        this.centroExposicoes = centroExposicoes;
+        this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
         criaBase();
         createWindow();
 
         pack();
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-                if (op == JOptionPane.YES_OPTION) {
-                    new IO_BinFile().save(saveFile, ce);
-                    System.exit(0);
-                } else if (op == JOptionPane.NO_OPTION) {
-                    System.exit(0);
-                }
-            }
-        });
+
+        //Leitura do ficheiro
+//        addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+//                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+//                if (op == JOptionPane.YES_OPTION) {
+//                    new IO_BinFile().save(saveFile, centroExposicoes);
+//                    System.exit(0);
+//                } else if (op == JOptionPane.NO_OPTION) {
+//                    System.exit(0);
+//                }
+//            }
+//        });
         paint();
 
     }
@@ -125,13 +113,14 @@ public class MainMenuGUI extends JFrame {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-                if (op == JOptionPane.YES_OPTION) {
-                    new IO_BinFile().save(saveFile, ce);
-                    terminaSessao(saveFile);
-                } else if (op == JOptionPane.NO_OPTION) {
-                    terminaSessao(saveFile);
-                }
+
+//                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+//                if (op == JOptionPane.YES_OPTION) {
+//                    new IO_BinFile().save(saveFile, ce);
+//                    terminaSessao(saveFile);
+//                } else if (op == JOptionPane.NO_OPTION) {
+//                    terminaSessao(saveFile);
+//                }
             }
         }
         );
@@ -163,7 +152,7 @@ public class MainMenuGUI extends JFrame {
      * @param data - ficheiro com a informação guardada
      */
     private void terminaSessao(File data) {
-        new LoginGui(ce, data);
+        new LoginGui(centroExposicoes, data);
         dispose();
     }
 
@@ -285,7 +274,7 @@ public class MainMenuGUI extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new JFrameCriarCandidaturaUI(this, centroExposicoes, usernameExpositor);
+                new JFrameCriarCandidaturaUI(thisJFrame, centroExposicoes, utilizador.getUsername());
             }
         });
         return button;

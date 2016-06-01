@@ -1,4 +1,4 @@
-package lapr.project.excecoes;
+package lapr.project.exceptions;
 
 /**
  * Representa a exceção a ser lançada quando a área (ao criar candidatura) não é

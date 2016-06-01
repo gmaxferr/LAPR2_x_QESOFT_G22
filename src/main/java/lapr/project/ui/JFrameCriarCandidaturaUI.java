@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -12,12 +11,7 @@ import lapr.project.controller.CriarCandidaturaController;
 import lapr.project.excecoes.AreaErradaException;
 import lapr.project.excecoes.NumeroConvitesErradoException;
 import lapr.project.excecoes.TelemovelEmpresaErradoException;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelDemonstracoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.ListaDemonstracoes;
+import lapr.project.model.*;
 
 /**
  *
@@ -73,13 +67,13 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         this.listaExposicoes = controller.getListaExposicoes();
 
         initComponents();
-        alterarComportamentoFecharJanel();
+        alterarComportamentoFecharJFrame();
 
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
 
-    private void alterarComportamentoFecharJanel() {
+    private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
@@ -159,8 +153,9 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         jButtonCard3Terminar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuAcoes = new javax.swing.JMenu();
+        jMenuAjuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -714,11 +709,15 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Ações");
-        jMenuBar1.add(jMenu1);
+        jMenuAcoes.setText("Ações");
+        jMenuBar1.add(jMenuAcoes);
 
-        jMenu2.setText("Ajuda");
-        jMenuBar1.add(jMenu2);
+        jMenuAjuda.setText("Ajuda");
+
+        jMenuItem1.setText("Preencher campos");
+        jMenuAjuda.add(jMenuItem1);
+
+        jMenuBar1.add(jMenuAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -994,9 +993,10 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JList<String> jListCard2ListaProdutos;
     private javax.swing.JList<String> jListCard3ListaDemonstracoes;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuAcoes;
+    private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
