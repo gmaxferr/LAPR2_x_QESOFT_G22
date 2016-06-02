@@ -3,6 +3,10 @@ package lapr.project.controller;
 import lapr.project.exceptions.*;
 import java.util.List;
 import lapr.project.model.*;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoProdutos;
 
 /**
  * Representação do Controller do caso de uso - criar candidatura.

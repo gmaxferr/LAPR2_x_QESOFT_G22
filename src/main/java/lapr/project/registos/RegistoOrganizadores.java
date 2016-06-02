@@ -3,6 +3,9 @@ package lapr.project.registos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Organizador;
+import lapr.project.model.Utilizador;
 
 /**
  * Representação de um registo de organizadores.

@@ -2,7 +2,7 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.*;
-
+import lapr.project.registos.*;
 /**
  * Representação do Controller do caso de uso - atribuir candidatura
  *

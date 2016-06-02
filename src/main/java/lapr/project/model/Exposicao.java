@@ -1,6 +1,11 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.registos.RegistoAtribuicoes;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoFAE;
+import lapr.project.registos.RegistoOrganizadores;
 
 /**
  * Representação de uma exposição.

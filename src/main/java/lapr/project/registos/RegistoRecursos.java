@@ -3,6 +3,7 @@ package lapr.project.registos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Recurso;
 
 /**
  * Rpresentação de um registo de recursos.

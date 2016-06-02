@@ -3,6 +3,9 @@ package lapr.project.registos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.Organizador;
 
 /**
  * Representação de um registo de exposições.

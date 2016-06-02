@@ -2,6 +2,8 @@ package lapr.project.model;
 
 import lapr.project.exceptions.*;
 import java.io.Serializable;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoProdutos;
 
 /**
  * Representa de uma Candidatura
