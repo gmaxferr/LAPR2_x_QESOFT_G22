@@ -67,7 +67,7 @@ public class Exposicao implements Serializable {
      * Registo de fae da exposição.
      */
     private RegistoFAE rfae;
-    
+
     /**
      * Registo candidaturas removidas da exposição
      */
@@ -79,7 +79,7 @@ public class Exposicao implements Serializable {
     private CentroExposicoes centroExposicoes;
 
     private EstadoExposicao estado;
-    
+
     /**
      * Construtor de objetos do tipo Exposição com os parâmetros título,
      * descrição, data de inicio, data de fim e local da exposição.
@@ -194,13 +194,13 @@ public class Exposicao implements Serializable {
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.ro;
     }
-    
+
     /**
      * Devolve o registo de candidaturas removidas.
-     * 
+     *
      * @return registo de candidaturas removidas
      */
-    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas(){
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return this.rcr;
     }
 
@@ -306,9 +306,8 @@ public class Exposicao implements Serializable {
     public void addOrganizador(Utilizador utilizador) {
         this.ro.addOrganizador(utilizador);
     }
-    
+
     public void setEstado(EstadoExposicao estado) {
         this.estado = estado;
     }
-
 }
