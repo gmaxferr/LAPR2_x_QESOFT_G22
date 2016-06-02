@@ -29,28 +29,28 @@ public class AlterarPerfilDeUtilizadorController {
     }
     
     public void identificaUtilizador(String username){
-        m_ru.identificarUtilizador(username);
+        u = m_ru.identificarUtilizador(username);
     }
     
     public String getNomeUtilizador(){
-        return u.getM_strNome();
+        return u.getNome();
     }
     
     public String getEmailUtilizador(){
-        return u.getM_strEmail();
+        return u.getE_mail();
     }
     
     public String getPasswordUtilizador(){
-        return u.getM_strPwd();
+        return u.getPassword();
     }
     
     public void setDadosUtilizador(String nome, String email, String username, String password){
         
         if(m_ru.validaDadosUnicos(username, email)){
         u.setNome(nome);
-        u.setEmail(email);
+        u.setE_mail(email);
         u.setUsername(username);
-        u.setPwd(password);
+        u.setPassword(password.toCharArray());
         }
     }
 }

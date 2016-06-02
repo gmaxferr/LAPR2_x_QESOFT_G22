@@ -156,6 +156,13 @@ public class Utilizador implements Serializable {
     }
 
     /**
+     * @return Retorna a password deste utilizador, encriptada.
+     */
+    public String getPassword(){
+        return password.toString();
+    }
+    
+    /**
      * Altera o nome do utilizador.
      *
      * @param nome Novo nome a atribuir ao utilizador

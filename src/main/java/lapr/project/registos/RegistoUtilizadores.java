@@ -60,4 +60,39 @@ public class RegistoUtilizadores implements Serializable {
         }
         return true;
     }
+
+    /**
+     * Identifica um utilizador com o dado username e retorna-o
+     *
+     * @param username Username do utilizador a encontrar
+     * @return Retorna o utilizador cujo username é igual ao passado como
+     * argumento, se existir. Se não existir, retorna null.
+     */
+    public Utilizador identificarUtilizador(String username) {
+        for (Utilizador u : listaUtilizadores) {
+            if (u.getUsername().equals(username)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Valida se o username e o email passados como argumento são únicos, isto
+     * é, não existe sequer um utilizador com qualquer um destes dados na lista
+     * de utilizadores guardada por este registo.
+     *
+     * @param username username a verificar se é única
+     * @param email email a verificar se é único
+     * @return Retorna TRUE se ambos forem únicos, FALSE caso contrário
+     */
+    public boolean validaDadosUnicos(String username, String email) {
+        for (Utilizador u : listaUtilizadores) {
+            if (u.getUsername().equals(username)
+                    || u.getE_mail().equals(email)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
