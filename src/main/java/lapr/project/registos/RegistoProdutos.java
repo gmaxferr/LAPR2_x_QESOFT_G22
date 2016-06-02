@@ -1,4 +1,4 @@
-package lapr.project.model;
+package lapr.project.registos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
