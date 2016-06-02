@@ -3,6 +3,7 @@ package lapr.project.model;
 import java.io.Serializable;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasRemovidas;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoFAE;
 import lapr.project.registos.RegistoOrganizadores;
@@ -65,6 +66,11 @@ public class Exposicao implements Serializable {
      * Registo de fae da exposição.
      */
     private RegistoFAE rfae;
+    
+    /**
+     * Registo candidaturas removidas da exposição
+     */
+    private RegistoCandidaturasRemovidas rcr;
 
     /**
      * Centro de exposições que tem esta exposição
@@ -184,6 +190,15 @@ public class Exposicao implements Serializable {
      */
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.ro;
+    }
+    
+    /**
+     * Devolve o registo de candidaturas removidas.
+     * 
+     * @return registo de candidaturas removidas
+     */
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas(){
+        return this.rcr;
     }
 
     /**
