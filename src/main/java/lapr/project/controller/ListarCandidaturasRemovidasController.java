@@ -5,6 +5,7 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
+import lapr.project.registos.RegistoExposicoes;
 
 /**
  *
@@ -17,6 +18,7 @@ public class ListarCandidaturasRemovidasController {
      */
     private RegistoCandidaturasRemovidas rcr;
  
+    private RegistoExposicoes re;
     /**
      * Exposicao escolhida.
      */
@@ -37,6 +39,31 @@ public class ListarCandidaturasRemovidasController {
         this.centroExposicoes = centro_exposicoes;
     }
 
+    /**
+     * Guarda o registo de exposicoes.
+     */
+    public void getRe(){
+        this.re = centroExposicoes.getRegistoExposicoes();
+    }
+    
+    /**
+     * Devolve a lista das exposições de um organizador.
+     *
+     * @return lista das exposições de um organizador.
+     */
+    public List<Exposicao> getListaExposicoesDoOrganizador(String identificacao) {
+        return re.getListaExposicoesDoOrganizador(identificacao);
+    }
+    
+    /**
+     * Modifica a exposição.
+     *
+     * @param e nova exposição.
+     */
+    public void setExposicao(Exposicao e) {
+        this.exposicaoEscolhida = e;
+    }
+    
     /**
      * Guarda o registo de candidaturas removidas.
      */

@@ -10,7 +10,7 @@ import lapr.project.registos.RegistoExposicoes;
  *
  * @author Ana Leite e Ricardo Osório
  */
-public class DecidirCandidaturaController {
+public class AvaliarCandidaturaController {
 
     /**
      * Registo de atribuições.
@@ -43,7 +43,7 @@ public class DecidirCandidaturaController {
      *
      * @param centroExposicoes centro de exposições.
      */
-    public DecidirCandidaturaController(CentroExposicoes centroExposicoes) {
+    public AvaliarCandidaturaController(CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
         
     }

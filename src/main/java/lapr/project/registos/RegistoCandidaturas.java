@@ -72,6 +72,20 @@ public class RegistoCandidaturas implements Serializable{
         }
         return true;
     }
+
+    public void removeCandidatura(Candidatura c){
+        listaCandidaturas.remove(c);
+    }
+    
+    public List<Candidatura> getCandidaturasRepresentante(String username) {
+        List<Candidatura>candidaturasRepLst = new ArrayList<>();
+        for(Candidatura c : listaCandidaturas){
+            if(c.getM_UsernameExpositor().equals(username)){
+                candidaturasRepLst.add(c);
+            }
+        }
+        return candidaturasRepLst;
+    }
     
     
 

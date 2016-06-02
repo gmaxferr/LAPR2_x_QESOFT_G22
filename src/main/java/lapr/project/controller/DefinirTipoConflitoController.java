@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.model.CentroExposicoes;
+
 /**
  * Representação do Controller do caso de uso - definir tipo de conflito
  * 

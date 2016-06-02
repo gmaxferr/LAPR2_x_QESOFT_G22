@@ -3,6 +3,7 @@ package lapr.project.registos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
@@ -152,4 +153,34 @@ public class RegistoExposicoes implements Serializable {
         return false;
     }
 
+    public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : listaExpos) {
+            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            for (Candidatura c : rc.getListaCandidaturas()) {
+                if (c.getM_UsernameExpositor().equals(username)) {
+                    if (c.getEstado().isEstadoCandidaturaAceite()) {
+                        listaExpoRep.add(e);
+                        break;
+                    }
+                }
+            }
+        }
+        return listaExpoRep;
+    }
+
+    public List<Exposicao> getExposicoesDoRepresentante(String username) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : listaExpos) {
+            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            for (Candidatura c : rc.getListaCandidaturas()) {
+                if (c.getM_UsernameExpositor().equals(username)) {
+                    listaExpoRep.add(e);
+                    break;
+
+                }
+            }
+        }
+        
+    }
 }

@@ -1,6 +1,12 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.estados.EstadoCandidatura;
+import lapr.project.estados.EstadoExposicao;
+import lapr.project.model.Candidatura;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Expositor;
+import lapr.project.registos.RegistoCandidaturas;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
@@ -21,8 +27,8 @@ public class AlterarCandidaturasController {
         m_rc = registoCandidaturas;
     }
 
-    public boolean getEstadoExposicao() {
-        estadoExpo = exposicao.getEstadoExposicao();
+    public boolean getM_EstadoExposicao() {
+        estadoExpo = exposicao.getEstado();
         return verificaEstadoExposicao(estadoExpo);
     }
 

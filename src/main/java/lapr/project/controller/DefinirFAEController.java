@@ -1,6 +1,15 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import lapr.project.estados.EstadoExposicao;
+import lapr.project.estados.EstadoExposicaoCriada;
+import lapr.project.estados.EstadoExposicaoDemosDefinidasSemFAE;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Utilizador;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoFAE;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação do Controller do caso de uso - definir fae

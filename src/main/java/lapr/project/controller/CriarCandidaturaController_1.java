@@ -1,10 +1,13 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Expositor;
+import lapr.project.model.Produto;
 import lapr.project.registos.RegistoCandidaturas;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoExposicoes;

@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.DecidirCandidaturaController;
+import lapr.project.controller.AvaliarCandidaturaController;
 import lapr.project.model.*;
 
 /**
@@ -24,7 +24,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     private static final int CARD3_LARGURA_MINIMA = 400;
     private static final int CARD3_ALTURA_MINIMA = 240;
     private final String usernameFAE;
-    private final DecidirCandidaturaController controller;
+    private final AvaliarCandidaturaController controller;
     private final List<Exposicao> listaExposicoes;
     private JFrame jFrame;
     private List<Atribuicao> listaAtribuicoesDoFAE;
@@ -56,7 +56,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
-        this.controller = new DecidirCandidaturaController(centroExposicoes);
+        this.controller = new AvaliarCandidaturaController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesDoFAE(this.usernameFAE);
         this.jFrameMenuPrincipal = jFrame;

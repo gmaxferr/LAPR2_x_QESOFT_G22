@@ -2,6 +2,17 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.EstadoCandidatura;
+import lapr.project.estados.EstadoExposicao;
+import lapr.project.model.Atribuicao;
+import lapr.project.model.Candidatura;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.Mecanismo;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoMecanismos;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidaturas
