@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import lapr.project.estados.EstadoExposicao;
+import lapr.project.estados.EstadoExposicaoInicial;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturas;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
@@ -103,6 +104,7 @@ public class Exposicao implements Serializable {
         this.rfae = new RegistoFAE(this);
         this.ro = new RegistoOrganizadores(this);
         this.centroExposicoes = centroExposicoes;
+        this.estado = new EstadoExposicaoInicial(this);
     }
 
     /**
@@ -307,6 +309,18 @@ public class Exposicao implements Serializable {
         this.ro.addOrganizador(utilizador);
     }
 
+    /**
+     * @return Devolve o estado desta Exposição
+     */
+    public EstadoExposicao getEstado() {
+        return estado;
+    }
+
+    /**
+     * Modifica o estado desta exposição
+     *
+     * @param estado Novo estado da exposição
+     */
     public void setEstado(EstadoExposicao estado) {
         this.estado = estado;
     }

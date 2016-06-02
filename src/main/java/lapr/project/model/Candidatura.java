@@ -52,7 +52,7 @@ public class Candidatura implements Serializable {
      * Número de convites da candidatura.
      */
     private int numConvites;
-    
+
     private EstadoCandidatura estado;
 
     /**
@@ -69,12 +69,13 @@ public class Candidatura implements Serializable {
 
     /**
      * Devolve o estado atual da candidatura
+     *
      * @return - estado atual da candidatura
      */
-    public EstadoCandidatura getEstado(){
+    public EstadoCandidatura getEstado() {
         return estado;
     }
-    
+
     /**
      * Devolve o nome da empresa da candidatura.
      *
@@ -170,17 +171,11 @@ public class Candidatura implements Serializable {
      *
      * @param telemovelEmpresa novo número de telemovel da candidatura.
      */
-    public void setM_TelemovelEmpresa(String telemovelEmpresa) throws TelemovelEmpresaErradoException {
-        if (telemovelEmpresa.length() != 9) {
+    public void setM_TelemovelEmpresa(int telemovelEmpresa) throws TelemovelEmpresaErradoException {
+        if (telemovelEmpresa < 100_000_000 || telemovelEmpresa > 999_999_999) {
             throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa não se encontra correto.");
         }
-        int intTelemovel;
-        try {
-            intTelemovel = Integer.parseInt(telemovelEmpresa);
-        } catch (IllegalArgumentException exception) {
-            throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa não se encontra correto.");
-        }
-        this.telemovelEmpresa = intTelemovel;
+        this.telemovelEmpresa = telemovelEmpresa;
     }
 
     /**
@@ -188,17 +183,11 @@ public class Candidatura implements Serializable {
      *
      * @param area nova area pretendida da candidatura.
      */
-    public void setM_Area(String area) throws AreaErradaException {
-        try {
-            int intArea = Integer.parseInt(area);
-            if (intArea < 0) {
-                throw new AreaErradaException("A área introduzida não é válida.");
-            }
-            this.area = intArea;
-        } catch (IllegalArgumentException exception) {
+    public void setM_Area(int area) throws AreaErradaException {
+        if (area <= 0) {
             throw new AreaErradaException("A área introduzida não é válida.");
         }
-
+        this.area = area;
     }
 
     /**
@@ -206,16 +195,11 @@ public class Candidatura implements Serializable {
      *
      * @param numConvites novo número de convites da candidatura.
      */
-    public void setM_NumConvites(String numConvites) throws NumeroConvitesErradoException {
-        try {
-            int intNumConvites = Integer.parseInt(numConvites);
-            if (intNumConvites < 0) {
-                throw new NumeroConvitesErradoException("O número de convites introduzido não é válido.");
-            }
-            this.numConvites = intNumConvites;
-        } catch (IllegalArgumentException exception) {
+    public void setM_NumConvites(int numConvites) throws NumeroConvitesErradoException {
+        if (numConvites <= 0) {
             throw new NumeroConvitesErradoException("O número de convites introduzido não é válido.");
         }
+        this.numConvites = numConvites;
     }
 
     /**
@@ -241,8 +225,8 @@ public class Candidatura implements Serializable {
             return false;
         }
     }
-    
-    public void setEstado(EstadoCandidatura ne){
+
+    public void setEstado(EstadoCandidatura ne) {
         this.estado = ne;
     }
 }

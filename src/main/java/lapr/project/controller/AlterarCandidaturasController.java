@@ -38,7 +38,7 @@ public class AlterarCandidaturasController {
     }
 
     public boolean getEstadoCandidatura() {
-        estadoCand = cand.getEstadoCandidatura();
+        estadoCand = cand.getEstado();
         return verificaCandidatura(estadoCand);
     }
 
@@ -60,30 +60,30 @@ public class AlterarCandidaturasController {
     }
 
     public String getM_strNomeEmpresa() {
-        return expositor.getM_strNomeEmpresa();
+        return cand.getM_NomeEmpresa();
     }
 
     public String getM_strMorada() {
-        return expositor.getM_strMorada();
+        return cand.getM_MoradaEmpresa();
     }
 
     public int getM_intTelemovel() {
-        return cand.getM_intTelemovel();
+        return cand.getM_NumeroTelemovel();
     }
 
     public float getM_strArea() {
-        return cand.getM_floatArea();
+        return cand.getM_Area();
     }
 
     public int getM_intNumConvites() {
-        return cand.getM_intNumConvites();
+        return cand.getM_NumConvites();
     }
 
     public void setDadosCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, int area, int numConvites) {
-        cand.setM_strNomeEmpresa(nomeEmpresa);
-        cand.setM_strMorada(moradaEmpresa);
-        cand.setM_intTelemovel(telemovel);
-        cand.setM_intArea(area);
-        cand.setM_intNumConvites(numConvites);
+        cand.setM_NomeEmpresa(nomeEmpresa);
+        cand.setM_MoradaEmpresa(moradaEmpresa);
+        cand.setM_TelemovelEmpresa(telemovel);
+        cand.setM_Area(area);
+        cand.setM_NumConvites(numConvites);
     }
 }

@@ -13,7 +13,7 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoInicial implements EstadoExposicao {
 
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
 
     public EstadoExposicaoInicial(Exposicao exposicao) {
         this.exposicao = exposicao;
