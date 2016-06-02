@@ -23,6 +23,14 @@ public class RegistoCandidaturasRemovidas {
     }
     
     /**
+     * Adiciona uma candidatura removida do registo de candidaturas
+     * @param c - candidatura removida do registo de candidaturas
+     */
+    public void adicionarCandidatura(Candidatura c){
+        listaCandidaturasRemovidas.add(c);
+    }
+    
+    /**
      * Devolve a lista de candidaturas removidas.
      * 
      * @return lista de candidaturas removidas
