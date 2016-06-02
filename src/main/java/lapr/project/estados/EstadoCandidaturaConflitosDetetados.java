@@ -16,7 +16,7 @@ public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return true;
+        return false;
     }
 
     @Override
@@ -51,6 +51,31 @@ public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
 
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaCriada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoConflitosDetetados() {
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoConflitosAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAvaliada() {
+        return false;
     }
     
 }

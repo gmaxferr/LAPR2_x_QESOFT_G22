@@ -15,4 +15,14 @@ public interface EstadoCandidatura extends Estado{
     boolean setEstadoCandidaturaAtribuida();
     
     boolean setEstadoCandidaturaAvaliada();
+    
+    boolean isEstadoCandidaturaCriada();
+    
+    boolean isEstadoConflitosDetetados();
+    
+    boolean isEstadoConflitosAtribuidos();
+    
+    boolean isEstadoCandidaturaAtribuida();
+    
+    boolean isEstadoCandidaturaAvaliada();
 }
