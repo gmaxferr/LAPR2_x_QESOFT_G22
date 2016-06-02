@@ -6,10 +6,13 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.estados.EstadoCandidaturaADemonstracao;
+import lapr.project.estados.EstadoCandidaturaADemonstracaoCriada;
 import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.registos.RegistoCandidaturaADemonstracoes;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoExposicoes;
 
@@ -18,21 +21,23 @@ import lapr.project.registos.RegistoExposicoes;
  * @author guima
  */
 public class RegistarCandidaturaADemonstracaoController {
-
+    
     private Exposicao e; //exposição selecionada
     private Demonstracao d; //demonstração selecionada
     private String dados; //dados do formulário
+    private CandidaturaADemonstracao cand; //nova candidatura a uma demonstração
 
     private CentroExposicoes ce;
     private String usernameRep; //username do representante
 
     private RegistoExposicoes re;
     private RegistoDemonstracoes rd;
-    private lapr.project.registos.RegistoCandidaturaADemonstracoes rcd;
-
+    private RegistoCandidaturaADemonstracoes rcd;
+    
     private List<Demonstracao> listDemos; //lista de demonstrações da exposição selecionada
+    private List<Exposicao> listExpos; //lista de exposicoes em que o representante entra
 
-    private EstadoCandidaturaADemonstracao ecd;
+    private EstadoCandidaturaADemonstracao estado;
     
     public RegistarCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameRep) {
         this.ce = ce;
@@ -45,11 +50,12 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public List<Exposicao> getListaDeExposicoes() {
         re = ce.getRegistoExposicoes();
-        return re.getListaExposicoesComCandidaturasAceitesRepresentante(usernameRep);
+        listExpos = re.getListaExposicoesComCandidaturasAceitesRepresentante(usernameRep);
+        return listExpos;
     }
 
     /**
-     * Guarda a exposição selecionada pelo representante
+     * Guarda a exposição selecionada pelo representante.
      *
      * @param e - exposição selecionada
      */
@@ -60,10 +66,10 @@ public class RegistarCandidaturaADemonstracaoController {
     /**
      * Guarda a demonstração selecionada pelo representante
      *
-     * @param d - demonstração selecionada
+     * @param indexSelectedDemo - indice da demonstração selecionada
      */
-    public void setDemo(Demonstracao d) {
-        this.d = d;
+    public void setDemo(int indexSelectedDemo) {
+        this.d = listDemos.get(indexSelectedDemo);
     }
 
     /**
@@ -104,11 +110,25 @@ public class RegistarCandidaturaADemonstracaoController {
         return valido;
     }
 
-    public void RegistaCandADemo() {
-        CandidaturaADemonstracao cand = new CandidaturaADemonstracao(dados);
-        if(rcd.adiciona(cand)){
-            ecd =  cand.getEstado();
-            ecd.setCriada();
+    /**
+     * Valida globalmente uma candidatura e regista-a se for válida.
+     *
+     * @return true se a adição foi efetuada com sucesso; false caso contrário
+     */
+    public boolean RegistaCandADemo() {
+        cand = new CandidaturaADemonstracao(dados);
+        return rcd.adiciona(cand);
+    }
+    
+    /**
+     * Muda o estado da candidatura à demonstração
+     */
+    public void transitaEstado() {
+        this.estado = cand.getEstado();
+        if (estado.setEstadoCandidaturaCriada()) {
+            EstadoCandidaturaADemonstracaoCriada estado2 = new EstadoCandidaturaADemonstracaoCriada(cand);
+            cand.setEstado(estado2);
         }
     }
+    
 }

@@ -7,25 +7,38 @@ package lapr.project.ui;
 
 import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import lapr.project.controller.RegistarCandidaturaADemonstracaoController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.ComboBoxModelExposicoes;
+import lapr.project.model.Exposicao;
 
 /**
  *
  * @author guima
  */
-public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame {
+public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
-    private lapr.project.model.Exposicao e; //exposição selecionada
-    private lapr.project.model.Demonstracao d; //exposição selecionada
-    private List<lapr.project.model.Exposicao> listaExpos; //lista de exposições
-    private List<lapr.project.model.Demonstracao> listaDemos; //lista de demonstrações
-    private lapr.project.controller.RegistarCandidaturaADemonstracaoController CTRL;
+    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
+    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+    private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
+    private RegistarCandidaturaADemonstracaoController CTRL;
+    private List<Exposicao> listaExposicoes;
+
+    ;
     /**
-     * Creates new form JFrameRegistarCandidaturaADemonstracaoUI
+     * Cria interface de Registar Candidatura a uma Demonstracao
+     * 
+     * @param ce - Centro de Exposções
+     * @param usernameRep - username do representante
      */
-    public JFrameRegistarCandidaturaADemonstracaoUI() {
+    public JFrameRegistarCandidaturaADemonstracaoUI(CentroExposicoes ce, String usernameRep) {
+        CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
+
         initComponents();
     }
 
@@ -39,12 +52,21 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabelCard1Titulo = new javax.swing.JLabel();
+        jButtonCard1Avancar = new javax.swing.JButton();
+        jButtonCard1Fechar = new javax.swing.JButton();
+        jPanelCard1DescricaoExposicao = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaCard1DescricaoExposicao = new javax.swing.JTextArea();
+        jPanelCard1Duracao = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        listaCard1 = new javax.swing.JList<>();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelCard1DataInicio = new javax.swing.JLabel();
+        jLabelCard1DataFim = new javax.swing.JLabel();
+        jPanelCard1Local = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaCard1LocalExposicao = new javax.swing.JTextArea();
+        jComboBoxCard1EscolherExposicao = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -68,67 +90,162 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("  Criação de Candidatura a Demonstração  ");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jLabelCard1Titulo.setText("Escolha a exposição pretendida");
+        jLabelCard1Titulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jButton1.setText("Continuar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCard1Avancar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCard1Avancar.setText("Selecionar exposição");
+        jButtonCard1Avancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCard1AvancarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCard1Fechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCard1Fechar.setText("Cancelar");
+        jButtonCard1Fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCard1FecharActionPerformed(evt);
             }
         });
 
-        listaCard1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listaCard1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane6.setViewportView(listaCard1);
+        jPanelCard1DescricaoExposicao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descricao", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanelCard1DescricaoExposicao.setLayout(new java.awt.BorderLayout());
 
-        jLabel10.setText("Selecione uma das exposições em que está inscrito:");
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setRequestFocusEnabled(false);
+
+        jTextAreaCard1DescricaoExposicao.setEditable(false);
+        jTextAreaCard1DescricaoExposicao.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        jTextAreaCard1DescricaoExposicao.setColumns(20);
+        jTextAreaCard1DescricaoExposicao.setLineWrap(true);
+        jTextAreaCard1DescricaoExposicao.setRows(5);
+        jTextAreaCard1DescricaoExposicao.setText("A apresentar a descrição da demonstração selecionada");
+        jTextAreaCard1DescricaoExposicao.setToolTipText("");
+        jTextAreaCard1DescricaoExposicao.setWrapStyleWord(true);
+        jTextAreaCard1DescricaoExposicao.setBorder(null);
+        jScrollPane1.setViewportView(jTextAreaCard1DescricaoExposicao);
+
+        jPanelCard1DescricaoExposicao.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("De");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("até");
+
+        jLabelCard1DataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelCard1DataInicio.setText("00/00/0000");
+
+        jLabelCard1DataFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelCard1DataFim.setText("00/00/0000");
+
+        javax.swing.GroupLayout jPanelCard1DuracaoLayout = new javax.swing.GroupLayout(jPanelCard1Duracao);
+        jPanelCard1Duracao.setLayout(jPanelCard1DuracaoLayout);
+        jPanelCard1DuracaoLayout.setHorizontalGroup(
+            jPanelCard1DuracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCard1DuracaoLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelCard1DataInicio)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCard1DataFim)
+                .addGap(32, 32, 32))
+        );
+        jPanelCard1DuracaoLayout.setVerticalGroup(
+            jPanelCard1DuracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCard1DuracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelCard1DataInicio)
+                .addComponent(jLabelCard1DataFim))
+        );
+
+        jPanelCard1Local.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jScrollPane3.setBorder(null);
+
+        jTextAreaCard1LocalExposicao.setEditable(false);
+        jTextAreaCard1LocalExposicao.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.background"));
+        jTextAreaCard1LocalExposicao.setColumns(20);
+        jTextAreaCard1LocalExposicao.setLineWrap(true);
+        jTextAreaCard1LocalExposicao.setRows(5);
+        jTextAreaCard1LocalExposicao.setText("A apresentar o local da exposição selecionada");
+        jTextAreaCard1LocalExposicao.setWrapStyleWord(true);
+        jTextAreaCard1LocalExposicao.setBorder(null);
+        jScrollPane3.setViewportView(jTextAreaCard1LocalExposicao);
+
+        javax.swing.GroupLayout jPanelCard1LocalLayout = new javax.swing.GroupLayout(jPanelCard1Local);
+        jPanelCard1Local.setLayout(jPanelCard1LocalLayout);
+        jPanelCard1LocalLayout.setHorizontalGroup(
+            jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanelCard1LocalLayout.setVerticalGroup(
+            jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+        );
+
+        jComboBoxCard1EscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBoxCard1EscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
+        jComboBoxCard1EscolherExposicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCard1EscolherExposicaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(254, 254, 254)
+                .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10)
-                            .addComponent(jScrollPane6)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabelCard1Titulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28))))
+                        .addContainerGap()
+                        .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonCard1Avancar))
+                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabelCard1Titulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCard1Fechar)
+                            .addComponent(jButtonCard1Avancar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, "card1");
@@ -181,7 +298,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(272, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,7 +321,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton4))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, "card2");
@@ -245,7 +362,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(272, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -277,7 +394,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
                     .addComponent(jButton9)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, "card4");
@@ -286,20 +403,11 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (listaCard1.isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ainda não selecionou nenhuma exposição!", "Atenção!", ERROR_MESSAGE);
-        } else {
-            e = listaExpos.get((lapr.project.model.Exposicao) listaCard1.getSelectedIndex());
-            passaParaPanel2();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (listaCard2.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Ainda não selecionou nenhuma demonstração!", "Atenção!", ERROR_MESSAGE);
         } else {
-            d = listaDemos.get((lapr.project.model.Demonstracao) listaCard2.getSelectedIndex());
+            CTRL.setDemo(listaCard2.getSelectedIndex());
             passaParaPanel3();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -307,18 +415,10 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if (textAreaCard3.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ainda não escreveu nenhum dado do formulário!", "Atenção!", ERROR_MESSAGE);
-        } else {
-            CTRL.setDados(textAreaCard3.getText().trim()); // não sei se é este o nome do metodo
-            /**
-             * Registar Cand
-             */
+        } else if (CTRL.setFormularioDados(textAreaCard3.getText().trim())) {
+            CTRL.RegistaCandADemo();
         }
-
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         passaParaPanel1();
@@ -328,64 +428,66 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends javax.swing.JFrame
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameRegistarCandidaturaADemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameRegistarCandidaturaADemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameRegistarCandidaturaADemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameRegistarCandidaturaADemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
+        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            passaParaPanel2();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameRegistarCandidaturaADemonstracaoUI().setVisible(true);
-            }
-        });
-    }
+    private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCard1FecharActionPerformed
+
+    private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
+        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            Exposicao e = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
+            jTextAreaCard1DescricaoExposicao.setText(e.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(e.getDataInicio().toString());
+            jLabelCard1DataFim.setText(e.getDataFim().toString());
+            CTRL.setExpo(e);
+        } else {
+            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
+            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
+            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+        }
+    }//GEN-LAST:event_jComboBoxCard1EscolherExposicaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonCard1Avancar;
+    private javax.swing.JButton jButtonCard1Fechar;
+    private javax.swing.JComboBox<String> jComboBoxCard1EscolherExposicao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCard1DataFim;
+    private javax.swing.JLabel jLabelCard1DataInicio;
+    private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelCard1DescricaoExposicao;
+    private javax.swing.JPanel jPanelCard1Duracao;
+    private javax.swing.JPanel jPanelCard1Local;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JList<String> listaCard1;
+    private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
+    private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
     private javax.swing.JList<String> listaCard2;
     private javax.swing.JTextArea textAreaCard3;
     // End of variables declaration//GEN-END:variables
