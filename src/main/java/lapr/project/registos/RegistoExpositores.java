@@ -1,8 +1,11 @@
-package lapr.project.model;
+package lapr.project.registos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Cargo;
+import lapr.project.model.Expositor;
+import lapr.project.model.Utilizador;
 
 /**
  * Representação de um registo de expositor.

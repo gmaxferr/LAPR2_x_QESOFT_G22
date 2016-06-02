@@ -1,8 +1,9 @@
-package lapr.project.model;
+package lapr.project.registos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Demonstracao;
 
 /**
  * Representação de um registo de demonstrações.

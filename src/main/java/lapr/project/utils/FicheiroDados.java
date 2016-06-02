@@ -4,6 +4,11 @@ import java.io.*;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import lapr.project.model.*;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoMecanismos;
+import lapr.project.registos.RegistoRecursos;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Classe que permite a leitura de ficheiros.

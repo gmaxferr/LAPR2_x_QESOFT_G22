@@ -1,8 +1,11 @@
-package lapr.project.model;
+package lapr.project.registos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Atribuicao;
+import lapr.project.model.Avaliacao;
+import lapr.project.model.FAE;
 
 /**
  * Representação de um Registo de Atribuições
