@@ -80,7 +80,7 @@ public class Candidatura implements Serializable {
      *
      * @return nome da empresa da candidatura.
      */
-    public String getNomeEmpresa() {
+    public String getM_NomeEmpresa() {
         return this.nomeEmpresa;
     }
 
@@ -89,7 +89,7 @@ public class Candidatura implements Serializable {
      *
      * @return número de telemóvel da candidatura.
      */
-    public int getNumeroTelemovel() {
+    public int getM_NumeroTelemovel() {
         return this.telemovelEmpresa;
     }
 
@@ -98,7 +98,7 @@ public class Candidatura implements Serializable {
      *
      * @return morada da empresa da candidatura.
      */
-    public String getMoradaEmpresa() {
+    public String getM_MoradaEmpresa() {
         return this.moradaEmpresa;
     }
 
@@ -107,7 +107,7 @@ public class Candidatura implements Serializable {
      *
      * @return número de convites pretendidos pela empresa da candidatura.
      */
-    public int getNumConvites() {
+    public int getM_NumConvites() {
         return this.numConvites;
     }
 
@@ -116,7 +116,7 @@ public class Candidatura implements Serializable {
      *
      * @return àrea pretendida pela empresa da candidatura.
      */
-    public int getArea() {
+    public int getM_Area() {
         return this.area;
     }
 
@@ -125,7 +125,7 @@ public class Candidatura implements Serializable {
      *
      * @return registo de produtos da candidatura.
      */
-    public RegistoProdutos getRegistoProdutos() {
+    public RegistoProdutos getM_RegistoProdutos() {
         return this.rp;
     }
 
@@ -134,7 +134,7 @@ public class Candidatura implements Serializable {
      *
      * @return username do expositor da candidatura.
      */
-    public String getUsernameExpositor() {
+    public String getM_UsernameExpositor() {
         return this.usernameExpositor;
     }
 
@@ -152,7 +152,7 @@ public class Candidatura implements Serializable {
      *
      * @param nomeEmpresa novo nome da empresa da candidatura.
      */
-    public void setNomeEmpresa(String nomeEmpresa) {
+    public void setM_NomeEmpresa(String nomeEmpresa) {
         this.nomeEmpresa = nomeEmpresa;
     }
 
@@ -161,7 +161,7 @@ public class Candidatura implements Serializable {
      *
      * @param moradaEmpresa nova morada da empresa da candidatura.
      */
-    public void setMoradaEmpresa(String moradaEmpresa) {
+    public void setM_MoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
     }
 
@@ -170,7 +170,7 @@ public class Candidatura implements Serializable {
      *
      * @param telemovelEmpresa novo número de telemovel da candidatura.
      */
-    public void setTelemovelEmpresa(String telemovelEmpresa) throws TelemovelEmpresaErradoException {
+    public void setM_TelemovelEmpresa(String telemovelEmpresa) throws TelemovelEmpresaErradoException {
         if (telemovelEmpresa.length() != 9) {
             throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa não se encontra correto.");
         }
@@ -188,7 +188,7 @@ public class Candidatura implements Serializable {
      *
      * @param area nova area pretendida da candidatura.
      */
-    public void setArea(String area) throws AreaErradaException {
+    public void setM_Area(String area) throws AreaErradaException {
         try {
             int intArea = Integer.parseInt(area);
             if (intArea < 0) {
@@ -206,7 +206,7 @@ public class Candidatura implements Serializable {
      *
      * @param numConvites novo número de convites da candidatura.
      */
-    public void setNumConvites(String numConvites) throws NumeroConvitesErradoException {
+    public void setM_NumConvites(String numConvites) throws NumeroConvitesErradoException {
         try {
             int intNumConvites = Integer.parseInt(numConvites);
             if (intNumConvites < 0) {
@@ -235,7 +235,7 @@ public class Candidatura implements Serializable {
             return false;
         }
         Candidatura cand = (Candidatura) obj;
-        if (this.usernameExpositor.equalsIgnoreCase(cand.getUsernameExpositor())) {
+        if (this.usernameExpositor.equalsIgnoreCase(cand.getM_UsernameExpositor())) {
             return true;
         } else {
             return false;

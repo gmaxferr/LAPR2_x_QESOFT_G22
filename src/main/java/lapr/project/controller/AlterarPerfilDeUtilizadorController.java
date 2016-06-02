@@ -1,5 +1,9 @@
 package lapr.project.controller;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
+import lapr.project.registos.RegistoUtilizadores;
+
 /**
  * Representação do Controller do caso de uso - alterar perfil de utilizador
  * 

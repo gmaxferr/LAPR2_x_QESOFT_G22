@@ -1,5 +1,8 @@
 package lapr.project.controller;
 
+import lapr.project.model.Candidatura;
+import lapr.project.model.FAE;
+
 /**
  *
  * @author osori

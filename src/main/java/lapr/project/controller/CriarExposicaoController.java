@@ -1,6 +1,15 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.estados.EstadoCandidatura;
+import lapr.project.estados.EstadoExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Local;
+import lapr.project.model.Utilizador;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoOrganizadores;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação do Controller do caso de uso - criar exposição

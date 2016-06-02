@@ -6,6 +6,17 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import lapr.project.estados.EstadoExposicao;
+import lapr.project.estados.EstadoExposicaoCriada;
+import lapr.project.estados.EstadoExposicaoDemosDefinidasSemFAE;
+import lapr.project.estados.EstadoExposicaoFAEDefinidosSemDemos;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Recurso;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoRecursos;
 
 /**
  *
