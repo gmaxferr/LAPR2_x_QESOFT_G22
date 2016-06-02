@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.registos.RegistoFaeDecisao;
 
 /**
  * Representação de uma atribuição

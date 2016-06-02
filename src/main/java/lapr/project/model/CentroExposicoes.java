@@ -1,6 +1,11 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoExpositores;
+import lapr.project.registos.RegistoMecanismos;
+import lapr.project.registos.RegistoRecursos;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação de um Centro de Exposições

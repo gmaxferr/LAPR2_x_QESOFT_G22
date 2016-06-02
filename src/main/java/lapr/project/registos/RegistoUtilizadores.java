@@ -3,6 +3,7 @@ package lapr.project.registos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Utilizador;
 
 /**
  * Representação de um Registo de Utilizadores.

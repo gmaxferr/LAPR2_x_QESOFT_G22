@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.registos.RegistoRecursos;
 
 /**
  * Representação de uma demonstração.

@@ -2,6 +2,8 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.*;
+import lapr.project.registos.RegistoAtribuicoes;
+import lapr.project.registos.RegistoExposicoes;
 
 /**
  * Representação do Controller do caso de uso - decidir candidatura.
