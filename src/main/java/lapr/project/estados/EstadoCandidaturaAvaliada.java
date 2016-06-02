@@ -36,7 +36,32 @@ public class EstadoCandidaturaAvaliada implements EstadoCandidatura {
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaCriada() {
         return false;
+    }
+
+    @Override
+    public boolean isEstadoConflitosDetetados() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoConflitosAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAvaliada() {
+        return true;
     }
 
 }

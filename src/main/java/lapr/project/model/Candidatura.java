@@ -68,6 +68,14 @@ public class Candidatura implements Serializable {
     }
 
     /**
+     * Devolve o estado atual da candidatura
+     * @return - estado atual da candidatura
+     */
+    public EstadoCandidatura getEstado(){
+        return estado;
+    }
+    
+    /**
      * Devolve o nome da empresa da candidatura.
      *
      * @return nome da empresa da candidatura.
