@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturas;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
@@ -77,6 +78,8 @@ public class Exposicao implements Serializable {
      */
     private CentroExposicoes centroExposicoes;
 
+    private EstadoExposicao estado;
+    
     /**
      * Construtor de objetos do tipo Exposição com os parâmetros título,
      * descrição, data de inicio, data de fim e local da exposição.
@@ -302,6 +305,10 @@ public class Exposicao implements Serializable {
      */
     public void addOrganizador(Utilizador utilizador) {
         this.ro.addOrganizador(utilizador);
+    }
+    
+    public void setEstado(EstadoExposicao estado) {
+        this.estado = estado;
     }
 
 }
