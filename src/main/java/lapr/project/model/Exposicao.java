@@ -1,8 +1,10 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasRemovidas;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoFAE;
 import lapr.project.registos.RegistoOrganizadores;
@@ -67,9 +69,16 @@ public class Exposicao implements Serializable {
     private RegistoFAE rfae;
 
     /**
+     * Registo candidaturas removidas da exposição
+     */
+    private RegistoCandidaturasRemovidas rcr;
+
+    /**
      * Centro de exposições que tem esta exposição
      */
     private CentroExposicoes centroExposicoes;
+
+    private EstadoExposicao estado;
 
     /**
      * Construtor de objetos do tipo Exposição com os parâmetros título,
@@ -187,6 +196,15 @@ public class Exposicao implements Serializable {
     }
 
     /**
+     * Devolve o registo de candidaturas removidas.
+     *
+     * @return registo de candidaturas removidas
+     */
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
+        return this.rcr;
+    }
+
+    /**
      * Devolve o número de organizadores desta exposição
      *
      * @return verificação do número mínimo de organizadores da exposição.
@@ -289,4 +307,7 @@ public class Exposicao implements Serializable {
         this.ro.addOrganizador(utilizador);
     }
 
+    public void setEstado(EstadoExposicao estado) {
+        this.estado = estado;
+    }
 }

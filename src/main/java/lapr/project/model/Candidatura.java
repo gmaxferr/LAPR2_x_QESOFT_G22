@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.exceptions.*;
 import java.io.Serializable;
+import lapr.project.estados.EstadoCandidatura;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoProdutos;
 
@@ -51,6 +52,8 @@ public class Candidatura implements Serializable {
      * Número de convites da candidatura.
      */
     private int numConvites;
+    
+    private EstadoCandidatura estado;
 
     /**
      * Construtor de objetos do tipo Candidatura com o parâmetro expositor da
@@ -64,6 +67,14 @@ public class Candidatura implements Serializable {
         this.rd = new RegistoDemonstracoes();
     }
 
+    /**
+     * Devolve o estado atual da candidatura
+     * @return - estado atual da candidatura
+     */
+    public EstadoCandidatura getEstado(){
+        return estado;
+    }
+    
     /**
      * Devolve o nome da empresa da candidatura.
      *
@@ -229,5 +240,9 @@ public class Candidatura implements Serializable {
         } else {
             return false;
         }
+    }
+    
+    public void setEstado(EstadoCandidatura ne){
+        this.estado = ne;
     }
 }
