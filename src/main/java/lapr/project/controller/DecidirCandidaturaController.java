@@ -2,8 +2,8 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
-import lapr.project.estados.EstadoCandidaturaAtribuida;
+import lapr.project.estados.EstadoCandidaturaAExposicaoAtribuida;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representação do Controller do caso de uso - decidir candidatura
@@ -16,8 +16,8 @@ public class DecidirCandidaturaController {
     RegistoAtribuicoes ra;
     public static List<Candidatura> listaCand = new ArrayList<>();
     Candidatura candidatura;
-    EstadoCandidatura estadoCand;
-    public EstadoCandidaturaAtribuida estadoCandidaturaAtribuida;
+    EstadoCandidaturaAExposicao estadoCand;
+    public EstadoCandidaturaAExposicaoAtribuida estadoCandidaturaAtribuida;
     
 
     public boolean getEstado(){
@@ -25,7 +25,7 @@ public class DecidirCandidaturaController {
         return verificaEstado(estadoCand);
     }
     
-    public boolean verificaEstado(EstadoCandidatura estado){
+    public boolean verificaEstado(EstadoCandidaturaAExposicao estado){
         //Verifica se o estdo permite executar este UC
         return true;
     }

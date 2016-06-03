@@ -6,33 +6,23 @@ import classesREMOVIDAS.Candidatura;
  *
  * @author Ana Leite
  */
-public class EstadoCandidaturaConflitosAtribuidos implements EstadoCandidatura {
+public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExposicao {
 
     private Candidatura cand;
 
-    public EstadoCandidaturaConflitosAtribuidos(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoCriada(Candidatura cand) {
         this.cand = cand;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
         return true;
     }
 
     @Override
-    public boolean setEstadoCandidaturaAtribuida() {
+    public boolean setEstadoConflitosDetetados() {
         if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAvaliada(this.cand));
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoConflitosDetetados(this.cand));
             return true;
         } else {
             return false;
@@ -40,8 +30,28 @@ public class EstadoCandidaturaConflitosAtribuidos implements EstadoCandidatura {
     }
 
     @Override
+    public boolean setEstadoConflitosAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    @Override
     public boolean setEstadoCandidaturaAvaliada() {
         return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaAceite() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRejeitada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private boolean valida() {
@@ -51,7 +61,7 @@ public class EstadoCandidaturaConflitosAtribuidos implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        return false;
+        return true;
     }
 
     @Override
@@ -61,7 +71,7 @@ public class EstadoCandidaturaConflitosAtribuidos implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoConflitosAtribuidos() {
-        return true;
+        return false;
     }
 
     @Override

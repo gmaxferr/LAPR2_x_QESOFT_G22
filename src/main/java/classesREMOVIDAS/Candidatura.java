@@ -5,7 +5,7 @@ import classesREMOVIDAS.AreaErradaException;
 import classesREMOVIDAS.TelemovelEmpresaErradoException;
 import lapr.project.exceptions.*;
 import java.io.Serializable;
-import lapr.project.estados.EstadoCandidatura;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representa de uma Candidatura
@@ -54,7 +54,7 @@ public class Candidatura implements Serializable {
      */
     private int numConvites;
 
-    private EstadoCandidatura estado;
+    private EstadoCandidaturaAExposicao estado;
 
     /**
      * Construtor de objetos do tipo Candidatura com o parâmetro expositor da
@@ -73,7 +73,7 @@ public class Candidatura implements Serializable {
      *
      * @return - estado atual da candidatura
      */
-    public EstadoCandidatura getEstado() {
+    public EstadoCandidaturaAExposicao getEstado() {
         return estado;
     }
 
@@ -227,7 +227,7 @@ public class Candidatura implements Serializable {
         }
     }
 
-    public void setEstado(EstadoCandidatura ne) {
+    public void setEstado(EstadoCandidaturaAExposicao ne) {
         this.estado = ne;
     }
 }

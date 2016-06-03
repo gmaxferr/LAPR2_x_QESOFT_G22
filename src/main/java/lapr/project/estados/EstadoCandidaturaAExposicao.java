@@ -4,7 +4,7 @@ package lapr.project.estados;
  *
  * @author Ana Leite e Ricardo Osório
  */
-public interface EstadoCandidatura extends Estado{
+public interface EstadoCandidaturaAExposicao extends Estado{
     
     boolean setEstadoCandidaturaCriada();
     
@@ -15,6 +15,10 @@ public interface EstadoCandidatura extends Estado{
     boolean setEstadoCandidaturaAtribuida();
     
     boolean setEstadoCandidaturaAvaliada();
+    
+    boolean setEstadoCandidaturaAceite();
+    
+    boolean setEstadoCandidaturaRejeitada();
     
     boolean isEstadoCandidaturaCriada();
     

@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
 import classesREMOVIDAS.Atribuicao;
 import classesREMOVIDAS.Candidatura;
@@ -13,6 +12,7 @@ import lapr.project.model.Mecanismo;
 import classesREMOVIDAS.RegistoCandidaturas;
 import classesREMOVIDAS.RegistoExposicoes;
 import lapr.project.registos.RegistoMecanismos;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidaturas
@@ -37,7 +37,7 @@ public class AtribuirCandidaturasController {
     private RegistoMecanismos rm;
     private RegistoCandidaturas rc;
     private EstadoExposicao estadoExposicao;
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     public AtribuirCandidaturasController(CentroExposicoes centroExposicoes) {
         this.listaExpo = new ArrayList<>();

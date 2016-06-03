@@ -1,12 +1,12 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
 import classesREMOVIDAS.Candidatura;
 import classesREMOVIDAS.Exposicao;
 import classesREMOVIDAS.Expositor;
 import classesREMOVIDAS.RegistoCandidaturas;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
@@ -18,7 +18,7 @@ public class AlterarCandidaturasController {
     private RegistoCandidaturas m_rc;
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
-    private EstadoCandidatura estadoCand;
+    private EstadoCandidaturaAExposicao estadoCand;
     private Candidatura cand;
     private Expositor expositor;
     
@@ -42,7 +42,7 @@ public class AlterarCandidaturasController {
         return verificaCandidatura(estadoCand);
     }
 
-    public boolean verificaCandidatura(EstadoCandidatura estado) {
+    public boolean verificaCandidatura(EstadoCandidaturaAExposicao estado) {
         //verifica se o estado permite executar ese UC
         return true;
     }

@@ -1,13 +1,13 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
-import lapr.project.estados.EstadoCandidaturaConflitosDetetados;
+import lapr.project.estados.EstadoCandidaturaAExposicaoConflitosDetetados;
 import lapr.project.estados.EstadoExposicao;
 import classesREMOVIDAS.Candidatura;
 import classesREMOVIDAS.CentroExposicoes;
 import classesREMOVIDAS.Exposicao;
 import classesREMOVIDAS.FAE;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representação do Controller do caso de uso - artibuir conflitos de interesse
@@ -17,8 +17,8 @@ public class AtribuirConflitoInteresseController {
 
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
-    private EstadoCandidatura estadoCand;
-    private EstadoCandidaturaConflitosDetetados estadoConflitosdetetados;
+    private EstadoCandidaturaAExposicao estadoCand;
+    private EstadoCandidaturaAExposicaoConflitosDetetados estadoConflitosdetetados;
     private RegistoTipoConflitos m_rtc;
     private CentroExposicoes m_centro_exposicoes;
     FAE fae;

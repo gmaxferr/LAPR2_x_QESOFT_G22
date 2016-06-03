@@ -4,48 +4,63 @@ import classesREMOVIDAS.Candidatura;
 
 /**
  *
- * @author Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class EstadoCandidaturaAtribuida implements EstadoCandidatura {
+public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCandidaturaAExposicao {
 
     private Candidatura cand;
 
-    public EstadoCandidaturaAtribuida(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoConflitosDetetados(Candidatura cand) {
         this.cand = cand;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-
         return false;
     }
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        return false;    
+        return true;
+
     }
 
     @Override
     public boolean setEstadoConflitosAtribuidos() {
-        return false;
+        if (valida()) {
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoConflitosAtribuidos(this.cand));
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
-        if (valida()){
-            cand.setEstado(new EstadoCandidaturaAvaliada(cand));
-            return true;
-        } else return false;
+        return false;
+
     }
-  
+
+    @Override
+    public boolean setEstadoCandidaturaAceite() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRejeitada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
+
     }
 
     @Override
@@ -55,7 +70,7 @@ public class EstadoCandidaturaAtribuida implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoConflitosDetetados() {
-        return false;
+        return true;
     }
 
     @Override
@@ -65,12 +80,12 @@ public class EstadoCandidaturaAtribuida implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
         return false;
     }
-}
 
+}

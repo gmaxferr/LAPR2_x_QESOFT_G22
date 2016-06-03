@@ -1,7 +1,6 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
 import classesREMOVIDAS.Candidatura;
 import classesREMOVIDAS.CentroExposicoes;
@@ -10,6 +9,7 @@ import classesREMOVIDAS.FAE;
 import classesREMOVIDAS.RegistoCandidaturas;
 import classesREMOVIDAS.RegistoExposicoes;
 import classesREMOVIDAS.RegistoFAE;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  *
@@ -28,7 +28,7 @@ public class DetetarConflitoController {
     private boolean b;
     private RegistoConflitos rconf;
     private EstadoExposicao estadoExposicao;
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     
 

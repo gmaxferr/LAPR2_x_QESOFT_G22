@@ -1,7 +1,6 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
 import classesREMOVIDAS.CentroExposicoes;
 import classesREMOVIDAS.Exposicao;
@@ -10,6 +9,7 @@ import classesREMOVIDAS.Utilizador;
 import classesREMOVIDAS.RegistoExposicoes;
 import classesREMOVIDAS.RegistoOrganizadores;
 import classesREMOVIDAS.RegistoUtilizadores;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
  * Representação do Controller do caso de uso - criar exposição
@@ -30,7 +30,7 @@ public class CriarExposicaoController {
     
     private EstadoExposicao estadoExposicao;
     
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     public CriarExposicaoController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoUtilizadores registoUtilizadores, RegistoOrganizadores registoOrganizadores) {
         m_centro_exposicoes = centro_exposicoes;

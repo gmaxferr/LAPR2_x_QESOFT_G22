@@ -6,22 +6,23 @@ import classesREMOVIDAS.Candidatura;
  *
  * @author Ana Leite
  */
-public class EstadoCandidaturaAvaliada implements EstadoCandidatura {
+public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAExposicao {
 
     private Candidatura cand;
 
-    public EstadoCandidaturaAvaliada(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoAtribuida(Candidatura cand) {
         this.cand = cand;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
+
         return false;
     }
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        return false;
+        return false;    
     }
 
     @Override
@@ -31,11 +32,19 @@ public class EstadoCandidaturaAvaliada implements EstadoCandidatura {
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
+        if (valida()){
+            cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(cand));
+            return true;
+        } else return false;
+    }
+  
+    private boolean valida() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
     }
 
@@ -56,12 +65,22 @@ public class EstadoCandidaturaAvaliada implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
-        return true;
+        return false;
     }
 
+    @Override
+    public boolean setEstadoCandidaturaAceite() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRejeitada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+

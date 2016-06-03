@@ -6,37 +6,37 @@ import classesREMOVIDAS.Candidatura;
  *
  * @author Ana Leite
  */
-public class EstadoCandidaturaCriada implements EstadoCandidatura {
+public class EstadoCandidaturaAExposicaoConflitosAtribuidos implements EstadoCandidaturaAExposicao {
 
     private Candidatura cand;
 
-    public EstadoCandidaturaCriada(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoConflitosAtribuidos(Candidatura cand) {
         this.cand = cand;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaConflitosDetetados(this.cand));
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
     public boolean setEstadoConflitosAtribuidos() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return false;
+        if (valida()) {
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(this.cand));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EstadoCandidaturaCriada implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        return true;
+        return false;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class EstadoCandidaturaCriada implements EstadoCandidatura {
 
     @Override
     public boolean isEstadoConflitosAtribuidos() {
-        return false;
+        return true;
     }
 
     @Override
@@ -72,6 +72,16 @@ public class EstadoCandidaturaCriada implements EstadoCandidatura {
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
         return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaAceite() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRejeitada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
