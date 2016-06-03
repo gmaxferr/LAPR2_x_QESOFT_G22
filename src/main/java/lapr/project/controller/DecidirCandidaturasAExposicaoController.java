@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 
 /**
@@ -14,6 +15,7 @@ public class DecidirCandidaturasAExposicaoController {
     private RegistoExposicoes re;
     private CentroExposicoes ce;
 
+    //a espera de implementarem os vossos models
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce) {
         this.ce = ce;
     }
@@ -22,14 +24,17 @@ public class DecidirCandidaturasAExposicaoController {
         this.re = ce.getRegistoExposicoes();
     }
 
+    //a espera de implementarem os vossos models
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
         return this.re.getListaExposicoesEstadoCandidaturasAvaliadas();
     }
 
+    //a espera de implementarem os vossos models
     public void setExposicao(Exposicao exposicao) {
         this.exposicaoSelecionada = exposicao;
     }
 
+    //a espera de implementarem os vossos models
     public ArrayList<Candidatura> getListaCandidaturasEstadoAvaliadas() {
         this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
         return this.rc.getListaCandidaturasEstadoAvaliadas();
@@ -39,45 +44,52 @@ public class DecidirCandidaturasAExposicaoController {
         return naosei;
     }
 
+    //a espera de implementarem os vossos models
     public void setCandidatura(Candidatura cand) {
         this.candidaturaSelecionada = cand;
     }
-    
-    public String getNomeEmpresa(){
+
+    public String getNomeEmpresa() {
         return this.candidaturaSelecionada.getNomeEmpresa();
     }
-    
-    public String getMoradaEmpresa(){
+
+    public String getMoradaEmpresa() {
         return this.candidaturaSelecionada.getMoradaEmpresa();
     }
-    
-    public int getTelemovel(){
+
+    public int getTelemovel() {
         return this.candidaturaSelecionada.getTelemovel();
     }
-    
-    public int getArea(){
+
+    public int getArea() {
         return this.candidaturaSelecionada.getArea();
     }
-    
-    public int getNumeroConvites(){
+
+    public int getNumeroConvites() {
         return this.candidaturaSelecionada.getNumeroConvites();
     }
-    
-    public naoSei getKeywords(){
+
+    public naoSei getKeywords() {
         return naoSei;
     }
-    
-    public void setDecisao(boolean decisao){
+
+    public void setDecisao(boolean decisao) {
         this.candidaturaSelecionada.setDecisao(decisao);
-        if(decisao){
+        if (decisao) {
             setEstadoCandidaturaAceite();
+        } else {
+            setEstadoCandidaturaRejeitada();
         }
     }
-    
-   private void setEstadoCandidaturaAceite(){
-       EstadoCandidaturaAExposicao estado=this.candidaturaSelecionada.getEstado();
-       estado.setEstadoCandidaturaAceite();
-   }
-    
-    
+
+    private void setEstadoCandidaturaAceite() {
+        EstadoCandidaturaAExposicao estado = this.candidaturaSelecionada.getEstado();
+        estado.setEstadoCandidaturaAceite();
+    }
+
+    private void setEstadoCandidaturaRejeitada() {
+        EstadoCandidaturaAExposicao estado = this.candidaturaSelecionada.getEstado();
+        estado.setEstadoCandidaturaRejeitada();
+    }
+
 }
