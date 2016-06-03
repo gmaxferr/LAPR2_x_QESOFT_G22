@@ -2,7 +2,7 @@ package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import classesREMOVIDAS.FAE;
+import classesModelERegistodePPROG.FAE;
 
 /**
  * Representação de um Modelo JTable da Distribuição de FAE

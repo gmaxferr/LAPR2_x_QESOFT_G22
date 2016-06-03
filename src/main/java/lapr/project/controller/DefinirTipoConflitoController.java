@@ -1,6 +1,9 @@
 package lapr.project.controller;
 
-import classesREMOVIDAS.CentroExposicoes;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.TipoConflito;
+import lapr.project.registos.RegistoTipoConflitos;
+
 
 /**
  * Representação do Controller do caso de uso - definir tipo de conflito

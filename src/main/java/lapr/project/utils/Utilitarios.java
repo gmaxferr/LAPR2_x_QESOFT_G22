@@ -1,7 +1,7 @@
 package lapr.project.utils;
 
-import classesREMOVIDAS.Utilizador;
-import classesREMOVIDAS.CentroExposicoes;
+import classesModelERegistodePPROG.Utilizador;
+import classesModelERegistodePPROG.CentroExposicoes;
 import lapr.project.model.*;
 import java.util.*;
 

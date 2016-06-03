@@ -2,11 +2,11 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.EstadoExposicao;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.Expositor;
-import classesREMOVIDAS.RegistoCandidaturas;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Expositor;
+import lapr.project.registos.RegistoCandidaturas;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
@@ -19,16 +19,15 @@ public class AlterarCandidaturasController {
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
     private EstadoCandidaturaAExposicao estadoCand;
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
     private Expositor expositor;
-    
 
     public AlterarCandidaturasController(RegistoCandidaturas registoCandidaturas) {
         m_rc = registoCandidaturas;
     }
 
     public boolean getM_EstadoExposicao() {
-        estadoExpo = exposicao.getEstado();
+        estadoExpo = exposicao.getEstadoExposicao();
         return verificaEstadoExposicao(estadoExpo);
     }
 
@@ -38,7 +37,7 @@ public class AlterarCandidaturasController {
     }
 
     public boolean getEstadoCandidatura() {
-        estadoCand = cand.getEstado();
+        estadoCand = cand.getEstadoCandidatura();
         return verificaCandidatura(estadoCand);
     }
 
@@ -51,7 +50,7 @@ public class AlterarCandidaturasController {
         this.m_rc = exposicao.getRegistoCandidaturas();
     }
 
-    public List<Candidatura> getListaCandidaturas() {
+    public List<CandidaturaAExposicao> getListaCandidaturas() {
         return m_rc.getListaCandidaturas();
     }
 

@@ -2,14 +2,13 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.EstadoExposicao;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.FAE;
-import classesREMOVIDAS.RegistoCandidaturas;
-import classesREMOVIDAS.RegistoExposicoes;
-import classesREMOVIDAS.RegistoFAE;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.FAE;
+import lapr.project.registos.*;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.TipoConflito;
 
 /**
  *
@@ -23,7 +22,7 @@ public class DetetarConflitoController {
     private RegistoFAE rfae;
     private RegistoCandidaturas rc;
     private List<FAE> listaFAE;
-    private List<Candidatura> listaCand;
+    private List<CandidaturaAExposicao> listaCand;
     private int tamanho;
     private boolean b;
     private RegistoConflitos rconf;
@@ -83,7 +82,7 @@ public class DetetarConflitoController {
             estadoExposicao.setEstadoConflitosDetetados();
         }
 
-        for (Candidatura cand : this.rc.getListaCandidaturas()) {
+        for (CandidaturaAExposicao cand : this.rc.getListaCandidaturas()) {
             this.estadoCandidatura = cand.getEstadoCandidatura();
             estadoCandidatura.setEstadoConflitosDetetados();
         }

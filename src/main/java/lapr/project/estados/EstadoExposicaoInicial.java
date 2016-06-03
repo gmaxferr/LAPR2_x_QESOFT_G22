@@ -5,7 +5,8 @@
  */
 package lapr.project.estados;
 
-import classesREMOVIDAS.Exposicao;
+import lapr.project.model.Exposicao;
+
 
 /**
  *

@@ -1,13 +1,13 @@
 package lapr.project.model;
 
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.Atribuicao;
+import classesModelERegistodePPROG.Candidatura;
+import classesModelERegistodePPROG.Atribuicao;
 import java.util.List;
 import javax.swing.*;
 
 /**
  * Representação de uma ComboBoxModel de atribuições.
- * 
+ *
  * @author Ricardo Osório e Ana Leite
  */
 public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel implements ComboBoxModel {
@@ -23,9 +23,9 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
     String selection;
 
     /**
-     * Construtor de objetos do tipo ComboBoxModelAtribuicoesMostraCandidatura 
+     * Construtor de objetos do tipo ComboBoxModelAtribuicoesMostraCandidatura
      * com o parâmetro lista de atribuições.
-     * 
+     *
      * @param listaAtribuicoes lista de atribuições.
      */
     public ComboBoxModelAtribuicoesMostraCandidatura(List<Atribuicao> listaAtribuicoes) {
@@ -35,7 +35,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
 
     /**
      * Devolve o tamanho da lista de atribuições.
-     * 
+     *
      * @return tamanho da lista de atribuições.
      */
     @Override
@@ -45,20 +45,20 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
 
     /**
      * Devolve uma String com dados de uma candidatura.
-     * 
+     *
      * @param index posição da atribuição.
      * @return String com dados de uma candidatura.
      */
     @Override
     public Object getElementAt(int index) {
         Candidatura candidatura = this.listaAtribuicoes.get(index).getCand();
-        String candidaturaExpositor = candidatura.getNomeEmpresa() + "; " + candidatura.getUsernameExpositor();
+        String candidaturaExpositor = candidatura.getM_NomeEmpresa() + "; " + candidatura.getM_UsernameExpositor();
         return candidaturaExpositor;
     }
 
     /**
      * Define o item selecionado.
-     * 
+     *
      * @param anItem item selecionado.
      */
     @Override
@@ -68,7 +68,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
 
     /**
      * Devolve o item selecionado
-     * 
+     *
      * @return item selecionado
      */
     @Override

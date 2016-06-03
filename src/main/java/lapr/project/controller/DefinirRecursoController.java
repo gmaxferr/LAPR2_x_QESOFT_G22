@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.RegistoRecursos;
+import classesModelERegistodePPROG.CentroExposicoes;
+import classesModelERegistodePPROG.RegistoRecursos;
 
 /**
  * Representação do Controller do caso de uso - definir recurso

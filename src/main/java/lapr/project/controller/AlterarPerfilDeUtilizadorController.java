@@ -1,8 +1,8 @@
 package lapr.project.controller;
 
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Utilizador;
-import classesREMOVIDAS.RegistoUtilizadores;
+import classesModelERegistodePPROG.CentroExposicoes;
+import classesModelERegistodePPROG.Utilizador;
+import classesModelERegistodePPROG.RegistoUtilizadores;
 
 /**
  * Representação do Controller do caso de uso - alterar perfil de utilizador

@@ -2,6 +2,11 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoExposicoes;
 
 /**
  *
@@ -9,8 +14,9 @@ import lapr.project.estados.EstadoCandidaturaAExposicao;
  */
 public class DecidirCandidaturasAExposicaoController {
 
+    //a espera de implementarem os vossos models para fazer imports certos
     private Exposicao exposicaoSelecionada;
-    private Candidatura candidaturaSelecionada;
+    private CandidaturaAExposicao candidaturaSelecionada;
     private RegistoCandidaturas rc;
     private RegistoExposicoes re;
     private CentroExposicoes ce;
@@ -35,7 +41,7 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     //a espera de implementarem os vossos models
-    public ArrayList<Candidatura> getListaCandidaturasEstadoAvaliadas() {
+    public ArrayList<CandidaturaAExposicao> getListaCandidaturasEstadoAvaliadas() {
         this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
         return this.rc.getListaCandidaturasEstadoAvaliadas();
     }
@@ -45,7 +51,7 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     //a espera de implementarem os vossos models
-    public void setCandidatura(Candidatura cand) {
+    public void setCandidatura(CandidaturaAExposicao cand) {
         this.candidaturaSelecionada = cand;
     }
 

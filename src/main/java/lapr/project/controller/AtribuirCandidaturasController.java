@@ -3,16 +3,17 @@ package lapr.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoExposicao;
-import classesREMOVIDAS.Atribuicao;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.FAE;
-import lapr.project.model.Mecanismo;
-import classesREMOVIDAS.RegistoCandidaturas;
-import classesREMOVIDAS.RegistoExposicoes;
-import lapr.project.registos.RegistoMecanismos;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.Atribuicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Decisao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.Mecanismo;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoMecanismos;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidaturas
@@ -22,14 +23,14 @@ import lapr.project.estados.EstadoCandidaturaAExposicao;
 public class AtribuirCandidaturasController {
 
     private ArrayList<Exposicao> listaExpo;
-    private ArrayList<Candidatura> listaCand;
+    private ArrayList<CandidaturaAExposicao> listaCand;
     private ArrayList<FAE> listaFAE;
     private RegistoExposicoes re;
     /*as variaveis seguintes são de instância para evitar problemas 
     caso fossem de classe quando duas pessoas ou mais executam este UC ao 
     mesmo tempo. Os dados guardados do primeiro utilizador seriam 
     sobrepostos pelos do segundo*/
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
     private Decisao d;
     private Exposicao e;
 
@@ -43,7 +44,7 @@ public class AtribuirCandidaturasController {
         this.listaExpo = new ArrayList<>();
         this.listaCand = new ArrayList<>();
         this.listaFAE = new ArrayList<>();
-        this.cand = new Candidatura();
+        this.cand = new CandidaturaAExposicao();
         this.centroExposicoes = centroExposicoes;
     }
 
@@ -71,7 +72,7 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de candidaturas
      */
-    public ArrayList<Candidatura> getListaCandidatuas() {
+    public ArrayList<CandidaturaAExposicao> getListaCandidatuas() {
         listaCand = this.e.getListaCandidaturas();
         return listaCand;
     }
@@ -91,7 +92,7 @@ public class AtribuirCandidaturasController {
      * @param fae fae escolhido pelo utilizador
      * @param c candidatura escolhida pelo utilizador
      */
-    public void criarDecisao(FAE fae, Candidatura c) {
+    public void criarDecisao(FAE fae, CandidaturaAExposicao c) {
         d = c.criarDecisao(fae);
     }
 
@@ -100,7 +101,7 @@ public class AtribuirCandidaturasController {
      *
      * @param c candidatura escolhida pelo utilizador
      */
-    public void validarDecisao(Candidatura c) {
+    public void validarDecisao(CandidaturaAExposicao c) {
         e.validarDecisao(c);
     }
 

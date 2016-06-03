@@ -2,16 +2,17 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import lapr.project.estados.EstadoExposicao;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Demonstracao;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.Expositor;
-import classesREMOVIDAS.Produto;
-import classesREMOVIDAS.RegistoCandidaturas;
-import classesREMOVIDAS.RegistoDemonstracoes;
-import classesREMOVIDAS.RegistoExposicoes;
-import classesREMOVIDAS.RegistoProdutos;
+import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Expositor;
+import lapr.project.model.Produto;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoProdutos;
 
 /**
  * Representação do Controller do caso de uso - criar candidatura
@@ -35,7 +36,7 @@ public class CriarCandidaturaController {
     Expositor expositor = new Expositor();
 
     Exposicao exposiçãoSelecionada;
-    Candidatura c;
+    CandidaturaAExposicao c;
     Expositor ex;
     Exposicao exposicao;
     private EstadoExposicao estadoExpo;
@@ -52,16 +53,16 @@ public class CriarCandidaturaController {
         m_rd = registoDemostracoes;
     }
 
-    public boolean getEstadoExposicao(){
+    public boolean getEstadoExposicao() {
         estadoExpo = exposicao.getEstadoExposicao();
         return verificaEstado(estadoExpo);
     }
-    
-    public boolean verificaEstado(EstadoExposicao estado){
+
+    public boolean verificaEstado(EstadoExposicao estado) {
         //Verifica se o estado permite executar este UC
         return true;
     }
-    
+
     public void getRegistoExposicoes() {
         m_centro_exposicoes.getRegistoExposicoes();
     }
@@ -105,8 +106,8 @@ public class CriarCandidaturaController {
      *
      * @return nova candidatura
      */
-    public Candidatura criarCandidatura(Exposicao e) {
-        Candidatura c = m_rc.criarCandidatura();
+    public CandidaturaAExposicao criarCandidatura(Exposicao e) {
+        CandidaturaAExposicao c = m_rc.criarCandidatura();
         return c;
     }
 
@@ -115,7 +116,7 @@ public class CriarCandidaturaController {
      *
      * @param c candidatura a ser validada
      */
-    public void validarDadosCandidatura(Candidatura c) {
+    public void validarDadosCandidatura(CandidaturaAExposicao c) {
         m_rc.validarDadosCandidatura(c);
     }
 
@@ -167,7 +168,7 @@ public class CriarCandidaturaController {
      *
      * @param c candidatura a ser registada
      */
-    public void registaCandidatura(Candidatura c) {
+    public void registaCandidatura(CandidaturaAExposicao c) {
         m_rc.registaCandidatura(c);
     }
 }

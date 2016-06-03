@@ -1,11 +1,11 @@
 package lapr.project.controller;
 
 import java.util.List;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Exposicao;
+import classesModelERegistodePPROG.Candidatura;
+import classesModelERegistodePPROG.CentroExposicoes;
+import classesModelERegistodePPROG.Exposicao;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
-import classesREMOVIDAS.RegistoExposicoes;
+import classesModelERegistodePPROG.RegistoExposicoes;
 
 /**
  *

@@ -3,11 +3,13 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicaoConflitosDetetados;
 import lapr.project.estados.EstadoExposicao;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.FAE;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.TipoConflito;
+import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  * Representação do Controller do caso de uso - artibuir conflitos de interesse
@@ -21,10 +23,10 @@ public class AtribuirConflitoInteresseController {
     private EstadoCandidaturaAExposicaoConflitosDetetados estadoConflitosdetetados;
     private RegistoTipoConflitos m_rtc;
     private CentroExposicoes m_centro_exposicoes;
-    FAE fae;
+    private FAE fae;
     private boolean valida;
-    EstadoExposicao estado;
-    Candidatura cand;
+    private EstadoExposicao estado;
+    private CandidaturaAExposicao cand;
     
     public AtribuirConflitoInteresseController(CentroExposicoes centroExposicoes, RegistoTipoConflitos registoTipoConflitos){
         m_centro_exposicoes = centroExposicoes;

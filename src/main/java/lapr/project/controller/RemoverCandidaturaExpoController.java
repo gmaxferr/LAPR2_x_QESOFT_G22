@@ -7,12 +7,12 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import classesREMOVIDAS.Candidatura;
-import classesREMOVIDAS.CentroExposicoes;
-import classesREMOVIDAS.Exposicao;
-import classesREMOVIDAS.RegistoCandidaturas;
+import classesModelERegistodePPROG.Candidatura;
+import classesModelERegistodePPROG.CentroExposicoes;
+import classesModelERegistodePPROG.Exposicao;
+import classesModelERegistodePPROG.RegistoCandidaturas;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
-import classesREMOVIDAS.RegistoExposicoes;
+import classesModelERegistodePPROG.RegistoExposicoes;
 
 /**
  *

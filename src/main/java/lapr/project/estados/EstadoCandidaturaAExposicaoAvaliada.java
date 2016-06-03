@@ -1,6 +1,6 @@
 package lapr.project.estados;
 
-import classesREMOVIDAS.Candidatura;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
@@ -8,9 +8,9 @@ import classesREMOVIDAS.Candidatura;
  */
 public class EstadoCandidaturaAExposicaoAvaliada implements EstadoCandidaturaAExposicao {
 
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
 
-    public EstadoCandidaturaAExposicaoAvaliada(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoAvaliada(CandidaturaAExposicao cand) {
         this.cand = cand;
     }
 

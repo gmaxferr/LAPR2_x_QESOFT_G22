@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import classesREMOVIDAS.Demonstracao;
+import classesModelERegistodePPROG.Demonstracao;
 import java.util.ArrayList;
 import java.util.List;
 

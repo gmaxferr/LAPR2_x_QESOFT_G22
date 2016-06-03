@@ -1,7 +1,7 @@
 package lapr.project.ui;
 import java.util.List;
 import javax.swing.AbstractListModel;
-import classesREMOVIDAS.Demonstracao;
+import classesModelERegistodePPROG.Demonstracao;
 import lapr.project.model.ListaDemonstracoes;
 
 /**

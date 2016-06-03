@@ -7,7 +7,7 @@ package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.AbstractListModel;
-import classesREMOVIDAS.Exposicao;
+import classesModelERegistodePPROG.Exposicao;
 
 /**
  *

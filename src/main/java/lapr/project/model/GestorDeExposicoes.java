@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import classesREMOVIDAS.Utilizador;
+import classesModelERegistodePPROG.Utilizador;
 
 /**
  * @author Ricardo Catalao

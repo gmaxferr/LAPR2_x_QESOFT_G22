@@ -2,7 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import classesREMOVIDAS.Candidatura;
+import classesModelERegistodePPROG.Candidatura;
 
 /**
  *

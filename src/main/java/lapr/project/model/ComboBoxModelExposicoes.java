@@ -1,13 +1,12 @@
 package lapr.project.model;
 
-import classesREMOVIDAS.Exposicao;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 /**
  * Representação de uma ComboBoxModel de exposições.
- * 
+ *
  * @author Ana Leite e Ricardo Osório
  */
 public class ComboBoxModelExposicoes extends AbstractListModel implements ComboBoxModel {
@@ -25,7 +24,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
     /**
      * Construtor de objetos do tipo ComboBoxModelExposições com o parâmetro
      * lista de exposições.
-     * 
+     *
      * @param listaExposicoes lista de exposições.
      */
     public ComboBoxModelExposicoes(List<Exposicao> listaExposicoes) {
@@ -35,7 +34,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
 
     /**
      * Devolve o tamanho da lista das exposições.
-     * 
+     *
      * @return tamanho da lista das exposições.
      */
     @Override
@@ -45,18 +44,18 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
 
     /**
      * Devolve uma exposição.
-     * 
+     *
      * @param index posição da exposição.
      * @return exposição.
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaExposicoes.get(index).getTitulo();
+        return this.listaExposicoes.get(index).getM_strTitulo();
     }
 
     /**
      * Define o item selecionado.
-     * 
+     *
      * @param anItem item selcionado.
      */
     @Override
@@ -66,7 +65,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
 
     /**
      * Devolve o item selecionado.
-     * 
+     *
      * @return item selecionado.
      */
     @Override

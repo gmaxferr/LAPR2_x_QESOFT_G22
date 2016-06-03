@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicaoAtribuida;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Exposicao;
+import lapr.project.registos.RegistoAtribuicoes;
 
 /**
  * Representação do Controller do caso de uso - decidir candidatura
@@ -14,8 +17,8 @@ public class DecidirCandidaturaController {
 
     Exposicao e = new Exposicao();
     RegistoAtribuicoes ra;
-    public static List<Candidatura> listaCand = new ArrayList<>();
-    Candidatura candidatura;
+    public static List<CandidaturaAExposicao> listaCand = new ArrayList<>();
+    CandidaturaAExposicao candidatura;
     EstadoCandidaturaAExposicao estadoCand;
     public EstadoCandidaturaAExposicaoAtribuida estadoCandidaturaAtribuida;
     
@@ -39,7 +42,7 @@ public class DecidirCandidaturaController {
      *
      * @return lista de candidaturas de fae
      */
-    public List<Candidatura> getListaCandidaturaDoFAE() {
+    public List<CandidaturaAExposicao> getListaCandidaturaDoFAE() {
         listaCand = this.e.getListaCandidaturas();
         return listaCand;
     }
@@ -55,7 +58,7 @@ public class DecidirCandidaturaController {
      *
      * @return dados da candidatura selecionada
      */
-    public ArrayList getDadosCandidatura(Candidatura c) {
+    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
         return ra.getDadosCandidatura(c);
     }
 
@@ -64,7 +67,7 @@ public class DecidirCandidaturaController {
      *
      * @param c candidatura a ser validada
      */
-    public void validarCandidatura(Candidatura c) {
+    public void validarCandidatura(CandidaturaAExposicao c) {
         ra.validarCandidatura(c);
     }
 
@@ -75,7 +78,7 @@ public class DecidirCandidaturaController {
      * @param Decisao decisao
      * @param justificacao justificacao
      */
-    public void setDecisao(Candidatura c, String Decisao, String justificacao) {
+    public void setDecisao(CandidaturaAExposicao c, String Decisao, String justificacao) {
         ra.setDecisao(c, Decisao, justificacao);
     }
 

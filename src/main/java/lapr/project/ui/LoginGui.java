@@ -1,7 +1,7 @@
 package lapr.project.ui;
 
-import classesREMOVIDAS.Utilizador;
-import classesREMOVIDAS.CentroExposicoes;
+import classesModelERegistodePPROG.Utilizador;
+import classesModelERegistodePPROG.CentroExposicoes;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
