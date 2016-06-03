@@ -1,6 +1,5 @@
 package lapr.project.estados;
 
-import classesModelERegistodePPROG.Candidatura;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
@@ -47,12 +46,12 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
 
     @Override
     public boolean setEstadoCandidaturaAceite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     private boolean valida() {
@@ -82,6 +81,27 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
 
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRemovida() {
+        this.cand.setEstado(new EstadoCandidaturaAExposicaoRemovida());
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRemovida() {
         return false;
     }
 

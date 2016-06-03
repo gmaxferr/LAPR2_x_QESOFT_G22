@@ -5,24 +5,14 @@
  */
 package lapr.project.estados;
 
-import lapr.project.model.CandidaturaAExposicao;
-
-
 /**
  *
- * @author osori
+ * @author JoãoCardoso aka K4rd050
  */
-public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAExposicao {
-
-    private CandidaturaAExposicao cand;
-
-    public EstadoCandidaturaAExposicaoRejeitada(CandidaturaAExposicao cand) {
-        this.cand = cand;
-    }
+public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAExposicao{
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-
         return false;
     }
 
@@ -38,7 +28,7 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
@@ -53,14 +43,14 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
-        return true;
+        return false;
     }
 
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado
+    @Override
+    public boolean setEstadoCandidaturaRemovida() {
         return true;
     }
-
+    
     @Override
     public boolean isEstadoCandidaturaCriada() {
         return false;
@@ -78,7 +68,7 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
@@ -93,17 +83,13 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean isEstadoCandidaturaRejeitada() {
-        return true;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaRemovida() {
         return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaRemovida() {
-        return false;
+        return true;
     }
 
+    
 }

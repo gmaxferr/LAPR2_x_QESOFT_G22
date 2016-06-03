@@ -41,12 +41,12 @@ public class EstadoCandidaturaAExposicaoAvaliada implements EstadoCandidaturaAEx
 
     @Override
     public boolean setEstadoCandidaturaAceite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //falta implementar
     }
 
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //falta implementar
     }
 
     @Override
@@ -72,6 +72,26 @@ public class EstadoCandidaturaAExposicaoAvaliada implements EstadoCandidaturaAEx
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
         return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRemovida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRemovida() {
+        return false;
     }
 
 }

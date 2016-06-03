@@ -5,7 +5,8 @@
  */
 package lapr.project.estados;
 
-import classesModelERegistodePPROG.Candidatura;
+import lapr.project.model.CandidaturaAExposicao;
+
 
 /**
  *
@@ -13,9 +14,9 @@ import classesModelERegistodePPROG.Candidatura;
  */
 public class EstadoCandidaturaAExposicaoAceite implements EstadoCandidaturaAExposicao {
 
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
 
-    public EstadoCandidaturaAExposicaoAceite(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoAceite(CandidaturaAExposicao cand) {
         this.cand = cand;
     }
 
@@ -82,6 +83,26 @@ public class EstadoCandidaturaAExposicaoAceite implements EstadoCandidaturaAExpo
 
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAceite() {
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRejeitada() {
+        return false;
+    }    
+
+    @Override
+    public boolean setEstadoCandidaturaRemovida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRemovida() {
         return false;
     }
 
