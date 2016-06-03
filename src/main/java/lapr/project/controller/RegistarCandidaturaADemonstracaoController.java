@@ -9,12 +9,12 @@ import java.util.List;
 import lapr.project.estados.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.EstadoCandidaturaADemonstracaoCriada;
 import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.Demonstracao;
+import classesREMOVIDAS.Exposicao;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
+import classesREMOVIDAS.RegistoDemonstracoes;
+import classesREMOVIDAS.RegistoExposicoes;
 
 /**
  *

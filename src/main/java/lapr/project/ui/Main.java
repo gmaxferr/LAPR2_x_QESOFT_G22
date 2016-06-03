@@ -5,8 +5,8 @@
  */
 package lapr.project.ui;
 
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.FicheiroDados;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.FicheiroDados;
 import lapr.project.model.MyJFileChooser;
 
 /**

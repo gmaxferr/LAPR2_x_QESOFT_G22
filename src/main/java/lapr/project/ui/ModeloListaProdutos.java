@@ -2,7 +2,7 @@ package lapr.project.ui;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import lapr.project.model.ListaProdutos;
-import lapr.project.model.Produto;
+import classesREMOVIDAS.Produto;
 
 /**
  * Representação de um Modelo Lista de Produtos.

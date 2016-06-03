@@ -5,13 +5,19 @@
  */
 package lapr.project.ui;
 
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.Produto;
+import classesREMOVIDAS.Avaliacao;
+import classesREMOVIDAS.Atribuicao;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.CentroExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.AvaliarCandidaturaController;
+import classesREMOVIDAS.AvaliarCandidaturaController;
 import lapr.project.model.*;
 
 /**

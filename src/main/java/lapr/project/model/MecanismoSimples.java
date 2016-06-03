@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import classesREMOVIDAS.Atribuicao;
+import classesREMOVIDAS.Exposicao;
 import java.util.List;
 
 /**

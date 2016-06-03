@@ -6,8 +6,8 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import lapr.project.*;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.Utilizador;
 
 /**
  * Menu Principal disponivel a todos os utilizadores a partir do momento em que

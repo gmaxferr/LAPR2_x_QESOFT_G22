@@ -1,5 +1,11 @@
 package lapr.project.ui;
 
+import classesREMOVIDAS.Demonstracao;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.NumeroConvitesErradoException;
+import classesREMOVIDAS.AreaErradaException;
+import classesREMOVIDAS.TelemovelEmpresaErradoException;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -7,7 +13,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import lapr.project.controller.CriarCandidaturaController;
+import classesREMOVIDAS.CriarCandidaturaController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 

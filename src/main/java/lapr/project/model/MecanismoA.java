@@ -1,5 +1,9 @@
 package lapr.project.model;
 
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.FAE;
+import classesREMOVIDAS.Atribuicao;
+import classesREMOVIDAS.Exposicao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

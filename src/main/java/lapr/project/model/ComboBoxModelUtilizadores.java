@@ -1,5 +1,11 @@
 package lapr.project.model;
 
+import classesREMOVIDAS.Expositor;
+import classesREMOVIDAS.FAE;
+import classesREMOVIDAS.Organizador;
+import classesREMOVIDAS.Cargo;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.CentroExposicoes;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;

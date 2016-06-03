@@ -1,204 +1,173 @@
 package lapr.project.controller;
 
-import lapr.project.exceptions.*;
-import java.util.List;
-import lapr.project.model.*;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoProdutos;
+import java.util.ArrayList;
+import lapr.project.estados.EstadoExposicao;
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.Demonstracao;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.Expositor;
+import classesREMOVIDAS.Produto;
+import classesREMOVIDAS.RegistoCandidaturas;
+import classesREMOVIDAS.RegistoDemonstracoes;
+import classesREMOVIDAS.RegistoExposicoes;
+import classesREMOVIDAS.RegistoProdutos;
 
 /**
- * Representação do Controller do caso de uso - criar candidatura.
+ * Representação do Controller do caso de uso - criar candidatura
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ana Leite Ricardo Osório
  */
 public class CriarCandidaturaController {
 
-    /**
-     * Registo de exposições.
-     */
-    private RegistoExposicoes re;
+    //Este programa nao tem implementação suficiente para interagir com o utilizador. Estes parametros foram assumidos para nao criar erros de compilação do java
+    private final CentroExposicoes m_centro_exposicoes;
 
-    /**
-     * Registo de candidaturas.
-     */
-    private RegistoCandidaturas rc;
+    private final RegistoExposicoes m_re;
 
-    /**
-     * Registo de produtos.
-     */
-    private RegistoProdutos rp;
+    private final RegistoCandidaturas m_rc;
 
-    /**
-     * Registo de demonstrações.
-     */
-    private RegistoDemonstracoes rd;
+    private final RegistoProdutos m_rp;
 
-     /**
-     * Exposição escolhida.
-     */
-    private Exposicao exposicaoEscolhida;
+    private final RegistoDemonstracoes m_rd;
 
-    /**
-     * Candidatura criada.
-     */
-    private Candidatura candidaturaCriada;
+    Exposicao expo1 = new Exposicao();
+    Expositor expositor = new Expositor();
+
+    Exposicao exposiçãoSelecionada;
+    Candidatura c;
+    Expositor ex;
+    Exposicao exposicao;
+    private EstadoExposicao estadoExpo;
+
+    public static Exposicao e;
+    public static ArrayList<Exposicao> listExpo = new ArrayList<>();
+    public static ArrayList<Demonstracao> listDemonst = new ArrayList<>();
+
+    public CriarCandidaturaController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoCandidaturas registoCandidaturas, RegistoProdutos registoProdutos, RegistoDemonstracoes registoDemostracoes) {
+        m_centro_exposicoes = centro_exposicoes;
+        m_re = registoExposicoes;
+        m_rc = registoCandidaturas;
+        m_rp = registoProdutos;
+        m_rd = registoDemostracoes;
+    }
+
+    public boolean getEstadoExposicao(){
+        estadoExpo = exposicao.getEstadoExposicao();
+        return verificaEstado(estadoExpo);
+    }
     
-    /**
-     * Centro de exposições.
-     */
-    private CentroExposicoes centroExposicoes;
-
-    /**
-     * Constrói uma instância de CriarCandidaturaController recebendo como
-     * parâmetro o centro de exposições.
-     *
-     * @param centroExposicoes centro de exposições
-     */
-    public CriarCandidaturaController(CentroExposicoes centroExposicoes) {
-        this.centroExposicoes = centroExposicoes;
+    public boolean verificaEstado(EstadoExposicao estado){
+        //Verifica se o estado permite executar este UC
+        return true;
     }
-
-    /**
-     * Guarda o registo de exposições.
-     */
+    
     public void getRegistoExposicoes() {
-        this.re = centroExposicoes.getRegistoExposicoes();
+        m_centro_exposicoes.getRegistoExposicoes();
+    }
+
+    public void getRegistoCandidaturas() {
+        e.getRegistoCandidaturas();
+    }
+
+    public void getRegistoProdutos() {
+        c.getRp();
+    }
+
+    public void getRegistoDemostracoes() {
+        e.getRd();
     }
 
     /**
-     * Devolve a lista de Exposições.
+     * Devolve a lista de Exposições
      *
      * @return lista de Exposições
      */
-    public List<Exposicao> getListaExposicoes() {
-        return this.re.getListaExposicoes();
+    public ArrayList<Exposicao> getlistaExposicoesValidas() {
+        listExpo = m_re.getlistaExposicoesValidas();
+        return listExpo;
     }
 
     /**
-     * Modifica a exposição.
+     * Método que guarda a exposição escolhida pelo utilizador
      *
-     * @param exposicaoEscolhida nova exposição escolhida.
+     * @param exposicao exposição escolhida
      */
-    public void setExposicao(Exposicao exposicaoEscolhida) {
-        this.exposicaoEscolhida = exposicaoEscolhida;
+    public void setExposicao(Exposicao exposicao) {
+        e = exposicao;
     }
 
     /**
-     * Guarda o registo de candidaturas.
-     */
-    public void getRegistoCandidaturas() {
-        this.rc = exposicaoEscolhida.getRegistoCandidaturas();
-    }
-
-    /**
-     * Cria uma nova candidatura para uma exposição.
-     * 
-     * @param usernameExpositor username do expositor da candidatura.
-     */
-    public void criarCandidatura(String usernameExpositor) {
-        this.candidaturaCriada = rc.criarCandidatura(usernameExpositor);
-    }
-
-    /**
-     * Mofica os dados de uma candidatura.
+     * Método que cria uma nova candidatura chamando o método criarCandidatura
+     * da exposição selecionada
      *
-     * @param nomeEmpresa nome da empresa
-     * @param moradaEmpresa morada da empresa
-     * @param telemovelEmpresa número de telemovel da empresa
-     * @param area area necessária para a exposição
-     * @param numConvites numero de convites pretendidos
-     */
-    public void setDados(String nomeEmpresa, String moradaEmpresa, String telemovelEmpresa, String area, String numConvites) throws TelemovelEmpresaErradoException, AreaErradaException, NumeroConvitesErradoException {
-        this.candidaturaCriada.setNomeEmpresa(nomeEmpresa);
-        this.candidaturaCriada.setMoradaEmpresa(moradaEmpresa);
-        this.candidaturaCriada.setTelemovelEmpresa(telemovelEmpresa);
-        this.candidaturaCriada.setArea(area);
-        this.candidaturaCriada.setNumConvites(numConvites);
-    }
-
-    /**
-     * Guarda o registo de produtos.
-     */
-    public void getRegistoProduto() {
-        this.rp = candidaturaCriada.getRegistoProdutos();
-    }
-
-    /**
-     * Adiciona um produto.
+     * @param e exposição selcionada
      *
-     * @param nome nome do produto
-     * 
-     * @return boolean que indica se foi ou não criado (true - foi criado)
+     * @return nova candidatura
      */
-    public boolean addProduto(String nome) {
-        Produto produtoCriado = this.rp.criarProduto(nome);
-        boolean b = this.rp.adicionaProduto(produtoCriado);
-        return b;
+    public Candidatura criarCandidatura(Exposicao e) {
+        Candidatura c = m_rc.criarCandidatura();
+        return c;
     }
 
     /**
-     * Guarda o registo de demonstrações.
-     */
-    public void getRegistoDemonstracoes() {
-        this.rd = exposicaoEscolhida.getRegistoDemonstracoes();
-    }
-
-    /**
-     * Devolve a lista de demostrações.
+     * Chama o método validarDadosCandidatura
      *
-     * @return lista de demostrações.
+     * @param c candidatura a ser validada
      */
-    public List<Demonstracao> getListaDemonstracoes() {
-        return this.rd.getListaDemonstracoes();
+    public void validarDadosCandidatura(Candidatura c) {
+        m_rc.validarDadosCandidatura(c);
     }
 
     /**
-     * Adiciona a demostração escolhida.
+     * Método que apresenta os dados da candidatura
      *
-     * @param demonstracaoEscolhida demostração escolhida.
+     * @param nomeEmpresa nome da empresa da candidatura
+     * @param morada morada da candidatura
+     * @param telemovel numero de telemovel da candidatura
+     * @param area area pretendida da candidatura
+     * @param produtosExpor produtos a expor da candidatura
+     * @param numConvites nuemero de convites da candidatura
      */
-    public void adicionarDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.candidaturaCriada.getRegistoDemonstracoes().adicionarDemonstracao(demonstracaoEscolhida);
+    public void setDados(String nomeEmpresa, String morada, int telemovel, float area, Produto produtosExpor, int numConvites) {
+        c.setM_strNomeEmpresa(nomeEmpresa);
+        c.setM_strMorada(morada);
+        c.setM_intTelemovel(telemovel);
+        c.setM_intArea(area);
+        c.setM_intNumConvites(numConvites);
+        c.validarCandidatura();
     }
 
     /**
-     * Regista a candidatura.
-     * 
-     * @return boolean que indica se foi ou não criada. (true - foi criada)
+     * Método que adiciona um novo produto à candidatura
+     *
+     * @param nomeProduto
      */
-    public boolean registaCandidatura() {
-        boolean b = rc.registaCandidatura(this.candidaturaCriada);
-        return b;
+    public void addProduto(String nomeProduto) {
+        Produto produto = m_rp.criarProduto(nomeProduto);
+        m_rp.adicionaProduto(produto);
     }
 
     /**
-     * Remove uma demonstração.
-     * 
-     * @param selectedValue identificação da demonstração.
+     * Devolve a lista de Exposições
+     *
+     * @return lista de Exposições
      */
-    public void removerDemonstracao(Object selectedValue) {
-        String demoIdentificacao = (String) selectedValue;
-        this.candidaturaCriada.getRegistoDemonstracoes().removerDemonstracao(demoIdentificacao);
+    public ArrayList<Demonstracao> getlistaDemostracoes() {
+        listDemonst = m_rd.getlistaDemonstracoes();
+        return listDemonst;
+    }
+
+    public void adicionaDemontracao(Demonstracao demonstracao) {
+        m_rd.adicionaDemostracao(demonstracao);
     }
 
     /**
-     * Atualiza as demonstrações da candidatura criada.
-     * 
-     * @param listaDemonstracoesAdicionadas lista de demonstrações adicionadas à candidatura.
+     * Método que regista a nova candidatura associada a uma exposição
+     *
+     * @param c candidatura a ser registada
      */
-    public void atualizarListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
-        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
+    public void registaCandidatura(Candidatura c) {
+        m_rc.registaCandidatura(c);
     }
-
-    /**
-     * Modifica a lista de produtos.
-     * 
-     * @param listaProdutos lista de produtos.
-     */
-    public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
-        this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
-    }
-
 }

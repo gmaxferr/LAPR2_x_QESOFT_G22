@@ -1,6 +1,6 @@
 package lapr.project.estados;
 
-import lapr.project.model.Candidatura;
+import classesREMOVIDAS.Candidatura;
 
 /**
  *

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
+import classesREMOVIDAS.Atribuicao;
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.FAE;
 import lapr.project.model.Mecanismo;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoExposicoes;
+import classesREMOVIDAS.RegistoCandidaturas;
+import classesREMOVIDAS.RegistoExposicoes;
 import lapr.project.registos.RegistoMecanismos;
 
 /**

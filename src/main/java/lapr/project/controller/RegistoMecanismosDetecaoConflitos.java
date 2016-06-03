@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
-import lapr.project.model.Candidatura;
-import lapr.project.model.FAE;
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.FAE;
 
 /**
  *

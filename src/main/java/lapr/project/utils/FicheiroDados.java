@@ -1,14 +1,20 @@
 package lapr.project.utils;
 
+import classesREMOVIDAS.Utilizador;
+import classesREMOVIDAS.Demonstracao;
+import classesREMOVIDAS.Local;
+import classesREMOVIDAS.Recurso;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.CentroExposicoes;
 import java.io.*;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
+import classesREMOVIDAS.RegistoDemonstracoes;
+import classesREMOVIDAS.RegistoExposicoes;
 import lapr.project.registos.RegistoMecanismos;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.registos.RegistoUtilizadores;
+import classesREMOVIDAS.RegistoRecursos;
+import classesREMOVIDAS.RegistoUtilizadores;
 
 /**
  * Classe que permite a leitura de ficheiros.

@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.Atribuicao;
 import java.util.List;
 import javax.swing.*;
 

@@ -4,10 +4,10 @@ import java.util.List;
 import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoCandidaturaConflitosDetetados;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.CentroExposicoes;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.FAE;
 
 /**
  * Representação do Controller do caso de uso - artibuir conflitos de interesse

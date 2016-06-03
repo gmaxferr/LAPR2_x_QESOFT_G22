@@ -3,10 +3,10 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.registos.RegistoCandidaturas;
+import classesREMOVIDAS.Candidatura;
+import classesREMOVIDAS.Exposicao;
+import classesREMOVIDAS.Expositor;
+import classesREMOVIDAS.RegistoCandidaturas;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
