@@ -126,6 +126,7 @@ public class AtribuirCandidaturasController {
     }
 
     public List<Atribuicao> atribui(Mecanismo mec) {
+        //deixar para resolver no fim
         return mec.atribui();
     }
 
@@ -137,7 +138,7 @@ public class AtribuirCandidaturasController {
         this.estadoExposicao = this.e.getEstadoExposicao();
         estadoExposicao.setEstadoCandidaturasAtribuidas();
 
-        this.estadoCandidatura = this.cand.getEstadoCandidatura();
+        this.estadoCandidatura = this.cand.getEstado();
         estadoCandidatura.setEstadoCandidaturaAtribuida();
     }
 

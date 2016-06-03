@@ -11,7 +11,7 @@ import lapr.project.model.Utilizador;
 public class RegistoUtilizadores {
 
     private ArrayList<Utilizador> listaUtilizadores;
-    
+
     Utilizador u;
 
     public Utilizador identificarUtilizadorPeloID(String id) {
@@ -98,23 +98,30 @@ public class RegistoUtilizadores {
     private void adicionaUtilizador(Utilizador u) {
         listaUtilizadores.add(u);
     }
-/**
+
+    /**
      * Método que devolve uma lista com os novos registos (registos ainda nao
      * confirmados)
      *
      * @return lista de novos registos
      */
     public ArrayList<Utilizador> getListaNovosRegistos() {
-        ArrayList<Utilizador> list=new ArrayList<>();
+        ArrayList<Utilizador> list = new ArrayList<>();
         for (Utilizador u : listaUtilizadores) {
-            if(u.getM_boolConfirmaRegisto()==false)
+            if (u.getM_boolConfirmaRegisto() == false) {
                 list.add(u);
+            }
         }
         return list;
     }
 
-   public String identificarUtilizador(String username) {
-      return u.getUsername();
+    public Utilizador identificarUtilizador(String username) {
+        for (Utilizador utilizador : this.listaUtilizadores) {
+            if (utilizador.getUsername().equalsIgnoreCase(username)) {
+                return utilizador;
+            }
+        }
+        return null;
     }
 
     public boolean validaDadosUnicos(String username, String email) {

@@ -54,10 +54,10 @@ public class Exposicao {
     private RegistoCandidaturas rc;
 
     /**
-     * 
+     *
      */
     private RegistoCandidaturasRemovidas rcr;
-    
+
     /**
      *
      */
@@ -183,12 +183,13 @@ public class Exposicao {
 
     /**
      * Devolve o registo de candidaturas removidas da exposição
-     * @return 
+     *
+     * @return
      */
-    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas(){
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return rcr;
     }
-    
+
     /**
      * Define novo organizador de exposição
      *
@@ -290,15 +291,6 @@ public class Exposicao {
     }
 
     /**
-     * Método que cria uma nova candidatura
-     *
-     * @return nova candidatura
-     */
-    public CandidaturaAExposicao novaCandidatura() {
-        return new CandidaturaAExposicao();
-    }
-
-    /**
      * Devolve a lista de todas as candidaturas associadas à exposição
      *
      * @return arraylist com todas as candidatuas associadas à exposição
@@ -327,29 +319,6 @@ public class Exposicao {
         return true;
     }
 
-    public ArrayList<CandidaturaAExposicao> getlistaCandidaturaDoFAE() {
-        //FAE autenticado no sistema. Para teste
-        FAE faeNoSistema = new FAE();
-
-        listaCand = new ArrayList<>();
-
-        //encontra as exposições do FAE autenticado no sistema.
-        for (int i = 0; i < m_listaCandidaturas.size(); i++) {
-            if (m_listaCandidaturas.get(i).getFaeResponsavel() == faeNoSistema) {
-                listaCand.add(m_listaCandidaturas.get(i));
-            }
-        }
-
-        //remove as exposições que se repetem
-        removerCandidaturasRepetidas();
-
-        //fill in do arraylist para testes
-        fillInArrayListCandidaturasFAE();
-
-        return listaCand;
-
-    }
-
     /**
      * Método que devolve os dados da candidatura
      *
@@ -372,7 +341,7 @@ public class Exposicao {
      *
      * @return
      */
-    public RegistoFAE getRfae() {
+    public RegistoFAE getRegistoFAE() {
         return rfae;
     }
 
@@ -400,15 +369,6 @@ public class Exposicao {
         return rd;
     }
 
-    public void fillInArrayListCandidaturasFAE() {
-        CandidaturaAExposicao c1 = new CandidaturaAExposicao(915852364, 100, 20, new Produto(), new FAE());
-        listaCand.add(c1);
-        CandidaturaAExposicao c2 = new CandidaturaAExposicao(912852361, 50, 35, new Produto(), new FAE());
-        listaCand.add(c2);
-        CandidaturaAExposicao c3 = new CandidaturaAExposicao(932645189, 10, 10, new Produto(), new FAE());
-        listaCand.add(c3);
-    }
-
     /**
      * Método que remove candidaturas repetidas
      */
@@ -434,12 +394,10 @@ public class Exposicao {
     /**
      * Métoto que define nova decisao
      *
-     * @param c nova candidatura
-     * @param decisao nova decisao
-     * @param justificacao nova justificaçao
+     * @param candidaturaAExposicao
      */
-    public void setDecisao(CandidaturaAExposicao c, String decisao, String justificacao) {
-        c.setDecisao(decisao, justificacao);
+    public void setDecisao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
     }
 
     /**

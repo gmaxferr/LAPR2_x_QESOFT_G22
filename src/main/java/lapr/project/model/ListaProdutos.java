@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import classesModelERegistodePPROG.Produto;
 import java.util.ArrayList;
 import java.util.List;
 

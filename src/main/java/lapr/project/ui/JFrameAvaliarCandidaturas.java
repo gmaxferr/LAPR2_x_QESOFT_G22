@@ -5,19 +5,13 @@
  */
 package lapr.project.ui;
 
-import classesModelERegistodePPROG.Candidatura;
-import classesModelERegistodePPROG.Produto;
-import classesModelERegistodePPROG.Avaliacao;
-import classesModelERegistodePPROG.Atribuicao;
-import classesModelERegistodePPROG.Exposicao;
-import classesModelERegistodePPROG.CentroExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import classesModelERegistodePPROG.AvaliarCandidaturaController;
+import lapr.project.controller.AvaliarCandidaturaAExposicaoController;
 import lapr.project.model.*;
 
 /**
@@ -30,7 +24,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     private static final int CARD3_LARGURA_MINIMA = 400;
     private static final int CARD3_ALTURA_MINIMA = 240;
     private final String usernameFAE;
-    private final AvaliarCandidaturaController controller;
+    private final AvaliarCandidaturaAExposicaoController controller;
     private final List<Exposicao> listaExposicoes;
     private JFrame jFrame;
     private List<Atribuicao> listaAtribuicoesDoFAE;
@@ -62,7 +56,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
-        this.controller = new AvaliarCandidaturaController(centroExposicoes);
+        this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesDoFAE(this.usernameFAE);
         this.jFrameMenuPrincipal = jFrame;

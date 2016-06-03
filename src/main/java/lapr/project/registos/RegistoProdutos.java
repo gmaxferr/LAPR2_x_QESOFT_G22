@@ -1,6 +1,7 @@
 package lapr.project.registos;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.Produto;
 
 /**
@@ -12,13 +13,13 @@ public class RegistoProdutos {
     /**
      * Atributo produtos a expor de Candidatura
      */
-    private ArrayList<Produto> ProdutosExpor;
+    private List<Produto> ProdutosExpor;
 
     public RegistoProdutos() {
         ProdutosExpor = new ArrayList<>();
     }
 
-    public ArrayList<Produto> getListaProdutosAExpor() {
+    public List<Produto> getListaProdutosAExpor() {
         return this.ProdutosExpor;
     }
 
@@ -84,5 +85,9 @@ public class RegistoProdutos {
      */
     public boolean validarDadosRepetidosOuInvalidos() {
         return true;
+    }
+
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.ProdutosExpor = listaProdutos;
     }
 }

@@ -80,7 +80,7 @@ public class DefinirFAEController {
     }
 
     public void getRegistoFAE() {
-        this.rfae = e.getRfae();
+        this.rfae = e.getRegistoFAE();
     }
 
     public void setEstado() {

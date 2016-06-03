@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -14,14 +15,12 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class DecidirCandidaturasAExposicaoController {
 
-    //a espera de implementarem os vossos models para fazer imports certos
     private Exposicao exposicaoSelecionada;
     private CandidaturaAExposicao candidaturaSelecionada;
     private RegistoCandidaturas rc;
     private RegistoExposicoes re;
     private CentroExposicoes ce;
 
-    //a espera de implementarem os vossos models
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce) {
         this.ce = ce;
     }
@@ -30,20 +29,21 @@ public class DecidirCandidaturasAExposicaoController {
         this.re = ce.getRegistoExposicoes();
     }
 
-    //a espera de implementarem os vossos models
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
         return this.re.getListaExposicoesEstadoCandidaturasAvaliadas();
     }
 
-    //a espera de implementarem os vossos models
     public void setExposicao(Exposicao exposicao) {
         this.exposicaoSelecionada = exposicao;
     }
 
-    //a espera de implementarem os vossos models
-    public ArrayList<CandidaturaAExposicao> getListaCandidaturasEstadoAvaliadas() {
+    /*
+        lista de candidaturas de uma das expos no estado EstadoExposicaoCandidaturasAvaliadas 
+        logo todas estarão no estado EstadoCandidaturasAExposicaoAvaliada
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturas() {
         this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
-        return this.rc.getListaCandidaturasEstadoAvaliadas();
+        return this.rc.getListaCandidaturas();
     }
 
     public naosei getDadosEstatisticosGerais() {
@@ -56,23 +56,23 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     public String getNomeEmpresa() {
-        return this.candidaturaSelecionada.getNomeEmpresa();
+        return this.candidaturaSelecionada.getM_StrNomeEmpresa();
     }
 
     public String getMoradaEmpresa() {
-        return this.candidaturaSelecionada.getMoradaEmpresa();
+        return this.candidaturaSelecionada.getM_StrMoradaEmpresa();
     }
 
     public int getTelemovel() {
-        return this.candidaturaSelecionada.getTelemovel();
+        return this.candidaturaSelecionada.getM_intTelemovel();
     }
 
     public int getArea() {
-        return this.candidaturaSelecionada.getArea();
+        return this.candidaturaSelecionada.getM_intArea();
     }
 
     public int getNumeroConvites() {
-        return this.candidaturaSelecionada.getNumeroConvites();
+        return this.candidaturaSelecionada.getM_intNumConvites();
     }
 
     public naoSei getKeywords() {

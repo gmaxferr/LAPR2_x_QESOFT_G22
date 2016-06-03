@@ -100,17 +100,15 @@ public class RegistoExposicoes implements Agendavel {
      * Método que devolve a lista de exposições do organizador autenticado no
      * sistema
      *
+     * @param usernameOrganizador
      * @return lista de exposições do organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador() {
-        //Organizador autenticado no sistema atualmente como organizador
-        Organizador organizadorNoSistema = new Organizador();
-
+    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador(String usernameOrganizador) {
         ArrayList<Exposicao> listaExpoDoOrg = new ArrayList<>();
 
         //encontra as exposições do organizador autenticado no sistema.
         for (int i = 0; i < m_listaExposicoes.size(); i++) {
-            if (m_listaExposicoes.get(i).getOrganizadores() == organizadorNoSistema) {
+            if (m_listaExposicoes.get(i).getOrganizadores().getUtilizador().getUsername()organizadorNoSistema) {
                 listaExpoDoOrg.add(m_listaExposicoes.get(i));
             }
         }
@@ -164,7 +162,7 @@ public class RegistoExposicoes implements Agendavel {
             RegistoCandidaturas rc = e.getRegistoCandidaturas();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
-                    if (c.getEstadoCandidatura().isEstadoCandidaturaAceite()) {
+                    if (c.getEstado().isEstadoCandidaturaAceite()) {
                         listaExpoRep.add(e);
                         break;
                     }
@@ -195,6 +193,16 @@ public class RegistoExposicoes implements Agendavel {
             }
         }
         return listaExpoRep;
+    }
+
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAvaliadas = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstadoExposicao().isEstadoCandidaturasAvaliadas()) {
+                listaExposicoesEstadoCandidaturasAvaliadas.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturasAvaliadas;
     }
 
 }

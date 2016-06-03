@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.registos.RegistoProdutos;
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.estados.EstadoCandidaturaAExposicaoCriada;
 import lapr.project.exceptions.AreaErradaException;
@@ -33,6 +34,8 @@ public class CandidaturaAExposicao {
     private int m_intArea;
 
     private String m_StrNomeEmpresa;
+
+    private String m_StrMoradaEmpresa;
 
     /**
      *
@@ -78,26 +81,32 @@ public class CandidaturaAExposicao {
      *
      * @return area de CandidaturaAExposicao
      */
-    public float getM_intArea() {
+    public int getM_intArea() {
         return m_intArea;
     }
 
     /**
      * Devolve o nome da empresa
+     *
      * @return nom da empresa
      */
     public String getM_StrNomeEmpresa() {
         return this.m_StrNomeEmpresa;
     }
 
+    public String getM_StrMoradaEmpresa() {
+        return this.m_StrMoradaEmpresa;
+    }
+
     /**
      * Devolve o username do expositor
+     *
      * @return username do expositor
      */
-    public String getM_StrUsernameExpositor(){
+    public String getM_StrUsernameExpositor() {
         return expositor.getM_strUsername();
     }
-    
+
     /**
      *
      * @return
@@ -105,8 +114,8 @@ public class CandidaturaAExposicao {
     public RegistoProdutos getRegistoProdutos() {
         return this.rp;
     }
-    
-    public RegistoDemonstracoes getRegistoDemonstracoes(){
+
+    public RegistoDemonstracoes getRegistoDemonstracoes() {
         return this.rd;
     }
 
@@ -327,7 +336,7 @@ public class CandidaturaAExposicao {
      *
      * @return produtos de CandidaturaAExposicao
      */
-    public ArrayList<Produto> getProdutosExpor() {
+    public List<Produto> getProdutosExpor() {
         return this.rp.getListaProdutosAExpor();
     }
 
@@ -387,7 +396,7 @@ public class CandidaturaAExposicao {
         return expositor;
     }
 
-    public EstadoCandidaturaAExposicao getEstadoCandidatura() {
+    public EstadoCandidaturaAExposicao getEstado() {
         return estado;
     }
 

@@ -1,6 +1,7 @@
 package lapr.project.registos;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.FAE;
 import lapr.project.model.Utilizador;
 
@@ -10,7 +11,7 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoFAE {
 
-    private ArrayList<FAE> listaFAE;
+    private List<FAE> listaFAE;
 
     public RegistoFAE() {
         this.listaFAE = new ArrayList<>();
@@ -31,5 +32,9 @@ public class RegistoFAE {
         } else {
             //reverte a operação de adicionar o fae feita até aqui
         }
+    }
+    
+    public List<FAE> getListaFAE(){
+        return this.listaFAE;
     }
 }

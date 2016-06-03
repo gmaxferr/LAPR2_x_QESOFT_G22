@@ -10,14 +10,15 @@ public class Decisao {
     private boolean decisao;
 
     /**
-     * Construtor de objectos do tipo Decisao com o parametro FAE
+     * Construtor
      *
      */
     public Decisao() {
+        this.decisao = false;
     }
 
     /**
-     * Construtor de objectos do tipo Utilizador com todos os parametros
+     * Construtor
      *
      * @param decisao
      */
@@ -27,5 +28,9 @@ public class Decisao {
 
     public void setM_bDecisao(boolean decisao) {
         this.decisao = decisao;
+    }
+
+    public boolean getM_bDecisao() {
+        return this.decisao;
     }
 }

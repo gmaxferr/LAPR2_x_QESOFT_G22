@@ -62,7 +62,7 @@ public class AtribuirConflitoInteresseController {
      }
      
      public void setEstadoConflitosAtribuidos(){
-         this.estadoCand = cand.getEstadoCandidatura();
+         this.estadoCand = cand.getEstado();
          estadoConflitosdetetados.setEstadoConflitosAtribuidos();
          }
      }

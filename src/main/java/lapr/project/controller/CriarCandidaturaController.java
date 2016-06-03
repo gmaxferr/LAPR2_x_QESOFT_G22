@@ -176,26 +176,6 @@ public class CriarCandidaturaController {
     }
 
     /**
-     * Remove uma demonstração.
-     *
-     * @param selectedValue identificação da demonstração.
-     */
-    public void removerDemonstracao(Object selectedValue) {
-        String demoIdentificacao = (String) selectedValue;
-        this.candidaturaCriada.getRegistoDemonstracoes().removerDemonstracao(demoIdentificacao);
-    }
-
-    /**
-     * Atualiza as demonstrações da candidatura criada.
-     *
-     * @param listaDemonstracoesAdicionadas lista de demonstrações adicionadas à
-     * candidatura.
-     */
-    public void atualizarListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
-        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
-    }
-
-    /**
      * Modifica a lista de produtos.
      *
      * @param listaProdutos lista de produtos.

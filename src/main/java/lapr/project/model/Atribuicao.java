@@ -6,10 +6,16 @@ package lapr.project.model;
  */
 public class Atribuicao {
 
-    private CandidaturaAExposicao cand;
+    private CandidaturaAExposicao candidatura;
     private FAE fae;
+    private boolean decisao;
 
-    public Atribuicao() {
-
+    public Atribuicao(CandidaturaAExposicao candidaturaAExposicao, FAE fae) {
+        this.candidatura = candidaturaAExposicao;
+        this.fae = fae;
+    }
+    
+    public CandidaturaAExposicao getCandidaturaAssociada(){
+        return this.candidatura;
     }
 }

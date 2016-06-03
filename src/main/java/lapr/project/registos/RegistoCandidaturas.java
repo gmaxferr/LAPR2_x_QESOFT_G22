@@ -53,11 +53,15 @@ public class RegistoCandidaturas {
     /**
      * Método que regista candidatura
      *
-     * @param c candidatura
+     * @param candidaturaAExposicao candidatura
+     * @return 
      */
-    public void registaCandidatura(CandidaturaAExposicao c) {
-        validaCandidatua(c);
-        addCandidatura(c);
+    public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
+        boolean b = validaCandidatua(candidaturaAExposicao);
+        if (b) {
+            addCandidatura(candidaturaAExposicao);
+        }
+        return b;
     }
 
     /**
@@ -65,8 +69,9 @@ public class RegistoCandidaturas {
      *
      * @param c candidatura
      */
-    public void validaCandidatua(CandidaturaAExposicao c) {
-        //validação global
+    public boolean validaCandidatua(CandidaturaAExposicao c) {
+        //validação global - repetida
+        return true;
     }
 
     /**
@@ -92,23 +97,24 @@ public class RegistoCandidaturas {
             addCandidatura(c);
         }
     }
-    
+
     /**
      * Remove uma candidatura do registo
+     *
      * @param c - candidatura a remover
      */
-    public void removeCandidatura(CandidaturaAExposicao c){
+    public void removeCandidatura(CandidaturaAExposicao c) {
         listaCandidaturas.remove(c);
     }
-    
+
     public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
-        List<CandidaturaAExposicao>candidaturasRepLst = new ArrayList<>();
-        for(CandidaturaAExposicao c : listaCandidaturas){
-            if(c.getM_StrUsernameExpositor().equals(username)){
+        List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
+        for (CandidaturaAExposicao c : listaCandidaturas) {
+            if (c.getM_StrUsernameExpositor().equals(username)) {
                 candidaturasRepLst.add(c);
             }
         }
         return candidaturasRepLst;
     }
-    
+
 }

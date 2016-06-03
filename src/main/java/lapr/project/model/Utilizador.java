@@ -15,13 +15,13 @@ public class Utilizador {
     /**
      * Atributo password de um Utilizador
      */
-    private String m_strPwd;
+    private char[] m_strPwd;
 
     /**
      * Atributo email de um Utilizador
      */
     private String m_strEmail;
-    
+
     /**
      * Atributo username de um utilizador
      */
@@ -41,7 +41,7 @@ public class Utilizador {
     public Utilizador() {
     }
 
-    public Utilizador(String nome, String ID, String password, String email) {
+    public Utilizador(String nome, String ID, char[] password, String email) {
         this.ID = ID;
         this.m_strEmail = email;
         this.m_strPwd = password;
@@ -73,7 +73,8 @@ public class Utilizador {
      *
      * @return password do utilizador
      */
-    public String getM_strPwd() {
+    public char[] getM_strPwd() {
+        //fazer toString? depende se for um get para ser usado na UI
         return this.m_strPwd;
     }
 
@@ -118,18 +119,19 @@ public class Utilizador {
 
     /**
      * Define um novo username de utiliador
-     * 
+     *
      * @param username novo username de utilizador
      */
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.m_strUsername = username;
     }
+
     /**
      * Define uma nova password de utilizador
      *
      * @param strPwd nova password de utilizador
      */
-    public void setPwd(String strPwd) {
+    public void setPwd(char[] strPwd) {
         m_strPwd = strPwd;
     }
 

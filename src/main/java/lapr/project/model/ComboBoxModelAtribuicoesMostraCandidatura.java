@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import classesModelERegistodePPROG.Candidatura;
-import classesModelERegistodePPROG.Atribuicao;
 import java.util.List;
 import javax.swing.*;
 
@@ -51,8 +49,8 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
      */
     @Override
     public Object getElementAt(int index) {
-        Candidatura candidatura = this.listaAtribuicoes.get(index).getCand();
-        String candidaturaExpositor = candidatura.getM_NomeEmpresa() + "; " + candidatura.getM_UsernameExpositor();
+        CandidaturaAExposicao candidatura = this.listaAtribuicoes.get(index).getCandidaturaAssociada();
+        String candidaturaExpositor = candidatura.getM_StrNomeEmpresa() + "; " + candidatura.getM_StrUsernameExpositor();
         return candidaturaExpositor;
     }
 

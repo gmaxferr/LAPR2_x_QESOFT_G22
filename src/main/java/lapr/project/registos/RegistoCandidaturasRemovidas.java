@@ -28,7 +28,7 @@ public class RegistoCandidaturasRemovidas {
      * @param c - candidatura removida do registo de candidaturas
      */
     public void adicionarCandidatura(CandidaturaAExposicao c) {
-        if (c.getEstadoCandidatura().setEstadoCandidaturaRemovida()) {
+        if (c.getEstado().setEstadoCandidaturaRemovida()) {
             listaCandidaturasRemovidas.add(c);
         }
     }
