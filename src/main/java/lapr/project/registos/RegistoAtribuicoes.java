@@ -12,30 +12,33 @@ import lapr.project.model.CandidaturaAExposicao;
 public class RegistoAtribuicoes {
 
     private List<Atribuicao> listaAtribuicao;
-    
-    public RegistoAtribuicoes(){
-        this.listaAtribuicao=new ArrayList<>();
+
+    public RegistoAtribuicoes() {
+        this.listaAtribuicao = new ArrayList<>();
     }
-    
+
+    public List<Atribuicao> getListaAtribuicoes() {
+        return this.listaAtribuicao;
+    }
+
     public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
         return c.getDadosCandidatura();
     }
-    
+
     public boolean validarCandidatura(CandidaturaAExposicao c) {
         return c.validarCandidatura();
     }
-    
+
     /**
      * Métoto que define nova decisao
      *
-     * @param c nova candidatura
+     * @param candidaturaAExposicao
      * @param decisao nova decisao
-     * @param justificacao nova justificaçao
      */
-    public void setDecisao(CandidaturaAExposicao c, String decisao, String justificacao) {
-        c.setDecisao(decisao, justificacao);
+    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
     }
-    
+
     /**
      * Método que valida a decisao da candidatura
      *
@@ -46,7 +49,7 @@ public class RegistoAtribuicoes {
     }
 
     public void setListaAtribuicao(List<Atribuicao> listaAtribuicao) {
-        this.listaAtribuicao=listaAtribuicao;
+        this.listaAtribuicao = listaAtribuicao;
     }
 
 }

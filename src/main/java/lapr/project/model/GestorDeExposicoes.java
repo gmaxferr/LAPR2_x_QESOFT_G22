@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import classesModelERegistodePPROG.Utilizador;
 
 /**
  * @author Ricardo Catalao

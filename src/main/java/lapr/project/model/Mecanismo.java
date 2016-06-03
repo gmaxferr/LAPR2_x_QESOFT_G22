@@ -1,13 +1,24 @@
 package lapr.project.model;
 
-import java.util.List;
-
 /**
+ * Representação de um mecanismo.
  *
- * @author Ana Leite Ricardo Osório
+ * @author Ricardo Osório e Ana Leite
  */
 public interface Mecanismo {
 
-    public List<Atribuicao> atribui();
+    /**
+     * Devolve o nome do mecanismo
+     *
+     * @return nome do mecanismo
+     */
+    String getNome();
+
+    /**
+     * Devolve a descrição do funcionamento do mecanismo
+     *
+     * @return descrição do funcionamento do mecanismo
+     */
+    String getDescricao();
 
 }

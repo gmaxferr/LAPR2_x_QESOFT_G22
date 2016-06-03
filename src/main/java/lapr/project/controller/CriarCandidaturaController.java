@@ -97,7 +97,7 @@ public class CriarCandidaturaController {
     /**
      * Cria uma nova candidatura para uma exposição.
      *
-     * @param usernameExpositor username do expositor da candidatura.
+     * @param expositor
      */
     public void criarCandidatura(Expositor expositor) {
         this.candidaturaCriada = rc.criarCandidatura(expositor);
@@ -162,7 +162,7 @@ public class CriarCandidaturaController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionarDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.candidaturaCriada.getRegistoDemonstracoes().adicionarDemonstracao(demonstracaoEscolhida);
+        this.candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
     }
 
     /**

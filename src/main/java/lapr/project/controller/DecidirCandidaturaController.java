@@ -72,7 +72,7 @@ public class DecidirCandidaturaController {
     }
 
     /**
-     * Chama o método setDecisao da exposição selecionada
+     * Chama o método setAvaliacao da exposição selecionada
      *
      * @param c candidatura
      * @param Decisao decisao

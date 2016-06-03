@@ -15,18 +15,16 @@ public class RegistoDemonstracoes {
      */
     private ArrayList<Demonstracao> m_listaDemonstracoes;
 
-    private CandidaturaAExposicao c;
+    private CandidaturaAExposicao candidaturaAExposicao;
 
     public RegistoDemonstracoes() {
-
+        this.m_listaDemonstracoes = new ArrayList<>();
     }
 
     /**
-     * Deolve uma lista com todas as demostrações associadas a um centro de
-     * exposições
+     * Devolve uma lista com todas as demostrações
      *
-     * @return lista com todas as demontrações associadas a um centro de
-     * exposições
+     * @return lista com todas as demontrações
      */
     public ArrayList<Demonstracao> getListaDemonstracoes() {
         return this.m_listaDemonstracoes;
@@ -37,8 +35,8 @@ public class RegistoDemonstracoes {
      *
      * @param demonstracao demostracao a ser adicionada
      */
-    public void adicionaDemostracao(Demonstracao demonstracao) {
-        c.adicionaDemonstracao(demonstracao);
+    public void adicionaDemonstracao(Demonstracao demonstracao) {
+        candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 
     public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {

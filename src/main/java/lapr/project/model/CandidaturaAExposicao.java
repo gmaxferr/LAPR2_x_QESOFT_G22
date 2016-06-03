@@ -7,6 +7,7 @@ import lapr.project.estados.EstadoCandidaturaAExposicaoCriada;
 import lapr.project.exceptions.AreaErradaException;
 import lapr.project.exceptions.NumeroConvitesErradoException;
 import lapr.project.exceptions.TelemovelEmpresaErradoException;
+import lapr.project.registos.RegistoDemonstracoes;
 
 /**
  * Representação de uma CandidaturaAExposicao
@@ -34,14 +35,10 @@ public class CandidaturaAExposicao {
     private String m_StrNomeEmpresa;
 
     /**
-     * Lista de demonstrações existentes
-     */
-    private ArrayList<Demonstracao> m_listaDemonstracoes;
-
-    /**
      *
      */
     private RegistoProdutos rp;
+    private RegistoDemonstracoes rd;
 
     private Decisao decisao;
     private Expositor expositor;
@@ -53,6 +50,8 @@ public class CandidaturaAExposicao {
      */
     public CandidaturaAExposicao(Expositor expositor) {
         this.expositor = expositor;
+        this.rp = new RegistoProdutos();
+        this.rd = new RegistoDemonstracoes();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
     }
 
@@ -93,6 +92,10 @@ public class CandidaturaAExposicao {
      */
     public RegistoProdutos getRegistoProdutos() {
         return this.rp;
+    }
+    
+    public RegistoDemonstracoes getRegistoDemonstracoes(){
+        return this.rd;
     }
 
     /**
@@ -269,10 +272,10 @@ public class CandidaturaAExposicao {
     /**
      * Método que adiciona uma demonstração de CandidaturaAExposicao
      *
-     * @param d demonstração a ser adicionada
+     * @param demonstracao
      */
-    public void addDemonstracao(Demonstracao d) {
-        this.m_listaDemonstracoes.add(d);
+    public void addDemonstracao(Demonstracao demonstracao) {
+        this.rd.adicionaDemonstracao(demonstracao);
     }
 
     /**

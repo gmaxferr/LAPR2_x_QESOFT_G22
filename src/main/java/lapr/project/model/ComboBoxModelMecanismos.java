@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import classesModelERegistodePPROG.Mecanismo;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
