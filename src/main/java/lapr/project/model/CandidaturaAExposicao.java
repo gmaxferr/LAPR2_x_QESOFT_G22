@@ -82,10 +82,22 @@ public class CandidaturaAExposicao {
         return m_intArea;
     }
 
+    /**
+     * Devolve o nome da empresa
+     * @return nom da empresa
+     */
     public String getM_StrNomeEmpresa() {
         return this.m_StrNomeEmpresa;
     }
 
+    /**
+     * Devolve o username do expositor
+     * @return username do expositor
+     */
+    public String getM_StrUsernameExpositor(){
+        return expositor.getM_strUsername();
+    }
+    
     /**
      *
      * @return

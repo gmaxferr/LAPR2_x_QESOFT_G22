@@ -7,6 +7,7 @@ package lapr.project.model;
  */
 public class Expositor {
 
+    private String m_strUsername;
     private String m_strNomeEmpresa;
     private String m_strMorada;
 
@@ -22,9 +23,10 @@ public class Expositor {
      * @param nomeEmpresa nome da empresa
      * @param morada morada da empresa
      */
-    public Expositor(String nomeEmpresa, String morada) {
+    public Expositor(String nomeEmpresa, String morada, String username) {
         this.m_strNomeEmpresa = nomeEmpresa;
         this.m_strMorada = morada;
+        this.m_strUsername = username;
     }
 
     /**
@@ -45,6 +47,14 @@ public class Expositor {
         return m_strMorada;
     }
 
+    /**
+     * Devolve o username do expositor
+     * @return username do expositor
+     */
+    public String getM_strUsername(){
+        return m_strUsername;
+    }
+    
     /**
      * Define um novo nome para a empresa do expositor
      *

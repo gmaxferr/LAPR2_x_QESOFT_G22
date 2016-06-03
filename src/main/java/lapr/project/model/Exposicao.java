@@ -54,6 +54,11 @@ public class Exposicao {
     private RegistoCandidaturas rc;
 
     /**
+     * 
+     */
+    private RegistoCandidaturasRemovidas rcr;
+    
+    /**
      *
      */
     private RegistoOrganizadores ro;
@@ -86,6 +91,7 @@ public class Exposicao {
         this.rconf = new RegistoConflitos();
         this.ra = new RegistoAtribuicoes();
         this.rc = new RegistoCandidaturas();
+        this.rcr = new RegistoCandidaturasRemovidas();
         this.rd = new RegistoDemonstracoes();
         this.rfae = new RegistoFAE();
         this.ro = new RegistoOrganizadores();
@@ -112,6 +118,7 @@ public class Exposicao {
         this.rc = new RegistoCandidaturas();
         this.ro = new RegistoOrganizadores();
         this.rd = new RegistoDemonstracoes();
+        this.rcr = new RegistoCandidaturasRemovidas();
     }
 
     public Exposicao(ArrayList<Organizador> m_listaOrganizadores, ArrayList<FAE> m_listaFAE, ArrayList<CandidaturaAExposicao> m_listaCandidaturas) {
@@ -166,7 +173,7 @@ public class Exposicao {
     }
 
     /**
-     * evolve o local da exposição
+     * Devolve o local da exposição
      *
      * @return local da exposição
      */
@@ -174,6 +181,14 @@ public class Exposicao {
         return local;
     }
 
+    /**
+     * Devolve o registo de candidaturas removidas da exposição
+     * @return 
+     */
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas(){
+        return rcr;
+    }
+    
     /**
      * Define novo organizador de exposição
      *

@@ -6,6 +6,7 @@ import lapr.project.estados.Estado;
 import lapr.project.estados.EstadoExposicaoCandidaturasAbertas;
 import lapr.project.estados.EstadoExposicaoCandidaturasFechadas;
 import lapr.project.model.Agendavel;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Organizador;
 
@@ -155,6 +156,45 @@ public class RegistoExposicoes implements Agendavel {
         Estado estado = new EstadoExposicaoCandidaturasFechadas(exposicao);
         String dataLimite = exposicao.getM_strDataFim();
         Agendavel(estado, dataLimite);
+    }
+
+    public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+                if (c.getM_StrUsernameExpositor().equals(username)) {
+                    if (c.getEstadoCandidatura().isEstadoCandidaturaAceite()) {
+                        listaExpoRep.add(e);
+                        break;
+                    }
+                }
+            }
+        }
+        return listaExpoRep;
+    }
+
+    /**
+     * Cria uma lista com as exposições em que existem candidaturas de um
+     * representante
+     *
+     * @param username - username do representante
+     * @return - lista com as exposições em que existem candidaturas do
+     * representante
+     */
+    public List<Exposicao> getExposicoesDoRepresentante(String username) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+                if (c.getM_StrUsernameExpositor().equals(username)) {
+                    listaExpoRep.add(e);
+                    break;
+
+                }
+            }
+        }
+        return listaExpoRep;
     }
 
 }

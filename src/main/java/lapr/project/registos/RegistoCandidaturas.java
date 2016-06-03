@@ -92,4 +92,23 @@ public class RegistoCandidaturas {
             addCandidatura(c);
         }
     }
+    
+    /**
+     * Remove uma candidatura do registo
+     * @param c - candidatura a remover
+     */
+    public void removeCandidatura(CandidaturaAExposicao c){
+        listaCandidaturas.remove(c);
+    }
+    
+    public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
+        List<CandidaturaAExposicao>candidaturasRepLst = new ArrayList<>();
+        for(CandidaturaAExposicao c : listaCandidaturas){
+            if(c.getM_StrUsernameExpositor().equals(username)){
+                candidaturasRepLst.add(c);
+            }
+        }
+        return candidaturasRepLst;
+    }
+    
 }

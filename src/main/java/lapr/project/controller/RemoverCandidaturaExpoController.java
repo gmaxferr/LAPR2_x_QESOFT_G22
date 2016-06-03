@@ -7,12 +7,10 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import classesModelERegistodePPROG.Candidatura;
-import classesModelERegistodePPROG.CentroExposicoes;
-import classesModelERegistodePPROG.Exposicao;
-import classesModelERegistodePPROG.RegistoCandidaturas;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
-import classesModelERegistodePPROG.RegistoExposicoes;
+import lapr.project.model.*;
+import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoExposicoes;
 
 /**
  *
@@ -24,7 +22,7 @@ public class RemoverCandidaturaExpoController {
     private String username;
     private CentroExposicoes ce;
     private RegistoCandidaturas rc;
-    private Candidatura candidaturaARemover;
+    private CandidaturaAExposicao candidaturaARemover;
 
     /**
      * Construtor do controller da UC18 - remover candidatura a uma exposição
@@ -67,14 +65,14 @@ public class RemoverCandidaturaExpoController {
      * @param username - username do representante
      * @return - lista de candidaturas do representante
      */
-    public List<Candidatura> getListaCandidaturas(String username) {
-        List<Candidatura> candidaturasLst = new ArrayList();
+    public List<CandidaturaAExposicao> getListaCandidaturas(String username) {
+        List<CandidaturaAExposicao> candidaturasLst = new ArrayList();
         rc = exposicaoSelecionada.getRegistoCandidaturas();
         candidaturasLst = rc.getCandidaturasRepresentante(username);
         return candidaturasLst;
     }
 
-    public void setCandidaturaARemover(Candidatura c) {
+    public void setCandidaturaARemover(CandidaturaAExposicao c) {
          candidaturaARemover = c;
     }
 
