@@ -28,7 +28,7 @@ public class RegistoDemonstracoes {
      * @return lista com todas as demontrações associadas a um centro de
      * exposições
      */
-    public ArrayList<Demonstracao> getlistaDemonstracoes() {
+    public ArrayList<Demonstracao> getListaDemonstracoes() {
         return this.m_listaDemonstracoes;
     }
 

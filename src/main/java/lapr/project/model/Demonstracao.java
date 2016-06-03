@@ -14,6 +14,7 @@ import lapr.project.registos.RegistoRecursos;
 public class Demonstracao {
 
     private String descricao;
+    private String codigoIdentificacao;
     private RegistoRecursos rrr;
 
     public Demonstracao() {
@@ -26,5 +27,9 @@ public class Demonstracao {
 
     public RegistoRecursos getRegistoRecursosDemo() {
         return this.rrr;
+    }
+
+    public String getCodigoIdentificacao() {
+        return this.codigoIdentificacao;
     }
 }

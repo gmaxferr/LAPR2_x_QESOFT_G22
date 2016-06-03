@@ -1,4 +1,4 @@
-package classesModelERegistodePPROG;
+package lapr.project.exceptions;
 
 /**
  * Exceção a ser lançada quando o número de convites (ao criar a candidatura)

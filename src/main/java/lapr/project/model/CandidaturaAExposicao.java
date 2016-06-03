@@ -4,6 +4,9 @@ import lapr.project.registos.RegistoProdutos;
 import java.util.ArrayList;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.estados.EstadoCandidaturaAExposicaoCriada;
+import lapr.project.exceptions.AreaErradaException;
+import lapr.project.exceptions.NumeroConvitesErradoException;
+import lapr.project.exceptions.TelemovelEmpresaErradoException;
 
 /**
  * Representação de uma CandidaturaAExposicao
@@ -26,17 +29,9 @@ public class CandidaturaAExposicao {
     /**
      * Atributo area de CandidaturaAExposicao
      */
-    private float m_floatArea;
+    private int m_intArea;
 
-    /**
-     * Atributo produtos a expor de CandidaturaAExposicao
-     */
-    private ArrayList<Produto> ProdutosExpor;
-
-    /**
-     * Atributo fae associado de CandidaturaAExposicao
-     */
-    private FAE m_faeFAEAssociado;
+    private String m_StrNomeEmpresa;
 
     /**
      * Lista de demonstrações existentes
@@ -48,46 +43,17 @@ public class CandidaturaAExposicao {
      */
     private RegistoProdutos rp;
 
-    Expositor expositor;
-    Decisao d;
-    CandidaturaAExposicao cand;
+    private Decisao decisao;
+    private Expositor expositor;
 
     /**
      * Contrutor de Candidatura sem parametros
-     */
-    public CandidaturaAExposicao() {
-        Expositor ex = new Expositor();
-        setEstado(new EstadoCandidaturaAExposicaoCriada(cand));
-
-    }
-
-    /**
-     * Construtor de Candidatura assumindo todos os parametros
      *
-     * @param telemovel numero de telemovel de Candidatura
-     * @param numConvites numero de convites de Candidatura
-     * @param area area de Candidatura
-     * @param produto produto a expor de Candidatura
-     * @param fae fae associado de Candidatura
+     * @param expositor
      */
-    public CandidaturaAExposicao(int telemovel, int numConvites, float area, Produto produto, FAE fae) {
-        ProdutosExpor = new ArrayList<>();
-        this.m_floatArea = area;
-        this.m_intNumConvites = numConvites;
-        this.m_intTelemovel = telemovel;
-        this.m_faeFAEAssociado = fae;
-        this.rp = new RegistoProdutos();
-        setEstado(new EstadoCandidaturaAExposicaoCriada(cand));
-
-    }
-
-    /**
-     * Devolve o fae associado de CandidaturaAExposicao
-     *
-     * @return fae associado de CandidaturaAExposicao
-     */
-    public FAE getFaeResponsavel() {
-        return m_faeFAEAssociado;
+    public CandidaturaAExposicao(Expositor expositor) {
+        this.expositor = expositor;
+        setEstado(new EstadoCandidaturaAExposicaoCriada(this));
     }
 
     /**
@@ -113,25 +79,20 @@ public class CandidaturaAExposicao {
      *
      * @return area de CandidaturaAExposicao
      */
-    public float getM_floatArea() {
-        return m_floatArea;
+    public float getM_intArea() {
+        return m_intArea;
+    }
+
+    public String getM_StrNomeEmpresa() {
+        return this.m_StrNomeEmpresa;
     }
 
     /**
      *
      * @return
      */
-    public RegistoProdutos getRp() {
-        return rp;
-    }
-
-    /**
-     * Fefine novo fae associado de CandidaturaAExposicao
-     *
-     * @param faeResponsavel novo fae associado de CandidaturaAExposicao
-     */
-    public void setFaeResponsavel(FAE faeResponsavel) {
-        this.m_faeFAEAssociado = faeResponsavel;
+    public RegistoProdutos getRegistoProdutos() {
+        return this.rp;
     }
 
     /**
@@ -139,26 +100,51 @@ public class CandidaturaAExposicao {
      *
      * @param m_intTelemovel novo numero de televovel de CandidaturaAExposicao
      */
-    public void setM_intTelemovel(int m_intTelemovel) {
-        this.m_intTelemovel = m_intTelemovel;
+    public void setM_intTelemovel(String m_intTelemovel) {
+        if (m_intTelemovel.length() != 9) {
+            throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa introduzido não é válido!");
+        }
+        try {
+            int intNumeroTelemovel = Integer.parseInt(m_intTelemovel);
+            this.m_intTelemovel = intNumeroTelemovel;
+        } catch (IllegalArgumentException e) {
+            throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa introduzido não é válido!");
+        }
+
     }
 
     /**
      * Define novo numero de convites de CandidaturaAExposicao
      *
-     * @param m_intNumConvites novo numero de convites de CandidaturaAExposicao
+     * @param m_StrNumConvites
      */
-    public void setM_intNumConvites(int m_intNumConvites) {
-        this.m_intNumConvites = m_intNumConvites;
+    public void setM_intNumConvites(String m_StrNumConvites) throws TelemovelEmpresaErradoException {
+        try {
+            int intNumConvites = Integer.parseInt(m_StrNumConvites);
+            if (intNumConvites < 0) {
+                throw new NumeroConvitesErradoException("O número de convites introduzido não é valido!");
+            }
+            this.m_intNumConvites = intNumConvites;
+        } catch (IllegalArgumentException e) {
+            throw new NumeroConvitesErradoException("O número de convites introduzido não é valido!");
+        }
     }
 
     /**
      * Define nova area de CandidaturaAExposicao
      *
-     * @param m_floatArea nova area de CandidaturaAExposicao
+     * @param m_StrArea
      */
-    public void setM_intArea(float m_floatArea) {
-        this.m_floatArea = m_floatArea;
+    public void setM_intArea(String m_StrArea) {
+        try {
+            int intArea = Integer.parseInt(m_StrArea);
+            if (intArea < 0) {
+                throw new AreaErradaException("A área introduzida não é valida!");
+            }
+            this.m_intArea = intArea;
+        } catch (IllegalArgumentException e) {
+            throw new AreaErradaException("A área introduzida não é valida!");
+        }
     }
 
     /**
@@ -167,7 +153,7 @@ public class CandidaturaAExposicao {
      * @param nomeEmpresa novo nome de empresa
      */
     public void setM_strNomeEmpresa(String nomeEmpresa) {
-        expositor.setM_strNomeEmpresa(nomeEmpresa);
+        this.m_StrNomeEmpresa = nomeEmpresa;
     }
 
     /**
@@ -188,7 +174,7 @@ public class CandidaturaAExposicao {
      */
     public Produto criarProduto(String nome) {
         Produto produto = new Produto(nome);
-        ProdutosExpor.add(produto);
+        this.rp.addProduto(produto);
         return produto;
     }
 
@@ -203,8 +189,8 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que devolve uma descrição textual do objecto CandidaturaAExposicao, isto é,
- com os seus atributos
+     * Método que devolve uma descrição textual do objecto
+     * CandidaturaAExposicao, isto é, com os seus atributos
      *
      * @return
      */
@@ -213,9 +199,9 @@ public class CandidaturaAExposicao {
         String str = "Candidatura:\n";
         str += "\tNome Empresa:" + expositor.getM_strNomeEmpresa();
         str += "\tMorada:" + expositor.getM_strMorada();
-        str += "\tNumero de Telemovel: " + this.m_intTelemovel + "\n";
-        str += "\tÁrea " + this.m_floatArea + "\n";
-        str += "\tProdutos " + this.ProdutosExpor + "\n";
+        str += "\tNumero de Telemovel: " + m_intTelemovel + "\n";
+        str += "\tÁrea " + m_intArea + "\n";
+        str += "\tProdutos " + rp + "\n";
 
         return str;
     }
@@ -236,7 +222,8 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que valida os dados repetidos pu invalidos de CandidaturaAExposicao
+     * Método que valida os dados repetidos pu invalidos de
+     * CandidaturaAExposicao
      *
      * @return boolean com a confirmação da validação
      */
@@ -256,7 +243,8 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que valida produto de CandidaturaAExposicao recebendo-o como parametro
+     * Método que valida produto de CandidaturaAExposicao recebendo-o como
+     * parametro
      *
      * @param produto produto a ser validado
      */
@@ -288,7 +276,8 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como parametro
+     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
+     * parametro
      *
      * @param demonstracao demonstração a ser validads
      */
@@ -306,7 +295,7 @@ public class CandidaturaAExposicao {
      * @param p produto a ser adicionado
      */
     public void addProduto(Produto p) {
-        this.ProdutosExpor.add(p);
+        this.rp.addProduto(p);
     }
 
     /**
@@ -324,19 +313,7 @@ public class CandidaturaAExposicao {
      * @return produtos de CandidaturaAExposicao
      */
     public ArrayList<Produto> getProdutosExpor() {
-        return ProdutosExpor;
-    }
-
-    /**
-     * Método que cria uma noca decisao
-     *
-     * @param fae que faz a decisao de CandidaturaAExposicao
-     *
-     * @return nova decisao
-     */
-    public Decisao criarDecisao(FAE fae) {
-        valida(fae);
-        return new Decisao(fae);
+        return this.rp.getListaProdutosAExpor();
     }
 
     /**
@@ -372,11 +349,9 @@ public class CandidaturaAExposicao {
      * Define nova decisao e justificação de candidatura
      *
      * @param decisao nova decisao
-     * @param justificacao nova justificação
      */
-    public void setDecisao(String decisao, String justificacao) {
-        d.setM_strDecisao(decisao);
-        d.setM_strJustificacao(justificacao);
+    public void setDecisao(boolean decisao) {
+        this.decisao.setM_bDecisao(decisao);
     }
 
     /**
@@ -392,16 +367,16 @@ public class CandidaturaAExposicao {
     public void valida() {
         //valida
     }
-    
-    public Expositor getExpositor(){
+
+    public Expositor getExpositor() {
         return expositor;
     }
 
     public EstadoCandidaturaAExposicao getEstadoCandidatura() {
         return estado;
     }
-    
-    public void setEstado(EstadoCandidaturaAExposicao ne){
+
+    public void setEstado(EstadoCandidaturaAExposicao ne) {
         this.estado = ne;
     }
 }

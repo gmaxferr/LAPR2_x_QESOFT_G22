@@ -55,20 +55,12 @@ public class Expositor {
     }
 
     /**
-     * Define uma nova morada para a empresa do expositor
-     *
-     * @param m_strMorada nova morada da empresa
-     */
-    public void setM_strMorada(String m_strMorada) {
-        this.m_strMorada = m_strMorada;
-    }
-
-    /**
      * Devolve uma descrisão do Expositor. Isto é, dos seus atributo que o
      * caracterizam.
      *
      * @return descrição do expositor
      */
+    @Override
     public String toString() {
         String str = "Expositor:\n";
         str += "\tNome da Empresa: " + this.m_strNomeEmpresa + "\n";

@@ -1,11 +1,5 @@
 package lapr.project.ui;
 
-import classesModelERegistodePPROG.Demonstracao;
-import classesModelERegistodePPROG.Exposicao;
-import classesModelERegistodePPROG.CentroExposicoes;
-import classesModelERegistodePPROG.NumeroConvitesErradoException;
-import classesModelERegistodePPROG.AreaErradaException;
-import classesModelERegistodePPROG.TelemovelEmpresaErradoException;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,8 +7,10 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import classesModelERegistodePPROG.CriarCandidaturaController;
-import lapr.project.exceptions.*;
+import lapr.project.controller.CriarCandidaturaController;
+import lapr.project.exceptions.AreaErradaException;
+import lapr.project.exceptions.NumeroConvitesErradoException;
+import lapr.project.exceptions.TelemovelEmpresaErradoException;
 import lapr.project.model.*;
 
 /**
@@ -27,7 +23,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private CentroExposicoes centroExposicoesAtual;
     private int numDemonstracoes;
     private int numProdutos;
-    private String usernameExpositor;
+    private Expositor expositor;
     private CriarCandidaturaController controller;
     private List<Exposicao> listaExposicoes;
     private ModeloListaProdutos modeloJListaProdutosCard2;
@@ -47,7 +43,6 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-    private ComboBoxModelDemonstracoes modeloComboBoxDemonstracoes;
 
     /**
      * Creates new form JFrameCriarCandidaturaUI
@@ -55,7 +50,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
      */
-    public JFrameCriarCandidaturaUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameExpositor) {
+    public JFrameCriarCandidaturaUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Expositor Expositor) {
         super("Criar candidatura");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
@@ -63,7 +58,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         this.numDemonstracoes = 0;
         this.numProdutos = 0;
 
-        this.usernameExpositor = usernameExpositor;
+        this.expositor = expositor;
         this.controller = new CriarCandidaturaController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoes();
@@ -743,7 +738,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
         controller.getRegistoCandidaturas();
-        controller.criarCandidatura(this.usernameExpositor);
+        controller.criarCandidatura(this.expositor);
         controller.getRegistoProduto();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
