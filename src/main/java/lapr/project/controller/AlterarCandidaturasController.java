@@ -27,7 +27,7 @@ public class AlterarCandidaturasController {
     }
 
     public boolean getM_EstadoExposicao() {
-        estadoExpo = exposicao.getEstadoExposicao();
+        estadoExpo = exposicao.getEstado();
         return verificaEstadoExposicao(estadoExpo);
     }
 

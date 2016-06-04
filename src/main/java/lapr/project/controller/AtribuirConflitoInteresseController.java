@@ -34,7 +34,7 @@ public class AtribuirConflitoInteresseController {
     }
     
      public boolean getEstadoExposicao() {
-        estadoExpo = exposicao.getEstadoExposicao();
+        estadoExpo = exposicao.getEstado();
         return verificaEstadoExposicao(estadoExpo);
     }
 

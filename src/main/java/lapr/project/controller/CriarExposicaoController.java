@@ -110,7 +110,7 @@ public class CriarExposicaoController {
     }
 
     public void setEstadoCriada() {
-        this.estadoExposicao=this.m_exposicao.getEstadoExposicao();
+        this.estadoExposicao=this.m_exposicao.getEstado();
         estadoExposicao.setEstadoCriada();
     }
 

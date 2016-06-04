@@ -1,21 +1,17 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.exceptions.AreaErradaException;
-import lapr.project.exceptions.NumeroConvitesErradoException;
-import lapr.project.exceptions.TelemovelEmpresaErradoException;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.exceptions.*;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoProdutos;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - criar candidatura.
  *
  * @author Ricardo Osório e Ana Leite
  */
-public class CriarCandidaturaController {
+public class CriarCandidaturaAExposicaoController {
 
     /**
      * Registo de exposições.
@@ -51,6 +47,7 @@ public class CriarCandidaturaController {
      * Centro de exposições.
      */
     private CentroExposicoes centroExposicoes;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     /**
      * Constrói uma instância de CriarCandidaturaController recebendo como
@@ -58,7 +55,7 @@ public class CriarCandidaturaController {
      *
      * @param centroExposicoes centro de exposições
      */
-    public CriarCandidaturaController(CentroExposicoes centroExposicoes) {
+    public CriarCandidaturaAExposicaoController(CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
     }
 
@@ -69,13 +66,17 @@ public class CriarCandidaturaController {
         this.re = centroExposicoes.getRegistoExposicoes();
     }
 
+    public void getEstadoCandidatura() {
+        this.estadoCandidatura = this.candidaturaCriada.getEstado();
+    }
+
     /**
      * Devolve a lista de Exposições.
      *
      * @return lista de Exposições
      */
-    public List<Exposicao> getListaExposicoes() {
-        return this.re.getlistaExposicoesValidas();
+    public List<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
+        return this.re.getlistaExposicoesEstadoCandidaturasAbertas();
     }
 
     /**
@@ -182,6 +183,10 @@ public class CriarCandidaturaController {
      */
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
         this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
+    }
+
+    public void setEstadoCandidaturaAExposicaoCriada() {
+        this.estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
 }

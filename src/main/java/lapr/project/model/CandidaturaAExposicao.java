@@ -33,17 +33,34 @@ public class CandidaturaAExposicao {
      */
     private int m_intArea;
 
+    /**
+     *
+     */
     private String m_StrNomeEmpresa;
 
+    /**
+     *
+     */
     private String m_StrMoradaEmpresa;
 
     /**
      *
      */
     private RegistoProdutos rp;
+
+    /**
+     *
+     */
     private RegistoDemonstracoes rd;
 
+    /**
+     *
+     */
     private Decisao decisao;
+
+    /**
+     *
+     */
     private Expositor expositor;
 
     /**

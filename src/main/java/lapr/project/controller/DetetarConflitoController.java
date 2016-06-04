@@ -78,7 +78,7 @@ public class DetetarConflitoController {
 
     public void setEstadoConflitoDetetados() {
         for (Exposicao exposicao : this.re.getlistaExposicoesValidas()) {
-            this.estadoExposicao = exposicao.getEstadoExposicao();
+            this.estadoExposicao = exposicao.getEstado();
             estadoExposicao.setEstadoConflitosDetetados();
         }
 

@@ -43,4 +43,8 @@ public class RegistoOrganizadores {
     private void addOrganizador(Organizador o) {
         m_listaOrganizadores.add(o);
     }
+
+    public ArrayList<Organizador> getListaOrganizadores() {
+        return this.m_listaOrganizadores;
+    }
 }

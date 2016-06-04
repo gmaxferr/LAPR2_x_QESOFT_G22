@@ -84,7 +84,7 @@ public class DefinirFAEController {
     }
 
     public void setEstado() {
-        EstadoExposicao estado = this.e.getEstadoExposicao();
+        EstadoExposicao estado = this.e.getEstado();
         if (estado instanceof EstadoExposicaoCriada) {
             estado.setEstadoFAEDefinidosSemDemos();
         } else if (estado instanceof EstadoExposicaoDemosDefinidasSemFAE) {
@@ -93,6 +93,6 @@ public class DefinirFAEController {
     }
 
     public EstadoExposicao getEstadoExposicao() {
-        return this.e.getEstadoExposicao();
+        return this.e.getEstado();
     }
 }

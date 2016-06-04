@@ -135,7 +135,7 @@ public class AtribuirCandidaturasController {
     }
 
     public void setEstadoCandidaturaAtribuida() {
-        this.estadoExposicao = this.e.getEstadoExposicao();
+        this.estadoExposicao = this.e.getEstado();
         estadoExposicao.setEstadoCandidaturasAtribuidas();
 
         this.estadoCandidatura = this.cand.getEstado();

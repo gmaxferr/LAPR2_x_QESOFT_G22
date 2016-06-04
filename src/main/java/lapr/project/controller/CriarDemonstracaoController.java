@@ -78,7 +78,7 @@ public class CriarDemonstracaoController {
     
     public void setEstado(){
 
-    estado = this.exposicao.getEstadoExposicao();
+    estado = this.exposicao.getEstado();
     if(estado instanceof EstadoExposicaoFAEDefinidosSemDemos){
         estadoExposicaoDemosDef.setEstadoCompleta();
     } else if (estado instanceof EstadoExposicaoCriada){ 

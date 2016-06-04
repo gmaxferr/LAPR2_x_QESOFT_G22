@@ -36,6 +36,10 @@ public class Organizador {
         this.m_Utilizador = u;
     }
 
+    public String getUsernameOrganizador() {
+        return this.m_Utilizador.getUsername();
+    }
+
     /**
      * Devolve uma descrição textual do objeto Organizador, isto é, com os seus
      * atributos

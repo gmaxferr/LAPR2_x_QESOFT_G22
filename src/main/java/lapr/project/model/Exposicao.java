@@ -237,8 +237,8 @@ public class Exposicao {
         this.local = local;
     }
 
-    public Organizador getOrganizadores() {
-        return null;
+    public ArrayList<Organizador> getListaOrganizadores() {
+        return this.ro.getListaOrganizadores();
     }
 
     /**
@@ -418,7 +418,7 @@ public class Exposicao {
         return true;
     }
 
-    public EstadoExposicao getEstadoExposicao() {
+    public EstadoExposicao getEstado() {
         return estado;
     }
 

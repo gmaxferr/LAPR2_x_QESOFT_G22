@@ -96,6 +96,16 @@ public class RegistoExposicoes implements Agendavel {
         return lista;
     }
 
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
+        ArrayList<Exposicao> lista = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
+                lista.add(exposicao);
+            }
+        }
+        return lista;
+    }
+
     /**
      * Método que devolve a lista de exposições do organizador autenticado no
      * sistema
@@ -104,19 +114,18 @@ public class RegistoExposicoes implements Agendavel {
      * @return lista de exposições do organizador
      */
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizador(String usernameOrganizador) {
-        ArrayList<Exposicao> listaExpoDoOrg = new ArrayList<>();
+        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         //encontra as exposições do organizador autenticado no sistema.
-        for (int i = 0; i < m_listaExposicoes.size(); i++) {
-            if (m_listaExposicoes.get(i).getOrganizadores().getUtilizador().getUsername()organizadorNoSistema) {
-                listaExpoDoOrg.add(m_listaExposicoes.get(i));
+        for (Exposicao exposicao : m_listaExposicoes) {
+            for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                    listaExposicoesDoOrganizador.add(exposicao);
+                }
             }
         }
 
-        //remove as exposições que se repetem
-        removerExposiçõesRepetidas(listaExpoDoOrg);
-
-        return listaExpoDoOrg;
+        return listaExposicoesDoOrganizador;
 
     }
 
@@ -198,11 +207,21 @@ public class RegistoExposicoes implements Agendavel {
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
         ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAvaliadas = new ArrayList<>();
         for (Exposicao exposicao : this.m_listaExposicoes) {
-            if (exposicao.getEstadoExposicao().isEstadoCandidaturasAvaliadas()) {
+            if (exposicao.getEstado().isEstadoCandidaturasAvaliadas()) {
                 listaExposicoesEstadoCandidaturasAvaliadas.add(exposicao);
             }
         }
         return listaExposicoesEstadoCandidaturasAvaliadas;
+    }
+
+    public List<Exposicao> getlistaExposicoesEstadoCandidaturasAbertas() {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAbertas = new ArrayList<>();
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
+                listaExposicoesEstadoCandidaturasAbertas.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturasAbertas;
     }
 
 }

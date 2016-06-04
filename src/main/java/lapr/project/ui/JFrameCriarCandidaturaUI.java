@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import lapr.project.controller.CriarCandidaturaController;
+import lapr.project.controller.CriarCandidaturaAExposicaoController;
 import lapr.project.exceptions.AreaErradaException;
 import lapr.project.exceptions.NumeroConvitesErradoException;
 import lapr.project.exceptions.TelemovelEmpresaErradoException;
@@ -24,7 +24,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private int numDemonstracoes;
     private int numProdutos;
     private Expositor expositor;
-    private CriarCandidaturaController controller;
+    private CriarCandidaturaAExposicaoController controller;
     private List<Exposicao> listaExposicoes;
     private ModeloListaProdutos modeloJListaProdutosCard2;
     private List<Demonstracao> listaDemonstracoes;
@@ -59,7 +59,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         this.numProdutos = 0;
 
         this.expositor = expositor;
-        this.controller = new CriarCandidaturaController(centroExposicoes);
+        this.controller = new CriarCandidaturaAExposicaoController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoes();
 
