@@ -13,23 +13,28 @@ import lapr.project.registos.RegistoRecursos;
  */
 public class Demonstracao {
 
-    private String descricao;
-    private String codigoIdentificacao;
+    private String m_StrDescricao;
+    private String m_StrCodigoIdentificacao;
     private RegistoRecursos rrr;
 
-    public Demonstracao() {
+    public Demonstracao(String descricao) {
         this.rrr = new RegistoRecursos();
+        this.m_StrDescricao = descricao;
     }
 
-    public void setDescricao(String descricaoIntroduzidaPeloUtilizador) {
-        this.descricao = descricaoIntroduzidaPeloUtilizador;
+    public String getM_StrDescricao() {
+        return this.m_StrDescricao;
+    }
+
+    public void setM_StrDescricao(String descricaoIntroduzidaPeloUtilizador) {
+        this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
     }
 
     public RegistoRecursos getRegistoRecursosDemo() {
         return this.rrr;
     }
 
-    public String getCodigoIdentificacao() {
-        return this.codigoIdentificacao;
+    public String getM_StrCodigoIdentificacao() {
+        return this.m_StrCodigoIdentificacao;
     }
 }

@@ -39,13 +39,15 @@ public class AtribuirCandidaturasController {
     private RegistoCandidaturas rc;
     private EstadoExposicao estadoExposicao;
     private EstadoCandidaturaAExposicao estadoCandidatura;
+    private final String usernameOrganizador;
 
-    public AtribuirCandidaturasController(CentroExposicoes centroExposicoes) {
+    public AtribuirCandidaturasController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
         this.listaExpo = new ArrayList<>();
         this.listaCand = new ArrayList<>();
         this.listaFAE = new ArrayList<>();
         this.cand = new CandidaturaAExposicao();
         this.centroExposicoes = centroExposicoes;
+        this.usernameOrganizador=usernameOrganizador;
     }
 
     /**
@@ -53,8 +55,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de Exposições o Organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador() {
-        listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizador();
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+        listaExpo = centroExposicoes.getRegistoExposicoes().getListaExposicoesDoOrganizador(this.usernameOrganizador);
         return listaExpo;
     }
 

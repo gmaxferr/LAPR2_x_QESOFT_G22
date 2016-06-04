@@ -2,7 +2,7 @@ package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import classesModelERegistodePPROG.FAE;
+import lapr.project.model.FAE;
 
 /**
  * Representação de um Modelo JTable da Distribuição de FAE
@@ -49,11 +49,11 @@ public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return this.listaFAE.get(rowIndex).getUtilizador().getNome();
+                return this.listaFAE.get(rowIndex).getUtilizador().getM_strNome();
             case 1:
                 return this.listaFAE.get(rowIndex).getUtilizador().getUsername();
             default:
-                return this.listaFAE.get(rowIndex).getUtilizador().getE_mail();
+                return this.listaFAE.get(rowIndex).getUtilizador().getM_strEmail();
         }
     }
 

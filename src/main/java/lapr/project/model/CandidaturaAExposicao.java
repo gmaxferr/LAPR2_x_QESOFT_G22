@@ -203,7 +203,7 @@ public class CandidaturaAExposicao {
      * @param morada nova morada
      */
     public void setM_strMorada(String morada) {
-        expositor.setM_strNomeEmpresa(morada);
+        this.m_StrNomeEmpresa = morada;
     }
 
     /**
@@ -227,24 +227,6 @@ public class CandidaturaAExposicao {
     public void adicionaProduto(Produto produto) {
         validaProduto(produto);
         addProduto(produto);
-    }
-
-    /**
-     * Método que devolve uma descrição textual do objecto
-     * CandidaturaAExposicao, isto é, com os seus atributos
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        String str = "Candidatura:\n";
-        str += "\tNome Empresa:" + expositor.getM_strNomeEmpresa();
-        str += "\tMorada:" + expositor.getM_strMorada();
-        str += "\tNumero de Telemovel: " + m_intTelemovel + "\n";
-        str += "\tÁrea " + m_intArea + "\n";
-        str += "\tProdutos " + rp + "\n";
-
-        return str;
     }
 
     /**
@@ -337,15 +319,6 @@ public class CandidaturaAExposicao {
      */
     public void addProduto(Produto p) {
         this.rp.addProduto(p);
-    }
-
-    /**
-     * Devolve um novo expositor criado
-     *
-     * @return novo expositor
-     */
-    public Expositor novoExpositor() {
-        return new Expositor();
     }
 
     /**

@@ -272,7 +272,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameCriarCandidaturaUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+                new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
             }
         });
         return button;

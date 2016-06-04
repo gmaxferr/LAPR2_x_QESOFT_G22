@@ -52,7 +52,7 @@ public class DetetarConflitoController {
         for (TipoConflito tipoConflito : this.rtc.getListaTipoConflitos()) {
             this.rmdc = tipoConflito.getRegistoMecanismosDetecaoConflitos();
 
-            for (Exposicao exposicao : re.getlistaExposicoesValidas()) {
+            for (Exposicao exposicao : re.getListaExposicoesValidas()) {
                 this.rfae = exposicao.getRegistoFAE();
                 this.rc = exposicao.getRegistoCandidaturas();
                 this.listaFAE = exposicao.getListaFAE();
@@ -77,7 +77,7 @@ public class DetetarConflitoController {
     }
 
     public void setEstadoConflitoDetetados() {
-        for (Exposicao exposicao : this.re.getlistaExposicoesValidas()) {
+        for (Exposicao exposicao : this.re.getListaExposicoesValidas()) {
             this.estadoExposicao = exposicao.getEstado();
             estadoExposicao.setEstadoConflitosDetetados();
         }

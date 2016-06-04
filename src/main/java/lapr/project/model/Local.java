@@ -7,26 +7,26 @@ package lapr.project.model;
  */
 public class Local {
 
-    private String nomeLocal;
+    private String m_StrMorada;
 
     public Local(String nomeLocal) {
-        this.nomeLocal = nomeLocal;
+        this.m_StrMorada = nomeLocal;
     }
 
     /**
      *
      * @return
      */
-    public String getNomeLocal() {
-        return nomeLocal;
+    public String getM_StrMorada() {
+        return m_StrMorada;
     }
 
     /**
      *
      * @param nomeLocal
      */
-    public void setNomeLocal(String nomeLocal) {
-        this.nomeLocal = nomeLocal;
+    public void setM_StrMorada(String nomeLocal) {
+        this.m_StrMorada = nomeLocal;
     }
 
 }

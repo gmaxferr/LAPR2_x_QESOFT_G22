@@ -18,4 +18,8 @@ public class Atribuicao {
     public CandidaturaAExposicao getCandidaturaAssociada(){
         return this.candidatura;
     }
+
+    public FAE getFAEAssociado() {
+        return this.fae;
+    }
 }

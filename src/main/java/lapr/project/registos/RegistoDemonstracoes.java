@@ -1,6 +1,7 @@
 package lapr.project.registos;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Demonstracao;
 
@@ -13,7 +14,7 @@ public class RegistoDemonstracoes {
     /**
      * Lista de demostrações existentes
      */
-    private ArrayList<Demonstracao> m_listaDemonstracoes;
+    private List<Demonstracao> m_listaDemonstracoes;
 
     private CandidaturaAExposicao candidaturaAExposicao;
 
@@ -26,7 +27,7 @@ public class RegistoDemonstracoes {
      *
      * @return lista com todas as demontrações
      */
-    public ArrayList<Demonstracao> getListaDemonstracoes() {
+    public List<Demonstracao> getListaDemonstracoes() {
         return this.m_listaDemonstracoes;
     }
 
@@ -41,11 +42,15 @@ public class RegistoDemonstracoes {
 
     public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
         Demonstracao demo = new Demonstracao();
-        demo.setDescricao(descricaoIntroduzidaPeloUtilizador);
+        demo.setM_StrDescricao(descricaoIntroduzidaPeloUtilizador);
         return demo;
     }
 
     public void confirma(Demonstracao demo) {
         this.m_listaDemonstracoes.add(demo);
+    }
+
+    public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
+        this.m_listaDemonstracoes=listaDemonstracoes;
     }
 }

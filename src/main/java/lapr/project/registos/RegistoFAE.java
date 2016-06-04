@@ -33,8 +33,17 @@ public class RegistoFAE {
             //reverte a operação de adicionar o fae feita até aqui
         }
     }
-    
-    public List<FAE> getListaFAE(){
+
+    public List<FAE> getListaFAE() {
         return this.listaFAE;
+    }
+
+    public boolean isFAE(String usernameFAE) {
+        for (FAE fae : listaFAE) {
+            if (fae.getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

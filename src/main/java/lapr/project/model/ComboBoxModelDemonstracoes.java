@@ -50,7 +50,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaDemonstracoes.get(index).getCodigoIdentificacao();
+        return this.listaDemonstracoes.get(index).getM_StrCodigoIdentificacao();
     }
 
     /**

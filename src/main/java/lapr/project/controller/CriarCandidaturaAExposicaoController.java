@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.exceptions.*;
@@ -183,6 +184,10 @@ public class CriarCandidaturaAExposicaoController {
      */
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
         this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
+    }
+    
+    public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes){
+        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
     }
 
     public void setEstadoCandidaturaAExposicaoCriada() {

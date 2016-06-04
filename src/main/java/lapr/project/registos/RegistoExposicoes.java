@@ -86,7 +86,7 @@ public class RegistoExposicoes implements Agendavel {
      * @return lista com todas as exposições associadas a um centro de
      * exposições
      */
-    public ArrayList<Exposicao> getlistaExposicoesValidas() {
+    public ArrayList<Exposicao> getListaExposicoesValidas() {
         ArrayList<Exposicao> lista = new ArrayList<>();
         for (Exposicao exposicao : this.m_listaExposicoes) {
             if (exposicao.dadosMinimosObrigatorios() == true) {
@@ -113,7 +113,7 @@ public class RegistoExposicoes implements Agendavel {
      * @param usernameOrganizador
      * @return lista de exposições do organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador(String usernameOrganizador) {
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         //encontra as exposições do organizador autenticado no sistema.
@@ -222,6 +222,16 @@ public class RegistoExposicoes implements Agendavel {
             }
         }
         return listaExposicoesEstadoCandidaturasAbertas;
+    }
+
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(String usernameFAE) {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if(exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)){
+                listaExposicoesEstadoCandidaturaAtribuidasDoFAE.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
 
 }

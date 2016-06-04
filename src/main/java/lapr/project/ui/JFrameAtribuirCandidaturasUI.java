@@ -5,18 +5,13 @@
  */
 package lapr.project.ui;
 
-import classesModelERegistodePPROG.Mecanismo;
-import classesModelERegistodePPROG.FAE;
-import classesModelERegistodePPROG.Atribuicao;
-import classesModelERegistodePPROG.Exposicao;
-import classesModelERegistodePPROG.CentroExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import classesModelERegistodePPROG.AtribuirCandidaturaController;
+import lapr.project.controller.AtribuirCandidaturasController;
 import lapr.project.model.*;
 
 /**
@@ -28,7 +23,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private JFrame jFrameMenuPrincipal;
     private final String usernameOrganizador;
     private CentroExposicoes centroExposicoes;
-    private AtribuirCandidaturaController controller;
+    private AtribuirCandidaturasController controller;
     private List<Exposicao> listaExposicoesDoOrganizador;
     private List<Mecanismo> listaMecanismos;
     private String[] listaNomeMecanismos;
@@ -64,9 +59,9 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameOrganizador = usernameOrganizador;
         this.centroExposicoes = centroExposicoes;
-        controller = new AtribuirCandidaturaController(this.centroExposicoes);
+        controller = new AtribuirCandidaturasController(this.centroExposicoes, this.usernameOrganizador);
         controller.getRegistoExposicoes();
-        this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador(this.usernameOrganizador);
+        this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador();
 
         initComponents();
         alterarComportamentoFecharJFrame();
@@ -597,10 +592,10 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(expo.getDataInicio());
-            jLabelCard1DataFim.setText(expo.getDataFim());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
+            jLabelCard1DataInicio.setText(expo.getM_strDataInicio());
+            jLabelCard1DataFim.setText(expo.getM_strDataFim());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
