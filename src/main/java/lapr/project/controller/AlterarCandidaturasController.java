@@ -6,7 +6,7 @@ import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Expositor;
-import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
@@ -15,14 +15,14 @@ import lapr.project.registos.RegistoCandidaturas;
  */
 public class AlterarCandidaturasController {
 
-    private RegistoCandidaturas m_rc;
+    private RegistoCandidaturasAExposicao m_rc;
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
     private EstadoCandidaturaAExposicao estadoCand;
     private CandidaturaAExposicao cand;
     private Expositor expositor;
 
-    public AlterarCandidaturasController(RegistoCandidaturas registoCandidaturas) {
+    public AlterarCandidaturasController(RegistoCandidaturasAExposicao registoCandidaturas) {
         m_rc = registoCandidaturas;
     }
 

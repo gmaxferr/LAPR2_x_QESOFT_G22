@@ -40,7 +40,7 @@ public class RegistoFAE {
 
     public boolean isFAE(String usernameFAE) {
         for (FAE fae : listaFAE) {
-            if (fae.getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
+            if (fae.getUtilizador().getM_StrUsername().equalsIgnoreCase(usernameFAE)) {
                 return true;
             }
         }

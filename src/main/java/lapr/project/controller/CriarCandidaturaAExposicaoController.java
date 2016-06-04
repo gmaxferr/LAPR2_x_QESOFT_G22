@@ -22,7 +22,7 @@ public class CriarCandidaturaAExposicaoController {
     /**
      * Registo de candidaturas.
      */
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
 
     /**
      * Registo de produtos.

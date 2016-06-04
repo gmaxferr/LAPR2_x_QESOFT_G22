@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.registos.*;
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
 
@@ -51,7 +52,7 @@ public class Exposicao {
     /**
      *
      */
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rce;
 
     /**
      *
@@ -70,27 +71,23 @@ public class Exposicao {
 
     private RegistoConflitos rconf;
 
-    private ArrayList<Organizador> m_listaOrganizadores;
-    private ArrayList<FAE> m_listaFAE;
-    private ArrayList<CandidaturaAExposicao> m_listaCandidaturas;
-
-    public static ArrayList<CandidaturaAExposicao> listaCand;
-    public static ArrayList<FAE> listaFAE;
+    private RegistoExpositores rexpositores;
 
     Exposicao e;
     FAE f;
     CandidaturaAExposicao c;
+    private CentroExposicoes centroExposicoes;
 
     /**
      * Construtor de Exposição sem parametros
      */
     public Exposicao() {
-        m_listaOrganizadores = new ArrayList<>();
-        m_listaFAE = new ArrayList<>();
-        m_listaCandidaturas = new ArrayList<>();
+        this.rce = new RegistoCandidaturasAExposicao();
+        this.rfae = new RegistoFAE();
+        this.rcr = new RegistoCandidaturasRemovidas();
         this.rconf = new RegistoConflitos();
         this.ra = new RegistoAtribuicoes();
-        this.rc = new RegistoCandidaturas();
+        this.rce = new RegistoCandidaturasAExposicao();
         this.rcr = new RegistoCandidaturasRemovidas();
         this.rd = new RegistoDemonstracoes();
         this.rfae = new RegistoFAE();
@@ -106,25 +103,27 @@ public class Exposicao {
      * @param dataInicio data de inicio da exposição
      * @param dataFim data de fim da exposição
      * @param local local da exposição
+     * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, String dataInicio, String dataFim, String local) {
+    public Exposicao(String titulo, String descricao, String dataInicio, String dataFim, Local local, CentroExposicoes centroExposicoes) {
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
         this.m_strDataInicio = dataInicio;
         this.m_strDataFim = dataFim;
-        this.local = new Local(local);
+        this.local = local;
+        this.centroExposicoes = centroExposicoes;
         this.ra = new RegistoAtribuicoes();
         this.rfae = new RegistoFAE();
-        this.rc = new RegistoCandidaturas();
+        this.rce = new RegistoCandidaturasAExposicao();
         this.ro = new RegistoOrganizadores();
         this.rd = new RegistoDemonstracoes();
         this.rcr = new RegistoCandidaturasRemovidas();
     }
 
-    public Exposicao(ArrayList<Organizador> m_listaOrganizadores, ArrayList<FAE> m_listaFAE, ArrayList<CandidaturaAExposicao> m_listaCandidaturas) {
-        this.m_listaOrganizadores = m_listaOrganizadores;
-        this.m_listaFAE = m_listaFAE;
-        this.m_listaCandidaturas = m_listaCandidaturas;
+    public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
+        this.ro = ro;
+        this.rfae = rfae;
+        this.rce = rce;
     }
 
     /**
@@ -189,14 +188,15 @@ public class Exposicao {
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return rcr;
     }
+    
 
     /**
      * Define novo organizador de exposição
      *
-     * @param organizador novo organizador de exposição
+     * @param utilizador
      */
-    public void setOrganizador(Organizador organizador) {
-        m_listaOrganizadores.add(organizador);
+    public void addOrganizador(Utilizador utilizador) {
+        this.ro.addOrganizador(utilizador);
     }
 
     /**
@@ -272,8 +272,7 @@ public class Exposicao {
      */
     public void addFAE(Utilizador u) {
         //cria o fae a partir do utilizador recebido (u)
-        FAE fae = new FAE(u);
-        this.m_listaFAE.add(fae);
+        this.rfae.adicionaFAE(u);
 
     }
 
@@ -295,8 +294,8 @@ public class Exposicao {
      *
      * @return arraylist com todas as candidatuas associadas à exposição
      */
-    public ArrayList<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.m_listaCandidaturas;
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
+        return this.rce.getListaCandidaturas();
     }
 
     /**
@@ -304,8 +303,8 @@ public class Exposicao {
      *
      * @return lista dos fae
      */
-    public ArrayList<FAE> getListaFAE() {
-        return this.m_listaFAE;
+    public List<FAE> getListaFAE() {
+        return this.rfae.getListaFAE();
     }
 
     /**
@@ -349,8 +348,8 @@ public class Exposicao {
      *
      * @return
      */
-    public RegistoCandidaturas getRegistoCandidaturas() {
-        return rc;
+    public RegistoCandidaturasAExposicao getRegistoCandidaturas() {
+        return rce;
     }
 
     /**

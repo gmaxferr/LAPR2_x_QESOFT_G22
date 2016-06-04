@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoExposicoes;
 
 /**
@@ -21,7 +21,7 @@ public class RemoverCandidaturaExpoController {
     private Exposicao exposicaoSelecionada;
     private String username;
     private CentroExposicoes ce;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private CandidaturaAExposicao candidaturaARemover;
 
     /**

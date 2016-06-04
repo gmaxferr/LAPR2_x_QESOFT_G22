@@ -30,7 +30,7 @@ public class Demonstracao {
         this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
     }
 
-    public RegistoRecursos getRegistoRecursosDemo() {
+    public RegistoRecursos getRegistoRecursos() {
         return this.rrr;
     }
 

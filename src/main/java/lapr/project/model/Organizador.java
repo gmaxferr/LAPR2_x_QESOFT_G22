@@ -37,7 +37,7 @@ public class Organizador {
     }
 
     public String getUsernameOrganizador() {
-        return this.m_Utilizador.getUsername();
+        return this.m_Utilizador.getM_StrUsername();
     }
 
     /**

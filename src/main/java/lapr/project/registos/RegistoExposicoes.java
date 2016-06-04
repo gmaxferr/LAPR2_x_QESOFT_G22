@@ -168,7 +168,7 @@ public class RegistoExposicoes implements Agendavel {
     public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
@@ -192,7 +192,7 @@ public class RegistoExposicoes implements Agendavel {
     public List<Exposicao> getExposicoesDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturas rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);

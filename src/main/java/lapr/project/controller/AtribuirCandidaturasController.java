@@ -13,7 +13,7 @@ import lapr.project.model.FAE;
 import lapr.project.model.Mecanismo;
 import lapr.project.model.MecanismoIteragivel;
 import lapr.project.model.MecanismoSimples;
-import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoMecanismos;
 
@@ -38,7 +38,7 @@ public class AtribuirCandidaturasController {
 
     private CentroExposicoes centroExposicoes;
     private RegistoMecanismos rm;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private EstadoExposicao estadoExposicao;
     private EstadoCandidaturaAExposicao estadoCandidatura;
     private final String usernameOrganizador;
@@ -76,7 +76,7 @@ public class AtribuirCandidaturasController {
      * @return lista de candidaturas
      */
     public ArrayList<CandidaturaAExposicao> getListaCandidatuas() {
-        listaCand = this.e.getListaCandidaturas();
+        listaCand = this.e.getListaCandidaturasAExposicao();
         return listaCand;
     }
 

@@ -7,7 +7,7 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.GestorDeExposicoes;
-import lapr.project.registos.RegistoCandidaturas;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoExposicoes;
 
 /**
@@ -18,7 +18,7 @@ public class DecidirCandidaturasAExposicaoController {
 
     private Exposicao exposicaoSelecionada;
     private CandidaturaAExposicao candidaturaSelecionada;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private RegistoExposicoes re;
     private CentroExposicoes ce;
     private GestorDeExposicoes gestorDeExposicoes;

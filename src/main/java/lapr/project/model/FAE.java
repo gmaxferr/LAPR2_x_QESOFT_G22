@@ -40,7 +40,7 @@ public class FAE implements Comparable {
     }
 
     public String getUsernameFae() {
-        return this.m_Utilizador.getUsername();
+        return this.m_Utilizador.getM_StrUsername();
     }
 
     /**

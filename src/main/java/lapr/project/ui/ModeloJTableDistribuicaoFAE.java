@@ -51,7 +51,7 @@ public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
             case 0:
                 return this.listaFAE.get(rowIndex).getUtilizador().getM_strNome();
             case 1:
-                return this.listaFAE.get(rowIndex).getUtilizador().getUsername();
+                return this.listaFAE.get(rowIndex).getUtilizador().getM_StrUsername();
             default:
                 return this.listaFAE.get(rowIndex).getUtilizador().getM_strEmail();
         }

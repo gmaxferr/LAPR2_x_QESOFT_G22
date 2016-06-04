@@ -5,7 +5,7 @@ import lapr.project.registos.RegistoMecanismos;
 import lapr.project.registos.RegistoTipoConflitos;
 import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.registos.RegistoExposicoes;
-import java.util.ArrayList;
+import lapr.project.registos.RegistoExpositores;
 
 /**
  * Representação de um Centro de Exposições
@@ -13,16 +13,6 @@ import java.util.ArrayList;
  * @author Ricardo Osório Ana Leite
  */
 public class CentroExposicoes {
-
-    /**
-     * Lista de Exposicoes usada segundo pedido de varias métodos
-     */
-    public static ArrayList<Exposicao> listaExpo;
-
-    /**
-     * Lista de registos de utilizadores usada segundo pedido de varias metodos
-     */
-    public static ArrayList<Utilizador> listaReg;
 
     /**
      *
@@ -45,6 +35,8 @@ public class CentroExposicoes {
     private RegistoRecursos registoRecursos;
 
     private RegistoTipoConflitos registoTipoConflitos;
+    private final RegistoExpositores rExpositores;
+
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
@@ -54,6 +46,7 @@ public class CentroExposicoes {
         this.registoMecanismos = new RegistoMecanismos();
         this.registoRecursos = new RegistoRecursos();
         this.registoTipoConflitos = new RegistoTipoConflitos();
+        this.rExpositores = new RegistoExpositores();
     }
 
     /**
@@ -62,6 +55,10 @@ public class CentroExposicoes {
      */
     public RegistoExposicoes getRegistoExposicoes() {
         return registoExposicoes;
+    }
+
+    public RegistoExpositores getRegistoExpositores() {
+        return this.rExpositores;
     }
 
     /**
@@ -84,9 +81,10 @@ public class CentroExposicoes {
         return registoRecursos;
     }
 
-    public RegistoTipoConflitos getRegistoTiposConflitos(){
+    public RegistoTipoConflitos getRegistoTiposConflitos() {
         return registoTipoConflitos;
     }
+
     /**
      * Método que regista a confirmação de um registo de utilizador
      *
@@ -106,5 +104,14 @@ public class CentroExposicoes {
      */
     public Utilizador novoUtilizador() {
         return new Utilizador();
+    }
+
+    public Expositor getExpositorPeloUsername(String m_StrUsername) {
+        for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
+            if (expositor.getM_strUsername().equalsIgnoreCase(m_StrUsername)) {
+                return expositor;
+            }
+        }
+        return null;
     }
 }

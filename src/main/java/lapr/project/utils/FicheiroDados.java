@@ -160,7 +160,7 @@ public class FicheiroDados {
             rr = centroExposicoes.getRegistoRecursos();
             while (inputRecursos.hasNextLine()) {
                 linhaLida = inputRecursos.nextLine();
-                rr.addRecurso(new Recurso(linhaLida));
+                rr.criarRecurso(linhaLida);
             }
             inputDemos = new Scanner(new File(NOME_FICHEIRO_TEXTO_DEMONSTRACOES_PREDEFINICAO));
             inputExpos = new Scanner(new File(NOME_FICHEIRO_TEXTO_EXPOSICOES_PREDEFINICAO));
@@ -174,7 +174,7 @@ public class FicheiroDados {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
                     utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
-                    utilizador.confirmarRegistoUtilizador();
+                    utilizador.setUtilizadorRegistado();
                     exposicao.addOrganizador(utilizador);
                 }
 
@@ -183,8 +183,8 @@ public class FicheiroDados {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
                     utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
-                    utilizador.confirmarRegistoUtilizador();
-                    exposicao.addFAE(utilizador, Integer.parseInt(linhaLidaVetor[4]));
+                    utilizador.setUtilizadorRegistado();
+                    exposicao.addFAE(utilizador);//, Integer.parseInt(linhaLidaVetor[4]));  -> experiência
                 }
 
                 //add demos
@@ -193,11 +193,11 @@ public class FicheiroDados {
                     linhaLida = inputDemos.nextLine();
                     demo = new Demonstracao(linhaLida);
                     rr = demo.getRegistoRecursos();
-                    rr.addRecurso(centroExposicoes.getRegistoRecursos().getListaRecursos().get(cont));
+                    rr.setRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
                     cont++;
-                    rd.adicionarDemonstracao(demo);
+                    rd.adicionaDemonstracao(demo);
                 }
-                re.addExposicao(exposicao);
+                re.registaExposicao(exposicao);
             }
 
             //Expositores (lê os restantes utilizadores do ficheiro)
@@ -205,8 +205,8 @@ public class FicheiroDados {
                 linhaLidaVetor = inputUtilizadores.nextLine().split(";");
                 utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
                 ru.addUtilizador(utilizador);
-                utilizador.confirmarRegistoUtilizador();
-                centroExposicoes.addExpositor(utilizador);
+                utilizador.setUtilizadorRegistado();
+                centroExposicoes.getRegistoExpositores().addExpositor(utilizador);
             }
 
             inputExpos.close();

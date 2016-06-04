@@ -69,7 +69,7 @@ public class CriarDemonstracaoController {
     }
 
     void getRegistoRecursosDemo() {
-        this.rrr = this.demoCriada.getRegistoRecursosDemo();
+        this.rrr = this.demoCriada.getRegistoRecursos();
     }
 
     void confirma() {

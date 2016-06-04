@@ -117,7 +117,7 @@ public class RegistoUtilizadores {
 
     public Utilizador identificarUtilizador(String username) {
         for (Utilizador utilizador : this.listaUtilizadores) {
-            if (utilizador.getUsername().equalsIgnoreCase(username)) {
+            if (utilizador.getM_StrUsername().equalsIgnoreCase(username)) {
                 return utilizador;
             }
         }

@@ -20,7 +20,7 @@ public class DetetarConflitoController {
     private RegistoTipoConflitos rtc;
     private RegistoMecanismosDetecaoConflitos rmdc;
     private RegistoFAE rfae;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private List<FAE> listaFAE;
     private List<CandidaturaAExposicao> listaCand;
     private int tamanho;
@@ -56,7 +56,7 @@ public class DetetarConflitoController {
                 this.rfae = exposicao.getRegistoFAE();
                 this.rc = exposicao.getRegistoCandidaturas();
                 this.listaFAE = exposicao.getListaFAE();
-                this.listaCand = exposicao.getListaCandidaturas();
+                this.listaCand = exposicao.getListaCandidaturasAExposicao();
 
                 if (listaCand.size() > listaFAE.size()) {
                     tamanho = listaFAE.size();

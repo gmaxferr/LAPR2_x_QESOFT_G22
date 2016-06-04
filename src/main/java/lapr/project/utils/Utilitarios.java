@@ -25,7 +25,7 @@ public class Utilitarios {
         List<Utilizador> userList = centroExposicoes.getRegistoUtilizadores().getListaUtilizadores();
         Utilizador utilizador = null;
         for (Utilizador user : userList) {
-            if (user.getUsername().equals(username)) {
+            if (user.getM_StrUsername().equals(username)) {
                 if (user.isValidPassword(password)) {
                     utilizador = user;
                 }

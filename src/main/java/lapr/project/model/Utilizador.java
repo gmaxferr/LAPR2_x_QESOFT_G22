@@ -186,7 +186,7 @@ public class Utilizador {
         return true;
     }
 
-    public String getUsername() {
+    public String getM_StrUsername() {
         return m_strUsername;
     }
 

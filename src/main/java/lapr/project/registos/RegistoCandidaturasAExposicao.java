@@ -9,14 +9,14 @@ import lapr.project.model.Expositor;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class RegistoCandidaturas {
+public class RegistoCandidaturasAExposicao {
 
     /**
      * Atributo lista de candidaturas
      */
     private List<CandidaturaAExposicao> listaCandidaturas;
 
-    public RegistoCandidaturas() {
+    public RegistoCandidaturasAExposicao() {
         this.listaCandidaturas = new ArrayList<>();
     }
 
