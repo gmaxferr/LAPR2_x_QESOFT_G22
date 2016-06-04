@@ -8,6 +8,7 @@ package lapr.project.ui;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import lapr.project.model.*;
  *
  * @author osori
  */
-public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
+public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private static final int CARD3_LARGURA_MINIMA = 400;
@@ -29,7 +30,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     private JFrame jFrame;
     private List<Atribuicao> listaAtribuicoesDoFAE;
     private Atribuicao atribuicaoEscolhida;
-    private Avaliacao avaliacaoDaCandidatura;
+    private Avaliacao avaliacaoDoFae;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
@@ -47,23 +48,24 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 
     private static final int CARD2_LARGURA_MINIMA = 480;
     private static final int CARD2_ALTURA_MINIMA = 450;
+    private ArrayList<CandidaturaAExposicao> listaCandidaturasAtribuidasAoFae;
 
     /**
      * Creates new form JFrameDecidirCandidaturas
      */
-    public JFrameAvaliarCandidaturas(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
+    public JFrameAvaliarCandidaturasAExposicao(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
         super("Decidir candidaturas");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
-        this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes);
+        this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes, usernameFAE);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesDoFAE(this.usernameFAE);
+        this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE();
         this.jFrameMenuPrincipal = jFrame;
 
         initComponents();
         alterarComportamentoFecharJFrame();
-        
+
         setVisible(true);
         setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }
@@ -532,8 +534,8 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
-            listaAtribuicoesDoFAE = controller.getListaAtribuicoes(usernameFAE);
-            if (listaAtribuicoesDoFAE.size() != 0) {
+            listaAtribuicoesDoFAE = controller.getListaAtribuicoesComOFAE();
+            if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
@@ -566,9 +568,9 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
     private void avancarParaCard3() {
-        controller.setCandidatura(listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCand());
+        controller.setAtribuicao(listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
         atribuicaoEscolhida = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex());
-        this.avaliacaoDaCandidatura = controller.getReferenciaAvaliacaoDesteFAE(atribuicaoEscolhida, usernameFAE);
+        this.avaliacaoDoFae = controller.getAvaliacaoDoFae();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(CARD3_LARGURA_MINIMA, CARD3_ALTURA_MINIMA);
@@ -587,7 +589,7 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
 //        }
 //    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       CardLayout cardLayout = (CardLayout) getContentPane().getLayout(); 
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -626,10 +628,10 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(expo.getDataInicio().toString());
-            jLabelCard1DataFim.setText(expo.getDataFim().toString());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
+            jLabelCard1DataInicio.setText(expo.getM_strDataInicio());
+            jLabelCard1DataFim.setText(expo.getM_strDataFim());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
@@ -644,16 +646,16 @@ public class JFrameAvaliarCandidaturas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
     private void preencherDados() {
-        Candidatura cand = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCand();
-        jLabelCard2DadosEmpresaNome.setText(cand.getNomeEmpresa());
-        String telemovelEmpresa = Integer.toString(cand.getNumeroTelemovel());
+        CandidaturaAExposicao cand = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCandidaturaAssociada();
+        jLabelCard2DadosEmpresaNome.setText(cand.getM_StrNomeEmpresa());
+        String telemovelEmpresa = Integer.toString(cand.getM_intTelemovel());
         jLabelCard2DadosEmpresaTelemovel.setText(telemovelEmpresa);
-        jLabelCard2DadosEmpresaMorada.setText(cand.getMoradaEmpresa());
-        String numConvites = Integer.toString(cand.getNumConvites());
+        jLabelCard2DadosEmpresaMorada.setText(cand.getM_StrMoradaEmpresa());
+        String numConvites = Integer.toString(cand.getM_intNumConvites());
         jLabelCard2DadosCandidaturaNumeroConvites.setText(numConvites);
-        String area = Integer.toString(cand.getArea());
+        String area = Integer.toString(cand.getM_intArea());
         jLabelCard2DadosCandidaturaArea.setText(area);
-        String[] vetorProdutosCandSelecionada = card2CriarVetorListaProdutosCandidaturaSelecionada(cand.getRegistoProdutos().getListaProdutos());
+        String[] vetorProdutosCandSelecionada = card2CriarVetorListaProdutosCandidaturaSelecionada(cand.getRegistoProdutos().getListaProdutosAExpor());
         jListCard2ListaProdutos.setListData(vetorProdutosCandSelecionada);
     }
 

@@ -52,14 +52,15 @@ public class RegistoAtribuicoes {
         this.listaAtribuicao = listaAtribuicao;
     }
 
-    public ArrayList<CandidaturaAExposicao> getListaCandidaturasEstadoAtribuidasAoFAE(String usernameFAE) {
-        ArrayList<CandidaturaAExposicao> listaCand = new ArrayList<>();
+    public ArrayList<Atribuicao> getListaAtribuicoesComOFAE(String usernameFAE) {
+        ArrayList<Atribuicao> listaAtrib = new ArrayList<>();
         for (Atribuicao atribuicao : this.listaAtribuicao) {
-            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && atribuicao.getFAEAssociado().getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
-                listaCand.add(atribuicao.getCandidaturaAssociada());
+            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 
+                    atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
+                listaAtrib.add(atribuicao);
             }
         }
-        return listaCand;
+        return listaAtrib;
     }
 
 }

@@ -37,6 +37,10 @@ public class FAE {
     public Utilizador getUtilizador() {
         return m_Utilizador;
     }
+    
+    public String getUsernameFae(){
+        return this.m_Utilizador.getUsername();
+    }
 
     /**
      * Define um novo utilizador associado ao FAE

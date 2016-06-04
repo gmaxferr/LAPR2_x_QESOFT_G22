@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.registos.RegistoFaeAvaliacao;
+
 /**
  *
  * @author Ana Leite Ricardo Osório
@@ -7,19 +9,18 @@ package lapr.project.model;
 public class Atribuicao {
 
     private CandidaturaAExposicao candidatura;
-    private FAE fae;
-    private boolean decisao;
+    private RegistoFaeAvaliacao rFaeDecisao;
 
-    public Atribuicao(CandidaturaAExposicao candidaturaAExposicao, FAE fae) {
+    public Atribuicao(CandidaturaAExposicao candidaturaAExposicao) {
         this.candidatura = candidaturaAExposicao;
-        this.fae = fae;
+        this.rFaeDecisao = new RegistoFaeAvaliacao();
     }
-    
-    public CandidaturaAExposicao getCandidaturaAssociada(){
+
+    public CandidaturaAExposicao getCandidaturaAssociada() {
         return this.candidatura;
     }
 
-    public FAE getFAEAssociado() {
-        return this.fae;
+    public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
+        return this.rFaeDecisao;
     }
 }
