@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import crypt.CaesarsCypher;
+import java.util.Arrays;
+
 /**
  * Representação de um Utilizador
  *
@@ -152,6 +155,18 @@ public class Utilizador {
         return true;
     }
 
+    /**
+     * Verifica se uma palavra-passe passada por parâmetro corresponde à que
+     * está guardada no sistema.
+     *
+     * @param password - Password a verificar
+     * @return Retorna TRUE se a palavra-passe passada como parâmetro for igual
+     * à armazenada no sistema, FALSE caso contrário
+     */
+    public boolean isValidPassword(char[] password) {
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, password[0]), password);
+    }
+    
     /**
      * Devolve a descrição textual com os atributos de utilizador
      *

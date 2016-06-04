@@ -172,7 +172,7 @@ public class FicheiroDados {
                 //add organizadores
                 for (int i = 0; i < NUMERO_ORGANIZADORES_POR_EXPOSICAO; i++) {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
                     utilizador.setUtilizadorRegistado();
                     exposicao.addOrganizador(utilizador);
@@ -181,7 +181,7 @@ public class FicheiroDados {
                 //add fae
                 for (int i = 0; i < NUMERO_FAE_POR_EXPOSICAO; i++) {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
                     utilizador.setUtilizadorRegistado();
                     exposicao.addFAE(utilizador);//, Integer.parseInt(linhaLidaVetor[4]));  -> experiência
@@ -203,7 +203,7 @@ public class FicheiroDados {
             //Expositores (lê os restantes utilizadores do ficheiro)
             while (inputUtilizadores.hasNextLine()) {
                 linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                 ru.addUtilizador(utilizador);
                 utilizador.setUtilizadorRegistado();
                 centroExposicoes.getRegistoExpositores().addExpositor(utilizador);
