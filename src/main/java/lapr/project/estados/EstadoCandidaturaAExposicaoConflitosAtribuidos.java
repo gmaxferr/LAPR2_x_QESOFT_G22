@@ -15,6 +15,11 @@ public class EstadoCandidaturaAExposicaoConflitosAtribuidos implements EstadoCan
     }
 
     @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
+    }
+
+    @Override
     public boolean setEstadoCandidaturaCriada() {
         return false;
     }
@@ -32,7 +37,7 @@ public class EstadoCandidaturaAExposicaoConflitosAtribuidos implements EstadoCan
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
         if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(this.cand));
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoAtribuida(this.cand));
             return true;
         } else {
             return false;
@@ -47,6 +52,11 @@ public class EstadoCandidaturaAExposicaoConflitosAtribuidos implements EstadoCan
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
     }
 
     @Override
@@ -87,7 +97,7 @@ public class EstadoCandidaturaAExposicaoConflitosAtribuidos implements EstadoCan
     @Override
     public boolean isEstadoCandidaturaAceite() {
         return false;
-    }    
+    }
 
     @Override
     public boolean isEstadoCandidaturaRejeitada() {

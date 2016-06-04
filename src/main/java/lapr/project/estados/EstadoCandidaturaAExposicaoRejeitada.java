@@ -7,7 +7,6 @@ package lapr.project.estados;
 
 import lapr.project.model.CandidaturaAExposicao;
 
-
 /**
  *
  * @author osori
@@ -18,6 +17,11 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     public EstadoCandidaturaAExposicaoRejeitada(CandidaturaAExposicao cand) {
         this.cand = cand;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
@@ -53,12 +57,22 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
-        return true;
+        if (valida()) {
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoRejeitada(this.cand));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado
         return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
     }
 
     @Override
@@ -78,7 +92,7 @@ public class EstadoCandidaturaAExposicaoRejeitada implements EstadoCandidaturaAE
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override

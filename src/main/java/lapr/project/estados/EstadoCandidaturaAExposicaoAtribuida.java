@@ -2,7 +2,6 @@ package lapr.project.estados;
 
 import lapr.project.model.CandidaturaAExposicao;
 
-
 /**
  *
  * @author Ana Leite
@@ -16,6 +15,11 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
     }
 
     @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
+    }
+
+    @Override
     public boolean setEstadoCandidaturaCriada() {
 
         return false;
@@ -23,7 +27,7 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        return false;    
+        return false;
     }
 
     @Override
@@ -33,20 +37,27 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
-        if (valida()){
+        if (valida()) {
             cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(cand));
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
     }
-  
+
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
     }
 
     @Override
@@ -104,4 +115,3 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
         return false;
     }
 }
-

@@ -15,6 +15,11 @@ public class EstadoCandidaturaAExposicaoAvaliada implements EstadoCandidaturaAEx
     }
 
     @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
+    }
+
+    @Override
     public boolean setEstadoCandidaturaCriada() {
         return false;
     }
@@ -36,17 +41,32 @@ public class EstadoCandidaturaAExposicaoAvaliada implements EstadoCandidaturaAEx
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAceite() {
-        //falta implementar
+        if (valida()) {
+            cand.setEstado(new EstadoCandidaturaAExposicaoAceite(cand));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
-        //falta implementar
+        if (valida()) {
+            cand.setEstado(new EstadoCandidaturaAExposicaoRejeitada(cand));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
     }
 
     @Override

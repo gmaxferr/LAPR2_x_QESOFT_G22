@@ -5,11 +5,24 @@
  */
 package lapr.project.estados;
 
+import lapr.project.model.CandidaturaAExposicao;
+
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAExposicao{
+public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAExposicao {
+
+    private CandidaturaAExposicao cand;
+
+    public EstadoCandidaturaAExposicaoRemovida(CandidaturaAExposicao cand) {
+        this.cand = cand;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
+    }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
@@ -48,9 +61,19 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
 
     @Override
     public boolean setEstadoCandidaturaRemovida() {
-        return true;
+        if (valida()) {
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoRemovida(this.cand));
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
+    }
+
     @Override
     public boolean isEstadoCandidaturaCriada() {
         return false;
@@ -91,5 +114,4 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
         return true;
     }
 
-    
 }

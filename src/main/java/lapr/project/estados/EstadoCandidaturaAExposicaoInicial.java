@@ -4,19 +4,20 @@ import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
- * @author Ricardo Osório Ana Leite
+ * @author Ricardo Osorio
  */
-public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCandidaturaAExposicao {
+public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExposicao {
 
     private CandidaturaAExposicao cand;
 
-    public EstadoCandidaturaAExposicaoConflitosDetetados(CandidaturaAExposicao cand) {
+    public EstadoCandidaturaAExposicaoInicial(CandidaturaAExposicao cand) {
         this.cand = cand;
     }
 
     @Override
     public boolean setEstadoCandidaturaInicial() {
-        return false;
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoInicial(this.cand));
+            return true;
     }
 
     @Override
@@ -31,12 +32,7 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
 
     @Override
     public boolean setEstadoConflitosAtribuidos() {
-        if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoConflitosAtribuidos(this.cand));
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
@@ -47,7 +43,6 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
         return false;
-
     }
 
     @Override
@@ -63,12 +58,11 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
-
     }
 
     @Override
     public boolean isEstadoCandidaturaIncial() {
-        return false;
+        return true;
     }
 
     @Override
@@ -78,7 +72,7 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
 
     @Override
     public boolean isEstadoConflitosDetetados() {
-        return true;
+        return false;
     }
 
     @Override

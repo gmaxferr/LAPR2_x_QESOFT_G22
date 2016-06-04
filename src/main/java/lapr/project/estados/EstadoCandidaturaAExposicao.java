@@ -6,6 +6,8 @@ package lapr.project.estados;
  */
 public interface EstadoCandidaturaAExposicao extends Estado{
     
+    boolean setEstadoCandidaturaInicial();
+    
     boolean setEstadoCandidaturaCriada();
     
     boolean setEstadoConflitosDetetados();
@@ -21,6 +23,8 @@ public interface EstadoCandidaturaAExposicao extends Estado{
     boolean setEstadoCandidaturaRejeitada();
     
     boolean setEstadoCandidaturaRemovida();
+    
+    boolean isEstadoCandidaturaIncial();
     
     boolean isEstadoCandidaturaCriada();
     
