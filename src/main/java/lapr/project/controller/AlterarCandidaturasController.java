@@ -51,7 +51,7 @@ public class AlterarCandidaturasController {
     }
 
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return m_rc.getListaCandidaturas();
+        return m_rc.getListaCandidaturasAExposicao();
     }
 
     public void setExposicao(Exposicao exposicao) {

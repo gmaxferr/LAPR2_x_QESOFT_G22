@@ -46,7 +46,7 @@ public class DecidirCandidaturasAExposicaoController {
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
         this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
-        return this.rc.getListaCandidaturas();
+        return this.rc.getListaCandidaturasAExposicao();
     }
 
     public naosei getDadosEstatisticosGerais() {

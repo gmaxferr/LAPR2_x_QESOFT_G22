@@ -82,7 +82,7 @@ public class DetetarConflitoController {
             estadoExposicao.setEstadoConflitosDetetados();
         }
 
-        for (CandidaturaAExposicao cand : this.rc.getListaCandidaturas()) {
+        for (CandidaturaAExposicao cand : this.rc.getListaCandidaturasAExposicao()) {
             this.estadoCandidatura = cand.getEstado();
             estadoCandidatura.setEstadoConflitosDetetados();
         }

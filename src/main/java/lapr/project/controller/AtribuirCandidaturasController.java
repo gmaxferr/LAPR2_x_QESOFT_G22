@@ -4,18 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Decisao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.Mecanismo;
-import lapr.project.model.MecanismoIteragivel;
-import lapr.project.model.MecanismoSimples;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoMecanismos;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidaturas
@@ -25,7 +15,7 @@ import lapr.project.registos.RegistoMecanismos;
 public class AtribuirCandidaturasController {
 
     private ArrayList<Exposicao> listaExpo;
-    private ArrayList<CandidaturaAExposicao> listaCand;
+    private List<CandidaturaAExposicao> listaCand;
     private ArrayList<FAE> listaFAE;
     private RegistoExposicoes re;
     /*as variaveis seguintes são de instância para evitar problemas 
@@ -75,8 +65,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de candidaturas
      */
-    public ArrayList<CandidaturaAExposicao> getListaCandidatuas() {
-        listaCand = this.e.getListaCandidaturasAExposicao();
+    public List<CandidaturaAExposicao> getListaCandidatuas() {
+        listaCand = this.e.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         return listaCand;
     }
 
@@ -85,8 +75,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de FAE
      */
-    public ArrayList<FAE> getListaFAE() {
-        return this.e.getListaFAE();
+    public List<FAE> getListaFAE() {
+        return this.e.getRegistoFAE().getListaFAE();
     }
 
     /**

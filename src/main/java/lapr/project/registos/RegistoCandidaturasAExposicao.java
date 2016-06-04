@@ -25,7 +25,7 @@ public class RegistoCandidaturasAExposicao {
      *
      * @return lista de candidatuas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturas() {
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
         return this.listaCandidaturas;
     }
 

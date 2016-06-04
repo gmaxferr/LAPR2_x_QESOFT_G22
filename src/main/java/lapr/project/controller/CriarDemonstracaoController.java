@@ -41,6 +41,7 @@ public class CriarDemonstracaoController {
     }
 
     ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+        //passar parametro username
         return re.getlistaExposicoesDoOrganizador();
     }
 

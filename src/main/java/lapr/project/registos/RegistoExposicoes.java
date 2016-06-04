@@ -2,13 +2,8 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.Estado;
-import lapr.project.estados.EstadoExposicaoCandidaturasAbertas;
-import lapr.project.estados.EstadoExposicaoCandidaturasFechadas;
-import lapr.project.model.Agendavel;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Organizador;
+import lapr.project.estados.*;
+import lapr.project.model.*;
 
 /**
  *
@@ -22,7 +17,7 @@ public class RegistoExposicoes implements Agendavel {
     private ArrayList<Exposicao> m_listaExposicoes;
 
     public RegistoExposicoes() {
-        m_listaExposicoes = new ArrayList<Exposicao>();
+        m_listaExposicoes = new ArrayList<>();
 
     }
 
@@ -169,7 +164,7 @@ public class RegistoExposicoes implements Agendavel {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
                         listaExpoRep.add(e);
@@ -193,7 +188,7 @@ public class RegistoExposicoes implements Agendavel {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
                     break;
@@ -227,7 +222,7 @@ public class RegistoExposicoes implements Agendavel {
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(String usernameFAE) {
         ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
         for (Exposicao exposicao : this.m_listaExposicoes) {
-            if(exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)){
+            if (exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)) {
                 listaExposicoesEstadoCandidaturaAtribuidasDoFAE.add(exposicao);
             }
         }

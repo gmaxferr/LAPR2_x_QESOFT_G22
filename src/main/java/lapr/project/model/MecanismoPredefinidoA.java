@@ -56,7 +56,7 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
     public List<Atribuicao> atribui(Exposicao exposicaoEscolhida) {
 
         List<Atribuicao> listaAtrib = new ArrayList<>();
-        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturas();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
         if (listaFAE.isEmpty() || listaCand.isEmpty()) {

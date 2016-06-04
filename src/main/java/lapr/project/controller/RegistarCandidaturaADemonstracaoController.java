@@ -1,20 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidaturaADemonstracao;
-import lapr.project.estados.EstadoCandidaturaADemonstracaoCriada;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.estados.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *

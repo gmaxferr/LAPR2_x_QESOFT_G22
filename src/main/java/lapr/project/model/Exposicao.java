@@ -295,7 +295,7 @@ public class Exposicao {
      * @return arraylist com todas as candidatuas associadas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
-        return this.rce.getListaCandidaturas();
+        return this.rce.getListaCandidaturasAExposicao();
     }
 
     /**

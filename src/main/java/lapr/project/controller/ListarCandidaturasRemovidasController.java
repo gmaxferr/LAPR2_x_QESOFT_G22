@@ -1,10 +1,8 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoCandidaturasRemovidas;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *

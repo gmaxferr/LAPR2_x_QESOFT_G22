@@ -41,8 +41,7 @@ public class RegistoDemonstracoes {
     }
 
     public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        Demonstracao demo = new Demonstracao();
-        demo.setM_StrDescricao(descricaoIntroduzidaPeloUtilizador);
+        Demonstracao demo = new Demonstracao(descricaoIntroduzidaPeloUtilizador);
         return demo;
     }
 
@@ -51,6 +50,6 @@ public class RegistoDemonstracoes {
     }
 
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
-        this.m_listaDemonstracoes=listaDemonstracoes;
+        this.m_listaDemonstracoes = listaDemonstracoes;
     }
 }
