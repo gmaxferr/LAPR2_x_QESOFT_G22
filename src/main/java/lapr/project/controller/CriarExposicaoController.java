@@ -60,7 +60,7 @@ public class CriarExposicaoController {
      * @return lista de todos os utilizadores
      */
     public List<Utilizador> getListaUtilizadores() {
-        return m_ru.getUtilizadores();
+        return m_ru.getListaUtilizadores();
     }
 
     /**

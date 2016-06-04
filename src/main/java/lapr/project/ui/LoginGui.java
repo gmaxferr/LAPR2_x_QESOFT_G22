@@ -1,7 +1,5 @@
 package lapr.project.ui;
 
-import classesModelERegistodePPROG.Utilizador;
-import classesModelERegistodePPROG.CentroExposicoes;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

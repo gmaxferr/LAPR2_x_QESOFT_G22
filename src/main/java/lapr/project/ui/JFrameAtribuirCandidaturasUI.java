@@ -630,7 +630,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCard2EscolherMecanismoActionPerformed
 
     private void jComboBoxCard3EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherCandidaturaActionPerformed
-        List<FAE> listaFAE = listaAtribuicoes.get(jComboBoxCard3EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaFAE();
+        List<FAE> listaFAE = listaAtribuicoes.get(jComboBoxCard3EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaTodosFAE();
         modeloJTable.setLista(listaFAE);
         modeloJTable.fireTableDataChanged();
     }//GEN-LAST:event_jComboBoxCard3EscolherCandidaturaActionPerformed

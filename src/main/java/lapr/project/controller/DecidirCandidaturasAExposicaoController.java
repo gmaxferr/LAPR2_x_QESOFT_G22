@@ -6,6 +6,7 @@ import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.GestorDeExposicoes;
 import lapr.project.registos.RegistoCandidaturas;
 import lapr.project.registos.RegistoExposicoes;
 
@@ -20,9 +21,11 @@ public class DecidirCandidaturasAExposicaoController {
     private RegistoCandidaturas rc;
     private RegistoExposicoes re;
     private CentroExposicoes ce;
+    private GestorDeExposicoes gestorDeExposicoes;
 
-    public DecidirCandidaturasAExposicaoController(CentroExposicoes ce) {
+    public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
         this.ce = ce;
+        this.gestorDeExposicoes=gestorDeExposicoes;
     }
 
     public void getRegistoExposicoes() {

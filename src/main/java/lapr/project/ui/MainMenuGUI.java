@@ -6,8 +6,8 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import lapr.project.*;
-import classesModelERegistodePPROG.CentroExposicoes;
-import classesModelERegistodePPROG.Utilizador;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  * Menu Principal disponivel a todos os utilizadores a partir do momento em que
@@ -132,7 +132,7 @@ public class MainMenuGUI extends JFrame {
         infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        String nomeUtilizador = utilizador.getNome();
+        String nomeUtilizador = utilizador.getM_strNome();
         if (nomeUtilizador.length() > 20) {
             nomeUtilizador = nomeUtilizador.substring(0, 17) + "...";
         }

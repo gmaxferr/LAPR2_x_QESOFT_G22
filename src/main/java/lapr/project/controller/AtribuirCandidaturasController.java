@@ -11,6 +11,8 @@ import lapr.project.model.Decisao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Mecanismo;
+import lapr.project.model.MecanismoIteragivel;
+import lapr.project.model.MecanismoSimples;
 import lapr.project.registos.RegistoCandidaturas;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoMecanismos;
@@ -45,9 +47,8 @@ public class AtribuirCandidaturasController {
         this.listaExpo = new ArrayList<>();
         this.listaCand = new ArrayList<>();
         this.listaFAE = new ArrayList<>();
-        this.cand = new CandidaturaAExposicao();
         this.centroExposicoes = centroExposicoes;
-        this.usernameOrganizador=usernameOrganizador;
+        this.usernameOrganizador = usernameOrganizador;
     }
 
     /**
@@ -89,16 +90,6 @@ public class AtribuirCandidaturasController {
     }
 
     /**
-     * Chama o método criarDecisão para a exposição correta
-     *
-     * @param fae fae escolhido pelo utilizador
-     * @param c candidatura escolhida pelo utilizador
-     */
-    public void criarDecisao(FAE fae, CandidaturaAExposicao c) {
-        d = c.criarDecisao(fae);
-    }
-
-    /**
      * Valida a decisão. Consiste na validação local
      *
      * @param c candidatura escolhida pelo utilizador
@@ -127,9 +118,29 @@ public class AtribuirCandidaturasController {
         this.e.getRegistoAtribuicoes();
     }
 
+    /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     *
+     * @return atribuições geradas.
+     */
     public List<Atribuicao> atribui(Mecanismo mec) {
-        //deixar para resolver no fim
-        return mec.atribui();
+        MecanismoSimples mecanismo = (MecanismoSimples) mec;
+        return mecanismo.atribui(this.e);
+    }
+
+    /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     * @param numeroFAEOuExperiencia
+     *
+     * @return atribuições geradas.
+     */
+    public List<Atribuicao> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
+        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
+        return mecanismo.atribui(this.e, numeroFAEOuExperiencia);
     }
 
     public void registaAtribuicao(List<Atribuicao> listaAtribuicao) {

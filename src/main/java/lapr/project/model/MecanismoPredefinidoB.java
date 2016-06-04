@@ -79,10 +79,9 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable{
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    Atribuicao atribuicao = new Atribuicao();
-                    atribuicao.setCandidatura(listaCand.get(i));
+                    Atribuicao atribuicao = new Atribuicao(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
-                        atribuicao.addFAE(listaFAE.get(j));
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }
                     listaAtrib.add(atribuicao);
                 }

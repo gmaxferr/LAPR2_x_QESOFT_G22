@@ -5,9 +5,9 @@
  */
 package lapr.project.ui;
 
-import classesModelERegistodePPROG.CentroExposicoes;
-import classesModelERegistodePPROG.FicheiroDados;
+import lapr.project.model.CentroExposicoes;
 import lapr.project.model.MyJFileChooser;
+import lapr.project.utils.FicheiroDados;
 
 /**
  *

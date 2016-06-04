@@ -1,23 +1,14 @@
 package lapr.project.utils;
 
-import classesModelERegistodePPROG.MecanismoB;
-import classesModelERegistodePPROG.MecanismoA;
-import classesModelERegistodePPROG.MecanismoC;
-import classesModelERegistodePPROG.Utilizador;
-import classesModelERegistodePPROG.Demonstracao;
-import classesModelERegistodePPROG.Local;
-import classesModelERegistodePPROG.Recurso;
-import classesModelERegistodePPROG.Exposicao;
-import classesModelERegistodePPROG.CentroExposicoes;
 import java.io.*;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import lapr.project.model.*;
-import classesModelERegistodePPROG.RegistoDemonstracoes;
-import classesModelERegistodePPROG.RegistoExposicoes;
-import classesModelERegistodePPROG.RegistoMecanismos;
-import classesModelERegistodePPROG.RegistoRecursos;
-import classesModelERegistodePPROG.RegistoUtilizadores;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoMecanismos;
+import lapr.project.registos.RegistoRecursos;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Classe que permite a leitura de ficheiros.
@@ -224,9 +215,9 @@ public class FicheiroDados {
             inputUtilizadores.close();
 
             RegistoMecanismos rm = centroExposicoes.getRegistoMecanismos();
-            rm.addMecanismo(new MecanismoA());
-            rm.addMecanismo(new MecanismoB());
-            rm.addMecanismo(new MecanismoC());
+            rm.addMecanismo(new MecanismoPredefinidoA());
+            rm.addMecanismo(new MecanismoPredefinidoB());
+            rm.addMecanismo(new MecanismoPredefinidoC());
         } catch (FileNotFoundException e) {
             //apenas se os ficheiros ainda não tiverem sido colocados na pasta
             JOptionPane.showMessageDialog(null, "Os ficheiros de texto necessários para carregar os dados não se encontram na pasta do projeto!\nDevem de ser colocado na pasta do projecto em MeusDocumentos.", "Erro", JOptionPane.WARNING_MESSAGE);

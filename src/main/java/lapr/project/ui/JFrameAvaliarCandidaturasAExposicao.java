@@ -27,7 +27,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private final String usernameFAE;
     private final AvaliarCandidaturaAExposicaoController controller;
     private final List<Exposicao> listaExposicoes;
-    private JFrame jFrame;
     private List<Atribuicao> listaAtribuicoesDoFAE;
     private Atribuicao atribuicaoEscolhida;
     private Avaliacao avaliacaoDoFae;
@@ -36,11 +35,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
-    private static final String NOME_EMPRESA_POR_OMISSAO = "Nome da empresa da candidatura selecionda.";
-    private static final String TELEMOVEL_EMPRESA_POR_OMISSAO = "Telemóvel";
-    private static final String MORADA_EMPRESA_POR_OMISSAO = "Morada da empresa da candidatura selecionada.";
-    private static final String NUMERO_CONVITES_POR_OMISSAO = "Convites";
-    private static final String AREA_POR_OMISSAO = "Área";
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
     private static final int CARD1_ALTURA_MINIMA = 300;
@@ -54,14 +48,13 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
      * Creates new form JFrameDecidirCandidaturas
      */
     public JFrameAvaliarCandidaturasAExposicao(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
-        super("Decidir candidaturas");
+        super("Avaliar candidaturas");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
         this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes, usernameFAE);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE();
-        this.jFrameMenuPrincipal = jFrame;
 
         initComponents();
         alterarComportamentoFecharJFrame();

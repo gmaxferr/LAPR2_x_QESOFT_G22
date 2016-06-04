@@ -23,4 +23,8 @@ public class Atribuicao {
     public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
         return this.rFaeDecisao;
     }
+
+    public void addFaeAvaliacao(FAE fae) {
+        this.rFaeDecisao.addFaeAvaliacao(fae);
+    }
 }

@@ -13,6 +13,10 @@ public class FaeDecisao {
         this.avaliacao = new Avaliacao();
     }
 
+    public FaeDecisao(FAE fae) {
+        this.FaeAssociado=fae;
+    }
+
     public FAE getFaeAssociado() {
         return this.FaeAssociado;
     }

@@ -48,7 +48,7 @@ public class RegistoUtilizadores {
      *
      * @return lista dos utilizadores
      */
-    public List<Utilizador> getUtilizadores() {
+    public List<Utilizador> getListaUtilizadores() {
         return m_listaUtilizadores;
     }
 

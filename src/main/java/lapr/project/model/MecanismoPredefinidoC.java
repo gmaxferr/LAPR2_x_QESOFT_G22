@@ -63,7 +63,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
         }
 
         List<Atribuicao> listaAtrib = new ArrayList<>();
-        List<Candidatura> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturas();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturas();
         List<FAE> listaFAE = criarListaFAEComExperienciaMinima(exposicaoEscolhida, experiencia);
 
         Collections.sort(listaFAE);
@@ -72,11 +72,10 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
             return listaAtrib;
         } else if (listaFAE.size() < listaCand.size()) {
             int pos = 0;
-            for (Candidatura cand : listaCand) {
-                Atribuicao atribuicao = new Atribuicao();
-                atribuicao.setCandidatura(cand);
+            for (CandidaturaAExposicao cand : listaCand) {
+                Atribuicao atribuicao = new Atribuicao(cand);
                 if (pos < listaFAE.size()) {
-                    atribuicao.addFAE(listaFAE.get(pos));
+                    atribuicao.addFaeAvaliacao(listaFAE.get(pos));
                     pos++;
                 }
                 listaAtrib.add(atribuicao);
@@ -99,10 +98,9 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    Atribuicao atribuicao = new Atribuicao();
-                    atribuicao.setCandidatura(listaCand.get(i));
+                    Atribuicao atribuicao = new Atribuicao(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
-                        atribuicao.addFAE(listaFAE.get(j));
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }
                     listaAtrib.add(atribuicao);
                 }
