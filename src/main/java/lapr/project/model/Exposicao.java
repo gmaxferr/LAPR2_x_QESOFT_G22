@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import lapr.project.controller.DetetarConflitoController;
+import lapr.project.estados.Estado;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
+import lapr.project.utils.Data;
 
 /**
  * Representação de uma Exposição
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao {
+public class Exposicao implements Agendavel{
 
     EstadoExposicao m_estado;
     /**
@@ -27,14 +30,29 @@ public class Exposicao {
     private String m_strDescricao;
 
     /**
-     * Atributo data de inicio de Exposição
+     * Data de inicio
      */
-    private String m_strDataInicio;
+    private Data m_dataInicio;
 
     /**
-     * Atributo data de fim de Exposição
+     * Data de fim
      */
-    private String m_strDataFim;
+    private Data m_dataFim;
+
+    /**
+     * Data em que a Exposição ficou ou ficará aberta para receber candidaturas
+     */
+    private Data m_dataAberturaCandidatura;
+
+    /**
+     * Data em que a Exposição ficou ou ficará fechada para receber candidaturas
+     */
+    private Data m_dataEncerramentoCandidatura;
+
+    /**
+     * Data em que a acaba a deteção de conflitos
+     */
+    private Data m_dataFimDetecaoConflitos;
 
     /**
      * Atributo local de Exposição
@@ -86,7 +104,7 @@ public class Exposicao {
      * Timer despoletado quando chega a data final para deteção de conflitos
      */
     private Timer timerFimDetecaoConflitos;
-    
+
     private RegistoConflitos rconf;
 
     private RegistoExpositores rexpositores;
@@ -123,11 +141,11 @@ public class Exposicao {
      * @param local local da exposição
      * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, String dataInicio, String dataFim, Local local, CentroExposicoes centroExposicoes) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Local local, CentroExposicoes centroExposicoes) {
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
-        this.m_strDataInicio = dataInicio;
-        this.m_strDataFim = dataFim;
+        this.m_dataInicio = dataInicio;
+        this.m_dataFim = dataFim;
         this.local = local;
         this.centroExposicoes = centroExposicoes;
         this.ra = new RegistoAtribuicoes();
@@ -176,8 +194,8 @@ public class Exposicao {
      *
      * @return data de inicio da exposição
      */
-    public String getM_strDataInicio() {
-        return m_strDataInicio;
+    public Data getM_strDataInicio() {
+        return m_dataInicio;
     }
 
     /**
@@ -185,8 +203,8 @@ public class Exposicao {
      *
      * @return data de fim da exposição
      */
-    public String getM_strDataFim() {
-        return m_strDataFim;
+    public Data getM_strDataFim() {
+        return m_dataFim;
     }
 
     /**
@@ -206,7 +224,6 @@ public class Exposicao {
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return rcr;
     }
-    
 
     /**
      * Define novo organizador de exposição
@@ -241,9 +258,9 @@ public class Exposicao {
      * @param strDataInicio nova data de inicio de exposição
      * @param strDataFim novo data de fim de exposição
      */
-    public void setPeriodo(String strDataInicio, String strDataFim) {
-        this.m_strDataInicio = strDataInicio;
-        this.m_strDataFim = strDataFim;
+    public void setPeriodo(Data dataInicio, Data dataFim) {
+        this.m_dataInicio = dataInicio;
+        this.m_dataFim = dataFim;
     }
 
     /**
@@ -446,8 +463,12 @@ public class Exposicao {
     public RegistoAtribuicoes getRegistoAtribuicoes() {
         return this.ra;
     }
-    
-    private void criaTimerAberturaCandidaturas(Exposicao this) {
+
+    /**
+     * Cria o timer que muda o estado da exposição para aberta a candidaturas
+     */
+    private void criaTimerAberturaCandidaturas( 
+        Exposicao this) {
         Exposicao thisExpo = this;
         timerAberturaCandidatura = new Timer();
         timerAberturaCandidatura.schedule(new TimerTask() {
@@ -459,30 +480,32 @@ public class Exposicao {
         }, getDataAberturaCandidatura().toDate());
     }
 
-    private void criaTimerEncerramentoCandidaturas(Exposicao this) {
+    private void criaTimerEncerramentoCandidaturas( 
+        Exposicao this) {
         Exposicao thisExpo = this;
         timerEncerramentoCandidatura = new Timer();
         timerEncerramentoCandidatura.schedule(new TimerTask() {
             @Override
             public void run() {
-                ExposicaoEstado estado = m_estado;
-                estado.setFechadaCandidaturas();
-                DetecaoConflitosController ctrl = new DetecaoConflitosController();
+                EstadoExposicao estado = m_estado;
+                estado.setEstadoCandidaturasFechadas();
+                DetetarConflitoController ctrl = new DetetarConflitoController(centroExposicoes);
                 ctrl.detetaConflitos(getCentroDeExposicoes(), thisExpo);
             }
         }, getDataEncerramentoCandidatura().toDate());
     }
 
-    private void criaTimerFimDetecaoConflitos(Exposicao this) {
+    private void criaTimerFimDetecaoConflitos( 
+        Exposicao this) {
         Exposicao thisExpo = this;
         timerFimDetecaoConflitos = new Timer();
         timerFimDetecaoConflitos.schedule(new TimerTask() {
             @Override
             public void run() {
-                ExposicaoEstado estado = m_state;
-                estado.setAbertaAtribuicoes();
+                EstadoExposicao estado = m_estado;
+                estado.setEstadoConflitosDetetados();
             }
-        }, getDataFimDetecaoConflitos().toDate());
+        }, this.m_dataFimDetecaoConflitos.toDate());
     }
 
     private void criaTimers() {
@@ -490,4 +513,23 @@ public class Exposicao {
         criaTimerEncerramentoCandidaturas();
         criaTimerFimDetecaoConflitos();
     }
+
+    /**
+     * Devolve a data de abertura a candidaturas
+     *
+     * @return data de abertura a candidaturas
+     */
+    private Data getDataAberturaCandidatura() {
+        return this.m_dataAberturaCandidatura;
+    }
+
+    /**
+     * Devolve a data de encerramento a candidaturas
+     *
+     * @return data de encerramento a candidaturas
+     */
+    private Data getDataEncerramentoCandidatura() {
+        return this.m_dataEncerramentoCandidatura;
+    }
+
 }
