@@ -42,7 +42,7 @@ public class ListarCandidaturasRemovidasController {
     /**
      * Guarda o registo de exposicoes.
      */
-    public void getRe(){
+    public void getRegistoExposicoes(){
         this.re = centroExposicoes.getRegistoExposicoes();
     }
     
@@ -67,7 +67,7 @@ public class ListarCandidaturasRemovidasController {
     /**
      * Guarda o registo de candidaturas removidas.
      */
-    public void getRcr() {
+    public void getRegistoCandidaturasRemovidas() {
         this.rcr = exposicaoEscolhida.getRegistoCandidaturasRemovidas();
     }
     
