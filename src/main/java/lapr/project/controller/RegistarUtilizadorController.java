@@ -14,7 +14,7 @@ public class RegistarUtilizadorController {
 
     private RegistoUtilizadores ru;
 
-    public static Utilizador u;
+    public Utilizador u;
 
     //para testes
     CentroExposicoes centroExpo = new CentroExposicoes();
@@ -27,7 +27,7 @@ public class RegistarUtilizadorController {
         this.ru = centroExpo.getRegistoUtilizadores();
     }
     
-    void setDados(String nome, String email, String password) {
+    void setDados(String nome, String email, char[] password) {
         u.setEmail(email);
         u.setNome(nome);
         u.setPwd(password);
