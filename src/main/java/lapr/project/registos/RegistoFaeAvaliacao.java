@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.FAE;
-import lapr.project.model.FaeDecisao;
+import lapr.project.model.FaeAvaliacao;
 
 /**
  *
@@ -12,14 +12,14 @@ import lapr.project.model.FaeDecisao;
  */
 public class RegistoFaeAvaliacao {
 
-    private List<FaeDecisao> listaFaeDecisao;
+    private List<FaeAvaliacao> listaFaeDecisao;
 
     public RegistoFaeAvaliacao() {
         this.listaFaeDecisao = new ArrayList<>();
     }
 
-    public FaeDecisao getObjFaeDecisaoDoFae(String usernameFae) {
-        for (FaeDecisao faeDecisao : listaFaeDecisao) {
+    public FaeAvaliacao getObjFaeDecisaoDoFae(String usernameFae) {
+        for (FaeAvaliacao faeDecisao : listaFaeDecisao) {
             if (faeDecisao.getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFae)) {
                 return faeDecisao;
             }
@@ -28,7 +28,7 @@ public class RegistoFaeAvaliacao {
     }
 
     public Avaliacao getAvaliacaoDoFae(String usernameFAE) {
-        for (FaeDecisao faeDecisao : listaFaeDecisao) {
+        for (FaeAvaliacao faeDecisao : listaFaeDecisao) {
             if (faeDecisao.getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
                 return faeDecisao.getAvaliacao();
             }
@@ -37,12 +37,12 @@ public class RegistoFaeAvaliacao {
     }
 
     public void addFaeAvaliacao(FAE fae) {
-        this.listaFaeDecisao.add(new FaeDecisao(fae));
+        this.listaFaeDecisao.add(new FaeAvaliacao(fae));
     }
 
     public List<FAE> getListaTodosFAE() {
         ArrayList<FAE> listaTodosFae = new ArrayList<>();
-        for (FaeDecisao faeDecisao : listaFaeDecisao) {
+        for (FaeAvaliacao faeDecisao : listaFaeDecisao) {
             listaTodosFae.add(faeDecisao.getFaeAssociado());
         }
         return listaTodosFae;

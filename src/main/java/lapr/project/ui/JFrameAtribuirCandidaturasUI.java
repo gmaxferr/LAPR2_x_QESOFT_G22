@@ -28,7 +28,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private List<Mecanismo> listaMecanismos;
     private String[] listaNomeMecanismos;
     private Mecanismo mecanismoEscolhido;
-    private List<Atribuicao> listaAtribuicoes;
+    private List<AtribuicoesCandidatura> listaAtribuicoes;
     private ModeloJTableDistribuicaoFAE modeloJTable;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;

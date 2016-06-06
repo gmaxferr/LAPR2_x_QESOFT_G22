@@ -16,5 +16,5 @@ public interface MecanismoSimples extends Mecanismo {
      * distribuição
      * @return distribuição gerada pelo mecanismo
      */
-    List<Atribuicao> atribui(Exposicao exposicaoEscolhida);
+    List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida);
 }
