@@ -4,22 +4,14 @@ import lapr.project.registos.RegistoMecanismosDetecaoConflitos;
 
 /**
  *
- * @author Ana Leite
+ * @author Ricardo Catalão
  */
 public class TipoConflito {
 
-    private TipoConflito tipoConflito;
-    private RegistoMecanismosDetecaoConflitos rmdc;
-
     public TipoConflito() {
-        this.rmdc = new RegistoMecanismosDetecaoConflitos();
     }
-
-    public void setTipoConflito(TipoConflito tipoConflito) {
-        this.tipoConflito = tipoConflito;
-    }
-
-    public RegistoMecanismosDetecaoConflitos getRegistoMecanismosDetecaoConflitos() {
-        return this.rmdc;
+    
+    public void setDadosTipoConflito() {
+        throw new UnsupportedOperationException("Não sabemos que tipo de dados compõem um tipo de conflito.");
     }
 }
