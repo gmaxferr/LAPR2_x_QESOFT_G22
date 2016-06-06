@@ -16,16 +16,23 @@ public class RegistoTipoConflitos {
         this.listaTipoConflitos = new ArrayList<>();
     }
 
-    public boolean validaTipoDeConflito(TipoConflito tipoConflito) {
-        return true;
-    }
-
-    public TipoConflito criarTipoConflito() {
-        TipoConflito tipoConflito = new TipoConflito();
-        return tipoConflito;
-    }
-
     public List<TipoConflito> getListaTipoConflitos() {
         return this.listaTipoConflitos;
+    }
+
+    public TipoConflito novoTipoConflito() {
+        return new TipoConflito();
+    }
+
+    public boolean validaTipoDeConflito(TipoConflito tipoConflito) {
+        return !listaTipoConflitos.contains(tipoConflito);
+    }
+
+    public boolean add(TipoConflito tipoConflito) {
+        boolean b = validaTipoDeConflito(tipoConflito);
+        if (b) {
+            listaTipoConflitos.add(tipoConflito);
+        }
+        return b;
     }
 }
