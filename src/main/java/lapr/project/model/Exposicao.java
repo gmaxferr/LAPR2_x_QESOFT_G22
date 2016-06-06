@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import lapr.project.controller.DetetarConflitoController;
-import lapr.project.estados.Estado;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
 import lapr.project.utils.Data;
@@ -16,7 +15,7 @@ import lapr.project.utils.Data;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao implements Agendavel {
+public class Exposicao{
 
     EstadoExposicao m_estado;
     /**

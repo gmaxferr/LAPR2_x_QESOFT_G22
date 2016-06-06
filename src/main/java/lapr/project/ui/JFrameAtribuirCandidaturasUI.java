@@ -183,10 +183,10 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jLabel2.setText("até");
 
         jLabelCard1DataInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelCard1DataInicio.setText("00/00/0000");
+        jLabelCard1DataInicio.setText("0000/00/00");
 
         jLabelCard1DataFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelCard1DataFim.setText("00/00/0000");
+        jLabelCard1DataFim.setText("0000/00/00");
 
         javax.swing.GroupLayout jPanelCard1DuracaoLayout = new javax.swing.GroupLayout(jPanelCard1Duracao);
         jPanelCard1Duracao.setLayout(jPanelCard1DuracaoLayout);
@@ -594,8 +594,8 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
             Exposicao expo = listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex());
             jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
-            jLabelCard1DataInicio.setText(expo.getM_strDataInicio());
-            jLabelCard1DataFim.setText(expo.getM_strDataFim());
+            jLabelCard1DataInicio.setText(expo.getM_strDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getM_strDataFim().toAnoMesDiaString());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);

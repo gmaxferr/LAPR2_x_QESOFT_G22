@@ -72,8 +72,9 @@ public class AvaliarCandidaturaAExposicaoController {
         return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_intNumConvites();
     }
 
-    public void getAvaliacaoDoFae() {
+    public Avaliacao getAvaliacaoDoFae() {
         this.avaliacaoDoFae = this.atribuicaoEscolhida.getRegistoFaeAvaliacao().getAvaliacaoDoFae(this.usernameFAE);
+        return this.avaliacaoDoFae;
     }
 
     public boolean verificaAvalicaoJaTomada() {

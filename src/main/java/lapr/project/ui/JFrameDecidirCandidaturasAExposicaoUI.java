@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DecidirCandidaturasAExposicaoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.GestorDeExposicoes;
+import lapr.project.model.*;
 
 /**
  *
@@ -279,7 +276,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
         controller.getRegistoCandidaturas();
-        controller.getRegistoProduto();
+        controller.getRegistoProdutos();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
@@ -294,8 +291,8 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
             Exposicao expo = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
             jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
-            jLabelCard1DataInicio.setText(expo.getM_strDataInicio());
-            jLabelCard1DataFim.setText(expo.getM_strDataFim());
+            jLabelCard1DataInicio.setText(expo.getM_strDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getM_strDataFim().toAnoMesDiaString());
         }
     }//GEN-LAST:event_jComboBoxCard1EscolherExposicaoActionPerformed
 

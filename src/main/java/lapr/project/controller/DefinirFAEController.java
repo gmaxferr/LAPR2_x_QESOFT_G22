@@ -35,9 +35,9 @@ public class DefinirFAEController {
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE() {
         return re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
     }
-    
-    public void getRegistoOrganizadores(){
-        this.ro=this.exposicaoSelecionada.getRegistoOrganizadores();
+
+    public void getRegistoOrganizadores() {
+        this.ro = this.exposicaoSelecionada.getRegistoOrganizadores();
     }
 
     /**
@@ -48,8 +48,8 @@ public class DefinirFAEController {
     public void setExposicao(Exposicao exposicao) {
         this.exposicaoSelecionada = exposicao;
     }
-    
-    public void setRegistoOrganizadoresParaValidacoes(){
+
+    public void setRegistoOrganizadoresParaValidacoes() {
         this.rfae.setRegistoOrganizadoresParaValidacoes(this.ro);
     }
 
