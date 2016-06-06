@@ -16,6 +16,7 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 
 ### João Pedro Santos Cardoso ###
 
+* UC 11
 * UC 18
 * UC 21
 * UC 22
@@ -26,6 +27,8 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 
 ### Ricardo Jorge Afonso Catalão ###
 
+* UC 12
+* UC 13
 * UC 15
 
 ### Use-Cases por atribuir ###
