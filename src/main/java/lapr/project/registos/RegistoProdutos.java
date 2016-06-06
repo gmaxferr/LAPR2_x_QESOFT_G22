@@ -90,4 +90,15 @@ public class RegistoProdutos {
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.ProdutosExpor = listaProdutos;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        RegistoProdutos rp = (RegistoProdutos) obj;
+        return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
+    }
 }

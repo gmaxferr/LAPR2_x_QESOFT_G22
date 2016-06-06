@@ -1,4 +1,4 @@
-package exceptions;
+package lapr.project.exceptions;
 
 /**
  * Exceção para lidar com situações em que se necessita a introdução de um

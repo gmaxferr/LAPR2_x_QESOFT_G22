@@ -4,30 +4,58 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.TipoConflito;
 import lapr.project.registos.RegistoTipoConflitos;
 
-
 /**
  * Representação do Controller do caso de uso - definir tipo de conflito
- * 
- * @author Ana Leite
+ *
+ * @author Ricardo Catalão
  */
 public class DefinirTipoConflitoController {
 
-    private RegistoTipoConflitos m_rtc;
-    private CentroExposicoes m_centro_exposicoes;
-    private TipoConflito tConflito;
-    
-    public DefinirTipoConflitoController(CentroExposicoes centro_exposicoes, RegistoTipoConflitos registoTipoConflitos){
-        m_centro_exposicoes = centro_exposicoes;
-        m_rtc = registoTipoConflitos;
+    /**
+     * Centro de Exposições onde será definido um novo tipo de conflito.
+     */
+    private final CentroExposicoes mCentroExposicoes;
+
+    /**
+     * Registo pertencente ao Centro de Exposições onde será guardado o novo
+     * tipo de conflito.
+     */
+    private RegistoTipoConflitos mRegistoTiposConflito;
+
+    /**
+     * Novo tipo de conflito.<!-- -->Este objeto guarda o novo tipo de conflito.
+     */
+    private TipoConflito mTipoConflito;
+
+    /**
+     * Construtor padrão que recebe como argumentos o Centro de Exposições.
+     *
+     * @param centroExposicoes Centro de Exposições
+     */
+    public DefinirTipoConflitoController(CentroExposicoes centroExposicoes) {
+        mCentroExposicoes = centroExposicoes;
     }
-    
-    public void getRegistoTipoConflito(){
-        m_centro_exposicoes.getRegistoTiposConflitos();
+
+    /**
+     * Cria um novo tipo de conflito.
+     */
+    public void novoTipoConflito() {
+        mRegistoTiposConflito = mCentroExposicoes.getRegistoTiposConflitos();
+        mTipoConflito = mRegistoTiposConflito.novoTipoConflito();
     }
-    
-    public void setTipoConflito(TipoConflito tipoConflito){
-        m_rtc.validaTipoDeConflito(tipoConflito);
-        m_rtc.criarTipoConflito();
-        tConflito.setTipoConflito(tipoConflito);
+
+    /**
+     * Define os dados necessários para o novo tipo de conflito.
+     */
+    public void setDadosTipoConflito() {
+        mTipoConflito.setDadosTipoConflito();
+    }
+
+    /**
+     * Regista o tipo de conflito criado no registo de tipos de conflito do
+     * Centro de Exposições.
+     */
+    public boolean registaTipoConflito() {
+        return mRegistoTiposConflito.add(mTipoConflito);
     }
 }

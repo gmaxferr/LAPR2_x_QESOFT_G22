@@ -14,17 +14,17 @@ public class DefinirFAEController {
 
     private RegistoExposicoes re;
     private RegistoUtilizadores ru;
+    private RegistoOrganizadores ro;
     private RegistoFAE rfae;
-    /*as variaveis seguintes são de instância para evitar problemas 
-    caso fossem de classe quando duas pessoas ou mais executam este UC ao 
-    mesmo tempo. Os dados guardados do primeiro utilizador seriam 
-    sobrepostos pelos do segundo*/
     private Utilizador u;
-    private Exposicao e;
-    private ArrayList<Exposicao> listExpo = new ArrayList<>();
+    private Exposicao exposicaoSelecionada;
+    private final CentroExposicoes centroExposicoes;
+    private final String usernameOrganizador;
 
-    //Este programa nao tem implementação suficiente para interagir com o utilizador. Estes parametros foram assumidos para nao criar erros de compilação do java
-    CentroExposicoes centroExpo = new CentroExposicoes();
+    public DefinirFAEController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
+        this.centroExposicoes = centroExposicoes;
+        this.usernameOrganizador = usernameOrganizador;
+    }
 
     /**
      * Devolve uma lista com as exposições associadas ao organizador autenticado
@@ -32,10 +32,12 @@ public class DefinirFAEController {
      *
      * @return lista com as exposições associadas ao organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador() {
-        //passar parametro username
-        listExpo = re.getlistaExposicoesDoOrganizador();
-        return listExpo;
+    public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE() {
+        return re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
+    }
+    
+    public void getRegistoOrganizadores(){
+        this.ro=this.exposicaoSelecionada.getRegistoOrganizadores();
     }
 
     /**
@@ -44,50 +46,54 @@ public class DefinirFAEController {
      * @param exposicao exposição escolhida
      */
     public void setExposicao(Exposicao exposicao) {
-        e = exposicao;
+        this.exposicaoSelecionada = exposicao;
+    }
+    
+    public void setRegistoOrganizadoresParaValidacoes(){
+        this.rfae.setRegistoOrganizadoresParaValidacoes(this.ro);
     }
 
     /**
      * Método que adiciona fae
      *
-     * @param id identificador do fae
+     * @param usernameUtilizador identificador do fae
      */
-    public void setFaePeloID(String id) {
-        u = ru.identificarUtilizadorPeloID(id);
+    public void setFaePeloUsername(String usernameUtilizador) {
+        u = ru.identificarUtilizadorPeloUsername(usernameUtilizador);
         rfae.adicionaFAE(u);
     }
 
     /**
      * Método que confirma addição de fae
      *
-     * @param b confirmação da validação
      */
-    public void confirmaAddFAE(boolean b) {
-        rfae.confirmaAddFAE(b);
+    public void confirmaAddFAE() {
+        rfae.confirmaAddFAE();
     }
 
     public void getRegistoExposicoes() {
-        this.re = centroExpo.getRegistoExposicoes();
+        this.re = this.centroExposicoes.getRegistoExposicoes();
     }
 
     public void getRegistoUtilizadores() {
-        this.ru = centroExpo.getRegistoUtilizadores();
+        this.ru = this.centroExposicoes.getRegistoUtilizadores();
     }
 
     public void getRegistoFAE() {
-        this.rfae = e.getRegistoFAE();
+        this.rfae = exposicaoSelecionada.getRegistoFAE();
+    }
+
+    public EstadoExposicao getEstadoExposicao() {
+        return this.exposicaoSelecionada.getEstado();
     }
 
     public void setEstado() {
-        EstadoExposicao estado = this.e.getEstado();
-        if (estado instanceof EstadoExposicaoCriada) {
+        EstadoExposicao estado = this.exposicaoSelecionada.getEstado();
+        if (estado.isEstadoCriada()) {
             estado.setEstadoFAEDefinidosSemDemos();
-        } else if (estado instanceof EstadoExposicaoDemosDefinidasSemFAE) {
+        } else if (estado.isEstadoDemosDefinidasSemFAE()) {
             estado.setEstadoCompleta();
         }
     }
 
-    public EstadoExposicao getEstadoExposicao() {
-        return this.e.getEstado();
-    }
 }

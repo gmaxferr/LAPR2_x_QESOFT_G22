@@ -16,7 +16,7 @@ import lapr.project.utils.Data;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao implements Agendavel{
+public class Exposicao implements Agendavel {
 
     EstadoExposicao m_estado;
     /**
@@ -468,6 +468,7 @@ public class Exposicao implements Agendavel{
      * Cria o timer que muda o estado da exposição para aberta a candidaturas
      */
     private void criaTimerAberturaCandidaturas( 
+         
         Exposicao this) {
         Exposicao thisExpo = this;
         timerAberturaCandidatura = new Timer();
@@ -481,6 +482,7 @@ public class Exposicao implements Agendavel{
     }
 
     private void criaTimerEncerramentoCandidaturas( 
+         
         Exposicao this) {
         Exposicao thisExpo = this;
         timerEncerramentoCandidatura = new Timer();
@@ -496,6 +498,7 @@ public class Exposicao implements Agendavel{
     }
 
     private void criaTimerFimDetecaoConflitos( 
+         
         Exposicao this) {
         Exposicao thisExpo = this;
         timerFimDetecaoConflitos = new Timer();
@@ -530,6 +533,10 @@ public class Exposicao implements Agendavel{
      */
     private Data getDataEncerramentoCandidatura() {
         return this.m_dataEncerramentoCandidatura;
+    }
+
+    public RegistoOrganizadores getRegistoOrganizadores() {
+        return this.ro;
     }
 
 }

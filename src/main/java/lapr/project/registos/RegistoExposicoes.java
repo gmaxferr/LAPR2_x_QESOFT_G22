@@ -107,13 +107,13 @@ public class RegistoExposicoes {
      * @param usernameOrganizador
      * @return lista de exposições do organizador
      */
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
+    public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(String usernameOrganizador) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         //encontra as exposições do organizador autenticado no sistema.
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }

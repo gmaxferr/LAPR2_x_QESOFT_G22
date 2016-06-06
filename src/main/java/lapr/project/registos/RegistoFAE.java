@@ -2,8 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.FAE;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 
 /**
  *
@@ -12,30 +11,42 @@ import lapr.project.model.Utilizador;
 public class RegistoFAE {
 
     private List<FAE> listaFAE;
+    private ArrayList<FAE> listaFAETemp;
+    private RegistoOrganizadores rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
         this.listaFAE = new ArrayList<>();
-    }
-
-    public void adicionaFAE(Utilizador u) {
-        FAE fae = new FAE(u);
-        addFAE(fae);
-    }
-
-    private void addFAE(FAE fae) {
-        this.listaFAE.add(fae);
-    }
-
-    public void confirmaAddFAE(boolean b) {
-        if (b == true) {
-            //adiciona o fae à lista definitivamente
-        } else {
-            //reverte a operação de adicionar o fae feita até aqui
-        }
+        this.listaFAETemp = new ArrayList<>();
     }
 
     public List<FAE> getListaFAE() {
         return this.listaFAE;
+    }
+
+    public boolean adicionaFAE(Utilizador u) {
+        if (validaUtilizador(u)) {
+            this.listaFAETemp.add(new FAE(u));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validaUtilizador(Utilizador u) {
+        for (FAE fae : listaFAETemp) {
+            if (fae.getUsernameFae().equalsIgnoreCase(u.getM_StrUsername())) {
+                return false;
+            }
+        }
+        for (Organizador organizador : this.rOrganizadoresDestaExposicao.getListaOrganizadores()) {
+            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getM_StrUsername())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void confirmaAddFAE() {
+        this.listaFAE = new ArrayList(this.listaFAETemp);
     }
 
     public boolean isFAE(String usernameFAE) {
@@ -45,5 +56,9 @@ public class RegistoFAE {
             }
         }
         return false;
+    }
+
+    public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
+        this.rOrganizadoresDestaExposicao = ro;
     }
 }

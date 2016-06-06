@@ -2,8 +2,7 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.estados.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
@@ -18,14 +17,8 @@ public class AtribuirCandidaturasController {
     private List<CandidaturaAExposicao> listaCand;
     private ArrayList<FAE> listaFAE;
     private RegistoExposicoes re;
-    /*as variaveis seguintes são de instância para evitar problemas 
-    caso fossem de classe quando duas pessoas ou mais executam este UC ao 
-    mesmo tempo. Os dados guardados do primeiro utilizador seriam 
-    sobrepostos pelos do segundo*/
     private CandidaturaAExposicao cand;
-    private Decisao d;
     private Exposicao e;
-
     private CentroExposicoes centroExposicoes;
     private RegistoMecanismos rm;
     private RegistoCandidaturasAExposicao rc;
@@ -41,13 +34,17 @@ public class AtribuirCandidaturasController {
         this.usernameOrganizador = usernameOrganizador;
     }
 
+    public void getRegistoExposicoes() {
+        this.re = centroExposicoes.getRegistoExposicoes();
+    }
+
     /**
      * Devolve a lista de Exposições do Organizador
      *
      * @return lista de Exposições o Organizador
      */
     public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
-        listaExpo = centroExposicoes.getRegistoExposicoes().getListaExposicoesDoOrganizador(this.usernameOrganizador);
+        listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(this.usernameOrganizador);
         return listaExpo;
     }
 
@@ -58,38 +55,6 @@ public class AtribuirCandidaturasController {
      */
     public void setExposicao(Exposicao exposicao) {
         this.e = exposicao;
-    }
-
-    /**
-     * Devolve a lista de Candidaturas
-     *
-     * @return lista de candidaturas
-     */
-    public List<CandidaturaAExposicao> getListaCandidatuas() {
-        listaCand = this.e.getRegistoCandidaturas().getListaCandidaturasAExposicao();
-        return listaCand;
-    }
-
-    /**
-     * Devolve a lista de FAE
-     *
-     * @return lista de FAE
-     */
-    public List<FAE> getListaFAE() {
-        return this.e.getRegistoFAE().getListaFAE();
-    }
-
-    /**
-     * Valida a decisão. Consiste na validação local
-     *
-     * @param c candidatura escolhida pelo utilizador
-     */
-    public void validarDecisao(CandidaturaAExposicao c) {
-        e.validarDecisao(c);
-    }
-
-    public void getRegistoExposicoes() {
-        this.re = centroExposicoes.getRegistoExposicoes();
     }
 
     public void getRegistoMecanismos() {
@@ -144,5 +109,4 @@ public class AtribuirCandidaturasController {
         this.estadoCandidatura = this.cand.getEstado();
         estadoCandidatura.setEstadoCandidaturaAtribuida();
     }
-
 }

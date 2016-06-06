@@ -46,7 +46,11 @@ public class RegistoCandidaturasAExposicao {
      * @return boolean que confirma a validação dos dados
      */
     public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
-        //valida candidatura
+        for (CandidaturaAExposicao candidatura : this.listaCandidaturas) {
+            if (c.equals(candidatura)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -54,7 +58,7 @@ public class RegistoCandidaturasAExposicao {
      * Método que regista candidatura
      *
      * @param candidaturaAExposicao candidatura
-     * @return 
+     * @return
      */
     public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         boolean b = validaCandidatua(candidaturaAExposicao);

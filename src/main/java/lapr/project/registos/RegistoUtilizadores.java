@@ -14,7 +14,7 @@ public class RegistoUtilizadores {
 
     Utilizador u;
 
-    public Utilizador identificarUtilizadorPeloID(String id) {
+    public Utilizador identificarUtilizadorPeloUsername(String id) {
         Utilizador u = identificarUtilizadorID(id);
         boolean b = validaUtilizador();
         if (b == true) {

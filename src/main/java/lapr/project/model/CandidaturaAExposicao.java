@@ -1,14 +1,10 @@
 package lapr.project.model;
 
-import lapr.project.registos.RegistoProdutos;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicaoCriada;
-import lapr.project.exceptions.AreaErradaException;
-import lapr.project.exceptions.NumeroConvitesErradoException;
-import lapr.project.exceptions.TelemovelEmpresaErradoException;
-import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.estados.*;
+import lapr.project.exceptions.*;
+import lapr.project.registos.*;
 
 /**
  * Representação de uma CandidaturaAExposicao
@@ -62,6 +58,7 @@ public class CandidaturaAExposicao {
      *
      */
     private Expositor expositor;
+    private String[] keywords;
 
     /**
      * Contrutor de Candidatura sem parametros
@@ -393,4 +390,29 @@ public class CandidaturaAExposicao {
     public void setEstado(EstadoCandidaturaAExposicao ne) {
         this.estado = ne;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
+        if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strUsername().equalsIgnoreCase(cand.getExpositor().getM_strUsername())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void setM_Keywords(String keywords) throws KeywordsErradasException {
+        String[] vecKeywords = keywords.split(",");
+        if (vecKeywords.length < 0 || vecKeywords.length > 5) {
+            throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
+        } else {
+            this.keywords = vecKeywords;
+        }
+    }
+
 }
