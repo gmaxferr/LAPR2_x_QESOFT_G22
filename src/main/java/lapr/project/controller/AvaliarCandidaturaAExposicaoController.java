@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
-import lapr.project.model.Atribuicao;
+import lapr.project.model.AtribuicoesCandidatura;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -20,7 +20,7 @@ public class AvaliarCandidaturaAExposicaoController {
     private RegistoExposicoes re;
     private Exposicao exposicaoSelecionada;
     private RegistoAtribuicoes ra;
-    private Atribuicao atribuicaoEscolhida;
+    private AtribuicoesCandidatura atribuicaoEscolhida;
     private Avaliacao avaliacaoDoFae;
 
     public AvaliarCandidaturaAExposicaoController(CentroExposicoes centroExposicoes, String usernameFAE) {
@@ -44,11 +44,11 @@ public class AvaliarCandidaturaAExposicaoController {
         this.ra = this.exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
-    public ArrayList<Atribuicao> getListaAtribuicoesComOFAE() {
+    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE() {
         return this.ra.getListaAtribuicoesComOFAE(this.usernameFAE);
     }
 
-    public void setAtribuicao(Atribuicao atribuicao) {
+    public void setAtribuicao(AtribuicoesCandidatura atribuicao) {
         this.atribuicaoEscolhida = atribuicao;
     }
 

@@ -4,16 +4,16 @@ package lapr.project.model;
  *
  * @author Ricardo Osorio
  */
-public class FaeDecisao {
+public class FaeAvaliacao {
 
     private FAE FaeAssociado;
     private Avaliacao avaliacao;
 
-    public FaeDecisao() {
+    public FaeAvaliacao() {
         this.avaliacao = new Avaliacao();
     }
 
-    public FaeDecisao(FAE fae) {
+    public FaeAvaliacao(FAE fae) {
         this.FaeAssociado=fae;
     }
 

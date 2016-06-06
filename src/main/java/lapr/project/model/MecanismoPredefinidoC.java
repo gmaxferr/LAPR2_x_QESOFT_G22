@@ -56,13 +56,13 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
      * @return atribuição gerada.
      */
     @Override
-    public List<Atribuicao> atribui(Exposicao exposicaoEscolhida, String experienciaStr) throws IllegalArgumentException {
+    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida, String experienciaStr) throws IllegalArgumentException {
         int experiencia = Integer.parseInt(experienciaStr);
         if (experiencia < 0) {
             throw new IllegalArgumentException();
         }
 
-        List<Atribuicao> listaAtrib = new ArrayList<>();
+        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
         List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         List<FAE> listaFAE = criarListaFAEComExperienciaMinima(exposicaoEscolhida, experiencia);
 
@@ -73,7 +73,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
         } else if (listaFAE.size() < listaCand.size()) {
             int pos = 0;
             for (CandidaturaAExposicao cand : listaCand) {
-                Atribuicao atribuicao = new Atribuicao(cand);
+                AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(cand);
                 if (pos < listaFAE.size()) {
                     atribuicao.addFaeAvaliacao(listaFAE.get(pos));
                     pos++;
@@ -98,7 +98,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    Atribuicao atribuicao = new Atribuicao(listaCand.get(i));
+                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
                         atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }
