@@ -89,7 +89,7 @@ public class CriarCandidaturaAExposicaoController {
      * Guarda o registo de candidaturas.
      */
     public void getRegistoCandidaturas() {
-        this.rc = exposicaoEscolhida.getRegistoCandidaturas();
+        this.rc = exposicaoEscolhida.getRegistoCandidaturasAExposicao();
     }
 
     /**

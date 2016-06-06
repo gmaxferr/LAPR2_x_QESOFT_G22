@@ -47,7 +47,7 @@ public class AlterarCandidaturasController {
     }
 
     public void getM_RegistoCandidaturas() {
-        this.m_rc = exposicao.getRegistoCandidaturas();
+        this.m_rc = exposicao.getRegistoCandidaturasAExposicao();
     }
 
     public List<CandidaturaAExposicao> getListaCandidaturas() {

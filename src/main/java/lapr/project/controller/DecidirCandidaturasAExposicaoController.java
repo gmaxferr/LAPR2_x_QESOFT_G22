@@ -38,7 +38,7 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     public void getRegistoCandidaturas() {
-        this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
+        this.rc = this.exposicaoSelecionada.getRegistoCandidaturasAExposicao();
     }
 
     public void getRegistoProdutos() {

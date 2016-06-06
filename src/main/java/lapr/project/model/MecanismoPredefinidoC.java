@@ -63,7 +63,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
         }
 
         List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
-        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturasAExposicao();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao();
         List<FAE> listaFAE = criarListaFAEComExperienciaMinima(exposicaoEscolhida, experiencia);
 
         Collections.sort(listaFAE);
