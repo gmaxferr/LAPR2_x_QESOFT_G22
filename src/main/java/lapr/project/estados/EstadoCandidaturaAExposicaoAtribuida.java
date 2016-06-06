@@ -26,33 +26,15 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
     }
 
     @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
-        return false;
-    }
-
-    @Override
     public boolean setEstadoCandidaturaAtribuida() {
         return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
-        if (valida()) {
-            cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(cand));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+        cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(cand));
         return true;
+
     }
 
     @Override
@@ -62,16 +44,6 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosAtribuidos() {
         return false;
     }
 
@@ -106,12 +78,22 @@ public class EstadoCandidaturaAExposicaoAtribuida implements EstadoCandidaturaAE
     }
 
     @Override
-    public boolean setEstadoCandidaturaRemovida() {
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
     }
 
     @Override
-    public boolean isEstadoCandidaturaRemovida() {
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
         return false;
     }
 }

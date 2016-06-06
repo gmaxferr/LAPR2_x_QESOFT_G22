@@ -30,16 +30,6 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
     }
 
     @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
-        return false;
-    }
-
-    @Override
     public boolean setEstadoCandidaturaAtribuida() {
         return false;
     }
@@ -74,15 +64,6 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
         return true;
     }
 
-    @Override
-    public boolean isEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosAtribuidos() {
-        return false;
-    }
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
@@ -105,13 +86,23 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
     }
 
     @Override
-    public boolean setEstadoCandidaturaRemovida() {
-        this.cand.setEstado(new EstadoCandidaturaAExposicaoRemovida(this.cand));
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        cand.setEstado(new EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(cand));
         return true;
     }
 
     @Override
-    public boolean isEstadoCandidaturaRemovida() {
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
         return false;
     }
 

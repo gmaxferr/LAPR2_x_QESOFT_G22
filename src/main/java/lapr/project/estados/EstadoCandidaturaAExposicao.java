@@ -4,16 +4,14 @@ package lapr.project.estados;
  *
  * @author Ana Leite e Ricardo Osório
  */
-public interface EstadoCandidaturaAExposicao extends Estado{
+public interface EstadoCandidaturaAExposicao{
     
     boolean setEstadoCandidaturaInicial();
     
     boolean setEstadoCandidaturaCriada();
     
-    boolean setEstadoConflitosDetetados();
-    
-    boolean setEstadoConflitosAtribuidos();
-    
+    boolean setEstadoCandidaturaAbertaAtualizacaoConflitos();
+   
     boolean setEstadoCandidaturaAtribuida();
     
     boolean setEstadoCandidaturaAvaliada();
@@ -22,15 +20,13 @@ public interface EstadoCandidaturaAExposicao extends Estado{
     
     boolean setEstadoCandidaturaRejeitada();
     
-    boolean setEstadoCandidaturaRemovida();
+    boolean setEstadoCandidaturaProntaAtribuicoes();
     
     boolean isEstadoCandidaturaIncial();
     
     boolean isEstadoCandidaturaCriada();
     
-    boolean isEstadoConflitosDetetados();
-    
-    boolean isEstadoConflitosAtribuidos();
+    boolean isEstadoCandidaturaAbertaAtualizacaoConflitos();
     
     boolean isEstadoCandidaturaAtribuida();
     
@@ -40,5 +36,5 @@ public interface EstadoCandidaturaAExposicao extends Estado{
     
     boolean isEstadoCandidaturaRejeitada();
     
-    boolean isEstadoCandidaturaRemovida();
+    boolean isEstadoCandidaturaProntaAtribuicoes();
 }
