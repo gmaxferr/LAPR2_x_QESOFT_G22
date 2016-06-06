@@ -3,6 +3,8 @@ package lapr.project.model;
 import lapr.project.registos.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
 
@@ -13,7 +15,7 @@ import lapr.project.estados.EstadoExposicaoInicial;
  */
 public class Exposicao {
 
-    EstadoExposicao estado;
+    EstadoExposicao m_estado;
     /**
      * Atributo titulo de Exposição
      */
@@ -69,6 +71,22 @@ public class Exposicao {
      */
     private RegistoDemonstracoes rd;
 
+    /**
+     * Timer despoletado quando a data de abertura de submissão de candidaturas
+     * for atingida
+     */
+    private Timer timerAberturaCandidatura;
+
+    /**
+     * Timer despoletado quando a data de encerramento de candidaturas chegar
+     */
+    private Timer timerEncerramentoCandidatura;
+
+    /**
+     * Timer despoletado quando chega a data final para deteção de conflitos
+     */
+    private Timer timerFimDetecaoConflitos;
+    
     private RegistoConflitos rconf;
 
     private RegistoExpositores rexpositores;
@@ -92,7 +110,7 @@ public class Exposicao {
         this.rd = new RegistoDemonstracoes();
         this.rfae = new RegistoFAE();
         this.ro = new RegistoOrganizadores();
-        this.estado = new EstadoExposicaoInicial(this);
+        this.m_estado = new EstadoExposicaoInicial(this);
     }
 
     /**
@@ -387,7 +405,7 @@ public class Exposicao {
     }
 
     public void setEstado(EstadoExposicao estado) {
-        this.estado = estado;
+        this.m_estado = estado;
     }
 
     /**
@@ -418,7 +436,7 @@ public class Exposicao {
     }
 
     public EstadoExposicao getEstado() {
-        return estado;
+        return m_estado;
     }
 
     public RegistoConflitos getRegistoCoflitos() {
@@ -428,5 +446,48 @@ public class Exposicao {
     public RegistoAtribuicoes getRegistoAtribuicoes() {
         return this.ra;
     }
+    
+    private void criaTimerAberturaCandidaturas(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerAberturaCandidatura = new Timer();
+        timerAberturaCandidatura.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                EstadoExposicao estado = m_estado;
+                estado.setEstadoCandidaturasAbertas();
+            }
+        }, getDataAberturaCandidatura().toDate());
+    }
 
+    private void criaTimerEncerramentoCandidaturas(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerEncerramentoCandidatura = new Timer();
+        timerEncerramentoCandidatura.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ExposicaoEstado estado = m_estado;
+                estado.setFechadaCandidaturas();
+                DetecaoConflitosController ctrl = new DetecaoConflitosController();
+                ctrl.detetaConflitos(getCentroDeExposicoes(), thisExpo);
+            }
+        }, getDataEncerramentoCandidatura().toDate());
+    }
+
+    private void criaTimerFimDetecaoConflitos(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerFimDetecaoConflitos = new Timer();
+        timerFimDetecaoConflitos.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ExposicaoEstado estado = m_state;
+                estado.setAbertaAtribuicoes();
+            }
+        }, getDataFimDetecaoConflitos().toDate());
+    }
+
+    private void criaTimers() {
+        criaTimerAberturaCandidaturas();
+        criaTimerEncerramentoCandidaturas();
+        criaTimerFimDetecaoConflitos();
+    }
 }
