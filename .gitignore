@@ -146,3 +146,5 @@ fabric.properties
 ### Intellij Patch ###
 *.iml
 /nbproject/
+.sonar/
+sonar-project.properties
