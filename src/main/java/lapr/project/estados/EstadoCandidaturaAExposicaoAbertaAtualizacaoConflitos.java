@@ -1,19 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.estados;
 
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
- * @author Ricardo Osório Ana Leite
+ * @author JoãoCardoso aka K4rd050
  */
-public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCandidaturaAExposicao {
-
-    private CandidaturaAExposicao cand;
-
-    public EstadoCandidaturaAExposicaoConflitosDetetados(CandidaturaAExposicao cand) {
-        this.cand = cand;
+public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos implements EstadoCandidaturaAExposicao{
+    
+    private CandidaturaAExposicao c;
+    
+    public EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos (CandidaturaAExposicao c){
+        this.c = c;
     }
-
+    
     @Override
     public boolean setEstadoCandidaturaInicial() {
         return false;
@@ -25,18 +30,8 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     }
 
     @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
-        if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoConflitosAtribuidos(this.cand));
-            return true;
-        } else {
-            return false;
-        }
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return true;
     }
 
     @Override
@@ -47,7 +42,6 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     @Override
     public boolean setEstadoCandidaturaAvaliada() {
         return false;
-
     }
 
     @Override
@@ -58,12 +52,6 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     @Override
     public boolean setEstadoCandidaturaRejeitada() {
         return false;
-    }
-
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
-        return true;
-
     }
 
     @Override
@@ -77,13 +65,8 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     }
 
     @Override
-    public boolean isEstadoConflitosDetetados() {
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return true;
-    }
-
-    @Override
-    public boolean isEstadoConflitosAtribuidos() {
-        return false;
     }
 
     @Override
@@ -107,13 +90,16 @@ public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCand
     }
 
     @Override
-    public boolean setEstadoCandidaturaRemovida() {
-        return false;
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
+        c.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(c));
+        return true;
     }
 
     @Override
-    public boolean isEstadoCandidaturaRemovida() {
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
         return false;
     }
 
+    
+    
 }

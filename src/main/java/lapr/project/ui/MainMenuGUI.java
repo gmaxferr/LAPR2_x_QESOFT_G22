@@ -6,7 +6,6 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Expositor;
 import lapr.project.model.Utilizador;
 
 /**

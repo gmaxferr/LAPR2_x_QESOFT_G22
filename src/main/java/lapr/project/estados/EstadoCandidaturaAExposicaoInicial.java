@@ -16,22 +16,11 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
 
     @Override
     public boolean setEstadoCandidaturaInicial() {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoInicial(this.cand));
-            return true;
+        return true;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
         return false;
     }
 
@@ -55,11 +44,6 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
         return false;
     }
 
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
-        return true;
-    }
-
     @Override
     public boolean isEstadoCandidaturaIncial() {
         return true;
@@ -67,16 +51,6 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosAtribuidos() {
         return false;
     }
 
@@ -101,13 +75,24 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
     }
 
     @Override
-    public boolean setEstadoCandidaturaRemovida() {
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
     }
 
     @Override
-    public boolean isEstadoCandidaturaRemovida() {
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
         return false;
     }
+
+    @Override
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
+        return false;
+    }
+
 
 }

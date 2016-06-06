@@ -9,7 +9,7 @@ package lapr.project.estados;
  *
  * @author guima
  */
-public interface EstadoCandidaturaADemonstracao extends Estado {
+public interface EstadoCandidaturaADemonstracao{
 
     boolean setEstadoCandidaturaInstanciada();
 

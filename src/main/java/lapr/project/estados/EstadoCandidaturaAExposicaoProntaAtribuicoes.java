@@ -11,14 +11,14 @@ import lapr.project.model.CandidaturaAExposicao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAExposicao {
+public class EstadoCandidaturaAExposicaoProntaAtribuicoes implements EstadoCandidaturaAExposicao{
 
     private CandidaturaAExposicao cand;
-
-    public EstadoCandidaturaAExposicaoRemovida(CandidaturaAExposicao cand) {
+    
+    public EstadoCandidaturaAExposicaoProntaAtribuicoes (CandidaturaAExposicao cand){
         this.cand = cand;
     }
-
+    
     @Override
     public boolean setEstadoCandidaturaInicial() {
         return false;
@@ -30,18 +30,14 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
     }
 
     @Override
-    public boolean setEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoConflitosAtribuidos() {
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        return false;
+        cand.setEstado(new EstadoCandidaturaAExposicaoAtribuida(cand));
+        return true;
     }
 
     @Override
@@ -60,13 +56,8 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
     }
 
     @Override
-    public boolean setEstadoCandidaturaRemovida() {
-        if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoRemovida(this.cand));
-            return true;
-        } else {
-            return false;
-        }
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
+        return true;
     }
 
     @Override
@@ -80,12 +71,7 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
     }
 
     @Override
-    public boolean isEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoConflitosAtribuidos() {
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
     }
 
@@ -110,8 +96,8 @@ public class EstadoCandidaturaAExposicaoRemovida implements EstadoCandidaturaAEx
     }
 
     @Override
-    public boolean isEstadoCandidaturaRemovida() {
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
         return true;
     }
-
+    
 }

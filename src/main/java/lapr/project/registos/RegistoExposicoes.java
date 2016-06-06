@@ -2,14 +2,13 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.*;
 import lapr.project.model.*;
 
 /**
  *
  * @author Ricardo Osório Ana Leite
  */
-public class RegistoExposicoes implements Agendavel {
+public class RegistoExposicoes {
 
     /**
      * Lista de exposições existentes
@@ -133,33 +132,14 @@ public class RegistoExposicoes implements Agendavel {
         //remove as exposições repetidas dentro do arrayList
     }
 
-    @Override
-    public void Agendavel(Estado estado, String dataAbertura) {
-        /*
-            Converte a string para Date
-            Cria o timer
-            Associa o timer ao Estado
-         */
-    }
-
-    public void setEstadoCandidaturasAbertas(Exposicao exposicao) {
-        Estado estado = new EstadoExposicaoCandidaturasAbertas(exposicao);
-        String dataAbertura = exposicao.getM_strDataInicio();
-        Agendavel(estado, dataAbertura);
-    }
-
-    public void setEstadoCandidaturasFechadas(Exposicao exposicao) {
-        Estado estado = new EstadoExposicaoCandidaturasFechadas(exposicao);
-        String dataFecho = exposicao.getM_strDataFim();
-        Agendavel(estado, dataFecho);
-    }
-
-    public void setEstadoExposicaoConflitosDetetados(Exposicao exposicao) {
-        Estado estado = new EstadoExposicaoCandidaturasFechadas(exposicao);
-        String dataLimite = exposicao.getM_strDataFim();
-        Agendavel(estado, dataLimite);
-    }
-
+    /**
+     * Cria uma lista com as exposições em que existem candidaturas aceites de
+     * um representante
+     *
+     * @param username - username do representante
+     * @return lista com as exposições em que existem candidaturas aceites de um
+     * representante
+     */
     public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
