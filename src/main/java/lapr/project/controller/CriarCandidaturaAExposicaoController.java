@@ -174,6 +174,7 @@ public class CriarCandidaturaAExposicaoController {
      */
     public boolean registaCandidatura() {
         boolean b = rc.registaCandidatura(this.candidaturaCriada);
+        if(b)setEstadoCandidaturaAExposicaoCriada();
         return b;
     }
 
