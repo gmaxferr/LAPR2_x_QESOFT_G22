@@ -62,8 +62,9 @@ public class CentroExposicoes {
     }
 
     /**
-     *
-     * @return
+     * Devolve o registo de utilizadores.
+     * 
+     * @return registo de utilizadores
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
         return registoUtilizadores;
