@@ -10,13 +10,19 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoUtilizadores {
 
+    /**
+     * Lista de utilizadores
+     */
     private ArrayList<Utilizador> listaUtilizadores;
 
+    /**
+     * Utilizador
+     */
     Utilizador u;
 
     public Utilizador identificarUtilizadorPeloUsername(String id) {
         Utilizador u = identificarUtilizadorID(id);
-        boolean b = validaUtilizador();
+        boolean b = validaUtilizadorPeloID();
         if (b == true) {
             return u;
         } else {
@@ -33,8 +39,27 @@ public class RegistoUtilizadores {
         return null;
     }
 
-    private boolean validaUtilizador() {
-        //valida o utilizador globalmente (repetido, etc).
+    /**
+     * Valida o utilizador pelo username ou pelo email
+     * 
+     * @param username username do utilizador
+     * @param email email do utilizador
+     * 
+     * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
+     * retorna false
+     */
+    private boolean validaUtilizador(String username, String email) {
+       ArrayList<Utilizador> list = new ArrayList<>();
+        for (Utilizador u : listaUtilizadores) {
+            if (username.equals(u.getM_StrUsername()) || email.equals(u.getM_strEmail())) {
+            return false;
+        }      
+    }
+        return true;
+        
+    }
+    
+    public boolean validaUtilizadorPeloID(){
         return true;
     }
 
@@ -44,7 +69,7 @@ public class RegistoUtilizadores {
     private ArrayList<Utilizador> m_listaUtilizadores;
 
     /**
-     * Método que devolve lista dos Utilizadores
+     * Ddevolve lista dos Utilizadores
      *
      * @return lista dos utilizadores
      */
@@ -53,7 +78,7 @@ public class RegistoUtilizadores {
     }
 
     /**
-     * Método que devolve um Utilizador identificado pelo seu ID
+     * Devolve um Utilizador identificado pelo seu ID
      *
      * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
      * @return o dado Utilizador se encontrar ou então devolve null
@@ -68,7 +93,7 @@ public class RegistoUtilizadores {
     }
 
     /**
-     * Método que retorna um Utilizador dado um ID (nome ou email)
+     * Retorna um Utilizador dado um ID (nome ou email)
      *
      * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
      * @return o dado Utilizador se encontrar ou então devolve null
@@ -78,29 +103,39 @@ public class RegistoUtilizadores {
         return true;
     }
 
+    /**
+     * Cria um novo utilizador
+     * 
+     * @return utilizador criado
+     */
     public Utilizador novoUtilizador() {
         return new Utilizador();
     }
 
     /**
-     * Métdo que valida (globalmente) e em caso de sucesso adiciona o Utilizador
+     * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
      * @param u Utilizador desejado
      */
-    public void addUtilizador(Utilizador u) {
-        if (validaUtilizador() == true) {
+    public void addUtilizador(Utilizador u, String username, String email) {
+        if (validaUtilizador(username, email) == true) {
             adicionaUtilizador(u);
         } else {
-            //reverte as alterações da adição deste utilizador
+            
         }
     }
 
+    /**
+     * Adiciona um utiliador à lista de utilizadores
+     * 
+     * @param u utilizador a adicionar
+     */
     private void adicionaUtilizador(Utilizador u) {
         listaUtilizadores.add(u);
     }
 
     /**
-     * Método que devolve uma lista com os novos registos (registos ainda nao
+     * Devolve uma lista com os novos registos (registos ainda nao
      * confirmados)
      *
      * @return lista de novos registos

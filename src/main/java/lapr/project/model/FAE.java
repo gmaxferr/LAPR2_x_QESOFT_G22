@@ -5,7 +5,7 @@ package lapr.project.model;
  *
  * @author Ricardo Osório Ana Leite
  */
-public class FAE implements Comparable {
+public class FAE{
 
     /**
      * Atributo do FAE que representa o utilizador associado a este
@@ -73,25 +73,5 @@ public class FAE implements Comparable {
 
     public void setTipoConflitoFAE(TipoConflito tipoConflito) {
         this.tipoConflito = tipoConflito;
-    }
-
-//    /**
-//     * CompareTo a ser usado quando for preciso ordenar um contentor de FAE pela
-//     * sua experiência
-//     *
-//     * @param faeComparar FAE a comparar
-//     * @return -1 se o FAE recebido tiver menos experiência, 1 se tiver mais
-//     * experiência ou 0 se ambos tiverem a mesma experiência.
-//     */
-    @Override
-    public int compareTo(Object faeComparar) {
-//        FAE fae = (FAE) faeComparar;
-//        if (this.experiencia > fae.experiencia) {
-//            return -1;
-//        } else if (this.experiencia < fae.experiencia) {
-//            return 1;
-//        } else {
-//            return 0;
-//        }
     }
 }

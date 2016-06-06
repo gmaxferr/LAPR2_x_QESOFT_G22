@@ -1,9 +1,9 @@
 package lapr.project.utils;
 
-import exceptions.DiaInvalidoException;
-import exceptions.MesInvalidoException;
 import java.util.Calendar;
 import java.util.Date;
+import lapr.project.exceptions.DiaInvalidoException;
+import lapr.project.exceptions.MesInvalidoException;
 
 /**
  * Representa uma data através do dia, mês e ano.
@@ -98,9 +98,9 @@ public class Data implements Comparable<Data> {
      */
     public Data(String data) {
         String d[] = data.split("/");
-        this.dia = Integer.parseInt(d[0]);
+        this.ano = Integer.parseInt(d[0]);
         this.mes = Integer.parseInt(d[1]);
-        this.ano = Integer.parseInt(d[2]);
+        this.dia = Integer.parseInt(d[2]);
     }
 
     /**

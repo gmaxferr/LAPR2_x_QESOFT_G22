@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import crypt.CaesarsCypher;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -30,6 +31,9 @@ public class Utilizador {
      */
     private String m_strUsername;
 
+    /**
+     * 
+     */
     private String ID;
 
     /**
@@ -37,6 +41,11 @@ public class Utilizador {
      * Utilizador já foi confirmado
      */
     private boolean m_boolConfirmaRegisto;
+    
+    /**
+     * Lista de utilizadores
+     */
+    private ArrayList<Utilizador> listaUtilizadores;
 
     /**
      * Construtor de objectos do tipo Utilizador sem parametros
@@ -92,6 +101,15 @@ public class Utilizador {
 
     public String getID() {
         return this.ID;
+    }
+    
+    /**
+     * Devolve o username do utilizador
+     * 
+     * @return username do utilizador
+     */
+    public String getM_StrUsername() {
+        return m_strUsername;
     }
 
     /**
@@ -185,24 +203,28 @@ public class Utilizador {
     /**
      * Método que valida o utilizador
      */
-    public void validaUtilizador() {
-        //validação local dos dados
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
+    public void validaUtilizador(String username, String email) {
+        
+        if (validarDadosRepetidosOuInvalidos(username, email) == false) {
+            username = null;
+            email = null;
         }
     }
 
     /**
      * Método que valida os dados do Utilizador
      *
-     * @return
+     * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
+     * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos() {
-        return true;
+    public boolean validarDadosRepetidosOuInvalidos(String username, String email) {
+        ArrayList<Utilizador> list = new ArrayList<>();
+        for (Utilizador u : listaUtilizadores) {
+            if (username.equals(u.getM_StrUsername()) || email.equals(u.getM_strEmail())) {
+            return false;
+        }      
     }
-
-    public String getM_StrUsername() {
-        return m_strUsername;
+        return true;
     }
 
 }

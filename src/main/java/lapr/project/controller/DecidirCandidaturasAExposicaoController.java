@@ -3,16 +3,12 @@ package lapr.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.GestorDeExposicoes;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
- * @author osori
+ * @author osorio
  */
 public class DecidirCandidaturasAExposicaoController {
 
@@ -22,10 +18,11 @@ public class DecidirCandidaturasAExposicaoController {
     private RegistoExposicoes re;
     private CentroExposicoes ce;
     private GestorDeExposicoes gestorDeExposicoes;
+    private RegistoProdutos rp;
 
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
         this.ce = ce;
-        this.gestorDeExposicoes=gestorDeExposicoes;
+        this.gestorDeExposicoes = gestorDeExposicoes;
     }
 
     public void getRegistoExposicoes() {
@@ -40,12 +37,19 @@ public class DecidirCandidaturasAExposicaoController {
         this.exposicaoSelecionada = exposicao;
     }
 
+    public void getRegistoCandidaturas() {
+        this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
+    }
+
+    public void getRegistoProdutos() {
+        this.rp = this.candidaturaSelecionada.getRegistoProdutos();
+    }
+
     /*
         lista de candidaturas de uma das expos no estado EstadoExposicaoCandidaturasAvaliadas 
         logo todas estarão no estado EstadoCandidaturasAExposicaoAvaliada
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        this.rc = this.exposicaoSelecionada.getRegistoCandidaturas();
         return this.rc.getListaCandidaturasAExposicao();
     }
 

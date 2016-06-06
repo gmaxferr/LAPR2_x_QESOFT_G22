@@ -12,14 +12,37 @@ import lapr.project.registos.RegistoUtilizadores;
  */
 public class ConfirmarRegistoController {
 
-    private RegistoUtilizadores ru;
-    private ArrayList<Utilizador> listaUtlNaoRegistados;
+    /**
+     * Registo de utilizadores
+     */
+    private RegistoUtilizadores m_ru;
+    
+    /**
+     * Lista de utilizadores nao registados
+     */
+    private ArrayList<Utilizador> m_listaUtlNaoRegistados;
 
-    //para testes
-    CentroExposicoes centroExpo = new CentroExposicoes();
+    /**
+     * Centro de exposições
+     */
+    CentroExposicoes m_centroExpo;
 
-    public ConfirmarRegistoController() {
-        this.listaUtlNaoRegistados = new ArrayList<>();
+    /**
+     * Constrói uma instância de ConfirmarRegistarController recendo como
+     * parâmentro o centro de exposições
+     * 
+     * @param centroExposicoes centro de exposições
+     */
+    public ConfirmarRegistoController(CentroExposicoes centroExposicoes) {
+        this.m_listaUtlNaoRegistados = new ArrayList<>();
+        this.m_centroExpo = centroExposicoes;
+    }
+    
+    /**
+     * Guarda o registo de utiliadores
+     */
+    public void getRegistoUtilizadores() {
+        m_ru = m_centroExpo.getRegistoUtilizadores();
     }
 
     /**
@@ -28,12 +51,12 @@ public class ConfirmarRegistoController {
      * @return lista de Utilizadores cujo registo não foi confirmado
      */
     public ArrayList<Utilizador> getListaNovosRegistos() {
-        listaUtlNaoRegistados = ru.getListaNovosRegistos();
-        return listaUtlNaoRegistados;
+        m_listaUtlNaoRegistados = m_ru.getListaNovosRegistos();
+        return m_listaUtlNaoRegistados;
     }
 
     /**
-     * Método que define o Utilizador definido pelo utilizador a interagir com o
+     * Define o Utilizador definido pelo utilizador a interagir com o
      * sistema
      *
      * @param u Utilizador escolhido
@@ -42,8 +65,6 @@ public class ConfirmarRegistoController {
         u.setUtilizadorRegistado();
     }
 
-    void getRegistoUtilizadores() {
-        ru = centroExpo.getRegistoUtilizadores();
-    }
+    
 
 }

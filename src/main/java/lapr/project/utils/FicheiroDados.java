@@ -4,11 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoMecanismos;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.registos.*;
 
 /**
  * Classe que permite a leitura de ficheiros.
@@ -167,7 +163,7 @@ public class FicheiroDados {
             re = centroExposicoes.getRegistoExposicoes();
             while (inputExpos.hasNextLine()) {
                 linhaLidaVetor = inputExpos.nextLine().split(";");
-                exposicao = new Exposicao(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3], new Local(linhaLidaVetor[4]), centroExposicoes);
+                exposicao = new Exposicao(linhaLidaVetor[0], linhaLidaVetor[1], new Data(linhaLidaVetor[2]), new Data(linhaLidaVetor[3]), new Local(linhaLidaVetor[4]), centroExposicoes);
 
                 //add organizadores
                 for (int i = 0; i < NUMERO_ORGANIZADORES_POR_EXPOSICAO; i++) {
