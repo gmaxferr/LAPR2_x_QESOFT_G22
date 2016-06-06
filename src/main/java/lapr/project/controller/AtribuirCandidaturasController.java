@@ -44,7 +44,7 @@ public class AtribuirCandidaturasController {
      * @return lista de Exposições o Organizador
      */
     public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
-        listaExpo = centroExposicoes.getRegistoExposicoes().getListaExposicoesDoOrganizador(this.usernameOrganizador);
+        listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(this.usernameOrganizador);
         return listaExpo;
     }
 

@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.exceptions.*;
@@ -48,6 +47,7 @@ public class CriarCandidaturaAExposicaoController {
      * Centro de exposições.
      */
     private CentroExposicoes centroExposicoes;
+
     private EstadoCandidaturaAExposicao estadoCandidatura;
 
     /**
@@ -65,10 +65,6 @@ public class CriarCandidaturaAExposicaoController {
      */
     public void getRegistoExposicoes() {
         this.re = centroExposicoes.getRegistoExposicoes();
-    }
-
-    public void getEstadoCandidatura() {
-        this.estadoCandidatura = this.candidaturaCriada.getEstado();
     }
 
     /**
@@ -163,7 +159,7 @@ public class CriarCandidaturaAExposicaoController {
      *
      * @param demonstracaoEscolhida demostração escolhida.
      */
-    public void adicionarDemonstracao(Demonstracao demonstracaoEscolhida) {
+    public void adicionaDemonstracao(Demonstracao demonstracaoEscolhida) {
         this.candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
     }
 
@@ -174,7 +170,9 @@ public class CriarCandidaturaAExposicaoController {
      */
     public boolean registaCandidatura() {
         boolean b = rc.registaCandidatura(this.candidaturaCriada);
-        if(b)setEstadoCandidaturaAExposicaoCriada();
+        if (b) {
+            setEstadoCandidaturaAExposicaoCriada();
+        }
         return b;
     }
 
@@ -186,13 +184,21 @@ public class CriarCandidaturaAExposicaoController {
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
         this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
     }
-    
-    public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes){
+
+    public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes) {
         this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
     }
 
     public void setEstadoCandidaturaAExposicaoCriada() {
         this.estadoCandidatura.setEstadoCandidaturaCriada();
+    }
+
+    public boolean validarDadosCandidatura() {
+        return this.rc.validarDadosCandidatura(this.candidaturaCriada);
+    }
+
+    public void setKeywords(String keywords) throws KeywordsErradasException {
+        this.candidaturaCriada.setM_Keywords(keywords);
     }
 
 }
