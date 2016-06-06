@@ -1,15 +1,9 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoExposicaoCriada;
-import lapr.project.estados.EstadoExposicaoDemosDefinidasSemFAE;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoFAE;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.estados.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - definir fae
@@ -39,6 +33,7 @@ public class DefinirFAEController {
      * @return lista com as exposições associadas ao organizador
      */
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizador() {
+        //passar parametro username
         listExpo = re.getlistaExposicoesDoOrganizador();
         return listExpo;
     }
@@ -80,11 +75,11 @@ public class DefinirFAEController {
     }
 
     public void getRegistoFAE() {
-        this.rfae = e.getRfae();
+        this.rfae = e.getRegistoFAE();
     }
 
     public void setEstado() {
-        EstadoExposicao estado = this.e.getEstadoExposicao();
+        EstadoExposicao estado = this.e.getEstado();
         if (estado instanceof EstadoExposicaoCriada) {
             estado.setEstadoFAEDefinidosSemDemos();
         } else if (estado instanceof EstadoExposicaoDemosDefinidasSemFAE) {
@@ -93,6 +88,6 @@ public class DefinirFAEController {
     }
 
     public EstadoExposicao getEstadoExposicao() {
-        return this.e.getEstadoExposicao();
+        return this.e.getEstado();
     }
 }

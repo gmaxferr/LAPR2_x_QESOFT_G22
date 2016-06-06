@@ -4,6 +4,7 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;
 
+
 /**
  * Representação do Controller do caso de uso - alterar perfil de utilizador
  * 
@@ -13,7 +14,7 @@ public class AlterarPerfilDeUtilizadorController {
         
     private CentroExposicoes m_centro_exposicoes;
     private RegistoUtilizadores m_ru;
-    Utilizador u;
+    private Utilizador u;
     
     public AlterarPerfilDeUtilizadorController(CentroExposicoes centroExposicoes, RegistoUtilizadores registoUtilizadores){
         m_centro_exposicoes = centroExposicoes;
@@ -29,28 +30,29 @@ public class AlterarPerfilDeUtilizadorController {
     }
     
     public void identificaUtilizador(String username){
+        //devolve null se não encontrar
         u = m_ru.identificarUtilizador(username);
     }
     
     public String getNomeUtilizador(){
-        return u.getNome();
+        return u.getM_strNome();
     }
     
     public String getEmailUtilizador(){
-        return u.getE_mail();
+        return u.getM_strEmail();
     }
     
-    public String getPasswordUtilizador(){
-        return u.getPassword();
+    public char[] getPasswordUtilizador(){
+        return u.getM_strPwd();
     }
     
     public void setDadosUtilizador(String nome, String email, String username, String password){
         
         if(m_ru.validaDadosUnicos(username, email)){
         u.setNome(nome);
-        u.setE_mail(email);
+        u.setEmail(email);
         u.setUsername(username);
-        u.setPassword(password.toCharArray());
+        u.setPwd(password.toCharArray());
         }
     }
 }

@@ -1,15 +1,14 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Candidatura;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.FAE;
+import lapr.project.registos.*;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoFAE;
+import lapr.project.model.TipoConflito;
 
 /**
  *
@@ -21,14 +20,14 @@ public class DetetarConflitoController {
     private RegistoTipoConflitos rtc;
     private RegistoMecanismosDetecaoConflitos rmdc;
     private RegistoFAE rfae;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private List<FAE> listaFAE;
-    private List<Candidatura> listaCand;
+    private List<CandidaturaAExposicao> listaCand;
     private int tamanho;
     private boolean b;
     private RegistoConflitos rconf;
     private EstadoExposicao estadoExposicao;
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     
 
@@ -53,11 +52,11 @@ public class DetetarConflitoController {
         for (TipoConflito tipoConflito : this.rtc.getListaTipoConflitos()) {
             this.rmdc = tipoConflito.getRegistoMecanismosDetecaoConflitos();
 
-            for (Exposicao exposicao : re.getlistaExposicoesValidas()) {
-                this.rfae = exposicao.getRfae();
+            for (Exposicao exposicao : re.getListaExposicoesValidas()) {
+                this.rfae = exposicao.getRegistoFAE();
                 this.rc = exposicao.getRegistoCandidaturas();
                 this.listaFAE = exposicao.getListaFAE();
-                this.listaCand = exposicao.getListaCandidaturas();
+                this.listaCand = exposicao.getListaCandidaturasAExposicao();
 
                 if (listaCand.size() > listaFAE.size()) {
                     tamanho = listaFAE.size();
@@ -78,13 +77,13 @@ public class DetetarConflitoController {
     }
 
     public void setEstadoConflitoDetetados() {
-        for (Exposicao exposicao : this.re.getlistaExposicoesValidas()) {
-            this.estadoExposicao = exposicao.getEstadoExposicao();
+        for (Exposicao exposicao : this.re.getListaExposicoesValidas()) {
+            this.estadoExposicao = exposicao.getEstado();
             estadoExposicao.setEstadoConflitosDetetados();
         }
 
-        for (Candidatura cand : this.rc.getListaCandidaturas()) {
-            this.estadoCandidatura = cand.getEstadoCandidatura();
+        for (CandidaturaAExposicao cand : this.rc.getListaCandidaturasAExposicao()) {
+            this.estadoCandidatura = cand.getEstado();
             estadoCandidatura.setEstadoConflitosDetetados();
         }
 

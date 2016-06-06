@@ -1,108 +1,55 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Demonstracao;
 
 /**
- * Representação de um registo de demonstrações.
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ana Leite Ricardo Osório
  */
-public class RegistoDemonstracoes implements Serializable{
+public class RegistoDemonstracoes {
 
     /**
-     * Contador de demonstrações.
+     * Lista de demostrações existentes
      */
-    private int contadorDemonstracoes;
+    private List<Demonstracao> m_listaDemonstracoes;
 
-    /**
-     * Lista de demonstrações.
-     */
-    private List<Demonstracao> listaDemonstracoes;
+    private CandidaturaAExposicao candidaturaAExposicao;
 
-    /**
-     * Construtor de objetos do tipo RegistoDemonstracoes sem parâmetros.
-     */
     public RegistoDemonstracoes() {
-        this.listaDemonstracoes = new ArrayList<>();
-        this.contadorDemonstracoes = 0;
+        this.m_listaDemonstracoes = new ArrayList<>();
     }
 
     /**
-     * Devolve a lista de demonstrações.
+     * Devolve uma lista com todas as demostrações
      *
-     * @return lista de demonstrações.
+     * @return lista com todas as demontrações
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        return this.listaDemonstracoes;
+        return this.m_listaDemonstracoes;
     }
 
     /**
-     * Modifica a lista de demonstrações.
-     * 
-     * @param listaDemonstracoesAdicionadas lista de demonstrações.
-     */
-    public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoesAdicionadas) {
-        this.listaDemonstracoes = listaDemonstracoesAdicionadas;
-    }
-
-    /**
-     * Adiciona a demostração escolhida.
+     * Método que adiciona uma nova demonstração
      *
-     * @param demonstracaoEscolhida demostração escolhida.
+     * @param demonstracao demostracao a ser adicionada
      */
-    public void adicionarDemonstracao(Demonstracao demonstracaoEscolhida) {
-        if (validaDemonstracao(demonstracaoEscolhida)) {
-            this.contadorDemonstracoes++;
-            //Para poder definir o código de identificação de acordo com o número atual de demons já existentes. 
-            this.listaDemonstracoes.add(new Demonstracao(demonstracaoEscolhida, contadorDemonstracoes));
-        }
+    public void adicionaDemonstracao(Demonstracao demonstracao) {
+        candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 
-    /**
-     * Valida a demostração escolhida.
-     *
-     * @param demonstracaoEscolhida demostração escolhida.
-     *
-     * @return true se não encontrar a demonstração na lista de demonstrações.
-     * Caso contrário retorna false.
-     */
-    private boolean validaDemonstracao(Demonstracao demonstracaoEscolhida) {
-        for (Demonstracao demonstracao : this.listaDemonstracoes) {
-            if (demonstracao.getCodigoIdentificacao().equalsIgnoreCase(demonstracaoEscolhida.getCodigoIdentificacao())) {
-                return false;
-            }
-        }
-        return true;
+    public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
+        Demonstracao demo = new Demonstracao(descricaoIntroduzidaPeloUtilizador);
+        return demo;
     }
 
-    /**
-     * Remove uma demonstração. 
-     * 
-     * @param demoIdentificacao identificação da demonstração.
-     */
-    public void removerDemonstracao(String demoIdentificacao) {
-        int index = procuraDemonstracaoPeloCodigoIdentificacao(demoIdentificacao);
-        this.listaDemonstracoes.remove(index);
-        this.contadorDemonstracoes--;
+    public void confirma(Demonstracao demo) {
+        this.m_listaDemonstracoes.add(demo);
     }
 
-    /**
-     * Procura demonstração pelo código de identificação.
-     * 
-     * @param demoIdentificacao identificação da demonstração.
-     * @return posição da demonstração a remover. Caso não encontre a demonstração
-     * retorna -1.
-     */
-    private int procuraDemonstracaoPeloCodigoIdentificacao(String demoIdentificacao) {
-        for (int i = 0; i < this.listaDemonstracoes.size(); i++) {
-            if (this.listaDemonstracoes.get(i).getCodigoIdentificacao().equalsIgnoreCase(demoIdentificacao)) {
-                return i;
-            }
-        }
-        return -1;
+    public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
+        this.m_listaDemonstracoes = listaDemonstracoes;
     }
-
 }

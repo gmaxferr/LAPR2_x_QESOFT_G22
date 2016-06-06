@@ -1,78 +1,56 @@
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
- * Representação de um Organizador.
+ * Representação de um Organizador
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ricardo Osório Ana Leite
  */
-public class Organizador implements Cargo, Serializable {
+public class Organizador {
 
     /**
-     * Utilizador por detrás do papel de organizador, a partir do qual é criado
-     * o organizador.
+     * Atributo utilizador de organizador
      */
-    private Utilizador utilizador;
+    private Utilizador m_Utilizador;
 
     /**
-     * Construtor de objetos do tipo Organizador recebendo o utilizador a ser
-     * promovido a este papel.
-     *
-     * @param utilizador utilizador a partir do qual é criado o organizador.
+     * Construtor de organizador sem parametros
      */
-    public Organizador(Utilizador utilizador) {
-        this.utilizador = utilizador;
+    public Organizador() {
     }
 
     /**
-     * Devolve o username do organizador.
+     * Devolve o utilizador de organizador
      *
-     * @return username do organizador.
-     */
-    public String getUsername() {
-        return this.utilizador.getUsername();
-    }
-
-    /**
-     * Devolve o utilizador por detrás do papel de Organizador.
-     *
-     * @return utilizador associado a este papel.
+     * @return utilizador de organizador
      */
     public Utilizador getUtilizador() {
-        return this.utilizador;
+        return m_Utilizador;
     }
 
     /**
-     * Devolve a descrição textual do organizador.
+     * Define novo utilizador de organizador
      *
-     * @return caraterísticas do organizador.
+     * @param u novo utilizador
+     */
+    public void setUtilizador(Utilizador u) {
+        this.m_Utilizador = u;
+    }
+
+    public String getUsernameOrganizador() {
+        return this.m_Utilizador.getM_StrUsername();
+    }
+
+    /**
+     * Devolve uma descrição textual do objeto Organizador, isto é, com os seus
+     * atributos
+     *
+     * @return descrição textual do objeto Organizador
      */
     @Override
     public String toString() {
-        return "Org: " + this.getUsername();
-    }
+        String str = "Organizador:\n";
+        str += "\tUser: " + this.m_Utilizador.getM_strNome() + "\n";
 
-    /**
-     * Compara o organizador a outro objecto passado por parametro. A comparação
-     * entre dois organizadores é feita com atenção a todos os atributos destes.
-     *
-     * @param obj objecto a comparar com o organizador.
-     * @return true se o objeto recebido representar um organizador equivalente
-     * ao organizador. Caso contrário, retorna false.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
-        }
-        Organizador o = (Organizador) obj;
-        if (this.getUtilizador().equals(o.getUtilizador())) {
-            return true;
-        } else {
-            return false;
-        }
+        return str;
     }
 }

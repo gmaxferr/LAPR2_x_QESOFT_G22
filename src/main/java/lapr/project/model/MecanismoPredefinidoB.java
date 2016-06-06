@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MecanismoSimples B - Distribui até um número máximo de FAE por cada
- * candidatura preenchendo com prioridade as primeiras.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ana Leite Ricardo Osório
  */
-public class MecanismoB implements MecanismoIteragivel, Serializable {
-
-    /**
+public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable{
+/**
      * Identificação do mecanismo.
      */
     private static final String NOME_MECANISMO = "FAE por canidatura";
@@ -57,15 +54,15 @@ public class MecanismoB implements MecanismoIteragivel, Serializable {
      * @return atribuição gerada.
      */
     @Override
-    public List<Atribuicao> atribui(Exposicao exposicaoEscolhida, String numeroFAEStr) throws IllegalArgumentException {
+    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida, String numeroFAEStr) throws IllegalArgumentException {
 
         int numeroFAE = Integer.parseInt(numeroFAEStr);
         if (numeroFAE < 0) {
             throw new IllegalArgumentException();
         }
 
-        List<Atribuicao> listaAtrib = new ArrayList<>();
-        List<Candidatura> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturas();
+        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
         if (listaFAE.isEmpty() || listaCand.isEmpty()) {
@@ -82,10 +79,9 @@ public class MecanismoB implements MecanismoIteragivel, Serializable {
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    Atribuicao atribuicao = new Atribuicao();
-                    atribuicao.setCandidatura(listaCand.get(i));
+                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
-                        atribuicao.addFAE(listaFAE.get(j));
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }
                     listaAtrib.add(atribuicao);
                 }

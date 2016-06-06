@@ -41,6 +41,7 @@ public class CriarDemonstracaoController {
     }
 
     ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+        //passar parametro username
         return re.getlistaExposicoesDoOrganizador();
     }
 
@@ -69,7 +70,7 @@ public class CriarDemonstracaoController {
     }
 
     void getRegistoRecursosDemo() {
-        this.rrr = this.demoCriada.getRegistoRecursosDemo();
+        this.rrr = this.demoCriada.getRegistoRecursos();
     }
 
     void confirma() {
@@ -78,7 +79,7 @@ public class CriarDemonstracaoController {
     
     public void setEstado(){
 
-    estado = this.exposicao.getEstadoExposicao();
+    estado = this.exposicao.getEstado();
     if(estado instanceof EstadoExposicaoFAEDefinidosSemDemos){
         estadoExposicaoDemosDef.setEstadoCompleta();
     } else if (estado instanceof EstadoExposicaoCriada){ 

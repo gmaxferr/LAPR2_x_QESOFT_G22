@@ -1,63 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import lapr.project.model.Recurso;
 
 /**
- * Rpresentação de um registo de recursos.
- * 
- * @author Ricardo Osório e Ana Leite
+ *
+ * @author Ana Leite
  */
-public class RegistoRecursos implements Serializable{
+public class RegistoRecursos {
+
+    private ArrayList<Recurso> listaRecursos;
 
     /**
-     * Lista de recursos.
-     */
-    private List<Recurso> listaRecursos;
-
-    /**
-     * Construtor de objetos do tipo RegistoRecursos sem parâmetros.
+     *
      */
     public RegistoRecursos() {
         this.listaRecursos = new ArrayList<>();
     }
 
     /**
-     * Devolve a lista de recursos.
+     * Método que cria um recurso
      *
-     * @return lista de recursos.
+     * @param nome nome do recurso a ser criadp
+     * @return novo recurso
      */
-    public List<Recurso> getListaRecursos() {
+    public Recurso criarRecurso(String nome) {
+        if (validarRecurso() == true) {
+            Recurso recurso = new Recurso(nome);
+            recurso.setNomeRecurso(nome);
+            return recurso;
+        }
+        return null;
+    }
+
+    /**
+     * Valida o nome do recurso
+     *
+     * @return
+     */
+    private boolean validarRecurso() {
+        return true;
+    }
+
+    public ArrayList<Recurso> getListaDeRecursos() {
         return this.listaRecursos;
     }
 
-    /**
-     * Adiciona um recurso à lista de recursos.
-     *
-     * @param recurso recurso para adicionar.
-     */
-    public void addRecurso(Recurso recurso) {
-        if (valida(recurso)) {
-            this.listaRecursos.add(recurso);
+    public void setRecurso(Recurso rec) {
+        if (valida() == true) {
+            addRecurso(rec);
+        } else {
+            //avisa o utilizador para o facto de o recurso não ser válido
         }
     }
 
-    /**
-     * Valida o recurso.
-     * 
-     * @param novoRecurso recurso a ser validado
-     * @return true se não encontrar o recurso na lista de recursos.
-     * Caso contrário retorna false.
-     */
-    private boolean valida(Recurso novoRecurso) {
-        for (Recurso recurso : this.listaRecursos) {
-            if (novoRecurso.equals(recurso)) {
-                return false;
-            }
-        }
+    public boolean valida() {
+        //validação global
         return true;
+    }
+
+    private void addRecurso(Recurso rec) {
+        this.listaRecursos.add(rec);
     }
 
 }

@@ -25,5 +25,25 @@ public interface EstadoExposicao extends Estado{
     boolean setEstadoCandidaturasAtribuidas();
 
     boolean setEstadoCandidaturasAvaliadas();
+    
+    boolean isEstadoCriada();
+
+    boolean isEstadoFAEDefinidosSemDemos();
+
+    boolean isEstadoDemosDefinidasSemFAE();
+
+    boolean isEstadoCompleta();
+
+    boolean isEstadoCandidaturasAbertas();
+
+    boolean isEstadoCandidaturasFechadas();
+
+    boolean isEstadoConflitosDetetados();
+
+    boolean isEstadoConflitosAlterados();
+
+    boolean isEstadoCandidaturasAtribuidas();
+
+    boolean isEstadoCandidaturasAvaliadas();
 
 }

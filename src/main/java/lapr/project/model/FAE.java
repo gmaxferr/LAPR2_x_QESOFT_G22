@@ -1,114 +1,97 @@
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
- * Representação de um FAE.
+ * Representação de um FAE
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class FAE implements Cargo, Serializable, Comparable {
+public class FAE implements Comparable {
 
     /**
-     * Utilizador por detrás do papel de FAE.
+     * Atributo do FAE que representa o utilizador associado a este
      */
-    private Utilizador utilizador;
+    private Utilizador m_Utilizador;
+
+    private TipoConflito tipoConflito;
 
     /**
-     * Experiência do fae nesta posição
-     */
-    private int experiencia;
-
-    /**
-     * Construtor de objetos do tipo FAE recebendo como parâmetro o Utilizador
-     * que dá origem a um fae.
+     * Construtor de objectos do tipo FAE com parametro Utilizador
      *
-     * @param utilizador Utilizador que passa a ser reconhecido como FAE
-     * @param experiencia Experiência do fae nesta posição
+     * @param u Utilizador associado ao FAE
      */
-    public FAE(Utilizador utilizador, int experiencia) {
-        this.utilizador = utilizador;
-        this.experiencia = experiencia;
+    public FAE(Utilizador u) {
+        //copiar todos os dados das variaveis de instância
     }
 
     /**
-     * Devolve o utilizador por detrás do papel de FAE.
+     * Construtor de objectos do tipo FAE sem parametros
+     */
+    public FAE() {
+
+    }
+
+    /**
+     * Devolve o Utilizador atualmente associado ao FAE
      *
-     * @return Utilizador por detrás do papel de FAE.
+     * @return Utilizador associado ao FAE
      */
     public Utilizador getUtilizador() {
-        return this.utilizador;
+        return m_Utilizador;
+    }
+
+    public String getUsernameFae() {
+        return this.m_Utilizador.getM_StrUsername();
     }
 
     /**
-     * Devolve o username do utilizador.
+     * Define um novo utilizador associado ao FAE
      *
-     * @return username do utilizador.
+     * @param u novo Utilizador
      */
-    public String getUsername() {
-        return this.getUtilizador().getUsername();
+    public void setUtilizador(Utilizador u) {
+        this.m_Utilizador = u;
     }
 
     /**
-     * Retorna a experiência que o FAE tem neste cargo
+     * Devolve uma string com a descrição do objecto FAE, isto é, com os seus
+     * atributos
      *
-     * @return experiência do FAE
-     */
-    public int getExperiencia() {
-        return this.experiencia;
-    }
-
-    /**
-     * Devolve a descrição textual do fae.
-     *
-     * @return caraterísticas do fae.
+     * @return descrição do FAE
      */
     @Override
     public String toString() {
-        return "Fae: " + this.getUtilizador().getUsername();
+        String str = "FAE:\n";
+        str += "\tUser: " + this.m_Utilizador.getM_strNome() + "\n";
+
+        return str;
     }
 
-    /**
-     * Compara o FAE a outro objecto passado por parâmetro. A comparação entre
-     * dois FAE é feita com atenção a todos os atributos destes.
-     *
-     * @param obj objecto a comparar com o FAE
-     * @return true se o objeto recebido representar um fae equivalente ao fae.
-     * Caso contrário, retorna false.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
-        }
-        FAE fae = (FAE) obj;
-        if (this.getUtilizador().equals(fae.getUtilizador())) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean validaTipoConflito(TipoConflito tipoConflito) {
+        //verifica o tipo de conflito
+        return true;
     }
 
-    /**
-     * CompareTo a ser usado quando for preciso ordenar um contentor de FAE pela
-     * sua experiência
-     *
-     * @param faeComparar FAE a comparar
-     * @return -1 se o FAE recebido tiver menos experiência, 1 se tiver mais
-     * experiência ou 0 se ambos tiverem a mesma experiência.
-     */
+    public void setTipoConflitoFAE(TipoConflito tipoConflito) {
+        this.tipoConflito = tipoConflito;
+    }
+
+//    /**
+//     * CompareTo a ser usado quando for preciso ordenar um contentor de FAE pela
+//     * sua experiência
+//     *
+//     * @param faeComparar FAE a comparar
+//     * @return -1 se o FAE recebido tiver menos experiência, 1 se tiver mais
+//     * experiência ou 0 se ambos tiverem a mesma experiência.
+//     */
     @Override
     public int compareTo(Object faeComparar) {
-        FAE fae = (FAE) faeComparar;
-        if (this.experiencia > fae.experiencia) {
-            return -1;
-        } else if (this.experiencia < fae.experiencia) {
-            return 1;
-        } else {
-            return 0;
-        }
+//        FAE fae = (FAE) faeComparar;
+//        if (this.experiencia > fae.experiencia) {
+//            return -1;
+//        } else if (this.experiencia < fae.experiencia) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
     }
-
 }

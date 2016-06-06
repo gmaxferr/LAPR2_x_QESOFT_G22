@@ -1,87 +1,93 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Produto;
 
 /**
- * Representação de um registo de produtos.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ana Leite Ricardo Osório
  */
-public class RegistoProdutos implements Serializable {
+public class RegistoProdutos {
 
     /**
-     * Lista de produtos
+     * Atributo produtos a expor de Candidatura
      */
-    private List<Produto> listaProdutos;
+    private List<Produto> ProdutosExpor;
 
-    /**
-     * Contrutor de objetos do tipo RegistoProdutos sem parâmetros.
-     */
     public RegistoProdutos() {
-        this.listaProdutos = new ArrayList<>();
+        ProdutosExpor = new ArrayList<>();
+    }
+
+    public List<Produto> getListaProdutosAExpor() {
+        return this.ProdutosExpor;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (Produto produto : this.ProdutosExpor) {
+            str += produto.getNome() + "\n";
+        }
+        return str;
     }
 
     /**
-     * Modifica a lista de produtos.
+     * Método que cria um novo produto à Candidatura
      *
-     * @param listaProdutos lista de produtos.
-     */
-    public void setListaProdutos(List<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
-    }
-
-    /**
-     * Devolve a lista de produtos
+     * @param nome novo produto associado à Candidatura
      *
-     * @return lista de produtos
-     */
-    public List<Produto> getListaProdutos() {
-        return this.listaProdutos;
-    }
-
-    /**
-     * Cria e devolve um objecto do tipo Produto.
-     *
-     * @param nome nome do produto a ser criado.
-     *
-     * @return novo produto criado.
+     * @return produto criado
      */
     public Produto criarProduto(String nome) {
-        return new Produto(nome);
+        Produto produto = new Produto(nome);
+        ProdutosExpor.add(produto);
+        return produto;
     }
 
     /**
-     * Adiciona um produto à lista de produtos se este for válido.
+     * Método que valida e adiciona um novo produto
      *
-     * @param produto produto a ser adicionado à lista de produtos.
-     * @return true se adicionar o produto à lista de produtos. Caso contrário
-     * retorna false.
+     * @param produto produto a ser validado e adicionado
      */
     public boolean adicionaProduto(Produto produto) {
-        boolean b = validarProduto(produto);
-        if (b == true) {
-            this.listaProdutos.add(produto);
+        boolean b = validaProduto(produto);
+        if (b) {
+            addProduto(produto);
         }
         return b;
     }
 
     /**
-     * Valida um produto.
+     * Método que adiciona um produto de Candidatura
      *
-     * @param produtoCriado produto a validar.
-     * @return true se não encontrar o produto na lista de produtos. Caso
-     * contrário retorna false.
+     * @param p produto a ser adicionado
      */
-    private boolean validarProduto(Produto produtoCriado) {
-        for (Produto produto : this.listaProdutos) {
-            if (produtoCriado.equals(produto)) {
-                return false;
-            }
-        }
+    public void addProduto(Produto p) {
+        this.ProdutosExpor.add(p);
+    }
+
+    /**
+     * Método que valida produto de Candidatura recebendo-o como parametro
+     *
+     * @param produto produto a ser validado
+     */
+    public boolean validaProduto(Produto produto) {
+
+        //valida produto
         return true;
     }
 
+    /**
+     * Método que valida os dados repetidos pu invalidos de Candidatura
+     *
+     * @return boolean com a confirmação da validação
+     */
+    public boolean validarDadosRepetidosOuInvalidos() {
+        return true;
+    }
+
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.ProdutosExpor = listaProdutos;
+    }
 }

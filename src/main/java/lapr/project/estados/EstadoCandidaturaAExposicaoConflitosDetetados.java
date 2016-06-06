@@ -1,17 +1,22 @@
 package lapr.project.estados;
 
-import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
  * @author Ricardo Osório Ana Leite
  */
-public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
+public class EstadoCandidaturaAExposicaoConflitosDetetados implements EstadoCandidaturaAExposicao {
 
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
 
-    public EstadoCandidaturaConflitosDetetados(Candidatura cand) {
+    public EstadoCandidaturaAExposicaoConflitosDetetados(CandidaturaAExposicao cand) {
         this.cand = cand;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
     }
 
     @Override
@@ -21,19 +26,17 @@ public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        return true;
-
+        return false;
     }
 
     @Override
     public boolean setEstadoConflitosAtribuidos() {
         if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaConflitosAtribuidos(this.cand));
+            this.cand.setEstado(new EstadoCandidaturaAExposicaoConflitosAtribuidos(this.cand));
             return true;
         } else {
             return false;
         }
-
     }
 
     @Override
@@ -47,10 +50,25 @@ public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
 
     }
 
+    @Override
+    public boolean setEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
 
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
     }
 
     @Override
@@ -77,5 +95,25 @@ public class EstadoCandidaturaConflitosDetetados implements EstadoCandidatura {
     public boolean isEstadoCandidaturaAvaliada() {
         return false;
     }
-    
+
+    @Override
+    public boolean isEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaRemovida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaRemovida() {
+        return false;
+    }
+
 }

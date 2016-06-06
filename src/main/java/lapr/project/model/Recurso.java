@@ -1,59 +1,33 @@
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
- * Representação de um recurso usado pelas demonstrações permitindo o seu
- * funcionamento.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class Recurso implements Serializable {
+public class Recurso {
 
-    /**
-     * Nome do recurso
-     */
-    private String nome;
+    private String nomeRecurso;
 
-    /**
-     * Construtor de objetos do tipo Recurso com o parâmetro nome.
-     *
-     * @param nome nome do novo recurso
-     */
-    public Recurso(String nome) {
-        this.nome = nome;
+    public Recurso(String nomeRecurso) {
+        this.nomeRecurso = nomeRecurso;
     }
 
     /**
-     * Devolve o nome do recurso.
+     * Devolve o nome do recurso
      *
-     * @return nome do recurso.
+     * @return nome do recurso
      */
-    public String getNome() {
-        return this.nome;
+    public String getNomeRecurso() {
+        return nomeRecurso;
     }
 
     /**
-     * Compara o recurso a outro objecto passado por parâmetro. A comparação
-     * entre dois recursos é feita com atenção a todos os atributos destes.
+     * Modifica o nome do recurso
      *
-     * @param obj objeto a comparar com o recurso.
-     * @return true se o objeto recebido representar um recurso equivalente ao
-     * recurso. Caso contrário, retorna false.
+     * @param nomeRecurso novo nome do recurso
      */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
-        }
-        Recurso novoRecurso = (Recurso) obj;
-        if (novoRecurso.getNome().equalsIgnoreCase(this.getNome())) {
-            return true;
-        } else {
-            return false;
-        }
+    public void setNomeRecurso(String nomeRecurso) {
+        this.nomeRecurso = nomeRecurso;
     }
 
 }

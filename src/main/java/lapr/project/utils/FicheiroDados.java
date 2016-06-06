@@ -160,7 +160,7 @@ public class FicheiroDados {
             rr = centroExposicoes.getRegistoRecursos();
             while (inputRecursos.hasNextLine()) {
                 linhaLida = inputRecursos.nextLine();
-                rr.addRecurso(new Recurso(linhaLida));
+                rr.criarRecurso(linhaLida);
             }
             inputDemos = new Scanner(new File(NOME_FICHEIRO_TEXTO_DEMONSTRACOES_PREDEFINICAO));
             inputExpos = new Scanner(new File(NOME_FICHEIRO_TEXTO_EXPOSICOES_PREDEFINICAO));
@@ -172,19 +172,19 @@ public class FicheiroDados {
                 //add organizadores
                 for (int i = 0; i < NUMERO_ORGANIZADORES_POR_EXPOSICAO; i++) {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
-                    utilizador.confirmarRegistoUtilizador();
+                    utilizador.setUtilizadorRegistado();
                     exposicao.addOrganizador(utilizador);
                 }
 
                 //add fae
                 for (int i = 0; i < NUMERO_FAE_POR_EXPOSICAO; i++) {
                     linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                    utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                     ru.addUtilizador(utilizador);
-                    utilizador.confirmarRegistoUtilizador();
-                    exposicao.addFAE(utilizador, Integer.parseInt(linhaLidaVetor[4]));
+                    utilizador.setUtilizadorRegistado();
+                    exposicao.addFAE(utilizador);//, Integer.parseInt(linhaLidaVetor[4]));  -> experiência
                 }
 
                 //add demos
@@ -193,20 +193,20 @@ public class FicheiroDados {
                     linhaLida = inputDemos.nextLine();
                     demo = new Demonstracao(linhaLida);
                     rr = demo.getRegistoRecursos();
-                    rr.addRecurso(centroExposicoes.getRegistoRecursos().getListaRecursos().get(cont));
+                    rr.setRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
                     cont++;
-                    rd.adicionarDemonstracao(demo);
+                    rd.adicionaDemonstracao(demo);
                 }
-                re.addExposicao(exposicao);
+                re.registaExposicao(exposicao);
             }
 
             //Expositores (lê os restantes utilizadores do ficheiro)
             while (inputUtilizadores.hasNextLine()) {
                 linhaLidaVetor = inputUtilizadores.nextLine().split(";");
-                utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2], linhaLidaVetor[3]);
+                utilizador = new Utilizador(linhaLidaVetor[0], linhaLidaVetor[1], linhaLidaVetor[2].toCharArray(), linhaLidaVetor[3]);
                 ru.addUtilizador(utilizador);
-                utilizador.confirmarRegistoUtilizador();
-                centroExposicoes.addExpositor(utilizador);
+                utilizador.setUtilizadorRegistado();
+                centroExposicoes.getRegistoExpositores().addExpositor(utilizador);
             }
 
             inputExpos.close();
@@ -215,9 +215,9 @@ public class FicheiroDados {
             inputUtilizadores.close();
 
             RegistoMecanismos rm = centroExposicoes.getRegistoMecanismos();
-            rm.addMecanismo(new MecanismoA());
-            rm.addMecanismo(new MecanismoB());
-            rm.addMecanismo(new MecanismoC());
+            rm.addMecanismo(new MecanismoPredefinidoA());
+            rm.addMecanismo(new MecanismoPredefinidoB());
+            rm.addMecanismo(new MecanismoPredefinidoC());
         } catch (FileNotFoundException e) {
             //apenas se os ficheiros ainda não tiverem sido colocados na pasta
             JOptionPane.showMessageDialog(null, "Os ficheiros de texto necessários para carregar os dados não se encontram na pasta do projeto!\nDevem de ser colocado na pasta do projecto em MeusDocumentos.", "Erro", JOptionPane.WARNING_MESSAGE);

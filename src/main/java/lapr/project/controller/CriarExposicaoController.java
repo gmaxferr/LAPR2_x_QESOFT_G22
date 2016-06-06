@@ -1,8 +1,8 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Local;
@@ -30,7 +30,7 @@ public class CriarExposicaoController {
     
     private EstadoExposicao estadoExposicao;
     
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     public CriarExposicaoController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoUtilizadores registoUtilizadores, RegistoOrganizadores registoOrganizadores) {
         m_centro_exposicoes = centro_exposicoes;
@@ -60,7 +60,7 @@ public class CriarExposicaoController {
      * @return lista de todos os utilizadores
      */
     public List<Utilizador> getListaUtilizadores() {
-        return m_ru.getUtilizadores();
+        return m_ru.getListaUtilizadores();
     }
 
     /**
@@ -110,7 +110,7 @@ public class CriarExposicaoController {
     }
 
     public void setEstadoCriada() {
-        this.estadoExposicao=this.m_exposicao.getEstadoExposicao();
+        this.estadoExposicao=this.m_exposicao.getEstado();
         estadoExposicao.setEstadoCriada();
     }
 

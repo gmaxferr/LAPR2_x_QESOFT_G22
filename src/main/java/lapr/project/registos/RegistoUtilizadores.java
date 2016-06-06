@@ -1,98 +1,130 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Utilizador;
 
 /**
- * Representação de um Registo de Utilizadores.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class RegistoUtilizadores implements Serializable {
+public class RegistoUtilizadores {
 
-    /**
-     * Lista de utilizadores.
-     */
-    private List<Utilizador> listaUtilizadores;
+    private ArrayList<Utilizador> listaUtilizadores;
 
-    /**
-     * Construtor de objetos do tipo RegistoUtilizadores sem paramentros.
-     */
-    public RegistoUtilizadores() {
-        this.listaUtilizadores = new ArrayList<>();
-    }
+    Utilizador u;
 
-    /**
-     * Devolve a lista de utilizadores.
-     *
-     * @return lista de utilizadores.
-     */
-    public List<Utilizador> getListaUtilizadores() {
-        return this.listaUtilizadores;
-    }
-
-    /**
-     * Adiciona um utilizador àmlista de utilizadores.
-     *
-     * @param utilizador utilizador a ser adicionado.
-     */
-    public void addUtilizador(Utilizador utilizador) {
-        if (validarUtilizador(utilizador)) {
-            this.listaUtilizadores.add(utilizador);
+    public Utilizador identificarUtilizadorPeloID(String id) {
+        Utilizador u = identificarUtilizadorID(id);
+        boolean b = validaUtilizador();
+        if (b == true) {
+            return u;
+        } else {
+            return null;
         }
     }
 
-    /**
-     * Validar o utilizador através do email ou do username.
-     *
-     * @param utilizador utilizador a validar.
-     * @return true se não encontrar o utilizador na lista de utilizadores. Caso
-     * contrário retorna false.
-     */
-    private boolean validarUtilizador(Utilizador utilizador) {
-        for (Utilizador u : listaUtilizadores) {
-            if (u.getE_mail().equalsIgnoreCase(utilizador.getE_mail())
-                    || u.getUsername().equalsIgnoreCase(utilizador.getUsername())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Identifica um utilizador com o dado username e retorna-o
-     *
-     * @param username Username do utilizador a encontrar
-     * @return Retorna o utilizador cujo username é igual ao passado como
-     * argumento, se existir. Se não existir, retorna null.
-     */
-    public Utilizador identificarUtilizador(String username) {
-        for (Utilizador u : listaUtilizadores) {
-            if (u.getUsername().equals(username)) {
+    private Utilizador identificarUtilizadorID(String ID) {
+        for (Utilizador u : this.listaUtilizadores) {
+            if (u.getID().equalsIgnoreCase("id")) {
                 return u;
             }
         }
         return null;
     }
 
+    private boolean validaUtilizador() {
+        //valida o utilizador globalmente (repetido, etc).
+        return true;
+    }
+
     /**
-     * Valida se o username e o email passados como argumento são únicos, isto
-     * é, não existe sequer um utilizador com qualquer um destes dados na lista
-     * de utilizadores guardada por este registo.
-     *
-     * @param username username a verificar se é única
-     * @param email email a verificar se é único
-     * @return Retorna TRUE se ambos forem únicos, FALSE caso contrário
+     * Lista de utilizadores registados
      */
-    public boolean validaDadosUnicos(String username, String email) {
-        for (Utilizador u : listaUtilizadores) {
-            if (u.getUsername().equals(username)
-                    || u.getE_mail().equals(email)) {
-                return false;
+    private ArrayList<Utilizador> m_listaUtilizadores;
+
+    /**
+     * Método que devolve lista dos Utilizadores
+     *
+     * @return lista dos utilizadores
+     */
+    public List<Utilizador> getListaUtilizadores() {
+        return m_listaUtilizadores;
+    }
+
+    /**
+     * Método que devolve um Utilizador identificado pelo seu ID
+     *
+     * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
+     * @return o dado Utilizador se encontrar ou então devolve null
+     */
+    public Utilizador getUtilizador(String id) {
+        for (int i = 0; i < m_listaUtilizadores.size(); i++) {
+            if (identificarUtilizadorPeloId(id)) {
+                return m_listaUtilizadores.get(i);
             }
         }
+        return null;
+    }
+
+    /**
+     * Método que retorna um Utilizador dado um ID (nome ou email)
+     *
+     * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
+     * @return o dado Utilizador se encontrar ou então devolve null
+     */
+    public boolean identificarUtilizadorPeloId(String id) {
+        //verifica no arraylist de todos os utilziadores
+        return true;
+    }
+
+    public Utilizador novoUtilizador() {
+        return new Utilizador();
+    }
+
+    /**
+     * Métdo que valida (globalmente) e em caso de sucesso adiciona o Utilizador
+     *
+     * @param u Utilizador desejado
+     */
+    public void addUtilizador(Utilizador u) {
+        if (validaUtilizador() == true) {
+            adicionaUtilizador(u);
+        } else {
+            //reverte as alterações da adição deste utilizador
+        }
+    }
+
+    private void adicionaUtilizador(Utilizador u) {
+        listaUtilizadores.add(u);
+    }
+
+    /**
+     * Método que devolve uma lista com os novos registos (registos ainda nao
+     * confirmados)
+     *
+     * @return lista de novos registos
+     */
+    public ArrayList<Utilizador> getListaNovosRegistos() {
+        ArrayList<Utilizador> list = new ArrayList<>();
+        for (Utilizador u : listaUtilizadores) {
+            if (u.getM_boolConfirmaRegisto() == false) {
+                list.add(u);
+            }
+        }
+        return list;
+    }
+
+    public Utilizador identificarUtilizador(String username) {
+        for (Utilizador utilizador : this.listaUtilizadores) {
+            if (utilizador.getM_StrUsername().equalsIgnoreCase(username)) {
+                return utilizador;
+            }
+        }
+        return null;
+    }
+
+    public boolean validaDadosUnicos(String username, String email) {
         return true;
     }
 }

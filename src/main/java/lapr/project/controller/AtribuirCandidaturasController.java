@@ -2,17 +2,10 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.Mecanismo;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoMecanismos;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - atribuir candidaturas
@@ -22,29 +15,30 @@ import lapr.project.registos.RegistoMecanismos;
 public class AtribuirCandidaturasController {
 
     private ArrayList<Exposicao> listaExpo;
-    private ArrayList<Candidatura> listaCand;
+    private List<CandidaturaAExposicao> listaCand;
     private ArrayList<FAE> listaFAE;
     private RegistoExposicoes re;
     /*as variaveis seguintes são de instância para evitar problemas 
     caso fossem de classe quando duas pessoas ou mais executam este UC ao 
     mesmo tempo. Os dados guardados do primeiro utilizador seriam 
     sobrepostos pelos do segundo*/
-    private Candidatura cand;
+    private CandidaturaAExposicao cand;
     private Decisao d;
     private Exposicao e;
 
     private CentroExposicoes centroExposicoes;
     private RegistoMecanismos rm;
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
     private EstadoExposicao estadoExposicao;
-    private EstadoCandidatura estadoCandidatura;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
+    private final String usernameOrganizador;
 
-    public AtribuirCandidaturasController(CentroExposicoes centroExposicoes) {
+    public AtribuirCandidaturasController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
         this.listaExpo = new ArrayList<>();
         this.listaCand = new ArrayList<>();
         this.listaFAE = new ArrayList<>();
-        this.cand = new Candidatura();
         this.centroExposicoes = centroExposicoes;
+        this.usernameOrganizador = usernameOrganizador;
     }
 
     /**
@@ -52,8 +46,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de Exposições o Organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizador() {
-        listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizador();
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+        listaExpo = centroExposicoes.getRegistoExposicoes().getListaExposicoesDoOrganizador(this.usernameOrganizador);
         return listaExpo;
     }
 
@@ -71,8 +65,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de candidaturas
      */
-    public ArrayList<Candidatura> getListaCandidatuas() {
-        listaCand = this.e.getListaCandidaturas();
+    public List<CandidaturaAExposicao> getListaCandidatuas() {
+        listaCand = this.e.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         return listaCand;
     }
 
@@ -81,18 +75,8 @@ public class AtribuirCandidaturasController {
      *
      * @return lista de FAE
      */
-    public ArrayList<FAE> getListaFAE() {
-        return this.e.getListaFAE();
-    }
-
-    /**
-     * Chama o método criarDecisão para a exposição correta
-     *
-     * @param fae fae escolhido pelo utilizador
-     * @param c candidatura escolhida pelo utilizador
-     */
-    public void criarDecisao(FAE fae, Candidatura c) {
-        d = c.criarDecisao(fae);
+    public List<FAE> getListaFAE() {
+        return this.e.getRegistoFAE().getListaFAE();
     }
 
     /**
@@ -100,7 +84,7 @@ public class AtribuirCandidaturasController {
      *
      * @param c candidatura escolhida pelo utilizador
      */
-    public void validarDecisao(Candidatura c) {
+    public void validarDecisao(CandidaturaAExposicao c) {
         e.validarDecisao(c);
     }
 
@@ -124,19 +108,40 @@ public class AtribuirCandidaturasController {
         this.e.getRegistoAtribuicoes();
     }
 
-    public List<Atribuicao> atribui(Mecanismo mec) {
-        return mec.atribui();
+    /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     *
+     * @return atribuições geradas.
+     */
+    public List<AtribuicoesCandidatura> atribui(Mecanismo mec) {
+        MecanismoSimples mecanismo = (MecanismoSimples) mec;
+        return mecanismo.atribui(this.e);
     }
 
-    public void registaAtribuicao(List<Atribuicao> listaAtribuicao) {
+    /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     * @param numeroFAEOuExperiencia
+     *
+     * @return atribuições geradas.
+     */
+    public List<AtribuicoesCandidatura> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
+        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
+        return mecanismo.atribui(this.e, numeroFAEOuExperiencia);
+    }
+
+    public void registaAtribuicao(List<AtribuicoesCandidatura> listaAtribuicao) {
         this.e.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
     }
 
     public void setEstadoCandidaturaAtribuida() {
-        this.estadoExposicao = this.e.getEstadoExposicao();
+        this.estadoExposicao = this.e.getEstado();
         estadoExposicao.setEstadoCandidaturasAtribuidas();
 
-        this.estadoCandidatura = this.cand.getEstadoCandidatura();
+        this.estadoCandidatura = this.cand.getEstado();
         estadoCandidatura.setEstadoCandidaturaAtribuida();
     }
 

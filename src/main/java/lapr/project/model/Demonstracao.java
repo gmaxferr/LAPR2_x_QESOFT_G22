@@ -1,95 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.model;
 
-import java.io.Serializable;
 import lapr.project.registos.RegistoRecursos;
 
 /**
- * Representação de uma demonstração.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class Demonstracao implements Serializable{
+public class Demonstracao {
 
-    /**
-     * Código de identificação da demonstração.
-     */
-    private String codigoIdentificacao;
-    
-    /**
-     * Descrição da demonstração.
-     */
-    private String descricao;
-    
-    /**
-     * Registo de recursos da demonstração.
-     */
-    private RegistoRecursos rr;
+    private String m_StrDescricao;
+    private String m_StrCodigoIdentificacao;
+    private RegistoRecursos rrr;
 
-    /**
-     * Descrição da demonstração por omissão.
-     */
-    private static final String DESCRICAO_POR_OMISSAO = "Nenhuma descrição definida.";
-
-    /**
-     * Prefixo de identificação da demonstração.
-     */
-    private static final String PREFIXO_IDENTIFICACAO = "Demo_";
-
-    /**
-     * Construtor de objetos do tipo Demonstração com os parâmetros demonstração 
-     * e o contador das demonstrações.
-     * 
-     * @param demonstracao demonstração.
-     * @param contadorDemonstracoes contador das demonstrações.
-     */
-    public Demonstracao(Demonstracao demonstracao, int contadorDemonstracoes) {
-        this.descricao = demonstracao.descricao;
-        this.rr = demonstracao.rr;
-        this.codigoIdentificacao = PREFIXO_IDENTIFICACAO + contadorDemonstracoes;
-    }
-
-    /**
-     * Construtor de objetos do tipo Demonstracao com o parâmetro descrição.
-     *
-     * @param descricao descrição da demonstração.
-     */
     public Demonstracao(String descricao) {
-        this.rr = new RegistoRecursos();
-        this.descricao = descricao;
+        this.rrr = new RegistoRecursos();
+        this.m_StrDescricao = descricao;
     }
 
-    /**
-     * Construtor de objetos do tipo Demonstração sem parâmetros.
-     */
-    public Demonstracao() {
-        this.rr = new RegistoRecursos();
-        this.descricao = DESCRICAO_POR_OMISSAO;
+    public String getM_StrDescricao() {
+        return this.m_StrDescricao;
     }
 
-    /**
-     * Devolve o registo de recursos da demonstração.
-     * 
-     * @return resgisto de recursos da demonstração.
-     */
+    public void setM_StrDescricao(String descricaoIntroduzidaPeloUtilizador) {
+        this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
+    }
+
     public RegistoRecursos getRegistoRecursos() {
-        return this.rr;
+        return this.rrr;
     }
 
-    /**
-     * Devolve o código de identificação da demonstração.
-     * 
-     * @return código de identificação da demonstração.
-     */
-    public String getCodigoIdentificacao() {
-        return this.codigoIdentificacao;
-    }
-    
-    /**
-     * Devolve a descrição da demonstração.
-     * 
-     * @return descrição da demonstração.
-     */
-    public String getDescricao(){
-        return this.descricao;
+    public String getM_StrCodigoIdentificacao() {
+        return this.m_StrCodigoIdentificacao;
     }
 }

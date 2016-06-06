@@ -1,44 +1,32 @@
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
- * Representação de um local.
+ * Representação de objectos do tipo Local
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ricardo Osório Ana Leite
  */
-public class Local implements Serializable {
+public class Local {
 
-    /**
-     * Morada do local.
-     */
-    private String morada;
+    private String m_StrMorada;
 
-    /**
-     * Construtor de objetos do tipo Local com o parâmetro morada.
-     *
-     * @param morada morada do local.
-     */
-    public Local(String morada) {
-        this.morada = morada;
+    public Local(String nomeLocal) {
+        this.m_StrMorada = nomeLocal;
     }
 
     /**
-     * Devolve a morada do local.
      *
-     * @return morada do local.
+     * @return
      */
-    public String getMorada() {
-        return this.morada;
+    public String getM_StrMorada() {
+        return m_StrMorada;
     }
 
     /**
-     * Devolve a descrição textual do local.
      *
-     * @return caraterísticas do local.
+     * @param nomeLocal
      */
-    @Override
-    public String toString() {
-        return this.morada;
+    public void setM_StrMorada(String nomeLocal) {
+        this.m_StrMorada = nomeLocal;
     }
+
 }

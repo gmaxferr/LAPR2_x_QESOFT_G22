@@ -1,307 +1,215 @@
 package lapr.project.model;
 
-import java.io.Serializable;
+import lapr.project.registos.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoCandidaturasRemovidas;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoFAE;
-import lapr.project.registos.RegistoOrganizadores;
 
 /**
- * Representação de uma exposição.
+ * Representação de uma Exposição
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ana Leite Ricardo Osório
  */
-public class Exposicao implements Serializable {
+public class Exposicao {
 
+    EstadoExposicao m_estado;
     /**
-     * Título da exposição.
+     * Atributo titulo de Exposição
      */
-    private String titulo;
+    private String m_strTitulo;
 
     /**
-     * Descrição da exposição.
+     * Atributo descrição de Exposição
      */
-    private String descricao;
+    private String m_strDescricao;
 
     /**
-     * Data de inicio da exposição. Não foi usado Date por aparecer como classe
-     * desactualizada no IDE
+     * Atributo data de inicio de Exposição
      */
-    private String dataInicio;
+    private String m_strDataInicio;
 
     /**
-     * Data de fim da exposição. Não foi usado Date por aparecer como classe
-     * desactualizada no IDE
+     * Atributo data de fim de Exposição
      */
-    private String dataFim;
+    private String m_strDataFim;
 
     /**
-     * Local da exposição.
+     * Atributo local de Exposição
      */
     private Local local;
 
     /**
-     * Registo de candidaturas da exposição.
-     */
-    private RegistoCandidaturas rc;
-
-    /**
-     * Registo de atribuições da exposição.
+     *
      */
     private RegistoAtribuicoes ra;
 
     /**
-     * Registo de organizadores da exposição.
-     */
-    private RegistoOrganizadores ro;
-
-    /**
-     * Registo de demostrações da exposição.
-     */
-    private RegistoDemonstracoes rd;
-
-    /**
-     * Registo de fae da exposição.
+     *
      */
     private RegistoFAE rfae;
 
     /**
-     * Registo candidaturas removidas da exposição
+     *
+     */
+    private RegistoCandidaturasAExposicao rce;
+
+    /**
+     *
      */
     private RegistoCandidaturasRemovidas rcr;
 
     /**
-     * Centro de exposições que tem esta exposição
+     *
      */
+    private RegistoOrganizadores ro;
+
+    /**
+     *
+     */
+    private RegistoDemonstracoes rd;
+
+    /**
+     * Timer despoletado quando a data de abertura de submissão de candidaturas
+     * for atingida
+     */
+    private Timer timerAberturaCandidatura;
+
+    /**
+     * Timer despoletado quando a data de encerramento de candidaturas chegar
+     */
+    private Timer timerEncerramentoCandidatura;
+
+    /**
+     * Timer despoletado quando chega a data final para deteção de conflitos
+     */
+    private Timer timerFimDetecaoConflitos;
+    
+    private RegistoConflitos rconf;
+
+    private RegistoExpositores rexpositores;
+
+    Exposicao e;
+    FAE f;
+    CandidaturaAExposicao c;
     private CentroExposicoes centroExposicoes;
 
-    private EstadoExposicao estado;
+    /**
+     * Construtor de Exposição sem parametros
+     */
+    public Exposicao() {
+        this.rce = new RegistoCandidaturasAExposicao();
+        this.rfae = new RegistoFAE();
+        this.rcr = new RegistoCandidaturasRemovidas();
+        this.rconf = new RegistoConflitos();
+        this.ra = new RegistoAtribuicoes();
+        this.rce = new RegistoCandidaturasAExposicao();
+        this.rcr = new RegistoCandidaturasRemovidas();
+        this.rd = new RegistoDemonstracoes();
+        this.rfae = new RegistoFAE();
+        this.ro = new RegistoOrganizadores();
+        this.m_estado = new EstadoExposicaoInicial(this);
+    }
 
     /**
-     * Construtor de objetos do tipo Exposição com os parâmetros título,
-     * descrição, data de inicio, data de fim e local da exposição.
+     * Construtor de Exposição com parametros
      *
-     * @param titulo titulo da exposição.
-     * @param descricao descrição da exposição.
-     * @param dataInicio data de inicio da exposição.
-     * @param dataFim data de fim da exposição.
-     * @param local local da exposição.
-     * @param centroExposicoes centro de exposições que contêm esta exposição
+     * @param titulo titulo da exposição
+     * @param descricao descrição da exposição
+     * @param dataInicio data de inicio da exposição
+     * @param dataFim data de fim da exposição
+     * @param local local da exposição
+     * @param centroExposicoes
      */
     public Exposicao(String titulo, String descricao, String dataInicio, String dataFim, Local local, CentroExposicoes centroExposicoes) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.m_strTitulo = titulo;
+        this.m_strDescricao = descricao;
+        this.m_strDataInicio = dataInicio;
+        this.m_strDataFim = dataFim;
         this.local = local;
-        this.ra = new RegistoAtribuicoes();
-        this.rc = new RegistoCandidaturas();
-        this.rd = new RegistoDemonstracoes();
-        this.rfae = new RegistoFAE(this);
-        this.ro = new RegistoOrganizadores(this);
         this.centroExposicoes = centroExposicoes;
-        this.estado = new EstadoExposicaoInicial(this);
+        this.ra = new RegistoAtribuicoes();
+        this.rfae = new RegistoFAE();
+        this.rce = new RegistoCandidaturasAExposicao();
+        this.ro = new RegistoOrganizadores();
+        this.rd = new RegistoDemonstracoes();
+        this.rcr = new RegistoCandidaturasRemovidas();
+    }
+
+    public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
+        this.ro = ro;
+        this.rfae = rfae;
+        this.rce = rce;
     }
 
     /**
-     * Devolve o título da exposição.
+     * Método que valida a exposição
      *
-     * @return título da exposição.
+     * @return boolean de confirmação de validação
      */
-    public String getTitulo() {
-        return this.titulo;
+    public boolean valida() {
+        return true;
     }
 
     /**
-     * Devolve a descrição da exposição.
+     * Devolve o titulo da exposição
      *
-     * @return descrição da exposição.
+     * @return titulo da exposição
      */
-    public String getDescricao() {
-        return descricao;
+    public String getM_strTitulo() {
+        return m_strTitulo;
     }
 
     /**
-     * Devolve a data de início da exposição.
+     * Devolve a descrição da exposição
      *
-     * @return data de início da exposição.
+     * @return descricao da exposição
      */
-    public String getDataInicio() {
-        return dataInicio;
+    public String getM_strDescricao() {
+        return m_strDescricao;
     }
 
     /**
-     * Devolve a data de fim da exposição.
+     * Devolve a data de inicio da exposição
      *
-     * @return data de fim da exposição.
+     * @return data de inicio da exposição
      */
-    public String getDataFim() {
-        return dataFim;
+    public String getM_strDataInicio() {
+        return m_strDataInicio;
     }
 
     /**
-     * Devolve o local da exposição.
+     * Devolve a data de fim da exposição
      *
-     * @return local da exposição.
+     * @return data de fim da exposição
+     */
+    public String getM_strDataFim() {
+        return m_strDataFim;
+    }
+
+    /**
+     * Devolve o local da exposição
+     *
+     * @return local da exposição
      */
     public Local getLocal() {
         return local;
     }
 
     /**
-     * Devolve o registo de candidaturas da exposição.
+     * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return registo de candidaturas da exposição.
-     */
-    public RegistoCandidaturas getRegistoCandidaturas() {
-        return this.rc;
-    }
-
-    /**
-     * Devolve o registo de atribuições da exposição.
-     *
-     * @return registo de atribuições da exposição.
-     */
-    public RegistoAtribuicoes getRegistoAtribuicoes() {
-        return this.ra;
-    }
-
-    /**
-     * Devolve o registo de demonstrações da exposição.
-     *
-     * @return registo de demonstrações da exposição.
-     */
-    public RegistoDemonstracoes getRegistoDemonstracoes() {
-        return this.rd;
-    }
-
-    /**
-     * Devolve o resgisto de FAE da exposição.
-     *
-     * @return resgisto de FAE da exposição.
-     */
-    public RegistoFAE getRegistoFAE() {
-        return this.rfae;
-    }
-
-    /**
-     * Devolve o registo de organizadores da exposição.
-     *
-     * @return registo de organizadores da exposição.
-     */
-    public RegistoOrganizadores getRegistoOrganizadores() {
-        return this.ro;
-    }
-
-    /**
-     * Devolve o registo de candidaturas removidas.
-     *
-     * @return registo de candidaturas removidas
+     * @return
      */
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
-        return this.rcr;
+        return rcr;
     }
+    
 
     /**
-     * Devolve o número de organizadores desta exposição
-     *
-     * @return verificação do número mínimo de organizadores da exposição.
-     */
-    public int getNumeroOrganizadores() {
-        return this.ro.getSize();
-    }
-
-    /**
-     * Modifica o título da exposição.
-     *
-     * @param titulo novo título da exposição.
-     */
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    /**
-     * Modifica a descrição da exposição.
-     *
-     * @param descricao nova descrição da exposição.
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    /**
-     * Modifica a data de início da exposição.
-     *
-     * @param dataInicio nova data de início da exposição.
-     */
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    /**
-     * Modifica a data de fim da exposição.
-     *
-     * @param dataFim nova data de fim da exposição.
-     */
-    public void setDataFim(String dataFim) {
-        this.dataFim = dataFim;
-    }
-
-    /**
-     * Modifica o local da exposição.
-     *
-     * @param local novo local da exposição.
-     */
-    public void setLocal(Local local) {
-        this.local = local;
-    }
-
-    /**
-     * Compara a exposição a outro objecto passado por parâmetro. A comparação
-     * entre duas exposições é feita com atenção a todos os atributos destas.
-     *
-     * @param obj objecto a comparar com a exposição
-     * @return true se o objeto recebido representar uma exposição equivalente à
-     * exposição. Caso contrário, retorna false.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getClass() != obj.getClass()) {
-            return false;
-        } else if (this == obj) {
-            return true;
-        }
-        Exposicao exposicao = (Exposicao) obj;
-        if (this.getTitulo().equalsIgnoreCase(exposicao.getTitulo())
-                && this.getDescricao().equalsIgnoreCase(exposicao.getDescricao())
-                && this.getLocal().getMorada().equalsIgnoreCase(exposicao.getLocal().getMorada())
-                && this.getDataInicio().equals(exposicao.getDataInicio())
-                && this.getDataFim().equals(exposicao.getDataFim())) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Adiciona um utilizador como fae desta exposição recebendo como parametro
-     * o username ou o email desse utilizador. Apenas adiciona se ainda não
-     * existir como fae nesta exposição
-     *
-     * @param utilizador utilizador a ser adicionar como fae desta exposição
-     * @param experiencia experiência do fae nesta posição
-     */
-    public void addFAE(Utilizador utilizador, int experiencia) {
-        this.rfae.addFAE(utilizador, experiencia);
-    }
-
-    /**
-     * Adiciona um utilizador como organizador desta exposição recebendo como
-     * parametro o username ou o email desse utilizador. Apenas adiciona se
-     * ainda não existir como organizador nesta exposição
+     * Define novo organizador de exposição
      *
      * @param utilizador
      */
@@ -310,18 +218,276 @@ public class Exposicao implements Serializable {
     }
 
     /**
-     * @return Devolve o estado desta Exposição
+     * Define novo titulo de exposição
+     *
+     * @param strTitulo novo tirulo de exposição
      */
-    public EstadoExposicao getEstado() {
-        return estado;
+    public void setTitulo(String strTitulo) {
+        this.m_strTitulo = strTitulo;
     }
 
     /**
-     * Modifica o estado desta exposição
+     * Define nova descrição de exposição
      *
-     * @param estado Novo estado da exposição
+     * @param strDescricao nova descrição de exposição
      */
+    public void setDescricao(String strDescricao) {
+        this.m_strDescricao = strDescricao;
+    }
+
+    /**
+     * Define novo periodo de exposição
+     *
+     * @param strDataInicio nova data de inicio de exposição
+     * @param strDataFim novo data de fim de exposição
+     */
+    public void setPeriodo(String strDataInicio, String strDataFim) {
+        this.m_strDataInicio = strDataInicio;
+        this.m_strDataFim = strDataFim;
+    }
+
+    /**
+     * Define novo local de exposição
+     *
+     * @param local novo local de exposição
+     */
+    public void setLocal(Local local) {
+        this.local = local;
+    }
+
+    public ArrayList<Organizador> getListaOrganizadores() {
+        return this.ro.getListaOrganizadores();
+    }
+
+    /**
+     * Método que valida o utilizador
+     *
+     * @param u utilizador a ser validado
+     *
+     * @return boolean que confirma validação
+     */
+    public boolean validarUtilizador(Utilizador u) {
+        //valida o utilizador
+        return true;
+    }
+
+    /**
+     * Método que valida dados da candidatura
+     *
+     * @param c candidatura
+     *
+     * @return boolean que confirma a validação dos dados
+     */
+    public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
+        //valida candidatura
+        return true;
+    }
+
+    /**
+     * Método que adiciona fae à exposição
+     *
+     * @param u utilizador/fae da exposição
+     */
+    public void addFAE(Utilizador u) {
+        //cria o fae a partir do utilizador recebido (u)
+        this.rfae.adicionaFAE(u);
+
+    }
+
+    /**
+     * método que confirma adição de fae
+     *
+     * @param b
+     */
+    void confirmaAddFAE(boolean b) {
+        if (b == true) {
+
+        } else {
+            //cancela as alterações e FAE adicionados
+        }
+    }
+
+    /**
+     * Devolve a lista de todas as candidaturas associadas à exposição
+     *
+     * @return arraylist com todas as candidatuas associadas à exposição
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
+        return this.rce.getListaCandidaturasAExposicao();
+    }
+
+    /**
+     * Lista dos fae da exposição
+     *
+     * @return lista dos fae
+     */
+    public List<FAE> getListaFAE() {
+        return this.rfae.getListaFAE();
+    }
+
+    /**
+     * Método que valida decisao da candidatura
+     *
+     * @param c candidatura
+     *
+     * @return boolean de confirmação da validação
+     */
+    public boolean validarDecisao(CandidaturaAExposicao c) {
+        return true;
+    }
+
+    /**
+     * Método que devolve os dados da candidatura
+     *
+     * @param c candidatura
+     * @return dados da candidatura
+     */
+    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
+        return c.getDadosCandidatura();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RegistoAtribuicoes getRa() {
+        return ra;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RegistoFAE getRegistoFAE() {
+        return rfae;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RegistoCandidaturasAExposicao getRegistoCandidaturas() {
+        return rce;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RegistoOrganizadores getRo() {
+        return ro;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public RegistoDemonstracoes getRd() {
+        return rd;
+    }
+
+    /**
+     * Método que remove candidaturas repetidas
+     */
+    public void removerCandidaturasRepetidas() {
+        //remove as exposições repetidas dentro do arrayList
+    }
+
+    /**
+     * Método que valida candidatura
+     *
+     * @param c candidatura
+     *
+     * @return boolean de confirmação da validação
+     */
+    public boolean validarCandidatura(CandidaturaAExposicao c) {
+        return c.validarCandidatura();
+    }
+
     public void setEstado(EstadoExposicao estado) {
-        this.estado = estado;
+        this.m_estado = estado;
+    }
+
+    /**
+     * Métoto que define nova decisao
+     *
+     * @param candidaturaAExposicao
+     */
+    public void setDecisao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
+    }
+
+    /**
+     * Método que valida a decisao da candidatura
+     *
+     * @return boolean de confirmação de validação
+     */
+    public boolean validaDecidirCandidatura() {
+        return true;
+    }
+
+    public RegistoDemonstracoes getRegistoDemonstracoes() {
+        return this.rd;
+    }
+
+    public boolean dadosMinimosObrigatorios() {
+        //verifica se a exposicao tem todos os dados minimos obrigatórios
+        return true;
+    }
+
+    public EstadoExposicao getEstado() {
+        return m_estado;
+    }
+
+    public RegistoConflitos getRegistoCoflitos() {
+        return this.rconf;
+    }
+
+    public RegistoAtribuicoes getRegistoAtribuicoes() {
+        return this.ra;
+    }
+    
+    private void criaTimerAberturaCandidaturas(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerAberturaCandidatura = new Timer();
+        timerAberturaCandidatura.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                EstadoExposicao estado = m_estado;
+                estado.setEstadoCandidaturasAbertas();
+            }
+        }, getDataAberturaCandidatura().toDate());
+    }
+
+    private void criaTimerEncerramentoCandidaturas(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerEncerramentoCandidatura = new Timer();
+        timerEncerramentoCandidatura.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ExposicaoEstado estado = m_estado;
+                estado.setFechadaCandidaturas();
+                DetecaoConflitosController ctrl = new DetecaoConflitosController();
+                ctrl.detetaConflitos(getCentroDeExposicoes(), thisExpo);
+            }
+        }, getDataEncerramentoCandidatura().toDate());
+    }
+
+    private void criaTimerFimDetecaoConflitos(Exposicao this) {
+        Exposicao thisExpo = this;
+        timerFimDetecaoConflitos = new Timer();
+        timerFimDetecaoConflitos.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ExposicaoEstado estado = m_state;
+                estado.setAbertaAtribuicoes();
+            }
+        }, getDataFimDetecaoConflitos().toDate());
+    }
+
+    private void criaTimers() {
+        criaTimerAberturaCandidaturas();
+        criaTimerEncerramentoCandidaturas();
+        criaTimerFimDetecaoConflitos();
     }
 }

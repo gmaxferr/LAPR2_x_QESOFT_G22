@@ -1,19 +1,18 @@
 package lapr.project.controller;
 
-import lapr.project.exceptions.*;
+import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.exceptions.*;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoCandidaturas;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoProdutos;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - criar candidatura.
  *
  * @author Ricardo Osório e Ana Leite
  */
-public class CriarCandidaturaController {
+public class CriarCandidaturaAExposicaoController {
 
     /**
      * Registo de exposições.
@@ -23,7 +22,7 @@ public class CriarCandidaturaController {
     /**
      * Registo de candidaturas.
      */
-    private RegistoCandidaturas rc;
+    private RegistoCandidaturasAExposicao rc;
 
     /**
      * Registo de produtos.
@@ -35,7 +34,7 @@ public class CriarCandidaturaController {
      */
     private RegistoDemonstracoes rd;
 
-     /**
+    /**
      * Exposição escolhida.
      */
     private Exposicao exposicaoEscolhida;
@@ -43,12 +42,13 @@ public class CriarCandidaturaController {
     /**
      * Candidatura criada.
      */
-    private Candidatura candidaturaCriada;
-    
+    private CandidaturaAExposicao candidaturaCriada;
+
     /**
      * Centro de exposições.
      */
     private CentroExposicoes centroExposicoes;
+    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     /**
      * Constrói uma instância de CriarCandidaturaController recebendo como
@@ -56,7 +56,7 @@ public class CriarCandidaturaController {
      *
      * @param centroExposicoes centro de exposições
      */
-    public CriarCandidaturaController(CentroExposicoes centroExposicoes) {
+    public CriarCandidaturaAExposicaoController(CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
     }
 
@@ -67,13 +67,17 @@ public class CriarCandidaturaController {
         this.re = centroExposicoes.getRegistoExposicoes();
     }
 
+    public void getEstadoCandidatura() {
+        this.estadoCandidatura = this.candidaturaCriada.getEstado();
+    }
+
     /**
      * Devolve a lista de Exposições.
      *
      * @return lista de Exposições
      */
-    public List<Exposicao> getListaExposicoes() {
-        return this.re.getListaExposicoes();
+    public List<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
+        return this.re.getlistaExposicoesEstadoCandidaturasAbertas();
     }
 
     /**
@@ -94,11 +98,11 @@ public class CriarCandidaturaController {
 
     /**
      * Cria uma nova candidatura para uma exposição.
-     * 
-     * @param usernameExpositor username do expositor da candidatura.
+     *
+     * @param expositor
      */
-    public void criarCandidatura(String usernameExpositor) {
-        this.candidaturaCriada = rc.criarCandidatura(usernameExpositor);
+    public void criarCandidatura(Expositor expositor) {
+        this.candidaturaCriada = rc.criarCandidatura(expositor);
     }
 
     /**
@@ -111,11 +115,11 @@ public class CriarCandidaturaController {
      * @param numConvites numero de convites pretendidos
      */
     public void setDados(String nomeEmpresa, String moradaEmpresa, String telemovelEmpresa, String area, String numConvites) throws TelemovelEmpresaErradoException, AreaErradaException, NumeroConvitesErradoException {
-        this.candidaturaCriada.setNomeEmpresa(nomeEmpresa);
-        this.candidaturaCriada.setMoradaEmpresa(moradaEmpresa);
-        this.candidaturaCriada.setTelemovelEmpresa(telemovelEmpresa);
-        this.candidaturaCriada.setArea(area);
-        this.candidaturaCriada.setNumConvites(numConvites);
+        this.candidaturaCriada.setM_strNomeEmpresa(nomeEmpresa);
+        this.candidaturaCriada.setM_strMorada(area);
+        this.candidaturaCriada.setM_intTelemovel(telemovelEmpresa);
+        this.candidaturaCriada.setM_intArea(area);
+        this.candidaturaCriada.setM_intNumConvites(numConvites);
     }
 
     /**
@@ -129,7 +133,7 @@ public class CriarCandidaturaController {
      * Adiciona um produto.
      *
      * @param nome nome do produto
-     * 
+     *
      * @return boolean que indica se foi ou não criado (true - foi criado)
      */
     public boolean addProduto(String nome) {
@@ -160,12 +164,12 @@ public class CriarCandidaturaController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionarDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.candidaturaCriada.getRegistoDemonstracoes().adicionarDemonstracao(demonstracaoEscolhida);
+        this.candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
     }
 
     /**
      * Regista a candidatura.
-     * 
+     *
      * @return boolean que indica se foi ou não criada. (true - foi criada)
      */
     public boolean registaCandidatura() {
@@ -174,31 +178,20 @@ public class CriarCandidaturaController {
     }
 
     /**
-     * Remove uma demonstração.
-     * 
-     * @param selectedValue identificação da demonstração.
-     */
-    public void removerDemonstracao(Object selectedValue) {
-        String demoIdentificacao = (String) selectedValue;
-        this.candidaturaCriada.getRegistoDemonstracoes().removerDemonstracao(demoIdentificacao);
-    }
-
-    /**
-     * Atualiza as demonstrações da candidatura criada.
-     * 
-     * @param listaDemonstracoesAdicionadas lista de demonstrações adicionadas à candidatura.
-     */
-    public void atualizarListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
-        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
-    }
-
-    /**
      * Modifica a lista de produtos.
-     * 
+     *
      * @param listaProdutos lista de produtos.
      */
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
         this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
+    }
+    
+    public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes){
+        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
+    }
+
+    public void setEstadoCandidaturaAExposicaoCriada() {
+        this.estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
 }

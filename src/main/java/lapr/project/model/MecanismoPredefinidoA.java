@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MecanismoSimples A - Distribui os fae por igual número em cada candidatura.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ana Leite Ricardo Osório
  */
-public class MecanismoA implements MecanismoSimples, Serializable {
+public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
 
     /**
      * Identificação do mecanismo A.
@@ -54,10 +53,10 @@ public class MecanismoA implements MecanismoSimples, Serializable {
      * @return atribuição gerada.
      */
     @Override
-    public List<Atribuicao> atribui(Exposicao exposicaoEscolhida) {
+    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida) {
 
-        List<Atribuicao> listaAtrib = new ArrayList<>();
-        List<Candidatura> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturas();
+        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturas().getListaCandidaturasAExposicao();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
         if (listaFAE.isEmpty() || listaCand.isEmpty()) {
@@ -75,10 +74,9 @@ public class MecanismoA implements MecanismoSimples, Serializable {
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    Atribuicao atribuicao = new Atribuicao();
-                    atribuicao.setCandidatura(listaCand.get(i));
+                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
-                        atribuicao.addFAE(listaFAE.get(j));
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }
                     listaAtrib.add(atribuicao);
                 }
@@ -86,5 +84,4 @@ public class MecanismoA implements MecanismoSimples, Serializable {
             return listaAtrib;
         }
     }
-
 }

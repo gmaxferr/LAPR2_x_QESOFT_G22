@@ -5,8 +5,8 @@ import java.awt.event.*;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import lapr.project.*;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Expositor;
 import lapr.project.model.Utilizador;
 
 /**
@@ -18,14 +18,14 @@ import lapr.project.model.Utilizador;
  */
 public class MainMenuGUI extends JFrame {
 
-    JMenuBar menuBar;
-    JMenu menu;
-    JMenuItem menuItem;
-    JPanel infoPanel;
-    JPanel titlePanel;
-    JPanel buttonPanel;
-    JPanel southPanel;
-    JButton button;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenuItem menuItem;
+    private JPanel infoPanel;
+    private JPanel titlePanel;
+    private JPanel buttonPanel;
+    private JPanel southPanel;
+    private JButton button;
 
     private final Color background = new Color(0, 204, 102);
     private final Color grey = new Color(192, 192, 192);
@@ -132,7 +132,7 @@ public class MainMenuGUI extends JFrame {
         infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        String nomeUtilizador = utilizador.getNome();
+        String nomeUtilizador = utilizador.getM_strNome();
         if (nomeUtilizador.length() > 20) {
             nomeUtilizador = nomeUtilizador.substring(0, 17) + "...";
         }
@@ -253,7 +253,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
+                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getM_StrUsername(), centroExposicoes);
             }
         });
         return button;
@@ -272,12 +272,12 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameCriarCandidaturaUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+                new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, centroExposicoes.getExpositorPeloUsername(utilizador.getM_StrUsername()));
             }
         });
         return button;
     }
-
+    
     /**
      * Cria botão que abre opções:
      *

@@ -1,36 +1,23 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Mecanismo;
 
 /**
- * Representação de um regsito de mecanismos.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class RegistoMecanismos implements Serializable {
+public class RegistoMecanismos {
 
-    /**
-     * Lista de mecanismos.
-     */
-    private List<Mecanismo> listaMec;
+    private List<Mecanismo> listaMecanismo;
 
-    /**
-     * Cosntrutor de objetos do tipo registoMecanismos sem parâmetros.
-     */
     public RegistoMecanismos() {
-        this.listaMec = new ArrayList<>();
+        this.listaMecanismo = new ArrayList<>();
     }
 
-    /**
-     * Devolve a lista de mecanismos.
-     *
-     * @return lista de mecanismos.
-     */
     public List<Mecanismo> getListaMecanismos() {
-        return this.listaMec;
+        return this.listaMecanismo;
     }
 
     /**
@@ -39,6 +26,6 @@ public class RegistoMecanismos implements Serializable {
      * @param mecanismo mecanismo a ser adicionado.
      */
     public void addMecanismo(Mecanismo mecanismo) {
-        this.listaMec.add(mecanismo);
+        this.listaMecanismo.add(mecanismo);
     }
 }

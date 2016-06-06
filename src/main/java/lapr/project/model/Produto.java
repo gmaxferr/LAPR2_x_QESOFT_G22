@@ -1,35 +1,48 @@
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
- * Representação de um Produto a ser exposto numa exposição por uma empresa.
+ * Representação de um produto
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class Produto implements Serializable {
+public class Produto {
 
     /**
-     * Nome do produto
+     * Atributo nome do produto
      */
     private String nome;
 
     /**
-     * Construtor de objetos do tipo Produto com o parametro nome.
+     * Construtor de objectos do tipo Produto com parametro nome
      *
-     * @param nome nome do produto.
+     * @param nome nome do produto
      */
     public Produto(String nome) {
         this.nome = nome;
     }
 
     /**
-     * Devolve o nome do produto
-     *
-     * @return nome do produto
+     * Construtor de objectos do tipo Produto sem parametros
+     */
+    public Produto() {
+
+    }
+
+    /**
+     * Devolve o atributo nome de rganizador
+     * 
+     * @return nome de organizador;
      */
     public String getNome() {
         return nome;
     }
-
+    
+    /**
+     * Define um novo nome de organizador
+     * 
+     * @param nome novo nome de organizador
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

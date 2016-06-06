@@ -1,107 +1,66 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Avaliacao;
-import lapr.project.model.FAE;
+import lapr.project.model.AtribuicoesCandidatura;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
- * Representação de um Registo de Atribuições
  *
- * @author Ana Leite Ricardo Osório
+ * @author Ricardo Osório Ana Leite
  */
-public class RegistoAtribuicoes implements Serializable{
+public class RegistoAtribuicoes {
 
-    /**
-     * Lista de atribuições.
-     */
-    private List<Atribuicao> listaAtribuicoes;
+    private List<AtribuicoesCandidatura> listaAtribuicao;
 
-    /**
-     * Avaliação.
-     */
-    private Avaliacao a;
-
-    /**
-     * Construtor de objectos do tipo RegistoAtribuicoes sem parâmetros.
-     */
     public RegistoAtribuicoes() {
-        this.listaAtribuicoes = new ArrayList<>();
+        this.listaAtribuicao = new ArrayList<>();
+    }
+
+    public List<AtribuicoesCandidatura> getListaAtribuicoes() {
+        return this.listaAtribuicao;
+    }
+
+    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
+        return c.getDadosCandidatura();
+    }
+
+    public boolean validarCandidatura(CandidaturaAExposicao c) {
+        return c.validarCandidatura();
     }
 
     /**
-     * Regista a distribuição de candidaturas pelos fae.
+     * Métoto que define nova decisao
      *
-     * @param listaAtribuicoesGeradas lista atribuições geradas.
+     * @param candidaturaAExposicao
+     * @param decisao nova decisao
      */
-    public void registaAtribuicao(List<Atribuicao> listaAtribuicoesGeradas) {
-        this.listaAtribuicoes = listaAtribuicoesGeradas;
+    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
     }
 
     /**
-     * Devolve a lista de atribuições.
-     * 
-     * @param usernameFAE username do fae.
-     * @return lista deatribuições.
+     * Método que valida a decisao da candidatura
+     *
+     * @return boolean de confirmação de validação
      */
-    public List<Atribuicao> getListaAtribuicoesDoFAE(String usernameFAE) {
-        List<Atribuicao> lista = new ArrayList<>();
-        for (Atribuicao atribuicao : this.listaAtribuicoes) {
-            for (FAE fae : atribuicao.getRegistoFaeDecisao().getListaFAE()) {
-                if (fae.getUsername().equalsIgnoreCase(usernameFAE)) {
-                    lista.add(atribuicao);
-                }
+    public boolean validaDecidirCandidatura() {
+        return true;
+    }
+
+    public void setListaAtribuicao(List<AtribuicoesCandidatura> listaAtribuicao) {
+        this.listaAtribuicao = listaAtribuicao;
+    }
+
+    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE(String usernameFAE) {
+        ArrayList<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
+        for (AtribuicoesCandidatura atribuicao : this.listaAtribuicao) {
+            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 
+                    atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
+                listaAtrib.add(atribuicao);
             }
         }
-        return lista;
+        return listaAtrib;
     }
 
-    /**
-     * Retona a lista de candidaturas de um fae.
-     *
-     * @param username username do fae.
-     *
-     * @return lista de candidaturas de um fae.
-     */
-    public List<Atribuicao> getListaCandidaturasDoFAE(String username) {
-        List<Atribuicao> lista = new ArrayList<>();
-        for (Atribuicao a : this.listaAtribuicoes) {
-            lista.add(a);
-        }
-        return lista;
-    }
-    
-    /**
-     * Altera a decisão e a justificação
-     *
-     * @param decisao nova decisão.
-     * @param justificacao nova justificação.
-     */
-    public void setDecisao(boolean decisao, String justificacao) {
-        a.setDecisao(decisao);
-        a.setJustificacao(justificacao);
-    }
-
-    /**
-     * Valida a decisão.
-     *
-     * @return validação da decisão.
-     */
-    public boolean valida() {
-        if (a.getJustificacao() == null) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Adiciona atribuições à lista de aribuições.
-     *
-     * @param atribuicao atribuição.
-     */
-    public void adicionaAtribuicoes(Atribuicao atribuicao) {
-        this.listaAtribuicoes.add(atribuicao);
-    }
 }

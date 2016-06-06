@@ -1,71 +1,40 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Cargo;
 import lapr.project.model.Expositor;
 import lapr.project.model.Utilizador;
 
 /**
- * Representação de um registo de expositor.
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ricardo Osorio
  */
-public class RegistoExpositores implements Cargo, Serializable {
+public class RegistoExpositores {
 
-    /**
-     * Lista de expositores.
-     */
     private List<Expositor> listaExpositores;
 
-    /**
-     * Construtor de objetos do tipo RegistoExpositor
-     */
     public RegistoExpositores() {
         this.listaExpositores = new ArrayList<>();
     }
 
-    /**
-     * Devolve a lista de expositores deste centro de exposições
-     *
-     * @return lista de expositores
-     */
-    public List<Expositor> getListaExpositor() {
-        return this.listaExpositores;
-    }
-
-    /**
-     * Adicina um expoitor ao RegistoExpostores recebendo o utilizador por
-     * parametro e apenas se já não existir na lista de Expositores e tiver o
-     * seu registo confirmado
-     *
-     * @param utilizador utilizador a ser adicionado com expositor
-     */
-    public void addExpositor(Utilizador utilizador) {
-        if (validaUtilizador(utilizador)) {
+    public boolean addExpositor(Utilizador utilizador) {
+        if (validaExpositor(utilizador)) {
             this.listaExpositores.add(new Expositor(utilizador));
+            return true;
         }
+        return false;
     }
 
-    /**
-     * Verifica se o utilizador recebido por parametro já consta na lista de
-     * expositores deste centro de exposições ou se o utilizador não tem o seu
-     * registo confirmado
-     *
-     * @param utilizador utilizador a verificar
-     * @return true se não existir e poder ser adicionado. False se já existir
-     */
-    private boolean validaUtilizador(Utilizador utilizador) {
-        if (utilizador.getConfirmacaoRegisto() == false) {
-            return false;
-        }
-        for (Expositor expositor : this.listaExpositores) {
-            if (expositor.getUtilizador().equals(utilizador)) {
+    private boolean validaExpositor(Utilizador utilizador) {
+        for (Expositor expositor : listaExpositores) {
+            if (expositor.getM_strUsername().equalsIgnoreCase(utilizador.getM_StrUsername())) {
                 return false;
             }
         }
         return true;
     }
 
+    public List<Expositor> getListaExpositores() {
+        return this.listaExpositores;
+    }
 }

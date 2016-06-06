@@ -1,164 +1,171 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Candidatura;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.Organizador;
+import lapr.project.estados.*;
+import lapr.project.model.*;
 
 /**
- * Representação de um registo de exposições.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class RegistoExposicoes implements Serializable {
+public class RegistoExposicoes implements Agendavel {
 
     /**
-     * Lista de exposições.
+     * Lista de exposições existentes
      */
-    private List<Exposicao> listaExpos;
+    private ArrayList<Exposicao> m_listaExposicoes;
 
-    /**
-     * Contrutor de objetos do tipo RegistoExposicoes sem parâmetros.
-     */
     public RegistoExposicoes() {
-        this.listaExpos = new ArrayList<>();
+        m_listaExposicoes = new ArrayList<>();
+
     }
 
     /**
-     * Devolve a lista de exposições.
+     * Método que devolve lista das Exposições
      *
-     * @return lista de exposições.
+     * @return lista das Exposições
      */
-    public List<Exposicao> getListaExposicoes() {
-        return this.listaExpos;
+    public List<Exposicao> getExposicao() {
+        return m_listaExposicoes;
     }
 
     /**
-     * Devolve a lista de exposições em que um dado fae.
+     * Devolve uma nova exposição criada
      *
-     * @param usernameFAE username do fae.
-     * @return lista de exposições em que um dado fae.
+     * @return nova exposição
      */
-    public List<Exposicao> getListaExposicoesDoFAE(String usernameFAE) {
-        List<Exposicao> lista = new ArrayList<>();
-        for (Exposicao e : this.listaExpos) {
-            List<FAE> listaFAE = e.getRegistoFAE().getListaFAE(); //chamar pelo Registo ou ao objecto mesmo?
-            if (verificarSeTemOFAE(listaFAE, usernameFAE) && verificarRepetido(lista, e) == false) {
-                lista.add(e);
+    public Exposicao novaExposicao() {
+        return new Exposicao();
+    }
+
+    /**
+     * Valida a exposição e no caso positivo adiciona à lista de exposições
+     *
+     * @param e exposição recebida
+     * @return boolean que representa o sucesso da operação
+     */
+    public boolean registaExposicao(Exposicao e) {
+        if (validaExposicao(e)) {
+            addExposicao(e);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    /**
+     * Método que adiciona uma exposição
+     *
+     * @param e exposição para adicionar
+     */
+    private void addExposicao(Exposicao e) {
+        m_listaExposicoes.add(e);
+    }
+
+    /**
+     * Método para validar exposição
+     *
+     * @param e exposição pretendida
+     * @return boolean que representa o sucesso da operação
+     */
+    public boolean validaExposicao(Exposicao e) {
+        return e.valida();
+    }
+
+    /**
+     * Deolve uma lista com todas as exposições associadas a um centro de
+     * exposições
+     *
+     * @return lista com todas as exposições associadas a um centro de
+     * exposições
+     */
+    public ArrayList<Exposicao> getListaExposicoesValidas() {
+        ArrayList<Exposicao> lista = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.dadosMinimosObrigatorios() == true) {
+                lista.add(exposicao);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
+        ArrayList<Exposicao> lista = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
+                lista.add(exposicao);
             }
         }
         return lista;
     }
 
     /**
-     * Verifica se o username pertence à lista de fae.
+     * Método que devolve a lista de exposições do organizador autenticado no
+     * sistema
      *
-     * @param lista lista de fae.
-     * @param usernameFAE username do fae.
-     * @return true se encontrar o fae na lista de fae. Caso contrário retorna
-     * false.
+     * @param usernameOrganizador
+     * @return lista de exposições do organizador
      */
-    private boolean verificarSeTemOFAE(List<FAE> lista, String usernameFAE) {
-        for (FAE fae : lista) {
-            if (fae.getUsername().equalsIgnoreCase(usernameFAE)) {
-                return true;
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
+        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
+
+        //encontra as exposições do organizador autenticado no sistema.
+        for (Exposicao exposicao : m_listaExposicoes) {
+            for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                    listaExposicoesDoOrganizador.add(exposicao);
+                }
             }
         }
-        return false;
+
+        return listaExposicoesDoOrganizador;
+
     }
 
     /**
-     * Devolve a lista de exposições de um organizador.
+     * Método que remove exposições repetidas de um ArrayList
      *
-     * @param usernameOrganizador username do organizador.
-     *
-     * @return lista de exposições de um organizador.
+     * @param array ArrayList desejado
      */
-    public List<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
-        List<Exposicao> lista = new ArrayList<>();
-        for (Exposicao e : this.listaExpos) {
-            List<Organizador> listaOrganizadores = e.getRegistoOrganizadores().getListaOrganizadores(); //chamar pelo Registo ou ao objecto mesmo?
-            if (verificarSeTemOOrganizador(listaOrganizadores, usernameOrganizador) && verificarRepetido(lista, e) == false) {
-                lista.add(e);
-            }
-        }
-        return lista;
+    public void removerExposiçõesRepetidas(ArrayList array) {
+        //remove as exposições repetidas dentro do arrayList
     }
 
-    /**
-     * Adiciona uma exposição.
-     *
-     * @param exposicao exposição a ser adicionada.
-     */
-    public void addExposicao(Exposicao exposicao) {
-        if (validarExposicao(exposicao)) {
-            this.listaExpos.add(exposicao);
-        }
+    @Override
+    public void Agendavel(Estado estado, String dataAbertura) {
+        /*
+            Converte a string para Date
+            Cria o timer
+            Associa o timer ao Estado
+         */
     }
 
-    /**
-     * Valida a exposição nova a ser adicionada. A validação consiste em
-     * verificar se existe alguma exposição igual ou se a exposição não tem o
-     * número mínimo de Organizadores (2)
-     *
-     * @param exposicao exposição a validar
-     * @return true se a exposição for considerada como válida, caso contrário
-     * false
-     */
-    private boolean validarExposicao(Exposicao exposicao) {
-        for (Exposicao expo : this.listaExpos) {
-            if (expo.equals(exposicao) || exposicao.getNumeroOrganizadores() < 2) {
-                return false;
-            }
-        }
-        return true;
+    public void setEstadoCandidaturasAbertas(Exposicao exposicao) {
+        Estado estado = new EstadoExposicaoCandidaturasAbertas(exposicao);
+        String dataAbertura = exposicao.getM_strDataInicio();
+        Agendavel(estado, dataAbertura);
     }
 
-    /**
-     * Verifica se o username pertence à lista de organizadores.
-     *
-     * @param lista lista de organizadores.
-     * @param username username do organizador
-     *
-     * @return true se encontrar o organizador na lista de organizadores. Caso
-     * contrário retorna false.
-     */
-    private boolean verificarSeTemOOrganizador(List<Organizador> lista, String usernameOrganizador) {
-        for (Organizador o : lista) {
-            if (o.getUsername().equalsIgnoreCase(usernameOrganizador)) {
-                return true;
-            }
-        }
-        return false;
+    public void setEstadoCandidaturasFechadas(Exposicao exposicao) {
+        Estado estado = new EstadoExposicaoCandidaturasFechadas(exposicao);
+        String dataFecho = exposicao.getM_strDataFim();
+        Agendavel(estado, dataFecho);
     }
 
-    /**
-     * Verifica se existem exposições repetidas.
-     *
-     * @param lista lista de exposições.
-     * @param exposicao exposição.
-     *
-     * @return true se encontrar a exposição na lista de exposições. Caso
-     * contrário retorna false.
-     */
-    private boolean verificarRepetido(List<Exposicao> lista, Exposicao exposicao) {
-        for (Exposicao e : lista) {
-            if (e.equals(exposicao)) {
-                return true;
-            }
-        }
-        return false;
+    public void setEstadoExposicaoConflitosDetetados(Exposicao exposicao) {
+        Estado estado = new EstadoExposicaoCandidaturasFechadas(exposicao);
+        String dataLimite = exposicao.getM_strDataFim();
+        Agendavel(estado, dataLimite);
     }
 
     public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
-        for (Exposicao e : listaExpos) {
-            RegistoCandidaturas rc = e.getRegistoCandidaturas();
-            for (Candidatura c : rc.getListaCandidaturas()) {
-                if (c.getM_UsernameExpositor().equals(username)) {
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
+                if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
                         listaExpoRep.add(e);
                         break;
@@ -169,18 +176,57 @@ public class RegistoExposicoes implements Serializable {
         return listaExpoRep;
     }
 
+    /**
+     * Cria uma lista com as exposições em que existem candidaturas de um
+     * representante
+     *
+     * @param username - username do representante
+     * @return - lista com as exposições em que existem candidaturas do
+     * representante
+     */
     public List<Exposicao> getExposicoesDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
-        for (Exposicao e : listaExpos) {
-            RegistoCandidaturas rc = e.getRegistoCandidaturas();
-            for (Candidatura c : rc.getListaCandidaturas()) {
-                if (c.getM_UsernameExpositor().equals(username)) {
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
+                if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
                     break;
 
                 }
             }
         }
-        
+        return listaExpoRep;
     }
+
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAvaliadas = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAvaliadas()) {
+                listaExposicoesEstadoCandidaturasAvaliadas.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturasAvaliadas;
+    }
+
+    public List<Exposicao> getlistaExposicoesEstadoCandidaturasAbertas() {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAbertas = new ArrayList<>();
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
+                listaExposicoesEstadoCandidaturasAbertas.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturasAbertas;
+    }
+
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(String usernameFAE) {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)) {
+                listaExposicoesEstadoCandidaturaAtribuidasDoFAE.add(exposicao);
+            }
+        }
+        return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
+    }
+
 }

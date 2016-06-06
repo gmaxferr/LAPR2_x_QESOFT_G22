@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import lapr.project.controller.CriarCandidaturaController;
+import lapr.project.controller.CriarCandidaturaAExposicaoController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 
@@ -15,14 +15,14 @@ import lapr.project.model.*;
  *
  * @author Grupo 29
  */
-public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
+public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes centroExposicoesAtual;
     private int numDemonstracoes;
     private int numProdutos;
-    private String usernameExpositor;
-    private CriarCandidaturaController controller;
+    private Expositor expositor;
+    private CriarCandidaturaAExposicaoController controller;
     private List<Exposicao> listaExposicoes;
     private ModeloListaProdutos modeloJListaProdutosCard2;
     private List<Demonstracao> listaDemonstracoes;
@@ -41,7 +41,6 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-    private ComboBoxModelDemonstracoes modeloComboBoxDemonstracoes;
 
     /**
      * Creates new form JFrameCriarCandidaturaUI
@@ -49,7 +48,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
      */
-    public JFrameCriarCandidaturaUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameExpositor) {
+    public JFrameCriarCandidaturaAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Expositor Expositor) {
         super("Criar candidatura");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
@@ -57,10 +56,10 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
         this.numDemonstracoes = 0;
         this.numProdutos = 0;
 
-        this.usernameExpositor = usernameExpositor;
-        this.controller = new CriarCandidaturaController(centroExposicoes);
+        this.expositor = expositor;
+        this.controller = new CriarCandidaturaAExposicaoController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoes();
+        this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAbertas();
 
         initComponents();
         alterarComportamentoFecharJFrame();
@@ -737,7 +736,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
         controller.getRegistoCandidaturas();
-        controller.criarCandidatura(this.usernameExpositor);
+        controller.criarCandidatura(this.expositor);
         controller.getRegistoProduto();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
@@ -760,7 +759,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         if (listModelDemonstracoes.getSize() != 0) {
-            controller.atualizarListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
+            controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
             finalizarCandidatura();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
@@ -840,7 +839,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
     private void jButtonCard3AdicionarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3AdicionarDemonstracaoActionPerformed
         if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
-            boolean b = listModelDemonstracoes.addDemonstracao(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()));
+            boolean b = listModelDemonstracoes.adicionaDemonstracao(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()));
             if (b) {
                 numDemonstracoes++;
                 jButtonCard3RemoverDemonstracao.setEnabled(true);
@@ -901,10 +900,10 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
     private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
         if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(expo.getDataInicio().toString());
-            jLabelCard1DataFim.setText(expo.getDataFim().toString());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
+            jLabelCard1DataInicio.setText(expo.getM_strDataInicio());
+            jLabelCard1DataFim.setText(expo.getM_strDataFim());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
@@ -921,7 +920,7 @@ public class JFrameCriarCandidaturaUI extends javax.swing.JFrame {
 
     private void jComboBoxCard3EscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
         if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
-            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getDescricao());
+            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getM_StrDescricao());
         } else {
             jTextAreaCard3DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
         }

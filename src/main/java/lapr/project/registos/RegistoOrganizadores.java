@@ -1,86 +1,50 @@
 package lapr.project.registos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import lapr.project.model.Exposicao;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 
 /**
- * Representação de um registo de organizadores.
  *
- * @author Ana Leite e Ricardo Osório
+ * @author Ana Leite Ricardo Osório
  */
-public class RegistoOrganizadores implements Serializable {
+public class RegistoOrganizadores {
 
+    private ArrayList<Organizador> m_listaOrganizadores;
+    
     /**
-     * Lista de organizadores.
+     * Método que valida a exposição
+     * @param o organozador de exposição
+     * @return 
      */
-    private List<Organizador> listaOrganizadores;
-
-    /**
-     * Exposicao que tem este registo de organizadores
-     */
-    private Exposicao exposicao;
-
-    /**
-     * Construtor de objetos do tipo RegistoOrganizadores sem parâmetros.
-     */
-    public RegistoOrganizadores(Exposicao exposicao) {
-        this.listaOrganizadores = new ArrayList<>();
-        this.exposicao = exposicao;
-    }
-
-    /**
-     * Devolve a lista de organizadores.
-     *
-     * @return lista de organizadores.
-     */
-    public List<Organizador> getListaOrganizadores() {
-        return this.listaOrganizadores;
-    }
-
-    /**
-     * Devolve o tamanho da lista de Organizadores desta exposição. Por outras
-     * palavras, este número equivale ao número de Organizadores da exposição
-     *
-     * @return
-     */
-    public int getSize() {
-        return this.listaOrganizadores.size();
-    }
-
-    /**
-     * Adiciona o utilizador à lista de organizadores.
-     *
-     * @param utilizador
-     */
-    public void addOrganizador(Utilizador utilizador) {
-        if (validarUtilizador(utilizador)) {
-            this.listaOrganizadores.add(new Organizador(utilizador));
-        }
-    }
-
-    /**
-     * Verifica se o utilizador recebido como parametro já existe como
-     * Organizador desta exposição ou se o utilizador não tem o seu registo
-     * confirmado
-     *
-     * @param utilizador utilizador a ser verificado
-     * @return true se o utilizador já for organizador. Caso contrário, retorna
-     * false.
-     */
-    private boolean validarUtilizador(Utilizador utilizador) {
-        if (utilizador.getConfirmacaoRegisto() == false) {
-            return false;
-        }
-        for (Organizador organizador : listaOrganizadores) {
-            if (organizador.getUtilizador().equals(utilizador)) {
-                return false;
-            }
-        }
+    private boolean validaOrganizador(Organizador o) {
+        System.out.println("Exposição: validaOrganizador: " + o.toString());
         return true;
     }
 
+    /**
+     * Método que adiciona o organizador à exposição
+     * 
+     * @param ut utilizador/organizador da exposição 
+     */
+    public void addOrganizador(Utilizador ut) {
+        Organizador o = new Organizador();
+        o.setUtilizador(ut);
+        if (validaOrganizador(o)) {
+            addOrganizador(o);
+        }
+    }
+    
+    /**
+     * Método que adiciona um organizador à exposição
+     * 
+     * @param o organizador a ser adicionado
+     */
+    private void addOrganizador(Organizador o) {
+        m_listaOrganizadores.add(o);
+    }
+
+    public ArrayList<Organizador> getListaOrganizadores() {
+        return this.m_listaOrganizadores;
+    }
 }

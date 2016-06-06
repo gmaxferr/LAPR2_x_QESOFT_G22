@@ -1,13 +1,15 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidatura;
-import lapr.project.estados.EstadoCandidaturaConflitosDetetados;
+import lapr.project.estados.EstadoCandidaturaAExposicaoConflitosDetetados;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.model.Candidatura;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
+import lapr.project.model.TipoConflito;
+import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  * Representação do Controller do caso de uso - artibuir conflitos de interesse
@@ -17,14 +19,14 @@ public class AtribuirConflitoInteresseController {
 
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
-    private EstadoCandidatura estadoCand;
-    private EstadoCandidaturaConflitosDetetados estadoConflitosdetetados;
+    private EstadoCandidaturaAExposicao estadoCand;
+    private EstadoCandidaturaAExposicaoConflitosDetetados estadoConflitosdetetados;
     private RegistoTipoConflitos m_rtc;
     private CentroExposicoes m_centro_exposicoes;
-    FAE fae;
+    private FAE fae;
     private boolean valida;
-    EstadoExposicao estado;
-    Candidatura cand;
+    private EstadoExposicao estado;
+    private CandidaturaAExposicao cand;
     
     public AtribuirConflitoInteresseController(CentroExposicoes centroExposicoes, RegistoTipoConflitos registoTipoConflitos){
         m_centro_exposicoes = centroExposicoes;
@@ -32,7 +34,7 @@ public class AtribuirConflitoInteresseController {
     }
     
      public boolean getEstadoExposicao() {
-        estadoExpo = exposicao.getEstadoExposicao();
+        estadoExpo = exposicao.getEstado();
         return verificaEstadoExposicao(estadoExpo);
     }
 
@@ -60,7 +62,7 @@ public class AtribuirConflitoInteresseController {
      }
      
      public void setEstadoConflitosAtribuidos(){
-         this.estadoCand = cand.getEstadoCandidatura();
+         this.estadoCand = cand.getEstado();
          estadoConflitosdetetados.setEstadoConflitosAtribuidos();
          }
      }

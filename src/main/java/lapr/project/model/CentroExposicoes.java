@@ -1,108 +1,117 @@
 package lapr.project.model;
 
-import java.io.Serializable;
+import lapr.project.registos.RegistoRecursos;
+import lapr.project.registos.RegistoMecanismos;
+import lapr.project.registos.RegistoTipoConflitos;
+import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoExpositores;
-import lapr.project.registos.RegistoMecanismos;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação de um Centro de Exposições
  *
- * @author Ricardo Osório e Ana Leite
+ * @author Ricardo Osório Ana Leite
  */
-public class CentroExposicoes implements Serializable {
+public class CentroExposicoes {
 
     /**
-     * Registo de exposições do centro de exposições.
+     *
      */
-    private RegistoExposicoes re;
+    private RegistoExposicoes registoExposicoes;
 
     /**
-     * Registo de mecanismos do centro de exposições.
+     *
      */
-    private RegistoMecanismos rm;
+    private RegistoUtilizadores registoUtilizadores;
 
     /**
-     * Registo de utilizadores do centro de exposições.
+     *
      */
-    private RegistoUtilizadores ru;
+    private RegistoMecanismos registoMecanismos;
 
     /**
-     * Registo de recursos do centro de exposições.
+     *
      */
-    private RegistoRecursos rr;
+    private RegistoRecursos registoRecursos;
+
+    private RegistoTipoConflitos registoTipoConflitos;
+    private final RegistoExpositores rExpositores;
 
     /**
-     * Registo de expositores do centro de exposições.
-     */
-    private RegistoExpositores rExpositor;
-
-    /**
-     * Construtor de objectos do tipo CentroExposições sem parâmetros.
+     * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
     public CentroExposicoes() {
-        this.re = new RegistoExposicoes();
-        this.rm = new RegistoMecanismos();
-        this.ru = new RegistoUtilizadores();
-        this.rr = new RegistoRecursos();
-        this.rExpositor = new RegistoExpositores();
+        this.registoExposicoes = new RegistoExposicoes();
+        this.registoUtilizadores = new RegistoUtilizadores();
+        this.registoMecanismos = new RegistoMecanismos();
+        this.registoRecursos = new RegistoRecursos();
+        this.registoTipoConflitos = new RegistoTipoConflitos();
+        this.rExpositores = new RegistoExpositores();
     }
 
     /**
-     * Devolve o registo de exposições do centro de exposições.
      *
-     * @return registo de exposições do centro de exposições.
+     * @return
      */
     public RegistoExposicoes getRegistoExposicoes() {
-        return this.re;
+        return registoExposicoes;
+    }
+
+    public RegistoExpositores getRegistoExpositores() {
+        return this.rExpositores;
     }
 
     /**
-     * Devolve o registo de expositor do centro de exposições.
      *
-     * @return registo de expositor do centro de exposições.
-     */
-    public RegistoExpositores getRegistoExpositor() {
-        return this.rExpositor;
-    }
-
-    /**
-     * Devolve o registo de mecanismos do centro de exposições.
-     *
-     * @return registo de mecanismos do centro de exposições.
-     */
-    public RegistoMecanismos getRegistoMecanismos() {
-        return this.rm;
-    }
-
-    /**
-     * Devolve o registo de utilizadores do centro de exposições.
-     *
-     * @return registo de utilizadores do centro de exposições.
+     * @return
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.ru;
+        return registoUtilizadores;
     }
 
     /**
-     * Devolve o registo de recursos do centro de exposições.
      *
-     * @return reigisto de recursos do centro de exposições.
+     * @return
      */
+    public RegistoMecanismos getRegistoMecanismos() {
+        return registoMecanismos;
+    }
+
     public RegistoRecursos getRegistoRecursos() {
-        return this.rr;
+        return registoRecursos;
+    }
+
+    public RegistoTipoConflitos getRegistoTiposConflitos() {
+        return registoTipoConflitos;
     }
 
     /**
-     * Adicina um expoitor ao RegistoExpostores recebendo o utilizador por
-     * parametro e apenas se já não existir na lista de Expositores e tiver o
-     * seu registo confirmado
+     * Método que regista a confirmação de um registo de utilizador
      *
-     * @param utilizador utilizador a ser adicionado com expositor
+     * @param u Utilizador desejado
      */
-    public void addExpositor(Utilizador utilizador) {
-        this.rExpositor.addExpositor(utilizador);
+    public void setUtilizadorRegistado(Utilizador u) {
+        //para testar
+        Exposicao expo = new Exposicao();
+        u.setUtilizadorRegistado();
+
+    }
+
+    /**
+     * Método que devolve um novo Utilizador
+     *
+     * @return novo Utilizador
+     */
+    public Utilizador novoUtilizador() {
+        return new Utilizador();
+    }
+
+    public Expositor getExpositorPeloUsername(String m_StrUsername) {
+        for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
+            if (expositor.getM_strUsername().equalsIgnoreCase(m_StrUsername)) {
+                return expositor;
+            }
+        }
+        return null;
     }
 }

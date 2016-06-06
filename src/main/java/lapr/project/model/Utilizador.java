@@ -1,217 +1,158 @@
 package lapr.project.model;
 
 import crypt.CaesarsCypher;
-import exceptions.InvalidPasswordException;
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- * Utilizador. Um utilizador registado no sistema é constituído por nome,
- * e-mail, username e password. O username e o e-mail, num sistema, têm de ser
- * únicos para cada utilizador, podendo ser iguais em sistemas diferentes,
- * enquanto que a password e o nome podem não o ser, pois não os representam, no
- * entanto são necessários para a correta criação de um perfil de Utilizador
+ * Representação de um Utilizador
  *
- * @author Ricardo Catalao
+ * @author Ricardo Osório Ana Leite
  */
-public class Utilizador implements Serializable {
+public class Utilizador {
 
     /**
-     * E-mail único do utilizador.
+     * Atributo nome de um Utilizador
      */
-    private String e_mail;
+    private String m_strNome;
 
     /**
-     * Username único do utilizador.
+     * Atributo password de um Utilizador
      */
-    private String username;
+    private char[] m_strPwd;
 
     /**
-     * Nome do utilizador.
+     * Atributo email de um Utilizador
      */
-    private String nome;
+    private String m_strEmail;
 
     /**
-     * Password secreta do utilizador (encriptada por razoes de segurança).
+     * Atributo username de um utilizador
      */
-    private char[] password;
+    private String m_strUsername;
+
+    private String ID;
 
     /**
-     * Numero de avaliações realizadas por este utilizador com o papel de FAE.
+     * Atributo associado ao Utilizador que regista se o registo desse
+     * Utilizador já foi confirmado
      */
-    private int nAvaliacoesDesdeSempre;
+    private boolean m_boolConfirmaRegisto;
 
     /**
-     * Variavel que diz se um utilizador é ou não FAE.
-     */
-    public boolean isFAE = false;
-
-    /**
-     * Variavel que diz se um utilizador é ou não Organizador.
-     */
-    public boolean isOrganizdor = false;
-
-    /**
-     * Variavel que diz se um utilizador é ou não Gestor de Exposições.
-     */
-    public boolean isGestorExposicoes = false;
-
-    /**
-     * Variavel que diz se um utilizador é ou não Representante do Expositor.
-     */
-    public boolean isRepresentanteExpositor = false;
-
-    private boolean confirmacaoDoRegisto;
-
-    /**
-     * Construtor por defeito.
+     * Construtor de objectos do tipo Utilizador sem parametros
      */
     public Utilizador() {
-        nAvaliacoesDesdeSempre = 0;
-        confirmacaoDoRegisto = false;
+    }
+
+    public Utilizador(String nome, String ID, char[] password, String email) {
+        this.ID = ID;
+        this.m_strEmail = email;
+        this.m_strPwd = password;
+        this.m_strNome = nome;
     }
 
     /**
-     * Construtor com todos os parametros do utilizador.
+     * Devolve o valor da variavel boolean que regista se o registo desse
+     * Utilizador já foi confirmado ou não
      *
-     * @param nome - Nome do utilizador
-     * @param e_mail - E-mail único do utilizador
-     * @param username - Username do utilizador
-     * @param password - Password do utilizador
+     * @return boolean que representa se o registo desse Utilizador já foi
+     * confirmado ou não
      */
-    public Utilizador(String nome, String e_mail, String username, String password) {
-        this();
-        this.nome = nome;
-        this.e_mail = e_mail;
-        this.username = username;
-        setPassword(password.toCharArray());
+    public boolean getM_boolConfirmaRegisto() {
+        return this.m_boolConfirmaRegisto;
     }
 
     /**
-     * @return Retorna um objeto Gestor de exposições representado por este
-     * utilizador
-     */
-    public GestorDeExposicoes createGestorDeExposicoes() {
-        GestorDeExposicoes ge = new GestorDeExposicoes(this);
-        return ge;
-    }
-
-    /**
-     * @return Retorna o nome do utilizador
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @return Retorna o e-mail do utilizador
-     */
-    public String getE_mail() {
-        return e_mail;
-    }
-
-    /**
-     * @return Retorna o username deste utilizador
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Retorna se o utilizador tem o seu registo confirmado
+     * Devolve o atributo nome do utilizador
      *
-     * @return true se estiver já confirmado e false caso contrário
+     * @return nome do utilizador
      */
-    public boolean getConfirmacaoRegisto() {
-        return this.confirmacaoDoRegisto;
+    public String getM_strNome() {
+        return this.m_strNome;
     }
 
     /**
-     * @return Retorna TRUE se o utilizador for válido localmente, FALSE caso
-     * contrário. Um utilizador é valido se tiver todos os atributos preenchidos
-     */
-    public boolean isValid() {
-        return !nome.trim().equals("")
-                || !e_mail.trim().equals("")
-                || !username.trim().equals("")
-                || password.length > 0;
-    }
-
-    /**
-     * Verifica se um utilizador é igual a outro.
+     * Devolve a password do utilizador
      *
-     * @param utilizador - Utilizador de comparação
-     * @return true se todos os atributos forem iguais; false caso contrário
+     * @return password do utilizador
      */
-    @Override
-    public boolean equals(Object utilizador) {
-        if (utilizador instanceof Utilizador) {
-            Utilizador u = (Utilizador) utilizador;
-            if (getE_mail().equals(u.getE_mail())
-                    && getUsername().equals(u.getUsername())) {
-                return true;
-            }
-        }
-        return false;
+    public char[] getM_strPwd() {
+        //fazer toString? depende se for um get para ser usado na UI
+        return this.m_strPwd;
     }
 
     /**
-     * @return Retorna a password deste utilizador, encriptada.
-     */
-    public String getPassword(){
-        return password.toString();
-    }
-    
-    /**
-     * Altera o nome do utilizador.
+     * Devolve o email do utilizador
      *
-     * @param nome Novo nome a atribuir ao utilizador
+     * @return email do utilizador
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getM_strEmail() {
+        return this.m_strEmail;
+    }
+
+    public String getID() {
+        return this.ID;
     }
 
     /**
-     * Altera o email do utilizador.
-     *
-     * @param e_mail Novo e-mail a atribuir ao utilizador
+     * Define um novo valor para variavel boolean que regista se o registo desse
+     * Utilizador já foi confirmado
      */
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+    public void setM_boolConfirmaRegisto(boolean m_boolConfirmaRegisto) {
+        this.m_boolConfirmaRegisto = m_boolConfirmaRegisto;
     }
 
     /**
-     * Altera o username do utilizador.
+     * Define um novo nome de utilizador
      *
-     * @param username a atribuir ao utilizador
+     * @param strNome novo nome utilizador
+     */
+    public void setNome(String strNome) {
+        m_strNome = strNome;
+    }
+
+    /**
+     * Define um novo email de utilizador
+     *
+     * @param strEmail novo email de utilizador
+     */
+    public void setEmail(String strEmail) {
+        this.m_strEmail = strEmail;
+    }
+
+    /**
+     * Define um novo username de utiliador
+     *
+     * @param username novo username de utilizador
      */
     public void setUsername(String username) {
-        this.username = username;
+        this.m_strUsername = username;
     }
 
     /**
-     * Altera o password do utilizador.
+     * Define uma nova password de utilizador
      *
-     * @param password a atribuir ao utilizador
+     * @param strPwd nova password de utilizador
      */
-    public void setPassword(char[] password) {
-        if (password.length > 0) {
-            this.password = CaesarsCypher.encrypt(password, password[0]);
-        } else {
-            throw new InvalidPasswordException("A nova password nao pode ser vazia.");
-        }
+    public void setPwd(char[] strPwd) {
+        m_strPwd = strPwd;
     }
 
     /**
-     * Altera a palavra-passe de um utilizador.
-     *
-     * @param oldPassword - palavra-passe antiga (por razões de segurança)
-     * @param newPassword - nova palavra-passe
+     * Altera a variavel boolean da confirmação de registo do utilizador
      */
-    public void changePassword(char[] oldPassword, char[] newPassword) {
-        if (Arrays.equals(CaesarsCypher.encrypt(oldPassword, oldPassword[0]), this.password)) {
-            setPassword(newPassword);
-        }
+    public void setUtilizadorRegistado() {
+        this.m_boolConfirmaRegisto = true;
+    }
+
+    /**
+     * Método que mostra ao utilizador os dados introduzidos
+     *
+     * @return um boolean, true
+     */
+    public boolean valida() {
+        System.out.println("Utilizador: valida: " + this.toString());
+        return true;
     }
 
     /**
@@ -223,98 +164,45 @@ public class Utilizador implements Serializable {
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean isValidPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(this.password, password[0]), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, password[0]), password);
+    }
+    
+    /**
+     * Devolve a descrição textual com os atributos de utilizador
+     *
+     * @return a descrição textual com os atributos de utilizador
+     */
+    @Override
+    public String toString() {
+        String str = "Utilizador:\n";
+        str += "\tNome: " + this.m_strNome + "\n";
+        str += "\tPwd: " + this.m_strPwd + "\n";
+        str += "\tEmail: " + this.m_strEmail + "\n";
+
+        return str;
     }
 
     /**
-     * @return Retorna o numero de avaliacoes realizadas por este utilizador
-     * desde sempre
+     * Método que valida o utilizador
      */
-    public int getNAvaliacoesDesdeSempre() {
-        return nAvaliacoesDesdeSempre;
+    public void validaUtilizador() {
+        //validação local dos dados
+        if (validarDadosRepetidosOuInvalidos() == false) {
+            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
+        }
     }
 
     /**
-     * Incrementa em 1 o numero de avaliacoes realizadas por este utilizador
-     * deste sempre.
+     * Método que valida os dados do Utilizador
+     *
+     * @return
      */
-    public void incrementAvaliacoesRegistadas() {
-        nAvaliacoesDesdeSempre++;
+    public boolean validarDadosRepetidosOuInvalidos() {
+        return true;
     }
 
-    /**
-     * @return informação de um utilizador (exceto password)
-     */
-    public String toStringInfo() {
-        return "Nome: " + this.getNome()
-                + "\nUserName: " + this.getUsername()
-                + "\nEmail: " + this.getE_mail();
-    }
-
-    /**
-     * @return the isFAE
-     */
-    public boolean checkFAE() {
-        return isFAE;
-    }
-
-    /**
-     * @param isFAE the isFAE to set
-     */
-    public void setFAE(boolean isFAE) {
-        this.isFAE = isFAE;
-    }
-
-    /**
-     * @return the isOrganizdor
-     */
-    public boolean checkOrganizdor() {
-        return isOrganizdor;
-    }
-
-    /**
-     * @param isOrganizdor the isOrganizdor to set
-     */
-    public void setOrganizdor(boolean isOrganizdor) {
-        this.isOrganizdor = isOrganizdor;
-    }
-
-    /**
-     * @return the isGestorExposicoes
-     */
-    public boolean checkGestorExposicoes() {
-        return isGestorExposicoes;
-    }
-
-    /**
-     * @param isGestorExposicoes the isGestorExposicoes to set
-     */
-    public void setGestorExposicoes(boolean isGestorExposicoes) {
-        this.isGestorExposicoes = isGestorExposicoes;
-    }
-
-    /**
-     * @return the isRepresentanteExpositor
-     */
-    public boolean checkRepresentanteExpositor() {
-        return isRepresentanteExpositor;
-    }
-
-    /**
-     * @param isRepresentanteExpositor the isRepresentanteExpositor to set
-     */
-    public void setRepresentanteExpositor(boolean isRepresentanteExpositor) {
-        this.isRepresentanteExpositor = isRepresentanteExpositor;
-    }
-
-    /**
-     * Confirma o registo de todos os utilizadores registados atualmente.
-     * Procedimento necessário para estarem aptos a exercerem qualquer função no
-     * centro de exposições. Este processo é realizado por um expositor mas está
-     * automatizado para facilitar os testes
-     */
-    public void confirmarRegistoUtilizador() {
-        this.confirmacaoDoRegisto = true;
+    public String getM_StrUsername() {
+        return m_strUsername;
     }
 
 }

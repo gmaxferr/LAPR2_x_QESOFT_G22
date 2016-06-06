@@ -57,7 +57,7 @@ public class ListaDemonstracoes {
      * @return boolean que indica se foi adiciona ou não (true - foi adicionada)
      */
     public boolean adicionarDemonstracao(Demonstracao demonstracao) {
-        if (validarDemonstracao(demonstracao.getCodigoIdentificacao())) {
+        if (validarDemonstracao(demonstracao.getM_StrCodigoIdentificacao())) {
             this.listaDemonstracoesAdicionadas.add(demonstracao);
             return true;
         } else {
@@ -75,7 +75,7 @@ public class ListaDemonstracoes {
      */
     private boolean validarDemonstracao(String codigoIdentificacao) {
         for (Demonstracao demonstracao : this.listaDemonstracoesAdicionadas) {
-            if (demonstracao.getCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
+            if (demonstracao.getM_StrCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
                 return false;
             }
         }
@@ -103,7 +103,7 @@ public class ListaDemonstracoes {
      */
     public int localizarDemonstracaoParaRemover(String codigoIdentificacao) {
         for (int i = 0; i < this.listaDemonstracoesAdicionadas.size(); i++) {
-            if (this.listaDemonstracoesAdicionadas.get(i).getCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
+            if (this.listaDemonstracoesAdicionadas.get(i).getM_StrCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
                 return i;
             }
         }
