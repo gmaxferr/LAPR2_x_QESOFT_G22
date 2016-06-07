@@ -2,7 +2,6 @@ package lapr.project.estados;
 
 import lapr.project.model.Exposicao;
 
-
 /**
  *
  * @author Ana Leite Ricardo Osório
@@ -69,10 +68,37 @@ public class EstadoExposicaoConflitosDetetados implements EstadoExposicao {
     public boolean setEstadoCandidaturasAvaliadas() {
         return false;
     }
+
+    @Override
+    public boolean setEstadoStandsAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoDemonstracoesDecididas() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturasDemonstracaoAbertas() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturasDemonstracaoFechadas() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturasDecididas() {
+        return false;
+    }
+
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
     }
+
     @Override
     public boolean isEstadoCriada() {
         return false;
@@ -80,12 +106,12 @@ public class EstadoExposicaoConflitosDetetados implements EstadoExposicao {
 
     @Override
     public boolean isEstadoFAEDefinidosSemDemos() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean isEstadoDemosDefinidasSemFAE() {
-         return false;
+        return false;
     }
 
     @Override
@@ -100,27 +126,52 @@ public class EstadoExposicaoConflitosDetetados implements EstadoExposicao {
 
     @Override
     public boolean isEstadoCandidaturasFechadas() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean isEstadoConflitosDetetados() {
-         return true;
+        return true;
     }
 
     @Override
     public boolean isEstadoConflitosAlterados() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturasAtribuidas() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturasAvaliadas() {
-         return false;
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoStandsAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoDemonstracoesDecididas() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturasDemonstracaoAbertas() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturasDemonstracaoFechadas() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturasDecididas() {
+        return false;
     }
 
 }

@@ -1,17 +1,16 @@
 package lapr.project.estados;
 
-import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 
 /**
  *
- * @author Ana Leite
+ * @author Ricardo Catalao
  */
-public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
+public class EstadoExposicaoDemonstracoesDecididas implements EstadoExposicao {
 
-    private Exposicao m_exposicao;
+    private final Exposicao m_exposicao;
 
-    public EstadoExposicaoCandidaturasAvaliadas(Exposicao exposicao) {
+    public EstadoExposicaoDemonstracoesDecididas(Exposicao exposicao) {
         this.m_exposicao = exposicao;
     }
 
@@ -47,7 +46,7 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
 
     @Override
     public boolean setEstadoConflitosDetetados() {
-        return false;
+        return true;
     }
 
     @Override
@@ -77,7 +76,8 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
 
     @Override
     public boolean setEstadoCandidaturasDemonstracaoAbertas() {
-        return false;
+        this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(m_exposicao));
+        return true;
     }
 
     @Override
@@ -87,24 +87,7 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
 
     @Override
     public boolean setEstadoCandidaturasDecididas() {
-        if (valida()) {
-            this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasDecididas(this.m_exposicao));
-            return true;
-        }
         return false;
-    }
-
-    /**
-     * @return Retorna TRUE se for possível passar para o estado de Candidaturas
-     * decididas e FALSE caso contrário
-     */
-    public boolean valida() {
-        for (CandidaturaAExposicao c : this.m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao()) {
-            if (!c.getEstado().isEstadoCandidaturaAceite() && !c.getEstado().isEstadoCandidaturaRejeitada()) {
-                return false;
-            }
-        }
-        return true;
     }
 
     @Override
@@ -149,7 +132,7 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
 
     @Override
     public boolean isEstadoCandidaturasAtribuidas() {
-        return true;
+        return false;
     }
 
     @Override
@@ -164,7 +147,7 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
 
     @Override
     public boolean isEstadoDemonstracoesDecididas() {
-        return false;
+        return true;
     }
 
     @Override
