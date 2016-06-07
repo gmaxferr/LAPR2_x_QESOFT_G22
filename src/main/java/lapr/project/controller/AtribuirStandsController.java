@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -57,5 +58,7 @@ public class AtribuirStandsController {
     public void confirm(){
         ras = expo.getRegistoAtribuicoesStands();
         ras.addAll(listAtr);
+        EstadoExposicao state = expo.getEstado();
+        state.setEstadoStandsAtribuidos();
     }
 }
