@@ -333,15 +333,6 @@ public class Exposicao{
     }
 
     /**
-     * Lista dos fae da exposição
-     *
-     * @return lista dos fae
-     */
-    public List<FAE> getListaFAE() {
-        return this.rfae.getListaFAE();
-    }
-
-    /**
      * Método que valida decisao da candidatura
      *
      * @param c candidatura
@@ -382,7 +373,7 @@ public class Exposicao{
      *
      * @return
      */
-    public RegistoCandidaturasAExposicao getRegistoCandidaturas() {
+    public RegistoCandidaturasAExposicao getRegistoCandidaturasAExposicao() {
         return rce;
     }
 
@@ -491,7 +482,7 @@ public class Exposicao{
                 EstadoExposicao estado = m_estado;
                 estado.setEstadoCandidaturasFechadas();
                 DetetarConflitoController ctrl = new DetetarConflitoController(centroExposicoes);
-                ctrl.detetaConflitos(getCentroDeExposicoes(), thisExpo);
+                ctrl.detetaConflitos(thisExpo);
             }
         }, getDataEncerramentoCandidatura().toDate());
     }

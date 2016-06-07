@@ -2,6 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.model.*;
 
 /**
@@ -143,7 +144,7 @@ public class RegistoExposicoes {
     public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
@@ -167,7 +168,7 @@ public class RegistoExposicoes {
     public List<Exposicao> getExposicoesDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
@@ -208,5 +209,4 @@ public class RegistoExposicoes {
         }
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
-
 }
