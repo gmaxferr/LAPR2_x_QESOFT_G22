@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DefinirFAEController;
-import lapr.project.model.ApresentavelNaJTable;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Exposicao;
@@ -34,6 +33,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     private static final int ALTURA_JANELA_PASSO1 = 390;
     private final CardLayout cardLayout;
     private List<Utilizador> listaUtilizadores;
+    private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
 
     /**
      * Creates new form JFrameDefinirFAE
@@ -310,7 +310,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTableCard2FAE.setModel(new ModeloJTableUtilizadores(this.listaFae));
+        jTableCard2FAE.setModel(new ModeloJTableUtilizadores(listaUtilizadoresCorrespondentesAosFae));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -401,6 +401,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             controller.getRegistoFAE();
             controller.getRegistoOrganizadores();
             controller.setRegistoOrganizadoresParaValidacoes();
+            this.listaUtilizadoresCorrespondentesAosFae=controller.getListaUtilizadoresCorrespondentesAosFae();
             if (!listaUtilizadores.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -419,10 +420,10 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
-            jLabelCard1DataInicio.setText(expo.getM_strDataInicio().toAnoMesDiaString());
-            jLabelCard1DataFim.setText(expo.getM_strDataFim().toAnoMesDiaString());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
