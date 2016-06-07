@@ -9,7 +9,7 @@ import lapr.project.model.*;
  */
 public class RegistoConflitos {
 
-    private List<ConflitoDeInteresse> listaConflitos;
+    private List<ConflitoDeInteresse> m_listaConflitos;
 
     /**
      * Cria um conflito entre o FAE e a Candidatura passados como argumentos e
@@ -33,7 +33,7 @@ public class RegistoConflitos {
      */
     public boolean valida(FAE fae, CandidaturaAExposicao cand) {
         boolean valido = true;
-        for (ConflitoDeInteresse c : listaConflitos) {
+        for (ConflitoDeInteresse c : m_listaConflitos) {
             if (c.getFae().equals(fae) && c.getCandidatura().equals(cand)) {
                 valido = false;
             }
@@ -45,7 +45,7 @@ public class RegistoConflitos {
      * @return a lista de conflitos
      */
     public List<ConflitoDeInteresse> getListaConflitos() {
-        return listaConflitos;
+        return m_listaConflitos;
     }
 
     /**
@@ -54,7 +54,7 @@ public class RegistoConflitos {
      * @param c - Conflito a remover
      */
     public void remove(ConflitoDeInteresse c) {
-        listaConflitos.remove(c);
+        m_listaConflitos.remove(c);
     }
 
     /**
@@ -63,6 +63,6 @@ public class RegistoConflitos {
      * @param c - Conflito a remover
      */
     public void adiciona(ConflitoDeInteresse c) {
-        listaConflitos.add(c);
+        m_listaConflitos.add(c);
     }
 }

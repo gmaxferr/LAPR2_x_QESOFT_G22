@@ -13,7 +13,7 @@ public class RegistoUtilizadores {
     /**
      * Lista de utilizadores
      */
-    private ArrayList<Utilizador> listaUtilizadores;
+    private ArrayList<Utilizador> m_listaUtilizadores;
 
     /**
      * Utilizador
@@ -31,7 +31,7 @@ public class RegistoUtilizadores {
     }
 
     private Utilizador identificarUtilizadorID(String ID) {
-        for (Utilizador u : this.listaUtilizadores) {
+        for (Utilizador u : this.m_listaUtilizadores) {
             if (u.getID().equalsIgnoreCase("id")) {
                 return u;
             }
@@ -50,7 +50,7 @@ public class RegistoUtilizadores {
      */
     private boolean validaUtilizador(String username, String email) {
        ArrayList<Utilizador> list = new ArrayList<>();
-        for (Utilizador u : listaUtilizadores) {
+        for (Utilizador u : m_listaUtilizadores) {
             if (username.equals(u.getUsername()) || email.equals(u.getEmail())) {
             return false;
         }      
@@ -131,7 +131,7 @@ public class RegistoUtilizadores {
      * @param u utilizador a adicionar
      */
     private void adicionaUtilizador(Utilizador u) {
-        listaUtilizadores.add(u);
+        m_listaUtilizadores.add(u);
     }
 
     /**
@@ -142,7 +142,7 @@ public class RegistoUtilizadores {
      */
     public ArrayList<Utilizador> getListaNovosRegistos() {
         ArrayList<Utilizador> list = new ArrayList<>();
-        for (Utilizador u : listaUtilizadores) {
+        for (Utilizador u : m_listaUtilizadores) {
             if (u.getBoolConfirmaRegisto() == false) {
                 list.add(u);
             }
@@ -151,7 +151,7 @@ public class RegistoUtilizadores {
     }
 
     public Utilizador identificarUtilizador(String username) {
-        for (Utilizador utilizador : this.listaUtilizadores) {
+        for (Utilizador utilizador : this.m_listaUtilizadores) {
             if (utilizador.getUsername().equalsIgnoreCase(username)) {
                 return utilizador;
             }

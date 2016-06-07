@@ -8,10 +8,10 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExposicao {
 
-    private CandidaturaAExposicao cand;
+    private CandidaturaAExposicao m_cand;
 
     public EstadoCandidaturaAExposicaoCriada(CandidaturaAExposicao cand) {
-        this.cand = cand;
+        this.m_cand = cand;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
     @Override
     public boolean setEstadoCandidaturaCriada() {
         if (valida()) {
-            this.cand.setEstado(new EstadoCandidaturaAExposicaoCriada(this.cand));
+            this.m_cand.setEstado(new EstadoCandidaturaAExposicaoCriada(this.m_cand));
             return true;
         } else {
             return false;
@@ -87,7 +87,7 @@ public class EstadoCandidaturaAExposicaoCriada implements EstadoCandidaturaAExpo
 
     @Override
     public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        cand.setEstado(new EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(cand));
+        m_cand.setEstado(new EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(m_cand));
         return true;
     }
 

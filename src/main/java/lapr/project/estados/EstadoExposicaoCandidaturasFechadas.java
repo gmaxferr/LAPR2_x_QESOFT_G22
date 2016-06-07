@@ -9,10 +9,10 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoCandidaturasFechadas implements EstadoExposicao {
 
-    private Exposicao exposicao;
+    private Exposicao m_exposicao;
 
     public EstadoExposicaoCandidaturasFechadas(Exposicao exposicao) {
-        this.exposicao = exposicao;
+        this.m_exposicao = exposicao;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EstadoExposicaoCandidaturasFechadas implements EstadoExposicao {
     public boolean setEstadoConflitosDetetados() {
         //validação se pode passar para o próximo passo
         if (valida()) {
-            this.exposicao.setEstado(new EstadoExposicaoConflitosDetetados(this.exposicao));
+            this.m_exposicao.setEstado(new EstadoExposicaoConflitosDetetados(this.m_exposicao));
             return true;
         } else {
             return false;

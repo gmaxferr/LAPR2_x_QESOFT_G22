@@ -10,14 +10,14 @@ import lapr.project.model.TipoConflito;
  */
 public class RegistoTipoConflitos {
 
-    private List<TipoConflito> listaTipoConflitos;
+    private List<TipoConflito> m_listaTipoConflitos;
 
     public RegistoTipoConflitos() {
-        this.listaTipoConflitos = new ArrayList<>();
+        this.m_listaTipoConflitos = new ArrayList<>();
     }
 
     public List<TipoConflito> getListaTipoConflitos() {
-        return this.listaTipoConflitos;
+        return this.m_listaTipoConflitos;
     }
 
     public TipoConflito novoTipoConflito() {
@@ -25,13 +25,13 @@ public class RegistoTipoConflitos {
     }
 
     public boolean validaTipoDeConflito(TipoConflito tipoConflito) {
-        return !listaTipoConflitos.contains(tipoConflito);
+        return !m_listaTipoConflitos.contains(tipoConflito);
     }
 
     public boolean add(TipoConflito tipoConflito) {
         boolean b = validaTipoDeConflito(tipoConflito);
         if (b) {
-            listaTipoConflitos.add(tipoConflito);
+            m_listaTipoConflitos.add(tipoConflito);
         }
         return b;
     }

@@ -13,10 +13,10 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos implements EstadoCandidaturaAExposicao{
     
-    private CandidaturaAExposicao c;
+    private CandidaturaAExposicao m_c;
     
     public EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos (CandidaturaAExposicao c){
-        this.c = c;
+        this.m_c = c;
     }
     
     @Override
@@ -91,7 +91,7 @@ public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos implements Es
 
     @Override
     public boolean setEstadoCandidaturaProntaAtribuicoes() {
-        c.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(c));
+        m_c.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(m_c));
         return true;
     }
 
