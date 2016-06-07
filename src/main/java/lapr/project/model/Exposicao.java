@@ -489,13 +489,13 @@ public class Exposicao {
          
         Exposicao this) {
         Exposicao thisExpo = this;
-        timerEncerramentoCandidatura = new Timer();
-        timerEncerramentoCandidatura.schedule(new TimerTask() {
+        m_timerEncerramentoCandidatura = new Timer();
+        m_timerEncerramentoCandidatura.schedule(new TimerTask() {
             @Override
             public void run() {
                 EstadoExposicao estado = m_estado;
                 estado.setEstadoCandidaturasFechadas();
-                DetetarConflitoController ctrl = new DetetarConflitoController(centroExposicoes);
+                DetetarConflitoController ctrl = new DetetarConflitoController(m_centroExposicoes);
                 ctrl.detetaConflitos(thisExpo);
             }
         }, getDataEncerramentoCandidatura().toDate());
