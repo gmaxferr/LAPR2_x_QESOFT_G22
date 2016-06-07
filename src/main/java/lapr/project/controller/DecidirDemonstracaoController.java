@@ -18,14 +18,6 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class DecidirDemonstracaoController {
 
-
-    private final CentroExposicoes ce;
-    private final String usernameOrganizador;
-    private final RegistoExposicoes re;
-    private RegistoDemonstracoes rd;
-    private List<Demonstracao> lstDemonstracoes;
-    private boolean[] decisoesTemp;
-
     private final CentroExposicoes m_ce;
     private String m_usernameOrganizador;
     private RegistoExposicoes m_re;

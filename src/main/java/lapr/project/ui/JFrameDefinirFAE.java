@@ -31,6 +31,10 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;
+
+    private static final int LARGURA_JANELA_PASSO2 = 555;
+    private static final int ALTURA_JANELA_PASSO2 = 610;
+
     private final CardLayout cardLayout;
     private List<Utilizador> listaUtilizadores;
     private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
@@ -307,6 +311,11 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jLabel5.setText("Introduza o username do utilizador pretendido:");
 
         jButtonCard2AdicionarFAE.setText("Adicionar Fae");
+        jButtonCard2AdicionarFAE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard2AdicionarFAEActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -395,13 +404,10 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-            controller.getRegistoUtilizadores();
-            listaUtilizadores = controller.getListaUtilizadores();
-            controller.getRegistoFAE();
+
             controller.getRegistoOrganizadores();
             controller.setRegistoOrganizadoresParaValidacoes();
-            this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
+
             if (!listaUtilizadores.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -411,6 +417,16 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
+
+    private void avancarParaCard2() {
+        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+        controller.getRegistoUtilizadores();
+        listaUtilizadores = controller.getListaUtilizadores();
+        controller.getRegistoFAE();
+        this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
+        cardLayout.show(getContentPane(), "card2");
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+    }
 
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
@@ -426,6 +442,18 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
+
+    private void jButtonCard2AdicionarFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarFAEActionPerformed
+        if (!jTextFieldCard2IntroduzirUsernameUtilizador.getText().replaceAll(" ", "").isEmpty()) {
+            if(controller.setFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())){
+                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi definido como FAE para esta exposição!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
+            }
+           
+        }
+    }//GEN-LAST:event_jButtonCard2AdicionarFAEActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
