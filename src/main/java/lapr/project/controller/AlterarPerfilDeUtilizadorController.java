@@ -14,14 +14,14 @@ public class AlterarPerfilDeUtilizadorController {
         
     private CentroExposicoes m_centro_exposicoes;
     private RegistoUtilizadores m_ru;
-    private Utilizador u;
+    private Utilizador m_u;
     
     public AlterarPerfilDeUtilizadorController(CentroExposicoes centroExposicoes, RegistoUtilizadores registoUtilizadores){
         m_centro_exposicoes = centroExposicoes;
         m_ru = registoUtilizadores;
 }
 
-    public void getM_ru() {
+    public void getRegistoutilizadores() {
        m_centro_exposicoes.getRegistoUtilizadores();
     }
     
@@ -31,28 +31,28 @@ public class AlterarPerfilDeUtilizadorController {
     
     public void identificaUtilizador(String username){
         //devolve null se não encontrar
-        u = m_ru.identificarUtilizador(username);
+        m_u = m_ru.identificarUtilizador(username);
     }
     
     public String getNomeUtilizador(){
-        return u.getStrNome();
+        return m_u.getNome();
     }
     
     public String getEmailUtilizador(){
-        return u.getStrEmail();
+        return m_u.getEmail();
     }
     
     public char[] getPasswordUtilizador(){
-        return u.getM_StrPwd();
+        return m_u.getPwd();
     }
     
     public void setDadosUtilizador(String nome, String email, String username, String password){
         
         if(m_ru.validaDadosUnicos(username, email)){
-        u.setNome(nome);
-        u.setEmail(email);
-        u.setUsername(username);
-        u.setPwd(password.toCharArray());
+        m_u.setNome(nome);
+        m_u.setEmail(email);
+        m_u.setUsername(username);
+        m_u.setPwd(password.toCharArray());
         }
     }
 }

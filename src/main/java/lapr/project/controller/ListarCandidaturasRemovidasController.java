@@ -39,7 +39,7 @@ public class ListarCandidaturasRemovidasController {
     /**
      * Guarda o registo de exposicoes.
      */
-    public void getRe() {
+    public void getRegistoExposicoes() {
         this.re = centroExposicoes.getRegistoExposicoes();
     }
 
@@ -50,7 +50,7 @@ public class ListarCandidaturasRemovidasController {
      * @return lista das exposições de um organizador.
      */
     public List<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
-        return re.getListaExposicoesDoOrganizador(usernameOrganizador);
+        return re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
     }
 
     /**
@@ -65,7 +65,7 @@ public class ListarCandidaturasRemovidasController {
     /**
      * Guarda o registo de candidaturas removidas.
      */
-    public void getRcr() {
+    public void getRegistoCandidaturasRemovidas() {
         this.rcr = exposicaoEscolhida.getRegistoCandidaturasRemovidas();
     }
 
@@ -74,7 +74,7 @@ public class ListarCandidaturasRemovidasController {
      *
      * @return lista de candidaturas removidas
      */
-    public List<Candidatura> getListaCandidaturasRemovidas() {
+    public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
         return this.rcr.getListaCandidaturasRemovidas();
     }
 

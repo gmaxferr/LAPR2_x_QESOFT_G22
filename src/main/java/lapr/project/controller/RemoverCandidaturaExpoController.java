@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.ArrayList;
@@ -18,11 +13,11 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class RemoverCandidaturaExpoController {
 
-    private Exposicao exposicaoSelecionada;
-    private String username;
-    private CentroExposicoes ce;
-    private RegistoCandidaturasAExposicao rc;
-    private CandidaturaAExposicao candidaturaARemover;
+    private Exposicao m_exposicaoSelecionada;
+    private String m_username;
+    private CentroExposicoes m_ce;
+    private RegistoCandidaturasAExposicao m_rc;
+    private CandidaturaAExposicao m_candidaturaARemover;
 
     /**
      * Construtor do controller da UC18 - remover candidatura a uma exposição
@@ -31,8 +26,8 @@ public class RemoverCandidaturaExpoController {
      * @param ce - centro de exposições
      */
     public RemoverCandidaturaExpoController(String username, CentroExposicoes ce) {
-        this.username = username;
-        this.ce = ce;
+        this.m_username = username;
+        this.m_ce = ce;
     }
 
     /**
@@ -41,7 +36,7 @@ public class RemoverCandidaturaExpoController {
      * @param e - exposição a remover
      */
     public void setExposicao(Exposicao e) {
-        exposicaoSelecionada = e;
+        m_exposicaoSelecionada = e;
     }
 
     /**
@@ -54,7 +49,7 @@ public class RemoverCandidaturaExpoController {
      */
     public List<Exposicao> getExposRepresentante(String username) {
         List<Exposicao> exposicoesLst = new ArrayList();
-        RegistoExposicoes re = ce.getRegistoExposicoes();
+        RegistoExposicoes re = m_ce.getRegistoExposicoes();
         exposicoesLst = re.getExposicoesDoRepresentante(username);
         return exposicoesLst;
     }
@@ -67,19 +62,19 @@ public class RemoverCandidaturaExpoController {
      */
     public List<CandidaturaAExposicao> getListaCandidaturas(String username) {
         List<CandidaturaAExposicao> candidaturasLst = new ArrayList();
-        rc = exposicaoSelecionada.getRegistoCandidaturasAExposicao();
-        candidaturasLst = rc.getCandidaturasRepresentante(username);
+        m_rc = m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
+        candidaturasLst = m_rc.getCandidaturasRepresentante(username);
         return candidaturasLst;
     }
 
     public void setCandidaturaARemover(CandidaturaAExposicao c) {
-         candidaturaARemover = c;
+         m_candidaturaARemover = c;
     }
 
     public void removerCandidatura() {
-        rc.removeCandidatura(candidaturaARemover);
-        RegistoCandidaturasRemovidas rcr = exposicaoSelecionada.getRegistoCandidaturasRemovidas();
-        rcr.adicionarCandidatura(candidaturaARemover);
+        m_rc.removeCandidatura(m_candidaturaARemover);
+        RegistoCandidaturasRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasRemovidas();
+        rcr.adicionarCandidatura(m_candidaturaARemover);
     }
 
 }

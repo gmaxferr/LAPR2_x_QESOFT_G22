@@ -49,11 +49,11 @@ public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_strNome();
+                return this.listaFAE.get(rowIndex).getUtilizador().getNome();
             case 1:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_StrUsername();
+                return this.listaFAE.get(rowIndex).getUtilizador().getUsername();
             default:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_strEmail();
+                return this.listaFAE.get(rowIndex).getUtilizador().getEmail();
         }
     }
 
