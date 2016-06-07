@@ -64,11 +64,6 @@ public class RegistoUtilizadores {
     }
 
     /**
-     * Lista de utilizadores registados
-     */
-    private ArrayList<Utilizador> m_listaUtilizadores;
-
-    /**
      * Ddevolve lista dos Utilizadores
      *
      * @return lista dos utilizadores

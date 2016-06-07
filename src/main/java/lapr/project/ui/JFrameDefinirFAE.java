@@ -58,7 +58,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         setVisible(true);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
-    
+
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
@@ -401,7 +401,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             controller.getRegistoFAE();
             controller.getRegistoOrganizadores();
             controller.setRegistoOrganizadoresParaValidacoes();
-            this.listaUtilizadoresCorrespondentesAosFae=controller.getListaUtilizadoresCorrespondentesAosFae();
+            this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
             if (!listaUtilizadores.isEmpty()) {
                 avancarParaCard2();
             } else {

@@ -379,8 +379,8 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
            Exposicao expo = listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
             jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(expo.getDataInicio());
-            jLabelCard1DataFim.setText(expo.getDataFim());
+            jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
