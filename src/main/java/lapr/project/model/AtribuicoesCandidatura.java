@@ -8,23 +8,23 @@ import lapr.project.registos.RegistoFaeAvaliacao;
  */
 public class AtribuicoesCandidatura {
 
-    private final CandidaturaAExposicao candidatura;
-    private final RegistoFaeAvaliacao rFaeDecisao;
+    private final CandidaturaAExposicao m_candidatura;
+    private final RegistoFaeAvaliacao m_rFaeDecisao;
 
     public AtribuicoesCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
-        this.candidatura = candidaturaAExposicao;
-        this.rFaeDecisao = new RegistoFaeAvaliacao();
+        this.m_candidatura = candidaturaAExposicao;
+        this.m_rFaeDecisao = new RegistoFaeAvaliacao();
     }
 
     public CandidaturaAExposicao getCandidaturaAssociada() {
-        return this.candidatura;
+        return this.m_candidatura;
     }
 
     public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
-        return this.rFaeDecisao;
+        return this.m_rFaeDecisao;
     }
 
     public void addFaeAvaliacao(FAE fae) {
-        this.rFaeDecisao.addFaeAvaliacao(fae);
+        this.m_rFaeDecisao.addFaeAvaliacao(fae);
     }
 }

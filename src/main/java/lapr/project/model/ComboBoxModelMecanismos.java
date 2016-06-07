@@ -14,7 +14,7 @@ public class ComboBoxModelMecanismos extends AbstractListModel implements ComboB
     /**
      * Lista de Mecanismos.
      */
-    private List<Mecanismo> listaMecanismos;
+    private List<Mecanismo> m_listaMecanismos;
 
     /**
      * Objeto selecionado.
@@ -29,7 +29,7 @@ public class ComboBoxModelMecanismos extends AbstractListModel implements ComboB
      */
     public ComboBoxModelMecanismos(List<Mecanismo> listaMecanismos) {
         this.selection = null;
-        this.listaMecanismos = listaMecanismos;
+        this.m_listaMecanismos = listaMecanismos;
     }
 
     /**
@@ -39,7 +39,7 @@ public class ComboBoxModelMecanismos extends AbstractListModel implements ComboB
      */
     @Override
     public int getSize() {
-        return this.listaMecanismos.size();
+        return this.m_listaMecanismos.size();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ComboBoxModelMecanismos extends AbstractListModel implements ComboB
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaMecanismos.get(index).getNome();
+        return this.m_listaMecanismos.get(index).getNome();
     }
 
     /**

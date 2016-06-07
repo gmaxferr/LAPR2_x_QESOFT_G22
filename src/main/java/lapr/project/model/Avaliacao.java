@@ -6,61 +6,61 @@ package lapr.project.model;
  */
 public class Avaliacao {
 
-    private int ratingConhecimentoSobreOTema;
-    private int ratingAdequacaoAExposicao;
-    private int ratingAdequacaoAsDemos;
-    private int ratingAdequacaoNumConvites;
-    private int ratingRecomendacaoGlobal;
-    private boolean avaliacao;
-    private String justificacao;
+    private int m_ratingConhecimentoSobreOTema;
+    private int m_ratingAdequacaoAExposicao;
+    private int m_ratingAdequacaoAsDemos;
+    private int m_ratingAdequacaoNumConvites;
+    private int m_ratingRecomendacaoGlobal;
+    private boolean m_avaliacao;
+    private String m_justificacao;
 
     public Avaliacao() {
-        this.justificacao = null;
+        this.m_justificacao = null;
     }
 
     public boolean verificaAvaliacaoJaTomada() {
-        if (!this.justificacao.isEmpty()) {
+        if (!this.m_justificacao.isEmpty()) {
             return true;
         }
         return false;
     }
 
     public boolean getAvaliacao() {
-        return this.avaliacao;
+        return this.m_avaliacao;
     }
 
     public String getJustificacao() {
-        return this.justificacao;
+        return this.m_justificacao;
     }
 
     public int getRatingConhecimentoSobreOTema() {
-        return ratingConhecimentoSobreOTema;
+        return m_ratingConhecimentoSobreOTema;
     }
 
     public int getRatingAdequacaoAExposicao() {
-        return ratingAdequacaoAExposicao;
+        return m_ratingAdequacaoAExposicao;
     }
 
     public int getRatingAdequacaoAsDemos() {
-        return ratingAdequacaoAsDemos;
+        return m_ratingAdequacaoAsDemos;
     }
 
     public int getRatingAdequacaoNumConvites() {
-        return ratingAdequacaoNumConvites;
+        return m_ratingAdequacaoNumConvites;
     }
 
     public int getRatingRecomendacaoGlobal() {
-        return ratingRecomendacaoGlobal;
+        return m_ratingRecomendacaoGlobal;
     }
 
     public void setAvalicao(boolean avaliacao, String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.avaliacao = avaliacao;
-        this.justificacao = justificacao;
-        this.ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
-        this.ratingAdequacaoAExposicao = ratingAdequacaoAExposicao;
-        this.ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
-        this.ratingAdequacaoNumConvites = ratingAdequacaoNumConvites;
-        this.ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
+        this.m_avaliacao = avaliacao;
+        this.m_justificacao = justificacao;
+        this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
+        this.m_ratingAdequacaoAExposicao = ratingAdequacaoAExposicao;
+        this.m_ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
+        this.m_ratingAdequacaoNumConvites = ratingAdequacaoNumConvites;
+        this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
 }

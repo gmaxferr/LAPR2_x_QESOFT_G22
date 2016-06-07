@@ -9,13 +9,13 @@ public class TipoConflito {
     /**
      * Mecanismo de deteção de conflitos.
      */
-    MecanismoDetecaoConflito mec;
+    private MecanismoDetecaoConflito m_mec;
     
     /**
      * Contrutor por definição.
      */
     public TipoConflito() {
-        mec = new MecanismoDetecaoConflito();
+        m_mec = new MecanismoDetecaoConflito();
     }
     
     /**
@@ -29,6 +29,6 @@ public class TipoConflito {
      * @return Retorna o mecanismo de detação deste tipos de conflito
      */
     public MecanismoDetecaoConflito getMecanismoDetecaoConflito() {
-        return mec;
+        return m_mec;
     }
 }

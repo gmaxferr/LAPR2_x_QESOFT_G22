@@ -13,13 +13,13 @@ public class ListaProdutos {
     /**
      * Lista de produtos.
      */
-    List<Produto> listaProdutos;
+    List<Produto> m_listaProdutos;
 
     /**
      * Construtor de objetos do tipo ListaProdutos sem parâmetros
      */
     public ListaProdutos() {
-        this.listaProdutos = new ArrayList<>();
+        this.m_listaProdutos = new ArrayList<>();
     }
 
     /**
@@ -28,7 +28,7 @@ public class ListaProdutos {
      * @return lista de produtos.
      */
     public List<Produto> getListaProdutos() {
-        return this.listaProdutos;
+        return this.m_listaProdutos;
     }
 
     /**
@@ -37,7 +37,7 @@ public class ListaProdutos {
      * @return tamanho da lista de produtos.
      */
     public int getSize() {
-        return this.listaProdutos.size();
+        return this.m_listaProdutos.size();
     }
 
     /**
@@ -47,7 +47,7 @@ public class ListaProdutos {
      * @return lista de produtos.
      */
     public Produto getProdutoAt(int index) {
-        return this.listaProdutos.get(index);
+        return this.m_listaProdutos.get(index);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ListaProdutos {
      */
     public boolean addProduto(String nome) {
         if (validaProduto(nome)) {
-            this.listaProdutos.add(new Produto(nome));
+            this.m_listaProdutos.add(new Produto(nome));
             return true;
         } else {
             return false;
@@ -74,7 +74,7 @@ public class ListaProdutos {
      * contrário retorna false.
      */
     private boolean validaProduto(String nome) {
-        for (Produto produto : this.listaProdutos) {
+        for (Produto produto : this.m_listaProdutos) {
             if (produto.getNome().equalsIgnoreCase(nome)) {
                 return false;
             }
@@ -90,7 +90,7 @@ public class ListaProdutos {
      */
     public int removeProduto(String nome) {
         int index = localizarProduto(nome);
-        this.listaProdutos.remove(index);
+        this.m_listaProdutos.remove(index);
         return index;
     }
 
@@ -102,8 +102,8 @@ public class ListaProdutos {
      * -1.
      */
     private int localizarProduto(String nome) {
-        for (int i = 0; i < this.listaProdutos.size(); i++) {
-            if (this.listaProdutos.get(i).getNome().equalsIgnoreCase(nome)) {
+        for (int i = 0; i < this.m_listaProdutos.size(); i++) {
+            if (this.m_listaProdutos.get(i).getNome().equalsIgnoreCase(nome)) {
                 return i;
             }
         }

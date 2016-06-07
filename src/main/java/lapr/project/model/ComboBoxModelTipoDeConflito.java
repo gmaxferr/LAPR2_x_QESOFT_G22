@@ -13,7 +13,7 @@ public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements C
     /**
      * Lista de tipos de conflito.
      */
-    private List<TipoConflito> listaTipos;
+    private List<TipoConflito> m_listaTipos;
 
     /**
      * Objeto (tipo de conflito) selecionado.
@@ -28,7 +28,7 @@ public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements C
      */
     public ComboBoxModelTipoDeConflito(List<TipoConflito> listaTipos) {
         this.selection = null;
-        this.listaTipos = listaTipos;
+        this.m_listaTipos = listaTipos;
     }
 
     /**
@@ -38,7 +38,7 @@ public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements C
      */
     @Override
     public int getSize() {
-        return this.listaTipos.size();
+        return this.m_listaTipos.size();
     }
 
     /**
@@ -49,7 +49,7 @@ public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements C
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaTipos.get(index);
+        return this.m_listaTipos.get(index);
     }
 
     /**

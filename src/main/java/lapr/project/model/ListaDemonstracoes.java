@@ -13,13 +13,13 @@ public class ListaDemonstracoes {
     /**
      * Lista de demostrações adicionadas.
      */
-    private List<Demonstracao> listaDemonstracoesAdicionadas;
+    private List<Demonstracao> m_listaDemonstracoesAdicionadas;
 
     /**
      * Construtor de objetos do tipo ListaDemonstrações sem parâmatros.
      */
     public ListaDemonstracoes() {
-        this.listaDemonstracoesAdicionadas = new ArrayList<>();
+        this.m_listaDemonstracoesAdicionadas = new ArrayList<>();
     }
 
     /**
@@ -28,7 +28,7 @@ public class ListaDemonstracoes {
      * @return tamanho da lista de demonstrações adicionadas.
      */
     public int getSize() {
-        return this.listaDemonstracoesAdicionadas.size();
+        return this.m_listaDemonstracoesAdicionadas.size();
     }
 
     /**
@@ -37,7 +37,7 @@ public class ListaDemonstracoes {
      * @return lista de demonstrações adicionadas.
      */
     public List<Demonstracao> getListaDemonstracoesAdicionadas() {
-        return this.listaDemonstracoesAdicionadas;
+        return this.m_listaDemonstracoesAdicionadas;
     }
 
     /**
@@ -47,7 +47,7 @@ public class ListaDemonstracoes {
      * @return demonstração.
      */
     public Demonstracao getDemonstracaoAt(int index) {
-        return this.listaDemonstracoesAdicionadas.get(index);
+        return this.m_listaDemonstracoesAdicionadas.get(index);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ListaDemonstracoes {
      */
     public boolean adicionarDemonstracao(Demonstracao demonstracao) {
         if (validarDemonstracao(demonstracao.getM_StrCodigoIdentificacao())) {
-            this.listaDemonstracoesAdicionadas.add(demonstracao);
+            this.m_listaDemonstracoesAdicionadas.add(demonstracao);
             return true;
         } else {
             return false;
@@ -74,7 +74,7 @@ public class ListaDemonstracoes {
      * adicionadas. Caso contrário retorna false.
      */
     private boolean validarDemonstracao(String codigoIdentificacao) {
-        for (Demonstracao demonstracao : this.listaDemonstracoesAdicionadas) {
+        for (Demonstracao demonstracao : this.m_listaDemonstracoesAdicionadas) {
             if (demonstracao.getM_StrCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
                 return false;
             }
@@ -90,7 +90,7 @@ public class ListaDemonstracoes {
      */
     public int removeDemonstracao(String codigoIdentificacao) {
         int index = localizarDemonstracaoParaRemover(codigoIdentificacao);
-        this.listaDemonstracoesAdicionadas.remove(index);
+        this.m_listaDemonstracoesAdicionadas.remove(index);
         return index;
     }
 
@@ -102,8 +102,8 @@ public class ListaDemonstracoes {
      * demonstração retorna -1.
      */
     public int localizarDemonstracaoParaRemover(String codigoIdentificacao) {
-        for (int i = 0; i < this.listaDemonstracoesAdicionadas.size(); i++) {
-            if (this.listaDemonstracoesAdicionadas.get(i).getM_StrCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
+        for (int i = 0; i < this.m_listaDemonstracoesAdicionadas.size(); i++) {
+            if (this.m_listaDemonstracoesAdicionadas.get(i).getM_StrCodigoIdentificacao().equalsIgnoreCase(codigoIdentificacao)) {
                 return i;
             }
         }
