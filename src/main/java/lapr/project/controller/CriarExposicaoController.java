@@ -56,34 +56,34 @@ public class CriarExposicaoController {
         return m_ru.getListaUtilizadores();
     }
 
-//    /**
-//     * Define os dados da exposição
-//     *
-//     * @param strTitulo Titulo da exposição
-//     * @param strDescricao Descrição da exposição
-//     * @param DataInicio
-//     * @param DataFim
-//     * @param strLocal Local de realização da exposição
-//     * @param lstUtz Lista de utilizadores associados à exposição
-//     * @return o objecto Exposição criado com estes parametros ou null se não
-//     * foi possivel criar com esses parametros
-//     */
-//    public Exposicao setDados(String strTitulo, String strDescricao, Data DataInicio, Data DataFim, Local strLocal, List<Utilizador> lstUtz) {
-//        m_exposicao.setTitulo(strTitulo);
-//        m_exposicao.setDescricao(strDescricao);
-//        m_exposicao.setPeriodo(DataInicio, DataFim);
-//        m_exposicao.setLocal(strLocal);
-//
-//        for (Utilizador u : lstUtz) {
-//            m_ro.addOrganizador(u);
-//        }
-//
-//        if (m_re.validaExposicao(m_exposicao)) {
-//            return m_exposicao;
-//        } else {
-//            return null;
-//        }
-//    }
+    /**
+     * Define os dados da exposição
+     *
+     * @param strTitulo Titulo da exposição
+     * @param strDescricao Descrição da exposição
+     * @param DataInicio
+     * @param DataFim
+     * @param strLocal Local de realização da exposição
+     * @param lstUtz Lista de utilizadores associados à exposição
+     * @return o objecto Exposição criado com estes parametros ou null se não
+     * foi possivel criar com esses parametros
+     */
+    public Exposicao setDados(String strTitulo, String strDescricao, Data DataInicio, Data DataFim, Local strLocal, List<Utilizador> lstUtz) {
+        m_exposicao.setTitulo(strTitulo);
+        m_exposicao.setDescricao(strDescricao);
+        m_exposicao.setPeriodo(DataInicio, DataFim);
+        m_exposicao.setLocal(strLocal);
+
+        for (Utilizador u : lstUtz) {
+            m_ro.addOrganizador(u);
+        }
+
+        if (m_re.validaExposicao(m_exposicao)) {
+            return m_exposicao;
+        } else {
+            return null;
+        }
+    }
     /**
      * Devolve um boolean que representa o sucesso da operação que é registar
      * uma nova exposição
@@ -102,15 +102,4 @@ public class CriarExposicaoController {
         estadoExposicao.setEstadoCriada();
     }
 
-    public void setEstadoCandidaturasAbertas() {
-        this.m_re.setEstadoCandidaturasAbertas(m_exposicao);
-    }
-
-    public void setEstadoCandidaturasFechadas() {
-        this.m_re.setEstadoCandidaturasFechadas(m_exposicao);
-    }
-
-    public void setEstadoConflitosDetetados() {
-        this.m_re.setEstadoExposicaoConflitosDetetados(m_exposicao);
-    }
 }
