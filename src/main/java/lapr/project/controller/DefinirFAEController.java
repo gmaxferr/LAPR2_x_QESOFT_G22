@@ -55,25 +55,44 @@ public class DefinirFAEController {
     }
 
     /**
-     * Método que adiciona fae
+     * Adiciona um FAE recebendo por parametro o username do Utilizador que se
+     * deseja promover ao cargo. O Utilizador é identificado e tentado adicionar
+     * à lista de FAE existente. É validado se já existe um FAE com este
+     * username ou um organizador.
      *
-     * @param usernameUtilizador identificador do fae
+     * @param usernameUtilizador username do Utilizador a ser promovido a FAE
+     * @return true se for adicionado com sucesso, false se não passar as
+     * validações
      */
-    public void setFaePeloUsername(String usernameUtilizador) {
+    public boolean setFaePeloUsername(String usernameUtilizador) {
         m_u = m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
-        m_rfae.adicionaFAE(m_u);
+        return m_rfae.adicionaFAE(m_u);
     }
 
+    /**
+     * Devolve a lista de utilizadores na totalidade existentes no centro de
+     * exposições
+     *
+     * @return lista de utilizadores totais que existe no centro de exposições
+     */
     public List<Utilizador> getListaUtilizadores() {
         return this.m_ru.getListaUtilizadores();
     }
-    
-    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae(){
+
+    /**
+     * Devolve uma lista de utilizadores que estão registados como FAE na
+     * exposição em causa
+     *
+     * @return lista de utilizadores que estão registados como FAE na exposição
+     * em causa
+     */
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
         return this.m_rfae.getListaUtilizadoresCorrespondentesAosFae();
     }
 
     /**
-     * Método que confirma addição de fae
+     * Confirma a adição dos FAE definitivamente. Até aqui a lista de FAE éra
+     * uma lista temporária
      *
      */
     public void confirmaAddFAE() {
