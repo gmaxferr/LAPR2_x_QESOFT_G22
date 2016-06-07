@@ -16,7 +16,7 @@ public class RegistoDemonstracoes {
      */
     private List<Demonstracao> m_listaDemonstracoes;
 
-    private CandidaturaAExposicao candidaturaAExposicao;
+    private CandidaturaAExposicao m_candidaturaAExposicao;
 
     public RegistoDemonstracoes() {
         this.m_listaDemonstracoes = new ArrayList<>();
@@ -37,7 +37,7 @@ public class RegistoDemonstracoes {
      * @param demonstracao demostracao a ser adicionada
      */
     public void adicionaDemonstracao(Demonstracao demonstracao) {
-        candidaturaAExposicao.adicionaDemonstracao(demonstracao);
+        m_candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 
     public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {

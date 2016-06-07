@@ -13,13 +13,13 @@ import lapr.project.model.Demonstracao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class ModeloListaDecidirDemonstracoes extends AbstractTableModel {
+public class ModeloJTableDecidirDemonstracoes extends AbstractTableModel {
 
     private List<Demonstracao> listaDemos;
     private final boolean[] decisoes;
     private final String[] cabecalho = {"Demonstração", "Demonstrações confirmadas"};
 
-    public ModeloListaDecidirDemonstracoes(List<Demonstracao> lstDemos, boolean[] decisoes) {
+    public ModeloJTableDecidirDemonstracoes(List<Demonstracao> lstDemos, boolean[] decisoes) {
         this.listaDemos = lstDemos;
         this.decisoes = decisoes;
     }

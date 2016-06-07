@@ -8,10 +8,10 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExposicao {
 
-    private CandidaturaAExposicao cand;
+    private CandidaturaAExposicao m_cand;
 
     public EstadoCandidaturaAExposicaoInicial(CandidaturaAExposicao cand) {
-        this.cand = cand;
+        this.m_cand = cand;
     }
 
     @Override

@@ -11,23 +11,23 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoExpositores {
 
-    private List<Expositor> listaExpositores;
+    private List<Expositor> m_listaExpositores;
 
     public RegistoExpositores() {
-        this.listaExpositores = new ArrayList<>();
+        this.m_listaExpositores = new ArrayList<>();
     }
 
     public boolean addExpositor(Utilizador utilizador) {
         if (validaExpositor(utilizador)) {
-            this.listaExpositores.add(new Expositor(utilizador));
+            this.m_listaExpositores.add(new Expositor(utilizador));
             return true;
         }
         return false;
     }
 
     private boolean validaExpositor(Utilizador utilizador) {
-        for (Expositor expositor : listaExpositores) {
-            if (expositor.getM_strUsername().equalsIgnoreCase(utilizador.getStrUsername())) {
+        for (Expositor expositor : m_listaExpositores) {
+            if (expositor.getM_strUsername().equalsIgnoreCase(utilizador.getUsername())) {
                 return false;
             }
         }
@@ -35,6 +35,6 @@ public class RegistoExpositores {
     }
 
     public List<Expositor> getListaExpositores() {
-        return this.listaExpositores;
+        return this.m_listaExpositores;
     }
 }
