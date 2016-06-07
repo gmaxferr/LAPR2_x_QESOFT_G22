@@ -33,12 +33,12 @@ public class RegistoFAE {
 
     private boolean validaUtilizador(Utilizador u) {
         for (FAE fae : listaFAETemp) {
-            if (fae.getUsernameFae().equalsIgnoreCase(u.getStrUsername())) {
+            if (fae.getUsernameFae().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
         for (Organizador organizador : this.rOrganizadoresDestaExposicao.getListaOrganizadores()) {
-            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getStrUsername())) {
+            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
@@ -51,33 +51,43 @@ public class RegistoFAE {
 
     /**
      * Verifica se já existe um FAE com um determinado username
+     *
      * @param usernameFAE - username do FAE a procurar
      * @return true se encontrar, false caso contrário
      */
     public boolean isFAE(String usernameFAE) {
         for (FAE fae : listaFAE) {
-            if (fae.getUtilizador().getStrUsername().equalsIgnoreCase(usernameFAE)) {
+            if (fae.getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
         this.rOrganizadoresDestaExposicao = ro;
     }
 
     /**
      * Retorn ao FAE que tem determinado username
+     *
      * @param usernameFAE - usernmae do FAE
-     * @return FAE com o username enviado como parametro. null caso não exista 
+     * @return FAE com o username enviado como parametro. null caso não exista
      */
     public FAE getFAE(String usernameFAE) {
-        for(FAE f: listaFAE){
-            if(f.getUsernameFae().equals(usernameFAE)){
+        for (FAE f : listaFAE) {
+            if (f.getUsernameFae().equals(usernameFAE)) {
                 return f;
             }
         }
         return null;
+    }
+
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
+        List<Utilizador> listaUtilizadores = new ArrayList<>();
+        for (FAE fae : listaFAE) {
+            listaUtilizadores.add(fae.getUtilizador());
+        }
+        return listaUtilizadores;
     }
 }
