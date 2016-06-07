@@ -18,7 +18,7 @@ public class MecanismoDetecaoConflito {
      * @param e Exposição onde serão detetados os conflitos
      */
     public void detetaConflitos(Exposicao e) {
-        RegistoConflitos rcf = e.getRegistoCoflitos();
+        RegistoConflitos rcf = e.getRegistoConflitos();
         RegistoFAE rfae = e.getRegistoFAE();
         List<FAE> lfae = rfae.getListaFAE();
         RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();

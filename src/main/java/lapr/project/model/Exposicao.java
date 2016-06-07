@@ -107,10 +107,9 @@ public class Exposicao{
     private RegistoConflitos rconf;
 
     private RegistoExpositores rexpositores;
+    
+    private KeywordRanking keywordRanking;
 
-    Exposicao e;
-    FAE f;
-    CandidaturaAExposicao c;
     private CentroExposicoes centroExposicoes;
 
     /**
@@ -122,12 +121,10 @@ public class Exposicao{
         this.rcr = new RegistoCandidaturasRemovidas();
         this.rconf = new RegistoConflitos();
         this.ra = new RegistoAtribuicoes();
-        this.rce = new RegistoCandidaturasAExposicao();
-        this.rcr = new RegistoCandidaturasRemovidas();
         this.rd = new RegistoDemonstracoes();
-        this.rfae = new RegistoFAE();
         this.ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this);
+        this.keywordRanking = new KeywordRanking();
     }
 
     /**
@@ -141,18 +138,13 @@ public class Exposicao{
      * @param centroExposicoes
      */
     public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Local local, CentroExposicoes centroExposicoes) {
+        this();
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
         this.m_dataInicio = dataInicio;
         this.m_dataFim = dataFim;
         this.local = local;
         this.centroExposicoes = centroExposicoes;
-        this.ra = new RegistoAtribuicoes();
-        this.rfae = new RegistoFAE();
-        this.rce = new RegistoCandidaturasAExposicao();
-        this.ro = new RegistoOrganizadores();
-        this.rd = new RegistoDemonstracoes();
-        this.rcr = new RegistoCandidaturasRemovidas();
     }
 
     public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
@@ -443,7 +435,7 @@ public class Exposicao{
         return m_estado;
     }
 
-    public RegistoConflitos getRegistoCoflitos() {
+    public RegistoConflitos getRegistoConflitos() {
         return this.rconf;
     }
 
