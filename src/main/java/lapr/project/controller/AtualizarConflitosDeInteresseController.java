@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -12,6 +11,7 @@ import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoConflitos;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoFAE;
+import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  *
@@ -22,11 +22,12 @@ public class AtualizarConflitosDeInteresseController {
     private RegistoConflitos rc;
     private RegistoCandidaturasAExposicao rcand;
     private RegistoFAE rf;
+    private RegistoTipoConflitos rtc;
     private RegistoExposicoes re;
-    private String usernameFae;
-    private CentroExposicoes ce;
-    private Exposicao e;
 
+    private CentroExposicoes ce;
+    private String usernameFae;
+    private Exposicao e;
     private FAE fae;
     private CandidaturaAExposicao cand;
     private TipoConflito tipo;
@@ -40,8 +41,6 @@ public class AtualizarConflitosDeInteresseController {
     public AtualizarConflitosDeInteresseController(String usernameFae, CentroExposicoes ce) {
         this.ce = ce;
         this.usernameFae = usernameFae;
-
-        re = ce.getRegistoExposicoes();
     }
 
     /**
@@ -63,9 +62,10 @@ public class AtualizarConflitosDeInteresseController {
     /**
      * Cria uma lista com as exposições de um FAE
      *
-     * @return
+     * @return lista de exposições de um FAE
      */
     public List<Exposicao> getFaeExpos() {
+        re = ce.getRegistoExposicoes();
         return re.getFaeExpos(usernameFae);
     }
 
@@ -87,7 +87,7 @@ public class AtualizarConflitosDeInteresseController {
      * candidatura selecionados pelo utilizador
      */
     public void registaConflito() {
-        rc.criarConflito(fae, cand);
+        rc.criarConflito(fae, cand, tipo);
     }
 
     /**
@@ -104,7 +104,7 @@ public class AtualizarConflitosDeInteresseController {
      * @return true se for válida; false caso contrário
      */
     public boolean validaConflito() {
-        return rc.valida(fae, cand);
+        return rc.valida(fae, cand, tipo);
     }
 
     /**
@@ -122,5 +122,28 @@ public class AtualizarConflitosDeInteresseController {
      */
     public List<FAE> getListaFae() {
         return rf.getListaFAE();
+    }
+
+    /**
+     * Armazena o tipo de conflito selecionado na interface
+     *
+     * @param tc - tipo de conflito selecionado
+     */
+    public void setTipoConflito(TipoConflito tc) {
+        this.tipo = tc;
+    }
+
+    /**
+     * Método criado apenas para inicializar o registo de tipos de conflito.
+     */
+    public void pullRegistoDeTiposDeConflito() {
+        this.rtc = ce.getRegistoTiposConflitos();
+    }
+
+    /**
+     * @return lista de tipos de conflito do centro de exposições
+     */
+    public List<TipoConflito> getListaDeTiposConflito() {
+        return rtc.getListaTipoConflitos();
     }
 }

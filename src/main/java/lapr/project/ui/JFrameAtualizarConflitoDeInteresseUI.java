@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
@@ -15,8 +10,10 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ComboBoxModelCandidaturaAExposicao;
 import lapr.project.model.ComboBoxModelExposicoes;
+import lapr.project.model.ComboBoxModelTipoDeConflito;
 import lapr.project.model.ConflitoDeInteresse;
 import lapr.project.model.Exposicao;
+import lapr.project.model.TipoConflito;
 
 /**
  *
@@ -32,6 +29,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     private List<Exposicao> listaExposicoes;
     private List<CandidaturaAExposicao> listaCandidaturas;
     private List<ConflitoDeInteresse> listaConflitos;
+    private List<TipoConflito> listaTiposConflito;
 
     /**
      * Creates new form JFrameAtualizarConflitoDeInteresseUI
@@ -96,6 +94,8 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         botaoCriarConflito = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        comboBoxSelectTipoConflito = new javax.swing.JComboBox<>();
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha a exposição pretendida");
@@ -344,7 +344,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(botaoSelecionaExpo1))
                             .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,7 +419,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,6 +471,16 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Selecione um tipo de conflito.");
+
+        comboBoxSelectTipoConflito.setModel(new ComboBoxModelTipoDeConflito(listaTiposConflito));
+        comboBoxSelectTipoConflito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxSelectTipoConflitoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -478,18 +488,22 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCriarConflito))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel3)
+                            .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxSelectTipoConflito, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addContainerGap(173, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCriarConflito))
+                .addGap(26, 26, 26))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,17 +511,18 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoCriarConflito))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSelectTipoConflito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(botaoCriarConflito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoVoltar)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         getContentPane().add(jPanel3, "card3");
@@ -518,10 +533,12 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
 
     private void botaoCriarConflitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConflitoActionPerformed
         CTRL.setCandidatura((CandidaturaAExposicao) comboBoxSelectCandidatura.getSelectedItem());
+        CTRL.setTipoConflito((TipoConflito) comboBoxSelectTipoConflito.getSelectedItem());
         if (CTRL.validaConflito()) {
             CTRL.registaConflito();
+            passaParaPanel2();
         } else {
-            JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Erro!", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Conflito Repetido.", ERROR_MESSAGE);
         }
 
 
@@ -537,7 +554,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jList1.isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione primeiro um conflito.", "Erro", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione primeiro um conflito.", "Sem seleção", ERROR_MESSAGE);
         } else {
             int[] paraEliminar = jList1.getSelectedIndices();
             for (int x : paraEliminar) {
@@ -610,8 +627,14 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CTRL.pullRegistoDeTiposDeConflito();
+        listaTiposConflito = CTRL.getListaDeTiposConflito();
         passaParaPanel3();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comboBoxSelectTipoConflitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSelectTipoConflitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSelectTipoConflitoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
@@ -623,6 +646,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCard1EscolherExposicao;
     private javax.swing.JComboBox<String> comboBoxCard1EscolherExposicao1;
     private javax.swing.JComboBox<String> comboBoxSelectCandidatura;
+    private javax.swing.JComboBox<String> comboBoxSelectTipoConflito;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -630,6 +654,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -679,5 +704,4 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         cardLayout.show(getContentPane(), "card3");
         setSize(this.getSize());
     }
-
 }
