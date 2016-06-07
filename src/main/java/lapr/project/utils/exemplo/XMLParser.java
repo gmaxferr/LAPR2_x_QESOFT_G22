@@ -13,8 +13,11 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Properties;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  * Class that allows converting XML to String and read/write to files.
@@ -27,6 +30,7 @@ public class XMLParser {
 	 *
 	 * @param document The XML Document to render.
 	 * @return A structured string for the XML Document.
+     * @throws javax.xml.transform.TransformerException
 	 */
 	public String convertToString(Document document) throws TransformerException {
 		//Set transformer properties
@@ -42,6 +46,7 @@ public class XMLParser {
 	 *
 	 * @param node The XML node to render.
 	 * @return A structured string for the XML node.
+     * @throws javax.xml.transform.TransformerException
 	 */
 	public String convertToString(Node node) throws TransformerException {
 		//Set transformer properties
@@ -80,9 +85,11 @@ public class XMLParser {
 	 *
 	 * @param filename Filename to be read.
 	 * @return XML Node containing the file content
-	 * @throws Exception
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.io.IOException
+     * @throws org.xml.sax.SAXException
 	 */
-	public Node readXMLElementFromFile(String filename) throws Exception {
+	public Node readXMLElementFromFile(String filename) throws ParserConfigurationException, IOException, SAXException  {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		FileInputStream fileStream = new FileInputStream(filename);
@@ -97,9 +104,9 @@ public class XMLParser {
 	 *
 	 * @param node     XML node to be written.
 	 * @param filename File to be written.
-	 * @throws Exception
+     * @throws javax.xml.transform.TransformerException
 	 */
-	public void writeXMLElementToFile(Node node, String filename) throws Exception {
+	public void writeXMLElementToFile(Node node, String filename) throws TransformerException {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
