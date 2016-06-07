@@ -131,7 +131,7 @@ public class MainMenuGUI extends JFrame {
         infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         infoPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        String nomeUtilizador = utilizador.getM_strNome();
+        String nomeUtilizador = utilizador.getStrNome();
         if (nomeUtilizador.length() > 20) {
             nomeUtilizador = nomeUtilizador.substring(0, 17) + "...";
         }
@@ -252,7 +252,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getM_StrUsername(), centroExposicoes);
+                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getStrUsername(), centroExposicoes);
             }
         });
         return button;
@@ -271,7 +271,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, centroExposicoes.getExpositorPeloUsername(utilizador.getM_StrUsername()));
+                new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, centroExposicoes.getExpositorPeloUsername(utilizador.getStrUsername()));
             }
         });
         return button;

@@ -117,8 +117,8 @@ public class RegistoUtilizadores {
      *
      * @param u Utilizador desejado
      */
-    public void addUtilizador(Utilizador u, String username, String email) {
-        if (validaUtilizador(username, email) == true) {
+    public void addUtilizador(Utilizador u) {
+        if (validaUtilizador(u.getM_StrUsername(), u.getM_strEmail()) == true) {
             adicionaUtilizador(u);
         } else {
             

@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.estados.EstadoDemonstracao;
 import lapr.project.registos.RegistoRecursos;
 
 /**
@@ -16,25 +17,50 @@ public class Demonstracao {
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rrr;
+    private EstadoDemonstracao m_estado;
 
     public Demonstracao(String descricao) {
         this.rrr = new RegistoRecursos();
         this.m_StrDescricao = descricao;
     }
 
+    /**
+     * 
+     * @return descrição da demonstração
+     */
     public String getM_StrDescricao() {
         return this.m_StrDescricao;
     }
 
+    /**
+     * Permite alterar a descrição da demonstração
+     * @param descricaoIntroduzidaPeloUtilizador 
+     */
     public void setM_StrDescricao(String descricaoIntroduzidaPeloUtilizador) {
         this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
     }
 
+    /**
+     * 
+     * @return registo dos recursos necessários à demonstração
+     */
     public RegistoRecursos getRegistoRecursos() {
         return this.rrr;
     }
 
+    /**
+     * 
+     * @return código da demonstração
+     */
     public String getM_StrCodigoIdentificacao() {
         return this.m_StrCodigoIdentificacao;
+    }
+    
+    /**
+     * Permite obter o estado atual da demonstração
+     * @return estado atual da demonstração
+     */
+    public EstadoDemonstracao getEstadoDemo(){
+        return m_estado;
     }
 }

@@ -27,7 +27,7 @@ public class RegistoExpositores {
 
     private boolean validaExpositor(Utilizador utilizador) {
         for (Expositor expositor : listaExpositores) {
-            if (expositor.getM_strUsername().equalsIgnoreCase(utilizador.getM_StrUsername())) {
+            if (expositor.getM_strUsername().equalsIgnoreCase(utilizador.getStrUsername())) {
                 return false;
             }
         }

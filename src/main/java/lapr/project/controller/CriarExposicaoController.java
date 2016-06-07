@@ -1,15 +1,10 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Local;
-import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoOrganizadores;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.estados.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
+import lapr.project.utils.Data;
 
 /**
  * Representação do Controller do caso de uso - criar exposição
@@ -27,10 +22,8 @@ public class CriarExposicaoController {
     private final RegistoOrganizadores m_ro;
 
     private Exposicao m_exposicao;
-    
+
     private EstadoExposicao estadoExposicao;
-    
-    private EstadoCandidaturaAExposicao estadoCandidatura;
 
     public CriarExposicaoController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoUtilizadores registoUtilizadores, RegistoOrganizadores registoOrganizadores) {
         m_centro_exposicoes = centro_exposicoes;
@@ -68,17 +61,17 @@ public class CriarExposicaoController {
      *
      * @param strTitulo Titulo da exposição
      * @param strDescricao Descrição da exposição
-     * @param strDataInicio Data de início da exposição
-     * @param strDataFim Data de fim da exposição
+     * @param DataInicio
+     * @param DataFim
      * @param strLocal Local de realização da exposição
      * @param lstUtz Lista de utilizadores associados à exposição
      * @return o objecto Exposição criado com estes parametros ou null se não
      * foi possivel criar com esses parametros
      */
-    public Exposicao setDados(String strTitulo, String strDescricao, String strDataInicio, String strDataFim, Local strLocal, List<Utilizador> lstUtz) {
+    public Exposicao setDados(String strTitulo, String strDescricao, Data DataInicio, Data DataFim, Local strLocal, List<Utilizador> lstUtz) {
         m_exposicao.setTitulo(strTitulo);
         m_exposicao.setDescricao(strDescricao);
-        m_exposicao.setPeriodo(strDataInicio, strDataFim);
+        m_exposicao.setPeriodo(DataInicio, DataFim);
         m_exposicao.setLocal(strLocal);
 
         for (Utilizador u : lstUtz) {
@@ -91,11 +84,6 @@ public class CriarExposicaoController {
             return null;
         }
     }
-
-    public boolean setID(String id) {
-        return m_ru.identificarUtilizadorPeloId(id);
-    }
-
     /**
      * Devolve um boolean que representa o sucesso da operação que é registar
      * uma nova exposição
@@ -110,19 +98,8 @@ public class CriarExposicaoController {
     }
 
     public void setEstadoCriada() {
-        this.estadoExposicao=this.m_exposicao.getEstado();
+        this.estadoExposicao = this.m_exposicao.getEstado();
         estadoExposicao.setEstadoCriada();
     }
 
-    public void setEstadoCandidaturasAbertas() {
-        this.m_re.setEstadoCandidaturasAbertas(m_exposicao);
-    }
-
-    public void setEstadoCandidaturasFechadas() {
-        this.m_re.setEstadoCandidaturasFechadas(m_exposicao);
-    }
-
-    public void setEstadoConflitosDetetados() {
-        this.m_re.setEstadoExposicaoConflitosDetetados(m_exposicao);
-    }
 }

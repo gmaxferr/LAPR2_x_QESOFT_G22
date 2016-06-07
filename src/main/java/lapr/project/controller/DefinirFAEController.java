@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.estados.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
@@ -61,6 +62,10 @@ public class DefinirFAEController {
     public void setFaePeloUsername(String usernameUtilizador) {
         u = ru.identificarUtilizadorPeloUsername(usernameUtilizador);
         rfae.adicionaFAE(u);
+    }
+
+    public List<Utilizador> getListaUtilizadores() {
+        return this.ru.getListaUtilizadores();
     }
 
     /**

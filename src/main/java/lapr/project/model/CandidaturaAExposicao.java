@@ -227,6 +227,33 @@ public class CandidaturaAExposicao {
     }
 
     /**
+     * Remove produto da candidatura
+     *
+     * @param index
+     */
+    public void removeProduto(int index) {
+        if (index < rp.getListaProdutosAExpor().size()) {
+            this.rp.getListaProdutosAExpor().remove(index);
+        } else {
+            throw new IllegalArgumentException("Produto Inválido!");
+        }
+    }
+    
+    /**
+     * Edita um produto da candidatura
+     *
+     * @param p - novo produto
+     */
+    public void editProduto(int index, String novoProduto) {
+        if (index < rp.getListaProdutosAExpor().size()) {
+            Produto temp = this.rp.getListaProdutosAExpor().get(index);
+            temp.setNome(novoProduto);
+        } else {
+            throw new IllegalArgumentException("Produto Inválido!");
+        }
+    }
+    
+    /**
      * Método que valida a candidatura
      *
      * @return boolean conforme a validação
