@@ -6,17 +6,9 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoExposicaoCriada;
-import lapr.project.estados.EstadoExposicaoDemosDefinidasSemFAE;
-import lapr.project.estados.EstadoExposicaoFAEDefinidosSemDemos;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Recurso;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoRecursos;
+import lapr.project.estados.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
@@ -34,58 +26,58 @@ public class CriarDemonstracaoController {
     private EstadoExposicao estado;
     private EstadoExposicaoCriada estadoExposicaoCriada;
     private EstadoExposicaoDemosDefinidasSemFAE estadoExposicaoDemosDef;
-    
-    void getRegistoExposicoes() {
+
+    public void getRegistoExposicoes() {
         this.re = centroExpo.getRegistoExposicoes();
 
     }
 
-    ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
         //passar parametro username
         return re.getlistaExposicoesDoOrganizador();
     }
 
-    void setExposicao(Exposicao e) {
+    public void setExposicao(Exposicao e) {
         this.exposicao = e;
     }
 
-    void getRegistoRecursos() {
+    public void getRegistoRecursos() {
         this.rr = centroExpo.getRegistoRecursos();
     }
 
-    void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
+    public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
         this.demoCriada = rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
     }
 
-    void getRegistoDemonstracoes() {
+    public void getRegistoDemonstracoes() {
         this.rd = exposicao.getRegistoDemonstracoes();
     }
 
-    ArrayList<Recurso> getListaDeRecursos() {
+    public ArrayList<Recurso> getListaDeRecursos() {
         return rr.getListaDeRecursos();
     }
 
-    void setRecurso(Recurso rec) {
+    public void setRecurso(Recurso rec) {
         this.rrr.setRecurso(rec);
     }
 
-    void getRegistoRecursosDemo() {
+    public void getRegistoRecursosDemo() {
         this.rrr = this.demoCriada.getRegistoRecursos();
     }
 
-    void confirma() {
+    public void confirma() {
         rd.confirma(this.demoCriada);
     }
-    
-    public void setEstado(){
 
-    estado = this.exposicao.getEstado();
-    if(estado instanceof EstadoExposicaoFAEDefinidosSemDemos){
-        estadoExposicaoDemosDef.setEstadoCompleta();
-    } else if (estado instanceof EstadoExposicaoCriada){ 
-        estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();  
-    
-    }
+    public void setEstado() {
+
+        estado = this.exposicao.getEstado();
+        if (estado instanceof EstadoExposicaoFAEDefinidosSemDemos) {
+            estadoExposicaoDemosDef.setEstadoCompleta();
+        } else if (estado instanceof EstadoExposicaoCriada) {
+            estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();
+
+        }
     }
 
 }

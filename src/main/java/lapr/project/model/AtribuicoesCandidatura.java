@@ -8,8 +8,8 @@ import lapr.project.registos.RegistoFaeAvaliacao;
  */
 public class AtribuicoesCandidatura {
 
-    private CandidaturaAExposicao candidatura;
-    private RegistoFaeAvaliacao rFaeDecisao;
+    private final CandidaturaAExposicao candidatura;
+    private final RegistoFaeAvaliacao rFaeDecisao;
 
     public AtribuicoesCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         this.candidatura = candidaturaAExposicao;

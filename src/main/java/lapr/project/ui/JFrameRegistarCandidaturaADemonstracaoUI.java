@@ -6,9 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.RegistarCandidaturaADemonstracaoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 
 /**
  *
@@ -435,6 +433,15 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
+<<<<<<< HEAD
+    private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
+        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            Exposicao e = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
+            jTextAreaCard1DescricaoExposicao.setText(e.getM_strDescricao());
+            jTextAreaCard1LocalExposicao.setText(e.getLocal().getM_StrMorada());
+            jLabelCard1DataInicio.setText(e.getM_strDataInicio().toString());
+            jLabelCard1DataFim.setText(e.getM_strDataFim().toString());
+=======
     private void comboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCard1EscolherExposicaoActionPerformed
         if (comboBoxCard1EscolherExposicao.getSelectedItem() != null) {
             Exposicao e = listaExposicoes.get(comboBoxCard1EscolherExposicao.getSelectedIndex());
@@ -442,6 +449,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
             jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
             jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(e.getDataFim().toString());
+>>>>>>> 18cb8d94a504f52d20c550b1d1745c7b15cef04e
             CTRL.setExpo(e);
         } else {
             textAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);

@@ -14,8 +14,6 @@ import lapr.project.registos.*;
 public class AtribuirCandidaturasController {
 
     private ArrayList<Exposicao> listaExpo;
-    private List<CandidaturaAExposicao> listaCand;
-    private ArrayList<FAE> listaFAE;
     private RegistoExposicoes re;
     private CandidaturaAExposicao cand;
     private Exposicao e;
@@ -28,8 +26,6 @@ public class AtribuirCandidaturasController {
 
     public AtribuirCandidaturasController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
         this.listaExpo = new ArrayList<>();
-        this.listaCand = new ArrayList<>();
-        this.listaFAE = new ArrayList<>();
         this.centroExposicoes = centroExposicoes;
         this.usernameOrganizador = usernameOrganizador;
     }
