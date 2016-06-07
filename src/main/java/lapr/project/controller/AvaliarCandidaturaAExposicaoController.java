@@ -40,8 +40,8 @@ public class AvaliarCandidaturaAExposicaoController {
         this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
-    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE() {
-        return this.m_ra.getListaAtribuicoesComOFAE(this.m_usernameFAE);
+    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesDoAE() {
+        return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
 
     public void getRegistoFaeAvalicao() {

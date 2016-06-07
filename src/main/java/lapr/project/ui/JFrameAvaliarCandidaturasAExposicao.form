@@ -600,13 +600,8 @@
         </Container>
         <Component class="javax.swing.JComboBox" name="jComboBoxCard2EscolherCandidatura">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -665,11 +660,11 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSliderConhecimentoDoAssunto" pref="244" max="32767" attributes="0"/>
-                              <Component id="jSlider5" max="32767" attributes="0"/>
-                              <Component id="jSlider3" max="32767" attributes="0"/>
-                              <Component id="jSlider1" max="32767" attributes="0"/>
-                              <Component id="jSlider2" max="32767" attributes="0"/>
+                              <Component id="jSliderConhecimentoDoTema" pref="246" max="32767" attributes="0"/>
+                              <Component id="jSliderAdequacaoAExposicao" max="32767" attributes="0"/>
+                              <Component id="jSliderAdequacaoAsDemonstracoes" max="32767" attributes="0"/>
+                              <Component id="jSliderAdequacaoDoNumeroDeConvites" max="32767" attributes="0"/>
+                              <Component id="jSliderRecomendacaoGlobal" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -699,19 +694,19 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSliderConhecimentoDoAssunto" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSliderConhecimentoDoTema" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelAdequacaoAExposicao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSlider5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSliderAdequacaoAExposicao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabelAdequacaoAsDemonstracoes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSlider3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSliderAdequacaoAsDemonstracoes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelAdequacaoDoNumeroDeConvites" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSliderAdequacaoDoNumeroDeConvites" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabelRecomendacaoGlobal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -723,8 +718,8 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jSliderRecomendacaoGlobal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonCard3Terminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonCard3Recuar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -759,7 +754,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCard3RecuarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider1">
+        <Component class="javax.swing.JSlider" name="jSliderAdequacaoDoNumeroDeConvites">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="0"/>
@@ -773,7 +768,7 @@
             <Property name="value" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider2">
+        <Component class="javax.swing.JSlider" name="jSliderRecomendacaoGlobal">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="0"/>
@@ -787,7 +782,7 @@
             <Property name="value" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider3">
+        <Component class="javax.swing.JSlider" name="jSliderAdequacaoAsDemonstracoes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="0"/>
@@ -801,7 +796,7 @@
             <Property name="value" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSliderConhecimentoDoAssunto">
+        <Component class="javax.swing.JSlider" name="jSliderConhecimentoDoTema">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="0"/>
@@ -815,7 +810,7 @@
             <Property name="value" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider5">
+        <Component class="javax.swing.JSlider" name="jSliderAdequacaoAExposicao">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="0"/>
@@ -831,7 +826,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Conhecimento do assunto"/>
+            <Property name="text" type="java.lang.String" value="Conhecimento do tema"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelAdequacaoAExposicao">

@@ -442,15 +442,14 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
-
     private void jButtonCard2AdicionarFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarFAEActionPerformed
         if (!jTextFieldCard2IntroduzirUsernameUtilizador.getText().replaceAll(" ", "").isEmpty()) {
-            if(controller.setFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())){
+            if (controller.setFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())) {
+                //jTableCard2FAE.add();
                 JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi definido como FAE para esta exposição!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
             }
-           
         }
     }//GEN-LAST:event_jButtonCard2AdicionarFAEActionPerformed
 

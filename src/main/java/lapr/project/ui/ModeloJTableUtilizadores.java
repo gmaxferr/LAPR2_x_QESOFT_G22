@@ -19,6 +19,14 @@ public class ModeloJTableUtilizadores extends AbstractTableModel {
         this.listaUsers = listaUsers;
     }
 
+    public ModeloJTableUtilizadores() {
+        
+    }
+
+    public void setLista(List<Utilizador> listaFae){
+        this.listaUsers=listaFae;
+    }
+    
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
@@ -46,8 +54,11 @@ public class ModeloJTableUtilizadores extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
+                return this.listaUsers.get(rowIndex).getNome();
             case 1:
+                return this.listaUsers.get(rowIndex).getUsername();
             default:
+                return this.listaUsers.get(rowIndex).getEmail();
         }
     }
 

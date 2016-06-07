@@ -52,7 +52,7 @@ public class RegistoAtribuicoes {
         this.m_listaAtribuicao = listaAtribuicao;
     }
 
-    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE(String usernameFAE) {
+    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
         ArrayList<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicoesCandidatura atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 

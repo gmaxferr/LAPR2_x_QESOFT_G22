@@ -29,7 +29,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private String[] listaNomeMecanismos;
     private Mecanismo mecanismoEscolhido;
     private List<AtribuicoesCandidatura> listaAtribuicoes;
-    private ModeloJTableUtilizadores modeloJTable;
+    private ModeloJTableUtilizadores modeloJTableFAEPorCandidatura;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 382;
@@ -399,8 +399,8 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jLabel5.setFont(jLabelCard1Titulo.getFont());
         jLabel5.setText("Distribuição gerada por candidatura");
 
-        this.modeloJTable = new ModeloJTableUsers();
-        jTable1.setModel(modeloJTable);
+        this.modeloJTableFAEPorCandidatura = new ModeloJTableUtilizadores();
+        jTable1.setModel(modeloJTableFAEPorCandidatura);
         jScrollPane4.setViewportView(jTable1);
 
         jComboBoxCard3EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
@@ -630,9 +630,9 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCard2EscolherMecanismoActionPerformed
 
     private void jComboBoxCard3EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherCandidaturaActionPerformed
-        List<FAE> listaFAE = listaAtribuicoes.get(jComboBoxCard3EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaTodosFAE();
-        modeloJTable.setLista(listaFAE);
-        modeloJTable.fireTableDataChanged();
+        List<Utilizador> listaUtilizadoresAssociadosAosFAE = listaAtribuicoes.get(jComboBoxCard3EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaUtilizadoresAssociadoAosFAE();
+        modeloJTableFAEPorCandidatura.setLista(listaUtilizadoresAssociadosAosFAE);
+        modeloJTableFAEPorCandidatura.fireTableDataChanged();
     }//GEN-LAST:event_jComboBoxCard3EscolherCandidaturaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

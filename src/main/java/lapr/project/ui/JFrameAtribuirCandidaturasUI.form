@@ -574,11 +574,11 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="modeloJTable" type="code"/>
+                  <Connection code="modeloJTableFAEPorCandidatura" type="code"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="this.modeloJTable = new lapr.project.ui.ModeloJTableUsers();"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="this.modeloJTableFAEPorCandidatura = new ModeloJTableUtilizadores();"/>
               </AuxValues>
             </Component>
           </SubComponents>

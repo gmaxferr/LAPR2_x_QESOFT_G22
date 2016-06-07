@@ -130,11 +130,11 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jButtonCard3Terminar = new javax.swing.JButton();
         jButtonCard3Recuar = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
-        jSlider2 = new javax.swing.JSlider();
-        jSlider3 = new javax.swing.JSlider();
-        jSliderConhecimentoDoAssunto = new javax.swing.JSlider();
-        jSlider5 = new javax.swing.JSlider();
+        jSliderAdequacaoDoNumeroDeConvites = new javax.swing.JSlider();
+        jSliderRecomendacaoGlobal = new javax.swing.JSlider();
+        jSliderAdequacaoAsDemonstracoes = new javax.swing.JSlider();
+        jSliderConhecimentoDoTema = new javax.swing.JSlider();
+        jSliderAdequacaoAExposicao = new javax.swing.JSlider();
         jLabel5 = new javax.swing.JLabel();
         jLabelAdequacaoAExposicao = new javax.swing.JLabel();
         jLabelAdequacaoAsDemonstracoes = new javax.swing.JLabel();
@@ -426,7 +426,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBoxCard2EscolherCandidatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE));
         jComboBoxCard2EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCard2EscolherCandidaturaActionPerformed(evt);
@@ -505,52 +505,52 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             }
         });
 
-        jSlider1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jSlider1.setMajorTickSpacing(1);
-        jSlider1.setMaximum(5);
-        jSlider1.setMinorTickSpacing(1);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setSnapToTicks(true);
-        jSlider1.setValue(0);
+        jSliderAdequacaoDoNumeroDeConvites.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderAdequacaoDoNumeroDeConvites.setMajorTickSpacing(1);
+        jSliderAdequacaoDoNumeroDeConvites.setMaximum(5);
+        jSliderAdequacaoDoNumeroDeConvites.setMinorTickSpacing(1);
+        jSliderAdequacaoDoNumeroDeConvites.setPaintLabels(true);
+        jSliderAdequacaoDoNumeroDeConvites.setPaintTicks(true);
+        jSliderAdequacaoDoNumeroDeConvites.setSnapToTicks(true);
+        jSliderAdequacaoDoNumeroDeConvites.setValue(0);
 
-        jSlider2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jSlider2.setMajorTickSpacing(1);
-        jSlider2.setMaximum(5);
-        jSlider2.setMinorTickSpacing(1);
-        jSlider2.setPaintLabels(true);
-        jSlider2.setPaintTicks(true);
-        jSlider2.setSnapToTicks(true);
-        jSlider2.setValue(0);
+        jSliderRecomendacaoGlobal.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderRecomendacaoGlobal.setMajorTickSpacing(1);
+        jSliderRecomendacaoGlobal.setMaximum(5);
+        jSliderRecomendacaoGlobal.setMinorTickSpacing(1);
+        jSliderRecomendacaoGlobal.setPaintLabels(true);
+        jSliderRecomendacaoGlobal.setPaintTicks(true);
+        jSliderRecomendacaoGlobal.setSnapToTicks(true);
+        jSliderRecomendacaoGlobal.setValue(0);
 
-        jSlider3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jSlider3.setMajorTickSpacing(1);
-        jSlider3.setMaximum(5);
-        jSlider3.setMinorTickSpacing(1);
-        jSlider3.setPaintLabels(true);
-        jSlider3.setPaintTicks(true);
-        jSlider3.setSnapToTicks(true);
-        jSlider3.setValue(0);
+        jSliderAdequacaoAsDemonstracoes.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderAdequacaoAsDemonstracoes.setMajorTickSpacing(1);
+        jSliderAdequacaoAsDemonstracoes.setMaximum(5);
+        jSliderAdequacaoAsDemonstracoes.setMinorTickSpacing(1);
+        jSliderAdequacaoAsDemonstracoes.setPaintLabels(true);
+        jSliderAdequacaoAsDemonstracoes.setPaintTicks(true);
+        jSliderAdequacaoAsDemonstracoes.setSnapToTicks(true);
+        jSliderAdequacaoAsDemonstracoes.setValue(0);
 
-        jSliderConhecimentoDoAssunto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jSliderConhecimentoDoAssunto.setMajorTickSpacing(1);
-        jSliderConhecimentoDoAssunto.setMaximum(5);
-        jSliderConhecimentoDoAssunto.setMinorTickSpacing(1);
-        jSliderConhecimentoDoAssunto.setPaintLabels(true);
-        jSliderConhecimentoDoAssunto.setPaintTicks(true);
-        jSliderConhecimentoDoAssunto.setSnapToTicks(true);
-        jSliderConhecimentoDoAssunto.setValue(0);
+        jSliderConhecimentoDoTema.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderConhecimentoDoTema.setMajorTickSpacing(1);
+        jSliderConhecimentoDoTema.setMaximum(5);
+        jSliderConhecimentoDoTema.setMinorTickSpacing(1);
+        jSliderConhecimentoDoTema.setPaintLabels(true);
+        jSliderConhecimentoDoTema.setPaintTicks(true);
+        jSliderConhecimentoDoTema.setSnapToTicks(true);
+        jSliderConhecimentoDoTema.setValue(0);
 
-        jSlider5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jSlider5.setMajorTickSpacing(1);
-        jSlider5.setMaximum(5);
-        jSlider5.setMinorTickSpacing(1);
-        jSlider5.setPaintLabels(true);
-        jSlider5.setPaintTicks(true);
-        jSlider5.setSnapToTicks(true);
-        jSlider5.setValue(0);
+        jSliderAdequacaoAExposicao.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderAdequacaoAExposicao.setMajorTickSpacing(1);
+        jSliderAdequacaoAExposicao.setMaximum(5);
+        jSliderAdequacaoAExposicao.setMinorTickSpacing(1);
+        jSliderAdequacaoAExposicao.setPaintLabels(true);
+        jSliderAdequacaoAExposicao.setPaintTicks(true);
+        jSliderAdequacaoAExposicao.setSnapToTicks(true);
+        jSliderAdequacaoAExposicao.setValue(0);
 
-        jLabel5.setText("Conhecimento do assunto");
+        jLabel5.setText("Conhecimento do tema");
 
         jLabelAdequacaoAExposicao.setText("Adequação à exposição");
 
@@ -635,11 +635,11 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSliderConhecimentoDoAssunto, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(jSlider5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSlider3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -662,19 +662,19 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderConhecimentoDoAssunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelAdequacaoAExposicao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
                         .addComponent(jLabelAdequacaoAsDemonstracoes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelAdequacaoDoNumeroDeConvites)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelRecomendacaoGlobal)
                         .addGap(4, 4, 4))
@@ -683,8 +683,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Terminar)
                     .addComponent(jButtonCard3Recuar))
@@ -698,9 +698,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-            controller.getRegistoAtribuicoes();
-            listaAtribuicoesDoFAE = controller.getListaAtribuicoesComOFAE();
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -711,6 +708,10 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
     private void avancarParaCard2() {
+        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+        controller.getRegistoAtribuicoes();
+        listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
+
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
     }
@@ -720,7 +721,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
-        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
@@ -757,19 +757,39 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
-//        if (!jTextAreaJustificacao.getText().isEmpty()) {
-//                    guardarDecisao();
-//                    String[] opcoes2 = {"Sim", "Não"};
-//                    int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja avaliar outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
-//                    if (resposta == 0) {
-//                        voltarASelecionarExposicao();
-//                    } else {
-//                        terminarUC();
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(rootPane, "Não pode continuar sem justificar a sua decisão!", "Erro", JOptionPane.WARNING_MESSAGE);
-//                }
+        if (!jTextAreaCard3Justificacao.getText().isEmpty()) {
+            guardarDecisao();
+            String[] opcoes2 = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja avaliar outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+            if (resposta == 0) {
+                voltarASelecionarExposicao();
+            } else {
+                terminarUC();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não pode continuar sem justificar a sua decisão!", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
+
+    private void guardarDecisao() {
+        boolean avaliacao;
+        if (jRadioButtonCard3Sim.isSelected()) {
+            avaliacao = true;
+        } else {
+            avaliacao = false;
+        }
+        this.avaliacaoDoFae.setAvalicao(avaliacao, jTextAreaCard3Justificacao.getText(), jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
+    }
+
+    private void voltarASelecionarExposicao() {
+        cardLayout.show(getContentPane(), "card1");
+        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
+    }
+
+    private void terminarUC() {
+        dispose();
+        jFrameMenuPrincipal.setVisible(true);
+    }
 
 //    private void guardarDecisao() {
 //        if (jRadioButtonSim.isSelected()) {
@@ -878,11 +898,11 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider3;
-    private javax.swing.JSlider jSlider5;
-    private javax.swing.JSlider jSliderConhecimentoDoAssunto;
+    private javax.swing.JSlider jSliderAdequacaoAExposicao;
+    private javax.swing.JSlider jSliderAdequacaoAsDemonstracoes;
+    private javax.swing.JSlider jSliderAdequacaoDoNumeroDeConvites;
+    private javax.swing.JSlider jSliderConhecimentoDoTema;
+    private javax.swing.JSlider jSliderRecomendacaoGlobal;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
     private javax.swing.JTextArea jTextAreaCard3Justificacao;
