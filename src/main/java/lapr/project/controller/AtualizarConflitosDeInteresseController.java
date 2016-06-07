@@ -66,14 +66,7 @@ public class AtualizarConflitosDeInteresseController {
      * @return
      */
     public List<Exposicao> getFaeExpos() {
-        List<Exposicao> expos = re.getListaExposicoesValidas();
-        List<Exposicao> exposFAE = new ArrayList<>();
-        for (Exposicao ex : expos) {
-            if (ex.getRegistoFAE().isFAE(usernameFae)) {
-                exposFAE.add(ex);
-            }
-        }
-        return exposFAE;
+        return re.getFaeExpos(usernameFae);
     }
 
     /**
@@ -86,6 +79,7 @@ public class AtualizarConflitosDeInteresseController {
         rc = e.getRegistoConflitos();
         rcand = e.getRegistoCandidaturasAExposicao();
         rf = e.getRegistoFAE();
+        fae = rf.getFAE(usernameFae);
     }
 
     /**
@@ -123,19 +117,10 @@ public class AtualizarConflitosDeInteresseController {
     }
 
     /**
-     * altera o FAE guardado no Controller
      *
-     * @param fae - FAE
-     */
-    public void setFae(FAE fae) {
-        this.fae = fae;
-    }
-    
-    /**
-     * 
      * @return lista de FAE da exposição selecionada
      */
-    public List<FAE> getListaFae(){
+    public List<FAE> getListaFae() {
         return rf.getListaFAE();
     }
 }
