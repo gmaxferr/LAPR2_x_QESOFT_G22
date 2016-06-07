@@ -17,25 +17,25 @@ public class CentroExposicoes {
     /**
      *
      */
-    private RegistoExposicoes m_registoExposicoes;
+    private final RegistoExposicoes m_registoExposicoes;
 
     /**
      *
      */
-    private RegistoUtilizadores m_registoUtilizadores;
+    private final RegistoUtilizadores m_registoUtilizadores;
 
     /**
      *
      */
-    private RegistoMecanismos m_registoMecanismos;
+    private final RegistoMecanismos m_registoMecanismos;
 
     /**
      *
      */
-    private RegistoRecursos m_registoRecursos;
+    private final RegistoRecursos m_registoRecursos;
 
-    private RegistoTipoConflitos m_registoTipoConflitos;
-    private RegistoExpositores m_rExpositores;
+    private final RegistoTipoConflitos m_registoTipoConflitos;
+    private final RegistoExpositores m_rExpositores;
 
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros

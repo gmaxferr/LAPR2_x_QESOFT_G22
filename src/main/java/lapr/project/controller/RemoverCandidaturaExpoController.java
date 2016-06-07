@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.registos.RegistoCandidaturasRemovidas;
 import lapr.project.model.*;
+import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoExposicoes;
 
@@ -14,10 +15,11 @@ import lapr.project.registos.RegistoExposicoes;
 public class RemoverCandidaturaExpoController {
 
     private Exposicao m_exposicaoSelecionada;
-    private String m_username;
+    private String m_usernameFAE;
     private CentroExposicoes m_ce;
     private RegistoCandidaturasAExposicao m_rc;
     private CandidaturaAExposicao m_candidaturaARemover;
+    private RegistoAtribuicoes m_ra;
 
     /**
      * Construtor do controller da UC18 - remover candidatura a uma exposição
@@ -26,10 +28,22 @@ public class RemoverCandidaturaExpoController {
      * @param ce - centro de exposições
      */
     public RemoverCandidaturaExpoController(String username, CentroExposicoes ce) {
-        this.m_username = username;
+        this.m_usernameFAE = username;
         this.m_ce = ce;
     }
 
+    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE() {
+        return this.m_ra.getListaAtribuicoesComOFAE(this.m_usernameFAE);
+    }
+    
+    /**
+     * Devolve o registo de atribuicoes da exposição selecionada
+     * @return registo de atribuicoes da exposição selecionada
+     */
+    public RegistoAtribuicoes getRegistoAtribuicoes(){
+        return m_ra = m_exposicaoSelecionada.getRegistoAtribuicoes();
+    }
+    
     /**
      * Seleciona a exposição a remover
      *
