@@ -6,10 +6,10 @@ package lapr.project.model;
  */
 public class Recurso {
 
-    private String nomeRecurso;
+    private String m_nomeRecurso;
 
     public Recurso(String nomeRecurso) {
-        this.nomeRecurso = nomeRecurso;
+        this.m_nomeRecurso = nomeRecurso;
     }
 
     /**
@@ -18,7 +18,7 @@ public class Recurso {
      * @return nome do recurso
      */
     public String getNomeRecurso() {
-        return nomeRecurso;
+        return m_nomeRecurso;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Recurso {
      * @param nomeRecurso novo nome do recurso
      */
     public void setNomeRecurso(String nomeRecurso) {
-        this.nomeRecurso = nomeRecurso;
+        this.m_nomeRecurso = nomeRecurso;
     }
 
 }

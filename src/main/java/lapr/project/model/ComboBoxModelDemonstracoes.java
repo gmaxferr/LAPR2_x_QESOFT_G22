@@ -14,7 +14,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
     /**
      * Lista de demonstrações.
      */
-    private List<Demonstracao> listaDemonstracoes;
+    private List<Demonstracao> m_listaDemonstracoes;
 
     /**
      * Objeto selecionado.
@@ -29,7 +29,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
      */
     public ComboBoxModelDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.selection = null;
-        this.listaDemonstracoes = listaDemonstracoes;
+        this.m_listaDemonstracoes = listaDemonstracoes;
     }
 
     /**
@@ -39,7 +39,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
      */
     @Override
     public int getSize() {
-        return this.listaDemonstracoes.size();
+        return this.m_listaDemonstracoes.size();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaDemonstracoes.get(index).getM_StrCodigoIdentificacao();
+        return this.m_listaDemonstracoes.get(index).getM_StrCodigoIdentificacao();
     }
 
     /**

@@ -18,8 +18,8 @@ public class RegistoConflitos {
      * @param fae - FAE que conflite com uma Candidatura
      * @param cand - Candidatura com que o FAE conflite
      */
-    public void criarConflito(FAE fae, CandidaturaAExposicao cand) {
-        ConflitoDeInteresse c = new ConflitoDeInteresse(fae, cand);
+    public void criarConflito(FAE fae, CandidaturaAExposicao cand, TipoConflito tipoConflito) {
+        ConflitoDeInteresse c = new ConflitoDeInteresse(fae, cand, tipoConflito);
         adiciona(c);
     }
 
@@ -30,10 +30,10 @@ public class RegistoConflitos {
      * @param cand - Candidatura em conflito
      * @return true se for válido; false caso contrário.
      */
-    public boolean valida(FAE fae, CandidaturaAExposicao cand) {
+    public boolean valida(FAE fae, CandidaturaAExposicao cand, TipoConflito tipo) {
         boolean valido = true;
         for (ConflitoDeInteresse c : m_listaConflitos) {
-            if (c.getFae().equals(fae) && c.getCandidatura().equals(cand)) {
+            if (c.getFae().equals(fae) && c.getCandidatura().equals(cand) && c.getTipo().equals(tipo)) {
                 valido = false;
             }
         }

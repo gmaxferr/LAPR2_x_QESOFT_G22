@@ -26,6 +26,16 @@ public interface EstadoExposicao{
 
     boolean setEstadoCandidaturasAvaliadas();
     
+    boolean setEstadoCandidaturasDecididas();
+    
+    boolean setEstadoStandsAtribuidos();
+    
+    boolean setEstadoDemonstracoesDecididas();
+    
+    boolean setEstadoCandidaturasDemonstracaoAbertas();
+    
+    boolean setEstadoCandidaturasDemonstracaoFechadas();
+    
     boolean isEstadoCriada();
 
     boolean isEstadoFAEDefinidosSemDemos();
@@ -46,4 +56,14 @@ public interface EstadoExposicao{
 
     boolean isEstadoCandidaturasAvaliadas();
 
+    boolean isEstadoCandidaturasDecididas();
+    
+    boolean isEstadoStandsAtribuidos();
+    
+    boolean isEstadoDemonstracoesDecididas();
+    
+    boolean isEstadoCandidaturasDemonstracaoAbertas();
+    
+    boolean isEstadoCandidaturasDemonstracaoFechadas();
+    
 }

@@ -13,7 +13,7 @@ import lapr.project.registos.*;
  */
 public class CandidaturaAExposicao {
 
-    EstadoCandidaturaAExposicao estado;
+    private EstadoCandidaturaAExposicao m_estado;
     /**
      * Atributo numero de telemovel de CandidaturaAExposicao
      */
@@ -42,23 +42,27 @@ public class CandidaturaAExposicao {
     /**
      *
      */
-    private RegistoProdutos rp;
+    private RegistoProdutos m_rp;
 
     /**
      *
      */
-    private RegistoDemonstracoes rd;
+    private RegistoDemonstracoes m_rd;
 
     /**
      *
      */
-    private Decisao decisao;
+    private Decisao m_decisao;
 
     /**
      *
      */
-    private Expositor expositor;
-    private String[] keywords;
+    private Expositor m_expositor;
+    
+    /**
+     * 
+     */
+    private String[] m_keywords;
 
     /**
      * Contrutor de Candidatura sem parametros
@@ -66,9 +70,9 @@ public class CandidaturaAExposicao {
      * @param expositor
      */
     public CandidaturaAExposicao(Expositor expositor) {
-        this.expositor = expositor;
-        this.rp = new RegistoProdutos();
-        this.rd = new RegistoDemonstracoes();
+        this.m_expositor = expositor;
+        this.m_rp = new RegistoProdutos();
+        this.m_rd = new RegistoDemonstracoes();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
     }
 
@@ -118,7 +122,7 @@ public class CandidaturaAExposicao {
      * @return username do expositor
      */
     public String getM_StrUsernameExpositor() {
-        return expositor.getM_strUsername();
+        return m_expositor.getM_strUsername();
     }
 
     /**
@@ -126,11 +130,11 @@ public class CandidaturaAExposicao {
      * @return
      */
     public RegistoProdutos getRegistoProdutos() {
-        return this.rp;
+        return this.m_rp;
     }
 
     public RegistoDemonstracoes getRegistoDemonstracoes() {
-        return this.rd;
+        return this.m_rd;
     }
 
     /**
@@ -200,7 +204,7 @@ public class CandidaturaAExposicao {
      * @param morada nova morada
      */
     public void setM_strMorada(String morada) {
-        this.m_StrNomeEmpresa = morada;
+        this.m_StrMoradaEmpresa = morada;
     }
 
     /**
@@ -212,7 +216,7 @@ public class CandidaturaAExposicao {
      */
     public Produto criarProduto(String nome) {
         Produto produto = new Produto(nome);
-        this.rp.addProduto(produto);
+        this.m_rp.addProduto(produto);
         return produto;
     }
 
@@ -232,8 +236,8 @@ public class CandidaturaAExposicao {
      * @param index
      */
     public void removeProduto(int index) {
-        if (index < rp.getListaProdutosAExpor().size()) {
-            this.rp.getListaProdutosAExpor().remove(index);
+        if (index < m_rp.getListaProdutosAExpor().size()) {
+            this.m_rp.getListaProdutosAExpor().remove(index);
         } else {
             throw new IllegalArgumentException("Produto Inválido!");
         }
@@ -242,11 +246,12 @@ public class CandidaturaAExposicao {
     /**
      * Edita um produto da candidatura
      *
-     * @param p - novo produto
+     * @param index
+     * @param novoProduto
      */
     public void editProduto(int index, String novoProduto) {
-        if (index < rp.getListaProdutosAExpor().size()) {
-            Produto temp = this.rp.getListaProdutosAExpor().get(index);
+        if (index < m_rp.getListaProdutosAExpor().size()) {
+            Produto temp = this.m_rp.getListaProdutosAExpor().get(index);
             temp.setNome(novoProduto);
         } else {
             throw new IllegalArgumentException("Produto Inválido!");
@@ -319,7 +324,7 @@ public class CandidaturaAExposicao {
      * @param demonstracao
      */
     public void addDemonstracao(Demonstracao demonstracao) {
-        this.rd.adicionaDemonstracao(demonstracao);
+        this.m_rd.adicionaDemonstracao(demonstracao);
     }
 
     /**
@@ -342,7 +347,7 @@ public class CandidaturaAExposicao {
      * @param p produto a ser adicionado
      */
     public void addProduto(Produto p) {
-        this.rp.addProduto(p);
+        this.m_rp.addProduto(p);
     }
 
     /**
@@ -351,7 +356,7 @@ public class CandidaturaAExposicao {
      * @return produtos de CandidaturaAExposicao
      */
     public List<Produto> getProdutosExpor() {
-        return this.rp.getListaProdutosAExpor();
+        return this.m_rp.getListaProdutosAExpor();
     }
 
     /**
@@ -389,7 +394,7 @@ public class CandidaturaAExposicao {
      * @param decisao nova decisao
      */
     public void setDecisao(boolean decisao) {
-        this.decisao.setM_bDecisao(decisao);
+        this.m_decisao.setM_bDecisao(decisao);
     }
 
     /**
@@ -407,15 +412,15 @@ public class CandidaturaAExposicao {
     }
 
     public Expositor getExpositor() {
-        return expositor;
+        return m_expositor;
     }
 
     public EstadoCandidaturaAExposicao getEstado() {
-        return estado;
+        return m_estado;
     }
 
     public void setEstado(EstadoCandidaturaAExposicao ne) {
-        this.estado = ne;
+        this.m_estado = ne;
     }
 
     @Override
@@ -438,7 +443,7 @@ public class CandidaturaAExposicao {
         if (vecKeywords.length > 5) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
-            this.keywords = vecKeywords;
+            this.m_keywords = vecKeywords;
         }
     }
 

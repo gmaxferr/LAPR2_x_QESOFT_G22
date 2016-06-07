@@ -6,22 +6,22 @@ package lapr.project.model;
  */
 public class FaeAvaliacao {
 
-    private FAE FaeAssociado;
-    private Avaliacao avaliacao;
+    private FAE m_FaeAssociado;
+    private Avaliacao m_avaliacao;
 
     public FaeAvaliacao() {
-        this.avaliacao = new Avaliacao();
+        this.m_avaliacao = new Avaliacao();
     }
 
     public FaeAvaliacao(FAE fae) {
-        this.FaeAssociado=fae;
+        this.m_FaeAssociado=fae;
     }
 
     public FAE getFaeAssociado() {
-        return this.FaeAssociado;
+        return this.m_FaeAssociado;
     }
 
     public Avaliacao getAvaliacao() {
-        return this.avaliacao;
+        return this.m_avaliacao;
     }
 }

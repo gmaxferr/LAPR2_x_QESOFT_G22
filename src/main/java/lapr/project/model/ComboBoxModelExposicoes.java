@@ -14,7 +14,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
     /**
      * Lista de Exposições.
      */
-    private List<Exposicao> listaExposicoes;
+    private List<Exposicao> m_listaExposicoes;
 
     /**
      * Objeto selecionado.
@@ -29,7 +29,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
      */
     public ComboBoxModelExposicoes(List<Exposicao> listaExposicoes) {
         this.selection = null;
-        this.listaExposicoes = listaExposicoes;
+        this.m_listaExposicoes = listaExposicoes;
     }
 
     /**
@@ -39,7 +39,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
      */
     @Override
     public int getSize() {
-        return this.listaExposicoes.size();
+        return this.m_listaExposicoes.size();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaExposicoes.get(index).getTitulo();
+        return this.m_listaExposicoes.get(index).getTitulo();
     }
 
     /**

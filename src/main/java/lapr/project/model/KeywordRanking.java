@@ -21,13 +21,13 @@ public class KeywordRanking implements Serializable {
     /**
      * Lista de todas as keywords presentes no ranking de keywords.
      */
-    private final List<ScoredKeyword> keywords;
+    private final List<ScoredKeyword> m_keywords;
 
     /**
      * Construtor sem parametros.
      */
     public KeywordRanking() {
-        keywords = new ArrayList<>();
+        m_keywords = new ArrayList<>();
     }
 
     /**
@@ -41,9 +41,9 @@ public class KeywordRanking implements Serializable {
     public void addKeyword(String keyword, int score) {
         int i = getKeywordIndex(keyword);
         if (i == -1) {
-            keywords.add(new ScoredKeyword(keyword, score));
+            m_keywords.add(new ScoredKeyword(keyword, score));
         } else {
-            keywords.get(i).setScore(keywords.get(i).getScore() + score);
+            m_keywords.get(i).setScore(m_keywords.get(i).getScore() + score);
         }
     }
 
@@ -55,8 +55,8 @@ public class KeywordRanking implements Serializable {
      * encontra na lista ou -1 caso não tenha sido encontrado
      */
     public int getKeywordIndex(String keyword) {
-        for (int i = 0; i < keywords.size(); i++) {
-            if (keywords.get(i).getValue().equals(keyword)) {
+        for (int i = 0; i < m_keywords.size(); i++) {
+            if (m_keywords.get(i).getValue().equals(keyword)) {
                 return i;
             }
         }
@@ -67,7 +67,7 @@ public class KeywordRanking implements Serializable {
      * @return Devolve a lista de ScoredKeywords guardadas por este objeto
      */
     public List<ScoredKeyword> getScoredKeywords() {
-        return keywords;
+        return m_keywords;
     }
 
     /**
@@ -81,10 +81,10 @@ public class KeywordRanking implements Serializable {
      */
     public boolean exportCSV(File saveFile) {
         try (Formatter out = new Formatter(saveFile)) {
-            Collections.sort(keywords);
+            Collections.sort(m_keywords);
             out.format("Ranking,Keyword\n");
-            for (int i = 0; i < keywords.size(); i++) {
-                out.format("%d,\"%s\"\n", i + 1, convertStringToCSVReadable(keywords.get(i).getValue()));
+            for (int i = 0; i < m_keywords.size(); i++) {
+                out.format("%d,\"%s\"\n", i + 1, convertStringToCSVReadable(m_keywords.get(i).getValue()));
             }
             out.close();
             return true;
