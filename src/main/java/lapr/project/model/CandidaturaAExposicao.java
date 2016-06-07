@@ -435,7 +435,7 @@ public class CandidaturaAExposicao {
 
     public void setM_Keywords(String keywords) throws KeywordsErradasException {
         String[] vecKeywords = keywords.split(",");
-        if (vecKeywords.length < 0 || vecKeywords.length > 5) {
+        if (vecKeywords.length > 5) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
             this.keywords = vecKeywords;
