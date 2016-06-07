@@ -62,7 +62,7 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable{
         }
 
         List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
-        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao();
+        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturas();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
         if (listaFAE.isEmpty() || listaCand.isEmpty()) {

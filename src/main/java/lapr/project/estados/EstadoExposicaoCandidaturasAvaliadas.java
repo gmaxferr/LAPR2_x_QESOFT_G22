@@ -99,7 +99,7 @@ public class EstadoExposicaoCandidaturasAvaliadas implements EstadoExposicao {
      * decididas e FALSE caso contrário
      */
     public boolean valida() {
-        for (CandidaturaAExposicao c : this.m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao()) {
+        for (CandidaturaAExposicao c : this.m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
             if (!c.getEstado().isEstadoCandidaturaAceite() && !c.getEstado().isEstadoCandidaturaRejeitada()) {
                 return false;
             }

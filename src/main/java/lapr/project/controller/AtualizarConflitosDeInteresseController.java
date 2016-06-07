@@ -95,7 +95,7 @@ public class AtualizarConflitosDeInteresseController {
      * @return Lista de candidaturas da Exposição selecionada
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return rcand.getListaCandidaturasAExposicao();
+        return rcand.getListaCandidaturas();
     }
 
     /**

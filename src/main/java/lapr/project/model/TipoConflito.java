@@ -15,7 +15,7 @@ public class TipoConflito {
      * Contrutor por definição.
      */
     public TipoConflito() {
-        m_mec = new MecanismoDetecaoConflito();
+        m_mec = new MecanismoDetecaoConflito(this);
     }
     
     /**

@@ -2,6 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Expositor;
 
@@ -25,7 +26,7 @@ public class RegistoCandidaturasAExposicao {
      *
      * @return lista de candidatuas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
+    public List<CandidaturaAExposicao> getListaCandidaturas() {
         return this.m_listaCandidaturas;
     }
 
@@ -121,4 +122,18 @@ public class RegistoCandidaturasAExposicao {
         return candidaturasRepLst;
     }
 
+    /**
+     * @return Retorna uma lista com todas as Candidaturas aceites a esta
+     * Exposição
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
+        List<CandidaturaAExposicao> listCand = new ArrayList<>();
+        for(CandidaturaAExposicao cand : m_listaCandidaturas){
+            EstadoCandidaturaAExposicao state = cand.getEstado();
+            if(state.isEstadoCandidaturaAceite()){
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
 }

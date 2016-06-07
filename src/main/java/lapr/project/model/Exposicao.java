@@ -15,7 +15,7 @@ import lapr.project.utils.Data;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao{
+public class Exposicao {
 
     EstadoExposicao m_estado;
     /**
@@ -61,32 +61,42 @@ public class Exposicao{
     /**
      *
      */
-    private RegistoAtribuicoes ra;
+    private final RegistoAtribuicoes m_ra;
 
     /**
      *
      */
-    private RegistoFAE m_rfae;
+    private final RegistoFAE m_rfae;
 
     /**
      *
      */
-    private RegistoCandidaturasAExposicao m_rce;
+    private final RegistoCandidaturasAExposicao m_rce;
 
     /**
      *
      */
-    private RegistoCandidaturasRemovidas m_rcr;
+    private final RegistoCandidaturasRemovidas m_rcr;
 
     /**
      *
      */
-    private RegistoOrganizadores ro;
+    private final RegistoOrganizadores m_ro;
 
     /**
      *
      */
-    private RegistoDemonstracoes rd;
+    private final RegistoDemonstracoes m_rd;
+
+    /**
+     *
+     */
+    private final RegistoStands m_rs;
+
+    /**
+     *
+     */
+    private final RegistoAtribuicoesStands m_ras;
 
     /**
      * Timer despoletado quando a data de abertura de submissão de candidaturas
@@ -107,7 +117,7 @@ public class Exposicao{
     private RegistoConflitos m_rconf;
 
     private RegistoExpositores m_rexpositores;
-    
+
     private KeywordRanking m_keywordRanking;
 
     private CentroExposicoes m_centroExposicoes;
@@ -120,11 +130,13 @@ public class Exposicao{
         this.m_rfae = new RegistoFAE();
         this.m_rcr = new RegistoCandidaturasRemovidas();
         this.m_rconf = new RegistoConflitos();
-        this.ra = new RegistoAtribuicoes();
-        this.rd = new RegistoDemonstracoes();
-        this.ro = new RegistoOrganizadores();
+        this.m_ra = new RegistoAtribuicoes();
+        this.m_rd = new RegistoDemonstracoes();
+        this.m_ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this);
         this.m_keywordRanking = new KeywordRanking();
+        this.m_rs = new RegistoStands();
+        this.m_ras = new RegistoAtribuicoesStands();
     }
 
     /**
@@ -148,7 +160,7 @@ public class Exposicao{
     }
 
     public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
-        this.ro = ro;
+        this.m_ro = ro;
         this.m_rfae = rfae;
         this.m_rce = rce;
     }
@@ -222,7 +234,7 @@ public class Exposicao{
      * @param utilizador
      */
     public void addOrganizador(Utilizador utilizador) {
-        this.ro.addOrganizador(utilizador);
+        this.m_ro.addOrganizador(utilizador);
     }
 
     /**
@@ -261,7 +273,7 @@ public class Exposicao{
     }
 
     public ArrayList<Organizador> getListaOrganizadores() {
-        return this.ro.getListaOrganizadores();
+        return this.m_ro.getListaOrganizadores();
     }
 
     /**
@@ -318,7 +330,7 @@ public class Exposicao{
      * @return arraylist com todas as candidatuas associadas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
-        return this.m_rce.getListaCandidaturasAExposicao();
+        return this.m_rce.getListaCandidaturas();
     }
 
     /**
@@ -347,7 +359,7 @@ public class Exposicao{
      * @return
      */
     public RegistoAtribuicoes getRa() {
-        return ra;
+        return m_ra;
     }
 
     /**
@@ -371,7 +383,7 @@ public class Exposicao{
      * @return
      */
     public RegistoOrganizadores getRo() {
-        return ro;
+        return m_ro;
     }
 
     /**
@@ -379,7 +391,7 @@ public class Exposicao{
      * @return
      */
     public RegistoDemonstracoes getRd() {
-        return rd;
+        return m_rd;
     }
 
     /**
@@ -423,7 +435,7 @@ public class Exposicao{
     }
 
     public RegistoDemonstracoes getRegistoDemonstracoes() {
-        return this.rd;
+        return this.m_rd;
     }
 
     public boolean dadosMinimosObrigatorios() {
@@ -440,13 +452,18 @@ public class Exposicao{
     }
 
     public RegistoAtribuicoes getRegistoAtribuicoes() {
-        return this.ra;
+        return this.m_ra;
+    }
+
+    public RegistoStands getRegistoStands() {
+        return m_rs;
     }
 
     /**
      * Cria o timer que muda o estado da exposição para aberta a candidaturas
      */
     private void criaTimerAberturaCandidaturas( 
+         
          
         Exposicao this) {
         Exposicao thisExpo = this;
@@ -461,6 +478,7 @@ public class Exposicao{
     }
 
     private void criaTimerEncerramentoCandidaturas( 
+         
          
         Exposicao this) {
         Exposicao thisExpo = this;
@@ -477,6 +495,7 @@ public class Exposicao{
     }
 
     private void criaTimerFimDetecaoConflitos( 
+         
          
         Exposicao this) {
         Exposicao thisExpo = this;
@@ -515,7 +534,14 @@ public class Exposicao{
     }
 
     public RegistoOrganizadores getRegistoOrganizadores() {
-        return this.ro;
+        return this.m_ro;
+    }
+
+    /**
+     * @return the ras
+     */
+    public RegistoAtribuicoesStands getRegistoAtribuicoesStands() {
+        return m_ras;
     }
 
 }

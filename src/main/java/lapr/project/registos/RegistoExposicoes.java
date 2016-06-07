@@ -2,6 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.EstadoExposicao;
 import lapr.project.model.*;
 
 /**
@@ -13,7 +14,7 @@ public class RegistoExposicoes {
     /**
      * Lista de exposições existentes
      */
-    private ArrayList<Exposicao> m_listaExposicoes;
+    private final ArrayList<Exposicao> m_listaExposicoes;
 
     public RegistoExposicoes() {
         m_listaExposicoes = new ArrayList<>();
@@ -25,7 +26,7 @@ public class RegistoExposicoes {
      *
      * @return lista das Exposições
      */
-    public List<Exposicao> getExposicao() {
+    public List<Exposicao> getListaExposicoes() {
         return m_listaExposicoes;
     }
 
@@ -144,7 +145,7 @@ public class RegistoExposicoes {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
                         listaExpoRep.add(e);
@@ -168,7 +169,7 @@ public class RegistoExposicoes {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
                     break;
@@ -240,5 +241,21 @@ public class RegistoExposicoes {
             }
         }
         return exposFAE;
+    }
+
+    /**
+     * @return Retorna uma lista com todas as exposições em estado de
+     * candidaturas decididas
+     */
+    public List<Exposicao> getListaExposicoesEstadoCandidaturasDecididas() {
+        List<Exposicao> listExpo = new ArrayList<>();
+        List<Exposicao> listaExpo = getListaExposicoes();
+        for (Exposicao e : m_listaExposicoes){
+            EstadoExposicao state = e.getEstado();
+            if(state.isEstadoCandidaturasDecididas()){
+                listExpo.add(e);
+            }
+        }
+        return listExpo;
     }
 }

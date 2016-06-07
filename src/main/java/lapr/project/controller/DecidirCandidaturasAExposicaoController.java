@@ -50,7 +50,7 @@ public class DecidirCandidaturasAExposicaoController {
         logo todas estarão no estado EstadoCandidaturasAExposicaoAvaliada
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.m_rc.getListaCandidaturasAExposicao();
+        return this.m_rc.getListaCandidaturas();
     }
 
     public void getDadosEstatisticosGerais() {

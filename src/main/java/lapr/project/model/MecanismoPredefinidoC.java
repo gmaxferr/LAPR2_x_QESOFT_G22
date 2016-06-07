@@ -54,7 +54,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
     public List<AtribuicoesCandidatura> atribui(Exposicao e, String numeroLido) {
 
         //Obtem lista de Candidaturas, lista de FAEs e quantidade dos mesmos
-        List<CandidaturaAExposicao> cands = e.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao();
+        List<CandidaturaAExposicao> cands = e.getRegistoCandidaturasAExposicao().getListaCandidaturas();
         int nCand = cands.size();
         List<FAE> faes = e.getRegistoFAE().getListaFAE();
         int nFae = faes.size();

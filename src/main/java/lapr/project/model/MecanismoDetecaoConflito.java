@@ -11,6 +11,12 @@ import lapr.project.registos.RegistoFAE;
  */
 public class MecanismoDetecaoConflito {
 
+    private final TipoConflito tc;
+
+    public MecanismoDetecaoConflito(TipoConflito tc) {
+        this.tc = tc;
+    }
+    
     /**
      * Deteta conflitos entre Candidaturas e FAEs e regista-os no registo de
      * Conflitos da exposição correspondente.
@@ -22,11 +28,11 @@ public class MecanismoDetecaoConflito {
         RegistoFAE rfae = e.getRegistoFAE();
         List<FAE> lfae = rfae.getListaFAE();
         RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
-        List<CandidaturaAExposicao> lc = rc.getListaCandidaturasAExposicao();
+        List<CandidaturaAExposicao> lc = rc.getListaCandidaturas();
         for (FAE fae : lfae) {
             for (CandidaturaAExposicao cand : lc) {
                 if (isConflito(fae, cand)) {
-                    rcf.criarConflito(fae, cand);
+                    rcf.criarConflito(fae, cand, tc);
                 }
             }
         }
