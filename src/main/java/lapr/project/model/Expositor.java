@@ -22,6 +22,6 @@ public class Expositor {
      * @return username do expositor
      */
     public String getM_strUsername() {
-        return this.utilizador.getStrUsername();
+        return this.utilizador.getUsername();
     }
 }

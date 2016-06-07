@@ -69,7 +69,7 @@ public class DefinirFAEController {
     }
     
     public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae(){
-        return this.rfae.getListaUtilizadoresCorrespondentesAosFae();
+        return this.m_rfae.getListaUtilizadoresCorrespondentesAosFae();
     }
 
     /**

@@ -33,12 +33,12 @@ public class RegistoFAE {
 
     private boolean validaUtilizador(Utilizador u) {
         for (FAE fae : listaFAETemp) {
-            if (fae.getUsernameFae().equalsIgnoreCase(u.getStrUsername())) {
+            if (fae.getUsernameFae().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
         for (Organizador organizador : this.rOrganizadoresDestaExposicao.getListaOrganizadores()) {
-            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getStrUsername())) {
+            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
@@ -57,7 +57,7 @@ public class RegistoFAE {
      */
     public boolean isFAE(String usernameFAE) {
         for (FAE fae : listaFAE) {
-            if (fae.getUtilizador().getStrUsername().equalsIgnoreCase(usernameFAE)) {
+            if (fae.getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
                 return true;
             }
         }
