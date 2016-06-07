@@ -163,6 +163,11 @@ public class Exposicao {
         this.m_ro = ro;
         this.m_rfae = rfae;
         this.m_rce = rce;
+        this.m_ra = new RegistoAtribuicoes();
+        this.m_rcr = new RegistoCandidaturasRemovidas();
+        this.m_rd = new RegistoDemonstracoes();
+        this.m_rs = new RegistoStands();
+        this.m_ras = new RegistoAtribuicoesStands();
     }
 
     /**
@@ -465,6 +470,7 @@ public class Exposicao {
     private void criaTimerAberturaCandidaturas( 
          
          
+         
         Exposicao this) {
         Exposicao thisExpo = this;
         m_timerAberturaCandidatura = new Timer();
@@ -478,6 +484,7 @@ public class Exposicao {
     }
 
     private void criaTimerEncerramentoCandidaturas( 
+         
          
          
         Exposicao this) {
@@ -495,6 +502,7 @@ public class Exposicao {
     }
 
     private void criaTimerFimDetecaoConflitos( 
+         
          
          
         Exposicao this) {
