@@ -143,7 +143,7 @@ public class RegistoExposicoes {
     public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
@@ -167,7 +167,7 @@ public class RegistoExposicoes {
     public List<Exposicao> getExposicoesDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturas();
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturasAExposicao()) {
                 if (c.getM_StrUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
@@ -209,4 +209,26 @@ public class RegistoExposicoes {
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
 
+    /**
+     * Devolve exposições do organizador em que existem demonstrações pendentes
+     *
+     * @param usernameOrganizador - username do organizador logado
+     * @return exposições do organizador em que existem demonstrações pendentes
+     */
+    public List<Exposicao> getlistaExposicoesDoOrganizadorComDemos(String usernameOrganizador) {
+        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
+
+        //encontra as exposições do organizador autenticado no sistema.
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getRegistoDemonstracoes().getDemonstracoesPendentes().size() > 0) {
+                for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                    if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                        listaExposicoesDoOrganizador.add(exposicao);
+                        break;
+                    }
+                }
+            }
+        }
+        return listaExposicoesDoOrganizador;
+    }
 }

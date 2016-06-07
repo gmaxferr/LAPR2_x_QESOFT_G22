@@ -2,13 +2,12 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.FAE;
-import lapr.project.registos.*;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.MecanismoDetecaoConflito;
 import lapr.project.model.TipoConflito;
+import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  *
@@ -16,77 +15,35 @@ import lapr.project.model.TipoConflito;
  */
 public class DetetarConflitoController {
 
-    private RegistoExposicoes re;
-    private RegistoTipoConflitos rtc;
-    private RegistoMecanismosDetecaoConflitos rmdc;
-    private RegistoFAE rfae;
-    private RegistoCandidaturasAExposicao rc;
-    private List<FAE> listaFAE;
-    private List<CandidaturaAExposicao> listaCand;
-    private int tamanho;
-    private boolean b;
-    private RegistoConflitos rconf;
-    private EstadoExposicao estadoExposicao;
-    private EstadoCandidaturaAExposicao estadoCandidatura;
+    /**
+     * Centro de Exposições.
+     */
+    private final CentroExposicoes centroExposicoes;
 
-    
-
-    private CentroExposicoes centroExposicoes;
-
+    /**
+     * Construtor padrão de DetetarConflitoController.
+     *
+     * @param centroExposicoes Centro de Exposições
+     */
     public DetetarConflitoController(CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
     }
 
-
-    public void getRegistoExposições() {
-        this.re = centroExposicoes.getRegistoExposicoes();
-    }
-
-    public void getRegistoTiposDeConflito() {
-        this.rtc = centroExposicoes.getRegistoTiposConflitos();
-
-    }
-
-    public void getRegistoMecanismosDetecaoConflitos() {
-
-        for (TipoConflito tipoConflito : this.rtc.getListaTipoConflitos()) {
-            this.rmdc = tipoConflito.getRegistoMecanismosDetecaoConflitos();
-
-            for (Exposicao exposicao : re.getListaExposicoesValidas()) {
-                this.rfae = exposicao.getRegistoFAE();
-                this.rc = exposicao.getRegistoCandidaturas();
-                this.listaFAE = exposicao.getListaFAE();
-                this.listaCand = exposicao.getListaCandidaturasAExposicao();
-
-                if (listaCand.size() > listaFAE.size()) {
-                    tamanho = listaFAE.size();
-                } else {
-                    tamanho = listaCand.size();
-                }
-                for (int i = 0; i < tamanho; i++) {
-                    b = rmdc.detetarConflitos(listaFAE.get(i), listaCand.get(i));
-                    if (b == true) {
-                        this.rconf = exposicao.getRegistoCoflitos();
-                        rconf.criarConflito(listaFAE.get(i), listaCand.get(i));
-                    }
-
-                }
-            }
-
+    /**
+     * Deteta os conflitos existentes para uma exposição e regista-os no
+     * RegistoConflitos da Exposição.
+     *
+     * @param e Exposição onde se pretende detetar os conflitos
+     */
+    public void detetaConflitos(Exposicao e) {
+        RegistoTipoConflitos rtc = centroExposicoes.getRegistoTiposConflitos();
+        List<TipoConflito> ltc = rtc.getListaTipoConflitos();
+        for (TipoConflito tc : ltc) {
+            MecanismoDetecaoConflito mec = tc.getMecanismoDetecaoConflito();
+            mec.detetaConflitos(e);
         }
-    }
-
-    public void setEstadoConflitoDetetados() {
-        for (Exposicao exposicao : this.re.getListaExposicoesValidas()) {
-            this.estadoExposicao = exposicao.getEstado();
-            estadoExposicao.setEstadoConflitosDetetados();
-        }
-
-        for (CandidaturaAExposicao cand : this.rc.getListaCandidaturasAExposicao()) {
-            this.estadoCandidatura = cand.getEstado();
-            estadoCandidatura.setEstadoConflitosDetetados();
-        }
-
+        EstadoExposicao state = e.getEstado();
+        state.setEstadoConflitosDetetados();
     }
 
 }

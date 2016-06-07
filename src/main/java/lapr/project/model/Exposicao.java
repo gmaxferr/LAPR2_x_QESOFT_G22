@@ -175,7 +175,7 @@ public class Exposicao{
      *
      * @return titulo da exposição
      */
-    public String getM_strTitulo() {
+    public String getTitulo() {
         return m_strTitulo;
     }
 
@@ -184,7 +184,7 @@ public class Exposicao{
      *
      * @return descricao da exposição
      */
-    public String getM_strDescricao() {
+    public String getDescricao() {
         return m_strDescricao;
     }
 
@@ -193,7 +193,7 @@ public class Exposicao{
      *
      * @return data de inicio da exposição
      */
-    public Data getM_strDataInicio() {
+    public Data getDataInicio() {
         return m_dataInicio;
     }
 
@@ -202,7 +202,7 @@ public class Exposicao{
      *
      * @return data de fim da exposição
      */
-    public Data getM_strDataFim() {
+    public Data getDataFim() {
         return m_dataFim;
     }
 
@@ -253,9 +253,6 @@ public class Exposicao{
 
     /**
      * Define novo periodo de exposição
-     *
-     * @param strDataInicio nova data de inicio de exposição
-     * @param strDataFim novo data de fim de exposição
      */
     public void setPeriodo(Data dataInicio, Data dataFim) {
         this.m_dataInicio = dataInicio;
@@ -333,15 +330,6 @@ public class Exposicao{
     }
 
     /**
-     * Lista dos fae da exposição
-     *
-     * @return lista dos fae
-     */
-    public List<FAE> getListaFAE() {
-        return this.rfae.getListaFAE();
-    }
-
-    /**
      * Método que valida decisao da candidatura
      *
      * @param c candidatura
@@ -382,7 +370,7 @@ public class Exposicao{
      *
      * @return
      */
-    public RegistoCandidaturasAExposicao getRegistoCandidaturas() {
+    public RegistoCandidaturasAExposicao getRegistoCandidaturasAExposicao() {
         return rce;
     }
 
@@ -491,7 +479,7 @@ public class Exposicao{
                 EstadoExposicao estado = m_estado;
                 estado.setEstadoCandidaturasFechadas();
                 DetetarConflitoController ctrl = new DetetarConflitoController(centroExposicoes);
-                ctrl.detetaConflitos(getCentroDeExposicoes(), thisExpo);
+                ctrl.detetaConflitos(thisExpo);
             }
         }, getDataEncerramentoCandidatura().toDate());
     }

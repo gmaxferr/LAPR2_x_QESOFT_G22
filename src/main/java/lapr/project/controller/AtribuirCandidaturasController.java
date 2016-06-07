@@ -62,7 +62,7 @@ public class AtribuirCandidaturasController {
     }
 
     public void getRegistoCandidaturas() {
-        this.rc = this.e.getRegistoCandidaturas();
+        this.rc = this.e.getRegistoCandidaturasAExposicao();
     }
 
     public void getRegistoAtribuicoes() {

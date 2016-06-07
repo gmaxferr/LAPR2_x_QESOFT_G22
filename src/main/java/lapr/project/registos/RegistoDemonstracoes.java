@@ -45,11 +45,24 @@ public class RegistoDemonstracoes {
         return demo;
     }
 
-    public void confirma(Demonstracao demo) {
-        this.m_listaDemonstracoes.add(demo);
-    }
-
+    /**
+     * Permite definir lista de demonstrações
+     * @param listaDemonstracoes 
+     */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.m_listaDemonstracoes = listaDemonstracoes;
+    }
+
+    /**
+     * 
+     * @return - lista das demonstrações pendentes
+     */
+    public List<Demonstracao> getDemonstracoesPendentes() {
+        List<Demonstracao>demosPendentes = new ArrayList<>();
+        for(Demonstracao d : m_listaDemonstracoes){
+            if(d.getEstadoDemo().isEstadoDemonstracaoPendente())
+            demosPendentes.add(d);
+        }
+        return demosPendentes;
     }
 }

@@ -67,7 +67,7 @@ public class RemoverCandidaturaExpoController {
      */
     public List<CandidaturaAExposicao> getListaCandidaturas(String username) {
         List<CandidaturaAExposicao> candidaturasLst = new ArrayList();
-        rc = exposicaoSelecionada.getRegistoCandidaturas();
+        rc = exposicaoSelecionada.getRegistoCandidaturasAExposicao();
         candidaturasLst = rc.getCandidaturasRepresentante(username);
         return candidaturasLst;
     }
