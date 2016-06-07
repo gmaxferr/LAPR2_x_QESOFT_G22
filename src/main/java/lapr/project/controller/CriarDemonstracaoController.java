@@ -32,7 +32,7 @@ public class CriarDemonstracaoController {
 
     }
 
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizador(String username) {
         //passar parametro username
         return m_re.getlistaExposicoesDoOrganizador();
     }

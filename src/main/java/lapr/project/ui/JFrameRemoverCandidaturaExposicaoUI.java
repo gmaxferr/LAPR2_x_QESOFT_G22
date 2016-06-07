@@ -458,7 +458,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
-            ctrl.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            ctrl.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
             ctrl.getRegistoAtribuicoes();
             listaAtribuicoesDoFAE = ctrl.getListaAtribuicoesComOFAE();
             avancarParaCard2();
@@ -513,8 +513,11 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
         CandidaturaAExposicao c = (CandidaturaAExposicao) jComboBoxCard2EscolherCandidatura.getSelectedItem();
         if (c != null) {
-            ctrl.setCandidaturaARemover(c);
-            ctrl.removerCandidatura();
+            int op = JOptionPane.showConfirmDialog(null, "Confirma a remoção da candidatura selecionada?", "Confirmação da remoção", JOptionPane.YES_NO_OPTION);
+            if(op == 0){
+                ctrl.setCandidaturaARemover(c);
+                ctrl.removerCandidatura();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma candidatura primeiro!", "Candidatura em falta", JOptionPane.WARNING_MESSAGE);
         }
