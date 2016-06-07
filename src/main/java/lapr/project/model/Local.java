@@ -17,7 +17,7 @@ public class Local {
      *
      * @return
      */
-    public String getM_StrMorada() {
+    public String getMorada() {
         return m_StrMorada;
     }
 
@@ -25,7 +25,7 @@ public class Local {
      *
      * @param nomeLocal
      */
-    public void setM_StrMorada(String nomeLocal) {
+    public void setMorada(String nomeLocal) {
         this.m_StrMorada = nomeLocal;
     }
 

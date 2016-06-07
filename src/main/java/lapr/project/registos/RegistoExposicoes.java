@@ -2,7 +2,6 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.EstadoExposicao;
 import lapr.project.model.*;
 
 /**
@@ -208,5 +207,28 @@ public class RegistoExposicoes {
             }
         }
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
+    }
+
+    /**
+     * Devolve exposições do organizador em que existem demonstrações pendentes
+     *
+     * @param usernameOrganizador - username do organizador logado
+     * @return exposições do organizador em que existem demonstrações pendentes
+     */
+    public List<Exposicao> getlistaExposicoesDoOrganizadorComDemos(String usernameOrganizador) {
+        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
+
+        //encontra as exposições do organizador autenticado no sistema.
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getRegistoDemonstracoes().getDemonstracoesPendentes().size() > 0) {
+                for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                    if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                        listaExposicoesDoOrganizador.add(exposicao);
+                        break;
+                    }
+                }
+            }
+        }
+        return listaExposicoesDoOrganizador;
     }
 }
