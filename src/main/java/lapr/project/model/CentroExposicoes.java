@@ -50,13 +50,19 @@ public class CentroExposicoes {
     }
 
     /**
-     *
-     * @return
+     * Devolve o registo de exposições
+     * 
+     * @return registo de exposições
      */
     public RegistoExposicoes getRegistoExposicoes() {
         return m_registoExposicoes;
     }
 
+    /**
+     * Devolve o registo de expositores
+     * 
+     * @return registo de expositores
+     */
     public RegistoExpositores getRegistoExpositores() {
         return this.m_rExpositores;
     }
@@ -71,17 +77,28 @@ public class CentroExposicoes {
     }
 
     /**
-     *
-     * @return
+     * Devolve o registo de mecanismos
+     * 
+     * @return registo de mecanismos
      */
     public RegistoMecanismos getRegistoMecanismos() {
         return m_registoMecanismos;
     }
 
+    /**
+     * Devolve o registo de recursos
+     * 
+     * @return registo de recursos
+     */
     public RegistoRecursos getRegistoRecursos() {
         return m_registoRecursos;
     }
 
+    /**
+     * Devolve o registo de tipos de conflitos
+     * 
+     * @return registo de tipos de conflitos
+     */
     public RegistoTipoConflitos getRegistoTiposConflitos() {
         return m_registoTipoConflitos;
     }
