@@ -35,15 +35,15 @@ public class AlterarPerfilDeUtilizadorController {
     }
     
     public String getNomeUtilizador(){
-        return u.getM_strNome();
+        return u.getStrNome();
     }
     
     public String getEmailUtilizador(){
-        return u.getM_strEmail();
+        return u.getStrEmail();
     }
     
     public char[] getPasswordUtilizador(){
-        return u.getM_strPwd();
+        return u.getM_StrPwd();
     }
     
     public void setDadosUtilizador(String nome, String email, String username, String password){
