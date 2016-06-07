@@ -13,8 +13,8 @@ import lapr.project.registos.*;
  */
 public class AtribuirCandidaturasController {
 
-    private ArrayList<Exposicao> listaExpo;
-    private RegistoExposicoes re;
+    private ArrayList<Exposicao> m_listaExpo;
+    private RegistoExposicoes m_re;
     private CandidaturaAExposicao cand;
     private Exposicao e;
     private CentroExposicoes centroExposicoes;
@@ -25,13 +25,13 @@ public class AtribuirCandidaturasController {
     private final String usernameOrganizador;
 
     public AtribuirCandidaturasController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
-        this.listaExpo = new ArrayList<>();
+        this.m_listaExpo = new ArrayList<>();
         this.centroExposicoes = centroExposicoes;
         this.usernameOrganizador = usernameOrganizador;
     }
 
     public void getRegistoExposicoes() {
-        this.re = centroExposicoes.getRegistoExposicoes();
+        this.m_re = centroExposicoes.getRegistoExposicoes();
     }
 
     /**
@@ -40,8 +40,8 @@ public class AtribuirCandidaturasController {
      * @return lista de Exposições o Organizador
      */
     public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
-        listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(this.usernameOrganizador);
-        return listaExpo;
+        m_listaExpo = centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(this.usernameOrganizador);
+        return m_listaExpo;
     }
 
     /**

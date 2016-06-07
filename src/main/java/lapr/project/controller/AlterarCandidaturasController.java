@@ -17,21 +17,21 @@ import lapr.project.registos.RegistoCandidaturasAExposicao;
 public class AlterarCandidaturasController {
 
     private RegistoCandidaturasAExposicao m_rc;
-    private Exposicao exposicao;
-    private EstadoExposicao estadoExpo;
-    private EstadoCandidaturaAExposicao estadoCand;
-    private CandidaturaAExposicao cand;
-    private Expositor expositor;
-    private String username;
+    private Exposicao m_exposicao;
+    private EstadoExposicao m_estadoExpo;
+    private EstadoCandidaturaAExposicao m_estadoCand;
+    private CandidaturaAExposicao m_cand;
+    private Expositor m_expositor;
+    private String m_username;
 
     public AlterarCandidaturasController(RegistoCandidaturasAExposicao registoCandidaturas, String username) {
         m_rc = registoCandidaturas;
-        this.username = username;
+        this.m_username = username;
     }
 
     public boolean getM_EstadoExposicao() {
-        estadoExpo = exposicao.getEstado();
-        return verificaEstadoExposicao(estadoExpo);
+        m_estadoExpo = m_exposicao.getEstado();
+        return verificaEstadoExposicao(m_estadoExpo);
     }
 
     public boolean verificaEstadoExposicao(EstadoExposicao estado) {
@@ -40,8 +40,8 @@ public class AlterarCandidaturasController {
     }
 
     public boolean getEstadoCandidatura() {
-        estadoCand = cand.getEstado();
-        return verificaCandidatura(estadoCand);
+        m_estadoCand = m_cand.getEstado();
+        return verificaCandidatura(m_estadoCand);
     }
 
     public boolean verificaCandidatura(EstadoCandidaturaAExposicao estado) {
@@ -50,35 +50,35 @@ public class AlterarCandidaturasController {
     }
 
     public void getM_RegistoCandidaturas() {
-        this.m_rc = exposicao.getRegistoCandidaturasAExposicao();
+        this.m_rc = m_exposicao.getRegistoCandidaturasAExposicao();
     }
 
     public List<CandidaturaAExposicao> getExposRepresentante() {
-        return m_rc.getCandidaturasRepresentante(username);
+        return m_rc.getCandidaturasRepresentante(m_username);
     }
 
-    public void setExposicao(Exposicao exposicao) {
-        this.exposicao = exposicao;
+    public void setM_exposicao(Exposicao m_exposicao) {
+        this.m_exposicao = m_exposicao;
     }
 
     public String getM_strNomeEmpresa() {
-        return cand.getM_StrNomeEmpresa();
+        return m_cand.getM_StrNomeEmpresa();
     }
 
     public String getM_strMorada() {
-        return cand.getM_StrMoradaEmpresa();
+        return m_cand.getM_StrMoradaEmpresa();
     }
 
     public int getM_intTelemovel() {
-        return cand.getM_intTelemovel();
+        return m_cand.getM_intTelemovel();
     }
 
     public float getM_strArea() {
-        return cand.getM_intArea();
+        return m_cand.getM_intArea();
     }
 
     public int getM_intNumConvites() {
-        return cand.getM_intNumConvites();
+        return m_cand.getM_intNumConvites();
     }
 
     /**
@@ -88,7 +88,7 @@ public class AlterarCandidaturasController {
      */
     public void removerProduto(int index) {
         try {
-            cand.removeProduto(index);
+            m_cand.removeProduto(index);
         } catch (IllegalArgumentException e) {
 
         }
@@ -100,7 +100,7 @@ public class AlterarCandidaturasController {
      * @param p - novo produto
      */
     public void adicionarProduto(Produto p) {
-        cand.addProduto(p);
+        m_cand.addProduto(p);
     }
 
     /**
@@ -110,14 +110,14 @@ public class AlterarCandidaturasController {
      * @param novoProduto
      */
     public void editarProduto(int index, String novoProduto) {
-        cand.editProduto(index, novoProduto);
+        m_cand.editProduto(index, novoProduto);
     }
     
     public void setDadosCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, int area, int numConvites) {
-        cand.setM_strNomeEmpresa(nomeEmpresa);
-        cand.setM_strMorada(moradaEmpresa);
-        cand.setM_intTelemovel(nomeEmpresa);
-        cand.setM_intArea(moradaEmpresa);
-        cand.setM_intNumConvites(moradaEmpresa);
+        m_cand.setM_strNomeEmpresa(nomeEmpresa);
+        m_cand.setM_strMorada(moradaEmpresa);
+        m_cand.setM_intTelemovel(nomeEmpresa);
+        m_cand.setM_intArea(moradaEmpresa);
+        m_cand.setM_intNumConvites(moradaEmpresa);
     }
 }

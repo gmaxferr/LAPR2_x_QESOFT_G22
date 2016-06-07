@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.ArrayList;
@@ -18,8 +13,8 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class RemoverCandidaturaExpoController {
 
-    private Exposicao exposicaoSelecionada;
-    private String username;
+    private Exposicao m_exposicaoSelecionada;
+    private String m_username;
     private CentroExposicoes ce;
     private RegistoCandidaturasAExposicao rc;
     private CandidaturaAExposicao candidaturaARemover;
@@ -31,7 +26,7 @@ public class RemoverCandidaturaExpoController {
      * @param ce - centro de exposições
      */
     public RemoverCandidaturaExpoController(String username, CentroExposicoes ce) {
-        this.username = username;
+        this.m_username = username;
         this.ce = ce;
     }
 
@@ -41,7 +36,7 @@ public class RemoverCandidaturaExpoController {
      * @param e - exposição a remover
      */
     public void setExposicao(Exposicao e) {
-        exposicaoSelecionada = e;
+        m_exposicaoSelecionada = e;
     }
 
     /**
@@ -67,7 +62,7 @@ public class RemoverCandidaturaExpoController {
      */
     public List<CandidaturaAExposicao> getListaCandidaturas(String username) {
         List<CandidaturaAExposicao> candidaturasLst = new ArrayList();
-        rc = exposicaoSelecionada.getRegistoCandidaturasAExposicao();
+        rc = m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
         candidaturasLst = rc.getCandidaturasRepresentante(username);
         return candidaturasLst;
     }
@@ -78,7 +73,7 @@ public class RemoverCandidaturaExpoController {
 
     public void removerCandidatura() {
         rc.removeCandidatura(candidaturaARemover);
-        RegistoCandidaturasRemovidas rcr = exposicaoSelecionada.getRegistoCandidaturasRemovidas();
+        RegistoCandidaturasRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasRemovidas();
         rcr.adicionarCandidatura(candidaturaARemover);
     }
 
