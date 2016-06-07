@@ -15,25 +15,22 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ComboBoxModelCandidaturaAExposicao;
 import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.ComboBoxModelFae;
 import lapr.project.model.ConflitoDeInteresse;
 import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
 
 /**
  *
  * @author guima
  */
 public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
-    
+
     private AtualizarConflitosDeInteresseController CTRL;
-    
+
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private List<Exposicao> listaExposicoes;
     private List<CandidaturaAExposicao> listaCandidaturas;
-    private List<FAE> listaFae;
     private List<ConflitoDeInteresse> listaConflitos;
 
     /**
@@ -95,11 +92,8 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        comboBoxSelectFae = new javax.swing.JComboBox<>();
         comboBoxSelectCandidatura = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         botaoCriarConflito = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
 
@@ -453,13 +447,6 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         jLabel2.setText("  Adicionar Conflito de Interesse  ");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        comboBoxSelectFae.setModel(new ComboBoxModelFae(this.listaFae));
-        comboBoxSelectFae.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxSelectFaeActionPerformed(evt);
-            }
-        });
-
         comboBoxSelectCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturas));
         comboBoxSelectCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,11 +455,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Selecione um FAE e uma candidatura em conflito.");
-
-        jLabel4.setText("Seleciona um FAE:");
-
-        jLabel5.setText("Selecione uma Candidatura:");
+        jLabel3.setText("Selecione uma candidatura em conflito.");
 
         botaoCriarConflito.setText("Criar Conflito");
         botaoCriarConflito.addActionListener(new java.awt.event.ActionListener() {
@@ -495,28 +478,18 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxSelectFae, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(0, 119, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botaoCriarConflito))))
-                        .addContainerGap())))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addContainerGap(99, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoCriarConflito))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,19 +498,16 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jLabel3)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxSelectFae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                .addComponent(botaoCriarConflito)
-                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoCriarConflito))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(botaoVoltar)
-                .addContainerGap())
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, "card3");
@@ -547,14 +517,13 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarConflitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConflitoActionPerformed
-        CTRL.setFae((FAE) comboBoxSelectFae.getSelectedItem());
         CTRL.setCandidatura((CandidaturaAExposicao) comboBoxSelectCandidatura.getSelectedItem());
         if (CTRL.validaConflito()) {
             CTRL.registaConflito();
         } else {
             JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Erro!", ERROR_MESSAGE);
         }
-        
+
 
     }//GEN-LAST:event_botaoCriarConflitoActionPerformed
 
@@ -609,7 +578,6 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         if (e != null) {
             CTRL.selectExpo(e);
             listaCandidaturas = CTRL.getListaCandidaturas();
-            listaFae = CTRL.getListaFae();
             listaConflitos = CTRL.getListaConflitos();
             passaParaPanel2();
         } else {
@@ -645,10 +613,6 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         passaParaPanel3();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void comboBoxSelectFaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSelectFaeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxSelectFaeActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoCancelar1;
@@ -659,7 +623,6 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxCard1EscolherExposicao;
     private javax.swing.JComboBox<String> comboBoxCard1EscolherExposicao1;
     private javax.swing.JComboBox<String> comboBoxSelectCandidatura;
-    private javax.swing.JComboBox<String> comboBoxSelectFae;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -667,8 +630,6 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -704,19 +665,19 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(this.getSize());
-        
+
     }
-    
+
     private void passaParaPanel2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(this.getSize());
     }
-    
+
     private void passaParaPanel3() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(this.getSize());
     }
-    
+
 }
