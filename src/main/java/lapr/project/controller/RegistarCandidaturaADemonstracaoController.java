@@ -11,26 +11,26 @@ import lapr.project.registos.*;
  */
 public class RegistarCandidaturaADemonstracaoController {
     
-    private Exposicao e; //exposição selecionada
-    private Demonstracao d; //demonstração selecionada
-    private String dados; //dados do formulário
-    private CandidaturaADemonstracao cand; //nova candidatura a uma demonstração
+    private Exposicao m_e; //exposição selecionada
+    private Demonstracao m_d; //demonstração selecionada
+    private String m_dados; //dados do formulário
+    private CandidaturaADemonstracao m_cand; //nova candidatura a uma demonstração
 
-    private CentroExposicoes ce;
-    private String usernameRep; //username do representante
+    private CentroExposicoes m_ce;
+    private String m_usernameRep; //username do representante
 
-    private RegistoExposicoes re;
-    private RegistoDemonstracoes rd;
-    private RegistoCandidaturaADemonstracoes rcd;
+    private RegistoExposicoes m_re;
+    private RegistoDemonstracoes m_rd;
+    private RegistoCandidaturaADemonstracoes m_rcd;
     
-    private List<Demonstracao> listDemos; //lista de demonstrações da exposição selecionada
-    private List<Exposicao> listExpos; //lista de exposicoes em que o representante entra
+    private List<Demonstracao> m_listDemos; //lista de demonstrações da exposição selecionada
+    private List<Exposicao> m_listExpos; //lista de exposicoes em que o representante entra
 
-    private EstadoCandidaturaADemonstracao estado;
+    private EstadoCandidaturaADemonstracao m_estado;
     
     public RegistarCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameRep) {
-        this.ce = ce;
-        this.usernameRep = usernameRep;
+        this.m_ce = ce;
+        this.m_usernameRep = usernameRep;
     }
 
     /**
@@ -38,9 +38,9 @@ public class RegistarCandidaturaADemonstracaoController {
      * registo de exposições do centro de exposições. selecionada previamente
      */
     public List<Exposicao> getListaDeExposicoes() {
-        re = ce.getRegistoExposicoes();
-        listExpos = re.getListaExposicoesComCanditaturasAceitesRepresentante(usernameRep);
-        return listExpos;
+        m_re = m_ce.getRegistoExposicoes();
+        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesRepresentante(m_usernameRep);
+        return m_listExpos;
     }
 
     /**
@@ -49,7 +49,7 @@ public class RegistarCandidaturaADemonstracaoController {
      * @param e - exposição selecionada
      */
     public void setExpo(Exposicao e) {
-        this.e = e;
+        this.m_e = e;
     }
 
     /**
@@ -58,7 +58,7 @@ public class RegistarCandidaturaADemonstracaoController {
      * @param indexSelectedDemo - indice da demonstração selecionada
      */
     public void setDemo(int indexSelectedDemo) {
-        this.d = listDemos.get(indexSelectedDemo);
+        this.m_d = m_listDemos.get(indexSelectedDemo);
     }
 
     /**
@@ -66,9 +66,9 @@ public class RegistarCandidaturaADemonstracaoController {
      * selecionada previamente
      */
     public List<Demonstracao> getListaDemos() {
-        rd = e.getRegistoDemonstracoes();
-        listDemos = rd.getListaDemonstracoes();
-        return listDemos;
+        m_rd = m_e.getRegistoDemonstracoes();
+        m_listDemos = m_rd.getListaDemonstracoes();
+        return m_listDemos;
     }
 
     /**
@@ -93,7 +93,7 @@ public class RegistarCandidaturaADemonstracaoController {
     public boolean setFormularioDados(String dados) {
         boolean valido = false;
         if (isValidDados(dados)) {
-            this.dados = dados;
+            this.m_dados = dados;
             valido = true;
         }
         return valido;
@@ -105,18 +105,18 @@ public class RegistarCandidaturaADemonstracaoController {
      * @return true se a adição foi efetuada com sucesso; false caso contrário
      */
     public boolean RegistaCandADemo() {
-        cand = new CandidaturaADemonstracao(dados);
-        return rcd.adiciona(cand);
+        m_cand = new CandidaturaADemonstracao(m_dados);
+        return m_rcd.adiciona(m_cand);
     }
     
     /**
      * Muda o estado da candidatura à demonstração
      */
     public void transitaEstado() {
-        this.estado = cand.getEstado();
-        if (estado.setEstadoCandidaturaCriada()) {
-            EstadoCandidaturaADemonstracaoCriada estado2 = new EstadoCandidaturaADemonstracaoCriada(cand);
-            cand.setEstado(estado2);
+        this.m_estado = m_cand.getEstado();
+        if (m_estado.setEstadoCandidaturaCriada()) {
+            EstadoCandidaturaADemonstracaoCriada estado2 = new EstadoCandidaturaADemonstracaoCriada(m_cand);
+            m_cand.setEstado(estado2);
         }
     }
     

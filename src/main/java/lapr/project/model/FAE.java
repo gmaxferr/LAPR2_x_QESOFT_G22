@@ -40,7 +40,7 @@ public class FAE implements ApresentavelNaJTable{
     }
 
     public String getUsernameFae() {
-        return this.m_Utilizador.getM_StrUsername();
+        return this.m_Utilizador.getUsername();
     }
 
     /**
@@ -61,7 +61,7 @@ public class FAE implements ApresentavelNaJTable{
     @Override
     public String toString() {
         String str = "FAE:\n";
-        str += "\tUser: " + this.m_Utilizador.getM_strNome() + "\n";
+        str += "\tUser: " + this.m_Utilizador.getNome() + "\n";
 
         return str;
     }

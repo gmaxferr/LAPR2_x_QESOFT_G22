@@ -18,17 +18,17 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class DecidirDemonstracaoController {
 
-    private CentroExposicoes ce;
-    private String usernameOrganizador;
-    private RegistoExposicoes re;
-    private RegistoDemonstracoes rd;
-    private List<Demonstracao> lstDemonstracoes;
-    private boolean[] decisoesTemp;
+    private CentroExposicoes m_ce;
+    private String m_usernameOrganizador;
+    private RegistoExposicoes m_re;
+    private RegistoDemonstracoes m_rd;
+    private List<Demonstracao> m_listDemonstracoes;
+    private boolean[] m_decisoesTemp;
 
     public DecidirDemonstracaoController(CentroExposicoes ce, String username) {
-        this.ce = ce;
-        re = ce.getRegistoExposicoes();
-        usernameOrganizador = username;
+        this.m_ce = ce;
+        m_re = ce.getRegistoExposicoes();
+        m_usernameOrganizador = username;
 
     }
 
@@ -38,11 +38,11 @@ public class DecidirDemonstracaoController {
      * selecionada
      */
     public boolean[] getDecisoesTemp() {
-        return decisoesTemp;
+        return m_decisoesTemp;
     }
 
     public List<Exposicao> getListaExposOrganizador() {
-        return re.getlistaExposicoesDoOrganizadorComDemos(usernameOrganizador);
+        return m_re.getlistaExposicoesDoOrganizadorComDemos(m_usernameOrganizador);
     }
 
     /**
@@ -53,9 +53,9 @@ public class DecidirDemonstracaoController {
      * @return demonstrações pendentes da exposição selecionada
      */
     public List<Demonstracao> setExposicao(Exposicao e) {
-        rd = e.getRegistoDemonstracoes();
-        List<Demonstracao> demosPendentes = rd.getDemonstracoesPendentes();
-        decisoesTemp = new boolean[demosPendentes.size()];
+        m_rd = e.getRegistoDemonstracoes();
+        List<Demonstracao> demosPendentes = m_rd.getDemonstracoesPendentes();
+        m_decisoesTemp = new boolean[demosPendentes.size()];
         return demosPendentes;
     }
 
@@ -63,11 +63,11 @@ public class DecidirDemonstracaoController {
      * Regista decisões para as demonstrações pendentes da exposição
      */
     public void registarDecisoes() {
-        for (int i = 0; i < lstDemonstracoes.size(); i++) {
-            if (decisoesTemp[i]) {
-                lstDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
+        for (int i = 0; i < m_listDemonstracoes.size(); i++) {
+            if (m_decisoesTemp[i]) {
+                m_listDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
             } else {
-                lstDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
+                m_listDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
             }
         }
     }

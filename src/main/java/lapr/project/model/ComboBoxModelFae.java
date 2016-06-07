@@ -11,7 +11,7 @@ import javax.swing.ComboBoxModel;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
 public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel {
 

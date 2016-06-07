@@ -34,7 +34,7 @@ public class Utilizador implements ApresentavelNaJTable{
     /**
      *
      */
-    private String ID;
+    private String m_ID;
 
     /**
      * Atributo associado ao Utilizador que regista se o registo desse
@@ -45,7 +45,7 @@ public class Utilizador implements ApresentavelNaJTable{
     /**
      * Lista de utilizadores.
      */
-    private ArrayList<Utilizador> listaUtilizadores;
+    private ArrayList<Utilizador> m_listaUtilizadores;
 
     private int nAvaliacoesDesdeSempre;
 
@@ -58,7 +58,7 @@ public class Utilizador implements ApresentavelNaJTable{
 
     public Utilizador(String nome, String ID, char[] password, String email) {
         this.nAvaliacoesDesdeSempre = 0;
-        this.ID = ID;
+        this.m_ID = ID;
         this.m_strEmail = email;
         this.m_strPwd = password;
         this.m_strNome = nome;
@@ -71,7 +71,7 @@ public class Utilizador implements ApresentavelNaJTable{
      * @return boolean que representa se o registo desse Utilizador já foi
      * confirmado ou não
      */
-    public boolean getM_boolConfirmaRegisto() {
+    public boolean getBoolConfirmaRegisto() {
         return this.m_boolConfirmaRegisto;
     }
 
@@ -80,7 +80,7 @@ public class Utilizador implements ApresentavelNaJTable{
      *
      * @return nome do utilizador
      */
-    public String getM_strNome() {
+    public String getNome() {
         return this.m_strNome;
     }
 
@@ -89,7 +89,7 @@ public class Utilizador implements ApresentavelNaJTable{
      *
      * @return password do utilizador
      */
-    public char[] getM_strPwd() {
+    public char[] getPwd() {
         //fazer toString? depende se for um get para ser usado na UI
         return this.m_strPwd;
     }
@@ -99,12 +99,12 @@ public class Utilizador implements ApresentavelNaJTable{
      *
      * @return email do utilizador
      */
-    public String getM_strEmail() {
+    public String getEmail() {
         return this.m_strEmail;
     }
 
     public String getID() {
-        return this.ID;
+        return this.m_ID;
     }
 
     /**
@@ -112,7 +112,7 @@ public class Utilizador implements ApresentavelNaJTable{
      *
      * @return username do utilizador
      */
-    public String getM_StrUsername() {
+    public String getUsername() {
         return m_strUsername;
     }
 
@@ -120,7 +120,7 @@ public class Utilizador implements ApresentavelNaJTable{
      * Define um novo valor para variavel boolean que regista se o registo desse
      * Utilizador já foi confirmado
      */
-    public void setM_boolConfirmaRegisto(boolean m_boolConfirmaRegisto) {
+    public void setBoolConfirmaRegisto(boolean m_boolConfirmaRegisto) {
         this.m_boolConfirmaRegisto = m_boolConfirmaRegisto;
     }
 
@@ -226,9 +226,9 @@ public class Utilizador implements ApresentavelNaJTable{
      */
     public boolean validarDadosRepetidosOuInvalidos(String username, String email) {
         ArrayList<Utilizador> list = new ArrayList<>();
-        for (Utilizador u : listaUtilizadores) {
-            if (username.equals(u.getM_StrUsername()) || email.equals(u.getM_strEmail())) {
-                return false;
+        for (Utilizador u : m_listaUtilizadores) {
+            if (username.equals(u.getUsername())|| email.equals(u.getEmail())){
+                    return false;
             }
         }
         return true;

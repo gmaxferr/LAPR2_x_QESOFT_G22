@@ -13,18 +13,18 @@ import lapr.project.registos.*;
  */
 public class DefinirFAEController {
 
-    private RegistoExposicoes re;
-    private RegistoUtilizadores ru;
-    private RegistoOrganizadores ro;
-    private RegistoFAE rfae;
-    private Utilizador u;
-    private Exposicao exposicaoSelecionada;
-    private final CentroExposicoes centroExposicoes;
-    private final String usernameOrganizador;
+    private RegistoExposicoes m_re;
+    private RegistoUtilizadores m_ru;
+    private RegistoOrganizadores m_ro;
+    private RegistoFAE m_rfae;
+    private Utilizador m_u;
+    private Exposicao m_exposicaoSelecionada;
+    private final CentroExposicoes m_centroExposicoes;
+    private final String m_usernameOrganizador;
 
     public DefinirFAEController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
-        this.centroExposicoes = centroExposicoes;
-        this.usernameOrganizador = usernameOrganizador;
+        this.m_centroExposicoes = centroExposicoes;
+        this.m_usernameOrganizador = usernameOrganizador;
     }
 
     /**
@@ -34,11 +34,11 @@ public class DefinirFAEController {
      * @return lista com as exposições associadas ao organizador
      */
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE() {
-        return re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
+        return m_re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(m_usernameOrganizador);
     }
 
     public void getRegistoOrganizadores() {
-        this.ro = this.exposicaoSelecionada.getRegistoOrganizadores();
+        this.m_ro = this.m_exposicaoSelecionada.getRegistoOrganizadores();
     }
 
     /**
@@ -47,11 +47,11 @@ public class DefinirFAEController {
      * @param exposicao exposição escolhida
      */
     public void setExposicao(Exposicao exposicao) {
-        this.exposicaoSelecionada = exposicao;
+        this.m_exposicaoSelecionada = exposicao;
     }
 
     public void setRegistoOrganizadoresParaValidacoes() {
-        this.rfae.setRegistoOrganizadoresParaValidacoes(this.ro);
+        this.m_rfae.setRegistoOrganizadoresParaValidacoes(this.m_ro);
     }
 
     /**
@@ -60,12 +60,12 @@ public class DefinirFAEController {
      * @param usernameUtilizador identificador do fae
      */
     public void setFaePeloUsername(String usernameUtilizador) {
-        u = ru.identificarUtilizadorPeloUsername(usernameUtilizador);
-        rfae.adicionaFAE(u);
+        m_u = m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
+        m_rfae.adicionaFAE(m_u);
     }
 
     public List<Utilizador> getListaUtilizadores() {
-        return this.ru.getListaUtilizadores();
+        return this.m_ru.getListaUtilizadores();
     }
     
     public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae(){
@@ -77,27 +77,27 @@ public class DefinirFAEController {
      *
      */
     public void confirmaAddFAE() {
-        rfae.confirmaAddFAE();
+        m_rfae.confirmaAddFAE();
     }
 
     public void getRegistoExposicoes() {
-        this.re = this.centroExposicoes.getRegistoExposicoes();
+        this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
     }
 
     public void getRegistoUtilizadores() {
-        this.ru = this.centroExposicoes.getRegistoUtilizadores();
+        this.m_ru = this.m_centroExposicoes.getRegistoUtilizadores();
     }
 
     public void getRegistoFAE() {
-        this.rfae = exposicaoSelecionada.getRegistoFAE();
+        this.m_rfae = m_exposicaoSelecionada.getRegistoFAE();
     }
 
     public EstadoExposicao getEstadoExposicao() {
-        return this.exposicaoSelecionada.getEstado();
+        return this.m_exposicaoSelecionada.getEstado();
     }
 
     public void setEstado() {
-        EstadoExposicao estado = this.exposicaoSelecionada.getEstado();
+        EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
         if (estado.isEstadoCriada()) {
             estado.setEstadoFAEDefinidosSemDemos();
         } else if (estado.isEstadoDemosDefinidasSemFAE()) {

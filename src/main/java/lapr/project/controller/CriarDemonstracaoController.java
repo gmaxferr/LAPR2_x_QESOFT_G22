@@ -16,66 +16,66 @@ import lapr.project.registos.*;
  */
 public class CriarDemonstracaoController {
 
-    private RegistoExposicoes re;
-    private RegistoRecursos rr;
-    private RegistoDemonstracoes rd;
-    private CentroExposicoes centroExpo;
-    private Exposicao exposicao;
-    private Demonstracao demoCriada;
-    private RegistoRecursos rrr;
-    private EstadoExposicao estado;
-    private EstadoExposicaoCriada estadoExposicaoCriada;
-    private EstadoExposicaoDemosDefinidasSemFAE estadoExposicaoDemosDef;
+    private RegistoExposicoes m_re;
+    private RegistoRecursos m_rr;
+    private RegistoDemonstracoes m_rd;
+    private CentroExposicoes m_centroExpo;
+    private Exposicao m_exposicao;
+    private Demonstracao m_demoCriada;
+    private RegistoRecursos m_rrr;
+    private EstadoExposicao m_estado;
+    private EstadoExposicaoCriada m_estadoExposicaoCriada;
+    private EstadoExposicaoDemosDefinidasSemFAE m_estadoExposicaoDemosDef;
 
     public void getRegistoExposicoes() {
-        this.re = centroExpo.getRegistoExposicoes();
+        this.m_re = m_centroExpo.getRegistoExposicoes();
 
     }
 
     public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
         //passar parametro username
-        return re.getlistaExposicoesDoOrganizador();
+        return m_re.getlistaExposicoesDoOrganizador();
     }
 
     public void setExposicao(Exposicao e) {
-        this.exposicao = e;
+        this.m_exposicao = e;
     }
 
     public void getRegistoRecursos() {
-        this.rr = centroExpo.getRegistoRecursos();
+        this.m_rr = m_centroExpo.getRegistoRecursos();
     }
 
     public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        this.demoCriada = rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
+        this.m_demoCriada = m_rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
     }
 
     public void getRegistoDemonstracoes() {
-        this.rd = exposicao.getRegistoDemonstracoes();
+        this.m_rd = m_exposicao.getRegistoDemonstracoes();
     }
 
     public ArrayList<Recurso> getListaDeRecursos() {
-        return rr.getListaDeRecursos();
+        return m_rr.getListaDeRecursos();
     }
 
     public void setRecurso(Recurso rec) {
-        this.rrr.setRecurso(rec);
+        this.m_rrr.setRecurso(rec);
     }
 
     public void getRegistoRecursosDemo() {
-        this.rrr = this.demoCriada.getRegistoRecursos();
+        this.m_rrr = this.m_demoCriada.getRegistoRecursos();
     }
 
     public void confirma() {
-        rd.confirma(this.demoCriada);
+        m_rd.confirma(this.m_demoCriada);
     }
 
     public void setEstado() {
 
-        estado = this.exposicao.getEstado();
-        if (estado instanceof EstadoExposicaoFAEDefinidosSemDemos) {
-            estadoExposicaoDemosDef.setEstadoCompleta();
-        } else if (estado instanceof EstadoExposicaoCriada) {
-            estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();
+        m_estado = this.m_exposicao.getEstado();
+        if (m_estado instanceof EstadoExposicaoFAEDefinidosSemDemos) {
+            m_estadoExposicaoDemosDef.setEstadoCompleta();
+        } else if (m_estado instanceof EstadoExposicaoCriada) {
+            m_estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();
 
         }
     }

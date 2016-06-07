@@ -10,10 +10,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.AtualizarConflitosDeInteresseController;
+import lapr.project.model.AbstractListModelConflitosDeInteresse;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.ComboBoxModelCandidaturaAExposicao;
 import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.ComboBoxModelFae;
+import lapr.project.model.ConflitoDeInteresse;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 
@@ -22,22 +25,23 @@ import lapr.project.model.FAE;
  * @author guima
  */
 public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
-
+    
     private AtualizarConflitosDeInteresseController CTRL;
-
+    
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private List<Exposicao> listaExposicoes;
     private List<CandidaturaAExposicao> listaCandidaturas;
     private List<FAE> listaFae;
-    
+    private List<ConflitoDeInteresse> listaConflitos;
+
     /**
      * Creates new form JFrameAtualizarConflitoDeInteresseUI
      */
     public JFrameAtualizarConflitoDeInteresseUI(String usernameFae, CentroExposicoes ce) {
         CTRL = new AtualizarConflitosDeInteresseController(usernameFae, ce);
-        listaExposicoes = CTRL.getListaExposicoes();
+        listaExposicoes = CTRL.getFaeExpos();
         initComponents();
     }
 
@@ -346,7 +350,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(botaoSelecionaExpo1))
                             .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,11 +377,8 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         getContentPane().add(jPanel1, "card1");
         jPanel1.getAccessibleContext().setAccessibleName("card1");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos)
+        );
         jScrollPane1.setViewportView(jList1);
 
         jButton3.setText("Voltar");
@@ -459,7 +460,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
             }
         });
 
-        comboBoxSelectCandidatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxSelectCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturas));
         comboBoxSelectCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxSelectCandidaturaActionPerformed(evt);
@@ -532,7 +533,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxSelectFae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addComponent(botaoCriarConflito)
                 .addGap(11, 11, 11)
                 .addComponent(botaoVoltar)
@@ -553,7 +554,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Erro!", ERROR_MESSAGE);
         }
-
+        
 
     }//GEN-LAST:event_botaoCriarConflitoActionPerformed
 
@@ -566,7 +567,14 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxSelectCandidaturaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (jList1.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione primeiro um conflito.", "Erro", ERROR_MESSAGE);
+        } else {
+            int[] paraEliminar = jList1.getSelectedIndices();
+            for (int x : paraEliminar) {
+                CTRL.removeConflito(listaConflitos.get(x));
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botaoSelecionaExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionaExpoActionPerformed
@@ -602,6 +610,7 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
             CTRL.selectExpo(e);
             listaCandidaturas = CTRL.getListaCandidaturas();
             listaFae = CTRL.getListaFae();
+            listaConflitos = CTRL.getListaConflitos();
             passaParaPanel2();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
@@ -695,19 +704,19 @@ public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(this.getSize());
-
+        
     }
-
+    
     private void passaParaPanel2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(this.getSize());
     }
-
+    
     private void passaParaPanel3() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(this.getSize());
     }
-
+    
 }
