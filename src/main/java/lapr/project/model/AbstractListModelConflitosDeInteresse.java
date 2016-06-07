@@ -14,20 +14,20 @@ import javax.swing.AbstractListModel;
  */
 public class AbstractListModelConflitosDeInteresse extends AbstractListModel {
 
-    List<ConflitoDeInteresse> listaConflitos;
+    List<ConflitoDeInteresse> m_listaConflitos;
 
     public AbstractListModelConflitosDeInteresse(List<ConflitoDeInteresse> listaConflitos) {
-        this.listaConflitos = listaConflitos;
+        this.m_listaConflitos = listaConflitos;
     }
 
     @Override
     public int getSize() {
-        return listaConflitos.size();
+        return m_listaConflitos.size();
     }
 
     @Override
     public Object getElementAt(int i) {
-        return listaConflitos.get(i);
+        return m_listaConflitos.get(i);
     }
 
 }

@@ -12,7 +12,7 @@ public class FAE implements ApresentavelNaJTable{
      */
     private Utilizador m_Utilizador;
 
-    private TipoConflito tipoConflito;
+    private TipoConflito m_tipoConflito;
 
     /**
      * Construtor de objectos do tipo FAE com parametro Utilizador
@@ -72,6 +72,6 @@ public class FAE implements ApresentavelNaJTable{
     }
 
     public void setTipoConflitoFAE(TipoConflito tipoConflito) {
-        this.tipoConflito = tipoConflito;
+        this.m_tipoConflito = tipoConflito;
     }
 }

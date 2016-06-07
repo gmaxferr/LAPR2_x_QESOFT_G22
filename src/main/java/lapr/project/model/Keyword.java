@@ -12,13 +12,13 @@ public class Keyword implements Serializable {
     /**
      * Valor da keyword.
      */
-    private String value;
+    private String m_value;
 
     /**
      * Construtor por defeito.
      */
     public Keyword() {
-        value = "";
+        m_value = "";
     }
 
     /**
@@ -27,14 +27,14 @@ public class Keyword implements Serializable {
      * @param keyword - valor da keyword
      */
     public Keyword(String keyword) {
-        this.value = keyword;
+        this.m_value = keyword;
     }
 
     /**
      * @return Devolve o valor desta keyword
      */
     public String getValue() {
-        return value;
+        return m_value;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Keyword implements Serializable {
      * @param keyword keyword a atribuir
      */
     public void setValue(String keyword) {
-        this.value = keyword;
+        this.m_value = keyword;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Keyword implements Serializable {
                 return true;
             } else {
                 Keyword obj = (Keyword) o;
-                return obj.value.equals(this.value);
+                return obj.m_value.equals(this.m_value);
             }
         }
         return false;

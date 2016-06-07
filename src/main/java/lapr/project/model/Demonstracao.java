@@ -16,11 +16,11 @@ public class Demonstracao {
 
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
-    private RegistoRecursos rrr;
+    private RegistoRecursos m_rrr;
     private EstadoDemonstracao m_estado;
 
     public Demonstracao(String descricao) {
-        this.rrr = new RegistoRecursos();
+        this.m_rrr = new RegistoRecursos();
         this.m_StrDescricao = descricao;
     }
 
@@ -45,7 +45,7 @@ public class Demonstracao {
      * @return registo dos recursos necessários à demonstração
      */
     public RegistoRecursos getRegistoRecursos() {
-        return this.rrr;
+        return this.m_rrr;
     }
 
     /**

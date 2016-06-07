@@ -13,7 +13,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
     /**
      * Lista de Candidaturas.
      */
-    private List<CandidaturaAExposicao> listaCands;
+    private List<CandidaturaAExposicao> m_listaCands;
 
     /**
      * Objeto (Candidaturas) selecionado.
@@ -28,7 +28,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      */
     public ComboBoxModelCandidaturaAExposicao(List<CandidaturaAExposicao> listaCands) {
         this.selection = null;
-        this.listaCands = listaCands;
+        this.m_listaCands = listaCands;
     }
 
     /**
@@ -37,7 +37,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      * @return tamanho da lista das candidaturas.
      */
     public int getSize() {
-        return this.listaCands.size();
+        return this.m_listaCands.size();
     }
 
     /**
@@ -48,7 +48,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaCands.get(index);
+        return this.m_listaCands.get(index);
     }
 
     /**

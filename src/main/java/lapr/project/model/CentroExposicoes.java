@@ -17,36 +17,36 @@ public class CentroExposicoes {
     /**
      *
      */
-    private RegistoExposicoes registoExposicoes;
+    private RegistoExposicoes m_registoExposicoes;
 
     /**
      *
      */
-    private RegistoUtilizadores registoUtilizadores;
+    private RegistoUtilizadores m_registoUtilizadores;
 
     /**
      *
      */
-    private RegistoMecanismos registoMecanismos;
+    private RegistoMecanismos m_registoMecanismos;
 
     /**
      *
      */
-    private RegistoRecursos registoRecursos;
+    private RegistoRecursos m_registoRecursos;
 
-    private RegistoTipoConflitos registoTipoConflitos;
-    private final RegistoExpositores rExpositores;
+    private RegistoTipoConflitos m_registoTipoConflitos;
+    private RegistoExpositores m_rExpositores;
 
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
     public CentroExposicoes() {
-        this.registoExposicoes = new RegistoExposicoes();
-        this.registoUtilizadores = new RegistoUtilizadores();
-        this.registoMecanismos = new RegistoMecanismos();
-        this.registoRecursos = new RegistoRecursos();
-        this.registoTipoConflitos = new RegistoTipoConflitos();
-        this.rExpositores = new RegistoExpositores();
+        this.m_registoExposicoes = new RegistoExposicoes();
+        this.m_registoUtilizadores = new RegistoUtilizadores();
+        this.m_registoMecanismos = new RegistoMecanismos();
+        this.m_registoRecursos = new RegistoRecursos();
+        this.m_registoTipoConflitos = new RegistoTipoConflitos();
+        this.m_rExpositores = new RegistoExpositores();
     }
 
     /**
@@ -54,11 +54,11 @@ public class CentroExposicoes {
      * @return
      */
     public RegistoExposicoes getRegistoExposicoes() {
-        return registoExposicoes;
+        return m_registoExposicoes;
     }
 
     public RegistoExpositores getRegistoExpositores() {
-        return this.rExpositores;
+        return this.m_rExpositores;
     }
 
     /**
@@ -67,7 +67,7 @@ public class CentroExposicoes {
      * @return registo de utilizadores
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return registoUtilizadores;
+        return m_registoUtilizadores;
     }
 
     /**
@@ -75,15 +75,15 @@ public class CentroExposicoes {
      * @return
      */
     public RegistoMecanismos getRegistoMecanismos() {
-        return registoMecanismos;
+        return m_registoMecanismos;
     }
 
     public RegistoRecursos getRegistoRecursos() {
-        return registoRecursos;
+        return m_registoRecursos;
     }
 
     public RegistoTipoConflitos getRegistoTiposConflitos() {
-        return registoTipoConflitos;
+        return m_registoTipoConflitos;
     }
 
     /**

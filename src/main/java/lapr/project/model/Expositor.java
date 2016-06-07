@@ -7,13 +7,13 @@ package lapr.project.model;
  */
 public class Expositor {
 
-    private Utilizador utilizador;
+    private Utilizador m_utilizador;
 
     /**
      * Construtor de objectos do tipo Expositor sem parametros
      */
     public Expositor(Utilizador utilizador) {
-        this.utilizador = utilizador;
+        this.m_utilizador = utilizador;
     }
 
     /**
@@ -22,6 +22,6 @@ public class Expositor {
      * @return username do expositor
      */
     public String getM_strUsername() {
-        return this.utilizador.getUsername();
+        return this.m_utilizador.getUsername();
     }
 }

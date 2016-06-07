@@ -8,17 +8,17 @@ package lapr.project.model;
 public class Produto {
 
     /**
-     * Atributo nome do produto
+     * Atributo m_nome do produto
      */
-    private String nome;
+    private String m_nome;
 
     /**
-     * Construtor de objectos do tipo Produto com parametro nome
+     * Construtor de objectos do tipo Produto com parametro m_nome
      *
-     * @param nome nome do produto
+     * @param nome m_nome do produto
      */
     public Produto(String nome) {
-        this.nome = nome;
+        this.m_nome = nome;
     }
 
     /**
@@ -29,20 +29,20 @@ public class Produto {
     }
 
     /**
-     * Devolve o atributo nome de rganizador
+     * Devolve o atributo m_nome de rganizador
      * 
-     * @return nome de organizador;
+     * @return m_nome de organizador;
      */
     public String getNome() {
-        return nome;
+        return m_nome;
     }
     
     /**
-     * Define um novo nome de organizador
+     * Define um novo m_nome de organizador
      * 
-     * @param nome novo nome de organizador
+     * @param nome novo m_nome de organizador
      */
     public void setNome(String nome) {
-        this.nome = nome;
+        this.m_nome = nome;
     }
 }

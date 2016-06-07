@@ -7,14 +7,14 @@ package lapr.project.model;
  */
 public class Decisao {
 
-    private boolean decisao;
+    private boolean m_decisao;
 
     /**
      * Construtor
      *
      */
     public Decisao() {
-        this.decisao = false;
+        this.m_decisao = false;
     }
 
     /**
@@ -23,14 +23,14 @@ public class Decisao {
      * @param decisao
      */
     public Decisao(boolean decisao) {
-        this.decisao = decisao;
+        this.m_decisao = decisao;
     }
 
     public void setM_bDecisao(boolean decisao) {
-        this.decisao = decisao;
+        this.m_decisao = decisao;
     }
 
     public boolean getM_bDecisao() {
-        return this.decisao;
+        return this.m_decisao;
     }
 }

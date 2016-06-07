@@ -18,7 +18,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
     /**
      * Lista de FAEs.
      */
-    private List<FAE> listaFae;
+    private List<FAE> m_listaFae;
 
     /**
      * Objeto (FAE) selecionado.
@@ -33,7 +33,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
      */
     public ComboBoxModelFae(List<FAE> listaFae) {
         this.selection = null;
-        this.listaFae = listaFae;
+        this.m_listaFae = listaFae;
     }
 
     /**
@@ -42,7 +42,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
      * @return tamanho da lista dos FAE.
      */
     public int getSize() {
-        return this.listaFae.size();
+        return this.m_listaFae.size();
     }
 
     /**
@@ -53,7 +53,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
      */
     @Override
     public Object getElementAt(int index) {
-        return this.listaFae.get(index);
+        return this.m_listaFae.get(index);
     }
 
     /**
