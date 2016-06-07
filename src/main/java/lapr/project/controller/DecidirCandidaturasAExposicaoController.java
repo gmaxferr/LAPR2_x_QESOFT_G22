@@ -53,8 +53,8 @@ public class DecidirCandidaturasAExposicaoController {
         return this.rc.getListaCandidaturasAExposicao();
     }
 
-    public naosei getDadosEstatisticosGerais() {
-        return naosei;
+    public void getDadosEstatisticosGerais() {
+        throw new UnsupportedOperationException();
     }
 
     //a espera de implementarem os vossos models
@@ -82,8 +82,8 @@ public class DecidirCandidaturasAExposicaoController {
         return this.candidaturaSelecionada.getM_intNumConvites();
     }
 
-    public naoSei getKeywords() {
-        return naoSei;
+    public void getKeywords() {
+        throw new UnsupportedOperationException();
     }
 
     public void setDecisao(boolean decisao) {

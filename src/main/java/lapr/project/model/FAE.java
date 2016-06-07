@@ -5,7 +5,7 @@ package lapr.project.model;
  *
  * @author Ricardo Osório Ana Leite
  */
-public class FAE{
+public class FAE implements ApresentavelNaJTable{
 
     /**
      * Atributo do FAE que representa o utilizador associado a este

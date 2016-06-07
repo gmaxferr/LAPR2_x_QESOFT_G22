@@ -129,24 +129,24 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jButtonCard2Recuar = new javax.swing.JButton();
         card3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonCard3Terminar = new javax.swing.JButton();
+        jButtonCard3Recuar = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
         jSlider2 = new javax.swing.JSlider();
         jSlider3 = new javax.swing.JSlider();
-        jSlider4 = new javax.swing.JSlider();
+        jSliderConhecimentoDoAssunto = new javax.swing.JSlider();
         jSlider5 = new javax.swing.JSlider();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabelAdequacaoAExposicao = new javax.swing.JLabel();
+        jLabelAdequacaoAsDemonstracoes = new javax.swing.JLabel();
+        jLabelAdequacaoDoNumeroDeConvites = new javax.swing.JLabel();
+        jLabelRecomendacaoGlobal = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButtonCard3Nao = new javax.swing.JRadioButton();
+        jRadioButtonCard3Sim = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaCard3Justificacao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -314,7 +314,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -492,21 +492,22 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabel16.setFont(jLabelCard1Titulo.getFont());
         jLabel16.setText("Tome a sua decisão");
 
-        jButton1.setText("Registar decisão");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCard3Terminar.setText("Registar decisão");
+        jButtonCard3Terminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCard3TerminarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Recuar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCard3Recuar.setText("Recuar");
+        jButtonCard3Recuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCard3RecuarActionPerformed(evt);
             }
         });
 
-        jSlider1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSlider1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSlider1.setMajorTickSpacing(1);
         jSlider1.setMaximum(5);
         jSlider1.setMinorTickSpacing(1);
         jSlider1.setPaintLabels(true);
@@ -514,7 +515,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jSlider1.setSnapToTicks(true);
         jSlider1.setValue(0);
 
-        jSlider2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSlider2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSlider2.setMajorTickSpacing(1);
         jSlider2.setMaximum(5);
         jSlider2.setMinorTickSpacing(1);
         jSlider2.setPaintLabels(true);
@@ -522,7 +524,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jSlider2.setSnapToTicks(true);
         jSlider2.setValue(0);
 
-        jSlider3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSlider3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSlider3.setMajorTickSpacing(1);
         jSlider3.setMaximum(5);
         jSlider3.setMinorTickSpacing(1);
         jSlider3.setPaintLabels(true);
@@ -530,15 +533,17 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jSlider3.setSnapToTicks(true);
         jSlider3.setValue(0);
 
-        jSlider4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jSlider4.setMaximum(5);
-        jSlider4.setMinorTickSpacing(1);
-        jSlider4.setPaintLabels(true);
-        jSlider4.setPaintTicks(true);
-        jSlider4.setSnapToTicks(true);
-        jSlider4.setValue(0);
+        jSliderConhecimentoDoAssunto.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSliderConhecimentoDoAssunto.setMajorTickSpacing(1);
+        jSliderConhecimentoDoAssunto.setMaximum(5);
+        jSliderConhecimentoDoAssunto.setMinorTickSpacing(1);
+        jSliderConhecimentoDoAssunto.setPaintLabels(true);
+        jSliderConhecimentoDoAssunto.setPaintTicks(true);
+        jSliderConhecimentoDoAssunto.setSnapToTicks(true);
+        jSliderConhecimentoDoAssunto.setValue(0);
 
-        jSlider5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSlider5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jSlider5.setMajorTickSpacing(1);
         jSlider5.setMaximum(5);
         jSlider5.setMinorTickSpacing(1);
         jSlider5.setPaintLabels(true);
@@ -548,22 +553,22 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
         jLabel5.setText("Conhecimento do assunto");
 
-        jLabel7.setText("Adequação à exposição");
+        jLabelAdequacaoAExposicao.setText("Adequação à exposição");
 
-        jLabel9.setText("Adequação às demonstrações");
+        jLabelAdequacaoAsDemonstracoes.setText("Adequação às demonstrações");
 
-        jLabel11.setText("Adequação do número de convites");
+        jLabelAdequacaoDoNumeroDeConvites.setText("Adequação do número de convites");
 
-        jLabel13.setText("Recomendação global");
+        jLabelRecomendacaoGlobal.setText("Recomendação global");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Avaliação"));
 
-        buttonGroupAvaliacaoDaCandidatura.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Rejeitar");
+        buttonGroupAvaliacaoDaCandidatura.add(jRadioButtonCard3Nao);
+        jRadioButtonCard3Nao.setSelected(true);
+        jRadioButtonCard3Nao.setText("Rejeitar");
 
-        buttonGroupAvaliacaoDaCandidatura.add(jRadioButton1);
-        jRadioButton1.setText("Aceitar");
+        buttonGroupAvaliacaoDaCandidatura.add(jRadioButtonCard3Sim);
+        jRadioButtonCard3Sim.setText("Aceitar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -571,9 +576,9 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(jRadioButton1)
+                .addComponent(jRadioButtonCard3Sim)
                 .addGap(66, 66, 66)
-                .addComponent(jRadioButton2)
+                .addComponent(jRadioButtonCard3Nao)
                 .addGap(79, 79, 79))
         );
         jPanel3Layout.setVerticalGroup(
@@ -581,19 +586,19 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonCard3Sim)
+                    .addComponent(jRadioButtonCard3Nao))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Justificação"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Introduza aqui a justifcação para a sua avaliação");
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane4.setViewportView(jTextArea1);
+        jTextAreaCard3Justificacao.setColumns(20);
+        jTextAreaCard3Justificacao.setLineWrap(true);
+        jTextAreaCard3Justificacao.setRows(5);
+        jTextAreaCard3Justificacao.setText("Introduza aqui a justifcação para a sua avaliação");
+        jTextAreaCard3Justificacao.setWrapStyleWord(true);
+        jScrollPane4.setViewportView(jTextAreaCard3Justificacao);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -614,33 +619,37 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(23, 23, 23)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabelAdequacaoAExposicao)
+                            .addComponent(jLabelAdequacaoAsDemonstracoes)
+                            .addComponent(jLabelAdequacaoDoNumeroDeConvites)
+                            .addComponent(jLabelRecomendacaoGlobal))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                            .addComponent(jSlider3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSlider4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSlider5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10)
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSliderConhecimentoDoAssunto, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(jSlider5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSlider3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addContainerGap(282, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(jButtonCard3Recuar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCard3Terminar)
+                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                .addContainerGap(302, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addGap(190, 190, 190))
         );
@@ -648,39 +657,38 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(card3Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSliderConhecimentoDoAssunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(jLabelAdequacaoAExposicao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel9)
+                        .addComponent(jLabelAdequacaoAsDemonstracoes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelAdequacaoDoNumeroDeConvites)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelRecomendacaoGlobal)
+                        .addGap(4, 4, 4))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonCard3Terminar)
+                    .addComponent(jButtonCard3Recuar))
                 .addContainerGap())
         );
 
@@ -744,12 +752,12 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 //            this.jTextAreaJustificacao.setText("");
 //        }
 //    }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
 //        if (!jTextAreaJustificacao.getText().isEmpty()) {
 //                    guardarDecisao();
 //                    String[] opcoes2 = {"Sim", "Não"};
@@ -762,7 +770,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 //                } else {
 //                    JOptionPane.showMessageDialog(rootPane, "Não pode continuar sem justificar a sua decisão!", "Erro", JOptionPane.WARNING_MESSAGE);
 //                }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
 //    private void guardarDecisao() {
 //        if (jRadioButtonSim.isSelected()) {
@@ -826,19 +834,17 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
     private javax.swing.JButton jButtonCard2Avancar;
     private javax.swing.JButton jButtonCard2Recuar;
+    private javax.swing.JButton jButtonCard3Recuar;
+    private javax.swing.JButton jButtonCard3Terminar;
     private javax.swing.JComboBox<String> jComboBoxCard2EscolherCandidatura;
     private javax.swing.JComboBox<String> jComboBoxEscolherExposicao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -847,9 +853,10 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAdequacaoAExposicao;
+    private javax.swing.JLabel jLabelAdequacaoAsDemonstracoes;
+    private javax.swing.JLabel jLabelAdequacaoDoNumeroDeConvites;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
@@ -858,6 +865,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard2DadosEmpresaMorada;
     private javax.swing.JLabel jLabelCard2DadosEmpresaNome;
     private javax.swing.JLabel jLabelCard2DadosEmpresaTelemovel;
+    private javax.swing.JLabel jLabelRecomendacaoGlobal;
     private javax.swing.JList<String> jListCard2ListaProdutos;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -865,8 +873,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonCard3Nao;
+    private javax.swing.JRadioButton jRadioButtonCard3Sim;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -874,10 +882,10 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
     private javax.swing.JSlider jSlider3;
-    private javax.swing.JSlider jSlider4;
     private javax.swing.JSlider jSlider5;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JSlider jSliderConhecimentoDoAssunto;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
+    private javax.swing.JTextArea jTextAreaCard3Justificacao;
     // End of variables declaration//GEN-END:variables
 }

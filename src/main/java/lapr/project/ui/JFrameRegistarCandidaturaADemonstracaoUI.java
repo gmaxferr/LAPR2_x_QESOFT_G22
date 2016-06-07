@@ -11,9 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.RegistarCandidaturaADemonstracaoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 
 /**
  *
@@ -443,10 +441,10 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
         if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
             Exposicao e = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(e.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(e.getDataInicio().toString());
-            jLabelCard1DataFim.setText(e.getDataFim().toString());
+            jTextAreaCard1DescricaoExposicao.setText(e.getM_strDescricao());
+            jTextAreaCard1LocalExposicao.setText(e.getLocal().getM_StrMorada());
+            jLabelCard1DataInicio.setText(e.getM_strDataInicio().toString());
+            jLabelCard1DataFim.setText(e.getM_strDataFim().toString());
             CTRL.setExpo(e);
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);

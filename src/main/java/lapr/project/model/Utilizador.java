@@ -9,7 +9,7 @@ import java.util.Arrays;
  *
  * @author Ricardo Osório Ana Leite
  */
-public class Utilizador {
+public class Utilizador implements ApresentavelNaJTable{
 
     /**
      * Atributo nome de um Utilizador

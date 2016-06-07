@@ -1,14 +1,8 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidaturaAExposicaoConflitosDetetados;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.TipoConflito;
+import lapr.project.estados.*;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoTipoConflitos;
 
 /**
@@ -20,7 +14,6 @@ public class AtribuirConflitoInteresseController {
     private Exposicao exposicao;
     private EstadoExposicao estadoExpo;
     private EstadoCandidaturaAExposicao estadoCand;
-    private EstadoCandidaturaAExposicaoConflitosDetetados estadoConflitosdetetados;
     private RegistoTipoConflitos m_rtc;
     private CentroExposicoes m_centro_exposicoes;
     private FAE fae;
@@ -63,7 +56,7 @@ public class AtribuirConflitoInteresseController {
      
      public void setEstadoConflitosAtribuidos(){
          this.estadoCand = cand.getEstado();
-         estadoConflitosdetetados.setEstadoConflitosAtribuidos();
+         estadoCand.setEstadoConflitosAtribuidos();
          }
      }
 
