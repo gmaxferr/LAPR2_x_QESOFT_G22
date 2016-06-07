@@ -67,6 +67,10 @@ public class DefinirFAEController {
     public List<Utilizador> getListaUtilizadores() {
         return this.ru.getListaUtilizadores();
     }
+    
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae(){
+        return this.rfae.getListaUtilizadoresCorrespondentesAosFae();
+    }
 
     /**
      * Método que confirma addição de fae

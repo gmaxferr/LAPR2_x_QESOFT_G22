@@ -51,6 +51,7 @@ public class RegistoFAE {
 
     /**
      * Verifica se já existe um FAE com um determinado username
+     *
      * @param usernameFAE - username do FAE a procurar
      * @return true se encontrar, false caso contrário
      */
@@ -62,22 +63,31 @@ public class RegistoFAE {
         }
         return false;
     }
-    
+
     public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
         this.rOrganizadoresDestaExposicao = ro;
     }
 
     /**
      * Retorn ao FAE que tem determinado username
+     *
      * @param usernameFAE - usernmae do FAE
-     * @return FAE com o username enviado como parametro. null caso não exista 
+     * @return FAE com o username enviado como parametro. null caso não exista
      */
     public FAE getFAE(String usernameFAE) {
-        for(FAE f: listaFAE){
-            if(f.getUsernameFae().equals(usernameFAE)){
+        for (FAE f : listaFAE) {
+            if (f.getUsernameFae().equals(usernameFAE)) {
                 return f;
             }
         }
         return null;
+    }
+
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
+        List<Utilizador> listaUtilizadores = new ArrayList<>();
+        for (FAE fae : listaFAE) {
+            listaUtilizadores.add(fae.getUtilizador());
+        }
+        return listaUtilizadores;
     }
 }
