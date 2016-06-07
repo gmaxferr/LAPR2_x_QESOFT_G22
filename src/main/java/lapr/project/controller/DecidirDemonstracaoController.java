@@ -26,7 +26,7 @@ public class DecidirDemonstracaoController {
     private List<Demonstracao> lstDemonstracoes;
     private boolean[] decisoesTemp;
 
-    private CentroExposicoes m_ce;
+    private final CentroExposicoes m_ce;
     private String m_usernameOrganizador;
     private RegistoExposicoes m_re;
     private RegistoDemonstracoes m_rd;
