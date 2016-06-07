@@ -487,6 +487,12 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private javax.swing.JTextArea textAreaCard3;
     // End of variables declaration//GEN-END:variables
 
+    private void passaParaPanel1() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card1");
+        setSize(this.getSize());
+
+    }
     private void passaParaPanel2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
@@ -499,10 +505,4 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         setSize(this.getSize());
     }
 
-    private void passaParaPanel1() {
-        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "card1");
-        setSize(this.getSize());
-
-    }
 }
