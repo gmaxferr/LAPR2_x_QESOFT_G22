@@ -33,12 +33,12 @@ public class RegistoFAE {
 
     private boolean validaUtilizador(Utilizador u) {
         for (FAE fae : listaFAETemp) {
-            if (fae.getUsernameFae().equalsIgnoreCase(u.getM_StrUsername())) {
+            if (fae.getUsernameFae().equalsIgnoreCase(u.getStrUsername())) {
                 return false;
             }
         }
         for (Organizador organizador : this.rOrganizadoresDestaExposicao.getListaOrganizadores()) {
-            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getM_StrUsername())) {
+            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getStrUsername())) {
                 return false;
             }
         }
@@ -49,16 +49,35 @@ public class RegistoFAE {
         this.listaFAE = new ArrayList(this.listaFAETemp);
     }
 
+    /**
+     * Verifica se já existe um FAE com um determinado username
+     * @param usernameFAE - username do FAE a procurar
+     * @return true se encontrar, false caso contrário
+     */
     public boolean isFAE(String usernameFAE) {
         for (FAE fae : listaFAE) {
-            if (fae.getUtilizador().getM_StrUsername().equalsIgnoreCase(usernameFAE)) {
+            if (fae.getUtilizador().getStrUsername().equalsIgnoreCase(usernameFAE)) {
                 return true;
             }
         }
         return false;
     }
-
+    
     public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
         this.rOrganizadoresDestaExposicao = ro;
+    }
+
+    /**
+     * Retorn ao FAE que tem determinado username
+     * @param usernameFAE - usernmae do FAE
+     * @return FAE com o username enviado como parametro. null caso não exista 
+     */
+    public FAE getFAE(String usernameFAE) {
+        for(FAE f: listaFAE){
+            if(f.getUsernameFae().equals(usernameFAE)){
+                return f;
+            }
+        }
+        return null;
     }
 }

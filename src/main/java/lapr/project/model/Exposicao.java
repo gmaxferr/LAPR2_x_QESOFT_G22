@@ -435,7 +435,7 @@ public class Exposicao{
         return m_estado;
     }
 
-    public RegistoConflitos getRegistoCoflitos() {
+    public RegistoConflitos getRegistoConflitos() {
         return this.rconf;
     }
 

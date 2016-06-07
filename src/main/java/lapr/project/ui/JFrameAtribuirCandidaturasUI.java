@@ -29,7 +29,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private String[] listaNomeMecanismos;
     private Mecanismo mecanismoEscolhido;
     private List<AtribuicoesCandidatura> listaAtribuicoes;
-    private ModeloJTableDistribuicaoFAE modeloJTable;
+    private ModeloJTableUsers modeloJTable;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 382;
@@ -399,7 +399,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jLabel5.setFont(jLabelCard1Titulo.getFont());
         jLabel5.setText("Distribuição gerada por candidatura");
 
-        this.modeloJTable = new ModeloJTableDistribuicaoFAE();
+        this.modeloJTable = new ModeloJTableUsers();
         jTable1.setModel(modeloJTable);
         jScrollPane4.setViewportView(jTable1);
 
