@@ -45,17 +45,9 @@ public class AtualizarConflitosDeInteresseController {
     }
 
     /**
-     *
-     * @return lista de exposições válidas do centro de exposições
-     */
-    public List<Exposicao> getListaExposicoes() {
-        return re.getListaExposicoesValidas();
-    }
-
-    /**
      * @return lista de conflitos da exposição pretendida
      */
-    public List<ConflitoDeInteresse> getConflitos() {
+    public List<ConflitoDeInteresse> getListaConflitos() {
         return rc.getListaConflitos();
     }
 
@@ -94,16 +86,6 @@ public class AtualizarConflitosDeInteresseController {
         rc = e.getRegistoConflitos();
         rcand = e.getRegistoCandidaturasAExposicao();
         rf = e.getRegistoFAE();
-    }
-
-    /**
-     * Valida um FAE através de um username (se existe ou não)
-     *
-     * @param username - username do FAE
-     * @return
-     */
-    public boolean validaFAE(String username) {
-        return rf.isFAE(username);
     }
 
     /**
