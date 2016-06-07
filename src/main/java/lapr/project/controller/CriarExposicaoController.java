@@ -23,7 +23,7 @@ public class CriarExposicaoController {
 
     private Exposicao m_exposicao;
 
-    private EstadoExposicao estadoExposicao;
+    private EstadoExposicao m_estadoExposicao;
 
     public CriarExposicaoController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoUtilizadores registoUtilizadores, RegistoOrganizadores registoOrganizadores) {
         m_centro_exposicoes = centro_exposicoes;
@@ -98,8 +98,8 @@ public class CriarExposicaoController {
     }
 
     public void setEstadoCriada() {
-        this.estadoExposicao = this.m_exposicao.getEstado();
-        estadoExposicao.setEstadoCriada();
+        this.m_estadoExposicao = this.m_exposicao.getEstado();
+        m_estadoExposicao.setEstadoCriada();
     }
 
 }

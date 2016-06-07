@@ -70,8 +70,8 @@ public class RegistarUtilizadorController {
     /**
      * Adiciona o utilizador ao registo de utilizadores
      */
-    public void addUtilizador(String username, String email) {
-        m_ru.addUtilizador(m_utilizador, username, email);
+    public void addUtilizador() {
+        m_ru.addUtilizador(m_utilizador);
     }
 
     

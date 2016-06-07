@@ -16,39 +16,42 @@ public class CriarCandidaturaAExposicaoController {
     /**
      * Registo de exposições.
      */
-    private RegistoExposicoes re;
+    private RegistoExposicoes m_re;
 
     /**
      * Registo de candidaturas.
      */
-    private RegistoCandidaturasAExposicao rc;
+    private RegistoCandidaturasAExposicao m_rc;
 
     /**
      * Registo de produtos.
      */
-    private RegistoProdutos rp;
+    private RegistoProdutos m_rp;
 
     /**
      * Registo de demonstrações.
      */
-    private RegistoDemonstracoes rd;
+    private RegistoDemonstracoes m_rd;
 
     /**
      * Exposição escolhida.
      */
-    private Exposicao exposicaoEscolhida;
+    private Exposicao m_exposicaoEscolhida;
 
     /**
      * Candidatura criada.
      */
-    private CandidaturaAExposicao candidaturaCriada;
+    private CandidaturaAExposicao m_candidaturaCriada;
 
     /**
      * Centro de exposições.
      */
-    private CentroExposicoes centroExposicoes;
+    private CentroExposicoes m_centroExposicoes;
 
-    private EstadoCandidaturaAExposicao estadoCandidatura;
+    /**
+     * 
+     */
+    private EstadoCandidaturaAExposicao m_estadoCandidatura;
 
     /**
      * Constrói uma instância de CriarCandidaturaController recebendo como
@@ -57,14 +60,14 @@ public class CriarCandidaturaAExposicaoController {
      * @param centroExposicoes centro de exposições
      */
     public CriarCandidaturaAExposicaoController(CentroExposicoes centroExposicoes) {
-        this.centroExposicoes = centroExposicoes;
+        this.m_centroExposicoes = centroExposicoes;
     }
 
     /**
      * Guarda o registo de exposições.
      */
     public void getRegistoExposicoes() {
-        this.re = centroExposicoes.getRegistoExposicoes();
+        this.m_re = m_centroExposicoes.getRegistoExposicoes();
     }
 
     /**
@@ -73,7 +76,7 @@ public class CriarCandidaturaAExposicaoController {
      * @return lista de Exposições
      */
     public List<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
-        return this.re.getlistaExposicoesEstadoCandidaturasAbertas();
+        return this.m_re.getlistaExposicoesEstadoCandidaturasAbertas();
     }
 
     /**
@@ -82,14 +85,14 @@ public class CriarCandidaturaAExposicaoController {
      * @param exposicaoEscolhida nova exposição escolhida.
      */
     public void setExposicao(Exposicao exposicaoEscolhida) {
-        this.exposicaoEscolhida = exposicaoEscolhida;
+        this.m_exposicaoEscolhida = exposicaoEscolhida;
     }
 
     /**
      * Guarda o registo de candidaturas.
      */
     public void getRegistoCandidaturas() {
-        this.rc = exposicaoEscolhida.getRegistoCandidaturasAExposicao();
+        this.m_rc = m_exposicaoEscolhida.getRegistoCandidaturasAExposicao();
     }
 
     /**
@@ -98,7 +101,7 @@ public class CriarCandidaturaAExposicaoController {
      * @param expositor
      */
     public void criarCandidatura(Expositor expositor) {
-        this.candidaturaCriada = rc.criarCandidatura(expositor);
+        this.m_candidaturaCriada = m_rc.criarCandidatura(expositor);
     }
 
     /**
@@ -111,18 +114,18 @@ public class CriarCandidaturaAExposicaoController {
      * @param numConvites numero de convites pretendidos
      */
     public void setDados(String nomeEmpresa, String moradaEmpresa, String telemovelEmpresa, String area, String numConvites) throws TelemovelEmpresaErradoException, AreaErradaException, NumeroConvitesErradoException {
-        this.candidaturaCriada.setM_strNomeEmpresa(nomeEmpresa);
-        this.candidaturaCriada.setM_strMorada(area);
-        this.candidaturaCriada.setM_intTelemovel(telemovelEmpresa);
-        this.candidaturaCriada.setM_intArea(area);
-        this.candidaturaCriada.setM_intNumConvites(numConvites);
+        this.m_candidaturaCriada.setM_strNomeEmpresa(nomeEmpresa);
+        this.m_candidaturaCriada.setM_strMorada(area);
+        this.m_candidaturaCriada.setM_intTelemovel(telemovelEmpresa);
+        this.m_candidaturaCriada.setM_intArea(area);
+        this.m_candidaturaCriada.setM_intNumConvites(numConvites);
     }
 
     /**
      * Guarda o registo de produtos.
      */
     public void getRegistoProduto() {
-        this.rp = candidaturaCriada.getRegistoProdutos();
+        this.m_rp = m_candidaturaCriada.getRegistoProdutos();
     }
 
     /**
@@ -133,8 +136,8 @@ public class CriarCandidaturaAExposicaoController {
      * @return boolean que indica se foi ou não criado (true - foi criado)
      */
     public boolean addProduto(String nome) {
-        Produto produtoCriado = this.rp.criarProduto(nome);
-        boolean b = this.rp.adicionaProduto(produtoCriado);
+        Produto produtoCriado = this.m_rp.criarProduto(nome);
+        boolean b = this.m_rp.adicionaProduto(produtoCriado);
         return b;
     }
 
@@ -142,7 +145,7 @@ public class CriarCandidaturaAExposicaoController {
      * Guarda o registo de demonstrações.
      */
     public void getRegistoDemonstracoes() {
-        this.rd = exposicaoEscolhida.getRegistoDemonstracoes();
+        this.m_rd = m_exposicaoEscolhida.getRegistoDemonstracoes();
     }
 
     /**
@@ -151,7 +154,7 @@ public class CriarCandidaturaAExposicaoController {
      * @return lista de demostrações.
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        return this.rd.getListaDemonstracoes();
+        return this.m_rd.getListaDemonstracoes();
     }
 
     /**
@@ -160,7 +163,7 @@ public class CriarCandidaturaAExposicaoController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionaDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
     }
 
     /**
@@ -169,7 +172,7 @@ public class CriarCandidaturaAExposicaoController {
      * @return boolean que indica se foi ou não criada. (true - foi criada)
      */
     public boolean registaCandidatura() {
-        boolean b = rc.registaCandidatura(this.candidaturaCriada);
+        boolean b = m_rc.registaCandidatura(this.m_candidaturaCriada);
         if (b) {
             setEstadoCandidaturaAExposicaoCriada();
         }
@@ -182,23 +185,23 @@ public class CriarCandidaturaAExposicaoController {
      * @param listaProdutos lista de produtos.
      */
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
-        this.candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
+        this.m_candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
     }
 
     public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes) {
-        this.candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
     }
 
     public void setEstadoCandidaturaAExposicaoCriada() {
-        this.estadoCandidatura.setEstadoCandidaturaCriada();
+        this.m_estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
     public boolean validarDadosCandidatura() {
-        return this.rc.validarDadosCandidatura(this.candidaturaCriada);
+        return this.m_rc.validarDadosCandidatura(this.m_candidaturaCriada);
     }
 
     public void setKeywords(String keywords) throws KeywordsErradasException {
-        this.candidaturaCriada.setM_Keywords(keywords);
+        this.m_candidaturaCriada.setM_Keywords(keywords);
     }
 
 }

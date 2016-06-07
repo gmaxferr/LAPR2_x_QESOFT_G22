@@ -14,17 +14,17 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoInicial implements EstadoExposicao {
 
-    private final Exposicao exposicao;
+    private final Exposicao m_exposicao;
 
     public EstadoExposicaoInicial(Exposicao exposicao) {
-        this.exposicao = exposicao;
+        this.m_exposicao = exposicao;
     }
 
     @Override
     public boolean setEstadoCriada() {
         //validação se pode passar para o próximo passo
         if (valida()) {
-            this.exposicao.setEstado(new EstadoExposicaoCriada(this.exposicao));
+            this.m_exposicao.setEstado(new EstadoExposicaoCriada(this.m_exposicao));
             return true;
         } else {
             return false;

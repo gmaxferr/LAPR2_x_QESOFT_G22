@@ -900,10 +900,10 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
         if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
-            jLabelCard1DataInicio.setText(expo.getM_strDataInicio().toAnoMesDiaString());
-            jLabelCard1DataFim.setText(expo.getM_strDataFim().toAnoMesDiaString());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);

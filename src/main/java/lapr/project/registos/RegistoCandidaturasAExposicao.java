@@ -14,10 +14,10 @@ public class RegistoCandidaturasAExposicao {
     /**
      * Atributo lista de candidaturas
      */
-    private List<CandidaturaAExposicao> listaCandidaturas;
+    private List<CandidaturaAExposicao> m_listaCandidaturas;
 
     public RegistoCandidaturasAExposicao() {
-        this.listaCandidaturas = new ArrayList<>();
+        this.m_listaCandidaturas = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class RegistoCandidaturasAExposicao {
      * @return lista de candidatuas
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
-        return this.listaCandidaturas;
+        return this.m_listaCandidaturas;
     }
 
     /**
@@ -46,7 +46,7 @@ public class RegistoCandidaturasAExposicao {
      * @return boolean que confirma a validação dos dados
      */
     public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
-        for (CandidaturaAExposicao candidatura : this.listaCandidaturas) {
+        for (CandidaturaAExposicao candidatura : this.m_listaCandidaturas) {
             if (c.equals(candidatura)) {
                 return false;
             }
@@ -108,12 +108,12 @@ public class RegistoCandidaturasAExposicao {
      * @param c - candidatura a remover
      */
     public void removeCandidatura(CandidaturaAExposicao c) {
-        listaCandidaturas.remove(c);
+        m_listaCandidaturas.remove(c);
     }
 
     public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
         List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
-        for (CandidaturaAExposicao c : listaCandidaturas) {
+        for (CandidaturaAExposicao c : m_listaCandidaturas) {
             if (c.getM_StrUsernameExpositor().equals(username)) {
                 candidaturasRepLst.add(c);
             }

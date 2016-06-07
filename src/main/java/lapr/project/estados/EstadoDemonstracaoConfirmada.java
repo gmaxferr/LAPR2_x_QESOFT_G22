@@ -13,10 +13,10 @@ import lapr.project.model.Demonstracao;
  */
 public class EstadoDemonstracaoConfirmada implements EstadoDemonstracao{
 
-    private Demonstracao demo;
+    private Demonstracao m_demo;
     
     public EstadoDemonstracaoConfirmada(Demonstracao demo){
-        this.demo = demo;
+        this.m_demo = demo;
     }
     
     @Override

@@ -14,13 +14,13 @@ import lapr.project.model.Recurso;
  */
 public class RegistoRecursos {
 
-    private ArrayList<Recurso> listaRecursos;
+    private ArrayList<Recurso> m_listaRecursos;
 
     /**
      *
      */
     public RegistoRecursos() {
-        this.listaRecursos = new ArrayList<>();
+        this.m_listaRecursos = new ArrayList<>();
     }
 
     /**
@@ -48,7 +48,7 @@ public class RegistoRecursos {
     }
 
     public ArrayList<Recurso> getListaDeRecursos() {
-        return this.listaRecursos;
+        return this.m_listaRecursos;
     }
 
     public void setRecurso(Recurso rec) {
@@ -65,7 +65,7 @@ public class RegistoRecursos {
     }
 
     private void addRecurso(Recurso rec) {
-        this.listaRecursos.add(rec);
+        this.m_listaRecursos.add(rec);
     }
 
 }

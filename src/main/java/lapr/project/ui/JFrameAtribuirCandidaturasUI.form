@@ -578,7 +578,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="this.modeloJTable = new ModeloJTableDistribuicaoFAE();"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="this.modeloJTable = new lapr.project.ui.ModeloJTableUsers();"/>
               </AuxValues>
             </Component>
           </SubComponents>

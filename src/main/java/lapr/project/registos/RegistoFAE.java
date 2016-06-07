@@ -10,35 +10,35 @@ import lapr.project.model.*;
  */
 public class RegistoFAE {
 
-    private List<FAE> listaFAE;
-    private ArrayList<FAE> listaFAETemp;
-    private RegistoOrganizadores rOrganizadoresDestaExposicao;
+    private List<FAE> m_listaFAE;
+    private ArrayList<FAE> m_listaFAETemp;
+    private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
-        this.listaFAE = new ArrayList<>();
-        this.listaFAETemp = new ArrayList<>();
+        this.m_listaFAE = new ArrayList<>();
+        this.m_listaFAETemp = new ArrayList<>();
     }
 
     public List<FAE> getListaFAE() {
-        return this.listaFAE;
+        return this.m_listaFAE;
     }
 
     public boolean adicionaFAE(Utilizador u) {
         if (validaUtilizador(u)) {
-            this.listaFAETemp.add(new FAE(u));
+            this.m_listaFAETemp.add(new FAE(u));
             return true;
         }
         return false;
     }
 
     private boolean validaUtilizador(Utilizador u) {
-        for (FAE fae : listaFAETemp) {
-            if (fae.getUsernameFae().equalsIgnoreCase(u.getM_StrUsername())) {
+        for (FAE fae : m_listaFAETemp) {
+            if (fae.getUsernameFae().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
-        for (Organizador organizador : this.rOrganizadoresDestaExposicao.getListaOrganizadores()) {
-            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getM_StrUsername())) {
+        for (Organizador organizador : this.m_rOrganizadoresDestaExposicao.getListaOrganizadores()) {
+            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
         }
@@ -46,12 +46,18 @@ public class RegistoFAE {
     }
 
     public void confirmaAddFAE() {
-        this.listaFAE = new ArrayList(this.listaFAETemp);
+        this.m_listaFAE = new ArrayList(this.m_listaFAETemp);
     }
 
+    /**
+     * Verifica se já existe um FAE com um determinado username
+     *
+     * @param usernameFAE - username do FAE a procurar
+     * @return true se encontrar, false caso contrário
+     */
     public boolean isFAE(String usernameFAE) {
-        for (FAE fae : listaFAE) {
-            if (fae.getUtilizador().getM_StrUsername().equalsIgnoreCase(usernameFAE)) {
+        for (FAE fae : m_listaFAE) {
+            if (fae.getUtilizador().getUsername().equalsIgnoreCase(usernameFAE)) {
                 return true;
             }
         }
@@ -59,6 +65,29 @@ public class RegistoFAE {
     }
 
     public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
-        this.rOrganizadoresDestaExposicao = ro;
+        this.m_rOrganizadoresDestaExposicao = ro;
+    }
+
+    /**
+     * Retorn ao FAE que tem determinado username
+     *
+     * @param usernameFAE - usernmae do FAE
+     * @return FAE com o username enviado como parametro. null caso não exista
+     */
+    public FAE getFAE(String usernameFAE) {
+        for (FAE f : m_listaFAE) {
+            if (f.getUsernameFae().equals(usernameFAE)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
+        List<Utilizador> listaUtilizadores = new ArrayList<>();
+        for (FAE fae : m_listaFAE) {
+            listaUtilizadores.add(fae.getUtilizador());
+        }
+        return listaUtilizadores;
     }
 }

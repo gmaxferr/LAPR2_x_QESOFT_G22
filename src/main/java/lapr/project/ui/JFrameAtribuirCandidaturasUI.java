@@ -29,7 +29,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private String[] listaNomeMecanismos;
     private Mecanismo mecanismoEscolhido;
     private List<AtribuicoesCandidatura> listaAtribuicoes;
-    private ModeloJTableDistribuicaoFAE modeloJTable;
+    private ModeloJTableUtilizadores modeloJTable;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 382;
@@ -399,7 +399,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jLabel5.setFont(jLabelCard1Titulo.getFont());
         jLabel5.setText("Distribuição gerada por candidatura");
 
-        this.modeloJTable = new ModeloJTableDistribuicaoFAE();
+        this.modeloJTable = new ModeloJTableUsers();
         jTable1.setModel(modeloJTable);
         jScrollPane4.setViewportView(jTable1);
 
@@ -592,10 +592,10 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex());
-            jTextAreaCard1DescricaoExposicao.setText(expo.getM_strDescricao());
-            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getM_StrMorada());
-            jLabelCard1DataInicio.setText(expo.getM_strDataInicio().toAnoMesDiaString());
-            jLabelCard1DataFim.setText(expo.getM_strDataFim().toAnoMesDiaString());
+            jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
         } else {
             jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
             jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);

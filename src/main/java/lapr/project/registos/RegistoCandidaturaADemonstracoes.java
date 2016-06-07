@@ -15,10 +15,10 @@ import lapr.project.model.CandidaturaADemonstracao;
  */
 public class RegistoCandidaturaADemonstracoes {
 
-    List<CandidaturaADemonstracao> listaCandidaturasADemonstracao;
+    List<CandidaturaADemonstracao> m_listaCandidaturasADemonstracao;
 
     public RegistoCandidaturaADemonstracoes() {
-        listaCandidaturasADemonstracao = new ArrayList<>();
+        m_listaCandidaturasADemonstracao = new ArrayList<>();
     }
 
     /**
@@ -31,7 +31,7 @@ public class RegistoCandidaturaADemonstracoes {
     public boolean adiciona(CandidaturaADemonstracao cand) {
         boolean valido = false;
         if (isValid(cand)) {
-            listaCandidaturasADemonstracao.add(cand);
+            m_listaCandidaturasADemonstracao.add(cand);
             valido = true;
         }
         return valido;
@@ -45,6 +45,6 @@ public class RegistoCandidaturaADemonstracoes {
      * @return true se for válida; false caso contrário
      */
     public boolean isValid(CandidaturaADemonstracao cand) {
-        return !listaCandidaturasADemonstracao.contains(cand);
+        return !m_listaCandidaturasADemonstracao.contains(cand);
     }
 }

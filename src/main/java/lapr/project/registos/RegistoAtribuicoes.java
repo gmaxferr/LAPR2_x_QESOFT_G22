@@ -11,14 +11,14 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class RegistoAtribuicoes {
 
-    private List<AtribuicoesCandidatura> listaAtribuicao;
+    private List<AtribuicoesCandidatura> m_listaAtribuicao;
 
     public RegistoAtribuicoes() {
-        this.listaAtribuicao = new ArrayList<>();
+        this.m_listaAtribuicao = new ArrayList<>();
     }
 
     public List<AtribuicoesCandidatura> getListaAtribuicoes() {
-        return this.listaAtribuicao;
+        return this.m_listaAtribuicao;
     }
 
     public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
@@ -49,12 +49,12 @@ public class RegistoAtribuicoes {
     }
 
     public void setListaAtribuicao(List<AtribuicoesCandidatura> listaAtribuicao) {
-        this.listaAtribuicao = listaAtribuicao;
+        this.m_listaAtribuicao = listaAtribuicao;
     }
 
     public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE(String usernameFAE) {
         ArrayList<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
-        for (AtribuicoesCandidatura atribuicao : this.listaAtribuicao) {
+        for (AtribuicoesCandidatura atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 
                     atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
                 listaAtrib.add(atribuicao);

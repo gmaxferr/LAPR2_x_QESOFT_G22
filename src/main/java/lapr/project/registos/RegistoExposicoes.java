@@ -231,4 +231,14 @@ public class RegistoExposicoes {
         }
         return listaExposicoesDoOrganizador;
     }
+
+    public List<Exposicao> getFaeExpos(String usernameFae) {
+        List<Exposicao> exposFAE = new ArrayList<>();
+        for (Exposicao ex : this.m_listaExposicoes) {
+            if (ex.getRegistoFAE().isFAE(usernameFae)) {
+                exposFAE.add(ex);
+            }
+        }
+        return exposFAE;
+    }
 }

@@ -13,20 +13,20 @@ public class RegistoProdutos {
     /**
      * Atributo produtos a expor de Candidatura
      */
-    private List<Produto> ProdutosExpor;
+    private List<Produto> m_ProdutosExpor;
 
     public RegistoProdutos() {
-        ProdutosExpor = new ArrayList<>();
+        m_ProdutosExpor = new ArrayList<>();
     }
 
     public List<Produto> getListaProdutosAExpor() {
-        return this.ProdutosExpor;
+        return this.m_ProdutosExpor;
     }
 
     @Override
     public String toString() {
         String str = "";
-        for (Produto produto : this.ProdutosExpor) {
+        for (Produto produto : this.m_ProdutosExpor) {
             str += produto.getNome() + "\n";
         }
         return str;
@@ -41,7 +41,7 @@ public class RegistoProdutos {
      */
     public Produto criarProduto(String nome) {
         Produto produto = new Produto(nome);
-        ProdutosExpor.add(produto);
+        m_ProdutosExpor.add(produto);
         return produto;
     }
 
@@ -64,7 +64,7 @@ public class RegistoProdutos {
      * @param p produto a ser adicionado
      */
     public void addProduto(Produto p) {
-        this.ProdutosExpor.add(p);
+        this.m_ProdutosExpor.add(p);
     }
 
     /**
@@ -88,7 +88,7 @@ public class RegistoProdutos {
     }
 
     public void setListaProdutos(List<Produto> listaProdutos) {
-        this.ProdutosExpor = listaProdutos;
+        this.m_ProdutosExpor = listaProdutos;
     }
 
     @Override

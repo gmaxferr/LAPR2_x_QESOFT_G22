@@ -37,7 +37,7 @@ public class Organizador {
     }
 
     public String getUsernameOrganizador() {
-        return this.m_Utilizador.getM_StrUsername();
+        return this.m_Utilizador.getUsername();
     }
 
     /**
@@ -49,7 +49,7 @@ public class Organizador {
     @Override
     public String toString() {
         String str = "Organizador:\n";
-        str += "\tUser: " + this.m_Utilizador.getM_strNome() + "\n";
+        str += "\tUser: " + this.m_Utilizador.getNome() + "\n";
 
         return str;
     }

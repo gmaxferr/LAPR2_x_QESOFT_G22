@@ -2,24 +2,21 @@ package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 
 /**
  * Representação de um Modelo JTable da Distribuição de FAE
  *
  * @author Ricardo Osório e Ana Leite
  */
-public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
+public class ModeloJTableUtilizadores extends AbstractTableModel {
 
-    private List<FAE> listaFAE;
+    private List<Utilizador> listaUsers;
 
     private final String[] colunas = {"Nome", "Username", "Email"};
 
-    public ModeloJTableDistribuicaoFAE() {
-    }
-
-    public void setLista(List<FAE> listaFAE) {
-        this.listaFAE = listaFAE;
+    public ModeloJTableUtilizadores(List<Utilizador> listaUsers) {
+        this.listaUsers = listaUsers;
     }
 
     @Override
@@ -34,10 +31,10 @@ public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        if (this.listaFAE == null) {
+        if (this.listaUsers == null) {
             return 0;
         }
-        return this.listaFAE.size();
+        return this.listaUsers.size();
     }
 
     @Override
@@ -49,11 +46,8 @@ public class ModeloJTableDistribuicaoFAE extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_strNome();
             case 1:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_StrUsername();
             default:
-                return this.listaFAE.get(rowIndex).getUtilizador().getM_strEmail();
         }
     }
 

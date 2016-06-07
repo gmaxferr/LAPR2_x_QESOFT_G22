@@ -13,13 +13,13 @@ public class RegistoCandidaturasRemovidas {
     /**
      * Lista de candidaturas removidas.
      */
-    private List<CandidaturaAExposicao> listaCandidaturasRemovidas;
+    private List<CandidaturaAExposicao> m_listaCandidaturasRemovidas;
 
     /**
      * Contrutor de objetos do tipo RegistoCandidaturasRemovidas sem parâmetros.
      */
     public RegistoCandidaturasRemovidas() {
-        this.listaCandidaturasRemovidas = new ArrayList<>();
+        this.m_listaCandidaturasRemovidas = new ArrayList<>();
     }
 
     /**
@@ -28,7 +28,7 @@ public class RegistoCandidaturasRemovidas {
      * @param c - candidatura removida do registo de candidaturas
      */
     public void adicionarCandidatura(CandidaturaAExposicao c) {
-        listaCandidaturasRemovidas.add(c);
+        m_listaCandidaturasRemovidas.add(c);
     }
 
     /**
@@ -37,6 +37,6 @@ public class RegistoCandidaturasRemovidas {
      * @return lista de candidaturas removidas
      */
     public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
-        return this.listaCandidaturasRemovidas;
+        return this.m_listaCandidaturasRemovidas;
     }
 }

@@ -9,10 +9,10 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoCriada implements EstadoExposicao {
 
-    private Exposicao exposicao;
+    private Exposicao m_exposicao;
 
     public EstadoExposicaoCriada(Exposicao exposicao) {
-        this.exposicao = exposicao;
+        this.m_exposicao = exposicao;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class EstadoExposicaoCriada implements EstadoExposicao {
     @Override
     public boolean setEstadoFAEDefinidosSemDemos() {
         if (valida()) {
-            this.exposicao.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(this.exposicao));
+            this.m_exposicao.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(this.m_exposicao));
             return true;
         } else {
             return false;
@@ -33,7 +33,7 @@ public class EstadoExposicaoCriada implements EstadoExposicao {
     @Override
     public boolean setEstadoDemosDefinidasSemFAE() {
         if (valida()) {
-            this.exposicao.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(this.exposicao));
+            this.m_exposicao.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(this.m_exposicao));
             return true;
         } else {
             return false;
