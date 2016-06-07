@@ -17,7 +17,7 @@ public class LoginGui extends JFrame {
     //Strings
     private static final String FRAME_TITLE = "Login";
     private static final String LABEL_USERNAME = "Username:";
-    private static final String LABEL_PASSWORD = "Password: ";
+    private static final String LABEL_PASSWD = "Password: ";
     private static final String TEXT_LOGIN_BUTTON = "Login";
     private static final String TEXT_HELP_BUTTON = "Ajuda";
 
@@ -106,7 +106,7 @@ public class LoginGui extends JFrame {
 
             //Painel da password
             JPanel passwordPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 2));
-            JLabel password = new JLabel(LABEL_PASSWORD);
+            JLabel password = new JLabel(LABEL_PASSWD);
             password.setFont(font);
             passwordPanel.add(password);
             passwordField = new JPasswordField(15);
