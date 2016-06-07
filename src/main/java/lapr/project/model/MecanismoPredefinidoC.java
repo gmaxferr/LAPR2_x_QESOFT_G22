@@ -156,7 +156,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
      * Calcula um array com os intervalos de percentagens para cada FAE.
      *
      * @param size Número de FAEs
-     * @param contribution Contribuição total dos FAEs0
+     * @param contribution Contribuição total dos FAEs
      * @param resultFaePerCand Número de FAEs por Candidatura
      * @param toBeUsed Lista com todos os FAEs que vão ser usados nas
      * atribuições
