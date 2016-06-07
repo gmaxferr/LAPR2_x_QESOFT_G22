@@ -1,125 +1,228 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
+ * Mecanismo de atribuição por experiência: Este mecanismo distribui as
+ * candidaturas pelos FAEs de acordo com a sua experiência.<!-- -->O mecanismo
+ * consegue este resultado criando primeiro uma reta real, de 0 a 1, com
+ * intervalos correspondentes à constribuição dos FAE da exposição (ou
+ * equitativamente caso não tenham experiência) e ajustando essa reta a uma
+ * outra reta contendo as Candidaturas.<!-- -->Depois de ajustados os valores,
+ * ele atribui as candidaturas correspondentes aos intervalos da reta das
+ * candidaturas aos FAEs correspondentes aos intervalos da reta dos FAE.
  *
- * @author Ana Leite Ricardo Osório
+ * @author Ricardo Catalao
  */
 public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable {
 
     /**
-     * Identificação do mecanismo C.
+     * Numero minimo de atribuicoes por candidatura (para evitar candidaturas
+     * estarem atribuidas a poucos FAES, quando possível).
      */
-    public static final String NOME_MECANISMO = "Experiência mínima";
+    public static final int MIN_ATR_PER_CAND = 3;
 
     /**
-     * Descrição do funcionamento do mecanismo C.
+     * Numero maximo de atribuicoes por candidatura (para o caso de haver muitos
+     * mais faes que candidaturas e não ter de fazer um numero de atribuicoes
+     * exagerado).
      */
-    public static final String DESCRICAO_MECANISMO = "Distribui os FAE com pelo menos X anos de "
-            + "experiência (valor introduzido pelo utilizador) apenas, deixando de fora todos os restantes. "
-            + "A distribuição é feita com prioridade a que todas as candidaturas tenham o mesmo número de "
-            + "FAE. Quando tal não é possivél distribui mais FAE nas primeiras candidaturas atribuidas "
-            + "(sendo estes os com mais anos de experiência).";
+    public static final int MAX_ATR_PER_CAND = 12;
 
     /**
-     * Devolve a identificação do mecanismo C.
+     * Resultado da lista de atribuicoes criada pelo mecanismo.<!-- -->Null se
+     * não foi ainda criado ou não existem FAEs suficientes para atribuir as
+     * candidaturas.
+     */
+    private List<AtribuicoesCandidatura> resultadoAtribuicoes = new ArrayList<>();
+
+    /**
+     * Contrutor do mecanismo
+     */
+    public MecanismoPredefinidoC() {
+        resultadoAtribuicoes = new ArrayList<AtribuicoesCandidatura>();
+    }
+
+    @Override
+    public List<AtribuicoesCandidatura> atribui(Exposicao e, String numeroLido) {
+
+        //Obtem lista de Candidaturas, lista de FAEs e quantidade dos mesmos
+        List<CandidaturaAExposicao> cands = e.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao();
+        int nCand = cands.size();
+        List<FAE> faes = e.getRegistoFAE().getListaFAE();
+        int nFae = faes.size();
+
+        //Se nao houver FAE, retorna null e acaba o mecanismo
+        if (nFae == 0) {
+            return null;
+        }
+        
+        //Aqui decidimos quantos faes vamos atribuir a cada candidatura
+        int resultFaePerCand = getResultFaePerCand(nFae);
+
+        //Aqui é criada a máscara para aceder às candidaturas
+        int[] maskCand = createMaskCand(resultFaePerCand, nCand);
+
+        //Aqui é criada uma lista dos FAEs que vão ser usados de facto
+        List<FAE> toBeUsed = new ArrayList<FAE>();
+        double contribution = getFaesToBeUsed(nFae, faes, toBeUsed);
+
+        //Numero de FAEs que temos disponiveis apos a filtragem
+        int size = toBeUsed.size();
+
+        //Percentagem de FAEs relativamente ao número de candidaturas
+        double percentFaePerCand = (double) 1 / resultFaePerCand;
+
+        //Array de percentagens dos FAEs
+        double[] arrPercent = getArrayPercentages(size, contribution, resultFaePerCand, toBeUsed, percentFaePerCand);
+
+        //Atribui as candidaturas já com toda a informação necessária
+        atribuiCandidaturas(nCand, percentFaePerCand, maskCand, arrPercent, cands, toBeUsed);
+
+        return resultadoAtribuicoes;
+    }
+
+    /**
+     * Calcula quantos FAEs serão atribuidos a cada candidatura
      *
-     * @return identificação do mecanismo C.
+     * @param nFae Número de FAEs disponíveis
+     * @return Número calculado de FAEs para cada candidatura
      */
+    private int getResultFaePerCand(int nFae) {
+        int minFaePerCand = nFae < MIN_ATR_PER_CAND ? nFae : MIN_ATR_PER_CAND;
+        int maxFaePerCand = nFae;
+        int resultFaePerCand = Math.min((minFaePerCand + maxFaePerCand) / 2, MAX_ATR_PER_CAND);
+
+        return resultFaePerCand;
+    }
+
+    /**
+     * Cria uma máscara para poder aceder às Candidaturas uma a seguir à outra,
+     * repetindo n vezes.<!-- -->Um exemplo seria: Se temos 2 FAE e 3
+     * Candidaturas, a máscara vai ser {0, 1, 2, 0, 1, 2}.
+     *
+     * @param resultFaePerCand Número calculado de FAEs por Candidatura
+     * @param nCand Número de Candidaturas
+     * @return Retorna a máscara criada para estes valores
+     */
+    private int[] createMaskCand(int resultFaePerCand, int nCand) {
+        int[] maskCand = new int[resultFaePerCand * nCand];
+        for (int i = 0; i < resultFaePerCand; i++) {
+            for (int j = 0; j < nCand; j++) {
+                maskCand[i * nCand + j] = j;
+            }
+        }
+
+        return maskCand;
+    }
+
+    /**
+     * Atribui à lista os elementos dos FAEs que vao ser usados (FAEs sem
+     * experiencia não são considerados para este mecanismo a não ser na
+     * ausência de FAEs com experiencia)
+     *
+     * @param nFae Numbero de FAEs disponíveis
+     * @param faes Lista de FAEs disponíveis
+     * @param toBeUsed Lista onde se irá atribuir os FAEs que vão ser usados de
+     * facto
+     * @return Retorna a soma da contribuição de todos os FAE
+     */
+    private double getFaesToBeUsed(int nFae, List<FAE> faes, List<FAE> toBeUsed) {
+        toBeUsed.clear();
+        double contribution = 0;    //Contribuicao total
+        for (int i = 0; i < nFae; i++) {
+            int nAvaliacoes = faes.get(i).getUtilizador().getnAvaliacoesDesdeSempre();
+            if (nAvaliacoes > 0) {
+                toBeUsed.add(faes.get(i));
+                contribution += nAvaliacoes;
+            }
+        }
+        //Caso nao tenha-mos encontrado FAEs com experiencia
+        if (contribution == 0) {
+            toBeUsed.addAll(faes);
+        }
+
+        return contribution;
+    }
+
+    /**
+     * Calcula um array com os intervalos de percentagens para cada FAE.
+     *
+     * @param size Número de FAEs
+     * @param contribution Contribuição total dos FAEs0
+     * @param resultFaePerCand Número de FAEs por Candidatura
+     * @param toBeUsed Lista com todos os FAEs que vão ser usados nas
+     * atribuições
+     * @param percentFaePerCand Percentagem de FAEs por Candidatura
+     * @return Array de doubles com os intervalos de contribuição de cada FAE
+     */
+    private double[] getArrayPercentages(int size, double contribution, int resultFaePerCand, List<FAE> toBeUsed, double percentFaePerCand) {
+        double res[] = new double[size];
+        double percentContribution;
+        int nAvaliacoes;
+        for (int i = 0; i < size; i++) {
+            if (contribution == 0) {
+                percentContribution = 1 / resultFaePerCand;
+            } else {
+                nAvaliacoes = toBeUsed.get(i).getUtilizador().getnAvaliacoesDesdeSempre();
+                percentContribution = (double) nAvaliacoes / contribution;
+                //Se a percentagem for maior que a percentagem de FAEs por candidatura
+                if (percentContribution > percentFaePerCand) {
+                    contribution -= percentContribution - percentFaePerCand;
+                    percentContribution = percentFaePerCand;
+                }
+            }
+            if (i > 0) {
+                res[i] = percentContribution + res[i - 1];
+            } else {
+                res[i] = percentContribution;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Faz a atribuição das Candidaturas já com toda a informação necessária.
+     *
+     * @param nCand Número de candidaturas
+     * @param percentFaePerCand Percentagem de FAEs por Candidatura
+     * @param maskCand Máscara de Candidaturas
+     * @param arrPercent Array de doubles com os valores dos intervalos de
+     * percentagem de cada FAE
+     * @param cands Lista de Candidaturas a atribuir
+     * @param toBeUsed Lista de FAEs que vão ser usados
+     */
+    private void atribuiCandidaturas(int nCand, double percentFaePerCand, int[] maskCand, double arrPercent[], List<CandidaturaAExposicao> cands, List<FAE> toBeUsed) {
+        resultadoAtribuicoes.clear();
+        for (int i = 0; i < cands.size(); i++) {
+            resultadoAtribuicoes.add(new AtribuicoesCandidatura(cands.get(i)));
+        }
+        //  O Indice do FAE Atual
+        int indexFAE = 0;
+        //  Percorre todas as candidaturas e vai atribuindo-as aos FAEs.
+        for (int i = 0; i < maskCand.length; i++) {
+            while (arrPercent[indexFAE] < (double) i * percentFaePerCand / nCand) {
+                indexFAE++;
+            }
+            resultadoAtribuicoes.get(maskCand[i]).addFaeAvaliacao(toBeUsed.get(indexFAE));
+        }
+    }
+
     @Override
     public String getNome() {
-        return NOME_MECANISMO;
+        return "Mecanismo de atribuição por experiência";
     }
 
-    /**
-     * Devolve a descrição do mecanismo C.
-     *
-     * @return descrição do funcionamento do mecanismo C.
-     */
     @Override
     public String getDescricao() {
-        return DESCRICAO_MECANISMO;
-    }
-
-    /**
-     * Distribuí os FAE pelas candidaturas.
-     *
-     * @param exposicaoEscolhida exposição selecionada onde será feita
-     * distribuição dos seus FAE pelas suas candidaturas.
-     * @param experienciaStr String inserida pelo utilziador na UI
-     * correspondente aos anos de experiência do FAE no cargo
-     *
-     * @return atribuição gerada.
-     */
-    @Override
-    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida, String experienciaStr) throws IllegalArgumentException {
-        int experiencia = Integer.parseInt(experienciaStr);
-        if (experiencia < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
-        List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturasAExposicao();
-        List<FAE> listaFAE = criarListaFAEComExperienciaMinima(exposicaoEscolhida, experiencia);
-
-        Collections.sort(listaFAE);
-
-        if (listaFAE.isEmpty() || listaCand.isEmpty()) {
-            return listaAtrib;
-        } else if (listaFAE.size() < listaCand.size()) {
-            int pos = 0;
-            for (CandidaturaAExposicao cand : listaCand) {
-                AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(cand);
-                if (pos < listaFAE.size()) {
-                    atribuicao.addFaeAvaliacao(listaFAE.get(pos));
-                    pos++;
-                }
-                listaAtrib.add(atribuicao);
-            }
-        } else {
-            int numFAEPorCand = listaFAE.size() / listaCand.size();
-            int numFAESobra = listaFAE.size() - (numFAEPorCand * listaCand.size());
-            int posInicio = 0, posFim = 0;
-
-            if (numFAEPorCand > 0) {
-                for (int i = 0; i < listaCand.size(); i++) {
-                    if (numFAESobra > 0) {
-                        posFim++;
-                        numFAESobra--;
-                    }
-                    if (i != 0) {
-                        posInicio = posFim;
-                    }
-                    posFim += numFAEPorCand;
-                    if (posFim > listaFAE.size()) {
-                        posFim = listaFAE.size();
-                    }
-                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
-                    for (int j = posInicio; j < posFim; j++) {
-                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
-                    }
-                    listaAtrib.add(atribuicao);
-                }
-            }
-        }
-
-        return listaAtrib;
-    }
-
-    private List<FAE> criarListaFAEComExperienciaMinima(Exposicao exposicaoEscolhida, int experiencia) {
-        List<FAE> listaDaExpo = exposicaoEscolhida.getRegistoFAE().getListaFAE();
-        List<FAE> listaNova = new ArrayList<>(listaDaExpo);
-
-        for (int i = 0; i < listaNova.size(); i++) {
-            if (listaNova.get(i).getExperiencia() < experiencia) {
-                listaNova.remove(i);
-            }
-        }
-        return listaNova;
+        return "Este mecanismo distribui as candidaturas pelos FAEs de acordo com a sua experiência. O mecanismo consegue este resultado criando primeiro uma reta real, de 0 a 1, com intervalos correspondentes à constribuição dos FAE da exposição (ou equitativamente caso não tenham experiência) e ajustando essa reta a uma outra reta contendo as Candidaturas. Depois de ajustados os valores, ele atribui as candidaturas correspondentes aos intervalos da reta das candidaturas aos FAEs correspondentes aos intervalos da reta dos FAE.";
     }
 
 }

@@ -12,48 +12,52 @@ import java.util.Arrays;
 public class Utilizador {
 
     /**
-     * Atributo nome de um Utilizador
+     * Atributo nome de um Utilizador.
      */
     private String m_strNome;
 
     /**
-     * Atributo password de um Utilizador
+     * Atributo password de um Utilizador.
      */
     private char[] m_strPwd;
 
     /**
-     * Atributo email de um Utilizador
+     * Atributo email de um Utilizador.
      */
     private String m_strEmail;
 
     /**
-     * Atributo username de um utilizador
+     * Atributo username de um utilizador.
      */
     private String m_strUsername;
 
     /**
-     * 
+     *
      */
     private String ID;
 
     /**
      * Atributo associado ao Utilizador que regista se o registo desse
-     * Utilizador já foi confirmado
+     * Utilizador já foi confirmado.
      */
     private boolean m_boolConfirmaRegisto;
-    
+
     /**
-     * Lista de utilizadores
+     * Lista de utilizadores.
      */
     private ArrayList<Utilizador> listaUtilizadores;
+
+    private int nAvaliacoesDesdeSempre;
 
     /**
      * Construtor de objectos do tipo Utilizador sem parametros
      */
     public Utilizador() {
+        this.nAvaliacoesDesdeSempre = 0;
     }
 
     public Utilizador(String nome, String ID, char[] password, String email) {
+        this.nAvaliacoesDesdeSempre = 0;
         this.ID = ID;
         this.m_strEmail = email;
         this.m_strPwd = password;
@@ -102,10 +106,10 @@ public class Utilizador {
     public String getID() {
         return this.ID;
     }
-    
+
     /**
      * Devolve o username do utilizador
-     * 
+     *
      * @return username do utilizador
      */
     public String getM_StrUsername() {
@@ -184,7 +188,7 @@ public class Utilizador {
     public boolean isValidPassword(char[] password) {
         return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, password[0]), password);
     }
-    
+
     /**
      * Devolve a descrição textual com os atributos de utilizador
      *
@@ -202,9 +206,12 @@ public class Utilizador {
 
     /**
      * Método que valida o utilizador
+     *
+     * @param username Username a validar
+     * @param email Email a validar
      */
     public void validaUtilizador(String username, String email) {
-        
+
         if (validarDadosRepetidosOuInvalidos(username, email) == false) {
             username = null;
             email = null;
@@ -221,10 +228,24 @@ public class Utilizador {
         ArrayList<Utilizador> list = new ArrayList<>();
         for (Utilizador u : listaUtilizadores) {
             if (username.equals(u.getM_StrUsername()) || email.equals(u.getM_strEmail())) {
-            return false;
-        }      
-    }
+                return false;
+            }
+        }
         return true;
+    }
+
+    /**
+     * @return the nAvaliacoesDesdeSempre
+     */
+    public int getnAvaliacoesDesdeSempre() {
+        return nAvaliacoesDesdeSempre;
+    }
+
+    /**
+     * @param nAvaliacoesDesdeSempre the nAvaliacoesDesdeSempre to set
+     */
+    public void setnAvaliacoesDesdeSempre(int nAvaliacoesDesdeSempre) {
+        this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
 }
