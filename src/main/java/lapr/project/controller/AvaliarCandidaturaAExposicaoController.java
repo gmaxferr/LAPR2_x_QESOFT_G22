@@ -10,107 +10,107 @@ import lapr.project.registos.*;
  */
 public class AvaliarCandidaturaAExposicaoController {
 
-    private CentroExposicoes centroExposicoesAtual;
-    private final String usernameFAE;
-    private RegistoExposicoes re;
-    private Exposicao exposicaoSelecionada;
-    private RegistoAtribuicoes ra;
-    private AtribuicoesCandidatura atribuicaoEscolhida;
-    private Avaliacao avaliacaoDoFae;
-    private RegistoFaeAvaliacao rFaeAvalicao;
+    private CentroExposicoes m_centroExposicoesAtual;
+    private final String m_usernameFAE;
+    private RegistoExposicoes m_re;
+    private Exposicao m_exposicaoSelecionada;
+    private RegistoAtribuicoes m_ra;
+    private AtribuicoesCandidatura m_atribuicaoEscolhida;
+    private Avaliacao m_avaliacaoDoFae;
+    private RegistoFaeAvaliacao m_rFaeAvalicao;
 
     public AvaliarCandidaturaAExposicaoController(CentroExposicoes centroExposicoes, String usernameFAE) {
-        this.centroExposicoesAtual = centroExposicoes;
-        this.usernameFAE = usernameFAE;
+        this.m_centroExposicoesAtual = centroExposicoes;
+        this.m_usernameFAE = usernameFAE;
     }
 
     public void getRegistoExposicoes() {
-        this.re = this.centroExposicoesAtual.getRegistoExposicoes();
+        this.m_re = this.m_centroExposicoesAtual.getRegistoExposicoes();
     }
 
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE() {
-        return this.re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(this.usernameFAE);
+        return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(this.m_usernameFAE);
     }
 
     public void setExposicao(Exposicao exposicao) {
-        this.exposicaoSelecionada = exposicao;
+        this.m_exposicaoSelecionada = exposicao;
     }
 
     public void getRegistoAtribuicoes() {
-        this.ra = this.exposicaoSelecionada.getRegistoAtribuicoes();
+        this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
     public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE() {
-        return this.ra.getListaAtribuicoesComOFAE(this.usernameFAE);
+        return this.m_ra.getListaAtribuicoesComOFAE(this.m_usernameFAE);
     }
 
     public void getRegistoFaeAvalicao() {
-        this.rFaeAvalicao = this.atribuicaoEscolhida.getRegistoFaeAvaliacao();
+        this.m_rFaeAvalicao = this.m_atribuicaoEscolhida.getRegistoFaeAvaliacao();
     }
 
     public void setAtribuicao(AtribuicoesCandidatura atribuicao) {
-        this.atribuicaoEscolhida = atribuicao;
+        this.m_atribuicaoEscolhida = atribuicao;
     }
 
     public String getDadosCandidaturaNomeEmpresa() {
-        return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_StrNomeEmpresa();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_StrNomeEmpresa();
     }
 
     public String getDadosCandidaturaMoradaEmpresa() {
-        return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_StrMoradaEmpresa();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_StrMoradaEmpresa();
     }
 
     public int getDadosCandidaturaTelemovel() {
-        return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_intTelemovel();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intTelemovel();
     }
 
     public int getDadosCandidaturaArea() {
-        return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_intArea();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intArea();
     }
 
     public int getDadosCandidaturaNumConvites() {
-        return this.atribuicaoEscolhida.getCandidaturaAssociada().getM_intNumConvites();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intNumConvites();
     }
 
     public Avaliacao getAvaliacaoDoFae() {
-        this.avaliacaoDoFae = this.atribuicaoEscolhida.getRegistoFaeAvaliacao().getAvaliacaoDoFae(this.usernameFAE);
-        return this.avaliacaoDoFae;
+        this.m_avaliacaoDoFae = this.m_atribuicaoEscolhida.getRegistoFaeAvaliacao().getAvaliacaoDoFae(this.m_usernameFAE);
+        return this.m_avaliacaoDoFae;
     }
 
     public boolean verificaAvalicaoJaTomada() {
-        return this.avaliacaoDoFae.verificaAvaliacaoJaTomada();
+        return this.m_avaliacaoDoFae.verificaAvaliacaoJaTomada();
     }
 
     public boolean getAvaliacao() {
-        return this.avaliacaoDoFae.getAvaliacao();
+        return this.m_avaliacaoDoFae.getAvaliacao();
     }
 
     public String getJustificacao() {
-        return this.avaliacaoDoFae.getJustificacao();
+        return this.m_avaliacaoDoFae.getJustificacao();
     }
 
     public int getRatingConhecimentoSobreTema() {
-        return this.avaliacaoDoFae.getRatingConhecimentoSobreOTema();
+        return this.m_avaliacaoDoFae.getRatingConhecimentoSobreOTema();
     }
 
     public int getRatingAdequacaoAExposicao() {
-        return this.avaliacaoDoFae.getRatingAdequacaoAExposicao();
+        return this.m_avaliacaoDoFae.getRatingAdequacaoAExposicao();
     }
 
     public int getRatingAdequacaoAsDemos() {
-        return this.avaliacaoDoFae.getRatingAdequacaoAsDemos();
+        return this.m_avaliacaoDoFae.getRatingAdequacaoAsDemos();
     }
 
     public int getRatingAdequacaoNumConvites() {
-        return this.avaliacaoDoFae.getRatingAdequacaoNumConvites();
+        return this.m_avaliacaoDoFae.getRatingAdequacaoNumConvites();
     }
 
     public int getRatingRecomendacaoGlobal() {
-        return this.avaliacaoDoFae.getRatingRecomendacaoGlobal();
+        return this.m_avaliacaoDoFae.getRatingRecomendacaoGlobal();
     }
 
     public void setAvalicao(boolean avaliacao, String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.avaliacaoDoFae.setAvalicao(avaliacao, justificacao, ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
+        this.m_avaliacaoDoFae.setAvalicao(avaliacao, justificacao, ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
     }
 
 }

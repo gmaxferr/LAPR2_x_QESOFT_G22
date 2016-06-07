@@ -12,37 +12,37 @@ import lapr.project.registos.*;
  */
 public class DecidirCandidaturasAExposicaoController {
 
-    private Exposicao exposicaoSelecionada;
-    private CandidaturaAExposicao candidaturaSelecionada;
-    private RegistoCandidaturasAExposicao rc;
-    private RegistoExposicoes re;
-    private CentroExposicoes ce;
-    private GestorDeExposicoes gestorDeExposicoes;
-    private RegistoProdutos rp;
+    private Exposicao m_exposicaoSelecionada;
+    private CandidaturaAExposicao m_candidaturaSelecionada;
+    private RegistoCandidaturasAExposicao m_rc;
+    private RegistoExposicoes m_re;
+    private CentroExposicoes m_ce;
+    private GestorDeExposicoes m_gestorDeExposicoes;
+    private RegistoProdutos m_rp;
 
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
-        this.ce = ce;
-        this.gestorDeExposicoes = gestorDeExposicoes;
+        this.m_ce = ce;
+        this.m_gestorDeExposicoes = gestorDeExposicoes;
     }
 
     public void getRegistoExposicoes() {
-        this.re = ce.getRegistoExposicoes();
+        this.m_re = m_ce.getRegistoExposicoes();
     }
 
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
-        return this.re.getListaExposicoesEstadoCandidaturasAvaliadas();
+        return this.m_re.getListaExposicoesEstadoCandidaturasAvaliadas();
     }
 
     public void setExposicao(Exposicao exposicao) {
-        this.exposicaoSelecionada = exposicao;
+        this.m_exposicaoSelecionada = exposicao;
     }
 
     public void getRegistoCandidaturas() {
-        this.rc = this.exposicaoSelecionada.getRegistoCandidaturasAExposicao();
+        this.m_rc = this.m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
     }
 
     public void getRegistoProdutos() {
-        this.rp = this.candidaturaSelecionada.getRegistoProdutos();
+        this.m_rp = this.m_candidaturaSelecionada.getRegistoProdutos();
     }
 
     /*
@@ -50,7 +50,7 @@ public class DecidirCandidaturasAExposicaoController {
         logo todas estarão no estado EstadoCandidaturasAExposicaoAvaliada
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.rc.getListaCandidaturasAExposicao();
+        return this.m_rc.getListaCandidaturasAExposicao();
     }
 
     public void getDadosEstatisticosGerais() {
@@ -59,27 +59,27 @@ public class DecidirCandidaturasAExposicaoController {
 
     //a espera de implementarem os vossos models
     public void setCandidatura(CandidaturaAExposicao cand) {
-        this.candidaturaSelecionada = cand;
+        this.m_candidaturaSelecionada = cand;
     }
 
     public String getNomeEmpresa() {
-        return this.candidaturaSelecionada.getM_StrNomeEmpresa();
+        return this.m_candidaturaSelecionada.getM_StrNomeEmpresa();
     }
 
     public String getMoradaEmpresa() {
-        return this.candidaturaSelecionada.getM_StrMoradaEmpresa();
+        return this.m_candidaturaSelecionada.getM_StrMoradaEmpresa();
     }
 
     public int getTelemovel() {
-        return this.candidaturaSelecionada.getM_intTelemovel();
+        return this.m_candidaturaSelecionada.getM_intTelemovel();
     }
 
     public int getArea() {
-        return this.candidaturaSelecionada.getM_intArea();
+        return this.m_candidaturaSelecionada.getM_intArea();
     }
 
     public int getNumeroConvites() {
-        return this.candidaturaSelecionada.getM_intNumConvites();
+        return this.m_candidaturaSelecionada.getM_intNumConvites();
     }
 
     public void getKeywords() {
@@ -87,7 +87,7 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     public void setDecisao(boolean decisao) {
-        this.candidaturaSelecionada.setDecisao(decisao);
+        this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
             setEstadoCandidaturaAceite();
         } else {
@@ -96,12 +96,12 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     private void setEstadoCandidaturaAceite() {
-        EstadoCandidaturaAExposicao estado = this.candidaturaSelecionada.getEstado();
+        EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
         estado.setEstadoCandidaturaAceite();
     }
 
     private void setEstadoCandidaturaRejeitada() {
-        EstadoCandidaturaAExposicao estado = this.candidaturaSelecionada.getEstado();
+        EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
         estado.setEstadoCandidaturaRejeitada();
     }
 

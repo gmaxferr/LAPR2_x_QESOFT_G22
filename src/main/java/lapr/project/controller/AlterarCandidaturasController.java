@@ -57,27 +57,27 @@ public class AlterarCandidaturasController {
         return m_rc.getCandidaturasRepresentante(m_username);
     }
 
-    public void setM_exposicao(Exposicao m_exposicao) {
+    public void setExposicao(Exposicao m_exposicao) {
         this.m_exposicao = m_exposicao;
     }
 
-    public String getM_strNomeEmpresa() {
+    public String getNomeEmpresa() {
         return m_cand.getM_StrNomeEmpresa();
     }
 
-    public String getM_strMorada() {
+    public String getMorada() {
         return m_cand.getM_StrMoradaEmpresa();
     }
 
-    public int getM_intTelemovel() {
+    public int getTelemovel() {
         return m_cand.getM_intTelemovel();
     }
 
-    public float getM_strArea() {
+    public float getArea() {
         return m_cand.getM_intArea();
     }
 
-    public int getM_intNumConvites() {
+    public int getNumConvites() {
         return m_cand.getM_intNumConvites();
     }
 

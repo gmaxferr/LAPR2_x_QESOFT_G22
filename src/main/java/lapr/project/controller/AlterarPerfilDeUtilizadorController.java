@@ -21,7 +21,7 @@ public class AlterarPerfilDeUtilizadorController {
         m_ru = registoUtilizadores;
 }
 
-    public void getM_ru() {
+    public void getRegistoutilizadores() {
        m_centro_exposicoes.getRegistoUtilizadores();
     }
     
@@ -35,15 +35,15 @@ public class AlterarPerfilDeUtilizadorController {
     }
     
     public String getNomeUtilizador(){
-        return m_u.getStrNome();
+        return m_u.getNome();
     }
     
     public String getEmailUtilizador(){
-        return m_u.getStrEmail();
+        return m_u.getEmail();
     }
     
     public char[] getPasswordUtilizador(){
-        return m_u.getM_StrPwd();
+        return m_u.getPwd();
     }
     
     public void setDadosUtilizador(String nome, String email, String username, String password){

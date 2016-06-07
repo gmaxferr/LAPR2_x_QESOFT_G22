@@ -18,7 +18,7 @@ public class DetetarConflitoController {
     /**
      * Centro de Exposições.
      */
-    private final CentroExposicoes centroExposicoes;
+    private final CentroExposicoes m_centroExposicoes;
 
     /**
      * Construtor padrão de DetetarConflitoController.
@@ -26,7 +26,7 @@ public class DetetarConflitoController {
      * @param centroExposicoes Centro de Exposições
      */
     public DetetarConflitoController(CentroExposicoes centroExposicoes) {
-        this.centroExposicoes = centroExposicoes;
+        this.m_centroExposicoes = centroExposicoes;
     }
 
     /**
@@ -36,7 +36,7 @@ public class DetetarConflitoController {
      * @param e Exposição onde se pretende detetar os conflitos
      */
     public void detetaConflitos(Exposicao e) {
-        RegistoTipoConflitos rtc = centroExposicoes.getRegistoTiposConflitos();
+        RegistoTipoConflitos rtc = m_centroExposicoes.getRegistoTiposConflitos();
         List<TipoConflito> ltc = rtc.getListaTipoConflitos();
         for (TipoConflito tc : ltc) {
             MecanismoDetecaoConflito mec = tc.getMecanismoDetecaoConflito();
