@@ -9,7 +9,7 @@ package lapr.project.estados;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public interface EstadoDemonstracao {
+public interface EstadoDemonstracao extends Estado{
 
     public boolean setEstadoDemonstracaoPendente();
 

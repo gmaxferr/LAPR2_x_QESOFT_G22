@@ -4,7 +4,7 @@ package lapr.project.estados;
  *
  * @author Ana Leite e Ricardo Osório
  */
-public interface EstadoCandidaturaAExposicao{
+public interface EstadoCandidaturaAExposicao extends Estado{
     
     boolean setEstadoCandidaturaInicial();
     

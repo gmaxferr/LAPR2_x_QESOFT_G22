@@ -5,6 +5,9 @@
  */
 package lapr.project.estados;
 
+import java.util.TimerTask;
+import lapr.project.controller.DetetarConflitoController;
+import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 
 /**
@@ -14,20 +17,42 @@ import lapr.project.model.Exposicao;
 public class EstadoExposicaoInicial implements EstadoExposicao {
 
     private final Exposicao m_exposicao;
+    private final CentroExposicoes m_ce;
 
-    public EstadoExposicaoInicial(Exposicao exposicao) {
+    public EstadoExposicaoInicial(Exposicao exposicao, CentroExposicoes ce) {
         this.m_exposicao = exposicao;
+        this.m_ce = ce;
     }
 
     @Override
     public boolean setEstadoCriada() {
-        //validação se pode passar para o próximo passo
-        if (valida()) {
-            this.m_exposicao.setEstado(new EstadoExposicaoCriada(this.m_exposicao));
-            return true;
-        } else {
-            return false;
-        }
+
+        TimerTask inicioSubCand = new TimerTask() {
+            @Override
+            public void run() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        m_exposicao.schedule(inicioSubCand, m_exposicao.getDataInicioSubCand());
+        TimerTask fimSubCand = new TimerTask() {
+            @Override
+            public void run() {
+                m_exposicao.getEstado().setEstadoCandidaturasFechadas();
+                DetetarConflitoController ctrl = new DetetarConflitoController(m_ce);
+                ctrl.detetaConflitos(m_exposicao);
+            }
+
+        };
+        m_exposicao.schedule(fimSubCand, m_exposicao.getDataFimSubCand());
+        TimerTask fimDetecaoConflitos = new TimerTask() {
+            @Override
+            public void run() {
+                m_exposicao.getEstado().setEstadoConflitosDetetados();
+            }
+        };
+        m_exposicao.schedule(fimDetecaoConflitos, m_exposicao.getDataFimDetecaoConflitos());
+        this.m_exposicao.setEstado(new EstadoExposicaoCriada(this.m_exposicao));
+        return true;
     }
 
     @Override

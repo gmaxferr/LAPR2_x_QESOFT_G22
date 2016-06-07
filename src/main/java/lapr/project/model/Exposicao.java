@@ -15,7 +15,7 @@ import lapr.project.utils.Data;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao {
+public class Exposicao implements Agendavel {
 
     EstadoExposicao m_estado;
     /**
@@ -98,22 +98,6 @@ public class Exposicao {
      */
     private final RegistoAtribuicoesStands m_ras;
 
-    /**
-     * Timer despoletado quando a data de abertura de submissão de candidaturas
-     * for atingida
-     */
-    private Timer m_timerAberturaCandidatura;
-
-    /**
-     * Timer despoletado quando a data de encerramento de candidaturas chegar
-     */
-    private Timer m_timerEncerramentoCandidatura;
-
-    /**
-     * Timer despoletado quando chega a data final para deteção de conflitos
-     */
-    private Timer m_timerFimDetecaoConflitos;
-
     private RegistoConflitos m_rconf;
 
     private RegistoExpositores m_rexpositores;
@@ -121,6 +105,8 @@ public class Exposicao {
     private KeywordRanking m_keywordRanking;
 
     private CentroExposicoes m_centroExposicoes;
+
+    private List<Timer> timers;
 
     /**
      * Construtor de Exposição sem parametros
@@ -133,7 +119,7 @@ public class Exposicao {
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
         this.m_ro = new RegistoOrganizadores();
-        this.m_estado = new EstadoExposicaoInicial(this);
+        this.m_estado = new EstadoExposicaoInicial(this, m_centroExposicoes);
         this.m_keywordRanking = new KeywordRanking();
         this.m_rs = new RegistoStands();
         this.m_ras = new RegistoAtribuicoesStands();
@@ -195,6 +181,33 @@ public class Exposicao {
      */
     public String getDescricao() {
         return m_strDescricao;
+    }
+
+    /**
+     * Devolve a data de abertura de submissão de candidaturas à exposição
+     *
+     * @return data de abertura de submissão de candidaturas à exposição
+     */
+    public Data getDataInicioSubCand() {
+        return m_dataAberturaCandidatura;
+    }
+
+    /**
+     * Devolve a data de encerramento de submissão de candidaturas à exposição
+     *
+     * @return data de encerramento de submissão de candidaturas à exposição
+     */
+    public Data getDataFimSubCand() {
+        return m_dataEncerramentoCandidatura;
+    }
+
+    /**
+     * Devolve a data de fim de deteção de conflitos nas atribuições
+     *
+     * @return a data de fim de deteção de conflitos nas atribuições
+     */
+    public Data getDataFimDetecaoConflitos() {
+        return m_dataFimDetecaoConflitos;
     }
 
     /**
@@ -465,65 +478,6 @@ public class Exposicao {
     }
 
     /**
-     * Cria o timer que muda o estado da exposição para aberta a candidaturas
-     */
-    private void criaTimerAberturaCandidaturas( 
-         
-         
-         
-        Exposicao this) {
-        Exposicao thisExpo = this;
-        m_timerAberturaCandidatura = new Timer();
-        m_timerAberturaCandidatura.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                EstadoExposicao estado = m_estado;
-                estado.setEstadoCandidaturasAbertas();
-            }
-        }, getDataAberturaCandidatura().toDate());
-    }
-
-    private void criaTimerEncerramentoCandidaturas( 
-         
-         
-         
-        Exposicao this) {
-        Exposicao thisExpo = this;
-        m_timerEncerramentoCandidatura = new Timer();
-        m_timerEncerramentoCandidatura.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                EstadoExposicao estado = m_estado;
-                estado.setEstadoCandidaturasFechadas();
-                DetetarConflitoController ctrl = new DetetarConflitoController(m_centroExposicoes);
-                ctrl.detetaConflitos(thisExpo);
-            }
-        }, getDataEncerramentoCandidatura().toDate());
-    }
-
-    private void criaTimerFimDetecaoConflitos( 
-         
-         
-         
-        Exposicao this) {
-        Exposicao thisExpo = this;
-        m_timerFimDetecaoConflitos = new Timer();
-        m_timerFimDetecaoConflitos.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                EstadoExposicao estado = m_estado;
-                estado.setEstadoConflitosDetetados();
-            }
-        }, this.m_dataFimDetecaoConflitos.toDate());
-    }
-
-    private void criaTimers() {
-        criaTimerAberturaCandidaturas();
-        criaTimerEncerramentoCandidaturas();
-        criaTimerFimDetecaoConflitos();
-    }
-
-    /**
      * Devolve a data de abertura a candidaturas
      *
      * @return data de abertura a candidaturas
@@ -550,6 +504,18 @@ public class Exposicao {
      */
     public RegistoAtribuicoesStands getRegistoAtribuicoesStands() {
         return m_ras;
+    }
+
+    /**
+     * Programa um timer
+     *
+     * @param m_tt - timertask (tarefa a realizar aquando da data prevista)
+     * @param date - data para acionar o timer
+     */
+    @Override
+    public void schedule(TimerTask m_tt, Data date) {
+        Timer timer = new Timer();
+        timer.schedule(m_tt, date.toDate());
     }
 
 }

@@ -4,7 +4,7 @@ package lapr.project.estados;
  *
  * @author Ricardo Osório e Ana Leite
  */
-public interface EstadoExposicao{
+public interface EstadoExposicao extends Estado{
 
     boolean setEstadoCriada();
 
