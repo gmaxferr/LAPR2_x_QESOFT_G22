@@ -9,7 +9,7 @@ import java.util.Arrays;
  *
  * @author Ricardo Osório Ana Leite
  */
-public class Utilizador implements ApresentavelNaJTable{
+public class Utilizador implements ApresentavelNaJTable {
 
     /**
      * Atributo nome de um Utilizador.
@@ -32,11 +32,6 @@ public class Utilizador implements ApresentavelNaJTable{
     private String m_strUsername;
 
     /**
-     *
-     */
-    private String m_ID;
-
-    /**
      * Atributo associado ao Utilizador que regista se o registo desse
      * Utilizador já foi confirmado.
      */
@@ -56,9 +51,9 @@ public class Utilizador implements ApresentavelNaJTable{
         this.nAvaliacoesDesdeSempre = 0;
     }
 
-    public Utilizador(String nome, String ID, char[] password, String email) {
+    public Utilizador(String nome, String username, char[] password, String email) {
         this.nAvaliacoesDesdeSempre = 0;
-        this.m_ID = ID;
+        this.m_strUsername = username;
         this.m_strEmail = email;
         this.m_strPwd = password;
         this.m_strNome = nome;
@@ -103,10 +98,6 @@ public class Utilizador implements ApresentavelNaJTable{
         return this.m_strEmail;
     }
 
-    public String getID() {
-        return this.m_ID;
-    }
-
     /**
      * Devolve o username do utilizador
      *
@@ -117,11 +108,11 @@ public class Utilizador implements ApresentavelNaJTable{
     }
 
     /**
-     * Define um novo valor para variavel boolean que regista se o registo desse
-     * Utilizador já foi confirmado
+     * Confirma o registo do utilizador. Processo necessário para que o
+     * Utilizador possa ser atribuido a cargos dentro do centro de exposições
      */
-    public void setBoolConfirmaRegisto(boolean m_boolConfirmaRegisto) {
-        this.m_boolConfirmaRegisto = m_boolConfirmaRegisto;
+    public void confirmarRegistoDoUtilizador() {
+        this.m_boolConfirmaRegisto = true;
     }
 
     /**
@@ -224,8 +215,8 @@ public class Utilizador implements ApresentavelNaJTable{
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char [] password, String username, String email) {
-        if( username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")){
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
+        if (username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")) {
             return false;
         }
         return true;

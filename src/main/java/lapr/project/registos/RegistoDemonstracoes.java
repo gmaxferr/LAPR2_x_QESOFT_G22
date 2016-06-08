@@ -18,6 +18,10 @@ public class RegistoDemonstracoes {
 
     private CandidaturaAExposicao m_candidaturaAExposicao;
 
+    private String m_Prefixo = "Demo_";
+
+    private int m_contadorDemos;
+
     public RegistoDemonstracoes() {
         this.m_listaDemonstracoes = new ArrayList<>();
     }
@@ -40,17 +44,29 @@ public class RegistoDemonstracoes {
         m_candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 
-    public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        Demonstracao demo = new Demonstracao(descricaoIntroduzidaPeloUtilizador);
+    /**
+     * Cria uma nova demonstração
+     * @param descricao - descrição da demonstração
+     * @return nova demonstração
+     */
+    public Demonstracao novaDemonstracao(String descricao) {
+        Demonstracao demo = new Demonstracao(descricao);
         return demo;
     }
 
     /**
+     * <<<<<<< HEAD Permite definir lista de demonstrações a partir de uma outra
+     *
+     * @param listaDemonstracoes - lista de demonstrações a considerar =======
      * Permite definir lista de demonstrações
      *
-     * @param listaDemonstracoes
+     * @param listaDemonstracoes >>>>>>>
+     * d028313c3d76f6dc2b99d2c5ca0701431aeb8599
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
+        for (Demonstracao d : listaDemonstracoes) {
+            d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
+        }
         this.m_listaDemonstracoes = listaDemonstracoes;
     }
 
@@ -66,5 +82,26 @@ public class RegistoDemonstracoes {
             }
         }
         return demosPendentes;
+    }
+
+    /**
+     * Valida uma demonstração
+     *
+     * @param m_demoCriada - nova demonstração a validar
+     * @return true se for válida; false caso contrário
+     */
+    public boolean valida(Demonstracao m_demoCriada) {
+        return !m_demoCriada.getDescricao().isEmpty() && !m_listaDemonstracoes.contains(m_demoCriada) && !m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty();
+    }
+
+    /**
+     * Adiciona uma demonstração à lista de demonstrações deste registo
+     *
+     * @param m_demoCriada - demonstração a adicionar
+     */
+    public void addDemo(Demonstracao m_demoCriada) {
+        m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
+        m_contadorDemos++;
+        this.m_listaDemonstracoes.add(m_demoCriada);
     }
 }

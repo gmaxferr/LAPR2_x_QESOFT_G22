@@ -28,7 +28,7 @@ public class ModeloListaDemonstracoes extends AbstractListModel {
 
     @Override
     public Object getElementAt(int index) {
-        return this.listaDemonstracoes.getDemonstracaoAt(index).getM_StrCodigoIdentificacao();
+        return this.listaDemonstracoes.getDemonstracaoAt(index).getCodigoIdentificacao();
     }
 
     public boolean adicionaDemonstracao(Demonstracao demonstracao) {

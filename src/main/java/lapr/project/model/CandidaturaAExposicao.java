@@ -248,6 +248,8 @@ public class CandidaturaAExposicao {
         }
     }
 
+    
+    
     /**
      * Método que valida a candidatura
      *
@@ -314,7 +316,6 @@ public class CandidaturaAExposicao {
         if (validarDadosRepetidosOuInvalidos() == false) {
             //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
         }
-
     }
 
     /**

@@ -72,9 +72,11 @@ public class RegistarUtilizadorController {
 
     /**
      * Adiciona o utilizador ao registo de utilizadores
+     * @param username
+     * @param email email do utilizador
      */
-    public boolean addUtilizador() {
-       return m_ru.addUtilizador(m_utilizador);
+    public boolean addUtilizador(String username, String email) {
+       return m_ru.addUtilizador(username, email);
     }
 
     

@@ -272,4 +272,19 @@ public class RegistoExposicoes {
         }
         return result;
     }
+    
+    public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
+        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
+
+        //encontra as exposições do organizador autenticado no sistema.
+        for (Exposicao exposicao : m_listaExposicoes) {
+            for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) && exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()) {
+                    listaExposicoesDoOrganizador.add(exposicao);
+                }
+            }
+        }
+
+        return listaExposicoesDoOrganizador;
+    }
 }

@@ -56,14 +56,14 @@ public class RegistoUtilizadoresTest {
     }
 
     /**
-     * Test of validaUtilizadorPeloID method, of class RegistoUtilizadores.
+     * Test of validaUtilizadorPeloUsername method, of class RegistoUtilizadores.
      */
     @Test
     public void testValidaUtilizadorPeloID() {
         System.out.println("validaUtilizadorPeloID");
         RegistoUtilizadores instance = new RegistoUtilizadores();
         boolean expResult = false;
-        boolean result = instance.validaUtilizadorPeloID();
+        boolean result = instance.validaUtilizadorPeloUsername();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
