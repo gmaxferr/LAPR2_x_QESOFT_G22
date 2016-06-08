@@ -15,12 +15,14 @@ public class CandidaturaADemonstracao {
      * os possíveis atributos que esta candidtura possa ter.
      */
     private String m_dados;
+    private String m_usernameExpositor;
 
     private EstadoCandidaturaADemonstracao m_estado;
 
-    public CandidaturaADemonstracao(String dados) {
+    public CandidaturaADemonstracao(String dados, String username) {
         this.m_dados = dados;
-        m_estado = new EstadoCandidaturaADemonstracaoInstanciada();
+        m_estado = new EstadoCandidaturaADemonstracaoInstanciada(this);
+        m_usernameExpositor = username;
     }
 
     /**
@@ -35,7 +37,7 @@ public class CandidaturaADemonstracao {
      *
      * @param estado2 - novo estado da candidatura
      */
-    public void setEstado(EstadoCandidaturaADemonstracao estado2) {
-        m_estado = estado2;
+    public void setEstado(EstadoCandidaturaADemonstracao novoEstado) {
+        m_estado = novoEstado;
     }
 }

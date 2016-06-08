@@ -10,7 +10,7 @@ import lapr.project.registos.*;
  * @author guima
  */
 public class RegistarCandidaturaADemonstracaoController {
-    
+
     private Exposicao m_e; //exposição selecionada
     private Demonstracao m_d; //demonstração selecionada
     private String m_dados; //dados do formulário
@@ -22,12 +22,12 @@ public class RegistarCandidaturaADemonstracaoController {
     private RegistoExposicoes m_re;
     private RegistoDemonstracoes m_rd;
     private RegistoCandidaturaADemonstracoes m_rcd;
-    
+
     private List<Demonstracao> m_listDemos; //lista de demonstrações da exposição selecionada
     private List<Exposicao> m_listExpos; //lista de exposicoes em que o representante entra
 
     private EstadoCandidaturaADemonstracao m_estado;
-    
+
     public RegistarCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameRep) {
         this.m_ce = ce;
         this.m_usernameRep = usernameRep;
@@ -105,19 +105,15 @@ public class RegistarCandidaturaADemonstracaoController {
      * @return true se a adição foi efetuada com sucesso; false caso contrário
      */
     public boolean RegistaCandADemo() {
-        m_cand = new CandidaturaADemonstracao(m_dados);
+        m_cand = new CandidaturaADemonstracao(m_dados, m_usernameRep);
         return m_rcd.adiciona(m_cand);
     }
-    
+
     /**
      * Muda o estado da candidatura à demonstração
      */
     public void transitaEstado() {
         this.m_estado = m_cand.getEstado();
-        if (m_estado.setEstadoCandidaturaCriada()) {
-            EstadoCandidaturaADemonstracaoCriada estado2 = new EstadoCandidaturaADemonstracaoCriada(m_cand);
-            m_cand.setEstado(estado2);
-        }
+        m_estado.setEstadoCandidaturaCriada();
     }
-    
 }
