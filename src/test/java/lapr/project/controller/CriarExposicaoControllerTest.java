@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author JoãoCardoso aka K4rd050
  */
 public class CriarExposicaoControllerTest {
     
@@ -100,13 +100,16 @@ public class CriarExposicaoControllerTest {
         System.out.println("setDados");
         String strTitulo = "";
         String strDescricao = "";
-        Data DataInicio = null;
-        Data DataFim = null;
+        Data dataInicio = null;
+        Data dataFim = null;
+        Data dataAberturaSubCand = null;
+        Data dataEncerramentoSubCand = null;
+        Data dataFimDetecaoConflitos = null;
         Local strLocal = null;
         List<Utilizador> lstUtz = null;
         CriarExposicaoController instance = null;
         Exposicao expResult = null;
-        Exposicao result = instance.setDados(strTitulo, strDescricao, DataInicio, DataFim, strLocal, lstUtz);
+        Exposicao result = instance.setDados(strTitulo, strDescricao, dataInicio, dataFim, dataAberturaSubCand, dataEncerramentoSubCand, dataFimDetecaoConflitos, strLocal, lstUtz);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
