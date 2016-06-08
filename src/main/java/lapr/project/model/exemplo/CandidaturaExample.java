@@ -1,7 +1,7 @@
 package lapr.project.model.exemplo;
 
-import lapr.project.utils.exemplo.Exportable;
-import lapr.project.utils.exemplo.Importable;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
