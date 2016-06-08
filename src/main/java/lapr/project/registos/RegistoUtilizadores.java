@@ -2,13 +2,28 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Keyword;
+import lapr.project.model.KeywordRanking;
 import lapr.project.model.Utilizador;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Ricardo Osório Ana Leite
  */
-public class RegistoUtilizadores {
+public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "RegistoUtilizadores";
 
     /**
      * Lista de utilizadores
@@ -155,5 +170,59 @@ public class RegistoUtilizadores {
 
     public boolean validaDadosUnicos(String username, String email) {
         return true;
+    }
+    
+    @Override
+    public RegistoUtilizadores importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.appendChild(doc.importNode(node, true));
+
+            Node n = doc.getChildNodes().item(0);
+            
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                
+                NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
+                    Utilizador u = new Utilizador();
+                    u.importContentFromXMLNode(n2);
+                    m_listaUtilizadores.add(u);
+                }
+            }
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+
+            for (Utilizador u : m_listaUtilizadores) {
+                Node n = u.exportContentToXMLNode();
+                elementKeyword.appendChild(document.importNode(n, true));
+            }
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }
