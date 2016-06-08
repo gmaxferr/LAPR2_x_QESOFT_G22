@@ -8,8 +8,9 @@ import java.util.List;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable{
-/**
+public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable {
+
+    /**
      * Identificação do mecanismo.
      */
     private static final String NOME_MECANISMO = "FAE por canidatura";

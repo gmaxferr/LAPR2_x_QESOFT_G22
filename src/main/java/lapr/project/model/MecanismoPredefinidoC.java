@@ -24,6 +24,16 @@ import java.util.List;
 public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable {
 
     /**
+     * Identificação do mecanismo.
+     */
+    private static final String NOME_MECANISMO = "Mecanismo de atribuição por experiência";
+
+    /**
+     * Descrição do funcionamento do mecanismo B.
+     */
+    private static final String DESCRICAO_MECANISMO = "Este mecanismo distribui as candidaturas pelos FAEs de acordo com a sua experiência. O mecanismo consegue este resultado criando primeiro uma reta real, de 0 a 1, com intervalos correspondentes à constribuição dos FAE da exposição (ou equitativamente caso não tenham experiência) e ajustando essa reta a uma outra reta contendo as Candidaturas. Depois de ajustados os valores, ele atribui as candidaturas correspondentes aos intervalos da reta das candidaturas aos FAEs correspondentes aos intervalos da reta dos FAE.";
+    
+    /**
      * Numero minimo de atribuicoes por candidatura (para evitar candidaturas
      * estarem atribuidas a poucos FAES, quando possível).
      */
@@ -217,12 +227,12 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
 
     @Override
     public String getNome() {
-        return "Mecanismo de atribuição por experiência";
+        return NOME_MECANISMO;
     }
 
     @Override
     public String getDescricao() {
-        return "Este mecanismo distribui as candidaturas pelos FAEs de acordo com a sua experiência. O mecanismo consegue este resultado criando primeiro uma reta real, de 0 a 1, com intervalos correspondentes à constribuição dos FAE da exposição (ou equitativamente caso não tenham experiência) e ajustando essa reta a uma outra reta contendo as Candidaturas. Depois de ajustados os valores, ele atribui as candidaturas correspondentes aos intervalos da reta das candidaturas aos FAEs correspondentes aos intervalos da reta dos FAE.";
+        return DESCRICAO_MECANISMO;
     }
 
 }
