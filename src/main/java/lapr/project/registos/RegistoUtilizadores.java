@@ -16,23 +16,16 @@ public class RegistoUtilizadores {
     private ArrayList<Utilizador> m_listaUtilizadores;
 
     /**
-     * Utilizador
+     * Procura e retorna o Utilizador com o username recebido por parametro. Se
+     * não for encontrado nenhum utilizador com esse username é devolvido null
+     *
+     * @param username username do utilizador a ser encontrado
+     * @return Utilizador com o username caso seja encontrado. Null caso não
+     * seja encontrado nenhum utilizador com esse username
      */
-    Utilizador u;
-
-    public Utilizador identificarUtilizadorPeloUsername(String id) {
-        Utilizador u = identificarUtilizadorID(id);
-        boolean b = validaUtilizadorPeloID();
-        if (b == true) {
-            return u;
-        } else {
-            return null;
-        }
-    }
-
-    private Utilizador identificarUtilizadorID(String ID) {
+    public Utilizador identificarUtilizadorPeloUsername(String username) {
         for (Utilizador u : this.m_listaUtilizadores) {
-            if (u.getID().equalsIgnoreCase("id")) {
+            if (u.getUsername().equalsIgnoreCase(username)) {
                 return u;
             }
         }
@@ -40,7 +33,9 @@ public class RegistoUtilizadores {
     }
 
     /**
-     * Valida o utilizador pelo username ou pelo email
+     * Método de validação: Verifica se existe algum utilizador já registado no
+     * centro de exposições com o username ou com o email passados por
+     * parametro. Estes dois atributos dos Utilizadores devem de ser únicos
      *
      * @param username username do utilizador
      * @param email email do utilizador
@@ -49,17 +44,11 @@ public class RegistoUtilizadores {
      * retorna false
      */
     private boolean validaUtilizador(String username, String email) {
-        ArrayList<Utilizador> list = new ArrayList<>();
         for (Utilizador u : m_listaUtilizadores) {
             if (username.equals(u.getUsername()) || email.equals(u.getEmail())) {
                 return false;
             }
         }
-        return true;
-
-    }
-
-    public boolean validaUtilizadorPeloID() {
         return true;
     }
 
@@ -82,7 +71,7 @@ public class RegistoUtilizadores {
         for (Utilizador u : m_listaUtilizadores) {
             if (identificarUtilizadorPeloId(id, u.getEmail(), u.getUsername())) {
                 return u;
-}
+            }
         }
         return null;
     }
@@ -96,7 +85,7 @@ public class RegistoUtilizadores {
     public boolean identificarUtilizadorPeloId(String id, String emailAVerificar, String usernameAVerificar) {
         if (id.equals(emailAVerificar) || id.equals(usernameAVerificar)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -113,9 +102,10 @@ public class RegistoUtilizadores {
     /**
      * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
-     * @param u Utilizador desejado
+     * @param username username do utilizador
+     * @param email email do utilizador
      */
-    public boolean addUtilizador(Utilizador u) {
+    public boolean addUtilizador(String username, String email) {
         if (validaUtilizador(u.getUsername(), u.getEmail())) {
             adicionaUtilizador(u);
             return true;

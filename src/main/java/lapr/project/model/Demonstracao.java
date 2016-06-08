@@ -5,8 +5,11 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import lapr.project.estados.EstadoDemonstracao;
 import lapr.project.registos.RegistoRecursos;
+import sun.reflect.generics.visitor.Reifier;
 
 /**
  *
@@ -16,11 +19,11 @@ public class Demonstracao {
 
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
-    private RegistoRecursos m_rrr;
+    private RegistoRecursos rc;
     private EstadoDemonstracao m_estado;
 
     public Demonstracao(String descricao) {
-        this.m_rrr = new RegistoRecursos();
+        this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
     }
 
@@ -28,7 +31,7 @@ public class Demonstracao {
      * 
      * @return descrição da demonstração
      */
-    public String getM_StrDescricao() {
+    public String getDescricao() {
         return this.m_StrDescricao;
     }
 
@@ -36,7 +39,7 @@ public class Demonstracao {
      * Permite alterar a descrição da demonstração
      * @param descricaoIntroduzidaPeloUtilizador 
      */
-    public void setM_StrDescricao(String descricaoIntroduzidaPeloUtilizador) {
+    public void getDescricao(String descricaoIntroduzidaPeloUtilizador) {
         this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
     }
 
@@ -44,15 +47,15 @@ public class Demonstracao {
      * 
      * @return registo dos recursos necessários à demonstração
      */
-    public RegistoRecursos getRegistoRecursos() {
-        return this.m_rrr;
+    public RegistoRecursos getRegistoRecursosNecessarios() {
+        return this.rc;
     }
 
     /**
      * 
      * @return código da demonstração
      */
-    public String getM_StrCodigoIdentificacao() {
+    public String getCodigoIdentificacao() {
         return this.m_StrCodigoIdentificacao;
     }
     
@@ -62,5 +65,12 @@ public class Demonstracao {
      */
     public EstadoDemonstracao getEstadoDemo(){
         return m_estado;
+    }
+
+    /**
+     * @param m_StrCodigoIdentificacao the m_StrCodigoIdentificacao to set
+     */
+    public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
+        this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
     }
 }

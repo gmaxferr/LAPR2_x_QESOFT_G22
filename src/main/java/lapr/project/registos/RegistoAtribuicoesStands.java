@@ -1,6 +1,5 @@
 package lapr.project.registos;
 
-import com.sun.xml.internal.bind.v2.schemagen.Util;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.AtribuicaoStand;
