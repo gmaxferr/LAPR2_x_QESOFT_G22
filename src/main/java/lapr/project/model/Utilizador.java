@@ -31,7 +31,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
     public static final String SHIFTS_ATTR_NAME = "shifts";
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
-    
+
     public static final String passwordAlfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
 
     /**
@@ -279,18 +279,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
             NodeList elementsKeyword = document.getChildNodes();
 
-            for (int i = 0; i < elementsKeyword.getLength(); i++) {
-                Node n = elementsKeyword.item(i);
-                if (n.getNodeType() == Node.ELEMENT_NODE) {
-                    Element elem = (Element) n;
-                    this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                    this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
-                    this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
-                    this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
-                    this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
-                    this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
-                    this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
-                }
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
+                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
+                this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
+                this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
@@ -308,11 +306,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             Document document = builder.newDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
-            
+
             Element elementValue = document.createElement(NOME_ELEMENT_NAME);
             elementValue.setTextContent(this.m_strNome);
             elementKeyword.appendChild(elementValue);
-            
+
             elementValue = document.createElement(EMAIL_ELEMENT_NAME);
             elementValue.setTextContent(this.m_strEmail);
             elementKeyword.appendChild(elementValue);
@@ -320,15 +318,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             elementValue = document.createElement(USERNAME_ELEMENT_NAME);
             elementValue.setTextContent(this.m_strUsername);
             elementKeyword.appendChild(elementValue);
-            
+
             elementValue = document.createElement(PASSWD_ELEMENT_NAME);
             elementValue.setTextContent(String.valueOf(this.m_strPwd));
             elementKeyword.appendChild(elementValue);
-            
+
             elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
             elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
             elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift));
-            
+
             document.appendChild(elementKeyword);
 
             node = elementKeyword;

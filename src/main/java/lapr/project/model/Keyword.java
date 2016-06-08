@@ -25,7 +25,7 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
      * pertencem a uma keyword e quais não.
      */
     private static final String ROOT_ELEMENT_NAME = "keyword";
-    
+
     /**
      * Nome do campo value.
      */
@@ -94,11 +94,13 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
 
             document.appendChild(document.importNode(node, true));
 
-            NodeList elementsKeyword = document.getElementsByTagName(VALUE_ELEMENT_NAME);
+            NodeList elementsKeyword = document.getChildNodes();
 
-            Node elementKeyword = elementsKeyword.item(0);
-
-            this.m_value = elementKeyword.getFirstChild().getNodeValue();
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
+            }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
         }
