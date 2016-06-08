@@ -115,7 +115,7 @@ public class RegistoCandidaturasAExposicao {
     public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
         List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
         for (CandidaturaAExposicao c : m_listaCandidaturas) {
-            if (c.getM_StrUsernameExpositor().equals(username)) {
+            if (c.getUsernameExpositor().equals(username)) {
                 candidaturasRepLst.add(c);
             }
         }

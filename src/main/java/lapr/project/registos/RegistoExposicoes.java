@@ -146,7 +146,7 @@ public class RegistoExposicoes {
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getM_StrUsernameExpositor().equals(username)) {
+                if (c.getUsernameExpositor().equals(username)) {
                     if (c.getEstado().isEstadoCandidaturaAceite()) {
                         listaExpoRep.add(e);
                         break;
@@ -170,7 +170,7 @@ public class RegistoExposicoes {
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getM_StrUsernameExpositor().equals(username)) {
+                if (c.getUsernameExpositor().equals(username)) {
                     listaExpoRep.add(e);
                     break;
 

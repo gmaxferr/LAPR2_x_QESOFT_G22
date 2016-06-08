@@ -430,7 +430,7 @@ public class Exposicao implements Agendavel {
      * @return boolean de confirmação da validação
      */
     public boolean validarCandidatura(CandidaturaAExposicao c) {
-        return c.validarCandidatura();
+        return c.validaCandidatura();
     }
 
     public void setEstado(EstadoExposicao estado) {
