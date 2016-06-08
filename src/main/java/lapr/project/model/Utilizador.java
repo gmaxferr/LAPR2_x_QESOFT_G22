@@ -3,6 +3,7 @@ package lapr.project.model;
 import crypt.CaesarsCypher;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Representação de um Utilizador
@@ -20,6 +21,13 @@ public class Utilizador implements ApresentavelNaJTable {
      * Atributo password de um Utilizador.
      */
     private char[] m_strPwd;
+
+    /**
+     * Numero de shifts usados na encriptação da password, entre 1 e
+     * 255.<!-- -->Nota: 0 e 256 não ia alterar o original por isso não faz
+     * sentido usar esses 2 valores.
+     */
+    private int randomCaesarShift;
 
     /**
      * Atributo email de um Utilizador.
@@ -42,6 +50,9 @@ public class Utilizador implements ApresentavelNaJTable {
      */
     private ArrayList<Utilizador> m_listaUtilizadores;
 
+    /**
+     * Numero de avaliações que este utilizador já realizou.
+     */
     private int nAvaliacoesDesdeSempre;
 
     /**
@@ -52,10 +63,10 @@ public class Utilizador implements ApresentavelNaJTable {
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
-        this.nAvaliacoesDesdeSempre = 0;
+        this();
         this.m_strUsername = username;
         this.m_strEmail = email;
-        this.m_strPwd = password;
+        setPwd(password);
         this.m_strNome = nome;
     }
 
@@ -83,7 +94,10 @@ public class Utilizador implements ApresentavelNaJTable {
      * Devolve a password do utilizador
      *
      * @return password do utilizador
+     * @deprecated Este método é considerado inseguro. Para validar uma
+     * password, usar {@link #isValidPassword(char[])}
      */
+    @Deprecated
     public char[] getPwd() {
         //fazer toString? depende se for um get para ser usado na UI
         return this.m_strPwd;
@@ -148,7 +162,9 @@ public class Utilizador implements ApresentavelNaJTable {
      * @param strPwd nova password de utilizador
      */
     public void setPwd(char[] strPwd) {
-        m_strPwd = strPwd;
+        Random r = new Random();
+        randomCaesarShift = r.nextInt(254) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, randomCaesarShift);
     }
 
     /**
@@ -177,7 +193,7 @@ public class Utilizador implements ApresentavelNaJTable {
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean isValidPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, password[0]), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift), password);
     }
 
     /**
