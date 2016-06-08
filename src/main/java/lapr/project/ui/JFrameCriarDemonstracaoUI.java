@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.CriarDemonstracaoController;
 import lapr.project.model.AbstractListModelRecursos;
 import lapr.project.model.CentroExposicoes;
@@ -34,6 +35,8 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private String m_usernameOrg;
     private CentroExposicoes m_ce;
 
+    private Exposicao m_e;
+    private boolean continua;
     /**
      * Creates new form JFrameCriarDemonstracaoUI
      */
@@ -429,6 +432,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         Exposicao e = (Exposicao) jComboBoxEscolherExposicao.getSelectedItem();
         if (e != null) {
             CTRL.setExposicao(e);
+            m_e = e;
             CTRL.pullRegistoDemonstracaoDaExposicao();
             passaParaPanel2();
         }
@@ -488,7 +492,16 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         CTRL.setRecursos();
         if (CTRL.valida()) {
             CTRL.registaDemo();
-            CTRL.mudaEstado();
+            int opcao = JOptionPane.showConfirmDialog(null, "Demonstração registada com sucesso!", "Sucesso!", INFORMATION_MESSAGE);
+            if(opcao == JOptionPane.OK_OPTION){
+                CTRL = new CriarDemonstracaoController(m_usernameOrg, m_ce);
+                CTRL.setExposicao(m_e);
+                CTRL.pullRegistoDemonstracaoDaExposicao();
+                passaParaPanel2();
+            }else{
+                CTRL.mudaEstado();
+                dispose();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Erro a resgistar Demonstração, veja se cometeu alguns dos seguintes erros:"
                     + "\n1.Não introduziu descrição."
