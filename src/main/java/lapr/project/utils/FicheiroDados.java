@@ -163,7 +163,7 @@ public class FicheiroDados {
             re = centroExposicoes.getRegistoExposicoes();
             while (inputExpos.hasNextLine()) {
                 linhaLidaVetor = inputExpos.nextLine().split(";");
-                exposicao = new Exposicao(linhaLidaVetor[0], linhaLidaVetor[1], new Data(linhaLidaVetor[2]), new Data(linhaLidaVetor[3]), new Local(linhaLidaVetor[4]), centroExposicoes);
+//                exposicao = new Exposicao(linhaLidaVetor[0], linhaLidaVetor[1], new Data(linhaLidaVetor[2]), new Data(linhaLidaVetor[3]), new Local(linhaLidaVetor[4]), centroExposicoes);
 
                 //add organizadores
                 for (int i = 0; i < NUMERO_ORGANIZADORES_POR_EXPOSICAO; i++) {

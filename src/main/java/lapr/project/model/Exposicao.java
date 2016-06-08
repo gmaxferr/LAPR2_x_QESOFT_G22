@@ -135,7 +135,7 @@ public class Exposicao implements Agendavel {
      * @param local local da exposição
      * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Local local, CentroExposicoes centroExposicoes) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes centroExposicoes) {
         this();
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
@@ -143,6 +143,9 @@ public class Exposicao implements Agendavel {
         this.m_dataFim = dataFim;
         this.local = local;
         this.m_centroExposicoes = centroExposicoes;
+        this.m_dataAberturaCandidatura = dataInicioSubCand;
+        this.m_dataEncerramentoCandidatura = dataFimSubCand;
+        this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
     }
 
     public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
