@@ -1,13 +1,35 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Keyword.
  *
  * @author Ricardo Catalao
  */
-public class Keyword implements Serializable {
+public class Keyword implements Serializable, Importable<Keyword>, Exportable {
+
+    /**
+     * Nome da tag keyword.<!-- -->Serve para identificar quais blocos de dados
+     * pertencem a uma keyword e quais não.
+     */
+    private static final String ROOT_ELEMENT_NAME = "keyword";
+    
+    /**
+     * Nome do campo value.
+     */
+    private static final String VALUE_ELEMENT_NAME = "value";
 
     /**
      * Valor da keyword.
@@ -60,5 +82,51 @@ public class Keyword implements Serializable {
             }
         }
         return false;
+    }
+
+    @Override
+    public Keyword importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+
+            NodeList elementsKeyword = document.getElementsByTagName(VALUE_ELEMENT_NAME);
+
+            Node elementKeyword = elementsKeyword.item(0);
+
+            this.m_value = elementKeyword.getFirstChild().getNodeValue();
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementValue = document.createElement(VALUE_ELEMENT_NAME);
+
+            elementValue.setTextContent(getValue());
+            elementKeyword.appendChild(elementValue);
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }

@@ -46,11 +46,6 @@ public class Utilizador implements ApresentavelNaJTable {
     private boolean m_boolConfirmaRegisto;
 
     /**
-     * Lista de utilizadores.
-     */
-    private ArrayList<Utilizador> m_listaUtilizadores;
-
-    /**
      * Numero de avaliações que este utilizador já realizou.
      */
     private int nAvaliacoesDesdeSempre;
