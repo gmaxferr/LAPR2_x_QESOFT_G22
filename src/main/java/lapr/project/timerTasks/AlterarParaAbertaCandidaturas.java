@@ -6,6 +6,7 @@
 package lapr.project.timerTasks;
 
 import java.util.TimerTask;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 
 /**
@@ -15,15 +16,15 @@ import lapr.project.model.Exposicao;
 public class AlterarParaAbertaCandidaturas extends TimerTask {
 
     private Exposicao m_exposicao;
-    
+
     /**
-     * 
+     *
      * @param e - exposição
      */
-    public AlterarParaAbertaCandidaturas(Exposicao e){
+    public AlterarParaAbertaCandidaturas(Exposicao e) {
         m_exposicao = e;
     }
-    
+
     @Override
     public void run() {
         m_exposicao.getEstado().setEstadoCandidaturasAbertas();
