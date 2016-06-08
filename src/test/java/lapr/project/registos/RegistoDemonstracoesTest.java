@@ -54,14 +54,14 @@ public class RegistoDemonstracoesTest {
     }
 
     /**
-     * Test of adicionaDemonstracao method, of class RegistoDemonstracoes.
+     * Test of adicionaDemonstracaoACandidatura method, of class RegistoDemonstracoes.
      */
     @Test
     public void testAdicionaDemonstracao() {
         System.out.println("adicionaDemonstracao");
         Demonstracao demonstracao = null;
         RegistoDemonstracoes instance = new RegistoDemonstracoes();
-        instance.adicionaDemonstracao(demonstracao);
+        instance.adicionaDemonstracaoACandidatura(demonstracao);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
