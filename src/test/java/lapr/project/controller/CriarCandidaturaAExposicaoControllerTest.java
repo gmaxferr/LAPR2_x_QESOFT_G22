@@ -6,10 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Produto;
+import lapr.project.model.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,28 +19,29 @@ import static org.junit.Assert.*;
  * @author Ricardo Catalao
  */
 public class CriarCandidaturaAExposicaoControllerTest {
-    
+
     public CriarCandidaturaAExposicaoControllerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getRegistoExposicoes method, of class CriarCandidaturaAExposicaoController.
+     * Test of getRegistoExposicoes method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetRegistoExposicoes() {
@@ -55,7 +53,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of getListaExposicoesEstadoCandidaturasAbertas method, of class CriarCandidaturaAExposicaoController.
+     * Test of getListaExposicoesEstadoCandidaturasAbertas method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetListaExposicoesEstadoCandidaturasAbertas() {
@@ -69,7 +68,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of setExposicao method, of class CriarCandidaturaAExposicaoController.
+     * Test of setExposicao method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testSetExposicao() {
@@ -82,7 +82,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of getRegistoCandidaturas method, of class CriarCandidaturaAExposicaoController.
+     * Test of getRegistoCandidaturas method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetRegistoCandidaturas() {
@@ -94,7 +95,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of criarCandidatura method, of class CriarCandidaturaAExposicaoController.
+     * Test of criarCandidatura method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testCriarCandidatura() {
@@ -124,7 +126,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of getRegistoProduto method, of class CriarCandidaturaAExposicaoController.
+     * Test of getRegistoProduto method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetRegistoProduto() {
@@ -151,7 +154,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of getRegistoDemonstracoes method, of class CriarCandidaturaAExposicaoController.
+     * Test of getRegistoDemonstracoes method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetRegistoDemonstracoes() {
@@ -163,7 +167,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of getListaDemonstracoes method, of class CriarCandidaturaAExposicaoController.
+     * Test of getListaDemonstracoes method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testGetListaDemonstracoes() {
@@ -177,7 +182,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of adicionaDemonstracao method, of class CriarCandidaturaAExposicaoController.
+     * Test of adicionaDemonstracao method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testAdicionaDemonstracao() {
@@ -190,7 +196,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of registaCandidatura method, of class CriarCandidaturaAExposicaoController.
+     * Test of registaCandidatura method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testRegistaCandidatura() {
@@ -204,7 +211,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of setListaProdutosCandidatura method, of class CriarCandidaturaAExposicaoController.
+     * Test of setListaProdutosCandidatura method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testSetListaProdutosCandidatura() {
@@ -217,7 +225,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of setListaDemonstracoesCandidatura method, of class CriarCandidaturaAExposicaoController.
+     * Test of setListaDemonstracoesCandidatura method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testSetListaDemonstracoesCandidatura() {
@@ -230,7 +239,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of setEstadoCandidaturaAExposicaoCriada method, of class CriarCandidaturaAExposicaoController.
+     * Test of setEstadoCandidaturaAExposicaoCriada method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testSetEstadoCandidaturaAExposicaoCriada() {
@@ -242,7 +252,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of validarDadosCandidatura method, of class CriarCandidaturaAExposicaoController.
+     * Test of validarDadosCandidatura method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testValidarDadosCandidatura() {
@@ -256,7 +267,8 @@ public class CriarCandidaturaAExposicaoControllerTest {
     }
 
     /**
-     * Test of setKeywords method, of class CriarCandidaturaAExposicaoController.
+     * Test of setKeywords method, of class
+     * CriarCandidaturaAExposicaoController.
      */
     @Test
     public void testSetKeywords() {
@@ -267,5 +279,5 @@ public class CriarCandidaturaAExposicaoControllerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

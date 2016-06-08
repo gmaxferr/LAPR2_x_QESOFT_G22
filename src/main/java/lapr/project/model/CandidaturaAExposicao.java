@@ -402,11 +402,21 @@ public class CandidaturaAExposicao {
 
     public void setKeywords(String keywords) throws KeywordsErradasException {
         String[] vecKeywords = keywords.split(",");
-        if (vecKeywords.length > 5) {
+        if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
             this.m_keywords = vecKeywords;
         }
+    }
+
+    /**
+     * Devolve as keywords introduzidas pelo expositor no momento da
+     * candidatura. Estas descrevem os produtos introduzidos.
+     *
+     * @return keywords que descrevem os produtos associados à candidatura
+     */
+    public String[] getKeywords() {
+        return this.m_keywords;
     }
 
 }

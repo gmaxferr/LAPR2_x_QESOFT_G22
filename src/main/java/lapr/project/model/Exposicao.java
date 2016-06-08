@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import lapr.project.controller.DetetarConflitoController;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
 import lapr.project.utils.Data;
@@ -238,6 +237,10 @@ public class Exposicao implements Agendavel {
      */
     public Local getLocal() {
         return local;
+    }
+    
+    public KeywordRanking getKeywordRankin(){
+        return this.m_keywordRanking;
     }
 
     /**
