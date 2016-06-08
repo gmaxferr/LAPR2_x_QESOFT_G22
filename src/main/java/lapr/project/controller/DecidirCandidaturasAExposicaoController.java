@@ -19,6 +19,7 @@ public class DecidirCandidaturasAExposicaoController {
     private CentroExposicoes m_ce;
     private GestorDeExposicoes m_gestorDeExposicoes;
     private RegistoProdutos m_rp;
+    private String[] keywords;
 
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
         this.m_ce = ce;
@@ -83,15 +84,19 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     public void getKeywords() {
-        throw new UnsupportedOperationException();
+        this.keywords = this.m_candidaturaSelecionada.getKeywords();
     }
 
     public void setDecisao(boolean decisao) {
         this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
             setEstadoCandidaturaAceite();
+            //ricardo a corrigir o método
+            this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, 0);
         } else {
             setEstadoCandidaturaRejeitada();
+            //ricardo a corrigir o método
+            this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, 0);
         }
     }
 
