@@ -1,16 +1,38 @@
 package lapr.project.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.utils.CaesarsCypher;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um Utilizador
  *
  * @author Ricardo Osório Ana Leite
  */
-public class Utilizador implements ApresentavelNaJTable {
+public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "Utilizador";
+    public static final String NOME_ELEMENT_NAME = "nome";
+    public static final String PASSWD_ELEMENT_NAME = "passwd";
+    public static final String USERNAME_ELEMENT_NAME = "username";
+    public static final String EMAIL_ELEMENT_NAME = "email";
+    public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
+    public static final String SHIFTS_ATTR_NAME = "shifts";
+    public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
+    
+    public static final String passwordAlfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
 
     /**
      * Atributo nome de um Utilizador.
@@ -23,9 +45,7 @@ public class Utilizador implements ApresentavelNaJTable {
     private char[] m_strPwd;
 
     /**
-     * Numero de shifts usados na encriptação da password, entre 1 e
-     * 255.<!-- -->Nota: 0 e 256 não ia alterar o original por isso não faz
-     * sentido usar esses 2 valores.
+     * Numero de shifts usados na encriptação da password.
      */
     private int randomCaesarShift;
 
@@ -158,8 +178,8 @@ public class Utilizador implements ApresentavelNaJTable {
      */
     public void setPwd(char[] strPwd) {
         Random r = new Random();
-        randomCaesarShift = r.nextInt(254) + 1; //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, randomCaesarShift);
+        randomCaesarShift = r.nextInt(passwordAlfabet.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, randomCaesarShift, passwordAlfabet);
     }
 
     /**
@@ -188,7 +208,7 @@ public class Utilizador implements ApresentavelNaJTable {
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean isValidPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, passwordAlfabet), password);
     }
 
     /**
@@ -247,4 +267,75 @@ public class Utilizador implements ApresentavelNaJTable {
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
+    @Override
+    public Utilizador importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+
+            NodeList elementsKeyword = document.getChildNodes();
+
+            for (int i = 0; i < elementsKeyword.getLength(); i++) {
+                Node n = elementsKeyword.item(i);
+                if (n.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem = (Element) n;
+                    this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
+                    this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
+                    this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
+                    this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+                    this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
+                    this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+                    this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
+                }
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            
+            Element elementValue = document.createElement(NOME_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strNome);
+            elementKeyword.appendChild(elementValue);
+            
+            elementValue = document.createElement(EMAIL_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strEmail);
+            elementKeyword.appendChild(elementValue);
+
+            elementValue = document.createElement(USERNAME_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strUsername);
+            elementKeyword.appendChild(elementValue);
+            
+            elementValue = document.createElement(PASSWD_ELEMENT_NAME);
+            elementValue.setTextContent(String.valueOf(this.m_strPwd));
+            elementKeyword.appendChild(elementValue);
+            
+            elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
+            elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
+            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift));
+            
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
+    }
 }
