@@ -163,7 +163,7 @@ public class CriarCandidaturaAExposicaoController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionaDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracaoACandidatura(demonstracaoEscolhida);
     }
 
     /**

@@ -300,7 +300,7 @@ public class CandidaturaAExposicao {
      * @param demonstracao
      */
     public void addDemonstracao(Demonstracao demonstracao) {
-        this.m_rd.adicionaDemonstracao(demonstracao);
+        this.m_rd.adicionaDemonstracaoACandidatura(demonstracao);
     }
 
     /**

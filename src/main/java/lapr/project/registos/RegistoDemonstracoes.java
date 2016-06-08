@@ -36,7 +36,7 @@ public class RegistoDemonstracoes {
      *
      * @param demonstracao demostracao a ser adicionada
      */
-    public void adicionaDemonstracao(Demonstracao demonstracao) {
+    public void adicionaDemonstracaoACandidatura(Demonstracao demonstracao) {
         m_candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 

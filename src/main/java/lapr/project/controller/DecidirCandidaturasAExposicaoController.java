@@ -91,12 +91,15 @@ public class DecidirCandidaturasAExposicaoController {
         this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
             setEstadoCandidaturaAceite();
-            //ricardo a corrigir o método
-            this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, 0);
+            for (String keyword : keywords) {
+                this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, true);
+            }
+
         } else {
             setEstadoCandidaturaRejeitada();
-            //ricardo a corrigir o método
-            this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, 0);
+            for (String keyword : keywords) {
+                this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, false);
+            }
         }
     }
 
