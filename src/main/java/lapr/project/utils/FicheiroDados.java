@@ -188,7 +188,7 @@ public class FicheiroDados {
                 for (int i = 0; i < NUMERO_DEMONSTRACOES_POR_EXPOSICAO; i++) {
                     linhaLida = inputDemos.nextLine();
                     demo = new Demonstracao(linhaLida);
-                    rr = demo.getRegistoRecursos();
+                    rr = demo.getListaRecursosNecessarios();
                     rr.setRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
                     cont++;
                     rd.adicionaDemonstracao(demo);
