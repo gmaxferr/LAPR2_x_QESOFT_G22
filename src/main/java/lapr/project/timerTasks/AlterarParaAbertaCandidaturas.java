@@ -6,7 +6,6 @@
 package lapr.project.timerTasks;
 
 import java.util.TimerTask;
-import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 
 /**
@@ -15,7 +14,7 @@ import lapr.project.model.Exposicao;
  */
 public class AlterarParaAbertaCandidaturas extends TimerTask {
 
-    private Exposicao m_exposicao;
+    private final Exposicao m_exposicao;
 
     /**
      *

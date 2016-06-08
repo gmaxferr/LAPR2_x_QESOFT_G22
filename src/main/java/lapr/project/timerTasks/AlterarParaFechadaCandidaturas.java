@@ -17,8 +17,8 @@ import lapr.project.model.Exposicao;
  */
 public class AlterarParaFechadaCandidaturas extends TimerTask {
 
-    private Exposicao m_exposicao;
-    private CentroExposicoes m_ce;
+    private final Exposicao m_exposicao;
+    private final CentroExposicoes m_ce;
 
     /**
      * 

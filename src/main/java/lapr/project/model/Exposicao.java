@@ -53,6 +53,16 @@ public class Exposicao implements Agendavel {
     private Data m_dataFimDetecaoConflitos;
 
     /**
+     * Data de abertura de candidaturas a demonstrações.
+     */
+    private Data m_dataInicioCandDemo;
+
+    /**
+     * Data de fim de candidaturas a demonstrações.
+     */
+    private Data m_dataFimCandDemo;
+
+    /**
      * Atributo local de Exposição
      */
     private Local local;
@@ -528,6 +538,34 @@ public class Exposicao implements Agendavel {
      */
     public void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+    }
+
+    /**
+     * @return the dataInicioCandDemo
+     */
+    public Data getDataInicioCandDemo() {
+        return m_dataInicioCandDemo;
+    }
+
+    /**
+     * @param dataInicioCandDemo the dataInicioCandDemo to set
+     */
+    public void setDataInicioCandDemo(Data dataInicioCandDemo) {
+        this.m_dataInicioCandDemo = dataInicioCandDemo;
+    }
+
+    /**
+     * @return the dataFimCandDemo
+     */
+    public Data getDataFimCandDemo() {
+        return m_dataFimCandDemo;
+    }
+
+    /**
+     * @param dataFimCandDemo the dataFimCandDemo to set
+     */
+    public void setDataFimCandDemo(Data dataFimCandDemo) {
+        this.m_dataFimCandDemo = dataFimCandDemo;
     }
 
 }

@@ -15,7 +15,7 @@ import lapr.project.model.Exposicao;
  */
 public class AlterarParaConflitosAtualizados extends TimerTask {
 
-    private Exposicao m_exposicao;
+    private final Exposicao m_exposicao;
 
     /**
      *
