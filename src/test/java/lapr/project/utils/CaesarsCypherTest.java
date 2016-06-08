@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
  */
 public class CaesarsCypherTest {
 
+    public static final String alfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
+    
     /**
      * Test of encrypt method, of class CaesarsCypher.
      */
@@ -23,7 +25,7 @@ public class CaesarsCypherTest {
         char[] arrChar = "ABCDEFGHI".toCharArray();
         int shifts = 1;
         char[] expResult = "BCDEFGHIJ".toCharArray();
-        char[] result = CaesarsCypher.encrypt(arrChar, shifts);
+        char[] result = CaesarsCypher.encrypt(arrChar, shifts, alfabet);
         assertArrayEquals(expResult, result);
     }
 
@@ -36,7 +38,7 @@ public class CaesarsCypherTest {
         char[] arrChar = "BCDEFGHIJ".toCharArray();
         int shifts = 1;
         char[] expResult = "ABCDEFGHI".toCharArray();
-        char[] result = CaesarsCypher.decrypt(arrChar, shifts);
+        char[] result = CaesarsCypher.decrypt(arrChar, shifts, alfabet);
         assertArrayEquals(expResult, result);
     }
     
