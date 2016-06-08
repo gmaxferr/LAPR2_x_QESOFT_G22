@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import lapr.project.controller.CriarCandidaturaAExposicaoController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
@@ -26,6 +27,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private ModeloListaProdutos modeloJListaProdutosCard2;
     private List<Demonstracao> listaDemonstracoes;
     private ModeloListaDemonstracoes listModelDemonstracoes;
+    private static final String JTEXTFIELD_INTRODUZIR_KEYWORDS_TEXTO_PREDEFINIDO = "Introduza entre 2 a 5 keywords separadas por \";\"";
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;
@@ -46,6 +48,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
      *
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
+     * @param Expositor
      */
     public JFrameCriarCandidaturaAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Expositor expositor) {
         super("Criar candidatura");
@@ -913,7 +916,6 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             if (numProdutos == 0) {
                 jButtonCard2RemoverProduto.setEnabled(false);
                 jTextFieldCard2IntroduzirKeywords.setEnabled(false);
-                jTextFieldCard2IntroduzirKeywords.setText("");
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Nenhum produto selecionado", "Nada selecionado", JOptionPane.WARNING_MESSAGE);

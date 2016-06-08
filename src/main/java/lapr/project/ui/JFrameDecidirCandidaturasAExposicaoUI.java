@@ -97,7 +97,6 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaCard1LocalExposicao = new javax.swing.JTextArea();
         jComboBoxCard1EscolherExposicao = new javax.swing.JComboBox<>();
-        card2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -262,19 +261,6 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
         getContentPane().add(card1, "card1");
 
-        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
-        card2.setLayout(card2Layout);
-        card2Layout.setHorizontalGroup(
-            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
-        );
-        card2Layout.setVerticalGroup(
-            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(card2, "card2");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -312,7 +298,6 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
-    private javax.swing.JPanel card2;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
     private javax.swing.JComboBox<String> jComboBoxCard1EscolherExposicao;
