@@ -5,7 +5,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representação do Controller do caso de uso - listar candidaturas removidas
+ * 
  * @author Ana Leite
  */
 public class ListarCandidaturasRemovidasController {
@@ -13,18 +14,18 @@ public class ListarCandidaturasRemovidasController {
     /**
      * Registo de candidaturas removidas.
      */
-    private RegistoCandidaturasRemovidas rcr;
+    private RegistoCandidaturasRemovidas m_rcr;
 
-    private RegistoExposicoes re;
+    private RegistoExposicoes m_re;
     /**
      * Exposicao escolhida.
      */
-    private Exposicao exposicaoEscolhida;
+    private Exposicao m_exposicaoEscolhida;
 
     /**
      * Centro de exposições.
      */
-    private CentroExposicoes centroExposicoes;
+    private CentroExposicoes m_centroExposicoes;
 
     /**
      * Constrói uma instância de ListarCandidaturasController recebendo como
@@ -33,24 +34,25 @@ public class ListarCandidaturasRemovidasController {
      * @param centro_exposicoes centro de exposições
      */
     public ListarCandidaturasRemovidasController(CentroExposicoes centro_exposicoes) {
-        this.centroExposicoes = centro_exposicoes;
+        this.m_centroExposicoes = centro_exposicoes;
     }
 
     /**
      * Guarda o registo de exposicoes.
      */
     public void getRegistoExposicoes() {
-        this.re = centroExposicoes.getRegistoExposicoes();
+        this.m_re = m_centroExposicoes.getRegistoExposicoes();
     }
 
     /**
      * Devolve a lista das exposições de um organizador.
      *
-     * @param usernameOrganizador
+     * @param usernameOrganizador username do organizador
+     * 
      * @return lista das exposições de um organizador.
      */
     public List<Exposicao> getListaExposicoesDoOrganizador(String usernameOrganizador) {
-        return re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
+        return m_re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
     }
 
     /**
@@ -59,14 +61,14 @@ public class ListarCandidaturasRemovidasController {
      * @param e nova exposição.
      */
     public void setExposicao(Exposicao e) {
-        this.exposicaoEscolhida = e;
+        this.m_exposicaoEscolhida = e;
     }
 
     /**
      * Guarda o registo de candidaturas removidas.
      */
     public void getRegistoCandidaturasRemovidas() {
-        this.rcr = exposicaoEscolhida.getRegistoCandidaturasRemovidas();
+        this.m_rcr = m_exposicaoEscolhida.getRegistoCandidaturasRemovidas();
     }
 
     /**
@@ -75,7 +77,7 @@ public class ListarCandidaturasRemovidasController {
      * @return lista de candidaturas removidas
      */
     public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
-        return this.rcr.getListaCandidaturasRemovidas();
+        return this.m_rcr.getListaCandidaturasRemovidas();
     }
 
 }
