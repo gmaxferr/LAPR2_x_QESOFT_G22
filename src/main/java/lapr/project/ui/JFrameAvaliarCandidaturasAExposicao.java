@@ -829,13 +829,13 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
     private void preencherDados() {
         CandidaturaAExposicao cand = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCandidaturaAssociada();
-        jLabelCard2DadosEmpresaNome.setText(cand.getM_StrNomeEmpresa());
-        String telemovelEmpresa = Integer.toString(cand.getM_intTelemovel());
+        jLabelCard2DadosEmpresaNome.setText(cand.getNomeEmpresa());
+        String telemovelEmpresa = Integer.toString(cand.getTelemovel());
         jLabelCard2DadosEmpresaTelemovel.setText(telemovelEmpresa);
-        jLabelCard2DadosEmpresaMorada.setText(cand.getM_StrMoradaEmpresa());
-        String numConvites = Integer.toString(cand.getM_intNumConvites());
+        jLabelCard2DadosEmpresaMorada.setText(cand.getMoradaEmpresa());
+        String numConvites = Integer.toString(cand.getNumConvites());
         jLabelCard2DadosCandidaturaNumeroConvites.setText(numConvites);
-        String area = Integer.toString(cand.getM_intArea());
+        String area = Integer.toString(cand.getArea());
         jLabelCard2DadosCandidaturaArea.setText(area);
         String[] vetorProdutosCandSelecionada = card2CriarVetorListaProdutosCandidaturaSelecionada(cand.getRegistoProdutos().getListaProdutosAExpor());
         jListCard2ListaProdutos.setListData(vetorProdutosCandSelecionada);

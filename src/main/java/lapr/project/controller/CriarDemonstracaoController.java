@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.ArrayList;
@@ -21,7 +16,7 @@ public class CriarDemonstracaoController {
     private RegistoRecursos m_rr;
     private RegistoDemonstracoes m_rd;
     private CentroExposicoes m_ce;
-    private Exposicao m_exposicao;
+    private Exposicao m_e;
     private Demonstracao m_d;
     private EstadoExposicao m_estado;
     private EstadoExposicaoCriada m_estadoExposicaoCriada;
@@ -61,7 +56,7 @@ public class CriarDemonstracaoController {
      * @param e - exposição selecionada
      */
     public void setExposicao(Exposicao e) {
-        this.m_exposicao = e;
+        this.m_e = e;
     }
 
     /**
@@ -69,7 +64,7 @@ public class CriarDemonstracaoController {
      * controller.
      */
     public void pullRegistoDemonstracaoDaExposicao() {
-        this.m_rd = m_exposicao.getRegistoDemonstracoes();
+        this.m_rd = m_e.getRegistoDemonstracoes();
     }
 
     /**
@@ -114,7 +109,7 @@ public class CriarDemonstracaoController {
      * num estado "Criada", transita para o estado "DemonsDefinidasSemFAE"
      */
     public void mudaEstado() {
-        m_estado = this.m_exposicao.getEstado();
+        m_estado = this.m_e.getEstado();
         if (m_estado.isEstadoFAEDefinidosSemDemos()) {
             m_estadoExposicaoDemosDef.setEstadoCompleta();
         } else if (m_estado.isEstadoCriada()) {

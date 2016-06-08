@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import lapr.project.controller.DetetarConflitoController;
 import lapr.project.estados.EstadoExposicao;
 import lapr.project.estados.EstadoExposicaoInicial;
 import lapr.project.utils.Data;
@@ -52,6 +51,16 @@ public class Exposicao implements Agendavel {
      * Data em que a acaba a deteção de conflitos
      */
     private Data m_dataFimDetecaoConflitos;
+
+    /**
+     * Data de abertura de candidaturas a demonstrações.
+     */
+    private Data m_dataInicioCandDemo;
+
+    /**
+     * Data de fim de candidaturas a demonstrações.
+     */
+    private Data m_dataFimCandDemo;
 
     /**
      * Atributo local de Exposição
@@ -238,6 +247,10 @@ public class Exposicao implements Agendavel {
      */
     public Local getLocal() {
         return local;
+    }
+    
+    public KeywordRanking getKeywordRankin(){
+        return this.m_keywordRanking;
     }
 
     /**
@@ -430,7 +443,7 @@ public class Exposicao implements Agendavel {
      * @return boolean de confirmação da validação
      */
     public boolean validarCandidatura(CandidaturaAExposicao c) {
-        return c.validarCandidatura();
+        return c.validaCandidatura();
     }
 
     public void setEstado(EstadoExposicao estado) {
@@ -480,24 +493,6 @@ public class Exposicao implements Agendavel {
         return m_rs;
     }
 
-    /**
-     * Devolve a data de abertura a candidaturas
-     *
-     * @return data de abertura a candidaturas
-     */
-    private Data getDataAberturaCandidatura() {
-        return this.m_dataAberturaCandidatura;
-    }
-
-    /**
-     * Devolve a data de encerramento a candidaturas
-     *
-     * @return data de encerramento a candidaturas
-     */
-    private Data getDataEncerramentoCandidatura() {
-        return this.m_dataEncerramentoCandidatura;
-    }
-
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
@@ -519,6 +514,58 @@ public class Exposicao implements Agendavel {
     public void schedule(TimerTask m_tt, Data date) {
         Timer timer = new Timer();
         timer.schedule(m_tt, date.toDate());
+    }
+
+    /**
+     * Permite alterar a data de abertura de submissão de candidaturas
+     * @param dataAberturaSubCand - data de abertura de submissão de candidaturas
+     */
+    public void setDataAberturaSubCand(Data dataAberturaSubCand) {
+        m_dataAberturaCandidatura = dataAberturaSubCand;
+    }
+
+    /**
+     * Permite alterar a data de encerramento de submissão de candidaturas
+     * @param dataEncerramentoSubCand - data de encerramento de submissão de candidaturas
+     */
+    public void setDataEncerramentoSubCand(Data dataEncerramentoSubCand) {
+        m_dataEncerramentoCandidatura = dataEncerramentoSubCand;
+    }
+
+    /**
+     * Permite alterar a data de fim de deteção de conflitos de interesse
+     * @param dataFimDetecaoConflitos - data de fim de deteção de conflitos de interesse
+     */
+    public void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
+        m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+    }
+
+    /**
+     * @return the dataInicioCandDemo
+     */
+    public Data getDataInicioCandDemo() {
+        return m_dataInicioCandDemo;
+    }
+
+    /**
+     * @param dataInicioCandDemo the dataInicioCandDemo to set
+     */
+    public void setDataInicioCandDemo(Data dataInicioCandDemo) {
+        this.m_dataInicioCandDemo = dataInicioCandDemo;
+    }
+
+    /**
+     * @return the dataFimCandDemo
+     */
+    public Data getDataFimCandDemo() {
+        return m_dataFimCandDemo;
+    }
+
+    /**
+     * @param dataFimCandDemo the dataFimCandDemo to set
+     */
+    public void setDataFimCandDemo(Data dataFimCandDemo) {
+        this.m_dataFimCandDemo = dataFimCandDemo;
     }
 
 }

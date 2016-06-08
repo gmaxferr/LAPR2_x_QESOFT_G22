@@ -114,11 +114,11 @@ public class CriarCandidaturaAExposicaoController {
      * @param numConvites numero de convites pretendidos
      */
     public void setDados(String nomeEmpresa, String moradaEmpresa, String telemovelEmpresa, String area, String numConvites) throws TelemovelEmpresaErradoException, AreaErradaException, NumeroConvitesErradoException {
-        this.m_candidaturaCriada.setM_strNomeEmpresa(nomeEmpresa);
-        this.m_candidaturaCriada.setM_strMorada(area);
-        this.m_candidaturaCriada.setM_intTelemovel(telemovelEmpresa);
-        this.m_candidaturaCriada.setM_intArea(area);
-        this.m_candidaturaCriada.setM_intNumConvites(numConvites);
+        this.m_candidaturaCriada.setNomeEmpresa(nomeEmpresa);
+        this.m_candidaturaCriada.setMorada(area);
+        this.m_candidaturaCriada.setTelemovel(telemovelEmpresa);
+        this.m_candidaturaCriada.setArea(area);
+        this.m_candidaturaCriada.setNumConvites(numConvites);
     }
 
     /**
@@ -163,7 +163,7 @@ public class CriarCandidaturaAExposicaoController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionaDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracaoACandidatura(demonstracaoEscolhida);
     }
 
     /**
@@ -201,7 +201,7 @@ public class CriarCandidaturaAExposicaoController {
     }
 
     public void setKeywords(String keywords) throws KeywordsErradasException {
-        this.m_candidaturaCriada.setM_Keywords(keywords);
+        this.m_candidaturaCriada.setKeywords(keywords);
     }
 
 }

@@ -36,14 +36,17 @@ public class KeywordRanking implements Serializable {
      * score.
      *
      * @param keyword keyword a adicionar
-     * @param score score da keyword a adicionar
+     * @param foiAceite boolean que informa se a keyword veio de uma candidatura
+     * Aceite ou Rejeitada
      */
-    public void addKeyword(String keyword, int score) {
+    public void addKeyword(String keyword, boolean foiAceite) {
+        int score = foiAceite ? 1 : -1;
         int i = getKeywordIndex(keyword);
         if (i == -1) {
             m_keywords.add(new ScoredKeyword(keyword, score));
         } else {
             m_keywords.get(i).setScore(m_keywords.get(i).getScore() + score);
+            m_keywords.get(i).setFrequency(m_keywords.get(i).getFrequency() + 1);
         }
     }
 

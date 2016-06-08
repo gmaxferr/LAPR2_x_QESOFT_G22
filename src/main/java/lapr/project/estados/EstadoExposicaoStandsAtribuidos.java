@@ -1,6 +1,9 @@
 package lapr.project.estados;
 
 import lapr.project.model.Exposicao;
+import lapr.project.timerTasks.AlterarParaCandDemoAberta;
+import lapr.project.timerTasks.AlterarParaCandDemoFechada;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -10,8 +13,8 @@ public class EstadoExposicaoStandsAtribuidos implements EstadoExposicao {
 
     private final Exposicao m_exposicao;
 
-    public EstadoExposicaoStandsAtribuidos(Exposicao exposicao) {
-        this.m_exposicao = exposicao;
+    public EstadoExposicaoStandsAtribuidos(Exposicao m_exposicao) {
+        this.m_exposicao = m_exposicao;
     }
 
     @Override
@@ -71,14 +74,16 @@ public class EstadoExposicaoStandsAtribuidos implements EstadoExposicao {
 
     @Override
     public boolean setEstadoDemonstracoesDecididas() {
-        if(valida()){
-            this.m_exposicao.setEstado(new EstadoExposicaoDemonstracoesDecididas(m_exposicao));
+        if (valida()) {
+            m_exposicao.setEstado(new EstadoExposicaoDemonstracoesDecididas(m_exposicao));
+            m_exposicao.schedule(new AlterarParaCandDemoAberta(m_exposicao), m_exposicao.getDataInicioCandDemo());
+            m_exposicao.schedule(new AlterarParaCandDemoFechada(m_exposicao), m_exposicao.getDataFimCandDemo());
             return true;
         }
         return false;
     }
-    
-    public boolean valida(){
+
+    public boolean valida() {
         // TODO
         return true;
     }

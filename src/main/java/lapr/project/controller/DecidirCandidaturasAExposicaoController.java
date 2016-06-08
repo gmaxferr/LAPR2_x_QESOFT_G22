@@ -19,6 +19,7 @@ public class DecidirCandidaturasAExposicaoController {
     private CentroExposicoes m_ce;
     private GestorDeExposicoes m_gestorDeExposicoes;
     private RegistoProdutos m_rp;
+    private String[] keywords;
 
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
         this.m_ce = ce;
@@ -63,35 +64,42 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     public String getNomeEmpresa() {
-        return this.m_candidaturaSelecionada.getM_StrNomeEmpresa();
+        return this.m_candidaturaSelecionada.getNomeEmpresa();
     }
 
     public String getMoradaEmpresa() {
-        return this.m_candidaturaSelecionada.getM_StrMoradaEmpresa();
+        return this.m_candidaturaSelecionada.getMoradaEmpresa();
     }
 
     public int getTelemovel() {
-        return this.m_candidaturaSelecionada.getM_intTelemovel();
+        return this.m_candidaturaSelecionada.getTelemovel();
     }
 
     public int getArea() {
-        return this.m_candidaturaSelecionada.getM_intArea();
+        return this.m_candidaturaSelecionada.getArea();
     }
 
     public int getNumeroConvites() {
-        return this.m_candidaturaSelecionada.getM_intNumConvites();
+        return this.m_candidaturaSelecionada.getNumConvites();
     }
 
     public void getKeywords() {
-        throw new UnsupportedOperationException();
+        this.keywords = this.m_candidaturaSelecionada.getKeywords();
     }
 
     public void setDecisao(boolean decisao) {
         this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
             setEstadoCandidaturaAceite();
+            for (String keyword : keywords) {
+                this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, true);
+            }
+
         } else {
             setEstadoCandidaturaRejeitada();
+            for (String keyword : keywords) {
+                this.m_exposicaoSelecionada.getKeywordRankin().addKeyword(keyword, false);
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,5 +104,34 @@ public class KeywordRankingTest {
         instance.addKeyword(keyword, score);
         instance.addKeyword(keyword, score);
         assertEquals(60, instance.getScoredKeywords().get(0).getScore());
+    }
+
+    /**
+     * Test of getKeywordIndex method, of class KeywordRanking.
+     */
+    @Test
+    public void testGetKeywordIndex() {
+        System.out.println("getKeywordIndex");
+        String keyword = "";
+        KeywordRanking instance = new KeywordRanking();
+        int expResult = 0;
+        int result = instance.getKeywordIndex(keyword);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getScoredKeywords method, of class KeywordRanking.
+     */
+    @Test
+    public void testGetScoredKeywords() {
+        System.out.println("getScoredKeywords");
+        KeywordRanking instance = new KeywordRanking();
+        List<ScoredKeyword> expResult = null;
+        List<ScoredKeyword> result = instance.getScoredKeywords();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

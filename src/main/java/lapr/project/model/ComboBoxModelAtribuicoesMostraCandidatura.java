@@ -50,7 +50,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
     @Override
     public Object getElementAt(int index) {
         CandidaturaAExposicao candidatura = this.m_listaAtribuicoes.get(index).getCandidaturaAssociada();
-        String candidaturaExpositor = candidatura.getM_StrNomeEmpresa() + "; " + candidatura.getM_StrUsernameExpositor();
+        String candidaturaExpositor = candidatura.getNomeEmpresa() + "; " + candidatura.getUsernameExpositor();
         return candidaturaExpositor;
     }
 

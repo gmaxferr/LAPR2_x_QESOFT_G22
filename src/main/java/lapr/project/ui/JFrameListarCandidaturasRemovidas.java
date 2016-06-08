@@ -25,7 +25,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     
     
     
-     private static final int LARGURA_JANELA_PASSO1 = 705;
+    private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;
 
     private static final int LARGURA_JANELA_PASSO2 = 555;
@@ -77,8 +77,6 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         card1 = new javax.swing.JPanel();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jButtonCard1Avancar = new javax.swing.JButton();
@@ -101,19 +99,6 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
         jListCard2ListaCandidaturas = new javax.swing.JList<>();
         jButtonCard2Recuar = new javax.swing.JButton();
         jButtonCard2Fechar = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -286,6 +271,8 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
 
         getContentPane().add(card1, "card1");
 
+        card2.setPreferredSize(new java.awt.Dimension(200, 308));
+
         jLabel4.setFont(jLabelCard1Titulo.getFont());
         jLabel4.setText("Lista de Candidaturas Removidas");
 
@@ -329,7 +316,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +325,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 34, Short.MAX_VALUE)
+                .addGap(18, 44, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCard2Recuar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(jButtonCard2Fechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -405,7 +392,6 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     private javax.swing.JScrollPane JScrollPaneCard2;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
     private javax.swing.JButton jButtonCard2Fechar;
@@ -418,7 +404,6 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JList<String> jListCard2ListaCandidaturas;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;

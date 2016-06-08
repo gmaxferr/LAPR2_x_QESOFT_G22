@@ -58,9 +58,9 @@ public class CandidaturaAExposicao {
      *
      */
     private Expositor m_expositor;
-    
+
     /**
-     * 
+     *
      */
     private String[] m_keywords;
 
@@ -81,7 +81,7 @@ public class CandidaturaAExposicao {
      *
      * @return numero de telemovel de CandidaturaAExposicao
      */
-    public int getM_intTelemovel() {
+    public int getTelemovel() {
         return m_intTelemovel;
     }
 
@@ -90,7 +90,7 @@ public class CandidaturaAExposicao {
      *
      * @return numero de convites de CandidaturaAExposicao
      */
-    public int getM_intNumConvites() {
+    public int getNumConvites() {
         return m_intNumConvites;
     }
 
@@ -99,7 +99,7 @@ public class CandidaturaAExposicao {
      *
      * @return area de CandidaturaAExposicao
      */
-    public int getM_intArea() {
+    public int getArea() {
         return m_intArea;
     }
 
@@ -108,11 +108,11 @@ public class CandidaturaAExposicao {
      *
      * @return nom da empresa
      */
-    public String getM_StrNomeEmpresa() {
+    public String getNomeEmpresa() {
         return this.m_StrNomeEmpresa;
     }
 
-    public String getM_StrMoradaEmpresa() {
+    public String getMoradaEmpresa() {
         return this.m_StrMoradaEmpresa;
     }
 
@@ -121,7 +121,7 @@ public class CandidaturaAExposicao {
      *
      * @return username do expositor
      */
-    public String getM_StrUsernameExpositor() {
+    public String getUsernameExpositor() {
         return m_expositor.getM_strUsername();
     }
 
@@ -142,7 +142,7 @@ public class CandidaturaAExposicao {
      *
      * @param m_intTelemovel novo numero de televovel de CandidaturaAExposicao
      */
-    public void setM_intTelemovel(String m_intTelemovel) {
+    public void setTelemovel(String m_intTelemovel) {
         if (m_intTelemovel.length() != 9) {
             throw new TelemovelEmpresaErradoException("O número de telemóvel da empresa introduzido não é válido!");
         }
@@ -160,7 +160,7 @@ public class CandidaturaAExposicao {
      *
      * @param m_StrNumConvites
      */
-    public void setM_intNumConvites(String m_StrNumConvites) throws TelemovelEmpresaErradoException {
+    public void setNumConvites(String m_StrNumConvites) throws TelemovelEmpresaErradoException {
         try {
             int intNumConvites = Integer.parseInt(m_StrNumConvites);
             if (intNumConvites < 0) {
@@ -177,7 +177,7 @@ public class CandidaturaAExposicao {
      *
      * @param m_StrArea
      */
-    public void setM_intArea(String m_StrArea) {
+    public void setArea(String m_StrArea) {
         try {
             int intArea = Integer.parseInt(m_StrArea);
             if (intArea < 0) {
@@ -194,7 +194,7 @@ public class CandidaturaAExposicao {
      *
      * @param nomeEmpresa novo nome de empresa
      */
-    public void setM_strNomeEmpresa(String nomeEmpresa) {
+    public void setNomeEmpresa(String nomeEmpresa) {
         this.m_StrNomeEmpresa = nomeEmpresa;
     }
 
@@ -203,7 +203,7 @@ public class CandidaturaAExposicao {
      *
      * @param morada nova morada
      */
-    public void setM_strMorada(String morada) {
+    public void setMorada(String morada) {
         this.m_StrMoradaEmpresa = morada;
     }
 
@@ -221,16 +221,6 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que valida e adiciona um novo produto
-     *
-     * @param produto produto a ser validado e adicionado
-     */
-    public void adicionaProduto(Produto produto) {
-        validaProduto(produto);
-        addProduto(produto);
-    }
-
-    /**
      * Remove produto da candidatura
      *
      * @param index
@@ -242,7 +232,7 @@ public class CandidaturaAExposicao {
             throw new IllegalArgumentException("Produto Inválido!");
         }
     }
-    
+
     /**
      * Edita um produto da candidatura
      *
@@ -257,13 +247,13 @@ public class CandidaturaAExposicao {
             throw new IllegalArgumentException("Produto Inválido!");
         }
     }
-    
+
     /**
      * Método que valida a candidatura
      *
      * @return boolean conforme a validação
      */
-    public boolean validarCandidatura() {
+    public boolean validaCandidatura() {
         //validação local dos dados
         if (validarDadosRepetidosOuInvalidos() == false) {
             //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
@@ -295,20 +285,6 @@ public class CandidaturaAExposicao {
     }
 
     /**
-     * Método que valida produto de CandidaturaAExposicao recebendo-o como
-     * parametro
-     *
-     * @param produto produto a ser validado
-     */
-    public void validaProduto(Produto produto) {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-
-    }
-
-    /**
      * Método que valida e adiciona uma nova demonstração
      *
      * @param demonstracao demonstracao a ser validada e adicionada
@@ -324,7 +300,7 @@ public class CandidaturaAExposicao {
      * @param demonstracao
      */
     public void addDemonstracao(Demonstracao demonstracao) {
-        this.m_rd.adicionaDemonstracao(demonstracao);
+        this.m_rd.adicionaDemonstracaoACandidatura(demonstracao);
     }
 
     /**
@@ -396,20 +372,6 @@ public class CandidaturaAExposicao {
         this.m_decisao.setM_bDecisao(decisao);
     }
 
-    /**
-     * Método que valida os dados de candidatura
-     *
-     * @return boolean que confirma validação
-     */
-    public boolean validarDadosCandidatura() {
-        //valida candidatura
-        return true;
-    }
-
-    public void valida() {
-        //valida
-    }
-
     public Expositor getExpositor() {
         return m_expositor;
     }
@@ -437,13 +399,23 @@ public class CandidaturaAExposicao {
         }
     }
 
-    public void setM_Keywords(String keywords) throws KeywordsErradasException {
+    public void setKeywords(String keywords) throws KeywordsErradasException {
         String[] vecKeywords = keywords.split(",");
-        if (vecKeywords.length > 5) {
+        if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
             this.m_keywords = vecKeywords;
         }
+    }
+
+    /**
+     * Devolve as keywords introduzidas pelo expositor no momento da
+     * candidatura. Estas descrevem os produtos introduzidos.
+     *
+     * @return keywords que descrevem os produtos associados à candidatura
+     */
+    public String[] getKeywords() {
+        return this.m_keywords;
     }
 
 }

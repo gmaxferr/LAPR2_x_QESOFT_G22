@@ -40,21 +40,28 @@ public class RegistoDemonstracoes {
      *
      * @param demonstracao demostracao a ser adicionada
      */
-    public void adicionaDemonstracao(Demonstracao demonstracao) {
-        demonstracao.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
-        m_contadorDemos++;
+    public void adicionaDemonstracaoACandidatura(Demonstracao demonstracao) {
         m_candidaturaAExposicao.adicionaDemonstracao(demonstracao);
     }
 
-    public Demonstracao novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        Demonstracao demo = new Demonstracao(descricaoIntroduzidaPeloUtilizador);
+    /**
+     * Cria uma nova demonstração
+     * @param descricao - descrição da demonstração
+     * @return nova demonstração
+     */
+    public Demonstracao novaDemonstracao(String descricao) {
+        Demonstracao demo = new Demonstracao(descricao);
         return demo;
     }
 
     /**
-     * Permite definir lista de demonstrações a partir de uma outra
+     * <<<<<<< HEAD Permite definir lista de demonstrações a partir de uma outra
      *
-     * @param listaDemonstracoes - lista de demonstrações a considerar
+     * @param listaDemonstracoes - lista de demonstrações a considerar =======
+     * Permite definir lista de demonstrações
+     *
+     * @param listaDemonstracoes >>>>>>>
+     * d028313c3d76f6dc2b99d2c5ca0701431aeb8599
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         for (Demonstracao d : listaDemonstracoes) {
@@ -89,6 +96,7 @@ public class RegistoDemonstracoes {
 
     /**
      * Adiciona uma demonstração à lista de demonstrações deste registo
+     *
      * @param m_demoCriada - demonstração a adicionar
      */
     public void addDemo(Demonstracao m_demoCriada) {

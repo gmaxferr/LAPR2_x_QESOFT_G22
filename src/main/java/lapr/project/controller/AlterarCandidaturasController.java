@@ -62,23 +62,23 @@ public class AlterarCandidaturasController {
     }
 
     public String getNomeEmpresa() {
-        return m_cand.getM_StrNomeEmpresa();
+        return m_cand.getNomeEmpresa();
     }
 
     public String getMorada() {
-        return m_cand.getM_StrMoradaEmpresa();
+        return m_cand.getMoradaEmpresa();
     }
 
     public int getTelemovel() {
-        return m_cand.getM_intTelemovel();
+        return m_cand.getTelemovel();
     }
 
     public float getArea() {
-        return m_cand.getM_intArea();
+        return m_cand.getArea();
     }
 
     public int getNumConvites() {
-        return m_cand.getM_intNumConvites();
+        return m_cand.getNumConvites();
     }
 
     /**
@@ -114,10 +114,10 @@ public class AlterarCandidaturasController {
     }
     
     public void setDadosCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, int area, int numConvites) {
-        m_cand.setM_strNomeEmpresa(nomeEmpresa);
-        m_cand.setM_strMorada(moradaEmpresa);
-        m_cand.setM_intTelemovel(nomeEmpresa);
-        m_cand.setM_intArea(moradaEmpresa);
-        m_cand.setM_intNumConvites(moradaEmpresa);
+        m_cand.setNomeEmpresa(nomeEmpresa);
+        m_cand.setMorada(moradaEmpresa);
+        m_cand.setTelemovel(nomeEmpresa);
+        m_cand.setArea(moradaEmpresa);
+        m_cand.setNumConvites(moradaEmpresa);
     }
 }

@@ -3,7 +3,6 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.DecisaoStand;
 import lapr.project.model.Exposicao;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoExposicoes;
@@ -13,7 +12,7 @@ import lapr.project.registos.RegistoExposicoes;
  * 
  * @author Ana Leite
  */
-public class ConfirmarStandsController {
+public class ConfirmarStandController {
 
     /**
      * Centro de exposições
@@ -33,7 +32,9 @@ public class ConfirmarStandsController {
     /**
      * Decisão tomada pelo representante
      */
-    private DecisaoStand m_decisao;
+    private boolean m_decisao;
+    
+    private AtribuicaoStand m_atribuicaoStand;
     /**
      * Exposicao escolhida
      */
@@ -45,7 +46,7 @@ public class ConfirmarStandsController {
      * 
      * @param centro_exposicoes centro de exposições
      */
-    public ConfirmarStandsController(CentroExposicoes centro_exposicoes){
+    public ConfirmarStandController(CentroExposicoes centro_exposicoes){
         this.m_centroExpo = centro_exposicoes;
     }
     
@@ -59,12 +60,12 @@ public class ConfirmarStandsController {
     /**
      * Devolve a lista das exposições de um representante
      * 
-     * @param usernameRepresentante username do representante
+     * @param username username do representante
      * 
      * @return lista das exposições de um representante
      */
-    public List<Exposicao> getListaExposicoesDoRepresentante(String usernameRepresentante){
-        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesRepresentante(usernameRepresentante);
+    public List<Exposicao> getListaExposicoesDoRepresentante(String username){
+        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesRepresentante(username);
     }
     
     /**
@@ -79,16 +80,16 @@ public class ConfirmarStandsController {
     /**
      * Guarda o registo de atribuições de stand
      */
-    public void getRegistoAtribuicoesDeStand(){
+    public void getRegistoAtribuicoesStands(){
         m_RegistoAtribuicoesStand = m_exposicaoEscolhida.getRegistoAtribuicoesStands();
     }
     
-    public AtribuicaoStand getAtribuicao(){
-        return m_RegistoAtribuicoesStand.getAtribuicao();
+    public List<AtribuicaoStand> getAtribuicao(String username){
+        return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(username);
     }
     
     public void setDecisao(boolean decisao){
-        this.m_decisao.setDecisao(decisao);
+        this.m_atribuicaoStand.setDecisao(decisao);
         
     }
 }

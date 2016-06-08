@@ -1,7 +1,5 @@
 package lapr.project.estados;
 
-import java.util.TimerTask;
-import lapr.project.controller.DetetarConflitoController;
 import lapr.project.model.Exposicao;
 
 /**

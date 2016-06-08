@@ -6,9 +6,10 @@
 package lapr.project.estados;
 
 import java.util.TimerTask;
-import lapr.project.controller.DetetarConflitoController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.timerTasks.*;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -19,6 +20,14 @@ public class EstadoExposicaoInicial implements EstadoExposicao {
     private final Exposicao m_exposicao;
     private final CentroExposicoes m_ce;
 
+    private TimerTask inicioSubCand;
+    private TimerTask fimSubCand;
+    private TimerTask fimDetecaoConflitos;
+
+    private Data data1;
+    private Data data2;
+    private Data data3;
+    
     public EstadoExposicaoInicial(Exposicao exposicao, CentroExposicoes ce) {
         this.m_exposicao = exposicao;
         this.m_ce = ce;
@@ -27,31 +36,22 @@ public class EstadoExposicaoInicial implements EstadoExposicao {
     @Override
     public boolean setEstadoCriada() {
 
-        TimerTask inicioSubCand = new TimerTask() {
-            @Override
-            public void run() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        m_exposicao.schedule(inicioSubCand, m_exposicao.getDataInicioSubCand());
-        TimerTask fimSubCand = new TimerTask() {
-            @Override
-            public void run() {
-                m_exposicao.getEstado().setEstadoCandidaturasFechadas();
-                DetetarConflitoController ctrl = new DetetarConflitoController(m_ce);
-                ctrl.detetaConflitos(m_exposicao);
-            }
+        data1 = m_exposicao.getDataInicioSubCand();
+        
+        data2 = m_exposicao.getDataFimSubCand();
+        
+        data3 = m_exposicao.getDataFimDetecaoConflitos();
+        
+        inicioSubCand = new AlterarParaAbertaCandidaturas(m_exposicao);
+        m_exposicao.schedule(inicioSubCand, data1);
 
-        };
-        m_exposicao.schedule(fimSubCand, m_exposicao.getDataFimSubCand());
-        TimerTask fimDetecaoConflitos = new TimerTask() {
-            @Override
-            public void run() {
-                m_exposicao.getEstado().setEstadoConflitosDetetados();
-            }
-        };
-        m_exposicao.schedule(fimDetecaoConflitos, m_exposicao.getDataFimDetecaoConflitos());
-        this.m_exposicao.setEstado(new EstadoExposicaoCriada(this.m_exposicao));
+        fimSubCand = new AlterarParaFechadaCandidaturas(m_exposicao, m_ce);
+        m_exposicao.schedule(fimSubCand, data2);
+
+        fimDetecaoConflitos = new AlterarParaConflitosAtualizados(m_exposicao);
+        m_exposicao.schedule(fimDetecaoConflitos, data3);
+
+        m_exposicao.setEstado(new EstadoExposicaoCriada(m_exposicao));
         return true;
     }
 

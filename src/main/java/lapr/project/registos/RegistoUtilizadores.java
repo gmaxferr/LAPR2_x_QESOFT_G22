@@ -41,25 +41,25 @@ public class RegistoUtilizadores {
 
     /**
      * Valida o utilizador pelo username ou pelo email
-     * 
+     *
      * @param username username do utilizador
      * @param email email do utilizador
-     * 
+     *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
     private boolean validaUtilizador(String username, String email) {
-       ArrayList<Utilizador> list = new ArrayList<>();
+        ArrayList<Utilizador> list = new ArrayList<>();
         for (Utilizador u : m_listaUtilizadores) {
             if (username.equals(u.getUsername()) || email.equals(u.getEmail())) {
-            return false;
-        }      
-    }
+                return false;
+            }
+        }
         return true;
-        
+
     }
-    
-    public boolean validaUtilizadorPeloID(){
+
+    public boolean validaUtilizadorPeloID() {
         return true;
     }
 
@@ -79,10 +79,10 @@ public class RegistoUtilizadores {
      * @return o dado Utilizador se encontrar ou então devolve null
      */
     public Utilizador getUtilizador(String id) {
-        for (int i = 0; i < m_listaUtilizadores.size(); i++) {
-            if (identificarUtilizadorPeloId(id)) {
-                return m_listaUtilizadores.get(i);
-            }
+        for (Utilizador u : m_listaUtilizadores) {
+            if (identificarUtilizadorPeloId(id, u.getEmail(), u.getUsername())) {
+                return u;
+}
         }
         return null;
     }
@@ -93,14 +93,17 @@ public class RegistoUtilizadores {
      * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
      * @return o dado Utilizador se encontrar ou então devolve null
      */
-    public boolean identificarUtilizadorPeloId(String id) {
-        //verifica no arraylist de todos os utilziadores
-        return true;
+    public boolean identificarUtilizadorPeloId(String id, String emailAVerificar, String usernameAVerificar) {
+        if (id.equals(emailAVerificar) || id.equals(usernameAVerificar)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
      * Cria um novo utilizador
-     * 
+     *
      * @return utilizador criado
      */
     public Utilizador novoUtilizador() {
@@ -112,17 +115,17 @@ public class RegistoUtilizadores {
      *
      * @param u Utilizador desejado
      */
-    public void addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail()) == true) {
+    public boolean addUtilizador(Utilizador u) {
+        if (validaUtilizador(u.getUsername(), u.getEmail())) {
             adicionaUtilizador(u);
-        } else {
-            
+            return true;
         }
+        return false;
     }
 
     /**
      * Adiciona um utiliador à lista de utilizadores
-     * 
+     *
      * @param u utilizador a adicionar
      */
     private void adicionaUtilizador(Utilizador u) {
@@ -130,8 +133,7 @@ public class RegistoUtilizadores {
     }
 
     /**
-     * Devolve uma lista com os novos registos (registos ainda nao
-     * confirmados)
+     * Devolve uma lista com os novos registos (registos ainda nao confirmados)
      *
      * @return lista de novos registos
      */

@@ -68,10 +68,13 @@ public class CriarExposicaoController {
      * @return o objecto Exposição criado com estes parametros ou null se não
      * foi possivel criar com esses parametros
      */
-    public Exposicao setDados(String strTitulo, String strDescricao, Data DataInicio, Data DataFim, Local strLocal, List<Utilizador> lstUtz) {
+    public Exposicao setDados(String strTitulo, String strDescricao, Data dataInicio, Data dataFim, Data dataAberturaSubCand, Data dataEncerramentoSubCand, Data dataFimDetecaoConflitos, Local strLocal, List<Utilizador> lstUtz) {
         m_exposicao.setTitulo(strTitulo);
         m_exposicao.setDescricao(strDescricao);
-        m_exposicao.setPeriodo(DataInicio, DataFim);
+        m_exposicao.setPeriodo(dataInicio, dataFim);
+        m_exposicao.setDataAberturaSubCand(dataAberturaSubCand);
+        m_exposicao.setDataEncerramentoSubCand(dataAberturaSubCand);
+        m_exposicao.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         m_exposicao.setLocal(strLocal);
 
         for (Utilizador u : lstUtz) {
