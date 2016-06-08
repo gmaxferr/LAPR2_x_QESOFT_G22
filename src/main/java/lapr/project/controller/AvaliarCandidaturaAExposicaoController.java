@@ -53,23 +53,23 @@ public class AvaliarCandidaturaAExposicaoController {
     }
 
     public String getDadosCandidaturaNomeEmpresa() {
-        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_StrNomeEmpresa();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getNomeEmpresa();
     }
 
     public String getDadosCandidaturaMoradaEmpresa() {
-        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_StrMoradaEmpresa();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getMoradaEmpresa();
     }
 
     public int getDadosCandidaturaTelemovel() {
-        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intTelemovel();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getTelemovel();
     }
 
     public int getDadosCandidaturaArea() {
-        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intArea();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getArea();
     }
 
     public int getDadosCandidaturaNumConvites() {
-        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getM_intNumConvites();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getNumConvites();
     }
 
     public Avaliacao getAvaliacaoDoFae() {

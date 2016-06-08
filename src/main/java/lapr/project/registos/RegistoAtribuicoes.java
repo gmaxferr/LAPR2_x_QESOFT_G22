@@ -26,7 +26,7 @@ public class RegistoAtribuicoes {
     }
 
     public boolean validarCandidatura(CandidaturaAExposicao c) {
-        return c.validarCandidatura();
+        return c.validaCandidatura();
     }
 
     /**
