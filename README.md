@@ -9,6 +9,7 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 4
 * UC 5
 * UC 17
+* UC 23
 
 ### Ana Leite "*Scrum Master*" ###
 
