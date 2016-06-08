@@ -311,18 +311,6 @@ public class Exposicao implements Agendavel {
     }
 
     /**
-     * Método que valida o utilizador
-     *
-     * @param u utilizador a ser validado
-     *
-     * @return boolean que confirma validação
-     */
-    public boolean validarUtilizador(Utilizador u) {
-        //valida o utilizador
-        return true;
-    }
-
-    /**
      * Método que valida dados da candidatura
      *
      * @param c candidatura
@@ -331,6 +319,7 @@ public class Exposicao implements Agendavel {
      */
     public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
         //valida candidatura
+        //vou implementar para um UC - Osorio
         return true;
     }
 
@@ -346,36 +335,12 @@ public class Exposicao implements Agendavel {
     }
 
     /**
-     * método que confirma adição de fae
-     *
-     * @param b
-     */
-    void confirmaAddFAE(boolean b) {
-        if (b == true) {
-
-        } else {
-            //cancela as alterações e FAE adicionados
-        }
-    }
-
-    /**
      * Devolve a lista de todas as candidaturas associadas à exposição
      *
      * @return arraylist com todas as candidatuas associadas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
         return this.m_rce.getListaCandidaturas();
-    }
-
-    /**
-     * Método que valida decisao da candidatura
-     *
-     * @param c candidatura
-     *
-     * @return boolean de confirmação da validação
-     */
-    public boolean validarDecisao(CandidaturaAExposicao c) {
-        return true;
     }
 
     /**
@@ -429,13 +394,6 @@ public class Exposicao implements Agendavel {
     }
 
     /**
-     * Método que remove candidaturas repetidas
-     */
-    public void removerCandidaturasRepetidas() {
-        //remove as exposições repetidas dentro do arrayList
-    }
-
-    /**
      * Método que valida candidatura
      *
      * @param c candidatura
@@ -457,15 +415,6 @@ public class Exposicao implements Agendavel {
      */
     public void setDecisao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
         candidaturaAExposicao.setDecisao(decisao);
-    }
-
-    /**
-     * Método que valida a decisao da candidatura
-     *
-     * @return boolean de confirmação de validação
-     */
-    public boolean validaDecidirCandidatura() {
-        return true;
     }
 
     public RegistoDemonstracoes getRegistoDemonstracoes() {

@@ -5,11 +5,8 @@
  */
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import lapr.project.estados.EstadoDemonstracao;
 import lapr.project.registos.RegistoRecursos;
-import sun.reflect.generics.visitor.Reifier;
 
 /**
  *
