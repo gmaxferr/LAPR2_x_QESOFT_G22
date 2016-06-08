@@ -24,10 +24,32 @@ public class KeywordRanking implements Serializable {
     private final List<ScoredKeyword> m_keywords;
 
     /**
+     * Variável que informa se este ranking de keywords está ou não preparado
+     * para ser exportado.
+     */
+    private boolean m_ready;
+
+    /**
      * Construtor sem parametros.
      */
     public KeywordRanking() {
         m_keywords = new ArrayList<>();
+        m_ready = false;
+    }
+
+    /**
+     * A partir do momento em que este método é chamado, este ranking
+     * considera-se pronto para ser exportado.
+     */
+    public void setReady() {
+        m_ready = true;
+    }
+
+    /**
+     * @return Retorna se este ranking está ou não pronto para ser exportado
+     */
+    public boolean isReady() {
+        return m_ready;
     }
 
     /**
@@ -85,9 +107,10 @@ public class KeywordRanking implements Serializable {
     public boolean exportCSV(File saveFile) {
         try (Formatter out = new Formatter(saveFile)) {
             Collections.sort(m_keywords);
-            out.format("Ranking,Keyword\n");
+            out.format("Ranking,Frequency,Keyword\n");
             for (int i = 0; i < m_keywords.size(); i++) {
-                out.format("%d,\"%s\"\n", i + 1, convertStringToCSVReadable(m_keywords.get(i).getValue()));
+                ScoredKeyword keyword = m_keywords.get(i);
+                out.format("%d,%d,%s\n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
             }
             out.close();
             return true;
@@ -106,13 +129,15 @@ public class KeywordRanking implements Serializable {
      * ser inserida entre aspas num campo de um ficheiro CSV
      */
     public String convertStringToCSVReadable(String str) {
-        StringBuilder sb = new StringBuilder(str.length() * 2);
+        StringBuilder sb = new StringBuilder(str.length() * 2 + 2);
+        sb.append('"');
         for (int i = 0; i < str.length(); i++) {
             sb.append(str.charAt(i));
             if (i != 0 && i != str.length() - 1 && str.charAt(i) == '"') {
                 sb.append('"');
             }
         }
+        sb.append('"');
         return sb.toString();
     }
 }

@@ -11,6 +11,7 @@ import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoExposicoes;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -18,16 +19,17 @@ import lapr.project.registos.RegistoExposicoes;
  */
 public class DecidirDemonstracaoController {
 
-    private final CentroExposicoes m_ce;
     private String m_usernameOrganizador;
     private RegistoExposicoes m_re;
     private RegistoDemonstracoes m_rd;
     private List<Demonstracao> m_listDemonstracoes;
     private boolean[] m_decisoesTemp;
-
-
+    private Exposicao m_expo;
+    
+    Data dataInicioCandDemo;
+    Data dataFimCandDemo;
+    
     public DecidirDemonstracaoController(CentroExposicoes ce, String username) {
-        this.m_ce = ce;
         m_re = ce.getRegistoExposicoes();
         m_usernameOrganizador = username;
     }
@@ -53,6 +55,7 @@ public class DecidirDemonstracaoController {
      * @return demonstrações pendentes da exposição selecionada
      */
     public List<Demonstracao> setExposicao(Exposicao e) {
+        m_expo = e;
         m_rd = e.getRegistoDemonstracoes();
         List<Demonstracao> demosPendentes = m_rd.getDemonstracoesPendentes();
         m_decisoesTemp = new boolean[demosPendentes.size()];
@@ -69,6 +72,9 @@ public class DecidirDemonstracaoController {
             } else {
                 m_listDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
             }
+            
+            this.m_expo.setDataInicioCandDemo(dataInicioCandDemo);
+            this.m_expo.setDataFimCandDemo(dataFimCandDemo);
         }
     }
 }
