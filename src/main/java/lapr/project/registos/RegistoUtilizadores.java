@@ -13,7 +13,14 @@ public class RegistoUtilizadores {
     /**
      * Lista de utilizadores
      */
-    private ArrayList<Utilizador> m_listaUtilizadores;
+    private final ArrayList<Utilizador> m_listaUtilizadores;
+
+    /**
+     * Construtor padrão
+     */
+    public RegistoUtilizadores() {
+        m_listaUtilizadores = new ArrayList<>();
+    }
 
     /**
      * Procura e retorna o Utilizador com o username recebido por parametro. Se

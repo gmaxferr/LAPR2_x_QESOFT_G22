@@ -5,11 +5,6 @@
  */
 package lapr.project.utils;
 
-import crypt.CaesarsCypher;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,25 +13,6 @@ import static org.junit.Assert.*;
  * @author Ricardo Catalao
  */
 public class CaesarsCypherTest {
-    
-    public CaesarsCypherTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of encrypt method, of class CaesarsCypher.
@@ -44,13 +20,11 @@ public class CaesarsCypherTest {
     @Test
     public void testEncrypt() {
         System.out.println("encrypt");
-        char[] arrChar = null;
-        int shifts = 0;
-        char[] expResult = null;
+        char[] arrChar = "ABCDEFGHI".toCharArray();
+        int shifts = 1;
+        char[] expResult = "BCDEFGHIJ".toCharArray();
         char[] result = CaesarsCypher.encrypt(arrChar, shifts);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,13 +33,11 @@ public class CaesarsCypherTest {
     @Test
     public void testDecrypt() {
         System.out.println("decrypt");
-        char[] arrChar = null;
-        int shifts = 0;
-        char[] expResult = null;
+        char[] arrChar = "BCDEFGHIJ".toCharArray();
+        int shifts = 1;
+        char[] expResult = "ABCDEFGHI".toCharArray();
         char[] result = CaesarsCypher.decrypt(arrChar, shifts);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

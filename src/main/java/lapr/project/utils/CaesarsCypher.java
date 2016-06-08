@@ -1,4 +1,4 @@
-package crypt;
+package lapr.project.utils;
 
 /**
  * Cifra de César: Permite codificar ou descodificar arrays de caracteres usando
@@ -11,6 +11,9 @@ package crypt;
  * @author Ricardo Catalao
  */
 public final class CaesarsCypher {
+    
+    private CaesarsCypher(){
+    }
     
     /**
      * Encripta um array de caracteres usando a cifra de César.<!-- -->Cada

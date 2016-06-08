@@ -1,9 +1,9 @@
 package lapr.project.model;
 
-import crypt.CaesarsCypher;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import lapr.project.utils.CaesarsCypher;
 
 /**
  * Representação de um Utilizador
