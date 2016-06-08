@@ -12,7 +12,7 @@ import lapr.project.registos.RegistoExposicoes;
  * 
  * @author Ana Leite
  */
-public class ConfirmarStandsController {
+public class ConfirmarStandController {
 
     /**
      * Centro de exposições
@@ -46,7 +46,7 @@ public class ConfirmarStandsController {
      * 
      * @param centro_exposicoes centro de exposições
      */
-    public ConfirmarStandsController(CentroExposicoes centro_exposicoes){
+    public ConfirmarStandController(CentroExposicoes centro_exposicoes){
         this.m_centroExpo = centro_exposicoes;
     }
     
@@ -60,12 +60,12 @@ public class ConfirmarStandsController {
     /**
      * Devolve a lista das exposições de um representante
      * 
-     * @param usernameRepresentante username do representante
+     * @param username username do representante
      * 
      * @return lista das exposições de um representante
      */
-    public List<Exposicao> getListaExposicoesDoRepresentante(String usernameRepresentante){
-        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesRepresentante(usernameRepresentante);
+    public List<Exposicao> getListaExposicoesDoRepresentante(String username){
+        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesRepresentante(username);
     }
     
     /**
