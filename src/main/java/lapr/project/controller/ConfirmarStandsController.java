@@ -3,7 +3,6 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.DecisaoStand;
 import lapr.project.model.Exposicao;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoExposicoes;
@@ -33,7 +32,9 @@ public class ConfirmarStandsController {
     /**
      * Decisão tomada pelo representante
      */
-    private DecisaoStand m_decisao;
+    private boolean m_decisao;
+    
+    private AtribuicaoStand m_atribuicaoStand;
     /**
      * Exposicao escolhida
      */
@@ -79,16 +80,16 @@ public class ConfirmarStandsController {
     /**
      * Guarda o registo de atribuições de stand
      */
-    public void getRegistoAtribuicoesDeStand(){
+    public void getRegistoAtribuicoesStands(){
         m_RegistoAtribuicoesStand = m_exposicaoEscolhida.getRegistoAtribuicoesStands();
     }
     
-    public AtribuicaoStand getAtribuicao(){
-        return m_RegistoAtribuicoesStand.getAtribuicao();
+    public List<AtribuicaoStand> getAtribuicao(String username){
+        return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(username);
     }
     
     public void setDecisao(boolean decisao){
-        this.m_decisao.setDecisao(decisao);
+        this.m_atribuicaoStand.setDecisao(decisao);
         
     }
 }

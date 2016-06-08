@@ -1,8 +1,10 @@
 package lapr.project.registos;
 
+import com.sun.xml.internal.bind.v2.schemagen.Util;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.AtribuicaoStand;
+import lapr.project.model.*;
 
 /**
  *
@@ -11,7 +13,9 @@ import lapr.project.model.AtribuicaoStand;
 public class RegistoAtribuicoesStands {
 
     private List<AtribuicaoStand> m_listaAtribuicoesStand;
-
+    
+    private CentroExposicoes m_centroExposicao;
+    
     public RegistoAtribuicoesStands() {
         this.m_listaAtribuicoesStand = new ArrayList<>();
     }
@@ -37,5 +41,17 @@ public class RegistoAtribuicoesStands {
     public void addAll(List<AtribuicaoStand> listAtr) {
         m_listaAtribuicoesStand.addAll(listAtr);
     }
-
+    
+    public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String username){
+         ArrayList<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
+         for(AtribuicaoStand as : m_listaAtribuicoesStand){
+             for(Expositor expositor : m_centroExposicao.getListaExpositores()){
+                 if(expositor.getM_strUsername().equalsIgnoreCase(username)){
+                     listaAtribuicoesStandRepresentante.add(as);
+                 }
+             }
+         }
+         return listaAtribuicoesStandRepresentante;
+        
+    }
 }

@@ -64,14 +64,17 @@ public class RegistarUtilizadorController {
         m_utilizador.setNome(nome);
         m_utilizador.setPwd(password);
         m_utilizador.setUsername(username);
-        m_utilizador.validaUtilizador(username, email);
+    }
+    
+    public boolean validaUtilizador(String nome, String email, char[] password, String username){
+       return m_utilizador.validaUtilizador(nome, password, username, email);
     }
 
     /**
      * Adiciona o utilizador ao registo de utilizadores
      */
-    public void addUtilizador() {
-        m_ru.addUtilizador(m_utilizador);
+    public boolean addUtilizador() {
+       return m_ru.addUtilizador(m_utilizador);
     }
 
     

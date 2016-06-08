@@ -8,10 +8,12 @@ public class AtribuicaoStand {
     
     private Stand m_stand;
     private CandidaturaAExposicao m_cand;
+    private boolean m_decisao;
 
-    public AtribuicaoStand(Stand m_stand, CandidaturaAExposicao m_cand) {
+    public AtribuicaoStand(Stand m_stand, CandidaturaAExposicao m_cand, boolean decisao) {
         this.m_stand = m_stand;
         this.m_cand = m_cand;
+        this.m_decisao = decisao;
     }
 
     /**
@@ -41,4 +43,23 @@ public class AtribuicaoStand {
     public void setCand(CandidaturaAExposicao cand) {
         this.m_cand = cand;
     }
+    
+    /**
+     * Devolve a decisão
+     * 
+     * @return decisão
+     */
+    public boolean getDecisao(){
+        return this.m_decisao;
+    }
+    
+    /**
+     * Modifica a decisão
+     * 
+     * @param decisao nova decisão
+     */
+    public void setDecisao(boolean decisao){
+        this.m_decisao = decisao;
+    }
+
 }
