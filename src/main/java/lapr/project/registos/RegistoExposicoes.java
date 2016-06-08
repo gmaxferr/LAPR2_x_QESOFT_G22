@@ -259,6 +259,20 @@ public class RegistoExposicoes {
         return listExpo;
     }
 
+    /**
+     * @return Retorna uma lista com todas as exposições cujo ranking está
+     * pronto para ser exportado para um ficheiro
+     */
+    public List<Exposicao> getListaExposicoesRankingPronto() {
+        List<Exposicao> result = new ArrayList<>();
+        for (Exposicao e : m_listaExposicoes) {
+            if (e.getKeywordRanking().isReady()) {
+                result.add(e);
+            }
+        }
+        return result;
+    }
+    
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
@@ -272,6 +286,5 @@ public class RegistoExposicoes {
         }
 
         return listaExposicoesDoOrganizador;
-
     }
 }

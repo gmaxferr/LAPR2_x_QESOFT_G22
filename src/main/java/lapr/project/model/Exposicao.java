@@ -249,7 +249,7 @@ public class Exposicao implements Agendavel {
         return local;
     }
     
-    public KeywordRanking getKeywordRankin(){
+    public KeywordRanking getKeywordRanking(){
         return this.m_keywordRanking;
     }
 

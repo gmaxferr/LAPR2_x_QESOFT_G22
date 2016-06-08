@@ -12,6 +12,7 @@ public class EstadoExposicaoCandidaturasDecididas implements EstadoExposicao {
 
     public EstadoExposicaoCandidaturasDecididas(Exposicao exposicao) {
         this.m_exposicao = exposicao;
+        m_exposicao.getKeywordRanking().setReady();
     }
 
     @Override

@@ -102,10 +102,10 @@ public class RegistoUtilizadores {
     /**
      * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
-     * @param username username do utilizador
-     * @param email email do utilizador
+     * @param u Utilizador a adicionar
+     * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
-    public boolean addUtilizador(String username, String email) {
+    public boolean addUtilizador(Utilizador u) {
         if (validaUtilizador(u.getUsername(), u.getEmail())) {
             adicionaUtilizador(u);
             return true;
