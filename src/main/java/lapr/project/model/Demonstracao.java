@@ -8,6 +8,8 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.EstadoDemonstracao;
+import lapr.project.registos.RegistoRecursos;
+import sun.reflect.generics.visitor.Reifier;
 
 /**
  *
@@ -17,11 +19,11 @@ public class Demonstracao {
 
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
-    private List<Recurso> m_listaRecursosNecessarios;
+    private RegistoRecursos rc;
     private EstadoDemonstracao m_estado;
 
     public Demonstracao(String descricao) {
-        this.m_listaRecursosNecessarios = new ArrayList<>();
+        this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
     }
 
@@ -45,8 +47,8 @@ public class Demonstracao {
      * 
      * @return registo dos recursos necessários à demonstração
      */
-    public List<Recurso> getListaRecursosNecessarios() {
-        return this.m_listaRecursosNecessarios;
+    public RegistoRecursos getRegistoRecursosNecessarios() {
+        return this.rc;
     }
 
     /**
@@ -70,12 +72,5 @@ public class Demonstracao {
      */
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
-    }
-
-    /**
-     * @param m_listaRecursosNecessarios the m_listaRecursosNecessarios to set
-     */
-    public void setListaRecursosNecessarios(List<Recurso> m_listaRecursosNecessarios) {
-        this.m_listaRecursosNecessarios = m_listaRecursosNecessarios;
     }
 }

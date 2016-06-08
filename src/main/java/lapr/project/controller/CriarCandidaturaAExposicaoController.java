@@ -7,9 +7,9 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Representação do Controller do caso de uso - criar candidatura.
+ * Controller do caso de uso - criar candidatura.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class CriarCandidaturaAExposicaoController {
 
@@ -34,12 +34,12 @@ public class CriarCandidaturaAExposicaoController {
     private RegistoDemonstracoes m_rd;
 
     /**
-     * Exposição escolhida.
+     * Exposição escolhida pelo utilizador
      */
     private Exposicao m_exposicaoEscolhida;
 
     /**
-     * Candidatura criada.
+     * Candidatura criada no processo. Funciona como uma candidatura temporária
      */
     private CandidaturaAExposicao m_candidaturaCriada;
 
@@ -49,7 +49,7 @@ public class CriarCandidaturaAExposicaoController {
     private CentroExposicoes m_centroExposicoes;
 
     /**
-     * 
+     * Estado da candidatura
      */
     private EstadoCandidaturaAExposicao m_estadoCandidatura;
 

@@ -75,13 +75,13 @@ public class CriarDemonstracaoController {
      */
     public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
         this.m_d = m_rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
-        this.m_listaRecursosParaDemonstracao = m_d.getListaRecursosNecessarios();
+        this.m_listaRecursosParaDemonstracao = m_d.getRegistoRecursosNecessarios().getListaDeRecursos();
     }
 
     /**
      * @return lista de recursos do Registo de Recursos do Centro de Exposições
      */
-    public ArrayList<Recurso> getListaDeRecursos() {
+    public List<Recurso> getListaDeRecursos() {
         return m_rr.getListaDeRecursos();
     }
 
@@ -131,7 +131,7 @@ public class CriarDemonstracaoController {
      * Atribui a lista de recursos à demonstração
      */
     public void setRecursos() {
-        m_d.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
+        m_d.getRegistoRecursosNecessarios().setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
     }
 
     public void registaDemo() {

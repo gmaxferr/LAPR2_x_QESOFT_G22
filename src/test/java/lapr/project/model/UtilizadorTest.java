@@ -122,14 +122,14 @@ public class UtilizadorTest {
     }
 
     /**
-     * Test of setBoolConfirmaRegisto method, of class Utilizador.
+     * Test of confirmarRegistoDoUtilizador method, of class Utilizador.
      */
     @Test
     public void testSetBoolConfirmaRegisto() {
         System.out.println("setBoolConfirmaRegisto");
         boolean m_boolConfirmaRegisto = false;
         Utilizador instance = new Utilizador();
-        instance.setBoolConfirmaRegisto(m_boolConfirmaRegisto);
+        instance.confirmarRegistoDoUtilizador(m_boolConfirmaRegisto);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
