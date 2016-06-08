@@ -480,24 +480,6 @@ public class Exposicao implements Agendavel {
         return m_rs;
     }
 
-    /**
-     * Devolve a data de abertura a candidaturas
-     *
-     * @return data de abertura a candidaturas
-     */
-    private Data getDataAberturaCandidatura() {
-        return this.m_dataAberturaCandidatura;
-    }
-
-    /**
-     * Devolve a data de encerramento a candidaturas
-     *
-     * @return data de encerramento a candidaturas
-     */
-    private Data getDataEncerramentoCandidatura() {
-        return this.m_dataEncerramentoCandidatura;
-    }
-
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
@@ -519,6 +501,30 @@ public class Exposicao implements Agendavel {
     public void schedule(TimerTask m_tt, Data date) {
         Timer timer = new Timer();
         timer.schedule(m_tt, date.toDate());
+    }
+
+    /**
+     * Permite alterar a data de abertura de submissão de candidaturas
+     * @param dataAberturaSubCand - data de abertura de submissão de candidaturas
+     */
+    public void setDataAberturaSubCand(Data dataAberturaSubCand) {
+        m_dataAberturaCandidatura = dataAberturaSubCand;
+    }
+
+    /**
+     * Permite alterar a data de encerramento de submissão de candidaturas
+     * @param dataEncerramentoSubCand - data de encerramento de submissão de candidaturas
+     */
+    public void setDataEncerramentoSubCand(Data dataEncerramentoSubCand) {
+        m_dataEncerramentoCandidatura = dataEncerramentoSubCand;
+    }
+
+    /**
+     * Permite alterar a data de fim de deteção de conflitos de interesse
+     * @param dataFimDetecaoConflitos - data de fim de deteção de conflitos de interesse
+     */
+    public void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
+        m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
     }
 
 }
