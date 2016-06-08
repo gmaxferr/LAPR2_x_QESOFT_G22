@@ -375,7 +375,8 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(controller.addUtilizador(jTextField3.getText(), jTextField2.getText()) == false){
+        controller.setDados(jTextField1.getText(), jTextField2.getText(), jTextField3.getText().toCharArray(), jTextField4.getText());
+        if(controller.addUtilizador() == false){
             JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
             CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
             cardLayout.show(getContentPane(), "card1");
