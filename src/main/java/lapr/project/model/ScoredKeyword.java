@@ -13,6 +13,11 @@ public class ScoredKeyword extends Keyword implements Comparable<ScoredKeyword>,
      * Score da componente keyword.
      */
     private int score;
+    
+    /**
+     * Frequência desta keyword.
+     */
+    private int frequency;
 
     /**
      * Construtor da classe ScoredKeyword
@@ -23,6 +28,7 @@ public class ScoredKeyword extends Keyword implements Comparable<ScoredKeyword>,
     public ScoredKeyword(String keyword, int score) {
         super(keyword);
         this.score = score;
+        this.frequency = 1;
     }
 
     /**
@@ -38,7 +44,21 @@ public class ScoredKeyword extends Keyword implements Comparable<ScoredKeyword>,
     public void setScore(int score) {
         this.score = score;
     }
+    
+    /**
+     * @return the frequency
+     */
+    public int getFrequency() {
+        return frequency;
+    }
 
+    /**
+     * @param frequency the frequency to set
+     */
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (o == null) {
