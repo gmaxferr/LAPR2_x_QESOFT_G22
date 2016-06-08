@@ -14,7 +14,7 @@ import lapr.project.registos.RegistoCandidaturasAExposicao;
  *
  * @author Ana Leite
  */
-public class AlterarCandidaturasController {
+public class AlterarCandidaturaExpoController {
 
     private RegistoCandidaturasAExposicao m_rc;
     private Exposicao m_exposicao;
@@ -24,7 +24,7 @@ public class AlterarCandidaturasController {
     private Expositor m_expositor;
     private String m_username;
 
-    public AlterarCandidaturasController(RegistoCandidaturasAExposicao registoCandidaturas, String username) {
+    public AlterarCandidaturaExpoController(RegistoCandidaturasAExposicao registoCandidaturas, String username) {
         m_rc = registoCandidaturas;
         this.m_username = username;
     }

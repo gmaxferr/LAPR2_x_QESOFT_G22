@@ -248,6 +248,8 @@ public class CandidaturaAExposicao {
         }
     }
 
+    
+    
     /**
      * Método que valida a candidatura
      *

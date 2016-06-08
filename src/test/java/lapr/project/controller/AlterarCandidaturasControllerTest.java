@@ -49,7 +49,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetM_EstadoExposicao() {
         System.out.println("getM_EstadoExposicao");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         boolean expResult = false;
         boolean result = instance.getM_EstadoExposicao();
         assertEquals(expResult, result);
@@ -64,7 +64,7 @@ public class AlterarCandidaturasControllerTest {
     public void testVerificaEstadoExposicao() {
         System.out.println("verificaEstadoExposicao");
         EstadoExposicao estado = null;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         boolean expResult = false;
         boolean result = instance.verificaEstadoExposicao(estado);
         assertEquals(expResult, result);
@@ -78,7 +78,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetEstadoCandidatura() {
         System.out.println("getEstadoCandidatura");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         boolean expResult = false;
         boolean result = instance.getEstadoCandidatura();
         assertEquals(expResult, result);
@@ -93,7 +93,7 @@ public class AlterarCandidaturasControllerTest {
     public void testVerificaCandidatura() {
         System.out.println("verificaCandidatura");
         EstadoCandidaturaAExposicao estado = null;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         boolean expResult = false;
         boolean result = instance.verificaCandidatura(estado);
         assertEquals(expResult, result);
@@ -107,7 +107,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetM_RegistoCandidaturas() {
         System.out.println("getM_RegistoCandidaturas");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.getM_RegistoCandidaturas();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -119,7 +119,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetExposRepresentante() {
         System.out.println("getExposRepresentante");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         List<CandidaturaAExposicao> expResult = null;
         List<CandidaturaAExposicao> result = instance.getExposRepresentante();
         assertEquals(expResult, result);
@@ -134,7 +134,7 @@ public class AlterarCandidaturasControllerTest {
     public void testSetExposicao() {
         System.out.println("setExposicao");
         Exposicao m_exposicao = null;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.setExposicao(m_exposicao);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -146,7 +146,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetNomeEmpresa() {
         System.out.println("getNomeEmpresa");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         String expResult = "";
         String result = instance.getNomeEmpresa();
         assertEquals(expResult, result);
@@ -160,7 +160,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetMorada() {
         System.out.println("getMorada");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         String expResult = "";
         String result = instance.getMorada();
         assertEquals(expResult, result);
@@ -174,7 +174,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetTelemovel() {
         System.out.println("getTelemovel");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         int expResult = 0;
         int result = instance.getTelemovel();
         assertEquals(expResult, result);
@@ -188,7 +188,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetArea() {
         System.out.println("getArea");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         float expResult = 0.0F;
         float result = instance.getArea();
         assertEquals(expResult, result, 0.0);
@@ -202,7 +202,7 @@ public class AlterarCandidaturasControllerTest {
     @Test
     public void testGetNumConvites() {
         System.out.println("getNumConvites");
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         int expResult = 0;
         int result = instance.getNumConvites();
         assertEquals(expResult, result);
@@ -217,7 +217,7 @@ public class AlterarCandidaturasControllerTest {
     public void testRemoverProduto() {
         System.out.println("removerProduto");
         int index = 0;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.removerProduto(index);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -230,7 +230,7 @@ public class AlterarCandidaturasControllerTest {
     public void testAdicionarProduto() {
         System.out.println("adicionarProduto");
         Produto p = null;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.adicionarProduto(p);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -244,7 +244,7 @@ public class AlterarCandidaturasControllerTest {
         System.out.println("editarProduto");
         int index = 0;
         String novoProduto = "";
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.editarProduto(index, novoProduto);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -261,7 +261,7 @@ public class AlterarCandidaturasControllerTest {
         int telemovel = 0;
         int area = 0;
         int numConvites = 0;
-        AlterarCandidaturasController instance = null;
+        AlterarCandidaturaExpoController instance = null;
         instance.setDadosCandidatura(nomeEmpresa, moradaEmpresa, telemovel, area, numConvites);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
