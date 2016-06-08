@@ -250,12 +250,26 @@ public class RegistoExposicoes {
     public List<Exposicao> getListaExposicoesEstadoCandidaturasDecididas() {
         List<Exposicao> listExpo = new ArrayList<>();
         List<Exposicao> listaExpo = getListaExposicoes();
-        for (Exposicao e : m_listaExposicoes){
+        for (Exposicao e : m_listaExposicoes) {
             EstadoExposicao state = e.getEstado();
-            if(state.isEstadoCandidaturasDecididas()){
+            if (state.isEstadoCandidaturasDecididas()) {
                 listExpo.add(e);
             }
         }
         return listExpo;
+    }
+
+    /**
+     * @return Retorna uma lista com todas as exposições cujo ranking está
+     * pronto para ser exportado para um ficheiro
+     */
+    public List<Exposicao> getListaExposicoesRankingPronto() {
+        List<Exposicao> result = new ArrayList<>();
+        for (Exposicao e : m_listaExposicoes) {
+            if (e.getKeywordRanking().isReady()) {
+                result.add(e);
+            }
+        }
+        return result;
     }
 }
