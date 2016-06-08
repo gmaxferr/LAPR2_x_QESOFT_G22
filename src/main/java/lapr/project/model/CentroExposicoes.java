@@ -7,13 +7,16 @@ import lapr.project.registos.RegistoTipoConflitos;
 import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoExpositores;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Node;
 
 /**
  * Representação de um Centro de Exposições
  *
  * @author Ricardo Osório Ana Leite
  */
-public class CentroExposicoes {
+public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable{
 
     /**
      *
@@ -136,5 +139,15 @@ public class CentroExposicoes {
     
      public List<Expositor> getListaExpositores() {
         return this.m_rExpositores.getListaExpositores();
+    }
+
+    @Override
+    public CentroExposicoes importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

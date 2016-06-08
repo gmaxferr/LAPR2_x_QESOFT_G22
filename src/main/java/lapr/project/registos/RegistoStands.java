@@ -9,7 +9,7 @@ import lapr.project.model.Stand;
  * @author Ricardo Catalao
  */
 public class RegistoStands {
-    
+
     private final List<Stand> m_listaStands;
 
     public RegistoStands() {
@@ -17,7 +17,7 @@ public class RegistoStands {
     }
 
     /**
-     * @return Retorna a lista de stands
+     * @return lista de stands
      */
     public List<Stand> getListaStands() {
         return m_listaStands;
@@ -29,5 +29,23 @@ public class RegistoStands {
     public void addStand(Stand stand) {
         this.m_listaStands.add(stand);
     }
-    
+
+    public boolean criarStand(String ID, int area) {
+        Stand novoStand = new Stand(ID, area);
+        if (validarStand(novoStand)) {
+            this.m_listaStands.add(novoStand);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validarStand(Stand novoStand) {
+        for (Stand stand : m_listaStands) {
+            if (novoStand.equals(stand)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

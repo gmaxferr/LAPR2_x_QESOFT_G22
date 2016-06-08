@@ -1,5 +1,6 @@
-package lapr.project.utils.exemplo;
+package lapr.project.utils;
 
+import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
 
 import javax.xml.transform.TransformerException;

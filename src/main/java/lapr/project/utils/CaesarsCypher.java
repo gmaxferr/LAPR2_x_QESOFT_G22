@@ -1,4 +1,4 @@
-package crypt;
+package lapr.project.utils;
 
 /**
  * Cifra de César: Permite codificar ou descodificar arrays de caracteres usando
@@ -12,6 +12,9 @@ package crypt;
  */
 public final class CaesarsCypher {
     
+    private CaesarsCypher(){
+    }
+    
     /**
      * Encripta um array de caracteres usando a cifra de César.<!-- -->Cada
      * caracter é deslocado n {@code shifts} para a direita e, caso isso exceda
@@ -19,13 +22,14 @@ public final class CaesarsCypher {
      *
      * @param arrChar Array de caracteres a encriptar
      * @param shifts Numero de casas a deslocar cada caracter
+     * @param alfabet Alfabeto a ser usado na encriptação
      * @return Retorna o array de caracteres que resulta da encriptação
      */
-    public static char[] encrypt(char[] arrChar, int shifts) {
+    public static char[] encrypt(char[] arrChar, int shifts, String alfabet) {
         int size = arrChar.length;
         char[] result = new char[size];
         for (int i = 0; i < size; i++) {
-            result[i] = (char) ((arrChar[i] + shifts) % 256);
+            result[i] = alfabet.charAt((alfabet.indexOf(arrChar[i]) + shifts) % alfabet.length());
         }
         return result;
     }
@@ -38,13 +42,14 @@ public final class CaesarsCypher {
      *
      * @param arrChar Array de caracteres a encriptar
      * @param shifts Numero de casas a deslocar cada caracter
+     * @param alfabet Alfabeto a ser usado na decriptação
      * @return Retorna o array de caracteres que resulta da desencriptação
      */
-    public static char[] decrypt(char[] arrChar, int shifts) {
+    public static char[] decrypt(char[] arrChar, int shifts, String alfabet) {
         int size = arrChar.length;
         char[] result = new char[size];
         for (int i = 0; i < size; i++) {
-            result[i] = (char) ((arrChar[i] + (256 - shifts)) % 256);
+            result[i] = alfabet.charAt((alfabet.indexOf(arrChar[i]) + alfabet.length() - shifts) % alfabet.length());
         }
         return result;
     }

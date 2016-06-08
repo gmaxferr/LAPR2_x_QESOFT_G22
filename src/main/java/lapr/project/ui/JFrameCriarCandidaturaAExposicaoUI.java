@@ -945,7 +945,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
     private void jComboBoxCard3EscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
         if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
-            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getM_StrDescricao());
+            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getDescricao());
         } else {
             jTextAreaCard3DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
         }

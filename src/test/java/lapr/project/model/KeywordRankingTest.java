@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -51,19 +52,19 @@ public class KeywordRankingTest {
         try {
             System.out.println("exportCSV");
             File saveFile = tempFolder.newFile("test_file.txt");
-            String[] expResult = {"Ranking,Keyword", "1,\"Prod4\"", "2,\"Prod1\"", "3,\"Prod2\"", "4,\"Prod5\"", "5,\"Prod3\""};
+            String[] expResult = {"Ranking,Frequency,Keyword", "1,1,\"Prod1\"", "2,4,\"Prod2\""};
             KeywordRanking instance = new KeywordRanking();
-            instance.addKeyword("Prod1", 30);
-            instance.addKeyword("Prod2", 50);
-            instance.addKeyword("Prod3", 70);
-            instance.addKeyword("Prod4", 20);
-            instance.addKeyword("Prod5", 60);
+            instance.addKeyword("Prod1", true);
+            instance.addKeyword("Prod2", true);
+            instance.addKeyword("Prod2", true);
+            instance.addKeyword("Prod2", false);
+            instance.addKeyword("Prod2", false);
             instance.exportCSV(saveFile);
             Scanner in = new Scanner(saveFile);
             int i = 0;
             while (in.hasNext()) {
                 if (i < expResult.length) {
-                    assertTrue(expResult[i].equals(in.nextLine()));
+                    assertEquals(expResult[i], in.nextLine());
                 } else {
                     fail("Ficheiro tem informação a mais!");
                     break;
@@ -85,7 +86,7 @@ public class KeywordRankingTest {
     @Test
     public void testConvertStringToCSVReadable() {
         System.out.println("convertStringToCSVReadable");
-        String str = "\"to be, or \"not\" to be\"";
+        String str = "to be, or \"not\" to be";
         KeywordRanking instance = new KeywordRanking();
         String expResult = "\"to be, or \"\"not\"\" to be\"";
         String result = instance.convertStringToCSVReadable(str);
@@ -99,11 +100,14 @@ public class KeywordRankingTest {
     public void testAddKeyword() {
         System.out.println("addKeyword");
         String keyword = "prod1";
-        int score = 30;
         KeywordRanking instance = new KeywordRanking();
-        instance.addKeyword(keyword, score);
-        instance.addKeyword(keyword, score);
-        assertEquals(60, instance.getScoredKeywords().get(0).getScore());
+        instance.addKeyword(keyword, true);
+        instance.addKeyword(keyword, true);
+        instance.addKeyword(keyword, false);
+        int expScore = 1;
+        int expFrequency = 3;
+        assertEquals(expScore, instance.getScoredKeywords().get(0).getScore());
+        assertEquals(expFrequency, instance.getScoredKeywords().get(0).getFrequency());
     }
 
     /**
@@ -112,13 +116,17 @@ public class KeywordRankingTest {
     @Test
     public void testGetKeywordIndex() {
         System.out.println("getKeywordIndex");
-        String keyword = "";
+        String keyword1 = "cheese";
+        String keyword2 = "chocolate";
         KeywordRanking instance = new KeywordRanking();
+        instance.addKeyword(keyword2, true);
+        instance.addKeyword(keyword1, true);
         int expResult = 0;
-        int result = instance.getKeywordIndex(keyword);
+        int result = instance.getKeywordIndex("chocolate");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expResult = 1;
+        result = instance.getKeywordIndex("cheese");
+        assertEquals(expResult, result);
     }
 
     /**
@@ -128,10 +136,26 @@ public class KeywordRankingTest {
     public void testGetScoredKeywords() {
         System.out.println("getScoredKeywords");
         KeywordRanking instance = new KeywordRanking();
-        List<ScoredKeyword> expResult = null;
+        List<ScoredKeyword> expResult = new ArrayList<>();
+        ScoredKeyword key = new ScoredKeyword("key1", 10);
+        key.setFrequency(10);
+        expResult.add(key);
+        key = new ScoredKeyword("key2", 30);
+        key.setFrequency(30);
+        expResult.add(key);
+        key = new ScoredKeyword("key3", 20);
+        key.setFrequency(20);
+        expResult.add(key);
+        for (int i = 0; i < 10; i++) {
+            instance.addKeyword("key1", true);
+        }
+        for (int i = 0; i < 30; i++) {
+            instance.addKeyword("key2", true);
+        }
+        for (int i = 0; i < 20; i++) {
+            instance.addKeyword("key3", true);
+        }
         List<ScoredKeyword> result = instance.getScoredKeywords();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

@@ -10,6 +10,7 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 5
 * UC 17
 * UC 23
+* UC 24
 
 ### Ana Leite "*Scrum Master*" ###
 
@@ -17,6 +18,8 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 7
 * UC 19
 * UC 16
+* UC 27
+* UC 28
 
 ### João Pedro Santos Cardoso ###
 
@@ -24,6 +27,8 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 11
 * UC 18
 * UC 21
+* UC 26
+* UC 29
 
 ### Guilherme Ferreira ###
 
@@ -32,6 +37,7 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 10
 * UC 14
 * UC 20
+* UC 30
 
 ### Ricardo Jorge Afonso Catalão ###
 
@@ -39,3 +45,4 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 13
 * UC 15
 * UC 22
+* UC 25

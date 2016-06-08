@@ -9,6 +9,16 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Classe resposável por guardar o ranking global de keywords e pela exportação
@@ -16,7 +26,11 @@ import java.util.logging.Logger;
  *
  * @author Ricardo Catalao
  */
-public class KeywordRanking implements Serializable {
+public class KeywordRanking implements Serializable, Importable<KeywordRanking>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "KeywordRanking";
+    public static final String KEYWORDS_LIST_ELEMENT_NAME = "keywords";
+    public static final String READY_ATTR_NAME = "isReady";
 
     /**
      * Lista de todas as keywords presentes no ranking de keywords.
@@ -24,10 +38,32 @@ public class KeywordRanking implements Serializable {
     private final List<ScoredKeyword> m_keywords;
 
     /**
+     * Variável que informa se este ranking de keywords está ou não preparado
+     * para ser exportado.
+     */
+    private boolean m_ready;
+
+    /**
      * Construtor sem parametros.
      */
     public KeywordRanking() {
         m_keywords = new ArrayList<>();
+        m_ready = false;
+    }
+
+    /**
+     * A partir do momento em que este método é chamado, este ranking
+     * considera-se pronto para ser exportado.
+     */
+    public void setReady() {
+        m_ready = true;
+    }
+
+    /**
+     * @return Retorna se este ranking está ou não pronto para ser exportado
+     */
+    public boolean isReady() {
+        return m_ready;
     }
 
     /**
@@ -85,9 +121,11 @@ public class KeywordRanking implements Serializable {
     public boolean exportCSV(File saveFile) {
         try (Formatter out = new Formatter(saveFile)) {
             Collections.sort(m_keywords);
-            out.format("Ranking,Keyword\n");
+            Collections.reverse(m_keywords);
+            out.format("Ranking,Frequency,Keyword\n");
             for (int i = 0; i < m_keywords.size(); i++) {
-                out.format("%d,\"%s\"\n", i + 1, convertStringToCSVReadable(m_keywords.get(i).getValue()));
+                ScoredKeyword keyword = m_keywords.get(i);
+                out.format("%d,%d,%s\n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
             }
             out.close();
             return true;
@@ -106,13 +144,78 @@ public class KeywordRanking implements Serializable {
      * ser inserida entre aspas num campo de um ficheiro CSV
      */
     public String convertStringToCSVReadable(String str) {
-        StringBuilder sb = new StringBuilder(str.length() * 2);
+        StringBuilder sb = new StringBuilder(str.length() * 2 + 2);
+        sb.append('"');
         for (int i = 0; i < str.length(); i++) {
             sb.append(str.charAt(i));
             if (i != 0 && i != str.length() - 1 && str.charAt(i) == '"') {
                 sb.append('"');
             }
         }
+        sb.append('"');
         return sb.toString();
+    }
+
+    @Override
+    public KeywordRanking importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.appendChild(doc.importNode(node, true));
+
+            NodeList nList = doc.getChildNodes();
+
+            Node n = nList.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                Node n2 = elem.getElementsByTagName(KEYWORDS_LIST_ELEMENT_NAME).item(0);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem2 = (Element) n2;
+                    NodeList nList2 = elem2.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
+                    for (int i = 0; i < nList2.getLength(); i++) {
+                        Node n3 = nList2.item(i);
+                        ScoredKeyword key = new ScoredKeyword("", 0);
+                        key.importContentFromXMLNode(n3);
+                        m_keywords.add(key);
+                    }
+                }
+                this.m_ready = Boolean.valueOf(elem.getAttribute(READY_ATTR_NAME));
+            }
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+
+            Element elementKeys = document.createElement(KEYWORDS_LIST_ELEMENT_NAME);
+            for (ScoredKeyword k : m_keywords) {
+                Node n = k.exportContentToXMLNode();
+                elementKeys.appendChild(document.importNode(n, true));
+            }
+            elementKeyword.appendChild(elementKeys);
+
+            elementKeyword.setAttribute(READY_ATTR_NAME, String.valueOf(m_ready));
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }

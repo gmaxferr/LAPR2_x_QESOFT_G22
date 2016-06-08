@@ -1,15 +1,38 @@
 package lapr.project.model;
 
-import crypt.CaesarsCypher;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.utils.CaesarsCypher;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um Utilizador
  *
  * @author Ricardo Osório Ana Leite
  */
-public class Utilizador implements ApresentavelNaJTable{
+public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "Utilizador";
+    public static final String NOME_ELEMENT_NAME = "nome";
+    public static final String PASSWD_ELEMENT_NAME = "passwd";
+    public static final String USERNAME_ELEMENT_NAME = "username";
+    public static final String EMAIL_ELEMENT_NAME = "email";
+    public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
+    public static final String SHIFTS_ATTR_NAME = "shifts";
+    public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
+
+    public static final String passwordAlfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
 
     /**
      * Atributo nome de um Utilizador.
@@ -22,6 +45,11 @@ public class Utilizador implements ApresentavelNaJTable{
     private char[] m_strPwd;
 
     /**
+     * Numero de shifts usados na encriptação da password.
+     */
+    private int randomCaesarShift;
+
+    /**
      * Atributo email de um Utilizador.
      */
     private String m_strEmail;
@@ -32,21 +60,14 @@ public class Utilizador implements ApresentavelNaJTable{
     private String m_strUsername;
 
     /**
-     *
-     */
-    private String m_ID;
-
-    /**
      * Atributo associado ao Utilizador que regista se o registo desse
      * Utilizador já foi confirmado.
      */
     private boolean m_boolConfirmaRegisto;
 
     /**
-     * Lista de utilizadores.
+     * Numero de avaliações que este utilizador já realizou.
      */
-    private ArrayList<Utilizador> m_listaUtilizadores;
-
     private int nAvaliacoesDesdeSempre;
 
     /**
@@ -56,11 +77,11 @@ public class Utilizador implements ApresentavelNaJTable{
         this.nAvaliacoesDesdeSempre = 0;
     }
 
-    public Utilizador(String nome, String ID, char[] password, String email) {
-        this.nAvaliacoesDesdeSempre = 0;
-        this.m_ID = ID;
+    public Utilizador(String nome, String username, char[] password, String email) {
+        this();
+        this.m_strUsername = username;
         this.m_strEmail = email;
-        this.m_strPwd = password;
+        setPwd(password);
         this.m_strNome = nome;
     }
 
@@ -88,7 +109,10 @@ public class Utilizador implements ApresentavelNaJTable{
      * Devolve a password do utilizador
      *
      * @return password do utilizador
+     * @deprecated Este método é considerado inseguro. Para validar uma
+     * password, usar {@link #isValidPassword(char[])}
      */
+    @Deprecated
     public char[] getPwd() {
         //fazer toString? depende se for um get para ser usado na UI
         return this.m_strPwd;
@@ -103,10 +127,6 @@ public class Utilizador implements ApresentavelNaJTable{
         return this.m_strEmail;
     }
 
-    public String getID() {
-        return this.m_ID;
-    }
-
     /**
      * Devolve o username do utilizador
      *
@@ -117,11 +137,11 @@ public class Utilizador implements ApresentavelNaJTable{
     }
 
     /**
-     * Define um novo valor para variavel boolean que regista se o registo desse
-     * Utilizador já foi confirmado
+     * Confirma o registo do utilizador. Processo necessário para que o
+     * Utilizador possa ser atribuido a cargos dentro do centro de exposições
      */
-    public void setBoolConfirmaRegisto(boolean m_boolConfirmaRegisto) {
-        this.m_boolConfirmaRegisto = m_boolConfirmaRegisto;
+    public void confirmarRegistoDoUtilizador() {
+        this.m_boolConfirmaRegisto = true;
     }
 
     /**
@@ -157,7 +177,9 @@ public class Utilizador implements ApresentavelNaJTable{
      * @param strPwd nova password de utilizador
      */
     public void setPwd(char[] strPwd) {
-        m_strPwd = strPwd;
+        Random r = new Random();
+        randomCaesarShift = r.nextInt(passwordAlfabet.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, randomCaesarShift, passwordAlfabet);
     }
 
     /**
@@ -186,7 +208,7 @@ public class Utilizador implements ApresentavelNaJTable{
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean isValidPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, password[0]), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, passwordAlfabet), password);
     }
 
     /**
@@ -224,8 +246,8 @@ public class Utilizador implements ApresentavelNaJTable{
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char [] password, String username, String email) {
-        if( username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")){
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
+        if (username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")) {
             return false;
         }
         return true;
@@ -245,4 +267,73 @@ public class Utilizador implements ApresentavelNaJTable{
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
+    @Override
+    public Utilizador importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+
+            NodeList elementsKeyword = document.getChildNodes();
+
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
+                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
+                this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
+                this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+                this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+
+            Element elementValue = document.createElement(NOME_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strNome);
+            elementKeyword.appendChild(elementValue);
+
+            elementValue = document.createElement(EMAIL_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strEmail);
+            elementKeyword.appendChild(elementValue);
+
+            elementValue = document.createElement(USERNAME_ELEMENT_NAME);
+            elementValue.setTextContent(this.m_strUsername);
+            elementKeyword.appendChild(elementValue);
+
+            elementValue = document.createElement(PASSWD_ELEMENT_NAME);
+            elementValue.setTextContent(String.valueOf(this.m_strPwd));
+            elementKeyword.appendChild(elementValue);
+
+            elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
+            elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
+            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift));
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
+    }
 }

@@ -6,6 +6,7 @@
 package lapr.project.registos;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.Recurso;
 
 /**
@@ -14,13 +15,13 @@ import lapr.project.model.Recurso;
  */
 public class RegistoRecursos {
 
-    private ArrayList<Recurso> m_listaRecursos;
+    private List<Recurso> m_listaRecursosNecessarios;
 
     /**
      *
      */
     public RegistoRecursos() {
-        this.m_listaRecursos = new ArrayList<>();
+        this.m_listaRecursosNecessarios = new ArrayList<>();
     }
 
     /**
@@ -47,8 +48,8 @@ public class RegistoRecursos {
         return true;
     }
 
-    public ArrayList<Recurso> getListaDeRecursos() {
-        return this.m_listaRecursos;
+    public List<Recurso> getListaDeRecursos() {
+        return this.m_listaRecursosNecessarios;
     }
 
     public void setRecurso(Recurso rec) {
@@ -65,7 +66,14 @@ public class RegistoRecursos {
     }
 
     private void addRecurso(Recurso rec) {
-        this.m_listaRecursos.add(rec);
+        this.m_listaRecursosNecessarios.add(rec);
+    }
+
+    /**
+     * @param listaRecursosNecessarios
+     */
+    public void setListaRecursosNecessarios(List<Recurso> listaRecursosNecessarios) {
+        this.m_listaRecursosNecessarios = listaRecursosNecessarios;
     }
 
 }

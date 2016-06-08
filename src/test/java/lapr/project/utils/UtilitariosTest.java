@@ -8,9 +8,7 @@ package lapr.project.utils;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,19 +18,17 @@ import static org.junit.Assert.*;
  */
 public class UtilitariosTest {
     
+    CentroExposicoes ce;
+    Utilizador u;
+    
     public UtilitariosTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        u = new Utilizador("Nome", "username", "secretcode".toCharArray(), "mail");
+        ce.getRegistoUtilizadores().addUtilizador(u);
     }
     
     @After
@@ -45,14 +41,21 @@ public class UtilitariosTest {
     @Test
     public void testAutenticacao() {
         System.out.println("autenticacao");
-        String username = "";
-        char[] password = null;
-        CentroExposicoes centroExposicoes = null;
-        Utilizador expResult = null;
-        Utilizador result = Utilitarios.autenticacao(username, password, centroExposicoes);
+        String username1 = "username";
+        char[] password1 = "secretcode".toCharArray();
+        String username2 = "username2";
+        char[] password2 = "secretcode2".toCharArray();
+        Utilizador expResult = u;
+        Utilizador result = Utilitarios.autenticacao(username1, password1, ce);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expResult = null;
+        result = Utilitarios.autenticacao(username1, password2, ce);
+        assertEquals(expResult, result);
+        expResult = null;
+        result = Utilitarios.autenticacao(username2, password1, ce);
+        assertEquals(expResult, result);
+        expResult = null;
+        result = Utilitarios.autenticacao(username2, password2, ce);
+        assertEquals(expResult, result);
     }
-    
 }

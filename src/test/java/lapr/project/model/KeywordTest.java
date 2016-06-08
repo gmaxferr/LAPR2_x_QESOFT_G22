@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class KeywordTest {
     
+    Keyword key;
+    
     public KeywordTest() {
     }
     
@@ -31,6 +33,7 @@ public class KeywordTest {
     
     @Before
     public void setUp() {
+        key = new Keyword("myValue");
     }
     
     @After
@@ -43,12 +46,9 @@ public class KeywordTest {
     @Test
     public void testGetValue() {
         System.out.println("getValue");
-        Keyword instance = new Keyword();
-        String expResult = "";
-        String result = instance.getValue();
+        String expResult = "myValue";
+        String result = key.getValue();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,11 +57,9 @@ public class KeywordTest {
     @Test
     public void testSetValue() {
         System.out.println("setValue");
-        String keyword = "";
-        Keyword instance = new Keyword();
-        instance.setValue(keyword);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String keyword = "newValue";
+        key.setValue(keyword);
+        assertEquals(key.getValue(), keyword);
     }
 
     /**
@@ -70,13 +68,9 @@ public class KeywordTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object o = null;
-        Keyword instance = new Keyword();
-        boolean expResult = false;
-        boolean result = instance.equals(o);
+        Keyword instance = new Keyword("myValue");
+        boolean expResult = true;
+        boolean result = instance.equals(key);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }
