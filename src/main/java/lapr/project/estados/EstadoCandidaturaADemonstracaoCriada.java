@@ -22,7 +22,7 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return false;
+        return true;
     }
 
     @Override

@@ -5,12 +5,20 @@
  */
 package lapr.project.estados;
 
+import lapr.project.model.CandidaturaADemonstracao;
+
 /**
  *
  * @author guima
  */
 public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidaturaADemonstracao {
 
+    CandidaturaADemonstracao m_cand;
+    
+    public EstadoCandidaturaADemonstracaoInstanciada(CandidaturaADemonstracao c){
+        m_cand = c;
+    }
+    
     @Override
     public boolean setEstadoCandidaturaInstanciada() {
         return false;
@@ -18,6 +26,7 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
+        m_cand.setEstado(new EstadoCandidaturaADemonstracaoCriada(m_cand));
         return true;
     }
 
