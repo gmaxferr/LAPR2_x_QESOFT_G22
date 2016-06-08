@@ -112,12 +112,12 @@ public class RegistoUtilizadores {
      *
      * @param u Utilizador desejado
      */
-    public void addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail()) == true) {
+    public boolean addUtilizador(Utilizador u) {
+        if (validaUtilizador(u.getUsername(), u.getEmail())) {
             adicionaUtilizador(u);
-        } else {
-            
+            return true;
         }
+        return false;
     }
 
     /**

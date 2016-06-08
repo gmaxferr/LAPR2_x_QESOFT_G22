@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.List;
 import lapr.project.registos.RegistoRecursos;
 import lapr.project.registos.RegistoMecanismos;
 import lapr.project.registos.RegistoTipoConflitos;
@@ -131,5 +132,9 @@ public class CentroExposicoes {
             }
         }
         return null;
+    }
+    
+     public List<Expositor> getListaExpositores() {
+        return this.m_rExpositores.getListaExpositores();
     }
 }

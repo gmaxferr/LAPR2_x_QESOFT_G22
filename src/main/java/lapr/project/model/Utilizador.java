@@ -205,31 +205,28 @@ public class Utilizador implements ApresentavelNaJTable{
     }
 
     /**
-     * Método que valida o utilizador
+     * Valida o utilizador
      *
      * @param username Username a validar
      * @param email Email a validar
      */
-    public void validaUtilizador(String username, String email) {
+    public boolean validaUtilizador(String nome, char[] password, String username, String email) {
 
-        if (validarDadosRepetidosOuInvalidos(username, email) == false) {
-            username = null;
-            email = null;
+        if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
+            return false;
         }
+        return true;
     }
 
     /**
-     * Método que valida os dados do Utilizador
+     * Valida os dados do Utilizador
      *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String username, String email) {
-        ArrayList<Utilizador> list = new ArrayList<>();
-        for (Utilizador u : m_listaUtilizadores) {
-            if (username.equals(u.getUsername())|| email.equals(u.getEmail())){
-                    return false;
-            }
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char [] password, String username, String email) {
+        if( username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")){
+            return false;
         }
         return true;
     }
