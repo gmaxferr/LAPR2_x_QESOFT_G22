@@ -15,7 +15,7 @@ import lapr.project.model.Exposicao;
  *
  * @author Ana
  */
-public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
+public class JFrameListarCandidaturasRemovidasUI extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes centroExposicoesAtual;
@@ -28,7 +28,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;
 
-    private static final int LARGURA_JANELA_PASSO2 = 555;
+    private static final int LARGURA_JANELA_PASSO2 = 400;
     private static final int ALTURA_JANELA_PASSO2 = 610;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
@@ -38,7 +38,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
     /**
      * Creates new form JFrameListarCandidaturasremovidas
      */
-    public JFrameListarCandidaturasRemovidas(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernamOrganizador) {
+    public JFrameListarCandidaturasRemovidasUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernamOrganizador) {
         super("Listar candidaturas removidas");
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.centroExposicoesAtual = centroExposicoes;
@@ -316,7 +316,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +325,7 @@ public class JFrameListarCandidaturasRemovidas extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 44, Short.MAX_VALUE)
+                .addGap(18, 39, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCard2Recuar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(jButtonCard2Fechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
