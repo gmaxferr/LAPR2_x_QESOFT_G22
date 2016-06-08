@@ -69,5 +69,4 @@ public class MecanismoSimplesTest {
             return "Descrição mecanismo";
         }
     }
-    
 }

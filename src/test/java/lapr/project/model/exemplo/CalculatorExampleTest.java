@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model;
+package lapr.project.model.exemplo;
 
-import java.util.TimerTask;
-import lapr.project.utils.Data;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Ricardo Catalao
  */
-public class AgendavelTest {
+public class CalculatorExampleTest {
     
-    public AgendavelTest() {
+    public CalculatorExampleTest() {
     }
     
     @BeforeClass
@@ -40,22 +38,19 @@ public class AgendavelTest {
     }
 
     /**
-     * Test of schedule method, of class Agendavel.
+     * Test of sum method, of class CalculatorExample.
      */
     @Test
-    public void testSchedule() {
-        System.out.println("schedule");
-        TimerTask m_tt = null;
-        Data date = null;
-        Agendavel instance = new AgendavelImpl();
-        instance.schedule(m_tt, date);
+    public void testSum() {
+        System.out.println("sum");
+        int firstOperand = 0;
+        int secondOperand = 0;
+        CalculatorExample instance = new CalculatorExample();
+        int expResult = 0;
+        int result = instance.sum(firstOperand, secondOperand);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    public class AgendavelImpl implements Agendavel {
-
-        public void schedule(TimerTask m_tt, Data date) {
-        }
-    }
+    
 }

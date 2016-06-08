@@ -43,84 +43,84 @@ public class CandidaturaAExposicaoTest {
     }
 
     /**
-     * Test of getM_intTelemovel method, of class CandidaturaAExposicao.
+     * Test of getTelemovel method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_intTelemovel() {
-        System.out.println("getM_intTelemovel");
+    public void testGetTelemovel() {
+        System.out.println("getTelemovel");
         CandidaturaAExposicao instance = null;
         int expResult = 0;
-        int result = instance.getM_intTelemovel();
+        int result = instance.getTelemovel();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getM_intNumConvites method, of class CandidaturaAExposicao.
+     * Test of getNumConvites method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_intNumConvites() {
-        System.out.println("getM_intNumConvites");
+    public void testGetNumConvites() {
+        System.out.println("getNumConvites");
         CandidaturaAExposicao instance = null;
         int expResult = 0;
-        int result = instance.getM_intNumConvites();
+        int result = instance.getNumConvites();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getM_intArea method, of class CandidaturaAExposicao.
+     * Test of getArea method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_intArea() {
-        System.out.println("getM_intArea");
+    public void testGetArea() {
+        System.out.println("getArea");
         CandidaturaAExposicao instance = null;
         int expResult = 0;
-        int result = instance.getM_intArea();
+        int result = instance.getArea();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getM_StrNomeEmpresa method, of class CandidaturaAExposicao.
+     * Test of getNomeEmpresa method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_StrNomeEmpresa() {
-        System.out.println("getM_StrNomeEmpresa");
+    public void testGetNomeEmpresa() {
+        System.out.println("getNomeEmpresa");
         CandidaturaAExposicao instance = null;
         String expResult = "";
-        String result = instance.getM_StrNomeEmpresa();
+        String result = instance.getNomeEmpresa();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getM_StrMoradaEmpresa method, of class CandidaturaAExposicao.
+     * Test of getMoradaEmpresa method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_StrMoradaEmpresa() {
-        System.out.println("getM_StrMoradaEmpresa");
+    public void testGetMoradaEmpresa() {
+        System.out.println("getMoradaEmpresa");
         CandidaturaAExposicao instance = null;
         String expResult = "";
-        String result = instance.getM_StrMoradaEmpresa();
+        String result = instance.getMoradaEmpresa();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getM_StrUsernameExpositor method, of class CandidaturaAExposicao.
+     * Test of getUsernameExpositor method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testGetM_StrUsernameExpositor() {
-        System.out.println("getM_StrUsernameExpositor");
+    public void testGetUsernameExpositor() {
+        System.out.println("getUsernameExpositor");
         CandidaturaAExposicao instance = null;
         String expResult = "";
-        String result = instance.getM_StrUsernameExpositor();
+        String result = instance.getUsernameExpositor();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -155,66 +155,66 @@ public class CandidaturaAExposicaoTest {
     }
 
     /**
-     * Test of setM_intTelemovel method, of class CandidaturaAExposicao.
+     * Test of setTelemovel method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_intTelemovel() {
-        System.out.println("setM_intTelemovel");
+    public void testSetTelemovel() {
+        System.out.println("setTelemovel");
         String m_intTelemovel = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_intTelemovel(m_intTelemovel);
+        instance.setTelemovel(m_intTelemovel);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setM_intNumConvites method, of class CandidaturaAExposicao.
+     * Test of setNumConvites method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_intNumConvites() {
-        System.out.println("setM_intNumConvites");
+    public void testSetNumConvites() {
+        System.out.println("setNumConvites");
         String m_StrNumConvites = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_intNumConvites(m_StrNumConvites);
+        instance.setNumConvites(m_StrNumConvites);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setM_intArea method, of class CandidaturaAExposicao.
+     * Test of setArea method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_intArea() {
-        System.out.println("setM_intArea");
+    public void testSetArea() {
+        System.out.println("setArea");
         String m_StrArea = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_intArea(m_StrArea);
+        instance.setArea(m_StrArea);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setM_strNomeEmpresa method, of class CandidaturaAExposicao.
+     * Test of setNomeEmpresa method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_strNomeEmpresa() {
-        System.out.println("setM_strNomeEmpresa");
+    public void testSetNomeEmpresa() {
+        System.out.println("setNomeEmpresa");
         String nomeEmpresa = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_strNomeEmpresa(nomeEmpresa);
+        instance.setNomeEmpresa(nomeEmpresa);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setM_strMorada method, of class CandidaturaAExposicao.
+     * Test of setMorada method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_strMorada() {
-        System.out.println("setM_strMorada");
+    public void testSetMorada() {
+        System.out.println("setMorada");
         String morada = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_strMorada(morada);
+        instance.setMorada(morada);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -230,19 +230,6 @@ public class CandidaturaAExposicaoTest {
         Produto expResult = null;
         Produto result = instance.criarProduto(nome);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of adicionaProduto method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testAdicionaProduto() {
-        System.out.println("adicionaProduto");
-        Produto produto = null;
-        CandidaturaAExposicao instance = null;
-        instance.adicionaProduto(produto);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -275,14 +262,14 @@ public class CandidaturaAExposicaoTest {
     }
 
     /**
-     * Test of validarCandidatura method, of class CandidaturaAExposicao.
+     * Test of validaCandidatura method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testValidarCandidatura() {
-        System.out.println("validarCandidatura");
+    public void testValidaCandidatura() {
+        System.out.println("validaCandidatura");
         CandidaturaAExposicao instance = null;
         boolean expResult = false;
-        boolean result = instance.validarCandidatura();
+        boolean result = instance.validaCandidatura();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -306,23 +293,10 @@ public class CandidaturaAExposicaoTest {
      * Test of validaProduto method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testValidaProduto_0args() {
+    public void testValidaProduto() {
         System.out.println("validaProduto");
         CandidaturaAExposicao instance = null;
         instance.validaProduto();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of validaProduto method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testValidaProduto_Produto() {
-        System.out.println("validaProduto");
-        Produto produto = null;
-        CandidaturaAExposicao instance = null;
-        instance.validaProduto(produto);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -397,7 +371,7 @@ public class CandidaturaAExposicaoTest {
      * Test of valida method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testValida_FAE() {
+    public void testValida() {
         System.out.println("valida");
         FAE fae = null;
         CandidaturaAExposicao instance = null;
@@ -445,32 +419,6 @@ public class CandidaturaAExposicaoTest {
         boolean decisao = false;
         CandidaturaAExposicao instance = null;
         instance.setDecisao(decisao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of validarDadosCandidatura method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testValidarDadosCandidatura() {
-        System.out.println("validarDadosCandidatura");
-        CandidaturaAExposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.validarDadosCandidatura();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of valida method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testValida_0args() {
-        System.out.println("valida");
-        CandidaturaAExposicao instance = null;
-        instance.valida();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -532,14 +480,14 @@ public class CandidaturaAExposicaoTest {
     }
 
     /**
-     * Test of setM_Keywords method, of class CandidaturaAExposicao.
+     * Test of setKeywords method, of class CandidaturaAExposicao.
      */
     @Test
-    public void testSetM_Keywords() {
-        System.out.println("setM_Keywords");
+    public void testSetKeywords() {
+        System.out.println("setKeywords");
         String keywords = "";
         CandidaturaAExposicao instance = null;
-        instance.setM_Keywords(keywords);
+        instance.setKeywords(keywords);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
