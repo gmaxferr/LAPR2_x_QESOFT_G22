@@ -1,11 +1,8 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
 import lapr.project.model.Produto;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 
@@ -18,65 +15,80 @@ public class AlterarCandidaturaExpoController {
 
     private RegistoCandidaturasAExposicao m_rc;
     private Exposicao m_exposicao;
-    private EstadoExposicao m_estadoExpo;
-    private EstadoCandidaturaAExposicao m_estadoCand;
     private CandidaturaAExposicao m_cand;
-    private Expositor m_expositor;
     private String m_username;
 
-    public AlterarCandidaturaExpoController(RegistoCandidaturasAExposicao registoCandidaturas, String username) {
-        m_rc = registoCandidaturas;
+    private String novoNomeEmpresa;
+    private String novaMoradaEmpresa;
+    private String novoTelemovel;
+    private String novaArea;
+    private String novoNumConvites;
+
+    public AlterarCandidaturaExpoController(Exposicao e, String username) {
         this.m_username = username;
+        this.m_exposicao = e;
     }
 
-    public boolean getM_EstadoExposicao() {
-        m_estadoExpo = m_exposicao.getEstado();
-        return verificaEstadoExposicao(m_estadoExpo);
-    }
-
-    public boolean verificaEstadoExposicao(EstadoExposicao estado) {
-        //Verifica se o estado permite executar este UC
-        return true;
-    }
-
-    public boolean getEstadoCandidatura() {
-        m_estadoCand = m_cand.getEstado();
-        return verificaCandidatura(m_estadoCand);
-    }
-
-    public boolean verificaCandidatura(EstadoCandidaturaAExposicao estado) {
-        //verifica se o estado permite executar ese UC
-        return true;
-    }
-
+    /**
+     *
+     */
     public void getM_RegistoCandidaturas() {
         this.m_rc = m_exposicao.getRegistoCandidaturasAExposicao();
     }
 
-    public List<CandidaturaAExposicao> getExposRepresentante() {
+    /**
+     * Permite selecionar a candidatura a alterar
+     *
+     * @param c
+     */
+    public void setM_CandidaturaSelecionada(CandidaturaAExposicao c) {
+        this.m_cand = c;
+    }
+
+    /**
+     *
+     * @return candidaturas do representante logado
+     */
+    public List<CandidaturaAExposicao> getM_ListaCandidaturasRepresentante() {
         return m_rc.getCandidaturasRepresentante(m_username);
     }
 
-    public void setExposicao(Exposicao m_exposicao) {
-        this.m_exposicao = m_exposicao;
-    }
-
+    /**
+     *
+     * @return nome da empresa
+     */
     public String getNomeEmpresa() {
         return m_cand.getNomeEmpresa();
     }
 
+    /**
+     *
+     * @return morada
+     */
     public String getMorada() {
         return m_cand.getMoradaEmpresa();
     }
 
+    /**
+     *
+     * @return telemovel
+     */
     public int getTelemovel() {
         return m_cand.getTelemovel();
     }
 
+    /**
+     *
+     * @return area
+     */
     public float getArea() {
         return m_cand.getArea();
     }
 
+    /**
+     *
+     * @return numero de convites
+     */
     public int getNumConvites() {
         return m_cand.getNumConvites();
     }
@@ -112,12 +124,38 @@ public class AlterarCandidaturaExpoController {
     public void editarProduto(int index, String novoProduto) {
         m_cand.editProduto(index, novoProduto);
     }
-    
-    public void setDadosCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, int area, int numConvites) {
-        m_cand.setNomeEmpresa(nomeEmpresa);
-        m_cand.setMorada(moradaEmpresa);
-        m_cand.setTelemovel(nomeEmpresa);
-        m_cand.setArea(moradaEmpresa);
-        m_cand.setNumConvites(moradaEmpresa);
+
+    /**
+     * Cria temporariamente os novos dados a alterar
+     *
+     * @param nomeEmpresa
+     * @param moradaEmpresa
+     * @param telemovel
+     * @param area
+     * @param numConvites
+     */
+    public void setDadosCandidatura(String nomeEmpresa, String moradaEmpresa, String telemovel, String area, String numConvites) {
+        novoNomeEmpresa = nomeEmpresa;
+        novaArea = area;
+        novaMoradaEmpresa = moradaEmpresa;
+        novoNumConvites = numConvites;
+        novoTelemovel = telemovel;
+    }
+
+    /**
+     * Regista as alterções na candidatura
+     *
+     * @param nomeEmpresa
+     * @param moradaEmpresa
+     * @param telemovel
+     * @param area
+     * @param numConvites
+     */
+    public void alterarCandidatura() {
+        m_cand.setNomeEmpresa(novoNomeEmpresa);
+        m_cand.setMorada(novaMoradaEmpresa);
+        m_cand.setTelemovel(novoTelemovel);
+        m_cand.setArea(novaArea);
+        m_cand.setNumConvites(novoNumConvites);
     }
 }
