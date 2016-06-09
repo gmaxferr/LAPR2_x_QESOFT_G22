@@ -53,9 +53,9 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
      * @return atribuição gerada.
      */
     @Override
-    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida) {
+    public List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida) {
 
-        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
+        List<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturas();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
@@ -74,7 +74,7 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
+                    AtribuicaoCandidatura atribuicao = new AtribuicaoCandidatura(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
                         atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }

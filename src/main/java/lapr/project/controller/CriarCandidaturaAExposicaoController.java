@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.estados.EstadoCandidaturaAExposicao;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
@@ -163,7 +163,7 @@ public class CriarCandidaturaAExposicaoController {
      * @param demonstracaoEscolhida demostração escolhida.
      */
     public void adicionaDemonstracao(Demonstracao demonstracaoEscolhida) {
-        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracaoACandidatura(demonstracaoEscolhida);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().adicionaDemonstracao(demonstracaoEscolhida);
     }
 
     /**

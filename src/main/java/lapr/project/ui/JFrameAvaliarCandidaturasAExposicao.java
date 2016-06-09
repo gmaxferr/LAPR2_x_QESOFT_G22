@@ -26,8 +26,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private final String usernameFAE;
     private final AvaliarCandidaturaAExposicaoController controller;
     private final List<Exposicao> listaExposicoes;
-    private List<AtribuicoesCandidatura> listaAtribuicoesDoFAE;
-    private AtribuicoesCandidatura atribuicaoEscolhida;
+    private List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
+    private AtribuicaoCandidatura atribuicaoEscolhida;
     private Avaliacao avaliacaoDoFae;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";

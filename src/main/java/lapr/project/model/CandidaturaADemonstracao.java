@@ -1,7 +1,7 @@
 package lapr.project.model;
 
-import lapr.project.estados.EstadoCandidaturaADemonstracao;
-import lapr.project.estados.EstadoCandidaturaADemonstracaoInstanciada;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoInstanciada;
 
 /**
  *
@@ -25,6 +25,22 @@ public class CandidaturaADemonstracao {
         m_usernameExpositor = username;
     }
 
+    /**
+     * 
+     * @return dados da candidatura 
+     */
+    public String getM_dadosCandidatura(){
+        return m_dados;
+    }
+    
+    /**
+     * 
+     * @return username do expositor 
+     */
+    public String getM_usernameExpositor(){
+        return m_usernameExpositor;
+    }
+    
     /**
      * @return estado desta candidatura a demonstracao
      */

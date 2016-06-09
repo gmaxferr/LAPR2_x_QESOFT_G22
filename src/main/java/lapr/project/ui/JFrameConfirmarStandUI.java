@@ -18,7 +18,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes centroExposicoesAtual;
-    private String usernameRepresentante;
+    private String emailRepresentante;
     private List<Exposicao> listaExposicoes;
     private List<AtribuicaoStand> listaAtribuicaoStand;
     private ConfirmarStandController controller;
@@ -36,14 +36,14 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     /**
      * Creates new form JFrameConfirmarStand
      */
-    public JFrameConfirmarStandUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameRepresentante) {
+    public JFrameConfirmarStandUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String emailRepresentante) {
         super("Confirmar Stand");
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.centroExposicoesAtual = centroExposicoes;
-        this.usernameRepresentante = usernameRepresentante;
+        this.emailRepresentante = emailRepresentante;
         this.controller = new ConfirmarStandController(centroExposicoes);
         controller.getRegistoExposicoes();;
-        this.listaExposicoes = controller.getListaExposicoesDoRepresentante(usernameRepresentante);
+        this.listaExposicoes = controller.getListaExposicoesDoRepresentante(emailRepresentante);
         initComponents();
         
         alterarComportamentoFecharJFrame();
@@ -346,7 +346,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private void avancarParaCard2(){
         controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
         controller.getRegistoAtribuicoesStands();
-        this.listaAtribuicaoStand = controller.getAtribuicao(usernameRepresentante);
+        this.listaAtribuicaoStand = controller.getAtribuicao(emailRepresentante);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);

@@ -252,7 +252,7 @@ public class DataTest {
         Data instance = new Data();
         Date expResult = Calendar.getInstance().getTime();
         Date result = instance.toDate();
-        assertEquals(expResult, result);
+        assertTrue(Math.abs(expResult.getTime() - result.getTime()) < 10);  //10 milisegundos de diferença no máximo
     }
 
 }

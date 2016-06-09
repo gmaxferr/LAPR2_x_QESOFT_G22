@@ -104,7 +104,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
                 return true;
             }
             ScoredKeyword obj = (ScoredKeyword) o;
-            return obj.m_score == m_score && obj.m_frequency == m_frequency && super.equals(o);
+            return obj.m_score == m_score && obj.m_frequency == m_frequency && obj.m_value == m_value;
         }
         return false;
     }
@@ -141,7 +141,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
                 this.m_frequency = Integer.parseInt(elem.getAttribute(FREQ_ATTR_NAME));
             }
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -169,7 +169,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

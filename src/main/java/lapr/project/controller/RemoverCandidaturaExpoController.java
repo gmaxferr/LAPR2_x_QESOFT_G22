@@ -32,7 +32,7 @@ public class RemoverCandidaturaExpoController {
         this.m_ce = ce;
     }
 
-    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesComOFAE() {
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesComOFAE() {
         return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
     

@@ -41,11 +41,11 @@ public class RegistoAtribuicoesStands {
         m_listaAtribuicoesStand.addAll(listAtr);
     }
     
-    public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String username){
+    public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String email){
          ArrayList<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
          for(AtribuicaoStand as : m_listaAtribuicoesStand){
              for(Expositor expositor : m_centroExposicao.getListaExpositores()){
-                 if(expositor.getM_strUsername().equalsIgnoreCase(username)){
+                 if(expositor.getM_strEmail().equalsIgnoreCase(email)){
                      listaAtribuicoesStandRepresentante.add(as);
                  }
              }

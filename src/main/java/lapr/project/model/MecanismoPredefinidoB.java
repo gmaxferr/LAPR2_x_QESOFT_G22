@@ -55,14 +55,14 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable 
      * @return atribuição gerada.
      */
     @Override
-    public List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida, String numeroFAEStr) throws IllegalArgumentException {
+    public List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida, String numeroFAEStr) throws IllegalArgumentException {
 
         int numeroFAE = Integer.parseInt(numeroFAEStr);
         if (numeroFAE < 0) {
             throw new IllegalArgumentException();
         }
 
-        List<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
+        List<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         List<CandidaturaAExposicao> listaCand = exposicaoEscolhida.getRegistoCandidaturasAExposicao().getListaCandidaturas();
         List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
 
@@ -80,7 +80,7 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable 
                     if (posFim > listaFAE.size()) {
                         posFim = listaFAE.size();
                     }
-                    AtribuicoesCandidatura atribuicao = new AtribuicoesCandidatura(listaCand.get(i));
+                    AtribuicaoCandidatura atribuicao = new AtribuicaoCandidatura(listaCand.get(i));
                     for (int j = posInicio; j < posFim; j++) {
                         atribuicao.addFaeAvaliacao(listaFAE.get(j));
                     }

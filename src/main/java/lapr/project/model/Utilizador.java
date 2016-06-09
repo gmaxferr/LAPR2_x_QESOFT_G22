@@ -296,7 +296,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
             }
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -337,7 +337,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
