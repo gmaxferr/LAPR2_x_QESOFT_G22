@@ -51,17 +51,17 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
      * não foi ainda criado ou não existem FAEs suficientes para atribuir as
      * candidaturas.
      */
-    private List<AtribuicoesCandidatura> resultadoAtribuicoes = new ArrayList<>();
+    private List<AtribuicaoCandidatura> resultadoAtribuicoes = new ArrayList<>();
 
     /**
      * Contrutor do mecanismo
      */
     public MecanismoPredefinidoC() {
-        resultadoAtribuicoes = new ArrayList<AtribuicoesCandidatura>();
+        resultadoAtribuicoes = new ArrayList<AtribuicaoCandidatura>();
     }
 
     @Override
-    public List<AtribuicoesCandidatura> atribui(Exposicao e, String numeroLido) {
+    public List<AtribuicaoCandidatura> atribui(Exposicao e, String numeroLido) {
 
         //Obtem lista de Candidaturas, lista de FAEs e quantidade dos mesmos
         List<CandidaturaAExposicao> cands = e.getRegistoCandidaturasAExposicao().getListaCandidaturas();
@@ -212,7 +212,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
     private void atribuiCandidaturas(int nCand, double percentFaePerCand, int[] maskCand, double arrPercent[], List<CandidaturaAExposicao> cands, List<FAE> toBeUsed) {
         resultadoAtribuicoes.clear();
         for (int i = 0; i < cands.size(); i++) {
-            resultadoAtribuicoes.add(new AtribuicoesCandidatura(cands.get(i)));
+            resultadoAtribuicoes.add(new AtribuicaoCandidatura(cands.get(i)));
         }
         //  O Indice do FAE Atual
         int indexFAE = 0;

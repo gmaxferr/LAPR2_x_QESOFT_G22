@@ -78,7 +78,7 @@ public class AtribuirCandidaturasController {
      *
      * @return atribuições geradas.
      */
-    public List<AtribuicoesCandidatura> atribui(Mecanismo mec) {
+    public List<AtribuicaoCandidatura> atribui(Mecanismo mec) {
         MecanismoSimples mecanismo = (MecanismoSimples) mec;
         return mecanismo.atribui(this.m_e);
     }
@@ -91,12 +91,12 @@ public class AtribuirCandidaturasController {
      *
      * @return atribuições geradas.
      */
-    public List<AtribuicoesCandidatura> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
+    public List<AtribuicaoCandidatura> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
         MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
         return mecanismo.atribui(this.m_e, numeroFAEOuExperiencia);
     }
 
-    public void registaAtribuicao(List<AtribuicoesCandidatura> listaAtribuicao) {
+    public void registaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
         this.m_e.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
     }
 

@@ -20,5 +20,5 @@ public interface MecanismoIteragivel extends Mecanismo {
      * número de FAE por candidatura ou os anos de experiência
      * @return distribuição gerado pelo mecanismo
      */
-    List<AtribuicoesCandidatura> atribui(Exposicao exposicaoEscolhida, String numeroLido);
+    List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida, String numeroLido);
 }

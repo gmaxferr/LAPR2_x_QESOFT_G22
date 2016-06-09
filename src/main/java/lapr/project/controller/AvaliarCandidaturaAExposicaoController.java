@@ -15,7 +15,7 @@ public class AvaliarCandidaturaAExposicaoController {
     private RegistoExposicoes m_re;
     private Exposicao m_exposicaoSelecionada;
     private RegistoAtribuicoes m_ra;
-    private AtribuicoesCandidatura m_atribuicaoEscolhida;
+    private AtribuicaoCandidatura m_atribuicaoEscolhida;
     private Avaliacao m_avaliacaoDoFae;
     private RegistoFaeAvaliacao m_rFaeAvalicao;
 
@@ -40,7 +40,7 @@ public class AvaliarCandidaturaAExposicaoController {
         this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
-    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesDoAE() {
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoAE() {
         return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
 
@@ -48,7 +48,7 @@ public class AvaliarCandidaturaAExposicaoController {
         this.m_rFaeAvalicao = this.m_atribuicaoEscolhida.getRegistoFaeAvaliacao();
     }
 
-    public void setAtribuicao(AtribuicoesCandidatura atribuicao) {
+    public void setAtribuicao(AtribuicaoCandidatura atribuicao) {
         this.m_atribuicaoEscolhida = atribuicao;
     }
 
