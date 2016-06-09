@@ -14,7 +14,7 @@ import lapr.project.registos.*;
 public class CandidaturaAExposicao {
 
     public static final String ROOT_ELEMENT_NAME = "CandidaturaAExposicao";
-    public static final String ESTADO_ELEMENT_NAME = "Estado";
+    public static final String ESTADO_ATTR_NAME = "Estado";
     public static final String TLM_ELEMENT_NAME = "telemovel";
     public static final String NUM_CONVITES_ELEMENT_NAME = "numConvites";
     public static final String AREA_ELEMENT_NAME = "area";

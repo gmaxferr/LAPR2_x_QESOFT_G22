@@ -2,20 +2,34 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Ana Leite Ricardo Osório
  */
-public class RegistoDemonstracoes {
+public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "RegistoDemosntracoes";
+    public static final String CONTADOR_ATTR_NAME = "contador";
 
     /**
      * Lista de demostrações existentes
      */
     private List<Demonstracao> m_listaDemonstracoes;
 
-    private String m_Prefixo = "Demo_";
+    private static final String m_Prefixo = "Demo_";
 
     private int m_contadorDemos;
 
@@ -38,7 +52,7 @@ public class RegistoDemonstracoes {
      * @param demonstracao demostracao a ser adicionada
      */
     public void adicionaDemonstracao(Demonstracao demonstracao) {
-        if(valida(demonstracao)){
+        if (valida(demonstracao)) {
             this.m_listaDemonstracoes.add(demonstracao);
         }
     }
@@ -55,7 +69,7 @@ public class RegistoDemonstracoes {
             //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
         }
     }
-    
+
     /**
      * Método que valida os dados repetidos pu invalidos de
      * CandidaturaAExposicao
@@ -65,9 +79,10 @@ public class RegistoDemonstracoes {
     public boolean validarDadosRepetidosOuInvalidos() {
         return true;
     }
-    
+
     /**
      * Cria uma nova demonstração
+     *
      * @param descricao - descrição da demonstração
      * @return nova demonstração
      */
@@ -120,5 +135,63 @@ public class RegistoDemonstracoes {
         m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
         m_contadorDemos++;
         this.m_listaDemonstracoes.add(m_demoCriada);
+    }
+
+    @Override
+    public RegistoDemonstracoes importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.appendChild(doc.importNode(node, true));
+
+            Node n = doc.getChildNodes().item(0);
+
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+                NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
+                    Demonstracao demo = new Demonstracao("");
+                    demo.importContentFromXMLNode(n2);
+                    m_listaDemonstracoes.add(demo);
+                }
+                
+                this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
+            }
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoDemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+
+            for (Demonstracao demo : m_listaDemonstracoes) {
+                Node n = demo.exportContentToXMLNode();
+                elementKeyword.appendChild(document.importNode(n, true));
+            }
+            
+            elementKeyword.setAttribute(CONTADOR_ATTR_NAME, String.valueOf(this.m_contadorDemos));
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoDemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }
