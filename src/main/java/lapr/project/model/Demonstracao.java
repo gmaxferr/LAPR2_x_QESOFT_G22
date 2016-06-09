@@ -13,8 +13,18 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCancelada;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAbertas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAtribuidas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAvaliadas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasDecididas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
 import lapr.project.registos.RegistoRecursos;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
 
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
@@ -39,12 +49,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
     private EstadoDemonstracao m_estado;
-    private RegistoCandidaturaADemonstracoes m_rcd;
 
     public Demonstracao(String descricao) {
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
-        this.m_rcd = new RegistoCandidaturaADemonstracoes();
     }
 
     /**
@@ -96,20 +104,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
     }
 
-    /**
-     *
-     * @return - registo de candidaturas a demonstração
-     */
-    public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
-        return m_rcd;
-    }
-
     void setDataInicioCandidaturas(Data dataInicioCandDemo) {
         Data m_dataInicioSubCand = dataInicioCandDemo;
+        this.schedule(new AlterarParaCandidaturasAbertas(this), dataInicioCandDemo);
     }
 
     void setDataFimCandidaturas(Data dataFimCandDemo) {
         Data m_dataFimSubCand = dataFimCandDemo;
+        this.schedule(new AlterarParaCandidaturasFechadas(this), dataFimCandDemo);
     }
 
     @Override
@@ -132,7 +134,26 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.rc = new RegistoRecursos();
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
 
-                // Falta estado - TODO
+                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+
+                if (estado.equals("pendente")) {
+                    this.m_estado = new EstadoDemonstracaoPendente(this);
+                } else if (estado.equals("cancelada")) {
+                    this.m_estado = new EstadoDemonstracaoCancelada(this);
+                } else if (estado.equals("confirmada")) {
+                    this.m_estado = new EstadoDemonstracaoConfirmada(this);
+                } else if (estado.equals("candidaturasAbertas")) {
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
+                } else if (estado.equals("candidaturasFechadas")) {
+                    this.m_estado = new EstadoDemonstracaoCandidaturasFechadas(this);
+                } else if (estado.equals("candidaturasAtribuidas")) {
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAtribuidas(this);
+                } else if (estado.equals("candidaturasAvaliadas")) {
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAvaliadas(this);
+                } else if (estado.equals("candidaturasDecididas")) {
+                    this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
+                }
+
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,7 +180,24 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
             elementKeyword.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
-            // Falta Estado - TODO
+            if (this.m_estado.isEstadoDemonstracaoPendente()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "pendente");
+            } else if (this.m_estado.isEstadoDemonstracaoCancelada()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "cancelada");
+            } else if (this.m_estado.isEstadoDemonstracaoConfirmada()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "confirmada");
+            } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAbertas()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAbertas");
+            } else if (this.m_estado.isEstadoDemonstracaoCandidaturasFechadas()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasFechadas");
+            } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAtribuidas()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAtribuidas");
+            } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAvaliadas()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAvaliadas");
+            } else if (this.m_estado.isEstadoDemonstracaoCandidaturasDecididas()) {
+                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasDecididas");
+            }
+
             document.appendChild(elementKeyword);
 
             node = elementKeyword;

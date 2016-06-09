@@ -5,10 +5,12 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
+import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
+import lapr.project.timerTasks.expo.AlterarParaFechadaCandidaturas;
 import java.util.TimerTask;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.timerTasks.*;
 import lapr.project.utils.Data;
 
 /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.timerTasks;
+package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
 import lapr.project.model.CandidaturaAExposicao;

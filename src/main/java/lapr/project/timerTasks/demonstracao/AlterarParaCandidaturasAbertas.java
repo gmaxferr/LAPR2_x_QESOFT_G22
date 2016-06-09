@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.timerTasks;
+package lapr.project.timerTasks.demonstracao;
 
 import java.util.TimerTask;
-import lapr.project.model.Exposicao;
+import lapr.project.model.Demonstracao;
 
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class AlterarParaAbertaCandidaturas extends TimerTask {
+public class AlterarParaCandidaturasAbertas extends TimerTask{
 
-    private final Exposicao m_exposicao;
+    private final Demonstracao m_demo;
 
     /**
      *
      * @param e - exposição
      */
-    public AlterarParaAbertaCandidaturas(Exposicao e) {
-        m_exposicao = e;
+    public AlterarParaCandidaturasAbertas(Demonstracao d) {
+        m_demo = d;
     }
 
     @Override
     public void run() {
-        m_exposicao.getEstado().setEstadoCandidaturasAbertas();
+        m_demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasAbertas();
     }
-
+    
 }
