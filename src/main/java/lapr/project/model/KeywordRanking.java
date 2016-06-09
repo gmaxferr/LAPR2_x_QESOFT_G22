@@ -207,7 +207,7 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

@@ -195,7 +195,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             }
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoUtilizadores.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -221,7 +221,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoUtilizadores.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

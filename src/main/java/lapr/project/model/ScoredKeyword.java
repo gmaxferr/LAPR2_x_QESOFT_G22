@@ -141,7 +141,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
                 this.m_frequency = Integer.parseInt(elem.getAttribute(FREQ_ATTR_NAME));
             }
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -169,7 +169,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

@@ -79,7 +79,7 @@ public class Produto implements Importable<Produto>, Exportable {
                 this.m_nome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
             }
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -104,7 +104,7 @@ public class Produto implements Importable<Produto>, Exportable {
             node = elementProduto;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
