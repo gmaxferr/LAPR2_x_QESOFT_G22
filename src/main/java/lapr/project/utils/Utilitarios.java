@@ -22,7 +22,7 @@ public class Utilitarios {
      * aqueles passados como argumentos, ou null caso nao se encontre um
      * utilizador no sistema com essa informação
      */
-    public Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
+    public static Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
         List<Utilizador> userList = centroExposicoes.getRegistoUtilizadores().getListaUtilizadores();
         Utilizador utilizador = null;
         for (Utilizador user : userList) {
