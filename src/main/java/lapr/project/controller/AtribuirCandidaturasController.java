@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.estados.Exposicao.EstadoExposicao;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.*;

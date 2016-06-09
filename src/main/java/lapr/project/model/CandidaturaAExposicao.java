@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoCriada;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.*;

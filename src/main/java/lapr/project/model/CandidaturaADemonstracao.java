@@ -1,7 +1,7 @@
 package lapr.project.model;
 
-import lapr.project.estados.EstadoCandidaturaADemonstracao;
-import lapr.project.estados.EstadoCandidaturaADemonstracaoInstanciada;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoInstanciada;
 
 /**
  *

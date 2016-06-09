@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import lapr.project.estados.EstadoExposicao;
-import lapr.project.estados.EstadoExposicaoInicial;
+import lapr.project.estados.Exposicao.EstadoExposicao;
+import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
 import lapr.project.utils.Data;
 
 /**
@@ -522,7 +522,7 @@ public class Exposicao implements Agendavel {
         this.m_dataFimCandDemo = dataFimCandDemo;
         for(Demonstracao d : m_rd.getListaDemonstracoes()){
             if(d.getEstadoDemo().isEstadoDemonstracaoConfirmada()){
-                d.setDataFimoCandidaturas(dataFimCandDemo);
+                d.setDataFimCandidaturas(dataFimCandDemo);
             }
         }
     }

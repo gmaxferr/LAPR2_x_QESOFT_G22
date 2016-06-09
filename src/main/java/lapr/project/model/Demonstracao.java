@@ -5,30 +5,30 @@
  */
 package lapr.project.model;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.EstadoDemonstracao;
+import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
 import lapr.project.registos.RegistoRecursos;
-<<<<<<< HEAD
+
 import lapr.project.utils.Data;
-=======
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
->>>>>>> 067302e6bc987c1b1b1590cac67590c0dcb6d5a8
 
 /**
  *
  * @author Ricardo Osório Ana Leite
  */
-public class Demonstracao implements Importable<Demonstracao>, Exportable {
+public class Demonstracao implements Agendavel, Importable<Demonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Demonstracao";
     public static final String DESCR_ELEMENT_NAME = "Descricao";
@@ -95,7 +95,6 @@ public class Demonstracao implements Importable<Demonstracao>, Exportable {
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
     }
-<<<<<<< HEAD
 
     /**
      *
@@ -109,10 +108,10 @@ public class Demonstracao implements Importable<Demonstracao>, Exportable {
         Data m_dataInicioSubCand = dataInicioCandDemo;
     }
 
-    void setDataFimoCandidaturas(Data dataFimCandDemo) {
+    void setDataFimCandidaturas(Data dataFimCandDemo) {
         Data m_dataFimSubCand = dataFimCandDemo;
-=======
-    
+    }
+
     @Override
     public Demonstracao importContentFromXMLNode(Node node) {
         try {
@@ -132,9 +131,8 @@ public class Demonstracao implements Importable<Demonstracao>, Exportable {
                 this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
                 this.rc = new RegistoRecursos();
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                
+
                 // Falta estado - TODO
-                
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,9 +158,8 @@ public class Demonstracao implements Importable<Demonstracao>, Exportable {
             elementKeyword.appendChild(this.rc.exportContentToXMLNode());
 
             elementKeyword.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
-            
-            // Falta Estado - TODO
 
+            // Falta Estado - TODO
             document.appendChild(elementKeyword);
 
             node = elementKeyword;
@@ -171,6 +168,12 @@ public class Demonstracao implements Importable<Demonstracao>, Exportable {
             Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
->>>>>>> 067302e6bc987c1b1b1590cac67590c0dcb6d5a8
+
+    }
+
+    @Override
+    public void schedule(TimerTask m_tt, Data date) {
+        Timer timer = new Timer();
+        timer.schedule(m_tt, date.toDate());
     }
 }

@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.estados.Exposicao.EstadoExposicao;
 import java.util.List;
 import lapr.project.estados.*;
 import lapr.project.model.*;
