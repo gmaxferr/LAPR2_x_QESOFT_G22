@@ -25,8 +25,8 @@ public class JFrameListarCandidaturasRemovidasUI extends javax.swing.JFrame {
     
     
     
-    private static final int LARGURA_JANELA_PASSO1 = 705;
-    private static final int ALTURA_JANELA_PASSO1 = 390;
+    private static final int LARGURA_JANELA_PASSO1 = 682;
+    private static final int ALTURA_JANELA_PASSO1 = 308;
 
     private static final int LARGURA_JANELA_PASSO2 = 400;
     private static final int ALTURA_JANELA_PASSO2 = 610;

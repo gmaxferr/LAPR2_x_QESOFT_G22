@@ -65,9 +65,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email, String nome) {
-        return validaNome(nome)
-                && validaUsername(username)
+    private boolean validaUtilizador(String username, String email) {
+        return validaUsername(username)
                 && validaEmail(email);
     }
 

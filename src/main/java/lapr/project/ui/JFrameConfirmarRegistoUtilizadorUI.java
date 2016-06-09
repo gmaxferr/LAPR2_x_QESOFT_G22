@@ -27,18 +27,48 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Card1 = new javax.swing.JPanel();
+        jLabelCard1Titulo = new javax.swing.JLabel();
+        JComboBoxEscolherUtilizador = new javax.swing.JComboBox<>();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
+
+        jLabelCard1Titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabelCard1Titulo.setText("Escolha o utilizador pretendido");
+
+        JComboBoxEscolherUtilizador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboBoxEscolherUtilizador.setSelectedIndex(-1);
+        JComboBoxEscolherUtilizador.setToolTipText("");
+
+        javax.swing.GroupLayout Card1Layout = new javax.swing.GroupLayout(Card1);
+        Card1.setLayout(Card1Layout);
+        Card1Layout.setHorizontalGroup(
+            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Card1Layout.createSequentialGroup()
+                .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Card1Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabelCard1Titulo))
+                    .addGroup(Card1Layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(JComboBoxEscolherUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        Card1Layout.setVerticalGroup(
+            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Card1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabelCard1Titulo)
+                .addGap(18, 18, 18)
+                .addComponent(JComboBoxEscolherUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(223, Short.MAX_VALUE))
         );
+
+        jLabelCard1Titulo.getAccessibleContext().setAccessibleName("JLabelCard1Titulo");
+        JComboBoxEscolherUtilizador.getAccessibleContext().setAccessibleName("JComboBoxCard1Utilizadores");
+
+        getContentPane().add(Card1, "card5");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +109,8 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Card1;
+    private javax.swing.JComboBox<String> JComboBoxEscolherUtilizador;
+    private javax.swing.JLabel jLabelCard1Titulo;
     // End of variables declaration//GEN-END:variables
 }
