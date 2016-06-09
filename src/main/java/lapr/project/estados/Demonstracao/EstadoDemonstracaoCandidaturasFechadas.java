@@ -5,11 +5,19 @@
  */
 package lapr.project.estados.Demonstracao;
 
+import lapr.project.model.Demonstracao;
+
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
 public class EstadoDemonstracaoCandidaturasFechadas implements EstadoDemonstracao{
+    
+    private final Demonstracao m_demo;
+
+    public EstadoDemonstracaoCandidaturasFechadas(Demonstracao m_demo) {
+        this.m_demo = m_demo;
+    }
 
     @Override
     public boolean setEstadoDemonstracaoPendente() {

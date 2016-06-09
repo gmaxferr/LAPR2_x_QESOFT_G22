@@ -5,12 +5,20 @@
  */
 package lapr.project.estados.Demonstracao;
 
+import lapr.project.model.Demonstracao;
+
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
 public class EstadoDemonstracaoCandidaturasDecididas implements EstadoDemonstracao{
 
+    private final Demonstracao m_demo;
+
+    public EstadoDemonstracaoCandidaturasDecididas(Demonstracao m_demo) {
+        this.m_demo = m_demo;
+    }
+    
     @Override
     public boolean setEstadoDemonstracaoPendente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
