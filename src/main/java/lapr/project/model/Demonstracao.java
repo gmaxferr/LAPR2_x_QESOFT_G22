@@ -15,6 +15,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
 import lapr.project.registos.RegistoRecursos;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
 
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
@@ -106,10 +108,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     void setDataInicioCandidaturas(Data dataInicioCandDemo) {
         Data m_dataInicioSubCand = dataInicioCandDemo;
+        this.schedule(new AlterarParaCandidaturasAbertas(this), dataInicioCandDemo);
     }
 
     void setDataFimCandidaturas(Data dataFimCandDemo) {
         Data m_dataFimSubCand = dataFimCandDemo;
+        this.schedule(new AlterarParaCandidaturasFechadas(this), dataFimCandDemo);
     }
 
     @Override

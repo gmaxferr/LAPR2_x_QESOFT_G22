@@ -1,8 +1,8 @@
 package lapr.project.estados.Exposicao;
 
 import lapr.project.model.Exposicao;
-import lapr.project.timerTasks.AlterarParaCandDemoAberta;
-import lapr.project.timerTasks.AlterarParaCandDemoFechada;
+import lapr.project.timerTasks.expo.AlterarParaCandDemoAberta;
+import lapr.project.timerTasks.expo.AlterarParaCandDemoFechada;
 import lapr.project.utils.Data;
 
 /**

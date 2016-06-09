@@ -46,3 +46,4 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 15
 * UC 22
 * UC 25
+* UC 31

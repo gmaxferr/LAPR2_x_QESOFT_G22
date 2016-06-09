@@ -18,10 +18,30 @@ public interface EstadoDemonstracao extends Estado{
     public boolean setEstadoDemonstracaoConfirmada();
 
     public boolean setEstadoDemonstracaoCancelada();
+    
+    public boolean setEstadoDemonstracaoCandidaturasAtribuidas();
 
+    public boolean setEstadoDemonstracaoCandidaturasAvaliadas();
+    
+    public boolean setEstadoDemonstracaoCandidaturasDecididas();
+    
+    public boolean setEstadoDemonstracaoCandidaturasAbertas();
+    
+    public boolean setEstadoDemonstracaoCandidaturasFechadas();
+    
     public boolean isEstadoDemonstracaoPendente();
 
     public boolean isEstadoDemonstracaoConfirmada();
 
     public boolean isEstadoDemonstracaoCancelada();
+    
+    public boolean isEstadoDemonstracaoCandidaturasAtribuidas();
+
+    public boolean isEstadoDemonstracaoCandidaturasAvaliadas();
+    
+    public boolean isEstadoDemonstracaoCandidaturasDecididas();
+    
+    public boolean isEstadoDemonstracaoCandidaturasAbertas();
+    
+    public boolean isEstadoDemonstracaoCandidaturasFechadas();
 }
