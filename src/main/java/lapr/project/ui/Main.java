@@ -16,7 +16,7 @@ public class Main {
         CentroExposicoes centroExposicoes = tratarFicheiro.lerFicheiroBinario(FicheiroDados.NOME_FICHEIRO_BINARIO_PREDEFINICAO);
         if (centroExposicoes == null) {
             centroExposicoes = new CentroExposicoes();
-            tratarFicheiro.lerDadosFicheiroTexto(centroExposicoes);
+//            tratarFicheiro.lerDadosFicheiroTexto(centroExposicoes);
         }
 
         new LoginGui(centroExposicoes);
