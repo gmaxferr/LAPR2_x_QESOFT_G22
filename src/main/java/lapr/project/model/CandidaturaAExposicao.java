@@ -13,6 +13,15 @@ import lapr.project.registos.*;
  */
 public class CandidaturaAExposicao {
 
+    public static final String ROOT_ELEMENT_NAME = "CandidaturaAExposicao";
+    public static final String ESTADO_ELEMENT_NAME = "Estado";
+    public static final String TLM_ELEMENT_NAME = "telemovel";
+    public static final String NUM_CONVITES_ELEMENT_NAME = "numConvites";
+    public static final String AREA_ELEMENT_NAME = "area";
+    public static final String NOME_EMPRESA_ELEMENT_NAME = "nomeEmpresa";
+    public static final String MORADA_EMPRESA_ELEMENT_NAME = "moradaEmpresa";
+    public static final String KEYWORDS_ELEMENT_NAME = "keywords";
+    
     private EstadoCandidaturaAExposicao m_estado;
     /**
      * Atributo numero de telemovel de CandidaturaAExposicao
@@ -62,7 +71,7 @@ public class CandidaturaAExposicao {
     /**
      *
      */
-    private String[] m_keywords;
+    private List<Keyword> m_keywords;
 
     /**
      * Contrutor de Candidatura sem parametros
@@ -406,7 +415,9 @@ public class CandidaturaAExposicao {
         if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
-            this.m_keywords = vecKeywords;
+            for(String s : vecKeywords){
+                m_keywords.add(new Keyword(s));
+            }
         }
     }
 
@@ -417,7 +428,11 @@ public class CandidaturaAExposicao {
      * @return keywords que descrevem os produtos associados à candidatura
      */
     public String[] getKeywords() {
-        return this.m_keywords;
+        String res[] = new String[m_keywords.size()];
+        for(int i=0; i<m_keywords.size(); i++){
+            res[i] = m_keywords.get(i).getValue();
+        }
+        return res;
     }
 
 }

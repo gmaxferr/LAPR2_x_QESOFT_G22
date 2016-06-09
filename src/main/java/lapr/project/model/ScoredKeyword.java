@@ -104,7 +104,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
                 return true;
             }
             ScoredKeyword obj = (ScoredKeyword) o;
-            return obj.m_score == m_score && obj.m_frequency == m_frequency && super.equals(o);
+            return obj.m_score == m_score && obj.m_frequency == m_frequency && obj.m_value == m_value;
         }
         return false;
     }
