@@ -122,7 +122,7 @@ public class CandidaturaAExposicao {
      * @return username do expositor
      */
     public String getUsernameExpositor() {
-        return m_expositor.getM_strUsername();
+        return m_expositor.getM_strEmail();
     }
 
     /**
@@ -394,7 +394,7 @@ public class CandidaturaAExposicao {
             return false;
         }
         CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
-        if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strUsername().equalsIgnoreCase(cand.getExpositor().getM_strUsername())) {
+        if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strEmail().equalsIgnoreCase(cand.getExpositor().getM_strEmail())) {
             return true;
         } else {
             return false;

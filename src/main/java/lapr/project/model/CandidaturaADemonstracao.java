@@ -26,6 +26,22 @@ public class CandidaturaADemonstracao {
     }
 
     /**
+     * 
+     * @return dados da candidatura 
+     */
+    public String getM_dadosCandidatura(){
+        return m_dados;
+    }
+    
+    /**
+     * 
+     * @return username do expositor 
+     */
+    public String getM_usernameExpositor(){
+        return m_usernameExpositor;
+    }
+    
+    /**
      * @return estado desta candidatura a demonstracao
      */
     public EstadoCandidaturaADemonstracao getEstado() {

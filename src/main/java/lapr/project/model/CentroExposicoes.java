@@ -130,7 +130,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     public Expositor getExpositorPeloUsername(String m_StrUsername) {
         for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
-            if (expositor.getM_strUsername().equalsIgnoreCase(m_StrUsername)) {
+            if (expositor.getM_strEmail().equalsIgnoreCase(m_StrUsername)) {
                 return expositor;
             }
         }

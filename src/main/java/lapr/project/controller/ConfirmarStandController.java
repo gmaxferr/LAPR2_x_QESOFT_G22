@@ -84,8 +84,8 @@ public class ConfirmarStandController {
         m_RegistoAtribuicoesStand = m_exposicaoEscolhida.getRegistoAtribuicoesStands();
     }
     
-    public List<AtribuicaoStand> getAtribuicao(String username){
-        return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(username);
+    public List<AtribuicaoStand> getAtribuicao(String email){
+        return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(email);
     }
     
     public void setDecisao(boolean decisao){

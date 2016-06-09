@@ -6,7 +6,9 @@
 package lapr.project.model;
 
 import lapr.project.estados.EstadoDemonstracao;
+import lapr.project.registos.RegistoCandidaturaADemonstracoes;
 import lapr.project.registos.RegistoRecursos;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -18,14 +20,16 @@ public class Demonstracao {
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
     private EstadoDemonstracao m_estado;
+    private RegistoCandidaturaADemonstracoes m_rcd;
 
     public Demonstracao(String descricao) {
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
+        this.m_rcd = new RegistoCandidaturaADemonstracoes();
     }
 
     /**
-     * 
+     *
      * @return descrição da demonstração
      */
     public String getDescricao() {
@@ -34,14 +38,15 @@ public class Demonstracao {
 
     /**
      * Permite alterar a descrição da demonstração
-     * @param descricaoIntroduzidaPeloUtilizador 
+     *
+     * @param descricaoIntroduzidaPeloUtilizador
      */
     public void getDescricao(String descricaoIntroduzidaPeloUtilizador) {
         this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
     }
 
     /**
-     * 
+     *
      * @return registo dos recursos necessários à demonstração
      */
     public RegistoRecursos getRegistoRecursosNecessarios() {
@@ -49,18 +54,19 @@ public class Demonstracao {
     }
 
     /**
-     * 
+     *
      * @return código da demonstração
      */
     public String getCodigoIdentificacao() {
         return this.m_StrCodigoIdentificacao;
     }
-    
+
     /**
      * Permite obter o estado atual da demonstração
+     *
      * @return estado atual da demonstração
      */
-    public EstadoDemonstracao getEstadoDemo(){
+    public EstadoDemonstracao getEstadoDemo() {
         return m_estado;
     }
 
@@ -69,5 +75,21 @@ public class Demonstracao {
      */
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
+    }
+
+    /**
+     *
+     * @return - registo de candidaturas a demonstração
+     */
+    public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
+        return m_rcd;
+    }
+
+    void setDataInicioCandidaturas(Data dataInicioCandDemo) {
+        Data m_dataInicioSubCand = dataInicioCandDemo;
+    }
+
+    void setDataFimoCandidaturas(Data dataFimCandDemo) {
+        Data m_dataFimSubCand = dataFimCandDemo;
     }
 }

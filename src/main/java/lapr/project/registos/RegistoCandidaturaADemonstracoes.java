@@ -21,6 +21,25 @@ public class RegistoCandidaturaADemonstracoes {
         m_listaCandidaturasADemonstracao = new ArrayList<>();
     }
 
+    public List<CandidaturaADemonstracao>getListaCandidaturasADemonstracao(){
+        return m_listaCandidaturasADemonstracao;
+    }
+    
+    /**
+     * 
+     * @param username do representante
+     * @return lista de candidaturas a demonstracao do representante
+     */
+    public List<CandidaturaADemonstracao>getListaCandidaturasADemonstracaoRep(String username){
+        List<CandidaturaADemonstracao>lstCandidaturasRep = new ArrayList<>();
+        for(CandidaturaADemonstracao cd : m_listaCandidaturasADemonstracao){
+            if(cd.getM_usernameExpositor().equals(username)){
+                lstCandidaturasRep.add(cd);
+            }
+        }
+        return lstCandidaturasRep;
+    }
+    
     /**
      * Adiciona uma candidatura à lista de candidaturas à demonstração que
      * possui este registo.

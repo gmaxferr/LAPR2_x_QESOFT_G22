@@ -50,6 +50,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public void setExpo(Exposicao e) {
         this.m_e = e;
+        
     }
 
     /**
@@ -59,6 +60,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public void setDemo(int indexSelectedDemo) {
         this.m_d = m_listDemos.get(indexSelectedDemo);
+        m_rcd = m_d.getRegistoCandidaturasADemonstracao();
     }
 
     /**
