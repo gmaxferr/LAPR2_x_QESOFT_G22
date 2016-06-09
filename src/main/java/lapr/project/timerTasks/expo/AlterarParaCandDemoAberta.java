@@ -1,4 +1,4 @@
-package lapr.project.timerTasks;
+package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
 import lapr.project.model.Exposicao;
