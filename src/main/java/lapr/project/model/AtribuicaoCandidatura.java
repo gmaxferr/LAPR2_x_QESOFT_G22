@@ -6,12 +6,12 @@ import lapr.project.registos.RegistoFaeAvaliacao;
  *
  * @author Ana Leite Ricardo Osório
  */
-public class AtribuicoesCandidatura {
+public class AtribuicaoCandidatura {
 
     private final CandidaturaAExposicao m_candidatura;
     private final RegistoFaeAvaliacao m_rFaeDecisao;
 
-    public AtribuicoesCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
+    public AtribuicaoCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         this.m_candidatura = candidaturaAExposicao;
         this.m_rFaeDecisao = new RegistoFaeAvaliacao();
     }

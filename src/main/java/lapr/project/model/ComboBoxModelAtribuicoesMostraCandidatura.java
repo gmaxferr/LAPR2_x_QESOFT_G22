@@ -13,7 +13,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
     /**
      * Lista de Atribuições.
      */
-    private List<AtribuicoesCandidatura> m_listaAtribuicoes;
+    private List<AtribuicaoCandidatura> m_listaAtribuicoes;
 
     /**
      * Objeto selecionado.
@@ -26,7 +26,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
      *
      * @param listaAtribuicoes lista de atribuições.
      */
-    public ComboBoxModelAtribuicoesMostraCandidatura(List<AtribuicoesCandidatura> listaAtribuicoes) {
+    public ComboBoxModelAtribuicoesMostraCandidatura(List<AtribuicaoCandidatura> listaAtribuicoes) {
         this.selection = null;
         this.m_listaAtribuicoes = listaAtribuicoes;
     }

@@ -2,7 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.AtribuicoesCandidatura;
+import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
@@ -11,13 +11,13 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class RegistoAtribuicoes {
 
-    private List<AtribuicoesCandidatura> m_listaAtribuicao;
+    private List<AtribuicaoCandidatura> m_listaAtribuicao;
 
     public RegistoAtribuicoes() {
         this.m_listaAtribuicao = new ArrayList<>();
     }
 
-    public List<AtribuicoesCandidatura> getListaAtribuicoes() {
+    public List<AtribuicaoCandidatura> getListaAtribuicoes() {
         return this.m_listaAtribuicao;
     }
 
@@ -48,13 +48,13 @@ public class RegistoAtribuicoes {
         return true;
     }
 
-    public void setListaAtribuicao(List<AtribuicoesCandidatura> listaAtribuicao) {
+    public void setListaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
         this.m_listaAtribuicao = listaAtribuicao;
     }
 
-    public ArrayList<AtribuicoesCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
-        ArrayList<AtribuicoesCandidatura> listaAtrib = new ArrayList<>();
-        for (AtribuicoesCandidatura atribuicao : this.m_listaAtribuicao) {
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
+        ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 
                     atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
                 listaAtrib.add(atribuicao);

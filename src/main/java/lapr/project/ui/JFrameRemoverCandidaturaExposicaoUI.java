@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RemoverCandidaturaExpoController;
-import lapr.project.model.AtribuicoesCandidatura;
+import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ComboBoxModelExposicoes;
@@ -29,7 +29,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
-    private List<AtribuicoesCandidatura> listaAtribuicoesDoFAE;
+    private List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
     private Exposicao expoSelecionada;
     private List<Exposicao> listaExposicoes;
 
