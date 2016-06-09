@@ -20,30 +20,58 @@ public class AlterarPerfilDeUtilizadorController {
     private String m_username;
     private char[] m_password;
 
+    /**
+     * Contrutor do controller da UC10 - alterar perfil de utilizador
+     * @param centroExposicoes - Centro de Exposições
+     */
     public AlterarPerfilDeUtilizadorController(CentroExposicoes centroExposicoes) {
         m_ce = centroExposicoes;
     }
 
+    /**
+     * inicializa registo de utilizadores
+     */
     public void getRegistoutilizadores() {
-        m_ce.getRegistoUtilizadores();
+        m_ru = m_ce.getRegistoUtilizadores();
     }
 
+    /**
+     * inicialializa username e utilizador de utilizador e procura utilizador a
+     * inicializar com esse username.
+     *
+     * @param username - username de procura
+     */
     public void identificaUtilizador(String username) {
         //devolve null se não encontrar
         setUsername(username);
         m_u = m_ru.identificarUtilizador(username);
     }
 
+    /**
+     * inicializa e retorna nome de utilizador
+     *
+     * @return nome de utilizador
+     */
     public String getNomeUtilizador() {
         m_nome = m_u.getNome();
         return m_nome;
     }
 
+    /**
+     * inicializa e retorna email de utilizador
+     *
+     * @return email de utilizador
+     */
     public String getEmailUtilizador() {
         m_email = m_u.getEmail();
         return m_email;
     }
 
+    /**
+     * inicializa e retorna password de utilizador
+     *
+     * @return password de utilizador
+     */
     public char[] getPasswordUtilizador() {
         m_password = m_u.getPwd();
         return m_password;
@@ -51,6 +79,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Valida e altera o nome caso este seja validado corretamente.
+     *
      * @param nome - novo nome
      * @return true se for válido; false caso contrário.
      */
@@ -64,6 +93,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Valida e altera o username caso este seja validado corretamente.
+     *
      * @param username - novo username
      * @return true se for válido; false caso contrário.
      */
@@ -77,6 +107,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Valida e altera o email caso este seja validado corretamente.
+     *
      * @param email - novo email
      * @return true se for válido; false caso contrário.
      */
@@ -90,6 +121,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Valida e altera a password caso esta seja validada corretamente.
+     *
      * @param password - nova password
      * @return true se for válida; false caso contrário.
      */
@@ -103,6 +135,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Armazena o username do utilizador no controller
+     *
      * @param username - parametro a armazenar
      */
     private void setUsername(String username) {
@@ -111,6 +144,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Armazena a Password do utilizador no controller
+     *
      * @param password - parametro a armazenar
      */
     private void setPassword(char[] password) {
@@ -119,6 +153,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Armazena o email do utilizador no controller
+     *
      * @param email - parametro a armazenar
      */
     private void setEmail(String email) {
@@ -127,6 +162,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Armazena o nome do utilizador no controller
+     *
      * @param nome - parametro a armazenar
      */
     private void setNome(String nome) {

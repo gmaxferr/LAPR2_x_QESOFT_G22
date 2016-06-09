@@ -2,18 +2,13 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-=======
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.Keyword;
-import lapr.project.model.KeywordRanking;
->>>>>>> 7b39d812bfb3f3baaf9d6bb28a7a892c54e69576
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -133,8 +128,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         return valido && !username.isEmpty();
     }
 
-    
-    
     /**
      * Ddevolve lista dos Utilizadores
      *
@@ -236,12 +229,10 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         return null;
     }
 
-<<<<<<< HEAD
-=======
     public boolean validaDadosUnicos(String username, String email) {
         return true;
     }
-    
+
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {
         try {
@@ -251,10 +242,10 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
@@ -295,5 +286,4 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         }
         return node;
     }
->>>>>>> 7b39d812bfb3f3baaf9d6bb28a7a892c54e69576
 }
