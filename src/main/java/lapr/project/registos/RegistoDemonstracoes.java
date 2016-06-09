@@ -2,7 +2,6 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Demonstracao;
 
 /**
@@ -15,8 +14,6 @@ public class RegistoDemonstracoes {
      * Lista de demostrações existentes
      */
     private List<Demonstracao> m_listaDemonstracoes;
-
-    private CandidaturaAExposicao m_candidaturaAExposicao;
 
     private String m_Prefixo = "Demo_";
 
@@ -40,10 +37,35 @@ public class RegistoDemonstracoes {
      *
      * @param demonstracao demostracao a ser adicionada
      */
-    public void adicionaDemonstracaoACandidatura(Demonstracao demonstracao) {
-        m_candidaturaAExposicao.adicionaDemonstracao(demonstracao);
+    public void adicionaDemonstracao(Demonstracao demonstracao) {
+        if(valida(demonstracao)){
+            this.m_listaDemonstracoes.add(demonstracao);
+        }
     }
 
+    /**
+     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
+     * parametro
+     *
+     * @param demonstracao demonstração a ser validads
+     */
+    public void validaDemonstracao(Demonstracao demonstracao) {
+
+        if (validarDadosRepetidosOuInvalidos() == false) {
+            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
+        }
+    }
+    
+    /**
+     * Método que valida os dados repetidos pu invalidos de
+     * CandidaturaAExposicao
+     *
+     * @return boolean com a confirmação da validação
+     */
+    public boolean validarDadosRepetidosOuInvalidos() {
+        return true;
+    }
+    
     /**
      * Cria uma nova demonstração
      * @param descricao - descrição da demonstração
@@ -55,13 +77,8 @@ public class RegistoDemonstracoes {
     }
 
     /**
-     * <<<<<<< HEAD Permite definir lista de demonstrações a partir de uma outra
-     *
      * @param listaDemonstracoes - lista de demonstrações a considerar =======
      * Permite definir lista de demonstrações
-     *
-     * @param listaDemonstracoes >>>>>>>
-     * d028313c3d76f6dc2b99d2c5ca0701431aeb8599
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         for (Demonstracao d : listaDemonstracoes) {

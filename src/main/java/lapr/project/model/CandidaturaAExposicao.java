@@ -21,7 +21,7 @@ public class CandidaturaAExposicao {
     public static final String NOME_EMPRESA_ELEMENT_NAME = "nomeEmpresa";
     public static final String MORADA_EMPRESA_ELEMENT_NAME = "moradaEmpresa";
     public static final String KEYWORDS_ELEMENT_NAME = "keywords";
-    
+
     private EstadoCandidaturaAExposicao m_estado;
     /**
      * Atributo numero de telemovel de CandidaturaAExposicao
@@ -257,76 +257,6 @@ public class CandidaturaAExposicao {
         }
     }
 
-    
-    
-    /**
-     * Método que valida a candidatura
-     *
-     * @return boolean conforme a validação
-     */
-    public boolean validaCandidatura() {
-        //validação local dos dados
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Método que valida os dados repetidos pu invalidos de
-     * CandidaturaAExposicao
-     *
-     * @return boolean com a confirmação da validação
-     */
-    public boolean validarDadosRepetidosOuInvalidos() {
-        return true;
-    }
-
-    /**
-     * Método que valida o produto de CandidaturaAExposicao
-     */
-    public void validaProduto() {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-
-    }
-
-    /**
-     * Método que valida e adiciona uma nova demonstração
-     *
-     * @param demonstracao demonstracao a ser validada e adicionada
-     */
-    public void adicionaDemonstracao(Demonstracao demonstracao) {
-        validaDemonstracao(demonstracao);
-        addDemonstracao(demonstracao);
-    }
-
-    /**
-     * Método que adiciona uma demonstração de CandidaturaAExposicao
-     *
-     * @param demonstracao
-     */
-    public void addDemonstracao(Demonstracao demonstracao) {
-        this.m_rd.adicionaDemonstracaoACandidatura(demonstracao);
-    }
-
-    /**
-     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
-     * parametro
-     *
-     * @param demonstracao demonstração a ser validads
-     */
-    public void validaDemonstracao(Demonstracao demonstracao) {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-    }
-
     /**
      * Método que adiciona um produto de CandidaturaAExposicao
      *
@@ -415,7 +345,7 @@ public class CandidaturaAExposicao {
         if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
-            for(String s : vecKeywords){
+            for (String s : vecKeywords) {
                 m_keywords.add(new Keyword(s));
             }
         }
@@ -429,10 +359,21 @@ public class CandidaturaAExposicao {
      */
     public String[] getKeywords() {
         String res[] = new String[m_keywords.size()];
-        for(int i=0; i<m_keywords.size(); i++){
+        for (int i = 0; i < m_keywords.size(); i++) {
             res[i] = m_keywords.get(i).getValue();
         }
         return res;
+    }
+
+    boolean validaCandidatura() {
+        return !this.m_StrMoradaEmpresa.trim().equals("")
+                && !this.m_StrNomeEmpresa.trim().equals("")
+                && !(this.m_expositor == null)
+                && !(this.m_intArea == 0)
+                && !(this.m_intNumConvites == 0)
+                && !(this.m_intTelemovel == 0)
+                && !(this.m_keywords.size() < 2)
+                && !(this.m_keywords.size() > 5);
     }
 
 }

@@ -191,7 +191,7 @@ public class FicheiroDados {
                     rr = demo.getRegistoRecursosNecessarios();
                     rr.setRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
                     cont++;
-                    rd.adicionaDemonstracaoACandidatura(demo);
+                    rd.adicionaDemonstracao(demo);
                 }
                 re.registaExposicao(exposicao);
             }
