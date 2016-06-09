@@ -54,7 +54,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.m_utilizador = new Utilizador();
-                this.m_utilizador.importContentFromXMLNode((Node) elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME));
+                this.m_utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);

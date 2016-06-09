@@ -41,12 +41,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
     private EstadoDemonstracao m_estado;
-    private RegistoCandidaturaADemonstracoes m_rcd;
 
     public Demonstracao(String descricao) {
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
-        this.m_rcd = new RegistoCandidaturaADemonstracoes();
     }
 
     /**
@@ -96,14 +94,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
-    }
-
-    /**
-     *
-     * @return - registo de candidaturas a demonstração
-     */
-    public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
-        return m_rcd;
     }
 
     void setDataInicioCandidaturas(Data dataInicioCandDemo) {
