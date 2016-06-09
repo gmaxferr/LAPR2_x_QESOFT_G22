@@ -365,7 +365,7 @@ public class CandidaturaAExposicao {
         return res;
     }
 
-    boolean validaCandidatura() {
+    public boolean validaCandidatura() {
         return !this.m_StrMoradaEmpresa.trim().equals("")
                 && !this.m_StrNomeEmpresa.trim().equals("")
                 && !(this.m_expositor == null)
