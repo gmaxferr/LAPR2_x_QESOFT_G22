@@ -213,7 +213,7 @@ public class UtilizadorTest {
     }
 
     /**
-     * Test of isValidPassword method, of class Utilizador.
+     * Test of VerificaCorrespondenciaPassword method, of class Utilizador.
      */
     @Test
     public void testIsValidPassword() {
@@ -221,7 +221,7 @@ public class UtilizadorTest {
         char[] password = null;
         Utilizador instance = new Utilizador();
         boolean expResult = false;
-        boolean result = instance.isValidPassword(password);
+        boolean result = instance.VerificaCorrespondenciaPassword(password);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

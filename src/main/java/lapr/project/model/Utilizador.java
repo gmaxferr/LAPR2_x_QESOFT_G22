@@ -10,11 +10,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.utils.CaesarsCypher;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import lapr.project.utils.Utilitarios;
 
 /**
  * Representação de um Utilizador
@@ -109,10 +109,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * Devolve a password do utilizador
      *
      * @return password do utilizador
-     * @deprecated Este método é considerado inseguro. Para validar uma
-     * password, usar {@link #isValidPassword(char[])}
      */
-    @Deprecated
     public char[] getPwd() {
         //fazer toString? depende se for um get para ser usado na UI
         return this.m_strPwd;
@@ -190,16 +187,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Método que mostra ao utilizador os dados introduzidos
-     *
-     * @return um boolean, true
-     */
-    public boolean valida() {
-        System.out.println("Utilizador: valida: " + this.toString());
-        return true;
-    }
-
-    /**
      * Verifica se uma palavra-passe passada por parâmetro corresponde à que
      * está guardada no sistema.
      *
@@ -207,8 +194,26 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return Retorna TRUE se a palavra-passe passada como parâmetro for igual
      * à armazenada no sistema, FALSE caso contrário
      */
-    public boolean isValidPassword(char[] password) {
+    public boolean VerificaCorrespondenciaPassword(char[] password) {
         return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, passwordAlfabet), password);
+    }
+
+    /**
+     * Valida a password: A validação da password é feita da seguinte forma: Uma
+     * password tem que conter um número, uma letra minuscula e outra maiusculo
+     * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
+     * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
+     * máximo de 7.
+     *
+     * @param password - password a validar
+     * @return true se for válida; false caso contrário.
+     */
+    public boolean validaPassword(char[] password) {
+        return Utilitarios.hasLowerCase(password)
+                && Utilitarios.hasNumber(password)
+                && Utilitarios.hasSinalPontuacao(password)
+                && Utilitarios.hasUpperCase(password)
+                && password.length >= 4 && password.length <= 7;
     }
 
     /**

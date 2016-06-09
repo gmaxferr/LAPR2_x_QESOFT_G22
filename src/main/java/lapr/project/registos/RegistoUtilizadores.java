@@ -2,6 +2,8 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lapr.project.model.Utilizador;
 
 /**
@@ -41,24 +43,80 @@ public class RegistoUtilizadores {
 
     /**
      * Método de validação: Verifica se existe algum utilizador já registado no
-     * centro de exposições com o username ou com o email passados por
-     * parametro. Estes dois atributos dos Utilizadores devem de ser únicos
+     * centro de exposições com o mesmo username ou com o email (estes dois
+     * atributos devem ser únicos).
      *
-     * @param username username do utilizador
-     * @param email email do utilizador
+     * @param username - username do utilizador
+     * @param email - email do utilizador
      *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email) {
-        for (Utilizador u : m_listaUtilizadores) {
-            if (username.equals(u.getUsername()) || email.equals(u.getEmail())) {
-                return false;
-            }
-        }
-        return true;
+    private boolean validaUtilizador(String username, String email, String nome) {
+        return validaNome(nome)
+                && validaUsername(username)
+                && validaEmail(email);
     }
 
+    /**
+     * Verifica se o nome do utilizador é valido
+     *
+     * @param nome - nome a verificar
+     * @return
+     */
+    public boolean validaNome(String nome) {
+        return !nome.isEmpty();
+    }
+
+    /**
+     * Para um email ser válido tem que conter, de uma forma simplificada,
+     * letras seguido de um "@" com mais letras seguidas, um ponto (".") e mais
+     * letras. Não pode ser vazio nem uma string null, evidentemente.
+     *
+     * Além desta verificação, é necessário que nenhum outro utilizador seja
+     * portador deste mesmo email.
+     *
+     * @param email - email a validar
+     * @return true se for válido; false caso contrário.
+     */
+    public boolean validaEmail(String email) {
+        if ((email == null) || (email.trim().length() == 0)) {
+            return false;
+        }
+
+        String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+        Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+
+        boolean valido = true;
+        for (Utilizador u : m_listaUtilizadores) {
+            if (u.getEmail().equals(email)) {
+                valido = false;
+            }
+        }
+
+        return matcher.matches() && valido; //se o padrão coincidir, retorna true; senão retorna false.
+    }
+
+    /**
+     * valida o username verificando se já existe algum utilizador portador do
+     * mesmo e se a string que contem o username não está vazia.
+     *
+     * @param username - username a validar.
+     * @return true se for válida; false caso contrário.
+     */
+    public boolean validaUsername(String username) {
+        boolean valido = true;
+        for (Utilizador u : m_listaUtilizadores) {
+            if (u.getUsername().equals(username)) {
+                valido = false;
+            }
+        }
+        return valido && !username.isEmpty();
+    }
+
+    
+    
     /**
      * Ddevolve lista dos Utilizadores
      *
@@ -113,7 +171,7 @@ public class RegistoUtilizadores {
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
     public boolean addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail())) {
+        if (validaUtilizador(u.getUsername(), u.getEmail(), u.getNome()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;
         }
@@ -144,6 +202,13 @@ public class RegistoUtilizadores {
         return list;
     }
 
+    /**
+     * Procura um utilizador através do seu username
+     *
+     * @param username - username do utilizador a procurar
+     * @return utilizador com o username enviado; null caso não encontre o
+     * utilizador com esse username
+     */
     public Utilizador identificarUtilizador(String username) {
         for (Utilizador utilizador : this.m_listaUtilizadores) {
             if (utilizador.getUsername().equalsIgnoreCase(username)) {
@@ -153,7 +218,4 @@ public class RegistoUtilizadores {
         return null;
     }
 
-    public boolean validaDadosUnicos(String username, String email) {
-        return true;
-    }
 }
