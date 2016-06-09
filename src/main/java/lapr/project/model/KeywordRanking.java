@@ -29,7 +29,6 @@ import org.w3c.dom.NodeList;
 public class KeywordRanking implements Serializable, Importable<KeywordRanking>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "KeywordRanking";
-    public static final String KEYWORDS_LIST_ELEMENT_NAME = "keywords";
     public static final String READY_ATTR_NAME = "isReady";
 
     /**
@@ -164,21 +163,17 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
             Document doc = builder.newDocument();
             doc.appendChild(doc.importNode(node, true));
 
-            NodeList nList = doc.getChildNodes();
-
-            Node n = nList.item(0);
+            Node n = doc.getChildNodes().item(0);
+            
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                Node n2 = elem.getElementsByTagName(KEYWORDS_LIST_ELEMENT_NAME).item(0);
-                if (n2.getNodeType() == Node.ELEMENT_NODE) {
-                    Element elem2 = (Element) n2;
-                    NodeList nList2 = elem2.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
-                    for (int i = 0; i < nList2.getLength(); i++) {
-                        Node n3 = nList2.item(i);
-                        ScoredKeyword key = new ScoredKeyword("", 0);
-                        key.importContentFromXMLNode(n3);
-                        m_keywords.add(key);
-                    }
+                
+                NodeList nList = elem.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
+                    ScoredKeyword key = new ScoredKeyword("", 0);
+                    key.importContentFromXMLNode(n2);
+                    m_keywords.add(key);
                 }
                 this.m_ready = Boolean.valueOf(elem.getAttribute(READY_ATTR_NAME));
             }
@@ -200,12 +195,10 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
-            Element elementKeys = document.createElement(KEYWORDS_LIST_ELEMENT_NAME);
             for (ScoredKeyword k : m_keywords) {
                 Node n = k.exportContentToXMLNode();
-                elementKeys.appendChild(document.importNode(n, true));
+                elementKeyword.appendChild(document.importNode(n, true));
             }
-            elementKeyword.appendChild(elementKeys);
 
             elementKeyword.setAttribute(READY_ATTR_NAME, String.valueOf(m_ready));
 
@@ -214,7 +207,7 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
-import lapr.project.model.CentroExposicoes;
+import lapr.project.model.*;
 
 /**
  *
@@ -22,6 +22,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes centroExposicoesAtual;
     private RegistarUtilizadorController controller;
+    private Utilizador u;
     
     private static final int LARGURA_JANELA_PASSO1 = 466;
     private static final int ALTURA_JANELA_PASSO1 = 300;
@@ -38,7 +39,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         this.centroExposicoesAtual = centroExposicoes;
         this.controller = new RegistarUtilizadorController(centroExposicoes);
         controller.getRegistoUtilizadores();
-        controller.novoUtilizador();
+        u = controller.novoUtilizador();
         initComponents();
         
         alterarComportamentoFecharJFrame();
@@ -376,7 +377,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         controller.setDados(jTextField1.getText(), jTextField2.getText(), jTextField3.getText().toCharArray(), jTextField4.getText());
-        if(controller.addUtilizador() == false){
+        if(controller.addUtilizador(u) == false){
             JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
             CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
             cardLayout.show(getContentPane(), "card1");

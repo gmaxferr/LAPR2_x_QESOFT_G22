@@ -13,6 +13,15 @@ import lapr.project.registos.*;
  */
 public class CandidaturaAExposicao {
 
+    public static final String ROOT_ELEMENT_NAME = "CandidaturaAExposicao";
+    public static final String ESTADO_ATTR_NAME = "Estado";
+    public static final String TLM_ELEMENT_NAME = "telemovel";
+    public static final String NUM_CONVITES_ELEMENT_NAME = "numConvites";
+    public static final String AREA_ELEMENT_NAME = "area";
+    public static final String NOME_EMPRESA_ELEMENT_NAME = "nomeEmpresa";
+    public static final String MORADA_EMPRESA_ELEMENT_NAME = "moradaEmpresa";
+    public static final String KEYWORDS_ELEMENT_NAME = "keywords";
+
     private EstadoCandidaturaAExposicao m_estado;
     /**
      * Atributo numero de telemovel de CandidaturaAExposicao
@@ -62,7 +71,7 @@ public class CandidaturaAExposicao {
     /**
      *
      */
-    private String[] m_keywords;
+    private List<Keyword> m_keywords;
 
     /**
      * Contrutor de Candidatura sem parametros
@@ -248,76 +257,6 @@ public class CandidaturaAExposicao {
         }
     }
 
-    
-    
-    /**
-     * Método que valida a candidatura
-     *
-     * @return boolean conforme a validação
-     */
-    public boolean validaCandidatura() {
-        //validação local dos dados
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Método que valida os dados repetidos pu invalidos de
-     * CandidaturaAExposicao
-     *
-     * @return boolean com a confirmação da validação
-     */
-    public boolean validarDadosRepetidosOuInvalidos() {
-        return true;
-    }
-
-    /**
-     * Método que valida o produto de CandidaturaAExposicao
-     */
-    public void validaProduto() {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-
-    }
-
-    /**
-     * Método que valida e adiciona uma nova demonstração
-     *
-     * @param demonstracao demonstracao a ser validada e adicionada
-     */
-    public void adicionaDemonstracao(Demonstracao demonstracao) {
-        validaDemonstracao(demonstracao);
-        addDemonstracao(demonstracao);
-    }
-
-    /**
-     * Método que adiciona uma demonstração de CandidaturaAExposicao
-     *
-     * @param demonstracao
-     */
-    public void addDemonstracao(Demonstracao demonstracao) {
-        this.m_rd.adicionaDemonstracaoACandidatura(demonstracao);
-    }
-
-    /**
-     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
-     * parametro
-     *
-     * @param demonstracao demonstração a ser validads
-     */
-    public void validaDemonstracao(Demonstracao demonstracao) {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-    }
-
     /**
      * Método que adiciona um produto de CandidaturaAExposicao
      *
@@ -406,7 +345,9 @@ public class CandidaturaAExposicao {
         if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {
-            this.m_keywords = vecKeywords;
+            for (String s : vecKeywords) {
+                m_keywords.add(new Keyword(s));
+            }
         }
     }
 
@@ -417,7 +358,22 @@ public class CandidaturaAExposicao {
      * @return keywords que descrevem os produtos associados à candidatura
      */
     public String[] getKeywords() {
-        return this.m_keywords;
+        String res[] = new String[m_keywords.size()];
+        for (int i = 0; i < m_keywords.size(); i++) {
+            res[i] = m_keywords.get(i).getValue();
+        }
+        return res;
+    }
+
+    public boolean validaCandidatura() {
+        return !this.m_StrMoradaEmpresa.trim().equals("")
+                && !this.m_StrNomeEmpresa.trim().equals("")
+                && !(this.m_expositor == null)
+                && !(this.m_intArea == 0)
+                && !(this.m_intNumConvites == 0)
+                && !(this.m_intTelemovel == 0)
+                && !(this.m_keywords.size() < 2)
+                && !(this.m_keywords.size() > 5);
     }
 
 }

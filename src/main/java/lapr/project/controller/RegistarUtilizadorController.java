@@ -46,9 +46,11 @@ public class RegistarUtilizadorController {
     
     /**
      * Cria um novo utilizador
+     * 
+     * @return novo utilizador 
      */
-    public void novoUtilizador() {
-        m_utilizador = m_ru.novoUtilizador();
+    public Utilizador novoUtilizador() {
+       return m_utilizador = m_ru.novoUtilizador();
     }
     
     /**
@@ -72,11 +74,12 @@ public class RegistarUtilizadorController {
 
     /**
      * Adiciona o utilizador ao registo de utilizadores
-     * @param username
-     * @param email email do utilizador
+     * 
+     * @param u utilizador a ser adicionado
+     * @return true se o utilizador foi adicionado.Caso contrário retorna false.
      */
-    public boolean addUtilizador() {
-       return m_ru.addUtilizador(m_utilizador);
+    public boolean addUtilizador(Utilizador u) {
+       return m_ru.addUtilizador(u);
     }
 
     

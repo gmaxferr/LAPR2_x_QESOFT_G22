@@ -2,13 +2,26 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Produto;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Ana Leite Ricardo Osório
  */
-public class RegistoProdutos {
+public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "RegistoProdutos";
 
     /**
      * Atributo produtos a expor de Candidatura
@@ -100,5 +113,59 @@ public class RegistoProdutos {
         }
         RegistoProdutos rp = (RegistoProdutos) obj;
         return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
+    }
+    
+    @Override
+    public RegistoProdutos importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.appendChild(doc.importNode(node, true));
+
+            Node n = doc.getChildNodes().item(0);
+            
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+                
+                NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
+                    Produto prod = new Produto();
+                    prod.importContentFromXMLNode(n2);
+                    m_ProdutosExpor.add(prod);
+                }
+            }
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+
+            for (Produto p : m_ProdutosExpor) {
+                Node n = p.exportContentToXMLNode();
+                elementKeyword.appendChild(document.importNode(n, true));
+            }
+
+            document.appendChild(elementKeyword);
+
+            node = elementKeyword;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }
