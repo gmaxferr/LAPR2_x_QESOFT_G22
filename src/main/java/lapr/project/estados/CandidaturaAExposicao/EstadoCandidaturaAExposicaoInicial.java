@@ -94,5 +94,44 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
         return false;
     }
 
+    @Override
+    public boolean setEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
 
 }
