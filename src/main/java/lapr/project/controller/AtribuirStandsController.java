@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CandidaturaAExposicao;
@@ -24,6 +25,7 @@ public class AtribuirStandsController {
     private RegistoCandidaturasAExposicao rc;
     private RegistoStands rs;
     private RegistoAtribuicoesStands ras;
+    List<CandidaturaAExposicao> listCand;
     
     private List<AtribuicaoStand> listAtr;
     
@@ -42,7 +44,8 @@ public class AtribuirStandsController {
     }
     
     public List<CandidaturaAExposicao> getListaCand(){
-        return rc.getListaCandidaturasAceites();
+        this.listCand = rc.getListaCandidaturasAceites();
+        return listCand;
     }
     
     public List<Stand> getListaStands(){
@@ -58,7 +61,9 @@ public class AtribuirStandsController {
     public void confirm(){
         ras = expo.getRegistoAtribuicoesStands();
         ras.addAll(listAtr);
-        EstadoExposicao state = expo.getEstado();
-        state.setEstadoStandsAtribuidos();
+        for(CandidaturaAExposicao c : listCand){
+            EstadoCandidaturaAExposicao state = c.getEstado();
+            state.setEstadoCandidaturaStandsAtribuidos();
+        }
     }
 }
