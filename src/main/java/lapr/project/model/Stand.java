@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ricardo Catalao
@@ -46,14 +48,22 @@ public class Stand {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
+        } else if (obj instanceof Stand) {
+            Stand stand = (Stand) obj;
+            if (this.m_ID.equals(stand.getID())) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        Stand stand = (Stand) obj;
-        if (this.m_ID.equals(stand.getID())) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + Objects.hashCode(this.m_ID);
+        hash = 11 * hash + this.m_area;
+        return hash;
     }
 }

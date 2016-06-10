@@ -120,10 +120,10 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
         try (Formatter out = new Formatter(saveFile)) {
             Collections.sort(m_keywords);
             Collections.reverse(m_keywords);
-            out.format("Ranking,Frequency,Keyword\n");
+            out.format("Ranking,Frequency,Keyword%n");
             for (int i = 0; i < m_keywords.size(); i++) {
                 ScoredKeyword keyword = m_keywords.get(i);
-                out.format("%d,%d,%s\n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
+                out.format("%d,%d,%s%n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
             }
             out.close();
             return true;

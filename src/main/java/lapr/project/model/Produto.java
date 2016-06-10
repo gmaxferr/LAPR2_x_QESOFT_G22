@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -76,6 +77,13 @@ public class Produto implements Importable<Produto>, Exportable {
                 return false;
             }
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.m_nome);
+        return hash;
     }
 
     @Override

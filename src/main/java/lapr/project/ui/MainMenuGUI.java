@@ -147,7 +147,7 @@ public class MainMenuGUI extends JFrame {
      * @param data - ficheiro com a informação guardada
      */
     private void terminaSessao(File data) {
-        new LoginGui(centroExposicoes);
+        LoginGui login = new LoginGui(centroExposicoes);
         dispose();
     }
 
@@ -252,7 +252,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
+                JFrame frame = new JFrameAtribuirCandidaturasUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
             }
         });
         return button;
@@ -271,7 +271,7 @@ public class MainMenuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, centroExposicoes.getExpositorPeloUsername(utilizador.getUsername()));
+                JFrame frame = new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, centroExposicoes.getExpositorPeloUsername(utilizador.getUsername()));
             }
         });
         return button;

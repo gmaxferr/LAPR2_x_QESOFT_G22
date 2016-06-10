@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -82,6 +83,13 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.m_value);
+        return hash;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -104,9 +105,18 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
                 return true;
             }
             ScoredKeyword obj = (ScoredKeyword) o;
-            return obj.m_score == m_score && obj.m_frequency == m_frequency && obj.m_value == m_value;
+            return obj.m_score == m_score && obj.m_frequency == m_frequency && obj.m_value.equals(m_value);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.m_score;
+        hash = 97 * hash + this.m_frequency;
+        hash = 97 * hash + Objects.hashCode(this.m_value);
+        return hash;
     }
 
     @Override

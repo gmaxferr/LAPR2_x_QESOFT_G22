@@ -2,6 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -108,11 +109,18 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
+        } else if (obj instanceof RegistoProdutos) {
+            RegistoProdutos rp = (RegistoProdutos) obj;
+            return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
         }
-        RegistoProdutos rp = (RegistoProdutos) obj;
-        return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.m_ProdutosExpor);
+        return hash;
     }
 
     @Override

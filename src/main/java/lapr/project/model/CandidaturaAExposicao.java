@@ -4,6 +4,7 @@ import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoCriada;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -353,15 +354,32 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
+        } else if (obj instanceof CandidaturaAExposicao) {
+            CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
+            if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strEmail().equalsIgnoreCase(cand.getExpositor().getM_strEmail())) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
-        if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strEmail().equalsIgnoreCase(cand.getExpositor().getM_strEmail())) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.m_estado);
+        hash = 29 * hash + this.m_intTelemovel;
+        hash = 29 * hash + this.m_intNumConvites;
+        hash = 29 * hash + this.m_intArea;
+        hash = 29 * hash + Objects.hashCode(this.m_StrNomeEmpresa);
+        hash = 29 * hash + Objects.hashCode(this.m_StrMoradaEmpresa);
+        hash = 29 * hash + Objects.hashCode(this.m_rp);
+        hash = 29 * hash + Objects.hashCode(this.m_rd);
+        hash = 29 * hash + Objects.hashCode(this.m_decisao);
+        hash = 29 * hash + Objects.hashCode(this.m_expositor);
+        hash = 29 * hash + Objects.hashCode(this.m_keywords);
+        return hash;
     }
 
     public void setKeywords(String keywords) throws KeywordsErradasException {

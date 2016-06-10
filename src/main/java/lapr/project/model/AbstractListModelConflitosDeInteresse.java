@@ -14,7 +14,7 @@ import javax.swing.AbstractListModel;
  */
 public class AbstractListModelConflitosDeInteresse extends AbstractListModel {
 
-    List<ConflitoDeInteresse> m_listaConflitos;
+    private List<ConflitoDeInteresse> m_listaConflitos;
 
     public AbstractListModelConflitosDeInteresse(List<ConflitoDeInteresse> listaConflitos) {
         this.m_listaConflitos = listaConflitos;

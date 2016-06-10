@@ -193,6 +193,15 @@ public class Data implements Comparable<Data> {
                 && dia == outraData.dia;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.ano;
+        hash = 29 * hash + this.mes;
+        hash = 29 * hash + this.dia;
+        return hash;
+    }
+
     /**
      * Compara a data com a outra data recebida por parâmetro.
      *

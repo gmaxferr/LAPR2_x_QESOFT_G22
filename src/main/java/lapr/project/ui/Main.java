@@ -19,6 +19,6 @@ public class Main {
 //            tratarFicheiro.lerDadosFicheiroTexto(centroExposicoes);
         }
 
-        new LoginGui(centroExposicoes);
+        LoginGui loginGUI = new LoginGui(centroExposicoes);
     }
 }

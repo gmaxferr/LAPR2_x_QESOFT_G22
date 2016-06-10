@@ -155,7 +155,7 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
             }
         }
         //Caso nao tenha-mos encontrado FAEs com experiencia
-        if (contribution == 0) {
+        if (Double.compare(contribution, 0) == 0) {
             toBeUsed.addAll(faes);
         }
 
@@ -178,8 +178,8 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
         double percentContribution;
         int nAvaliacoes;
         for (int i = 0; i < size; i++) {
-            if (contribution == 0) {
-                percentContribution = 1 / resultFaePerCand;
+            if (Double.compare(contribution, 0) == 0) {
+                percentContribution = 1D / resultFaePerCand;
             } else {
                 nAvaliacoes = toBeUsed.get(i).getUtilizador().getnAvaliacoesDesdeSempre();
                 percentContribution = (double) nAvaliacoes / contribution;
