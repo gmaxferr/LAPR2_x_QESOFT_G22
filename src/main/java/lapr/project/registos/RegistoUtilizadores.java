@@ -124,7 +124,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
                 valido = false;
             }
         }
-        return valido && !username.isEmpty();
+        return valido;
     }
 
     /**
@@ -181,7 +181,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
     public boolean addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
+        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd(), u.getCaesarShift())) {
             adicionaUtilizador(u);
             return true;
         }
