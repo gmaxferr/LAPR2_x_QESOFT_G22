@@ -189,7 +189,7 @@ public class FicheiroDados {
                     linhaLida = inputDemos.nextLine();
                     demo = new Demonstracao(linhaLida);
                     rr = demo.getRegistoRecursosNecessarios();
-                    rr.setRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
+                    rr.addRecurso(centroExposicoes.getRegistoRecursos().getListaDeRecursos().get(cont));
                     cont++;
                     rd.adicionaDemonstracao(demo);
                 }

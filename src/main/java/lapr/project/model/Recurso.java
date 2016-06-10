@@ -78,12 +78,11 @@ public class Recurso implements Importable<Recurso>, Exportable {
             Document document = builder.newDocument();
 
             Element elementRecurso = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementRecurso);
+            
             Element elementNome = document.createElement(NOME_ELEMENT_NAME);
-
             elementNome.setTextContent(this.m_nomeRecurso);
             elementRecurso.appendChild(elementNome);
-
-            document.appendChild(elementRecurso);
 
             node = elementRecurso;
 
