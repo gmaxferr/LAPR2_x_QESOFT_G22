@@ -55,6 +55,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
         this.m_rcd = new RegistoCandidaturaADemonstracoes();
+        this.m_estado = new EstadoDemonstracaoPendente(this);
     }
 
     /**
@@ -143,6 +144,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
                 this.rc = new RegistoRecursos();
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
+                this.m_rcd = new RegistoCandidaturaADemonstracoes();
+                this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
 
@@ -192,12 +195,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             Document document = builder.newDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementKeyword);
 
             Element elementValue = document.createElement(DESCR_ELEMENT_NAME);
             elementValue.setTextContent(this.m_StrDescricao);
             elementKeyword.appendChild(elementValue);
 
-            elementKeyword.appendChild(this.rc.exportContentToXMLNode());
+            elementKeyword.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
+            elementKeyword.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
 
             elementKeyword.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
@@ -218,8 +223,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasDecididas()) {
                 elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasDecididas");
             }
-
-            document.appendChild(elementKeyword);
 
             node = elementKeyword;
 
