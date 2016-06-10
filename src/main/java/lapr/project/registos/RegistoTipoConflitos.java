@@ -26,7 +26,7 @@ public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, E
     
     private int numConflitos = 0;
     private static final String m_prefix = "TC-";
-    private List<TipoConflito> m_listaTipoConflitos;
+    private final List<TipoConflito> m_listaTipoConflitos;
 
     public RegistoTipoConflitos() {
         numConflitos = 0;

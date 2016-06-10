@@ -167,6 +167,8 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 
+                this.m_keywords.clear();
+                
                 NodeList nList = elem.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
