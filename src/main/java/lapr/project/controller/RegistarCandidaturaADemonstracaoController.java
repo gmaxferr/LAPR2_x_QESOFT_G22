@@ -61,7 +61,8 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public void setDemo(int indexSelectedDemo) {
         this.m_d = m_listDemos.get(indexSelectedDemo);
-        m_rcd = m_d.getRegistoCandidaturasADemonstracao();
+        // TODO
+//        m_rcd = m_d.getRegistoCandidaturasADemonstracao();
     }
 
     /**
