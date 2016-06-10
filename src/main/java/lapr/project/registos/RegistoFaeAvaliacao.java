@@ -70,6 +70,22 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return listaUtilizadoresAssociadoAosFAE;
     }
 
+    /**
+     * Devolve a média dos ratings de todas as avaliações feitas pelos FAE neste
+     * registo.
+     *
+     * @return média dos ratings de todas as avaliações feitas pelos FAE neste
+     * registo
+     */
+    public float getMediaRatings() {
+        int cont = this.m_listaFaeAvaliacao.size();
+        float somaMediaRatingsDeCadaFAE = 0;
+        for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {
+            somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatings();
+        }
+        return somaMediaRatingsDeCadaFAE / cont;
+    }
+    
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) {
         try {
@@ -124,21 +140,5 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
             Logger.getLogger(RegistoFaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
-    }
-
-    /**
-     * Devolve a média dos ratings de todas as avaliações feitas pelos FAE neste
-     * registo.
-     *
-     * @return média dos ratings de todas as avaliações feitas pelos FAE neste
-     * registo
-     */
-    public float getMediaRatings() {
-        int cont = this.m_listaFaeAvaliacao.size();
-        float somaMediaRatingsDeCadaFAE = 0;
-        for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {
-            somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatings();
-        }
-        return somaMediaRatingsDeCadaFAE / cont;
     }
 }
