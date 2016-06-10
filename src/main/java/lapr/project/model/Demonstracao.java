@@ -126,6 +126,20 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == null){
+            return false;
+        }else if(obj instanceof Demonstracao){
+            Demonstracao o = (Demonstracao) obj;
+            if(o == this){
+                return true;
+            }
+            return this.m_StrCodigoIdentificacao == o.m_StrCodigoIdentificacao;
+        }
+        return false;
+    }
+
+    @Override
     public Demonstracao importContentFromXMLNode(Node node) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

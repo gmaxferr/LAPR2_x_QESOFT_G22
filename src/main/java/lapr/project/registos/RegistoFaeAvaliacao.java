@@ -85,6 +85,12 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
         return somaMediaRatingsDeCadaFAE / cont;
     }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores) {
+        for(FaeAvaliacao f : m_listaFaeAvaliacao){
+            f.fix(m_registoUtilizadores);
+        }
+    }
     
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) {

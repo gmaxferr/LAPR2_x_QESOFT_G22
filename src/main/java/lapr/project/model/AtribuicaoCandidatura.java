@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoFaeAvaliacao;
+import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -43,6 +45,16 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         this.m_rFaeDecisao.addFaeAvaliacao(fae);
     }
 
+    public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
+        for(CandidaturaAExposicao cand : m_rce.getListaCandidaturas()){
+            if(cand.equals(m_candidatura)){
+                m_candidatura = cand;
+                break;
+            }
+        }
+        this.m_rFaeDecisao.fix(m_registoUtilizadores);
+    }
+    
     @Override
     public AtribuicaoCandidatura importContentFromXMLNode(Node node) {
         try {

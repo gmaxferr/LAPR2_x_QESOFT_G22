@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -37,6 +38,15 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
 
     public Avaliacao getAvaliacao() {
         return this.m_avaliacao;
+    }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores) {
+        for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
+            if(m_FaeAssociado.getUtilizador().getUsername().equals(u.getUsername())){
+                this.m_FaeAssociado.setUtilizador(u);
+                break;
+            }
+        }
     }
 
     @Override

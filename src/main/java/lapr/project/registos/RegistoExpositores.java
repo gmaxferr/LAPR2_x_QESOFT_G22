@@ -40,7 +40,7 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     private boolean validaExpositor(Utilizador utilizador) {
         for (Expositor expositor : m_listaExpositores) {
-            if (expositor.getM_strEmail().equalsIgnoreCase(utilizador.getEmail())) {
+            if (expositor.getEmail().equalsIgnoreCase(utilizador.getEmail())) {
                 return false;
             }
         }
@@ -105,5 +105,16 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
             Logger.getLogger(RegistoExpositores.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores) {
+        for(Expositor repr : m_listaExpositores){
+            for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
+                if(repr.getUsername().equals(u.getUsername())){
+                    repr.setUtilizador(u);
+                    break;
+                }
+            }
+        }
     }
 }

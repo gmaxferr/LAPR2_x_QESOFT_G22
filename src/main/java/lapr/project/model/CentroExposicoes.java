@@ -145,7 +145,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     public Expositor getExpositorPeloUsername(String m_StrUsername) {
         for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
-            if (expositor.getM_strEmail().equalsIgnoreCase(m_StrUsername)) {
+            if (expositor.getUsername().equalsIgnoreCase(m_StrUsername)) {
                 return expositor;
             }
         }
@@ -172,10 +172,15 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
                 Element elem = (Element) n;
 
                 this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
+                
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
+                this.m_registoExpositores.fix(this.m_registoUtilizadores);
+                
                 this.m_registoTipoConflitos.importContentFromXMLNode(elem.getElementsByTagName(RegistoTipoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoRecursos.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
+                
                 this.m_registoExposicoes.importContentFromXMLNode(elem.getElementsByTagName(RegistoExposicoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadores);
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);

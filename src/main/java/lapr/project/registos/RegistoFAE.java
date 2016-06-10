@@ -108,6 +108,26 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         return listaUtilizadores;
     }
 
+    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
+        for (FAE fae : m_listaFAE) {
+            for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                    fae.setUtilizador(u);
+                    break;
+                }
+            }
+        }
+        for (FAE fae : m_listaFAETemp) {
+            for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                    fae.setUtilizador(u);
+                    break;
+                }
+            }
+        }
+        this.m_rOrganizadoresDestaExposicao.fix(m_ro);
+    }
+
     @Override
     public RegistoFAE importContentFromXMLNode(Node node) {
         try {
@@ -120,13 +140,13 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
                 this.m_rOrganizadoresDestaExposicao.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_listaFAE.clear();
                 NodeList nList = elem.getElementsByTagName(LISTA_FAE_ELEMENT_NAME);
-                for(int i=0; i<nList.getLength(); i++){
+                for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
                     FAE fae = new FAE();
                     fae.importContentFromXMLNode(n2);
@@ -135,7 +155,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
                 this.m_listaFAETemp.clear();
                 nList = elem.getElementsByTagName(LISTA_FAE_TEMP_ELEMENT_NAME);
-                for(int i=0; i<nList.getLength(); i++){
+                for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
                     FAE fae = new FAE();
                     fae.importContentFromXMLNode(n2);

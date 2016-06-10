@@ -34,14 +34,35 @@ public class Expositor implements Importable<Expositor>, Exportable {
     }
 
     /**
-     * Devolve o username do expositor
+     * Devolve o email do expositor
      *
-     * @return username do expositor
+     * @return email do expositor
      */
-    public String getM_strEmail() {
-        return this.m_utilizador.getEmail();
+    public String getEmail() {
+        return this.getUtilizador().getEmail();
+    }
+    
+    /**
+     * @return Devolve o username do expositor
+     */
+    public String getUsername() {
+        return this.getUtilizador().getUsername();
     }
 
+    /**
+     * @return the m_utilizador
+     */
+    public Utilizador getUtilizador() {
+        return m_utilizador;
+    }
+
+    /**
+     * @param m_utilizador the m_utilizador to set
+     */
+    public void setUtilizador(Utilizador m_utilizador) {
+        this.m_utilizador = m_utilizador;
+    }
+    
     @Override
     public Expositor importContentFromXMLNode(Node node) {
         try {
@@ -54,9 +75,9 @@ public class Expositor implements Importable<Expositor>, Exportable {
             Node n = doc.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                this.m_utilizador = new Utilizador();
-                this.m_utilizador.setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
-                this.m_utilizador.setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
+                this.setUtilizador(new Utilizador());
+                this.getUtilizador().setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
+                this.getUtilizador().setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,11 +98,11 @@ public class Expositor implements Importable<Expositor>, Exportable {
             document.appendChild(elementBase);
             
             Element elem = document.createElement(USERNAME_ELEMENT_NAME);
-            elem.setTextContent(this.m_utilizador.getUsername());
+            elem.setTextContent(this.getUtilizador().getUsername());
             elementBase.appendChild(elem);
 
             elem = document.createElement(EMAIL_ELEMENT_NAME);
-            elem.setTextContent(this.m_utilizador.getEmail());
+            elem.setTextContent(this.getUtilizador().getEmail());
             elementBase.appendChild(elem);
 
             node = elementBase;

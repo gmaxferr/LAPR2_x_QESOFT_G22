@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
  * @author Ricardo Osório Ana Leite
  */
 public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoes";
 
     private List<AtribuicaoCandidatura> m_listaAtribuicao;
@@ -93,7 +93,13 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         }
         return vec;
     }
-    
+
+    public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
+        for(AtribuicaoCandidatura atr : m_listaAtribuicao){
+            atr.fix(m_rce, m_registoUtilizadores);
+        }
+    }
+
     @Override
     public RegistoAtribuicoes importContentFromXMLNode(Node node) {
         try {

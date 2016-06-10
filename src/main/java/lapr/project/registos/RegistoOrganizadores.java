@@ -1,6 +1,7 @@
 package lapr.project.registos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -22,13 +23,14 @@ import org.w3c.dom.NodeList;
 public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoOrganizadores";
-    
+
     private ArrayList<Organizador> m_listaOrganizadores;
-    
+
     /**
      * Método que valida a exposição
+     *
      * @param o organozador de exposição
-     * @return 
+     * @return
      */
     private boolean validaOrganizador(Organizador o) {
         System.out.println("Exposição: validaOrganizador: " + o.toString());
@@ -37,8 +39,8 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
 
     /**
      * Método que adiciona o organizador à exposição
-     * 
-     * @param ut utilizador/organizador da exposição 
+     *
+     * @param ut utilizador/organizador da exposição
      */
     public void addOrganizador(Utilizador ut) {
         Organizador o = new Organizador();
@@ -47,10 +49,10 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
             addOrganizador(o);
         }
     }
-    
+
     /**
      * Método que adiciona um organizador à exposição
-     * 
+     *
      * @param o organizador a ser adicionado
      */
     private void addOrganizador(Organizador o) {
@@ -59,6 +61,31 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
 
     public ArrayList<Organizador> getListaOrganizadores() {
         return this.m_listaOrganizadores;
+    }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores) {
+        for (Organizador o : m_listaOrganizadores) {
+            for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+                if (o.getUtilizador().getUsername().equals(u.getUsername())) {
+                    o.setUtilizador(u);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void fix(RegistoOrganizadores m_ro) {
+        List<Organizador> toBeAdded = new ArrayList<>();
+        for (Organizador o : m_listaOrganizadores) {
+            for (Organizador o2 : m_ro.m_listaOrganizadores) {
+                if (o.getUtilizador().getUsername().equals(o2.getUtilizador().getUsername())) {
+                    toBeAdded.add(o2);
+                    break;
+                }
+            }
+        }
+        m_listaOrganizadores.clear();
+        m_listaOrganizadores.addAll(toBeAdded);
     }
 
     @Override
@@ -70,12 +97,12 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_listaOrganizadores.clear();
-                
+
                 NodeList nList = elem.getElementsByTagName(Organizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

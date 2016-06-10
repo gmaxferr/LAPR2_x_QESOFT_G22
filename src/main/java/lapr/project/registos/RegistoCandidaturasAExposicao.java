@@ -171,6 +171,12 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         }
     }
 
+    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
+        for (CandidaturaAExposicao c : m_listaCandidaturas) {
+            c.fix(m_registoUtilizadores, m_rd);
+        }
+    }
+
     @Override
     public RegistoCandidaturasAExposicao importContentFromXMLNode(Node node) {
         try {
@@ -225,5 +231,9 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
             Logger.getLogger(RegistoCandidaturasAExposicao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

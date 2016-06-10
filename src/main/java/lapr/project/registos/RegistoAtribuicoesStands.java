@@ -54,7 +54,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
     public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String email) {
         ArrayList<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
         for (AtribuicaoStand as : m_listaAtribuicoesStand) {
-            if (as.getCand().getExpositor().getM_strEmail().equalsIgnoreCase(email)) {
+            if (as.getCand().getExpositor().getEmail().equalsIgnoreCase(email)) {
                 listaAtribuicoesStandRepresentante.add(as);
             }
         }

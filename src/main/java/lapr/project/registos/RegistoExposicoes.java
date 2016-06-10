@@ -303,6 +303,12 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
+    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
+        for(Exposicao e : m_listaExposicoes){
+            e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
+        }
+    }
+    
     @Override
     public RegistoExposicoes importContentFromXMLNode(Node node) {
         try {

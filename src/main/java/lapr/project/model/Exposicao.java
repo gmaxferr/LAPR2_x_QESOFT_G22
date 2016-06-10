@@ -574,6 +574,15 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
+    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
+        this.m_ro.fix(m_registoUtilizadores);
+        this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
+        this.m_rexpositores.fix(m_registoUtilizadores);
+        this.m_rce.fix(m_registoUtilizadores, this.m_rd);
+        this.m_rd.fix(m_registoRecursos);
+        this.m_ra.fix(this.m_rce, m_registoUtilizadores);
+    }
+    
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         try {

@@ -135,7 +135,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      * @return username do expositor
      */
     public String getUsernameExpositor() {
-        return m_expositor.getM_strEmail();
+        return m_expositor.getEmail();
     }
 
     /**
@@ -335,7 +335,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             return true;
         } else if (obj instanceof CandidaturaAExposicao) {
             CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
-            if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getM_strEmail().equalsIgnoreCase(cand.getExpositor().getM_strEmail())) {
+            if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getEmail().equalsIgnoreCase(cand.getExpositor().getEmail())) {
                 return true;
             } else {
                 return false;
@@ -404,6 +404,23 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                 && !(this.m_intTelemovel == 0)
                 && !(this.m_keywords.size() < 2)
                 && !(this.m_keywords.size() > 5);
+    }
+
+    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
+        for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
+            if(this.m_expositor.getUtilizador().getUsername().equals(u.getUsername())){
+                this.m_expositor.setUtilizador(u);
+                break;
+            }
+        }
+        for(Demonstracao demo : this.m_rd.getListaDemonstracoes()){
+            for(Demonstracao demo2 : m_rd.getListaDemonstracoes()){
+                if(demo.equals(demo2)){
+                    demo = demo2;
+                    break;
+                }
+            }
+        }
     }
 
     @Override
