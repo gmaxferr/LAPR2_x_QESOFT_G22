@@ -55,12 +55,30 @@ public class RegistoAtribuicoes {
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
         ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida() && 
-                    atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
+            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida()
+                    && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
                 listaAtrib.add(atribuicao);
             }
         }
         return listaAtrib;
+    }
+
+    /**
+     * Devolve um vetor em que cada posição contem a média dos Ratings da
+     * candidatura na mesma posição guardada no RegistoCandidaturas. Para aceder
+     * à média dos ratings da terceira candidatura usar o vec[2].
+     *
+     * @return vetor com médias dos ratings de cada candidatura
+     */
+    public float[] getMediaRatingsTodasCandidaturas() {
+        int cont = this.m_listaAtribuicao.size();
+        float[] vec = new float[cont];
+        for (int i = 0; i < cont; i++) {
+            for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+                vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            }
+        }
+        return vec;
     }
 
 }

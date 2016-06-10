@@ -128,12 +128,33 @@ public class RegistoCandidaturasAExposicao {
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
-        for(CandidaturaAExposicao cand : m_listaCandidaturas){
+        for (CandidaturaAExposicao cand : m_listaCandidaturas) {
             EstadoCandidaturaAExposicao state = cand.getEstado();
-            if(state.isEstadoCandidaturaAceite()){
+            if (state.isEstadoCandidaturaAceite()) {
                 listCand.add(cand);
             }
         }
         return listCand;
+    }
+
+    /**
+     * Devolve a percentagem de candidaturas à exposição aceites.
+     *
+     * @return percentagem de candidaturas à exposição acites. Se não houveram
+     * candidaturas então devolve 0;
+     */
+    public float getPercentagemCandidaturasAceites() {
+        int cont = this.m_listaCandidaturas.size();
+        float candAceites = 0;
+        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+            if (candidatura.getEstado().isEstadoCandidaturaAceite()) {
+                candAceites++;
+            }
+        }
+        if (cont != 0) {
+            return candAceites / cont;
+        } else {
+            return 0;
+        }
     }
 }
