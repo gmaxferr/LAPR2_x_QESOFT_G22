@@ -232,8 +232,4 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         }
         return node;
     }
-
-    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
