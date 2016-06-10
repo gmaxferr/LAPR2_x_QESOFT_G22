@@ -42,8 +42,8 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
                     + "\naceder ao sistema na sua primeira utilização:"
                     + "\n\nUtilizador - ADMIN"
-                    + "\n    username: admin"
-                    + "\n    password: admin", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+                    + "\n    username: \"admin\""
+                    + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
         }
 
         LoginGui loginGUI = new LoginGui(centroExposicoes);
