@@ -1,5 +1,7 @@
 package lapr.project.model.exemplo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -80,10 +82,9 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 
 			node = elementKeyword;
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		} catch (ParserConfigurationException ex) {
+            Logger.getLogger(KeywordExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
 		return node;
 	}
 
@@ -106,10 +107,9 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 
 			//Get value
 			this.value = elementKeyword.getFirstChild().getNodeValue();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		} catch (ParserConfigurationException ex) {
+            Logger.getLogger(KeywordExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
 		return this;
 	}
 

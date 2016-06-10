@@ -2,13 +2,27 @@ package lapr.project.utils;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.exceptions.DiaInvalidoException;
 import lapr.project.exceptions.MesInvalidoException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Representa uma data através do dia, mês e ano.
  */
-public class Data implements Comparable<Data> {
+public class Data implements Comparable<Data>, Importable<Data>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "Data";
+
+    public static final String ANO_ELEMENT_NAME = "Ano";
+    public static final String MES_ELEMENT_NAME = "Mes";
+    public static final String DIA_ELEMENT_NAME = "Dia";
 
     /**
      * O ano da data.
@@ -333,6 +347,55 @@ public class Data implements Comparable<Data> {
         calendar.set(ano, mes, dia);
         Date result = calendar.getTime();
         return result;
+    }
+
+    @Override
+    public Data importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Node n = document.getChildNodes().item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+                this.ano = Integer.parseInt(elem.getElementsByTagName(ANO_ELEMENT_NAME).item(0).getTextContent());
+                this.mes = Integer.parseInt(elem.getElementsByTagName(MES_ELEMENT_NAME).item(0).getTextContent());
+                this.dia = Integer.parseInt(elem.getElementsByTagName(DIA_ELEMENT_NAME).item(0).getTextContent());
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            
+            Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elemBase);
+            
+            Element elemChild = document.createElement(ANO_ELEMENT_NAME);
+            elemChild.setTextContent(String.valueOf(this.ano));
+            elemBase.appendChild(elemBase);
+            
+            elemChild = document.createElement(MES_ELEMENT_NAME);
+            elemChild.setTextContent(String.valueOf(this.mes));
+            elemBase.appendChild(elemBase);
+            
+            elemChild = document.createElement(MES_ELEMENT_NAME);
+            elemChild.setTextContent(String.valueOf(this.mes));
+            elemBase.appendChild(elemBase);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 
 }

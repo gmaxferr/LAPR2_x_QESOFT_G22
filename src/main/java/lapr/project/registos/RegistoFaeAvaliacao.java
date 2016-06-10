@@ -8,7 +8,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Avaliacao;
-import static lapr.project.model.CandidaturaAExposicao.ROOT_ELEMENT_NAME;
 import lapr.project.model.FAE;
 import lapr.project.model.FaeAvaliacao;
 import lapr.project.model.Utilizador;
@@ -25,6 +24,8 @@ import org.w3c.dom.NodeList;
  */
 public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exportable {
 
+    public static final String ROOT_ELEMENT_NAME = "RegistoFaeAvaliacao";
+    
     private List<FaeAvaliacao> m_listaFaeAvaliacao;
 
     public RegistoFaeAvaliacao() {
@@ -108,16 +109,16 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
 
             for (FaeAvaliacao faeAvaliacao : this.m_listaFaeAvaliacao) {
                 Node n = faeAvaliacao.exportContentToXMLNode();
-                elementKeyword.appendChild(document.importNode(n, true));
+                elementBase.appendChild(document.importNode(n, true));
             }
 
-            document.appendChild(elementKeyword);
+            document.appendChild(elementBase);
 
-            node = elementKeyword;
+            node = elementBase;
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoFaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);

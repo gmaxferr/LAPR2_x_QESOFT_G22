@@ -12,6 +12,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Candidatura class.
@@ -113,10 +115,9 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 			//It exports only the element representation to XMÇ, ommiting the XML header
 			rootNode = elementCandidatura;
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		} catch (ParserConfigurationException ex) {
+            Logger.getLogger(CandidaturaExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
 		return rootNode;
 	}
 
@@ -149,10 +150,9 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 				keywordExample = keywordExample.importContentFromXMLNode(keyword);
 				addKeyword(keywordExample);
 			}
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		} catch (ParserConfigurationException ex) {
+            Logger.getLogger(CandidaturaExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 		return this;
 	}

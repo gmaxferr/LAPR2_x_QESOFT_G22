@@ -5,16 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
 import lapr.project.utils.Data;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de uma Exposição
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao implements Agendavel {
+public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
+    
+    public static final String ROOT_ELEMENT_NAME = "Exposicao";
+    
+    public static final String TITUTLO_ELEMENT_NAME = "Titutlo";
+    public static final String DESCR_ELEMENT_NAME = "Descricao";
 
     EstadoExposicao m_estado;
     /**
@@ -527,4 +543,47 @@ public class Exposicao implements Agendavel {
         }
     }
 
+    @Override
+    public Exposicao importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+
+            NodeList elementsKeyword = document.getChildNodes();
+
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementExpo);
+
+
+            node = elementExpo;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
+    }
 }
