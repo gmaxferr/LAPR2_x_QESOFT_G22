@@ -121,14 +121,26 @@ public class MainMenuGUI extends JFrame {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-//                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-//                if (op == JOptionPane.YES_OPTION) {
-//                    new IO_BinFile().save(saveFile, ce);
-//                    terminaSessao(saveFile);
-//                } else if (op == JOptionPane.NO_OPTION) {
-//                    terminaSessao(saveFile);
-//                }
+                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+                if (op == JOptionPane.YES_OPTION) {
+                    JFileChooser fc = new JFileChooser();
+                    int returnVal = fc.showSaveDialog(thisJFrame);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        ExportarXMLController CTRL = new ExportarXMLController();
+                        if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                            JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            terminaSessao();
+                        } else {
+                            returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o término de sessão?", "ERRO", JOptionPane.YES_NO_OPTION);
+                            if (returnVal == JOptionPane.YES_OPTION) {
+                                terminaSessao();
+                            }
+                        }
+                    }
+                } else if (op == JOptionPane.NO_OPTION) {
+                    terminaSessao();
+                }
             }
         }
         );
@@ -156,10 +168,8 @@ public class MainMenuGUI extends JFrame {
 
     /**
      * Ação do botão terminar sessão (retorna ao menu de login)
-     *
-     * @param data - ficheiro com a informação guardada
      */
-    private void terminaSessao(File data) {
+    private void terminaSessao() {
         LoginGui login = new LoginGui(centroExposicoes);
         dispose();
     }
