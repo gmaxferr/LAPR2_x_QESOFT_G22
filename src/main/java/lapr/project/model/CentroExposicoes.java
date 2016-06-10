@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
  *
  * @author Ricardo Osório Ana Leite
  */
-public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable{
+public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
 
     /**
      *
@@ -47,7 +47,12 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public CentroExposicoes() {
         this.m_registoExposicoes = new RegistoExposicoes();
         this.m_registoUtilizadores = new RegistoUtilizadores();
+
         this.m_registoMecanismos = new RegistoMecanismos();
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoA());
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoB());
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoC());
+
         this.m_registoRecursos = new RegistoRecursos();
         this.m_registoTipoConflitos = new RegistoTipoConflitos();
         this.m_rExpositores = new RegistoExpositores();
@@ -55,7 +60,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de exposições
-     * 
+     *
      * @return registo de exposições
      */
     public RegistoExposicoes getRegistoExposicoes() {
@@ -64,7 +69,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de expositores
-     * 
+     *
      * @return registo de expositores
      */
     public RegistoExpositores getRegistoExpositores() {
@@ -73,7 +78,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de utilizadores.
-     * 
+     *
      * @return registo de utilizadores
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
@@ -82,7 +87,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de mecanismos
-     * 
+     *
      * @return registo de mecanismos
      */
     public RegistoMecanismos getRegistoMecanismos() {
@@ -91,7 +96,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de recursos
-     * 
+     *
      * @return registo de recursos
      */
     public RegistoRecursos getRegistoRecursos() {
@@ -100,7 +105,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de tipos de conflitos
-     * 
+     *
      * @return registo de tipos de conflitos
      */
     public RegistoTipoConflitos getRegistoTiposConflitos() {
@@ -136,8 +141,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         }
         return null;
     }
-    
-     public List<Expositor> getListaExpositores() {
+
+    public List<Expositor> getListaExpositores() {
         return this.m_rExpositores.getListaExpositores();
     }
 

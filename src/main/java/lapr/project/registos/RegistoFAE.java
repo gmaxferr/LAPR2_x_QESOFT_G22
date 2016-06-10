@@ -11,7 +11,7 @@ import lapr.project.model.*;
 public class RegistoFAE {
 
     private List<FAE> m_listaFAE;
-    private ArrayList<FAE> m_listaFAETemp;
+    private List<FAE> m_listaFAETemp;
     private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
@@ -46,7 +46,8 @@ public class RegistoFAE {
     }
 
     public void confirmaAddFAE() {
-        this.m_listaFAE = new ArrayList(this.m_listaFAETemp);
+        this.m_listaFAE.clear();
+        this.m_listaFAE.addAll(this.m_listaFAETemp);
     }
 
     /**

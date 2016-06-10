@@ -114,7 +114,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
         RegistoProdutos rp = (RegistoProdutos) obj;
         return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
     }
-    
+
     @Override
     public RegistoProdutos importContentFromXMLNode(Node node) {
         try {
@@ -124,10 +124,12 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
+                this.m_ProdutosExpor.clear();
+
                 NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

@@ -376,8 +376,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Devolve as keywords introduzidas pelo expositor no momento da
-     * candidatura. Estas descrevem os produtos introduzidos.
+     * Devolve as keywords introduzidas pelo expositor no momento da candidatura
+     * na forma de um array de Strings.<!-- -->Estas descrevem os produtos
+     * introduzidos.
      *
      * @return keywords que descrevem os produtos associados à candidatura
      */
@@ -387,6 +388,14 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             res[i] = m_keywords.get(i).getValue();
         }
         return res;
+    }
+
+    /**
+     * @return Devolva uma lista com as keywords introduzidas pelo expositor no
+     * momento da candidatura. Estes descrevem os produtos introduzidos
+     */
+    public List<Keyword> getListKeyword() {
+        return m_keywords;
     }
 
     public boolean validaCandidatura() {
@@ -503,61 +512,61 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             Element child = document.createElement(AREA_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intArea));
             elementCandAExpo.appendChild(child);
-            
+
             child = document.createElement(KEYWORDS_ELEMENT_NAME);
             elementCandAExpo.appendChild(child);
-            for(Keyword k : m_keywords){
+            for (Keyword k : m_keywords) {
                 Node n = k.exportContentToXMLNode();
                 child.appendChild(document.importNode(n, true));
             }
-            
+
             child = document.createElement(MORADA_EMPRESA_ELEMENT_NAME);
             child.setTextContent(this.m_StrMoradaEmpresa);
             elementCandAExpo.appendChild(child);
-            
+
             child = document.createElement(NOME_EMPRESA_ELEMENT_NAME);
             child.setTextContent(this.m_StrNomeEmpresa);
             elementCandAExpo.appendChild(child);
-            
+
             child = document.createElement(NUM_CONVITES_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intNumConvites));
             elementCandAExpo.appendChild(child);
-            
+
             child = document.createElement(TLM_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intTelemovel));
             elementCandAExpo.appendChild(child);
-            
+
             elementCandAExpo.appendChild(document.importNode(this.m_decisao.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_expositor.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));
 
-            if(this.m_estado.isEstadoCandidaturaIncial()){
+            if (this.m_estado.isEstadoCandidaturaIncial()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "inicial");
-            }else if(this.m_estado.isEstadoCandidaturaCriada()){
+            } else if (this.m_estado.isEstadoCandidaturaCriada()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "criada");
-            }else if(this.m_estado.isEstadoCandidaturaProntaAtribuicoes()){
+            } else if (this.m_estado.isEstadoCandidaturaProntaAtribuicoes()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "prontaAtribuicoes");
-            }else if(this.m_estado.isEstadoCandidaturaAtribuida()){
+            } else if (this.m_estado.isEstadoCandidaturaAtribuida()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "atribuida");
-            }else if(this.m_estado.isEstadoCandidaturaNaoAvaliada()){
+            } else if (this.m_estado.isEstadoCandidaturaNaoAvaliada()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "naoAvaliada");
-            }else if(this.m_estado.isEstadoCandidaturaAvaliada()){
+            } else if (this.m_estado.isEstadoCandidaturaAvaliada()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "avaliada");
-            }else if(this.m_estado.isEstadoCandidaturaRejeitada()){
+            } else if (this.m_estado.isEstadoCandidaturaRejeitada()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "rejeitada");
-            }else if(this.m_estado.isEstadoCandidaturaAceite()){
+            } else if (this.m_estado.isEstadoCandidaturaAceite()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "aceite");
-            }else if(this.m_estado.isEstadoCandidaturaAbertaAtualizacaoConflitos()){
+            } else if (this.m_estado.isEstadoCandidaturaAbertaAtualizacaoConflitos()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "abertaAtualizacaoConflitos");
-            }else if(this.m_estado.isEstadoCandidaturaStandsAtribuidos()){
+            } else if (this.m_estado.isEstadoCandidaturaStandsAtribuidos()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "standsAtribuidos");
-            }else if(this.m_estado.isEstadoCandidaturaStandRecusado()){
+            } else if (this.m_estado.isEstadoCandidaturaStandRecusado()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "standRecusado");
-            }else if(this.m_estado.isEstadoCandidaturaStandAceite()){
+            } else if (this.m_estado.isEstadoCandidaturaStandAceite()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "standAceite");
             }
-            
+
             node = elementCandAExpo;
 
         } catch (ParserConfigurationException ex) {

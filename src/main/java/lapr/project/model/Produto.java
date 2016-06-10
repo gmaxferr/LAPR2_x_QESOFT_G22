@@ -62,6 +62,23 @@ public class Produto implements Importable<Produto>, Exportable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == null){
+            return false;
+        }else{
+            if (obj instanceof Produto){
+                if(obj == this){
+                    return true;
+                }
+                Produto o = (Produto) obj;
+                return o.getNome().equals(this.m_nome);
+            }else{
+                return false;
+            }
+        }
+    }
+
+    @Override
     public Produto importContentFromXMLNode(Node node) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

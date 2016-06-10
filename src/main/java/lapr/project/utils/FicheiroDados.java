@@ -209,11 +209,6 @@ public class FicheiroDados {
             inputDemos.close();
             inputRecursos.close();
             inputUtilizadores.close();
-
-            RegistoMecanismos rm = centroExposicoes.getRegistoMecanismos();
-            rm.addMecanismo(new MecanismoPredefinidoA());
-            rm.addMecanismo(new MecanismoPredefinidoB());
-            rm.addMecanismo(new MecanismoPredefinidoC());
         } catch (FileNotFoundException e) {
             //apenas se os ficheiros ainda não tiverem sido colocados na pasta
             JOptionPane.showMessageDialog(null, "Os ficheiros de texto necessários para carregar os dados não se encontram na pasta do projeto!\nDevem de ser colocado na pasta do projecto em MeusDocumentos.", "Erro", JOptionPane.WARNING_MESSAGE);

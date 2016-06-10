@@ -149,6 +149,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
+                
+                this.m_listaDemonstracoes.clear();
 
                 NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {

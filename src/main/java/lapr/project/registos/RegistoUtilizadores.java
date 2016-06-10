@@ -245,6 +245,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
+                this.m_listaUtilizadores.clear();
+                
                 NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

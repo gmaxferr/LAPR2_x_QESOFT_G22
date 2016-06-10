@@ -98,6 +98,8 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 
+                this.m_listaRecursosNecessarios.clear();
+                
                 NodeList nList = elem.getElementsByTagName(Recurso.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

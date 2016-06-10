@@ -64,6 +64,8 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 
+                this.m_listaExpositores.clear();
+                
                 NodeList nList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

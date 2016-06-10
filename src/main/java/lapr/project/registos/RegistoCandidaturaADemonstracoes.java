@@ -92,6 +92,8 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
+                
+                this.m_listaCandidaturasADemonstracao.clear();
 
                 NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
