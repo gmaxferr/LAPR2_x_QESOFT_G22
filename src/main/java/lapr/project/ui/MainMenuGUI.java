@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import lapr.project.controller.ExportarXMLController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 
@@ -53,19 +54,31 @@ public class MainMenuGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
-        //Leitura do ficheiro
-//        addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-//                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-//                if (op == JOptionPane.YES_OPTION) {
-//                    new IO_BinFile().save(saveFile, centroExposicoes);
-//                    System.exit(0);
-//                } else if (op == JOptionPane.NO_OPTION) {
-//                    System.exit(0);
-//                }
-//            }
-//        });
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+                if (op == JOptionPane.YES_OPTION) {
+                    JFileChooser fc = new JFileChooser();
+                    int returnVal = fc.showSaveDialog(thisJFrame);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        ExportarXMLController CTRL = new ExportarXMLController();
+                        if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                            JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            System.exit(0);
+                        } else {
+                            returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.YES_NO_OPTION);
+                            if (returnVal == JOptionPane.YES_OPTION) {
+                                System.exit(0);
+                            }
+                        }
+                    }
+                } else if (op == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
         paint();
 
     }
@@ -276,7 +289,7 @@ public class MainMenuGUI extends JFrame {
         });
         return button;
     }
-    
+
     /**
      * Cria botão que abre opções:
      *
