@@ -19,7 +19,8 @@ import org.w3c.dom.Node;
 public class Expositor implements Importable<Expositor>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Expositor";
-    public static final String USER_ELEMENT_NAME = "Utilizador";
+    public static final String USERNAME_ELEMENT_NAME = "Username";
+    public static final String EMAIL_ELEMENT_NAME = "Email";
 
     private Utilizador m_utilizador;
 
@@ -54,7 +55,8 @@ public class Expositor implements Importable<Expositor>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.m_utilizador = new Utilizador();
-                this.m_utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
+                this.m_utilizador.setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
+                this.m_utilizador.setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,14 +73,18 @@ public class Expositor implements Importable<Expositor>, Exportable {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementBase);
+            
+            Element elem = document.createElement(USERNAME_ELEMENT_NAME);
+            elem.setTextContent(this.m_utilizador.getUsername());
+            elementBase.appendChild(elem);
 
-            Node n = this.m_utilizador.exportContentToXMLNode();
-            elementKeyword.appendChild(document.importNode(n, true));
+            elem = document.createElement(EMAIL_ELEMENT_NAME);
+            elem.setTextContent(this.m_utilizador.getEmail());
+            elementBase.appendChild(elem);
 
-            document.appendChild(elementKeyword);
-
-            node = elementKeyword;
+            node = elementBase;
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);

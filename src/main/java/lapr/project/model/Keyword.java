@@ -24,12 +24,12 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
      * Nome da tag keyword.<!-- -->Serve para identificar quais blocos de dados
      * pertencem a uma keyword e quais não.
      */
-    private static final String ROOT_ELEMENT_NAME = "keyword";
+    public static final String ROOT_ELEMENT_NAME = "keyword";
 
     /**
      * Nome do campo value.
      */
-    private static final String VALUE_ELEMENT_NAME = "value";
+    public static final String VALUE_ELEMENT_NAME = "value";
 
     /**
      * Valor da keyword.

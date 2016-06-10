@@ -136,22 +136,33 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
 
-                if (estado.equals("pendente")) {
-                    this.m_estado = new EstadoDemonstracaoPendente(this);
-                } else if (estado.equals("cancelada")) {
-                    this.m_estado = new EstadoDemonstracaoCancelada(this);
-                } else if (estado.equals("confirmada")) {
-                    this.m_estado = new EstadoDemonstracaoConfirmada(this);
-                } else if (estado.equals("candidaturasAbertas")) {
-                    this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
-                } else if (estado.equals("candidaturasFechadas")) {
-                    this.m_estado = new EstadoDemonstracaoCandidaturasFechadas(this);
-                } else if (estado.equals("candidaturasAtribuidas")) {
-                    this.m_estado = new EstadoDemonstracaoCandidaturasAtribuidas(this);
-                } else if (estado.equals("candidaturasAvaliadas")) {
-                    this.m_estado = new EstadoDemonstracaoCandidaturasAvaliadas(this);
-                } else if (estado.equals("candidaturasDecididas")) {
-                    this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
+                switch (estado) {
+                    case "pendente":
+                        this.m_estado = new EstadoDemonstracaoPendente(this);
+                        break;
+                    case "cancelada":
+                        this.m_estado = new EstadoDemonstracaoCancelada(this);
+                        break;
+                    case "confirmada":
+                        this.m_estado = new EstadoDemonstracaoConfirmada(this);
+                        break;
+                    case "candidaturasAbertas":
+                        this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
+                        break;
+                    case "candidaturasFechadas":
+                        this.m_estado = new EstadoDemonstracaoCandidaturasFechadas(this);
+                        break;
+                    case "candidaturasAtribuidas":
+                        this.m_estado = new EstadoDemonstracaoCandidaturasAtribuidas(this);
+                        break;
+                    case "candidaturasAvaliadas":
+                        this.m_estado = new EstadoDemonstracaoCandidaturasAvaliadas(this);
+                        break;
+                    case "candidaturasDecididas":
+                        this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
+                        break;
+                    default:
+                        break;
                 }
 
             }
