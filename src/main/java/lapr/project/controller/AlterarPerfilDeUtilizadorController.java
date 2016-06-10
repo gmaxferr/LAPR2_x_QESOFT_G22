@@ -22,6 +22,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Contrutor do controller da UC10 - alterar perfil de utilizador
+     *
      * @param centroExposicoes - Centro de Exposições
      */
     public AlterarPerfilDeUtilizadorController(CentroExposicoes centroExposicoes) {
@@ -31,7 +32,7 @@ public class AlterarPerfilDeUtilizadorController {
     /**
      * inicializa registo de utilizadores
      */
-    public void getRegistoutilizadores() {
+    public void carregaRegistoUtilizadores() {
         m_ru = m_ce.getRegistoUtilizadores();
     }
 
@@ -167,6 +168,16 @@ public class AlterarPerfilDeUtilizadorController {
      */
     private void setNome(String nome) {
         this.m_nome = nome;
+    }
+
+    /**
+     * Regista os dados do utilizador, tornando-os efetivos.
+     */
+    public void confirmaAlteracoes() {
+        m_u.setNome(m_nome);
+        m_u.setEmail(m_email);
+        m_u.setUsername(m_username);
+        m_u.setPwd(m_password);
     }
 
 }
