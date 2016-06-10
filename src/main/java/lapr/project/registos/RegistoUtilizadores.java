@@ -181,7 +181,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
     public boolean addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd(), u.getCaesarShift())) {
+        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;
         }

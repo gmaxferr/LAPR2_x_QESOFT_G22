@@ -175,8 +175,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public void setPwd(char[] strPwd) {
         Random r = new Random();
-        setCaesarShift(r.nextInt(PASSWORD_ALFABET.length() - 1) + 1); //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, getCaesarShift(), PASSWORD_ALFABET);
+        this.randomCaesarShift = r.nextInt(PASSWORD_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);
     }
 
     /**
@@ -195,7 +195,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, getCaesarShift(), PASSWORD_ALFABET), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
     }
 
     /**
@@ -208,8 +208,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param password - password a validar
      * @return true se for válida; false caso contrário.
      */
-    public boolean validaPassword(char[] password, int shifts) {
-        char[] decryptesPass = CaesarsCypher.decrypt(password, shifts, PASSWORD_ALFABET);
+    public boolean validaPassword(char[] password) {
+        char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
         return Utilitarios.hasLowerCase(decryptesPass)
                 && Utilitarios.hasNumber(decryptesPass)
                 && Utilitarios.hasSinalPontuacao(decryptesPass)
@@ -280,21 +280,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
-
-    /**
-     * @return the randomCaesarShift
-     */
-    public int getCaesarShift() {
-        return randomCaesarShift;
-    }
-
-    /**
-     * @param randomCaesarShift the randomCaesarShift to set
-     */
-    public void setCaesarShift(int randomCaesarShift) {
-        this.randomCaesarShift = randomCaesarShift;
-    }
-    
     @Override
     public Utilizador importContentFromXMLNode(Node node) {
         try {
@@ -311,7 +296,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                this.setCaesarShift(Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)));
+                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
                 this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
                 this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
                 this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
@@ -353,7 +338,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
             elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
             elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
-            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.getCaesarShift()));
+            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift));
 
             document.appendChild(elementKeyword);
 
