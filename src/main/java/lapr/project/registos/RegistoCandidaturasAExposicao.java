@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidaturasAExposicao>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicao";
 
     /**
@@ -141,13 +141,34 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
-        for(CandidaturaAExposicao cand : m_listaCandidaturas){
+        for (CandidaturaAExposicao cand : m_listaCandidaturas) {
             EstadoCandidaturaAExposicao state = cand.getEstado();
-            if(state.isEstadoCandidaturaAceite()){
+            if (state.isEstadoCandidaturaAceite()) {
                 listCand.add(cand);
             }
         }
         return listCand;
+    }
+
+    /**
+     * Devolve a percentagem de candidaturas à exposição aceites.
+     *
+     * @return percentagem de candidaturas à exposição acites. Se não houveram
+     * candidaturas então devolve 0;
+     */
+    public float getPercentagemCandidaturasAceites() {
+        int cont = this.m_listaCandidaturas.size();
+        float candAceites = 0;
+        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+            if (candidatura.getEstado().isEstadoCandidaturaAceite()) {
+                candAceites++;
+            }
+        }
+        if (cont != 0) {
+            return candAceites / cont;
+        } else {
+            return 0;
+        }
     }
 
     @Override
@@ -159,12 +180,12 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_listaCandidaturas.clear();
-                
+
                 NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

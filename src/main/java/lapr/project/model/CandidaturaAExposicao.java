@@ -1,35 +1,14 @@
 package lapr.project.model;
 
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoCriada;
-import java.util.ArrayList;
-import java.util.List;
+import lapr.project.estados.CandidaturaAExposicao.*;
+import java.util.*;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAtribuida;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAvaliada;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoInicial;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoNaoAvaliada;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoProntaAtribuicoes;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoRejeitada;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoStandAceite;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoStandRecusado;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoStandsAtribuidos;
+import java.util.logging.*;
+import javax.xml.parsers.*;
 import lapr.project.exceptions.*;
 import lapr.project.registos.*;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 /**
  * Representação de uma CandidaturaAExposicao
  *

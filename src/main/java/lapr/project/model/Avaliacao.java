@@ -146,5 +146,14 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
         return node;
     }
+    
+    public float getMediaRatings(){
+        float soma=this.m_ratingAdequacaoAExposicao
+                +this.m_ratingAdequacaoAsDemos
+                +this.m_ratingAdequacaoNumConvites
+                +this.m_ratingConhecimentoSobreOTema
+                +this.m_ratingRecomendacaoGlobal;
+        return soma/5;
+    }
 
 }
