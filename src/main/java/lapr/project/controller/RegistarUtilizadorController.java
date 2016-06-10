@@ -50,7 +50,8 @@ public class RegistarUtilizadorController {
      * @return novo utilizador 
      */
     public Utilizador novoUtilizador() {
-       return m_utilizador = m_ru.novoUtilizador();
+       m_utilizador = m_ru.novoUtilizador();
+       return m_utilizador;
     }
     
     /**

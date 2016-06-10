@@ -45,7 +45,7 @@ public class ExpositorTest {
         System.out.println("getM_strUsername");
         Expositor instance = null;
         String expResult = "";
-        String result = instance.getM_strEmail();
+        String result = instance.getEmail();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

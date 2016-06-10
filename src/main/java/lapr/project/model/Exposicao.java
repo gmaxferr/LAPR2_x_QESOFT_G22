@@ -5,16 +5,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Exposicao.EstadoExposicao;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDemonstracaoAbertas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDemonstracaoFechadas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasFechadas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCompleta;
+import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
+import lapr.project.estados.Exposicao.EstadoExposicaoConflitosDetetados;
+import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
+import lapr.project.estados.Exposicao.EstadoExposicaoDemonstracoesDecididas;
+import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
+import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
 import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
+import lapr.project.estados.Exposicao.EstadoExposicaoStandsAtribuidos;
 import lapr.project.utils.Data;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de uma Exposição
  *
  * @author Ana Leite Ricardo Osório
  */
-public class Exposicao implements Agendavel {
+public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
+
+    public static final String ROOT_ELEMENT_NAME = "Exposicao";
+
+    public static final String TITUTLO_ATTR_NAME = "titutlo";
+    public static final String ESTADO_ATTR_NAME = "estado";
+
+    public static final String DESCR_ELEMENT_NAME = "Descricao";
+    public static final String DATA_INICIO_ELEMENT_NAME = "DataInicio";
+    public static final String DATA_FIM_ELEMENT_NAME = "DataFim";
+    public static final String DATA_ABERTURA_CAND_ELEMENT_NAME = "DataAberturaCandidatura";
+    public static final String DATA_ENCERRAMENTO_CAND_ELEMENT_NAME = "DataEncerramentoCandidatura";
+    public static final String DATA_FIM_CONFLITOS_ELEMENT_NAME = "DataFimConflitos";
+    public static final String DATA_INICIO_CAND_DEMO_ELEMENT_NAME = "DataInicioCandDemo";
+    public static final String DATA_FIM_CAND_DEMO_ELEMENT_NAME = "DataFimCandDemo";
 
     EstadoExposicao m_estado;
     /**
@@ -107,20 +147,18 @@ public class Exposicao implements Agendavel {
      */
     private final RegistoAtribuicoesStands m_ras;
 
-    private RegistoConflitos m_rconf;
+    private final RegistoConflitos m_rconf;
 
-    private RegistoExpositores m_rexpositores;
+    private final RegistoExpositores m_rexpositores;
 
-    private KeywordRanking m_keywordRanking;
-
-    private CentroExposicoes m_centroExposicoes;
+    private final KeywordRanking m_keywordRanking;
 
     private List<Timer> timers;
 
     /**
      * Construtor de Exposição sem parametros
      */
-    public Exposicao() {
+    public Exposicao(CentroExposicoes ce) {
         this.m_rce = new RegistoCandidaturasAExposicao();
         this.m_rfae = new RegistoFAE();
         this.m_rcr = new RegistoCandidaturasRemovidas();
@@ -128,10 +166,11 @@ public class Exposicao implements Agendavel {
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
         this.m_ro = new RegistoOrganizadores();
-        this.m_estado = new EstadoExposicaoInicial(this, m_centroExposicoes);
+        this.m_estado = new EstadoExposicaoInicial(this, ce);
         this.m_keywordRanking = new KeywordRanking();
         this.m_rs = new RegistoStands();
         this.m_ras = new RegistoAtribuicoesStands();
+        this.m_rexpositores = new RegistoExpositores();
     }
 
     /**
@@ -145,13 +184,12 @@ public class Exposicao implements Agendavel {
      * @param centroExposicoes
      */
     public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes centroExposicoes) {
-        this();
+        this(centroExposicoes);
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
         this.m_dataInicio = dataInicio;
         this.m_dataFim = dataFim;
         this.local = local;
-        this.m_centroExposicoes = centroExposicoes;
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
@@ -166,6 +204,9 @@ public class Exposicao implements Agendavel {
         this.m_rd = new RegistoDemonstracoes();
         this.m_rs = new RegistoStands();
         this.m_ras = new RegistoAtribuicoesStands();
+        this.m_rconf = new RegistoConflitos();
+        this.m_rexpositores = new RegistoExpositores();
+        this.m_keywordRanking = new KeywordRanking();
     }
 
     /**
@@ -248,8 +289,8 @@ public class Exposicao implements Agendavel {
     public Local getLocal() {
         return local;
     }
-    
-    public KeywordRanking getKeywordRanking(){
+
+    public KeywordRanking getKeywordRanking() {
         return this.m_keywordRanking;
     }
 
@@ -467,7 +508,9 @@ public class Exposicao implements Agendavel {
 
     /**
      * Permite alterar a data de abertura de submissão de candidaturas
-     * @param dataAberturaSubCand - data de abertura de submissão de candidaturas
+     *
+     * @param dataAberturaSubCand - data de abertura de submissão de
+     * candidaturas
      */
     public void setDataAberturaSubCand(Data dataAberturaSubCand) {
         m_dataAberturaCandidatura = dataAberturaSubCand;
@@ -475,7 +518,9 @@ public class Exposicao implements Agendavel {
 
     /**
      * Permite alterar a data de encerramento de submissão de candidaturas
-     * @param dataEncerramentoSubCand - data de encerramento de submissão de candidaturas
+     *
+     * @param dataEncerramentoSubCand - data de encerramento de submissão de
+     * candidaturas
      */
     public void setDataEncerramentoSubCand(Data dataEncerramentoSubCand) {
         m_dataEncerramentoCandidatura = dataEncerramentoSubCand;
@@ -483,7 +528,9 @@ public class Exposicao implements Agendavel {
 
     /**
      * Permite alterar a data de fim de deteção de conflitos de interesse
-     * @param dataFimDetecaoConflitos - data de fim de deteção de conflitos de interesse
+     *
+     * @param dataFimDetecaoConflitos - data de fim de deteção de conflitos de
+     * interesse
      */
     public void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
@@ -501,8 +548,8 @@ public class Exposicao implements Agendavel {
      */
     public void setDataInicioCandDemo(Data dataInicioCandDemo) {
         this.m_dataInicioCandDemo = dataInicioCandDemo;
-        for(Demonstracao d : m_rd.getListaDemonstracoes()){
-            if(d.getEstadoDemo().isEstadoDemonstracaoConfirmada()){
+        for (Demonstracao d : m_rd.getListaDemonstracoes()) {
+            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
                 d.setDataInicioCandidaturas(dataInicioCandDemo);
             }
         }
@@ -520,11 +567,222 @@ public class Exposicao implements Agendavel {
      */
     public void setDataFimCandDemo(Data dataFimCandDemo) {
         this.m_dataFimCandDemo = dataFimCandDemo;
-        for(Demonstracao d : m_rd.getListaDemonstracoes()){
-            if(d.getEstadoDemo().isEstadoDemonstracaoConfirmada()){
+        for (Demonstracao d : m_rd.getListaDemonstracoes()) {
+            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
                 d.setDataFimCandidaturas(dataFimCandDemo);
             }
         }
     }
 
+    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
+        this.m_ro.fix(m_registoUtilizadores);
+        this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
+        this.m_rexpositores.fix(m_registoUtilizadores);
+        this.m_rce.fix(m_registoUtilizadores, this.m_rd);
+        this.m_rd.fix(m_registoRecursos);
+        this.m_ra.fix(this.m_rce, m_registoUtilizadores);
+    }
+    
+    @Override
+    public Exposicao importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+
+            NodeList elementsKeyword = document.getChildNodes();
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+                this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
+
+                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+                switch (estado) {
+                    case "criada":
+                        this.m_estado = new EstadoExposicaoCriada(this);
+                        break;
+                    case "demosSemFAE":
+                        this.m_estado = new EstadoExposicaoDemosDefinidasSemFAE(this);
+                        break;
+                    case "FAESemDemos":
+                        this.m_estado = new EstadoExposicaoFAEDefinidosSemDemos(this);
+                        break;
+                    case "completa":
+                        this.m_estado = new EstadoExposicaoCompleta(this);
+                        break;
+                    case "candsAbertas":
+                        this.m_estado = new EstadoExposicaoCandidaturasAbertas(this);
+                        break;
+                    case "candsFechadas":
+                        this.m_estado = new EstadoExposicaoCandidaturasFechadas(this);
+                        break;
+                    case "conflitosDetetados":
+                        this.m_estado = new EstadoExposicaoConflitosDetetados(this);
+                        break;
+                    case "conflitosAlterados":
+                        this.m_estado = new EstadoExposicaoConflitosAlterados(this);
+                        break;
+                    case "candsAtribuidas":
+                        this.m_estado = new EstadoExposicaoCandidaturasAtribuidas(this);
+                        break;
+                    case "candsAvaliadas":
+                        this.m_estado = new EstadoExposicaoCandidaturasAvaliadas(this);
+                        break;
+                    case "candsDecididas":
+                        this.m_estado = new EstadoExposicaoCandidaturasDecididas(this);
+                        break;
+                    case "standsAtribuidos":
+                        this.m_estado = new EstadoExposicaoStandsAtribuidos(this);
+                        break;
+                    case "demosDecididas":
+                        this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
+                        break;
+                    case "candDemosAbertas":
+                        this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoAbertas(this);
+                        break;
+                    case "candDemosFechadas":
+                        this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoFechadas(this);
+                        break;
+                    default:
+                        break;
+                }
+
+                Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
+                this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
+                this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
+                this.m_dataFim.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CAND_DEMO_ELEMENT_NAME).item(0);
+                this.m_dataFimCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
+                this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
+                this.m_dataInicio.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_CAND_DEMO_ELEMENT_NAME).item(0);
+                this.m_dataInicioCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+
+                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
+                this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
+                this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
+                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasRemovidas.ROOT_ELEMENT_NAME).item(0));
+                this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
+                this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
+                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+                this.m_rs.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementExpo);
+
+            elementExpo.setAttribute(TITUTLO_ATTR_NAME, this.m_strTitulo);
+
+            if (this.m_estado.isEstadoCriada()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "criada");
+            } else if (this.m_estado.isEstadoDemosDefinidasSemFAE()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosSemFAE");
+            } else if (this.m_estado.isEstadoFAEDefinidosSemDemos()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "FAESemDemos");
+            } else if (this.m_estado.isEstadoCompleta()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "completa");
+            } else if (this.m_estado.isEstadoCandidaturasAbertas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsAbertas");
+            } else if (this.m_estado.isEstadoCandidaturasFechadas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsFechadas");
+            } else if (this.m_estado.isEstadoConflitosDetetados()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "conflitosDetetados");
+            } else if (this.m_estado.isEstadoConflitosAlterados()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "conflitosAlterados");
+            } else if (this.m_estado.isEstadoCandidaturasAtribuidas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsAtribuidas");
+            } else if (this.m_estado.isEstadoCandidaturasAvaliadas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsAvaliadas");
+            } else if (this.m_estado.isEstadoCandidaturasDecididas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsDecididas");
+            } else if (this.m_estado.isEstadoStandsAtribuidos()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "standsAtribuidos");
+            } else if (this.m_estado.isEstadoDemonstracoesDecididas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosDecididas");
+            } else if (this.m_estado.isEstadoCandidaturasDemonstracaoAbertas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candDemosAbertas");
+            } else if (this.m_estado.isEstadoCandidaturasDemonstracaoFechadas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candDemosFechadas");
+            }
+
+            Element elemChild = document.createElement(DATA_ABERTURA_CAND_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataAberturaCandidatura.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataEncerramentoCandidatura.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_FIM_CAND_DEMO_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataFimCandDemo.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_FIM_CONFLITOS_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataFimDetecaoConflitos.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_FIM_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataFim.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_INICIO_CAND_DEMO_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataInicioCandDemo.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_INICIO_ELEMENT_NAME);
+            elemChild.appendChild(document.importNode(this.m_dataInicio.exportContentToXMLNode(), true));
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DESCR_ELEMENT_NAME);
+            elemChild.setTextContent(this.m_strDescricao);
+            elementExpo.appendChild(elemChild);
+
+            elementExpo.appendChild(document.importNode(this.m_ra.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_ras.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rce.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rconf.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rcr.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rexpositores.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rfae.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rs.exportContentToXMLNode(), true));
+
+            node = elementExpo;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
+    }
 }

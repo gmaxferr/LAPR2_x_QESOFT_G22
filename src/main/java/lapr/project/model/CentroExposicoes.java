@@ -1,6 +1,11 @@
 package lapr.project.model;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoRecursos;
 import lapr.project.registos.RegistoMecanismos;
 import lapr.project.registos.RegistoTipoConflitos;
@@ -9,14 +14,19 @@ import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoExpositores;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um Centro de Exposições
  *
  * @author Ricardo Osório Ana Leite
  */
-public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable{
+public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
+    
+    public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
      *
@@ -39,23 +49,28 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     private final RegistoRecursos m_registoRecursos;
 
     private final RegistoTipoConflitos m_registoTipoConflitos;
-    private final RegistoExpositores m_rExpositores;
+    private final RegistoExpositores m_registoExpositores;
 
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
     public CentroExposicoes() {
-        this.m_registoExposicoes = new RegistoExposicoes();
+        this.m_registoExposicoes = new RegistoExposicoes(this);
         this.m_registoUtilizadores = new RegistoUtilizadores();
+
         this.m_registoMecanismos = new RegistoMecanismos();
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoA());
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoB());
+        this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoC());
+
         this.m_registoRecursos = new RegistoRecursos();
         this.m_registoTipoConflitos = new RegistoTipoConflitos();
-        this.m_rExpositores = new RegistoExpositores();
+        this.m_registoExpositores = new RegistoExpositores();
     }
 
     /**
      * Devolve o registo de exposições
-     * 
+     *
      * @return registo de exposições
      */
     public RegistoExposicoes getRegistoExposicoes() {
@@ -64,16 +79,16 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de expositores
-     * 
+     *
      * @return registo de expositores
      */
     public RegistoExpositores getRegistoExpositores() {
-        return this.m_rExpositores;
+        return this.m_registoExpositores;
     }
 
     /**
      * Devolve o registo de utilizadores.
-     * 
+     *
      * @return registo de utilizadores
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
@@ -82,7 +97,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de mecanismos
-     * 
+     *
      * @return registo de mecanismos
      */
     public RegistoMecanismos getRegistoMecanismos() {
@@ -91,7 +106,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de recursos
-     * 
+     *
      * @return registo de recursos
      */
     public RegistoRecursos getRegistoRecursos() {
@@ -100,7 +115,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * Devolve o registo de tipos de conflitos
-     * 
+     *
      * @return registo de tipos de conflitos
      */
     public RegistoTipoConflitos getRegistoTiposConflitos() {
@@ -114,7 +129,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      */
     public void setUtilizadorRegistado(Utilizador u) {
         //para testar
-        Exposicao expo = new Exposicao();
+        Exposicao expo = new Exposicao(this);
         u.setUtilizadorRegistado();
 
     }
@@ -130,24 +145,72 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     public Expositor getExpositorPeloUsername(String m_StrUsername) {
         for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
-            if (expositor.getM_strEmail().equalsIgnoreCase(m_StrUsername)) {
+            if (expositor.getUsername().equalsIgnoreCase(m_StrUsername)) {
                 return expositor;
             }
         }
         return null;
     }
-    
-     public List<Expositor> getListaExpositores() {
-        return this.m_rExpositores.getListaExpositores();
+
+    public List<Expositor> getListaExpositores() {
+        return this.m_registoExpositores.getListaExpositores();
     }
 
     @Override
     public CentroExposicoes importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder;
+            builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            document.appendChild(document.importNode(node, true));
+            
+            NodeList elementsKeyword = document.getChildNodes();
+            Node n = elementsKeyword.item(0);
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+                this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
+                
+                this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
+                this.m_registoExpositores.fix(this.m_registoUtilizadores);
+                
+                this.m_registoTipoConflitos.importContentFromXMLNode(elem.getElementsByTagName(RegistoTipoConflitos.ROOT_ELEMENT_NAME).item(0));
+                this.m_registoRecursos.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
+                
+                this.m_registoExposicoes.importContentFromXMLNode(elem.getElementsByTagName(RegistoExposicoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadores);
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
     }
 
     @Override
     public Node exportContentToXMLNode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementExpo);
+
+            elementExpo.appendChild(document.importNode(this.m_registoExpositores.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoExposicoes.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoUtilizadores.exportContentToXMLNode(), true));
+            
+            node = elementExpo;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }

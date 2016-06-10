@@ -46,6 +46,17 @@ public class Recurso implements Importable<Recurso>, Exportable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj != null){
+            if(obj instanceof Recurso){
+                Recurso o = (Recurso) obj;
+                return this.m_nomeRecurso.equals(o.m_nomeRecurso);
+            }
+        }
+        return false;
+    }
+
+    @Override
     public Recurso importContentFromXMLNode(Node node) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -78,12 +89,11 @@ public class Recurso implements Importable<Recurso>, Exportable {
             Document document = builder.newDocument();
 
             Element elementRecurso = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementRecurso);
+            
             Element elementNome = document.createElement(NOME_ELEMENT_NAME);
-
             elementNome.setTextContent(this.m_nomeRecurso);
             elementRecurso.appendChild(elementNome);
-
-            document.appendChild(elementRecurso);
 
             node = elementRecurso;
 

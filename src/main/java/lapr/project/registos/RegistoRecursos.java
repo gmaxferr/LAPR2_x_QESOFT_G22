@@ -65,9 +65,9 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
         return this.m_listaRecursosNecessarios;
     }
 
-    public void setRecurso(Recurso rec) {
+    public void addRecurso(Recurso rec) {
         if (valida() == true) {
-            addRecurso(rec);
+            this.m_listaRecursosNecessarios.add(rec);
         } else {
             //avisa o utilizador para o facto de o recurso não ser válido
         }
@@ -76,10 +76,6 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     public boolean valida() {
         //validação global
         return true;
-    }
-
-    private void addRecurso(Recurso rec) {
-        this.m_listaRecursosNecessarios.add(rec);
     }
 
     /**
@@ -101,6 +97,8 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
+                
+                this.m_listaRecursosNecessarios.clear();
                 
                 NodeList nList = elem.getElementsByTagName(Recurso.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
@@ -127,13 +125,12 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             Document document = builder.newDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementKeyword);
 
             for (Recurso r : m_listaRecursosNecessarios) {
                 Node n = r.exportContentToXMLNode();
                 elementKeyword.appendChild(document.importNode(n, true));
             }
-
-            document.appendChild(elementKeyword);
 
             node = elementKeyword;
 

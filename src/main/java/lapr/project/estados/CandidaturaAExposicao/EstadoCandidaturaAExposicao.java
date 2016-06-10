@@ -24,6 +24,14 @@ public interface EstadoCandidaturaAExposicao extends Estado{
     
     boolean setEstadoCandidaturaProntaAtribuicoes();
     
+    boolean setEstadoCandidaturaNaoAvaliada();
+    
+    boolean setEstadoCandidaturaStandAceite();
+    
+    boolean setEstadoCandidaturaStandRecusado();
+    
+    boolean setEstadoCandidaturaStandsAtribuidos();
+    
     boolean isEstadoCandidaturaIncial();
     
     boolean isEstadoCandidaturaCriada();
@@ -39,4 +47,12 @@ public interface EstadoCandidaturaAExposicao extends Estado{
     boolean isEstadoCandidaturaRejeitada();
     
     boolean isEstadoCandidaturaProntaAtribuicoes();
+
+    boolean isEstadoCandidaturaNaoAvaliada();
+    
+    boolean isEstadoCandidaturaStandAceite();
+    
+    boolean isEstadoCandidaturaStandRecusado();
+    
+    boolean isEstadoCandidaturaStandsAtribuidos();
 }

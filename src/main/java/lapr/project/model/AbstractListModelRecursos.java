@@ -14,7 +14,7 @@ import javax.swing.AbstractListModel;
  */
 public class AbstractListModelRecursos extends AbstractListModel {
 
-    List<Recurso> m_listaRecursos;
+    private List<Recurso> m_listaRecursos;
 
     public AbstractListModelRecursos(List<Recurso> listaRecursos) {
         this.m_listaRecursos = listaRecursos;

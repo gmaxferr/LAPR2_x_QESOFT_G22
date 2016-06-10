@@ -5,13 +5,19 @@
  */
 package lapr.project.estados.CandidaturaAExposicao;
 
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
 public class EstadoCandidaturaAExposicaoStandAceite implements EstadoCandidaturaAExposicao{
+    
+    private final CandidaturaAExposicao m_cand;
+
+    public EstadoCandidaturaAExposicaoStandAceite(CandidaturaAExposicao m_cand) {
+        this.m_cand = m_cand;
+    }
 
     @Override
     public boolean setEstadoCandidaturaInicial() {
@@ -93,4 +99,43 @@ public class EstadoCandidaturaAExposicaoStandAceite implements EstadoCandidatura
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public boolean setEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
 }

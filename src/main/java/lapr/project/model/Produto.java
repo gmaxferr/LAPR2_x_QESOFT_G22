@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -59,6 +60,30 @@ public class Produto implements Importable<Produto>, Exportable {
      */
     public void setNome(String nome) {
         this.m_nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null){
+            return false;
+        }else{
+            if (obj instanceof Produto){
+                if(obj == this){
+                    return true;
+                }
+                Produto o = (Produto) obj;
+                return o.getNome().equals(this.m_nome);
+            }else{
+                return false;
+            }
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.m_nome);
+        return hash;
     }
 
     @Override

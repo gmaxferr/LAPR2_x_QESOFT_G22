@@ -2,6 +2,7 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -108,13 +109,20 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        } else if (this.getClass() != obj.getClass()) {
-            return false;
+        } else if (obj instanceof RegistoProdutos) {
+            RegistoProdutos rp = (RegistoProdutos) obj;
+            return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
         }
-        RegistoProdutos rp = (RegistoProdutos) obj;
-        return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
+        return false;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.m_ProdutosExpor);
+        return hash;
+    }
+
     @Override
     public RegistoProdutos importContentFromXMLNode(Node node) {
         try {
@@ -124,10 +132,12 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
+                this.m_ProdutosExpor.clear();
+
                 NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

@@ -2,23 +2,38 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.model.*;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Ricardo Osório Ana Leite
  */
-public class RegistoExposicoes {
+public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exportable {
+    
+    public static final String ROOT_ELEMENT_NAME = "RegistoExposicoes";
 
     /**
      * Lista de exposições existentes
      */
     private final ArrayList<Exposicao> m_listaExposicoes;
+    
+    private final CentroExposicoes m_ce;
 
-    public RegistoExposicoes() {
+    public RegistoExposicoes(CentroExposicoes ce) {
         m_listaExposicoes = new ArrayList<>();
-
+        this.m_ce = ce;
     }
 
     /**
@@ -36,7 +51,7 @@ public class RegistoExposicoes {
      * @return nova exposição
      */
     public Exposicao novaExposicao() {
-        return new Exposicao();
+        return new Exposicao(m_ce);
     }
 
     /**
@@ -286,5 +301,67 @@ public class RegistoExposicoes {
         }
 
         return listaExposicoesDoOrganizador;
+    }
+
+    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
+        for(Exposicao e : m_listaExposicoes){
+            e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
+        }
+    }
+    
+    @Override
+    public RegistoExposicoes importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            doc.appendChild(doc.importNode(node, true));
+
+            Node n = doc.getChildNodes().item(0);
+
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) n;
+
+                this.m_listaExposicoes.clear();
+
+                NodeList nList = elem.getElementsByTagName(Exposicao.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
+                    Exposicao expo = novaExposicao();
+                    expo.importContentFromXMLNode(n2);
+                    this.m_listaExposicoes.add(expo);
+                }
+            }
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
+
+            for (Exposicao expo : this.m_listaExposicoes) {
+                Node n = expo.exportContentToXMLNode();
+                elementBase.appendChild(document.importNode(n, true));
+            }
+
+            document.appendChild(elementBase);
+
+            node = elementBase;
+
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RegistoExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return node;
     }
 }

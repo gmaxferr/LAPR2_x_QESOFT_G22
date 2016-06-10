@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -24,12 +25,12 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
      * Nome da tag keyword.<!-- -->Serve para identificar quais blocos de dados
      * pertencem a uma keyword e quais não.
      */
-    private static final String ROOT_ELEMENT_NAME = "keyword";
+    public static final String ROOT_ELEMENT_NAME = "keyword";
 
     /**
      * Nome do campo value.
      */
-    private static final String VALUE_ELEMENT_NAME = "value";
+    public static final String VALUE_ELEMENT_NAME = "value";
 
     /**
      * Valor da keyword.
@@ -82,6 +83,13 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.m_value);
+        return hash;
     }
 
     @Override

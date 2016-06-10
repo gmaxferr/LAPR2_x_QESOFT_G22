@@ -16,7 +16,6 @@ import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -121,10 +120,10 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
         try (Formatter out = new Formatter(saveFile)) {
             Collections.sort(m_keywords);
             Collections.reverse(m_keywords);
-            out.format("Ranking,Frequency,Keyword\n");
+            out.format("Ranking,Frequency,Keyword%n");
             for (int i = 0; i < m_keywords.size(); i++) {
                 ScoredKeyword keyword = m_keywords.get(i);
-                out.format("%d,%d,%s\n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
+                out.format("%d,%d,%s%n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
             }
             out.close();
             return true;
@@ -167,6 +166,8 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
             
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
+                
+                this.m_keywords.clear();
                 
                 NodeList nList = elem.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {

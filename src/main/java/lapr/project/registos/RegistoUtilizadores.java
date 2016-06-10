@@ -65,9 +65,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email, String nome) {
-        return validaNome(nome)
-                && validaUsername(username)
+    private boolean validaUtilizador(String username, String email) {
+        return validaUsername(username)
                 && validaEmail(email);
     }
 
@@ -125,7 +124,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
                 valido = false;
             }
         }
-        return valido && !username.isEmpty();
+        return valido;
     }
 
     /**
@@ -182,7 +181,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
     public boolean addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail(), u.getNome()) && u.validaPassword(u.getPwd())) {
+        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;
         }
@@ -246,6 +245,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
+                this.m_listaUtilizadores.clear();
+                
                 NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

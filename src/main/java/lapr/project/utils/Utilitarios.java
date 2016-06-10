@@ -22,7 +22,7 @@ public class Utilitarios {
      * aqueles passados como argumentos, ou null caso nao se encontre um
      * utilizador no sistema com essa informação
      */
-    public Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
+    public static Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
         List<Utilizador> userList = centroExposicoes.getRegistoUtilizadores().getListaUtilizadores();
         Utilizador utilizador = null;
         for (Utilizador user : userList) {
@@ -40,21 +40,6 @@ public class Utilitarios {
     }
 
     /**
-     * verifica se um char é um numero
-     *
-     * @param c - char a verificar
-     * @return true se sim, false se não
-     */
-    private static boolean isNumber(char c) {
-        for (int i = 0; i < 10; i++) {
-            if (c == i) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * verifica se um char array tem um numero
      *
      * @param password - char array a verificar
@@ -62,7 +47,7 @@ public class Utilitarios {
      */
     public static  boolean hasNumber(char[] password) {
         for (int i = 0; i < password.length; i++) {
-            if (isNumber(password[i])) {
+            if (password[i] >= '0' && password[i] <= '9') {
                 return true;
             }
         }
@@ -107,7 +92,7 @@ public class Utilitarios {
      * @return true se sim, false se não
      */
     private static boolean isUpperCase(char c) {
-        return (c <= 'A') && (c >= 'Z');
+        return (c >= 'A') && (c <= 'Z');
     }
 
     /**
@@ -117,7 +102,7 @@ public class Utilitarios {
      * @return true se sim, false se não
      */
     private static boolean isLowerCase(char c) {
-        return (c <= 'a') && (c >= 'z');
+        return (c >= 'a') && (c <= 'z');
     }
 
     /**

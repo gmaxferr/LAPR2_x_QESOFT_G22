@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Recurso;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -137,6 +138,19 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         this.m_listaDemonstracoes.add(m_demoCriada);
     }
 
+    public void fix(RegistoRecursos m_registoRecursos) {
+        for(Demonstracao d : this.m_listaDemonstracoes){
+            for(Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()){
+                for(Recurso r2 : m_registoRecursos.getListaDeRecursos()){
+                    if(r.equals(r2)){
+                        r = r2;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public RegistoDemonstracoes importContentFromXMLNode(Node node) {
         try {
@@ -149,6 +163,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
+                
+                this.m_listaDemonstracoes.clear();
 
                 NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {

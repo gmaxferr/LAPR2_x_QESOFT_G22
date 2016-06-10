@@ -32,7 +32,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String SHIFTS_ATTR_NAME = "shifts";
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
-    public static final String passwordAlfabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
+    public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
 
     /**
      * Atributo nome de um Utilizador.
@@ -175,8 +175,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public void setPwd(char[] strPwd) {
         Random r = new Random();
-        randomCaesarShift = r.nextInt(passwordAlfabet.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, randomCaesarShift, passwordAlfabet);
+        this.randomCaesarShift = r.nextInt(PASSWORD_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);
     }
 
     /**
@@ -195,7 +195,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, passwordAlfabet), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
     }
 
     /**
@@ -209,11 +209,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword(char[] password) {
-        return Utilitarios.hasLowerCase(password)
-                && Utilitarios.hasNumber(password)
-                && Utilitarios.hasSinalPontuacao(password)
-                && Utilitarios.hasUpperCase(password)
-                && password.length >= 4 && password.length <= 7;
+        char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
+        return Utilitarios.hasLowerCase(decryptesPass)
+                && Utilitarios.hasNumber(decryptesPass)
+                && Utilitarios.hasSinalPontuacao(decryptesPass)
+                && Utilitarios.hasUpperCase(decryptesPass)
+                && decryptesPass.length >= 4 && decryptesPass.length <= 7;
     }
 
     /**
@@ -232,10 +233,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Valida o utilizador
+     * Valida o utilizador (localmente)
      *
-     * @param username Username a validar
-     * @param email Email a validar
+     * @param nome nome do utilizador a validar
+     * @param password password do utilizador a validar
+     * @param username Username do utilizador a validar
+     * @param email Email do utilizador a validar
+     * 
+     * @return true se os dados do utilizadores forem válidos (todos os campos 
+     * estão preenchidos). Caso contrário retorna false.
      */
     public boolean validaUtilizador(String nome, char[] password, String username, String email) {
 
@@ -248,14 +254,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     /**
      * Valida os dados do Utilizador
      *
+     * @param nome nome do utilizador
+     * @param password do utilizador
+     * @param username do utilizador
+     * @param email do utilizador
+     * 
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
     public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
-        if (username.equals("") || password.toString().trim().equals("") || username.equals("") || email.equals("")) {
-            return false;
-        }
-        return true;
+        return !(nome.isEmpty() || String.valueOf(password).trim().isEmpty() || username.isEmpty() || email.isEmpty());
     }
 
     /**
