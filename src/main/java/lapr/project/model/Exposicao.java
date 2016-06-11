@@ -390,14 +390,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @return
      */
-    public RegistoAtribuicoes getRa() {
-        return m_ra;
-    }
-
-    /**
-     *
-     * @return
-     */
     public RegistoFAE getRegistoFAE() {
         return m_rfae;
     }
