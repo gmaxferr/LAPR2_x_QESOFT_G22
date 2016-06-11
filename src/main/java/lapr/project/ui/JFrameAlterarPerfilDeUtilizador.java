@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarPerfilDeUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 
-
 /**
  *
  * @author guilherme
@@ -12,12 +11,16 @@ import lapr.project.model.CentroExposicoes;
 public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
 
     private AlterarPerfilDeUtilizadorController CTRL;
-    
+    private String m_username;
+
     /**
      * Creates new form UC10_alterarPerfildeutilizador
      */
     public JFrameAlterarPerfilDeUtilizador(CentroExposicoes ce, String username) {
-        CTRL.
+        this.m_username = username;
+        CTRL = new AlterarPerfilDeUtilizadorController(ce);
+        CTRL.carregaRegistoUtilizadores();
+        CTRL.identificaUtilizador(username);
         initComponents();
     }
 
@@ -37,9 +40,9 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        m_LabelNome = new javax.swing.JLabel();
-        m_LabelUsername = new javax.swing.JLabel();
-        m_LabelEmail = new javax.swing.JLabel();
+        m_LabelNome = new javax.swing.JLabel(CTRL.getNomeUtilizador());
+        m_LabelUsername = new javax.swing.JLabel(m_username);
+        m_LabelEmail = new javax.swing.JLabel(CTRL.getEmailUtilizador());
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         m_txtFieldNovoNome = new javax.swing.JTextField();
@@ -63,6 +66,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         m_pswdField1 = new javax.swing.JPasswordField();
         m_pswdField2 = new javax.swing.JPasswordField();
+        jButton6 = new javax.swing.JButton();
 
         jPasswordField2.setText("jPasswordField1");
 
@@ -111,7 +115,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
 
         m_txtFieldNovoUsername.setToolTipText("insira o novo username");
 
-        jButton3.setText("Alterar Email");
+        jButton3.setText("Alterar Username");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -143,6 +147,13 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         m_pswdField2.setText("jPasswordField1");
         m_pswdField2.setToolTipText("reintroduza a password");
 
+        jButton6.setText("Registar Alterações");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,25 +175,22 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                                 .addComponent(m_pswdField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_txtFieldNovoUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5))
-                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(m_txtFieldNovoUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,15 +220,15 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel4)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(m_LabelUsername))
+                                            .addComponent(m_LabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel3)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(m_LabelNome))
+                                            .addComponent(m_LabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel5)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(m_LabelEmail))
+                                            .addComponent(m_LabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel6)
                                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -240,17 +248,17 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(m_LabelNome))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(m_LabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(m_LabelUsername))
+                    .addComponent(m_LabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(m_LabelEmail))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(m_LabelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -298,7 +306,9 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap())
         );
 
@@ -306,15 +316,31 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (CTRL.changeNome(m_txtFieldNovoNome.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "O nome foi alterado. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            this.m_LabelNome.setText(CTRL.getNomeUtilizador());
+        } else {
+            JOptionPane.showMessageDialog(null, "O nome é inválido. Não pode ser um campo vazio.", "Erro...", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if (CTRL.changeEmail(m_txtFieldNovoEmail.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "O email foi alterado. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            this.m_LabelEmail.setText(CTRL.getEmailUtilizador());
+        } else {
+            JOptionPane.showMessageDialog(null, "O email é inválido. Já existe, encontra-se vazio ou tem um formato inválido.", "Erro...", JOptionPane.WARNING_MESSAGE);
+        }
+     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (CTRL.changeUsername(m_txtFieldNovoUsername.getText().trim())) {
+            m_username = m_txtFieldNovoUsername.getText().trim();
+            JOptionPane.showMessageDialog(null, "O username foi alterado. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            this.m_LabelUsername.setText(m_username);
+        } else {
+            JOptionPane.showMessageDialog(null, "O username é inválido. Já existe ou encontra-se vazio.", "Erro...", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -328,52 +354,26 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                     valido = false;
                 }
             }
-        }else{
+        } else {
             valido = false;
         }
-        
-        if(valido){
-            ru.valida(pass1);
-        }else{
+
+        if (valido) {
+            if (CTRL.changePassword(pass1)) {
+                JOptionPane.showMessageDialog(null, "A password foi alterada. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "A password tem formato incorreto", "Erro...", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "As password introduzidas são diferentes.", "Erro...", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarPerfilDeUtilizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarPerfilDeUtilizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarPerfilDeUtilizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarPerfilDeUtilizador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        CTRL.confirmaAlteracoes();
+        JOptionPane.showMessageDialog(null, "Alterações registadas");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameAlterarPerfilDeUtilizador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -381,6 +381,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
