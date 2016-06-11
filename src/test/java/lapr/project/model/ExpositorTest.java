@@ -41,14 +41,13 @@ public class ExpositorTest {
      * Test of getM_strUsername method, of class Expositor.
      */
     @Test
-    public void testGetM_strUsername() {
+    public void testGetUsername() {
         System.out.println("getM_strUsername");
-        Expositor instance = null;
-        String expResult = "";
-        String result = instance.getEmail();
+        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
+        Expositor instance = new Expositor(u);
+        String expResult = "us3r";
+        String result = instance.getUsername();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

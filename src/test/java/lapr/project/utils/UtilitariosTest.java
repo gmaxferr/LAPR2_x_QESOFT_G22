@@ -28,7 +28,7 @@ public class UtilitariosTest {
     public void setUp() {
         ce = new CentroExposicoes();
         u = new Utilizador("Nome", "username", "secretcode".toCharArray(), "mail");
-        ce.getRegistoUtilizadores().addUtilizador(u);
+        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
     }
     
     @After
