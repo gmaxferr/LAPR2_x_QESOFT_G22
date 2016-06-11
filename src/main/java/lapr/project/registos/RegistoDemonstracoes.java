@@ -117,7 +117,21 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return demosPendentes;
     }
-
+    
+    /**
+     * 
+     * @return - lista das demonstrações dentro do periodo de submissão de candidaturas
+     */
+    public List<Demonstracao> getDemonstracoesAbertas() {
+        List<Demonstracao> demosAbertas = new ArrayList<>();
+        for (Demonstracao d : m_listaDemonstracoes) {
+            if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAbertas()) {
+                demosAbertas.add(d);
+            }
+        }
+        return demosAbertas;
+    }
+    
     /**
      * Valida uma demonstração
      *
@@ -224,4 +238,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return node;
     }
+
+    
 }

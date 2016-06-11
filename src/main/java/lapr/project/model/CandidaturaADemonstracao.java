@@ -32,14 +32,14 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      * os possíveis atributos que esta candidtura possa ter.
      */
     private String m_dados;
-    private String m_usernameExpositor;
+    private String m_emailExpositor;
 
     private EstadoCandidaturaADemonstracao m_estado;
 
-    public CandidaturaADemonstracao(String dados, String username) {
+    public CandidaturaADemonstracao(String dados, String email) {
         this.m_dados = dados;
         m_estado = new EstadoCandidaturaADemonstracaoInstanciada(this);
-        m_usernameExpositor = username;
+        m_emailExpositor = email;
     }
 
     /**
@@ -54,8 +54,8 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      *
      * @return username do expositor
      */
-    public String getM_usernameExpositor() {
-        return m_usernameExpositor;
+    public String getM_emailExpositor() {
+        return m_emailExpositor;
     }
 
     /**
@@ -74,6 +74,13 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
         m_estado = novoEstado;
     }
 
+    /**
+     * Altera os dados da candidatura
+     */
+    public void setDados(String novosDados){
+        m_dados = novosDados;
+    }
+    
     @Override
     public CandidaturaADemonstracao importContentFromXMLNode(Node node) {
         try {
@@ -90,7 +97,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.m_dados = elem.getElementsByTagName(DADOS_ELEMENT_NAME).item(0).getTextContent();
-                this.m_usernameExpositor = elem.getElementsByTagName(USERNAME_EXPOSITOR_ELEMENT_NAME).item(0).getTextContent();
+                this.m_emailExpositor = elem.getElementsByTagName(USERNAME_EXPOSITOR_ELEMENT_NAME).item(0).getTextContent();
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
@@ -128,7 +135,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
             elementRoot.appendChild(elem);
 
             elem = doc.createElement(USERNAME_EXPOSITOR_ELEMENT_NAME);
-            elem.setTextContent(this.m_usernameExpositor);
+            elem.setTextContent(this.m_emailExpositor);
             elementRoot.appendChild(elem);
 
             if (this.m_estado.isEstadoCandidaturaInstanciada()) {
