@@ -45,6 +45,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public static final String ID_ATTR_NAME = "ID";
     public static final String ESTADO_ATTR_NAME = "estado";
 
+    private Data m_dataInicioSubCand;
+    private Data m_dataFimSubCand;
+
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
@@ -101,6 +104,22 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     *
+     * @return data de inicio de submissão de candidaturas à demonstração
+     */
+    public Data getDataInicioCand() {
+        return m_dataInicioSubCand;
+    }
+
+    /**
+     *
+     * @return data de fim de submissão de candidaturas à demonstração
+     */
+    public Data getDataFimCand() {
+        return m_dataFimSubCand;
+    }
+
+    /**
      * @param m_StrCodigoIdentificacao the m_StrCodigoIdentificacao to set
      */
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
@@ -115,23 +134,33 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return m_rcd;
     }
 
+    /**
+     * Define data de inicio de candidaturas à demonstração e cria timer
+     *
+     * @param dataInicioCandDemo - data de inicio de candidaturas à demonstração
+     */
     void setDataInicioCandidaturas(Data dataInicioCandDemo) {
-        Data m_dataInicioSubCand = dataInicioCandDemo;
-        this.schedule(new AlterarParaCandidaturasAbertas(this), dataInicioCandDemo);
+        m_dataInicioSubCand = dataInicioCandDemo;
+        this.schedule(new AlterarParaCandidaturasAbertas(this), m_dataInicioSubCand);
     }
 
+    /**
+     * Define data de fim de candidaturas à demonstração e cria timer
+     *
+     * @param dataFimCandDemo - data de fim de candidaturas à demonstração
+     */
     void setDataFimCandidaturas(Data dataFimCandDemo) {
-        Data m_dataFimSubCand = dataFimCandDemo;
-        this.schedule(new AlterarParaCandidaturasFechadas(this), dataFimCandDemo);
+        m_dataFimSubCand = dataFimCandDemo;
+        this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null){
+        if (obj == null) {
             return false;
-        }else if(obj instanceof Demonstracao){
+        } else if (obj instanceof Demonstracao) {
             Demonstracao o = (Demonstracao) obj;
-            if(o == this){
+            if (o == this) {
                 return true;
             }
             return this.m_StrCodigoIdentificacao == o.m_StrCodigoIdentificacao;
