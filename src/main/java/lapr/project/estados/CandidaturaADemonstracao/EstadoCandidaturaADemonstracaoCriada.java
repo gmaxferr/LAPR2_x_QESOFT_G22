@@ -8,10 +8,10 @@ import lapr.project.model.CandidaturaADemonstracao;
  */
 public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao{
 
-    CandidaturaADemonstracao cand;
+    CandidaturaADemonstracao m_cand;
     
     public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
-        this.cand = cand;
+        this.m_cand = cand;
     }
 
 
@@ -22,9 +22,15 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        return true;
+        return false;
     }
 
+     @Override
+    public boolean setEstadoCandidaturaAtribuida() {
+        m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
+        return true;
+    }
+    
     @Override
     public boolean isEstadoCandidaturaInstanciada() {
         return false;
@@ -33,6 +39,11 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
     @Override
     public boolean isEstadoCandidaturaCriada() {
         return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAtribuida() {
+        return false;
     }
     
 }
