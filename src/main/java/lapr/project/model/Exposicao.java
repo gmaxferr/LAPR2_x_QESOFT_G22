@@ -582,7 +582,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rd.fix(m_registoRecursos);
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
-    
+
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         try {
@@ -599,6 +599,68 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
+                
+                Data invalidData = new Data(0, 0, 0);
+
+                Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
+                this.m_dataAberturaCandidatura = new Data(0, 0, 0);
+                this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataAberturaCandidatura.equals(invalidData)){
+                    this.m_dataAberturaCandidatura = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
+                this.m_dataEncerramentoCandidatura = new Data(0, 0, 0);
+                this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataEncerramentoCandidatura.equals(invalidData)){
+                    this.m_dataEncerramentoCandidatura = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
+                this.m_dataFim = new Data(0, 0, 0);
+                this.m_dataFim.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataFim.equals(invalidData)){
+                    this.m_dataFim = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CAND_DEMO_ELEMENT_NAME).item(0);
+                this.m_dataFimCandDemo = new Data(0, 0, 0);
+                this.m_dataFimCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataFimCandDemo.equals(invalidData)){
+                    this.m_dataFimCandDemo = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
+                this.m_dataFimDetecaoConflitos = new Data(0, 0, 0);
+                this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataFimDetecaoConflitos.equals(invalidData)){
+                    this.m_dataFimDetecaoConflitos = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
+                this.m_dataInicio = new Data(0, 0, 0);
+                this.m_dataInicio.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataInicio.equals(invalidData)){
+                    this.m_dataInicio = null;
+                }
+
+                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_CAND_DEMO_ELEMENT_NAME).item(0);
+                this.m_dataInicioCandDemo = new Data(0, 0, 0);
+                this.m_dataInicioCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataInicioCandDemo.equals(invalidData)){
+                    this.m_dataInicioCandDemo = null;
+                }
+
+                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
+                this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
+                this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
+                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasRemovidas.ROOT_ELEMENT_NAME).item(0));
+                this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
+                this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
+                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+                this.m_rs.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
@@ -650,38 +712,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     default:
                         break;
                 }
-
-                Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
-                this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
-                this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
-                this.m_dataFim.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CAND_DEMO_ELEMENT_NAME).item(0);
-                this.m_dataFimCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
-                this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
-                this.m_dataInicio.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_CAND_DEMO_ELEMENT_NAME).item(0);
-                this.m_dataInicioCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-
-                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
-                this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
-                this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasRemovidas.ROOT_ELEMENT_NAME).item(0));
-                this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
-                this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
-                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
-                this.m_rs.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
@@ -735,32 +765,62 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "candDemosFechadas");
             }
 
-            Element elemChild = document.createElement(DATA_ABERTURA_CAND_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataAberturaCandidatura.exportContentToXMLNode(), true));
+            Element elemChild;
+
+            elemChild = document.createElement(DATA_ABERTURA_CAND_ELEMENT_NAME);
+            if (this.m_dataAberturaCandidatura == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataAberturaCandidatura.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataEncerramentoCandidatura.exportContentToXMLNode(), true));
+            if (this.m_dataEncerramentoCandidatura == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataEncerramentoCandidatura.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_FIM_CAND_DEMO_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataFimCandDemo.exportContentToXMLNode(), true));
+            if (this.m_dataFimCandDemo == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataFimCandDemo.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_FIM_CONFLITOS_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataFimDetecaoConflitos.exportContentToXMLNode(), true));
+            if (this.m_dataFimDetecaoConflitos == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataFimDetecaoConflitos.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_FIM_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataFim.exportContentToXMLNode(), true));
+            if (this.m_dataFim == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataFim.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_INICIO_CAND_DEMO_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataInicioCandDemo.exportContentToXMLNode(), true));
+            if (this.m_dataInicioCandDemo == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataInicioCandDemo.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DATA_INICIO_ELEMENT_NAME);
-            elemChild.appendChild(document.importNode(this.m_dataInicio.exportContentToXMLNode(), true));
+            if (this.m_dataInicio == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataInicio.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(elemChild);
 
             elemChild = document.createElement(DESCR_ELEMENT_NAME);
