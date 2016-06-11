@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -156,6 +158,17 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
     }
 
+    /**
+     * Devolve uma lista das candidaturas do expositor à demonstração
+     * @param m_emailExpositor - email do expositor
+     * @return lista das candidaturas do expositor à demonstração
+     */
+    public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
+        RegistoCandidaturaADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
+        return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
+        
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
