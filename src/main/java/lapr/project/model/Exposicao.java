@@ -339,7 +339,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.local = local;
     }
 
-    public ArrayList<Organizador> getListaOrganizadores() {
+    public List<Organizador> getListaOrganizadores() {
         return this.m_ro.getListaOrganizadores();
     }
 

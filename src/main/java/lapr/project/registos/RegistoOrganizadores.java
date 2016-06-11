@@ -24,8 +24,12 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
 
     public static final String ROOT_ELEMENT_NAME = "RegistoOrganizadores";
 
-    private ArrayList<Organizador> m_listaOrganizadores;
+    private final List<Organizador> m_listaOrganizadores;
 
+    public RegistoOrganizadores() {
+        this.m_listaOrganizadores = new ArrayList<>();
+    }
+    
     /**
      * Método que valida a exposição
      *
@@ -59,7 +63,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
         m_listaOrganizadores.add(o);
     }
 
-    public ArrayList<Organizador> getListaOrganizadores() {
+    public List<Organizador> getListaOrganizadores() {
         return this.m_listaOrganizadores;
     }
 

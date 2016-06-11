@@ -26,13 +26,14 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
     public static final String LISTA_FAE_TEMP_ELEMENT_NAME = "ListaFaeTemp";
 
-    private List<FAE> m_listaFAE;
-    private List<FAE> m_listaFAETemp;
+    private final List<FAE> m_listaFAE;
+    private final List<FAE> m_listaFAETemp;
     private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
         this.m_listaFAE = new ArrayList<>();
         this.m_listaFAETemp = new ArrayList<>();
+        this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
     }
 
     public List<FAE> getListaFAE() {

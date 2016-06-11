@@ -1,5 +1,6 @@
 package lapr.project.registos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,11 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
     
     public static final String ROOT_ELEMENT_NAME = "RegistoConflitos";
 
-    private List<ConflitoDeInteresse> m_listaConflitos;
+    private final List<ConflitoDeInteresse> m_listaConflitos;
+
+    public RegistoConflitos() {
+        this.m_listaConflitos = new ArrayList<>();
+    }
 
     /**
      * Cria um conflito entre o FAE e a Candidatura passados como argumentos e
