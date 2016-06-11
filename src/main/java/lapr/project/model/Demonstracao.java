@@ -24,6 +24,7 @@ import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
+import lapr.project.registos.RegistoFAE;
 import lapr.project.registos.RegistoOrganizadores;
 import lapr.project.registos.RegistoRecursos;
 import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
@@ -57,6 +58,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
     private RegistoOrganizadores m_ro;
+    private RegistoFAE m_rFAE;
     private EstadoDemonstracao m_estado;
     private RegistoCandidaturaADemonstracoes m_rcd;
 
@@ -339,6 +341,13 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return this.m_ro.getListaOrganizadores();
     }
 
+     /**
+     * @return Retorna a lista de fae
+     */
+    public List<FAE> getListaFAE() {
+        return this.m_rFAE.getListaFAE();
+    }
+    
     /**
      * Define o estado
      *

@@ -31,6 +31,11 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
     }
     
     @Override
+    public boolean setEstadoCandidaturaAvaliada() {
+        return false;
+    }
+    
+    @Override
     public boolean isEstadoCandidaturaInstanciada() {
         return true;
     }
@@ -42,6 +47,11 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaAvaliada() {
         return false;
     }
 }

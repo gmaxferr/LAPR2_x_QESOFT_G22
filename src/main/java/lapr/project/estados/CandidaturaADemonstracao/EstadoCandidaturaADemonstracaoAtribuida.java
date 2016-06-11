@@ -16,32 +16,49 @@ public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidatur
     
     @Override
     public boolean setEstadoCandidaturaInstanciada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
+    }
+    
+     @Override
+    public boolean setEstadoCandidaturaAvaliada() {
+        if (valida()){
+            m_cand.setEstado(new EstadoCandidaturaADemonstracaoAvaliada(m_cand));
+        return true;
+        } else return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaInstanciada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaAtribuida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    @Override
+    public boolean isEstadoCandidaturaAvaliada() {
+        return true;
+    }
+
+    private boolean valida() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+        return true;
+    }
 }

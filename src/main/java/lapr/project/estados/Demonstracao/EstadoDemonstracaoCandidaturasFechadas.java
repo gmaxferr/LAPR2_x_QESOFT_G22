@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.estados.Demonstracao;
 
 import lapr.project.model.Demonstracao;
@@ -51,8 +46,10 @@ public class EstadoDemonstracaoCandidaturasFechadas implements EstadoDemonstraca
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
+        if(valida()){
         m_demo.setEstado(new EstadoDemonstracaoCandidaturasAtribuidas(m_demo));
         return true;
+        } else return false;
     }
 
     @Override
@@ -82,7 +79,7 @@ public class EstadoDemonstracaoCandidaturasFechadas implements EstadoDemonstraca
     
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        return false;
+        return true;
     }
 
     @Override

@@ -94,7 +94,7 @@ public class AtribuirCandidaturasADemonstracaoController {
      * @return lista de demonstrações de um organizador
      */
     public List<Demonstracao> getListaDemonstracoesDoOrganizador(String usernameOrganizador){
-        return this.m_listaDemos=  m_rd.getListaDemonstracoesDoOrganizador(usernameOrganizador);
+        return m_rd.getListaDemonstracoesDoOrganizador(usernameOrganizador);
     }
     
     /**

@@ -87,6 +87,11 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
+    public void setAvalicaoParaDemonstracao(boolean avaliacao, String justificacao){
+        this.m_avaliacao = avaliacao;
+        this.m_justificacao = justificacao;
+        
+    }
     @Override
     public Avaliacao importContentFromXMLNode(Node node) {
         try {

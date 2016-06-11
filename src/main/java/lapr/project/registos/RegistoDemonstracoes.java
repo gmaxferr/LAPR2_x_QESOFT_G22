@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
 import lapr.project.utils.Exportable;
@@ -163,6 +164,18 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                     }
         }
         return listaDemonstracoesDoOrganizador;
+    }
+    
+     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE){
+        List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
+        
+        for (Demonstracao demonstracao : m_listaDemonstracoes){
+            for (FAE fae : demonstracao.getListaFAE()){
+                if(fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas())
+                    listaDemonstracoesDoFAE.add(demonstracao);
+                    }
+        }
+        return listaDemonstracoesDoFAE;
     }
     
     

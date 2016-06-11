@@ -27,9 +27,17 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
      @Override
     public boolean setEstadoCandidaturaAtribuida() {
+        if(valida()){
         m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
         return true;
+        }else return false;
     }
+    
+     @Override
+    public boolean setEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
     
     @Override
     public boolean isEstadoCandidaturaInstanciada() {
@@ -45,5 +53,14 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
     public boolean isEstadoCandidaturaAtribuida() {
         return false;
     }
+
+    @Override
+    public boolean isEstadoCandidaturaAvaliada() {
+        return false;
+    }
     
+    private boolean valida() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+        return true;
+    }
 }
