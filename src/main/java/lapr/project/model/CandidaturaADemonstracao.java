@@ -68,7 +68,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     /**
      * Altera o estado da candidatura
      *
-     * @param novoEstado
+     * @param estado2 - novo estado da candidatura
      */
     public void setEstado(EstadoCandidaturaADemonstracao novoEstado) {
         m_estado = novoEstado;

@@ -70,7 +70,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        card1 = new javax.swing.JPanel();
+        card2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,7 +85,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        card2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -102,7 +102,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        card1.setPreferredSize(new java.awt.Dimension(547, 200));
+        card2.setPreferredSize(new java.awt.Dimension(547, 200));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Introduza os dados necessários");
@@ -202,32 +202,32 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
-        card1.setLayout(card1Layout);
-        card1Layout.setHorizontalGroup(
-            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
+        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
+        card2.setLayout(card2Layout);
+        card2Layout.setHorizontalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
-            .addGroup(card1Layout.createSequentialGroup()
+            .addGroup(card2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
-        card1Layout.setVerticalGroup(
-            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card1Layout.createSequentialGroup()
+        card2Layout.setVerticalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(27, 27, 27))
@@ -236,7 +236,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jButton1.getAccessibleContext().setAccessibleName("jButtonCard1Recuar");
         jButton2.getAccessibleContext().setAccessibleName("jButtonCard1Avançar");
 
-        getContentPane().add(card1, "card1");
+        getContentPane().add(card2, "card1");
 
         jLabel6.setFont(jLabel1.getFont());
         jLabel6.setText("Confirme os dados ");
@@ -331,34 +331,34 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
-        card2.setLayout(card2Layout);
-        card2Layout.setHorizontalGroup(
-            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card2Layout.createSequentialGroup()
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(jLabel6))
-                    .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(47, 47, 47)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(card2Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        card2Layout.setVerticalGroup(
-            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card2Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6)
                 .addGap(23, 23, 23)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
                 .addGap(0, 17, Short.MAX_VALUE))
@@ -368,7 +368,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jButton3.getAccessibleContext().setAccessibleName("jButtonCard2Recuar");
         jButton4.getAccessibleContext().setAccessibleName("jButtonCard2Confirma");
 
-        getContentPane().add(card2, "card2");
+        getContentPane().add(jPanel3, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -423,7 +423,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -445,6 +444,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;

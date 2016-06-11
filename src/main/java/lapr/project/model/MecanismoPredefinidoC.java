@@ -235,9 +235,4 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable 
         return DESCRICAO_MECANISMO;
     }
 
-    @Override
-    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida, String numeroLido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

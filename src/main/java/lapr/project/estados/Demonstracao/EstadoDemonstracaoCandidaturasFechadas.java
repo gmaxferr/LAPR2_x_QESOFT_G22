@@ -21,88 +21,82 @@ public class EstadoDemonstracaoCandidaturasFechadas implements EstadoDemonstraca
 
     @Override
     public boolean setEstadoDemonstracaoPendente() {
-        return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public boolean setEstadoDemonstracaoConfirmada() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCancelada() {
-       return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoPendente() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoConfirmada() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoCancelada() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
-        m_demo.setEstado(new EstadoDemonstracaoCandidaturasAtribuidas(m_demo));
-        return true;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAbertas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
-        return true;
-    }
-    
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasDecididas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAbertas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasFechadas() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

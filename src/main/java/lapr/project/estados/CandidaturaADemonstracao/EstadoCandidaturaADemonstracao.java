@@ -16,13 +16,9 @@ public interface EstadoCandidaturaADemonstracao extends Estado{
     boolean setEstadoCandidaturaInstanciada();
 
     boolean setEstadoCandidaturaCriada();
-    
-    boolean setEstadoCandidaturaAtribuida();
 
     boolean isEstadoCandidaturaInstanciada();
     
     boolean isEstadoCandidaturaCriada();
-    
-    boolean isEstadoCandidaturaAtribuida();
 
 }
