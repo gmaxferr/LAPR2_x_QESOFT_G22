@@ -84,4 +84,9 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
             return listaAtrib;
         }
     }
+
+    @Override
+    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

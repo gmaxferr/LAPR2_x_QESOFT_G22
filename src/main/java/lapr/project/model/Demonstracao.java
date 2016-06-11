@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
 import lapr.project.registos.RegistoCandidaturaADemonstracoes;
+import lapr.project.registos.RegistoOrganizadores;
 import lapr.project.registos.RegistoRecursos;
 import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
 import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
@@ -48,6 +50,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
+    private RegistoOrganizadores m_ro;
     private EstadoDemonstracao m_estado;
     private RegistoCandidaturaADemonstracoes m_rcd;
 
@@ -92,6 +95,15 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve a lista de organizadores
+     * 
+     * @return lista de organizadores
+     */
+    public ArrayList<Organizador> getListaOrganizadores() {
+        return this.m_ro.getListaOrganizadores();
+    }
+    
+    /**
      * Permite obter o estado atual da demonstração
      *
      * @return estado atual da demonstração
@@ -100,6 +112,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return m_estado;
     }
 
+    public void setEstado(EstadoDemonstracao estado) {
+        this.m_estado = estado;
+    }
     /**
      * @param m_StrCodigoIdentificacao the m_StrCodigoIdentificacao to set
      */
