@@ -41,6 +41,8 @@ import org.w3c.dom.NodeList;
 public class Demonstracao implements Agendavel, Importable<Demonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Demonstracao";
+    public static final String DATA_INICIO_SUB_CAND_ELEMENT_NAME = "DataInicioSubmissaoCandidaturas";
+    public static final String DATA_FIM_SUB_CAND_ELEMENT_NAME = "DataFimSubmissaoCandidaturas";
     public static final String DESCR_ELEMENT_NAME = "Descricao";
     public static final String ID_ATTR_NAME = "ID";
     public static final String ESTADO_ATTR_NAME = "estado";
@@ -190,6 +192,22 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_rcd = new RegistoCandidaturaADemonstracoes();
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
 
+                Data invalidData = new Data(0, 0, 0);
+
+                Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
+                this.m_dataInicioSubCand = new Data(0, 0, 0);
+                this.m_dataInicioSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataInicioSubCand.equals(invalidData)){
+                    this.m_dataInicioSubCand = null;
+                }
+                
+                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_SUB_CAND_ELEMENT_NAME).item(0);
+                this.m_dataFimSubCand = new Data(0, 0, 0);
+                this.m_dataFimSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+                if(this.m_dataFimSubCand.equals(invalidData)){
+                    this.m_dataFimSubCand = null;
+                }
+                
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
 
                 switch (estado) {
@@ -237,37 +255,53 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
-            document.appendChild(elementKeyword);
+            Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elemBase);
 
-            Element elementValue = document.createElement(DESCR_ELEMENT_NAME);
-            elementValue.setTextContent(this.m_StrDescricao);
-            elementKeyword.appendChild(elementValue);
+            Element elemChild = document.createElement(DESCR_ELEMENT_NAME);
+            elemChild.setTextContent(this.m_StrDescricao);
+            elemBase.appendChild(elemChild);
 
-            elementKeyword.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
-            elementKeyword.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
 
-            elementKeyword.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
+            elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
+            elemChild = document.createElement(DATA_INICIO_SUB_CAND_ELEMENT_NAME);
+            if (this.m_dataInicioSubCand == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataInicioSubCand.exportContentToXMLNode(), true));
+            }
+            elemBase.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_FIM_SUB_CAND_ELEMENT_NAME);
+            if (this.m_dataFimSubCand == null) {
+                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+            } else {
+                elemChild.appendChild(document.importNode(this.m_dataFimSubCand.exportContentToXMLNode(), true));
+            }
+            elemBase.appendChild(elemChild);
+            
             if (this.m_estado.isEstadoDemonstracaoPendente()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "pendente");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "pendente");
             } else if (this.m_estado.isEstadoDemonstracaoCancelada()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "cancelada");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "cancelada");
             } else if (this.m_estado.isEstadoDemonstracaoConfirmada()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "confirmada");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "confirmada");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAbertas()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAbertas");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasAbertas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasFechadas()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasFechadas");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasFechadas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAtribuidas()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAtribuidas");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasAtribuidas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAvaliadas()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasAvaliadas");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasAvaliadas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasDecididas()) {
-                elementKeyword.setAttribute(ESTADO_ATTR_NAME, "candidaturasDecididas");
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasDecididas");
             }
 
-            node = elementKeyword;
+            node = elemBase;
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
