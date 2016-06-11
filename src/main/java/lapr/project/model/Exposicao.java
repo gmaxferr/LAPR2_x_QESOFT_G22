@@ -27,6 +27,11 @@ import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
 import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
 import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
 import lapr.project.estados.Exposicao.EstadoExposicaoStandsAtribuidos;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
+import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
+import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
+import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
+import lapr.project.timerTasks.expo.AlterarParaFechadaCandidaturas;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -153,12 +158,13 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     private final KeywordRanking m_keywordRanking;
 
-    private List<Timer> timers;
+    private final CentroExposicoes m_ce;
 
     /**
      * Construtor de Exposição sem parametros
      */
     public Exposicao(CentroExposicoes ce) {
+        this.m_ce = ce;
         this.m_rce = new RegistoCandidaturasAExposicao();
         this.m_rfae = new RegistoFAE();
         this.m_rcr = new RegistoCandidaturasRemovidas();
@@ -193,20 +199,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
-    }
-
-    public Exposicao(RegistoOrganizadores ro, RegistoFAE rfae, RegistoCandidaturasAExposicao rce) {
-        this.m_ro = ro;
-        this.m_rfae = rfae;
-        this.m_rce = rce;
-        this.m_ra = new RegistoAtribuicoes();
-        this.m_rcr = new RegistoCandidaturasRemovidas();
-        this.m_rd = new RegistoDemonstracoes();
-        this.m_rs = new RegistoStands();
-        this.m_ras = new RegistoAtribuicoesStands();
-        this.m_rconf = new RegistoConflitos();
-        this.m_rexpositores = new RegistoExpositores();
-        this.m_keywordRanking = new KeywordRanking();
     }
 
     /**
@@ -583,6 +575,40 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
 
+    /**
+     * Recria os Timers da demonstração ao importar dados do XML
+     */
+    public void recriarTimersDemo() {
+        List<Demonstracao> lstDemos = m_rd.getListaDemonstracoes();
+        if (this.getEstado().isEstadoCandidaturasDecididas() || this.getEstado().isEstadoStandsAtribuidos()) {
+            for (Demonstracao d : lstDemos) {
+                d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
+                d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
+            }
+
+        }
+    }
+
+    /**
+     * Recria os Timers da exposição ao importar dados do XML
+     */
+    public void recriarTimersExpo() {
+        Data data1 = this.getDataInicioSubCand();
+
+        Data data2 = this.getDataFimSubCand();
+
+        Data data3 = this.getDataFimDetecaoConflitos();
+
+        TimerTask inicioSubCand = new AlterarParaAbertaCandidaturas(this);
+        this.schedule(inicioSubCand, data1);
+
+        TimerTask fimSubCand = new AlterarParaFechadaCandidaturas(this, m_ce);
+        this.schedule(fimSubCand, data2);
+
+        TimerTask fimDetecaoConflitos = new AlterarParaConflitosAtualizados(this);
+        this.schedule(fimDetecaoConflitos, data3);
+    }
+
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         try {
@@ -599,55 +625,55 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
-                
+
                 Data invalidData = new Data(0, 0, 0);
 
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
                 this.m_dataAberturaCandidatura = new Data(0, 0, 0);
                 this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataAberturaCandidatura.equals(invalidData)){
+                if (this.m_dataAberturaCandidatura.equals(invalidData)) {
                     this.m_dataAberturaCandidatura = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
                 this.m_dataEncerramentoCandidatura = new Data(0, 0, 0);
                 this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataEncerramentoCandidatura.equals(invalidData)){
+                if (this.m_dataEncerramentoCandidatura.equals(invalidData)) {
                     this.m_dataEncerramentoCandidatura = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
                 this.m_dataFim = new Data(0, 0, 0);
                 this.m_dataFim.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataFim.equals(invalidData)){
+                if (this.m_dataFim.equals(invalidData)) {
                     this.m_dataFim = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CAND_DEMO_ELEMENT_NAME).item(0);
                 this.m_dataFimCandDemo = new Data(0, 0, 0);
                 this.m_dataFimCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataFimCandDemo.equals(invalidData)){
+                if (this.m_dataFimCandDemo.equals(invalidData)) {
                     this.m_dataFimCandDemo = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
                 this.m_dataFimDetecaoConflitos = new Data(0, 0, 0);
                 this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataFimDetecaoConflitos.equals(invalidData)){
+                if (this.m_dataFimDetecaoConflitos.equals(invalidData)) {
                     this.m_dataFimDetecaoConflitos = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
                 this.m_dataInicio = new Data(0, 0, 0);
                 this.m_dataInicio.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataInicio.equals(invalidData)){
+                if (this.m_dataInicio.equals(invalidData)) {
                     this.m_dataInicio = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_CAND_DEMO_ELEMENT_NAME).item(0);
                 this.m_dataInicioCandDemo = new Data(0, 0, 0);
                 this.m_dataInicioCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataInicioCandDemo.equals(invalidData)){
+                if (this.m_dataInicioCandDemo.equals(invalidData)) {
                     this.m_dataInicioCandDemo = null;
                 }
 
@@ -666,18 +692,23 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 switch (estado) {
                     case "criada":
                         this.m_estado = new EstadoExposicaoCriada(this);
+                        recriarTimersExpo();
                         break;
                     case "demosSemFAE":
                         this.m_estado = new EstadoExposicaoDemosDefinidasSemFAE(this);
+                        recriarTimersExpo();
                         break;
                     case "FAESemDemos":
                         this.m_estado = new EstadoExposicaoFAEDefinidosSemDemos(this);
+                        recriarTimersExpo();
                         break;
                     case "completa":
                         this.m_estado = new EstadoExposicaoCompleta(this);
+                        recriarTimersExpo();
                         break;
                     case "candsAbertas":
                         this.m_estado = new EstadoExposicaoCandidaturasAbertas(this);
+                        recriarTimersExpo();
                         break;
                     case "candsFechadas":
                         this.m_estado = new EstadoExposicaoCandidaturasFechadas(this);
@@ -702,9 +733,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                         break;
                     case "demosDecididas":
                         this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
+                        recriarTimersDemo();
                         break;
                     case "candDemosAbertas":
                         this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoAbertas(this);
+                        recriarTimersDemo();
                         break;
                     case "candDemosFechadas":
                         this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoFechadas(this);
