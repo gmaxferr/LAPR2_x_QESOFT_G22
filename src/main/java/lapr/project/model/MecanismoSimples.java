@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Representação um mecanismo simples - sem interação com o utilizador
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public interface MecanismoSimples extends Mecanismo {
 

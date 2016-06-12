@@ -161,8 +161,6 @@ public class LoginGui extends JFrame {
     /**
      * botaoLoginClicado: O que acontece quando o botao de login é clicado
      *
-     * @param data - Ficheiro onde é guardada e lida toda a informação que o
-     * programa utiliza
      */
     public void botaoLoginClicado() {
         String user = usernameField.getText().trim();

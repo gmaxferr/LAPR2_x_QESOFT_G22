@@ -1,42 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCancelada;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAbertas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAtribuidas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAvaliadas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasDecididas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoFAE;
-import lapr.project.registos.RegistoOrganizadores;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.estados.Demonstracao.*;
+import lapr.project.registos.*;
+import lapr.project.timerTasks.demonstracao.*;
 
-import lapr.project.utils.Data;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *

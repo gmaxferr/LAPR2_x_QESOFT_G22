@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileFilter;
 
 /**
  * 
- * @author Ana Leite e Ricardo Osório
+ * @author G29
  */
 public class MyJFileChooser extends JFileChooser {
 

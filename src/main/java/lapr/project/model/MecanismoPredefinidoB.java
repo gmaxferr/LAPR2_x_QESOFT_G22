@@ -1,12 +1,11 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
- * @author Ana Leite Ricardo Osório
+ * @author G29
  */
 public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable {
 

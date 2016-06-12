@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Mecanismo de atribuição por experiência: Este mecanismo distribui as
@@ -19,7 +13,7 @@ import java.util.List;
  * ele atribui as candidaturas correspondentes aos intervalos da reta das
  * candidaturas aos FAEs correspondentes aos intervalos da reta dos FAE.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable {
 

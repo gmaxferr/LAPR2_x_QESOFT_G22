@@ -1,16 +1,9 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um FAE

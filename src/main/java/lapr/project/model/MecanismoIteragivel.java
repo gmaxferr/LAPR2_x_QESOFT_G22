@@ -7,7 +7,7 @@ import java.util.List;
  * (dado recebido). - Comporta-se como um Mecanismo e usado para permitir o
  * polimorfismo
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public interface MecanismoIteragivel extends Mecanismo {
 

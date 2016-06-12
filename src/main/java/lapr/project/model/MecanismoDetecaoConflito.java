@@ -1,9 +1,7 @@
 package lapr.project.model;
 
 import java.util.List;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoConflitos;
-import lapr.project.registos.RegistoFAE;
+import lapr.project.registos.*;
 
 /**
  *
