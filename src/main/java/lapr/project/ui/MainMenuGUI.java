@@ -6,8 +6,7 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import lapr.project.controller.ExportarXMLController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 
 /**
  * Menu Principal disponivel a todos os utilizadores a partir do momento em que

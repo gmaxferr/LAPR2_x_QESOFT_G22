@@ -56,8 +56,6 @@ public class LoginGui extends JFrame {
     /**
      * Cria todos os componentes da janela de login
      *
-     * @param data - Ficheiro onde é guardada e lida toda a informação que o
-     * programa utiliza
      */
     public void createComponents() {
         //Titulo do login

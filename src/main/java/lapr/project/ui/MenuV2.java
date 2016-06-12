@@ -5,17 +5,67 @@
  */
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import lapr.project.controller.ExportarXMLController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
+
 /**
  *
  * @author Ricardo Osorio
  */
 public class MenuV2 extends javax.swing.JFrame {
 
+    private final Utilizador utilizador;
+    private final CentroExposicoes centroExposicoes;
+    private final JFrame thisJFrame;
+
     /**
      * Creates new form Menu
      */
-    public MenuV2() {
+    public MenuV2(CentroExposicoes centroExposicoes, Utilizador utilizador) {
+        super("Main menu");
+        this.utilizador = utilizador;
+        this.centroExposicoes = centroExposicoes;
+        this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
+
         initComponents();
+        modificarFecharJanela();
+        
+        setVisible(true);
+    }
+
+    private void modificarFecharJanela() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+                if (op == JOptionPane.YES_OPTION) {
+                    JFileChooser fc = new JFileChooser();
+                    int returnVal = fc.showSaveDialog(thisJFrame);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        ExportarXMLController CTRL = new ExportarXMLController();
+                        if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                            JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            System.exit(0);
+                        } else {
+                            returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.YES_NO_OPTION);
+                            if (returnVal == JOptionPane.YES_OPTION) {
+                                System.exit(0);
+                            }
+                        }
+                    }
+                } else if (op == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     /**
@@ -58,10 +108,11 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenuItemAjuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setText("Identificado como: ");
+        jLabel1.setText("Sessão iniciada como:");
 
         jLabelNomeUtilizador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelNomeUtilizador.setText("nomeDoUtilizador");
@@ -201,6 +252,11 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenu3.setText("Login");
 
         jMenuItemTerminarSessao.setText("Terminar sessão");
+        jMenuItemTerminarSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTerminarSessaoActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemTerminarSessao);
 
         jMenuBar1.add(jMenu3);
@@ -282,42 +338,32 @@ public class MenuV2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void jMenuItemTerminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTerminarSessaoActionPerformed
+        int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+        if (op == JOptionPane.YES_OPTION) {
+            JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showSaveDialog(thisJFrame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                ExportarXMLController CTRL = new ExportarXMLController();
+                if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                    JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    terminaSessao();
+                } else {
+                    returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o término de sessão?", "ERRO", JOptionPane.YES_NO_OPTION);
+                    if (returnVal == JOptionPane.YES_OPTION) {
+                        terminaSessao();
+                    }
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else if (op == JOptionPane.NO_OPTION) {
+            terminaSessao();
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuV2().setVisible(true);
-            }
-        });
+    }//GEN-LAST:event_jMenuItemTerminarSessaoActionPerformed
+    private void terminaSessao() {
+        new LoginV2(centroExposicoes);
+        dispose();
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -1,16 +1,13 @@
 package lapr.project.ui;
 
 import java.io.File;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.MyJFileChooser;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class Main {
 
@@ -46,6 +43,6 @@ public class Main {
                     + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        LoginGui loginGUI = new LoginGui(centroExposicoes);
+        new LoginV2(centroExposicoes);
     }
 }
