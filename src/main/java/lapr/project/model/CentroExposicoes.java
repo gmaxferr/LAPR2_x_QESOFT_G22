@@ -13,7 +13,7 @@ import org.w3c.dom.*;
  * @author Ricardo Osório Ana Leite
  */
 public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
@@ -39,6 +39,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     private final RegistoTipoConflitos m_registoTipoConflitos;
     private final RegistoExpositores m_registoExpositores;
 
+    private final RegistoStands m_rStands;
+
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
@@ -54,6 +56,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         this.m_registoRecursos = new RegistoRecursos();
         this.m_registoTipoConflitos = new RegistoTipoConflitos();
         this.m_registoExpositores = new RegistoExpositores();
+        this.m_rStands = new RegistoStands();
     }
 
     /**
@@ -111,13 +114,20 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
+     * Devolve o registo dos stands existentes neste centro de exposições
+     *
+     * @return registo de stand deste centro de exposições
+     */
+    public RegistoStands getRegistoStands() {
+        return this.m_rStands;
+    }
+
+    /**
      * Método que regista a confirmação de um registo de utilizador
      *
      * @param u Utilizador desejado
      */
     public void setUtilizadorRegistado(Utilizador u) {
-        //para testar
-        Exposicao expo = new Exposicao(this);
         u.setUtilizadorRegistado();
 
     }
@@ -153,20 +163,20 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             Document document = builder.newDocument();
 
             document.appendChild(document.importNode(node, true));
-            
+
             NodeList elementsKeyword = document.getChildNodes();
             Node n = elementsKeyword.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
                 this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExpositores.fix(this.m_registoUtilizadores);
-                
+
                 this.m_registoTipoConflitos.importContentFromXMLNode(elem.getElementsByTagName(RegistoTipoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoRecursos.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_registoExposicoes.importContentFromXMLNode(elem.getElementsByTagName(RegistoExposicoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadores);
             }
@@ -193,7 +203,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoUtilizadores.exportContentToXMLNode(), true));
-            
+
             node = elementExpo;
 
         } catch (ParserConfigurationException ex) {
