@@ -62,8 +62,11 @@ public class CriarExposicaoController {
      *
      * @param strTitulo Titulo da exposição
      * @param strDescricao Descrição da exposição
-     * @param DataInicio
-     * @param DataFim
+     * @param dataInicio
+     * @param dataFim
+     * @param dataAberturaSubCand
+     * @param dataEncerramentoSubCand
+     * @param dataFimDetecaoConflitos
      * @param strLocal Local de realização da exposição
      * @param lstUtz Lista de utilizadores associados à exposição
      * @return o objecto Exposição criado com estes parametros ou null se não
