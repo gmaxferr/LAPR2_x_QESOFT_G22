@@ -4,17 +4,16 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  *
- * @author guima
+ * @author Ana Leite
  */
-public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao{
+public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidaturaADemonstracao {
 
     CandidaturaADemonstracao m_cand;
     
-    public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
-        this.m_cand = cand;
+    public EstadoCandidaturaADemonstracaoAtribuida(CandidaturaADemonstracao c){
+        m_cand = c;
     }
-
-
+    
     @Override
     public boolean setEstadoCandidaturaInstanciada() {
         return false;
@@ -25,20 +24,19 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
         return false;
     }
 
-     @Override
+    @Override
     public boolean setEstadoCandidaturaAtribuida() {
-        if(valida()){
-        m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
-        return true;
-        }else return false;
+        return false;
     }
     
      @Override
     public boolean setEstadoCandidaturaAvaliada() {
-        return false;
+        if (valida()){
+            m_cand.setEstado(new EstadoCandidaturaADemonstracaoAvaliada(m_cand));
+        return true;
+        } else return false;
     }
 
-    
     @Override
     public boolean isEstadoCandidaturaInstanciada() {
         return false;
@@ -46,7 +44,7 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
     @Override
     public boolean isEstadoCandidaturaCriada() {
-        return true;
+        return false;
     }
 
     @Override
@@ -56,9 +54,9 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
     @Override
     public boolean isEstadoCandidaturaAvaliada() {
-        return false;
+        return true;
     }
-    
+
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;

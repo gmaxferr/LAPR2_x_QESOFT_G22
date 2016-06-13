@@ -9,6 +9,7 @@ import lapr.project.exceptions.*;
 import lapr.project.registos.*;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
+
 /**
  * Representação de uma CandidaturaAExposicao
  *
@@ -52,27 +53,30 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     private String m_StrMoradaEmpresa;
 
     /**
-     *
+     * Registo(lista) dos produtos que o expositor pretende expor
      */
     private RegistoProdutos m_rp;
 
     /**
-     *
+     * Registo (lista) das demonstrações em que o expositor demonstra interesse
+     * durante a candidatura
      */
     private RegistoDemonstracoes m_rd;
 
     /**
-     *
+     * Decisão tomada sobre esta candidatura durante o UC Decidir Candidatura a
+     * Exposição
      */
     private Decisao m_decisao;
 
     /**
-     *
+     * Expositor gerador desta candidatura
      */
     private Expositor m_expositor;
 
     /**
-     *
+     * Keywords descritivas dos produtos a expor pelo expositor - introduzidas
+     * no momento da candidatura
      */
     private List<Keyword> m_keywords;
 
@@ -90,27 +94,27 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Devolve o numero de telemovel de CandidaturaAExposicao
+     * Devolve o número de telemovel da empresa
      *
-     * @return numero de telemovel de CandidaturaAExposicao
+     * @return numero de telemovel da empresa
      */
     public int getTelemovel() {
         return m_intTelemovel;
     }
 
     /**
-     * Devolve o numero de convites de CandidaturaAExposicao
+     * Devolve o número de convites que o expositor pretende
      *
-     * @return numero de convites de CandidaturaAExposicao
+     * @return número de convites que o expositor pretende
      */
     public int getNumConvites() {
         return m_intNumConvites;
     }
 
     /**
-     * Devolve a area de CandidaturaAExposicao
+     * Devolve a área pretendida pelo expositor
      *
-     * @return area de CandidaturaAExposicao
+     * @return área pretendida pelo expositor
      */
     public int getArea() {
         return m_intArea;
@@ -119,12 +123,17 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     /**
      * Devolve o nome da empresa
      *
-     * @return nom da empresa
+     * @return nome da empresa
      */
     public String getNomeEmpresa() {
         return this.m_StrNomeEmpresa;
     }
 
+    /**
+     * Devolve a morada da empresa
+     *
+     * @return morada da empresa
+     */
     public String getMoradaEmpresa() {
         return this.m_StrMoradaEmpresa;
     }
@@ -135,25 +144,34 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      * @return username do expositor
      */
     public String getUsernameExpositor() {
-        return m_expositor.getEmail();
+        return m_expositor.getUsername();
     }
 
     /**
+     * Devolve o Registo (lista) dos produtos introduzidos pelo expositor no
+     * momento de criação da candidatura
      *
-     * @return
+     * @return Registo dos produtos introduzidos pelo expositor
      */
     public RegistoProdutos getRegistoProdutos() {
         return this.m_rp;
     }
 
+    /**
+     * Devolve o Registo (lista) de demonstrações a que o expositor demonstrou
+     * interesse em participar durante a candidatura
+     *
+     * @return Registo (lista) de monstrações em que o expositor demonstrou
+     * interesse em participar
+     */
     public RegistoDemonstracoes getRegistoDemonstracoes() {
         return this.m_rd;
     }
 
     /**
-     * Define novo numero de telemovel de CandidaturaAExposicao
+     * Define um novo número de telemóvel da empresa
      *
-     * @param m_intTelemovel novo numero de televovel de CandidaturaAExposicao
+     * @param m_intTelemovel novo número de telemóvel da empresa
      */
     public void setTelemovel(String m_intTelemovel) {
         if (m_intTelemovel.length() != 9) {
@@ -169,9 +187,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Define novo numero de convites de CandidaturaAExposicao
+     * Define um novo número de convites que o expositor pretende ter
      *
-     * @param m_StrNumConvites
+     * @param m_StrNumConvites novo número de convites
      */
     public void setNumConvites(String m_StrNumConvites) throws TelemovelEmpresaErradoException {
         try {
@@ -186,9 +204,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Define nova area de CandidaturaAExposicao
+     * Define um novo valor para a área que o expositor precisa
      *
-     * @param m_StrArea
+     * @param m_StrArea novo valor para a área necessária
      */
     public void setArea(String m_StrArea) {
         try {
@@ -203,16 +221,16 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Define novo nome de empresa de candidatura
+     * Define um novo nome da empresa
      *
-     * @param nomeEmpresa novo nome de empresa
+     * @param nomeEmpresa novo nome da empresa
      */
     public void setNomeEmpresa(String nomeEmpresa) {
         this.m_StrNomeEmpresa = nomeEmpresa;
     }
 
     /**
-     * Define nova morada de candidatura
+     * Define uma nova morada da empresa
      *
      * @param morada nova morada
      */
@@ -221,9 +239,10 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Método que cria um novo produto à CandidaturaAExposicao
+     * Cria um novo produto recebendo como parametro o seu nome e adiciona-o ao
+     * registo de produtos desta candidatura
      *
-     * @param nome novo produto associado à CandidaturaAExposicao
+     * @param nome nome do novo produto a ser adicionado
      *
      * @return produto criado
      */
@@ -234,9 +253,10 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Remove produto da candidatura
+     * Remove um produto já adicionado ao registo de produtos desta candidatura
+     * recebendo como parametro o index da sua posição dentro do RegistoProdutos
      *
-     * @param index
+     * @param index posição do produto dentro do RegistoProdutos
      */
     public void removeProduto(int index) {
         if (index < m_rp.getListaProdutosAExpor().size()) {
@@ -247,10 +267,13 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Edita um produto da candidatura
+     * Edita um produto da candidatura - Altera um produto existente numa dada
+     * posição dentro do RegistoProdutos por um novo produto (nome deste novo
+     * produto recebido por parametro)
      *
-     * @param index
-     * @param novoProduto
+     * @param index posição do produto a ser editado dentro do RegistoProdutos
+     * @param novoProduto nome do nome produto a ser adicionado na posição
+     * desejada
      */
     public void editProduto(int index, String novoProduto) {
         if (index < m_rp.getListaProdutosAExpor().size()) {
@@ -262,7 +285,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Método que adiciona um produto de CandidaturaAExposicao
+     * Adiciona um produto ao RegistoProdutos recendo-o por parametro
      *
      * @param p produto a ser adicionado
      */
@@ -277,25 +300,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      */
     public List<Produto> getProdutosExpor() {
         return this.m_rp.getListaProdutosAExpor();
-    }
-
-    /**
-     * Método que valida o fae de CandidaturaAExposicao
-     *
-     * @param fae a ser validado
-     * @return
-     */
-    public boolean valida(FAE fae) {
-        return true;
-    }
-
-    /**
-     * Método que valida a decisao
-     *
-     * @return boolean que confirma validação
-     */
-    public boolean validaDecisao() {
-        return true;
     }
 
     /**
@@ -407,15 +411,15 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
-        for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
-            if(this.m_expositor.getUtilizador().getUsername().equals(u.getUsername())){
+        for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+            if (this.m_expositor.getUtilizador().getUsername().equals(u.getUsername())) {
                 this.m_expositor.setUtilizador(u);
                 break;
             }
         }
-        for(Demonstracao demo : this.m_rd.getListaDemonstracoes()){
-            for(Demonstracao demo2 : m_rd.getListaDemonstracoes()){
-                if(demo.equals(demo2)){
+        for (Demonstracao demo : this.m_rd.getListaDemonstracoes()) {
+            for (Demonstracao demo2 : m_rd.getListaDemonstracoes()) {
+                if (demo.equals(demo2)) {
                     demo = demo2;
                     break;
                 }

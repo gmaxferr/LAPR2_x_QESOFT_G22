@@ -383,15 +383,17 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             
             Element elemChild = document.createElement(ANO_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.ano));
-            elemBase.appendChild(elemBase);
+            elemBase.appendChild(elemChild);
             
             elemChild = document.createElement(MES_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.mes));
-            elemBase.appendChild(elemBase);
+            elemBase.appendChild(elemChild);
             
             elemChild = document.createElement(MES_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.mes));
-            elemBase.appendChild(elemBase);
+            elemBase.appendChild(elemChild);
+            
+            node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }

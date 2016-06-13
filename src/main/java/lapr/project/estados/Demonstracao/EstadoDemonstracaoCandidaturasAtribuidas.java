@@ -21,82 +21,89 @@ public class EstadoDemonstracaoCandidaturasAtribuidas implements EstadoDemonstra
     
     @Override
     public boolean setEstadoDemonstracaoPendente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoConfirmada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCancelada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoPendente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoConfirmada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCancelada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(valida()){
+        m_demo.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(m_demo));
+        return true;
+        } else return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
-    
+ 
+    private boolean valida() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+        return true;
+    }
 }

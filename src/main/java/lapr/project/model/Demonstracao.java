@@ -1,40 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCancelada;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAbertas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAtribuidas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAvaliadas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasDecididas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.estados.Demonstracao.*;
+import lapr.project.registos.*;
+import lapr.project.timerTasks.demonstracao.*;
 
-import lapr.project.utils.Data;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
@@ -55,6 +29,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrDescricao;
     private String m_StrCodigoIdentificacao;
     private RegistoRecursos rc;
+    private RegistoOrganizadores m_ro;
+    private RegistoFAE m_rFAE;
     private EstadoDemonstracao m_estado;
     private RegistoCandidaturaADemonstracoes m_rcd;
 
@@ -160,15 +136,16 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     /**
      * Devolve uma lista das candidaturas do expositor à demonstração
+     *
      * @param m_emailExpositor - email do expositor
      * @return lista das candidaturas do expositor à demonstração
      */
     public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
         RegistoCandidaturaADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
         return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
-        
+
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -210,17 +187,17 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
                 this.m_dataInicioSubCand = new Data(0, 0, 0);
                 this.m_dataInicioSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataInicioSubCand.equals(invalidData)){
+                if (this.m_dataInicioSubCand.equals(invalidData)) {
                     this.m_dataInicioSubCand = null;
                 }
-                
+
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_SUB_CAND_ELEMENT_NAME).item(0);
                 this.m_dataFimSubCand = new Data(0, 0, 0);
                 this.m_dataFimSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if(this.m_dataFimSubCand.equals(invalidData)){
+                if (this.m_dataFimSubCand.equals(invalidData)) {
                     this.m_dataFimSubCand = null;
                 }
-                
+
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
 
                 switch (estado) {
@@ -295,7 +272,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 elemChild.appendChild(document.importNode(this.m_dataFimSubCand.exportContentToXMLNode(), true));
             }
             elemBase.appendChild(elemChild);
-            
+
             if (this.m_estado.isEstadoDemonstracaoPendente()) {
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "pendente");
             } else if (this.m_estado.isEstadoDemonstracaoCancelada()) {
@@ -327,5 +304,28 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public void schedule(TimerTask m_tt, Data date) {
         Timer timer = new Timer();
         timer.schedule(m_tt, date.toDate());
+    }
+
+    /**
+     * @return Retorna a lista de organizadores.
+     */
+    public List<Organizador> getListaOrganizadores() {
+        return this.m_ro.getListaOrganizadores();
+    }
+
+     /**
+     * @return Retorna a lista de fae
+     */
+    public List<FAE> getListaFAE() {
+        return this.m_rFAE.getListaFAE();
+    }
+    
+    /**
+     * Define o estado
+     *
+     * @param estado EstadoDemonstracao
+     */
+    public void setEstado(EstadoDemonstracao estado) {
+        this.m_estado = estado;
     }
 }

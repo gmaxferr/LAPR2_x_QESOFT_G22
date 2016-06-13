@@ -1,12 +1,11 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
- * @author Ana Leite Ricardo Osório
+ * @author G29
  */
 public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable {
 
@@ -89,5 +88,10 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable 
             }
         }
         return listaAtrib;
+    }
+
+    @Override
+    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida, String numeroLido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

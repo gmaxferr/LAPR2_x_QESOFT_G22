@@ -1,44 +1,14 @@
 package lapr.project.model;
 
 import lapr.project.registos.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.Exposicao.EstadoExposicao;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDemonstracaoAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDemonstracaoFechadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasFechadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCompleta;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosDetetados;
-import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemonstracoesDecididas;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
-import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
-import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
-import lapr.project.estados.Exposicao.EstadoExposicaoStandsAtribuidos;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasAbertas;
-import lapr.project.timerTasks.demonstracao.AlterarParaCandidaturasFechadas;
-import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
-import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
-import lapr.project.timerTasks.expo.AlterarParaFechadaCandidaturas;
-import lapr.project.utils.Data;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.estados.Exposicao.*;
+import lapr.project.timerTasks.demonstracao.*;
+import lapr.project.timerTasks.expo.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de uma Exposição
@@ -345,7 +315,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.local = local;
     }
 
-    public ArrayList<Organizador> getListaOrganizadores() {
+    public List<Organizador> getListaOrganizadores() {
         return this.m_ro.getListaOrganizadores();
     }
 
@@ -390,14 +360,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
         return c.getDadosCandidatura();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public RegistoAtribuicoes getRa() {
-        return m_ra;
     }
 
     /**

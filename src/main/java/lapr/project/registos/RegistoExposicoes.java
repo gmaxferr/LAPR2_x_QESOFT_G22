@@ -21,14 +21,14 @@ import org.w3c.dom.NodeList;
  * @author Ricardo Osório Ana Leite
  */
 public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "RegistoExposicoes";
 
     /**
      * Lista de exposições existentes
      */
     private final ArrayList<Exposicao> m_listaExposicoes;
-    
+
     private final CentroExposicoes m_ce;
 
     public RegistoExposicoes(CentroExposicoes ce) {
@@ -287,7 +287,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         }
         return result;
     }
-    
+
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
@@ -303,12 +303,35 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
+    /**
+     * @return Devolve uma lista de exposições no estado de
+     * CandidaturasAvaliadas ou mais avançado.
+     */
+    public List<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado() {
+        List<Exposicao> result = new ArrayList<>();
+        for (Exposicao expo : m_listaExposicoes) {
+            EstadoExposicao state = expo.getEstado();
+            if (!state.isEstadoCriada()
+                    && !state.isEstadoFAEDefinidosSemDemos()
+                    && !state.isEstadoDemosDefinidasSemFAE()
+                    && !state.isEstadoCompleta()
+                    && !state.isEstadoCandidaturasAbertas()
+                    && !state.isEstadoCandidaturasFechadas()
+                    && !state.isEstadoConflitosDetetados()
+                    && !state.isEstadoConflitosAlterados()
+                    && !state.isEstadoCandidaturasAtribuidas()) {
+                result.add(expo);
+            }
+        }
+        return result;
+    }
+
     public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
-        for(Exposicao e : m_listaExposicoes){
+        for (Exposicao e : m_listaExposicoes) {
             e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
         }
     }
-    
+
     @Override
     public RegistoExposicoes importContentFromXMLNode(Node node) {
         try {

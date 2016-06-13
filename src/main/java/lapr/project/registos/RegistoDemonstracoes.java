@@ -8,6 +8,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.FAE;
+import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -152,6 +154,31 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         this.m_listaDemonstracoes.add(m_demoCriada);
     }
 
+    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username){
+        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
+        
+        for (Demonstracao demonstracao : m_listaDemonstracoes){
+            for (Organizador organizador : demonstracao.getListaOrganizadores()){
+                if(organizador.getUsernameOrganizador().equalsIgnoreCase(username) && demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada())
+                    listaDemonstracoesDoOrganizador.add(demonstracao);
+                    }
+        }
+        return listaDemonstracoesDoOrganizador;
+    }
+    
+     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE){
+        List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
+        
+        for (Demonstracao demonstracao : m_listaDemonstracoes){
+            for (FAE fae : demonstracao.getListaFAE()){
+                if(fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas())
+                    listaDemonstracoesDoFAE.add(demonstracao);
+                    }
+        }
+        return listaDemonstracoesDoFAE;
+    }
+    
+    
     public void fix(RegistoRecursos m_registoRecursos) {
         for(Demonstracao d : this.m_listaDemonstracoes){
             for(Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()){

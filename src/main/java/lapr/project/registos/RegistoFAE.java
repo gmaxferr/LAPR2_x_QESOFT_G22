@@ -26,13 +26,14 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
     public static final String LISTA_FAE_TEMP_ELEMENT_NAME = "ListaFaeTemp";
 
-    private List<FAE> m_listaFAE;
-    private List<FAE> m_listaFAETemp;
+    private final List<FAE> m_listaFAE;
+    private final List<FAE> m_listaFAETemp;
     private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
         this.m_listaFAE = new ArrayList<>();
         this.m_listaFAETemp = new ArrayList<>();
+        this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
     }
 
     public List<FAE> getListaFAE() {
@@ -64,6 +65,9 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void confirmaAddFAE() {
         this.m_listaFAE.clear();
         this.m_listaFAE.addAll(this.m_listaFAETemp);
+        for (FAE fae : m_listaFAE) {
+            fae.getUtilizador().setIsFAE();
+        }
     }
 
     /**
@@ -111,7 +115,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
         for (FAE fae : m_listaFAE) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                     fae.setUtilizador(u);
                     break;
                 }
@@ -119,7 +123,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         }
         for (FAE fae : m_listaFAETemp) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                     fae.setUtilizador(u);
                     break;
                 }

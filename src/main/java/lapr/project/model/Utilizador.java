@@ -1,25 +1,16 @@
 package lapr.project.model;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.utils.CaesarsCypher;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 import lapr.project.utils.Utilitarios;
 
 /**
  * Representação de um Utilizador
  *
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>, Exportable {
 
@@ -70,11 +61,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     private int nAvaliacoesDesdeSempre;
 
+    private boolean isExpositor;
+    private boolean isOrganizador;
+    private boolean isFAE;
+    private boolean isGestor;
+
     /**
      * Construtor de objectos do tipo Utilizador sem parametros
      */
     public Utilizador() {
         this.nAvaliacoesDesdeSempre = 0;
+        this.isExpositor = false;
+        this.isFAE = false;
+        this.isGestor = false;
+        this.isOrganizador = false;
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
@@ -83,6 +83,10 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.m_strEmail = email;
         setPwd(password);
         this.m_strNome = nome;
+        this.isExpositor = false;
+        this.isFAE = false;
+        this.isGestor = false;
+        this.isOrganizador = false;
     }
 
     /**
@@ -122,6 +126,38 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public String getEmail() {
         return this.m_strEmail;
+    }
+
+    public void setIsFAE() {
+        this.isFAE = true;
+    }
+
+    public void setIsOrganizador() {
+        this.isOrganizador = true;
+    }
+
+    public void setIsGestor() {
+        this.isGestor = true;
+    }
+
+    public void setIsExpositor() {
+        this.isExpositor = true;
+    }
+
+    public boolean getIsFAE() {
+        return this.isFAE;
+    }
+
+    public boolean getIsOrganizador() {
+        return this.isOrganizador;
+    }
+
+    public boolean getIsGestor() {
+        return this.isGestor;
+    }
+
+    public boolean getIsExpositor() {
+        return this.isExpositor;
     }
 
     /**
@@ -239,8 +275,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param password password do utilizador a validar
      * @param username Username do utilizador a validar
      * @param email Email do utilizador a validar
-     * 
-     * @return true se os dados do utilizadores forem válidos (todos os campos 
+     *
+     * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
     public boolean validaUtilizador(String nome, char[] password, String username, String email) {
@@ -258,7 +294,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param password do utilizador
      * @param username do utilizador
      * @param email do utilizador
-     * 
+     *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */

@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author Ana Leite
+ * @author Ana Leite 
  */
 public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable {
 
@@ -31,7 +31,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     private List<Recurso> m_listaRecursosNecessarios;
 
     /**
-     *
+     * Contrutor deste registo. Inicializa lista de recursos
      */
     public RegistoRecursos() {
         this.m_listaRecursosNecessarios = new ArrayList<>();
@@ -40,42 +40,37 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     /**
      * Método que cria um recurso
      *
-     * @param nome nome do recurso a ser criadp
-     * @return novo recurso
+     * @param nomeRecurso nome do recurso a ser criadp
      */
-    public Recurso criarRecurso(String nome) {
-        if (validarRecurso() == true) {
-            Recurso recurso = new Recurso(nome);
-            recurso.setNomeRecurso(nome);
-            return recurso;
+    public boolean criarRecurso(String nomeRecurso) {
+        boolean valido = false;
+        if (validarRecurso(nomeRecurso)) {
+            Recurso rec = new Recurso(nomeRecurso);
+            rec.setNomeRecurso(nomeRecurso);
+            adiciona(rec);
+            valido = true;
         }
-        return null;
+        return valido;
     }
 
     /**
-     * Valida o nome do recurso
+     * Valida o nome do recurso, verificando se já existe algum com esse nome ou
+     * não.
      *
-     * @return
+     * @return true se for válido; false caso contrário
      */
-    private boolean validarRecurso() {
-        return true;
+    private boolean validarRecurso(String nomeRec) {
+        boolean valido = true;
+        for (Recurso rec : m_listaRecursosNecessarios) {
+            if (rec.getNomeRecurso().equals(nomeRec)) {
+                valido = false;
+            }
+        }
+        return valido && !nomeRec.isEmpty();
     }
 
     public List<Recurso> getListaDeRecursos() {
         return this.m_listaRecursosNecessarios;
-    }
-
-    public void addRecurso(Recurso rec) {
-        if (valida() == true) {
-            this.m_listaRecursosNecessarios.add(rec);
-        } else {
-            //avisa o utilizador para o facto de o recurso não ser válido
-        }
-    }
-
-    public boolean valida() {
-        //validação global
-        return true;
     }
 
     /**
@@ -94,12 +89,12 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             doc.appendChild(doc.importNode(node, true));
 
             Node n = doc.getChildNodes().item(0);
-            
+
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_listaRecursosNecessarios.clear();
-                
+
                 NodeList nList = elem.getElementsByTagName(Recurso.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
@@ -138,5 +133,13 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             Logger.getLogger(RegistoRecursos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    /**
+     * Adiciona um recurso à lista dos mesmos
+     * @param rec - recurso a adicionar
+     */
+    private void adiciona(Recurso rec) {
+        this.m_listaRecursosNecessarios.add(rec);
     }
 }
