@@ -291,15 +291,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * Valida os dados do Utilizador
      *
      * @param nome nome do utilizador
-     * @param password do utilizador
-     * @param username do utilizador
-     * @param email do utilizador
+     * @param password password do utilizador
+     * @param username username do utilizador
+     * @param email email do utilizador
      *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
     public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
-        return !(nome.isEmpty() || String.valueOf(password).trim().isEmpty() || username.isEmpty() || email.isEmpty());
+        return !(nome.isEmpty() || validaPassword(password) || username.isEmpty() || email.isEmpty());
     }
 
     /**
