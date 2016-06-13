@@ -65,6 +65,9 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void confirmaAddFAE() {
         this.m_listaFAE.clear();
         this.m_listaFAE.addAll(this.m_listaFAETemp);
+        for (FAE fae : m_listaFAE) {
+            fae.getUtilizador().setIsFAE();
+        }
     }
 
     /**
@@ -112,7 +115,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
         for (FAE fae : m_listaFAE) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                     fae.setUtilizador(u);
                     break;
                 }
@@ -120,7 +123,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         }
         for (FAE fae : m_listaFAETemp) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-                if(fae.getUtilizador().getUsername().equals(u.getUsername())){
+                if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                     fae.setUtilizador(u);
                     break;
                 }
