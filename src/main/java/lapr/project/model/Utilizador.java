@@ -299,7 +299,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * retorna false
      */
     public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
-        return !(nome.isEmpty() || validaPassword(password) || username.isEmpty() || email.isEmpty());
+        boolean password1 = validaPassword(password);
+        if(password1 == false || nome.isEmpty() || username.isEmpty() || email.isEmpty() ){
+            return false;
+        }
+        return true;
     }
 
     /**
