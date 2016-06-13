@@ -8,10 +8,13 @@ import lapr.project.registos.*;
 
 /**
  *
- * @author osorio
+ * @author G29
  */
 public class DecidirCandidaturasAExposicaoController {
 
+    /**
+     * Exposição selecionada pelo gestor na UI
+     */
     private Exposicao m_exposicaoSelecionada;
     private CandidaturaAExposicao m_candidaturaSelecionada;
     private RegistoCandidaturasAExposicao m_rc;
