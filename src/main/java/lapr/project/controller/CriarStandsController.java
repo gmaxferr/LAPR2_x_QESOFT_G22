@@ -18,11 +18,6 @@ public class CriarStandsController {
     private final CentroExposicoes centroExposicoes;
 
     /**
-     * Username do gestor que está a executar este UC
-     */
-    private final String usernameGestor;
-
-    /**
      * Registo dos stands deste centro de exposições
      */
     private RegistoStands rStands;
@@ -31,11 +26,9 @@ public class CriarStandsController {
      * Construtor do controller do UC23
      *
      * @param ce Centro de exposições atual
-     * @param username username do gestor a executar este UC
      */
-    public CriarStandsController(CentroExposicoes ce, String username) {
+    public CriarStandsController(CentroExposicoes ce) {
         this.centroExposicoes = ce;
-        this.usernameGestor = username;
     }
 
     /**
