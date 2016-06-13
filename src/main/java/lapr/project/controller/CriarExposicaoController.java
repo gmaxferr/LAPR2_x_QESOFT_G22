@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import java.util.List;
-import lapr.project.estados.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
@@ -99,6 +98,20 @@ public class CriarExposicaoController {
 
         return m_re.registaExposicao(m_exposicao);
 
+    }
+    
+    /**
+     * Adiciona novo organizador à exposição
+     * @param id - identificação do organizador
+     * @return true se o organizador é valido e foi adicionado ou false caso contrário
+     */
+    public boolean addOrganizador(String id){
+        Utilizador utilizador = m_ru.identificarUtilizadorPeloUsername(id);
+        if(m_exposicao.addOrganizador(utilizador)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void setEstadoCriada() {

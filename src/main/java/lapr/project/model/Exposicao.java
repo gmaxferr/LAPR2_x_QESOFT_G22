@@ -300,8 +300,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @param utilizador
      */
-    public void addOrganizador(Utilizador utilizador) {
-        this.m_ro.addOrganizador(utilizador);
+    public boolean addOrganizador(Utilizador utilizador) {
+        if (validaOrganizador(utilizador)) {
+            this.m_ro.addOrganizador(utilizador);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -454,9 +460,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_rd;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean dadosMinimosObrigatorios() {
-        //verifica se a exposicao tem todos os dados minimos obrigatórios
-        return true;
+        if (m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataFimDetecaoConflitos != null && m_dataInicio != null && m_ro.getListaOrganizadores().size() >= 2 && m_strTitulo.length() > 0 && m_strDescricao.length() > 0 && local!=null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public EstadoExposicao getEstado() {
@@ -573,6 +586,21 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rce.fix(m_registoUtilizadores, this.m_rd);
         this.m_rd.fix(m_registoRecursos);
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
+    }
+
+    /**
+     * Verifica se o utilizadoré FAE desta exposição
+     *
+     * @param utilizador - utilizador a verificar
+     * @return true se o utilizador nao é FAEou false caso contrário
+     */
+    private boolean validaOrganizador(Utilizador utilizador) {
+        for (FAE f : m_rfae.getListaFAE()) {
+            if (utilizador.getUsername().equals(f.getUsernameFae())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -878,4 +906,5 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
         return node;
     }
+
 }
