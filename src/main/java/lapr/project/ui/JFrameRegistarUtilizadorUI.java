@@ -19,7 +19,7 @@ import lapr.project.model.*;
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
+    private JFrame jFrameLogin;
     private CentroExposicoes centroExposicoesAtual;
     private RegistarUtilizadorController controller;
     private Utilizador u;
@@ -33,9 +33,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     /**
      * Creates new form JFrameRegistarUtilizadorUI
      */
-    public JFrameRegistarUtilizadorUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes) {
+    public JFrameRegistarUtilizadorUI(JFrame jFrameLogin, CentroExposicoes centroExposicoes) {
         super("Registar Utilizador");
-        this.jFrameMenuPrincipal = jFrameMenuPrincipal;
+        this.jFrameLogin = jFrameLogin;
         this.centroExposicoesAtual = centroExposicoes;
         this.controller = new RegistarUtilizadorController(centroExposicoes);
         controller.getRegistoUtilizadores();
@@ -51,7 +51,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
      private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameMenuPrincipal.setVisible(true);
+                jFrameLogin.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
@@ -375,7 +375,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        this.jFrameMenuPrincipal.setVisible(true);
+        this.jFrameLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -21,7 +21,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private final CentroExposicoes centroExposicoesAtual;
     private int numDemonstracoes;
     private int numProdutos;
-    private Expositor expositor;
+    private Utilizador utilizador;
     private final CriarCandidaturaAExposicaoController controller;
     private final List<Exposicao> listaExposicoes;
     private ModeloListaProdutos modeloJListaProdutosCard2;
@@ -48,9 +48,8 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
      *
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
-     * @param Expositor
      */
-    public JFrameCriarCandidaturaAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Expositor expositor) {
+    public JFrameCriarCandidaturaAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Utilizador utilizador) {
         super("Criar candidatura");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
@@ -58,7 +57,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         this.numDemonstracoes = 0;
         this.numProdutos = 0;
 
-        this.expositor = expositor;
+        this.utilizador = utilizador;
         this.controller = new CriarCandidaturaAExposicaoController(this.centroExposicoesAtual);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAbertas();
@@ -763,7 +762,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
         controller.getRegistoCandidaturas();
-        controller.criarCandidatura(this.expositor);
+        controller.criarCandidatura(this.utilizador);
         controller.getRegistoProduto();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");

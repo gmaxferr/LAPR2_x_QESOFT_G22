@@ -25,7 +25,7 @@ public class LoginV2 extends javax.swing.JFrame {
         initComponents();
 
         this.centroExposicoes = centroExposicoes;
-        
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -44,7 +44,7 @@ public class LoginV2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonLogin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonRegistarUtilizador = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
@@ -85,10 +85,10 @@ public class LoginV2 extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Registar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistarUtilizador.setText("Registar");
+        jButtonRegistarUtilizador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonRegistarUtilizadorActionPerformed(evt);
             }
         });
 
@@ -100,7 +100,7 @@ public class LoginV2 extends javax.swing.JFrame {
                 .addGap(104, 104, 104)
                 .addComponent(jButtonLogin)
                 .addGap(52, 52, 52)
-                .addComponent(jButton1)
+                .addComponent(jButtonRegistarUtilizador)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -109,7 +109,7 @@ public class LoginV2 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogin)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonRegistarUtilizador))
                 .addContainerGap())
         );
 
@@ -176,17 +176,19 @@ public class LoginV2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonRegistarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarUtilizadorActionPerformed
+        this.setVisible(false);
+        new JFrameRegistarUtilizadorUI(this, centroExposicoes);
+    }//GEN-LAST:event_jButtonRegistarUtilizadorActionPerformed
+
     private void loginEfetuadoComSuccesso() {
         new MenuV2(centroExposicoes, utilizador);
         dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonRegistarUtilizador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
