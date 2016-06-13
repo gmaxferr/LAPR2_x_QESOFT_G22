@@ -51,7 +51,7 @@
                       <Component id="jPanel2" min="-2" pref="393" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,9 +208,6 @@
               </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField3"/>
-              </Properties>
               <AccessibilityProperties>
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="JPasswordFieldCard1ReintroduzirPassword"/>
               </AccessibilityProperties>
@@ -224,9 +221,6 @@
               </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

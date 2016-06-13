@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
@@ -15,7 +10,7 @@ import lapr.project.model.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
@@ -32,6 +27,8 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     
     /**
      * Creates new form JFrameRegistarUtilizadorUI
+     * @param jFrameLogin
+     * @param centroExposicoes
      */
     public JFrameRegistarUtilizadorUI(JFrame jFrameLogin, CentroExposicoes centroExposicoes) {
         super("Registar Utilizador");
@@ -119,11 +116,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
         jTextField1.setToolTipText("");
 
-        jPasswordField3.setText("jPasswordField3");
-
         jLabel15.setText("Reintroduza a password");
-
-        jPasswordField2.setText("jPasswordField2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,7 +210,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

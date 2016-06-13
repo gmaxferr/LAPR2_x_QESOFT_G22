@@ -33,14 +33,14 @@ public class Main {
 
         if (centroExposicoes == null) {
             centroExposicoes = new CentroExposicoes();
-            Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
+            Utilizador admin = new Utilizador("admin", "admin", "admin".toCharArray(), "admin@admin.admin");
             centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
 
             JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
-                    + "\naceder ao sistema na sua primeira utilização:"
+                    + "\naceder ao sistema com todos os privilégios:"
                     + "\n\nUtilizador - ADMIN"
                     + "\n    username: \"admin\""
-                    + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+                    + "\n    password: \"admin\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
         }
 
         new LoginV2(centroExposicoes);
