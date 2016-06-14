@@ -260,40 +260,44 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Define novo organizador de exposição
+     * Define novo organizador para esta exposição
      *
-     * @param utilizador
+     * @param utilizador utilizador a ser adicionada como organizador
+     * @return true se for válido, logo adicionado com sucesso. Caso contrário
+     * devolve false
      */
     public boolean addOrganizador(Utilizador utilizador) {
         if (validaOrganizador(utilizador)) {
             this.m_ro.addOrganizador(utilizador);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     /**
-     * Define novo titulo de exposição
+     * Define um novo título para esta exposição
      *
-     * @param strTitulo novo tirulo de exposição
+     * @param strTitulo novo título para esta exposição
      */
     public void setTitulo(String strTitulo) {
         this.m_strTitulo = strTitulo;
     }
 
     /**
-     * Define nova descrição de exposição
+     * Define uma nova descrição para esta exposição
      *
-     * @param strDescricao nova descrição de exposição
+     * @param strDescricao nova descrição para esta exposição
      */
     public void setDescricao(String strDescricao) {
         this.m_strDescricao = strDescricao;
     }
 
     /**
-     * Define novo periodo de exposição
+     * Define um novo período de realização desta exposição
+     *
+     * @param dataInicio nova data de ínicio
+     * @param dataFim nova data de fim
      */
     public void setPeriodo(Data dataInicio, Data dataFim) {
         this.m_dataInicio = dataInicio;
@@ -301,7 +305,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Define novo local de exposição
+     * Define um novo local de exposição
      *
      * @param local novo local de exposição
      */
@@ -314,22 +318,25 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Método que valida dados da candidatura
+     * Valida os dados de um candidatura nova
      *
-     * @param c candidatura
+     * @param candidaturaAValidar candidatura a ser validada
      *
-     * @return boolean que confirma a validação dos dados
+     * @return true se a candidatura for válida, false caso não seja
      */
-    public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
-        //valida candidatura
-        //vou implementar para um UC - Osorio
+    public boolean validarDadosCandidatura(CandidaturaAExposicao candidaturaAValidar) {
+        for (CandidaturaAExposicao cand : this.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
+            if (candidaturaAValidar.equals(cand)) {
+                return false;
+            }
+        }
         return true;
     }
 
     /**
-     * Método que adiciona fae à exposição
+     * Adiciona um novo fae à exposição recebendo o utilizador como parametro
      *
-     * @param u utilizador/fae da exposição
+     * @param u utilizador que passará a ser considerado como FAE da exposição
      */
     public void addFAE(Utilizador u) {
         //cria o fae a partir do utilizador recebido (u)
@@ -417,11 +424,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean dadosMinimosObrigatorios() {
-        if (m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataFimDetecaoConflitos != null && m_dataInicio != null && m_ro.getListaOrganizadores().size() >= 2 && m_strTitulo.length() > 0 && m_strDescricao.length() > 0 && local!=null) {
+        if (m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataFimDetecaoConflitos != null && m_dataInicio != null && m_ro.getListaOrganizadores().size() >= 2 && m_strTitulo.length() > 0 && m_strDescricao.length() > 0 && local != null) {
             return true;
         } else {
             return false;

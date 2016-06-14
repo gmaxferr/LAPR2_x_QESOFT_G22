@@ -245,7 +245,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword(char[] password) {
-        
         return Utilitarios.hasLowerCase(password)
                 && Utilitarios.hasNumber(password)
                 && Utilitarios.hasSinalPontuacao(password)
