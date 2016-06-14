@@ -189,6 +189,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
                 this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
 
+                this.m_rStands.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
+                
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExpositores.fix(this.m_registoUtilizadores);
 
@@ -225,6 +227,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoUtilizadores.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rStands.exportContentToXMLNode(), true));
 
             node = elementExpo;
 

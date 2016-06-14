@@ -115,11 +115,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      *
      */
-    private final RegistoStands m_rs;
-
-    /**
-     *
-     */
     private final RegistoAtribuicoesStands m_ras;
 
     private final RegistoConflitos m_rconf;
@@ -144,7 +139,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this, ce);
         this.m_keywordRanking = new KeywordRanking();
-        this.m_rs = new RegistoStands();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
     }
@@ -453,10 +447,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_ra;
     }
 
-    public RegistoStands getRegistoStands() {
-        return m_rs;
-    }
-
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
@@ -683,7 +673,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
                 this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
-                this.m_rs.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
@@ -866,7 +855,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             elementExpo.appendChild(document.importNode(this.m_rexpositores.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rfae.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
-            elementExpo.appendChild(document.importNode(this.m_rs.exportContentToXMLNode(), true));
 
             node = elementExpo;
 
