@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
 public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstracao>, Exportable {
 

@@ -4,7 +4,7 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  *
- * @author Ana Leite
+ * @author guilherme
  */
 public class EstadoCandidaturaADemonstracaoAtribuida extends EstadoCandidaturaADemonstracao {
 
