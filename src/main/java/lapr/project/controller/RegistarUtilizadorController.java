@@ -10,8 +10,8 @@ import lapr.project.registos.RegistoUtilizadores;
 /**
  * Representação do Controller do caso de uso - registar utilizador novo
  *
- * @author G29
- */
+ * @author Ana Leite 
+*/
 public class RegistarUtilizadorController {
 
     /**
@@ -71,6 +71,18 @@ public class RegistarUtilizadorController {
         m_utilizador.setUsername(username);
     }
     
+    /**
+     * Valida os dados introduzidos do utilizador 
+     * 
+     * @param nome nome do utilizador   
+     * @param email email do utilizador
+     * @param password password do utilizador
+     * @param username username do utilizador
+     * @return true se os dados introduzidos forem todos válidos. Caso contrário
+     * retorna false.
+     * @throws InvalidPasswordException 
+     * @throws InvalidEmailException 
+     */
     public boolean validaDadosDoUtilizador(String nome, String email, char[] password, String username) throws InvalidPasswordException, InvalidEmailException {
        return m_utilizador.validaDadosDoUtilizador(nome, password, username, email);
     }

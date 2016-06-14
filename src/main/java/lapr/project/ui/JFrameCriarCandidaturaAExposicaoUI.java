@@ -26,7 +26,6 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private ModeloListaProdutos modeloJListaProdutosCard2;
     private List<Demonstracao> listaDemonstracoes;
     private ModeloListaDemonstracoes listModelDemonstracoes;
-    private static final String JTEXTFIELD_INTRODUZIR_KEYWORDS_TEXTO_PREDEFINIDO = "Introduza entre 2 a 5 keywords separadas por \";\"";
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;

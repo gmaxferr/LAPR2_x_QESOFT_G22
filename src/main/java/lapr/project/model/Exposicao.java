@@ -267,7 +267,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return
+     * @return registo de candidaturas removidas da exposição
      */
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return m_rcr;
@@ -417,6 +417,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         candidaturaAExposicao.setDecisao(decisao);
     }
 
+    /**
+     * Devolve o registo de demonstrações
+     * 
+     * @return registo de demonstrações
+     */
     public RegistoDemonstracoes getRegistoDemonstracoes() {
         return this.m_rd;
     }
@@ -441,6 +446,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_rconf;
     }
 
+    /**
+     * Devolve o registo de atribuições
+     * 
+     * @return registo de atribuições
+     */
     public RegistoAtribuicoes getRegistoAtribuicoes() {
         return this.m_ra;
     }
@@ -450,7 +460,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @return the ras
+     * Devolve o registo de atribuicoes stand
+     * 
+     * @return registo de atribuicoes stand
      */
     public RegistoAtribuicoesStands getRegistoAtribuicoesStands() {
         return m_ras;

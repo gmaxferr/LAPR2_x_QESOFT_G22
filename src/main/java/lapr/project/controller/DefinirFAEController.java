@@ -30,12 +30,6 @@ public class DefinirFAEController {
     private RegistoFAE m_rfae;
 
     /**
-     * Utilizador - usado para guardar o utilizador depois de identificado pelo
-     * seu username
-     */
-    private Utilizador m_u;
-
-    /**
      * Exposição selecionada pelo utilizador deste UC na UI
      */
     private Exposicao m_exposicaoSelecionada;
@@ -50,6 +44,8 @@ public class DefinirFAEController {
      */
     private final String m_usernameOrganizador;
 
+    private List<FAE> listaFaeTemp;
+
     /**
      * Construtor do controller do UC02
      *
@@ -61,6 +57,7 @@ public class DefinirFAEController {
     public DefinirFAEController(CentroExposicoes centroExposicoes, String usernameOrganizador) {
         this.m_centroExposicoes = centroExposicoes;
         this.m_usernameOrganizador = usernameOrganizador;
+        this.listaFaeTemp = new ArrayList<>();
     }
 
     /**
@@ -90,14 +87,6 @@ public class DefinirFAEController {
     }
 
     /**
-     * Define o registo de organizadores da exposição selecionada na UI no
-     * registo de FAE de forma a permitir recorrer a este nessa classe
-     */
-    public void setRegistoOrganizadoresParaValidacoes() {
-        this.m_rfae.setRegistoOrganizadoresParaValidacoes(this.m_ro);
-    }
-
-    /**
      * Adiciona um FAE recebendo por parametro o username do Utilizador que se
      * deseja promover ao cargo. O Utilizador é identificado e tentado adicionar
      * à lista de FAE existente. É validado se já existe um FAE com este
@@ -108,8 +97,54 @@ public class DefinirFAEController {
      * validações
      */
     public boolean criarEAdicionarFaePeloUsername(String usernameUtilizador) {
-        m_u = m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
-        return m_rfae.adicionaFAE(m_u);
+        Utilizador u = this.identificarUtilizadorPeloUsername(usernameUtilizador);
+        return this.adicionarFaeListaTemp(u);
+    }
+
+    public Utilizador identificarUtilizadorPeloUsername(String usernameUtilizador) {
+        return this.m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
+    }
+
+    public boolean adicionarFaeListaTemp(Utilizador u) {
+        boolean faeValida = validaUtilizadorParaAdicionarComoFAE(u);
+        if (faeValida) {
+            this.listaFaeTemp.add(new FAE(u));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validaUtilizadorParaAdicionarComoFAE(Utilizador u) {
+        for (FAE fae : this.m_rfae.getListaFAE()) {
+            if (fae.getUtilizador().equals(u)) {
+                return false;
+            }
+        }
+        for (Organizador organizador : this.m_ro.getListaOrganizadores()) {
+            if (organizador.getUtilizador().equals(u)) {
+                return false;
+            }
+        }
+        for (FAE fae : listaFaeTemp) {
+            if (fae.getUtilizador().equals(u)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Informa se foram introduzidos novos FAE na UI. Método usado para permitir
+     * uma interação com o utilizador mais simpática
+     *
+     * @return true se foram adicionados FAE na UI, caso contrário false
+     */
+    public boolean foramAdicionadosFAE() {
+        if (!this.listaFaeTemp.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -139,7 +174,7 @@ public class DefinirFAEController {
      *
      */
     public void confirmaAddFAE() {
-        m_rfae.confirmaAddFAE();
+        m_rfae.confirmaAddFAE(this.listaFaeTemp);
     }
 
     /**
@@ -185,6 +220,15 @@ public class DefinirFAEController {
         } else if (estado.isEstadoDemosDefinidasSemFAE()) {
             estado.setEstadoCompleta();
         }
+    }
+
+    /**
+     * Permite limpar a lista de FAE já adicionados até ao momento sem
+     * confirmação. Usado quando na UI, o utilizador volta ao passo anterior
+     * para escolher outra exposição.
+     */
+    public void limparFAEJaAdicionados() {
+        this.listaFaeTemp.clear();
     }
 
 }

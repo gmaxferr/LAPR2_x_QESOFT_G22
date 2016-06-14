@@ -8,7 +8,7 @@ import lapr.project.registos.RegistoUtilizadores;
 /**
  * Representação do Controller do caso de uso - confirmar registo de utilizador
  *
- * @author Ricardo Osório Ana Leite
+ * @author Ana Leite
  */
 public class ConfirmarRegistoController {
 

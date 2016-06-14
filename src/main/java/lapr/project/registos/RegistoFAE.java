@@ -18,12 +18,10 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
 
     private final List<FAE> m_listaFAE;
-    private final List<FAE> m_listaFAETemp;
     private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
     public RegistoFAE() {
         this.m_listaFAE = new ArrayList<>();
-        this.m_listaFAETemp = new ArrayList<>();
         this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
     }
 
@@ -33,14 +31,14 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     public boolean adicionaFAE(Utilizador u) {
         if (validaUtilizador(u)) {
-            this.m_listaFAETemp.add(new FAE(u));
+            this.m_listaFAE.add(new FAE(u));
             return true;
         }
         return false;
     }
 
     private boolean validaUtilizador(Utilizador u) {
-        for (FAE fae : m_listaFAETemp) {
+        for (FAE fae : m_listaFAE) {
             if (fae.getUsernameFae().equalsIgnoreCase(u.getUsername())) {
                 return false;
             }
@@ -53,11 +51,15 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         return true;
     }
 
-    public void confirmaAddFAE() {
-        this.m_listaFAE.clear();
-        this.m_listaFAE.addAll(this.m_listaFAETemp);
-        for (FAE fae : m_listaFAE) {
-            fae.getUtilizador().setIsFAE();
+    /**
+     * Adiciona novos FAE à lista já existente de FAE. Método chamado na
+     * execução do UC02 - Definir FAE.
+     *
+     * @param listaNovosFAEParaAdicionar lista com novos FAE para adicionar
+     */
+    public void confirmaAddFAE(List<FAE> listaNovosFAEParaAdicionar) {
+        for (FAE fae : listaNovosFAEParaAdicionar) {
+            this.m_listaFAE.add(fae);
         }
     }
 
@@ -105,14 +107,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
         for (FAE fae : m_listaFAE) {
-            for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-                if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
-                    fae.setUtilizador(u);
-                    break;
-                }
-            }
-        }
-        for (FAE fae : m_listaFAETemp) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
                 if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                     fae.setUtilizador(u);

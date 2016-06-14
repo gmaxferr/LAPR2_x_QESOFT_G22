@@ -65,6 +65,12 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         this.m_listaAtribuicao = listaAtribuicao;
     }
 
+    /**
+     * Devolve as candidaturas atribuídas a um fae
+     * 
+     * @param usernameFAE username do fae
+     * @return candidaturas atribuídas a um fae
+     */
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
         ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
