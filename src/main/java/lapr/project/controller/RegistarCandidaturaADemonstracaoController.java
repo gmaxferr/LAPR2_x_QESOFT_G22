@@ -117,6 +117,6 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public void transitaEstado() {
         this.m_estado = m_cand.getEstado();
-        m_estado.setEstadoCandidaturaCriada();
+        m_estado.setEstadoCandidaturaADemonstracaoCriada();
     }
 }

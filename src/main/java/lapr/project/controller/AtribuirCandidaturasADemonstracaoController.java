@@ -178,6 +178,6 @@ public class AtribuirCandidaturasADemonstracaoController {
         m_estadoDemonstracao.setEstadoDemonstracaoCandidaturasAtribuidas();
         
         this.m_estadoCandidatura = this.m_cand.getEstado();
-        m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+        m_estadoCandidatura.setEstadoCandidaturaADemonstracaoAtribuida();
     }
 }

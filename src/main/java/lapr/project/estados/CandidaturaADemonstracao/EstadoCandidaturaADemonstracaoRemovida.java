@@ -4,14 +4,14 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
-public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoRemovida implements EstadoCandidaturaADemonstracao {
 
-    CandidaturaADemonstracao m_cand;
+    private CandidaturaADemonstracao m_cand;
 
-    public EstadoCandidaturaADemonstracaoInstanciada(CandidaturaADemonstracao c) {
-        m_cand = c;
+    public EstadoCandidaturaADemonstracaoRemovida(CandidaturaADemonstracao cand) {
+        m_cand = cand;
     }
 
     @Override
@@ -21,9 +21,7 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoCriada() {
-        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoCriada(m_cand);
-        m_cand.setEstado(ne);
-        return true;
+        return false;
     }
 
     @Override
@@ -33,26 +31,6 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoInstanciada() {
-        return true;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoAvaliada() {
         return false;
     }
 
@@ -68,6 +46,26 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoInstanciada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoCriada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoAtribuida() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoAvaliada() {
         return false;
     }
 
@@ -93,7 +91,7 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoRemovida() {
-        return false;
+        return true;
     }
 
 }

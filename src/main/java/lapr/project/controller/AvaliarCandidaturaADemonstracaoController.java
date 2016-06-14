@@ -151,7 +151,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @return dados da candidatura
      */
     public String getDadosCandidatura(){
-        return m_cand.getM_dadosCandidatura();
+        return m_cand.getDadosCandidatura();
     }
     
     /**
@@ -204,7 +204,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     
     public void setEstadoCandiaturaAvaliada(){
         this.m_estadoCandidatura = this.m_cand.getEstado();
-        m_estadoCandidatura.setEstadoCandidaturaAvaliada();
+        m_estadoCandidatura.setEstadoCandidaturaADemonstracaoAvaliada();
         
         this.m_estadoDemonstracao = this.m_demonstracaoSelecionada.getEstadoDemo();
         m_estadoDemonstracao.setEstadoDemonstracaoCandidaturasAvaliadas();

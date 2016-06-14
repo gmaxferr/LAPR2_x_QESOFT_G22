@@ -4,14 +4,14 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  *
- * @author Ana Leite
+ * @author guilherme
  */
-public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoRejeitada implements EstadoCandidaturaADemonstracao {
 
-    CandidaturaADemonstracao m_cand;
+    private CandidaturaADemonstracao m_cand;
 
-    public EstadoCandidaturaADemonstracaoAtribuida(CandidaturaADemonstracao c) {
-        m_cand = c;
+    public EstadoCandidaturaADemonstracaoRejeitada(CandidaturaADemonstracao cand) {
+        this.m_cand = cand;
     }
 
     @Override
@@ -31,9 +31,7 @@ public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidatur
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoAvaliada() {
-        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoAvaliada(m_cand);
-        m_cand.setEstado(ne);
-        return true;
+        return false;
     }
 
     @Override
@@ -48,26 +46,11 @@ public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidatur
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoAtribuida() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoAvaliada() {
-        return true;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoRecusada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
         return false;
     }
 
@@ -87,6 +70,21 @@ public class EstadoCandidaturaADemonstracaoAtribuida implements EstadoCandidatur
     }
 
     @Override
+    public boolean isEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoRecusada() {
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        return false;
+    }
+
+        @Override
     public boolean setEstadoCandidaturaADemonstracaoRemovida() {
         return false;
     }

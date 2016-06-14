@@ -8,20 +8,37 @@ import lapr.project.estados.Estado;
  */
 public interface EstadoCandidaturaADemonstracao extends Estado{
 
-    boolean setEstadoCandidaturaInstanciada();
+    boolean setEstadoCandidaturaADemonstracaoInstanciada();
 
-    boolean setEstadoCandidaturaCriada();
+    boolean setEstadoCandidaturaADemonstracaoCriada();
     
-    boolean setEstadoCandidaturaAtribuida();
+    boolean setEstadoCandidaturaADemonstracaoAtribuida();
     
-    boolean setEstadoCandidaturaAvaliada();
+    boolean setEstadoCandidaturaADemonstracaoAvaliada();
+    
+    boolean setEstadoCandidaturaADemonstracaoAceite();
+    
+    boolean setEstadoCandidaturaADemonstracaoRecusada();
+    
+    boolean setEstadoCandidaturaADemonstracaoProntaAAtribuicao();
 
-    boolean isEstadoCandidaturaInstanciada();
+    boolean setEstadoCandidaturaADemonstracaoRemovida();
     
-    boolean isEstadoCandidaturaCriada();
+    boolean isEstadoCandidaturaADemonstracaoInstanciada();
     
-    boolean isEstadoCandidaturaAtribuida();
+    boolean isEstadoCandidaturaADemonstracaoCriada();
     
-    boolean isEstadoCandidaturaAvaliada();
+    boolean isEstadoCandidaturaADemonstracaoAtribuida();
+    
+    boolean isEstadoCandidaturaADemonstracaoAvaliada();
+    
+    boolean isEstadoCandidaturaADemonstracaoAceite();
+    
+    boolean isEstadoCandidaturaADemonstracaoRecusada();
+    
+    boolean isEstadoCandidaturaADemonstracaoProntaAAtribuicao();
+    
+    boolean isEstadoCandidaturaADemonstracaoRemovida();
+    
 
 }

@@ -6,61 +6,96 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author guima
  */
-public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao{
+public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao {
 
     CandidaturaADemonstracao m_cand;
-    
+
     public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
         this.m_cand = cand;
     }
 
-
     @Override
-    public boolean setEstadoCandidaturaInstanciada() {
+    public boolean setEstadoCandidaturaADemonstracaoInstanciada() {
         return false;
     }
 
     @Override
-    public boolean setEstadoCandidaturaCriada() {
-        return false;
-    }
-
-     @Override
-    public boolean setEstadoCandidaturaAtribuida() {
-        if(valida()){
-        m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
-        return true;
-        }else return false;
-    }
-    
-     @Override
-    public boolean setEstadoCandidaturaAvaliada() {
-        return false;
-    }
-
-    
-    @Override
-    public boolean isEstadoCandidaturaInstanciada() {
+    public boolean setEstadoCandidaturaADemonstracaoCriada() {
         return false;
     }
 
     @Override
-    public boolean isEstadoCandidaturaCriada() {
+    public boolean setEstadoCandidaturaADemonstracaoAtribuida() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaADemonstracaoAvaliada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoInstanciada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoCriada() {
         return true;
     }
 
     @Override
-    public boolean isEstadoCandidaturaAtribuida() {
+    public boolean isEstadoCandidaturaADemonstracaoAtribuida() {
         return false;
     }
 
     @Override
-    public boolean isEstadoCandidaturaAvaliada() {
+    public boolean isEstadoCandidaturaADemonstracaoAvaliada() {
         return false;
     }
-    
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+
+    @Override
+    public boolean setEstadoCandidaturaADemonstracaoRecusada() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoProntaAAtribuicao(m_cand);
+        m_cand.setEstado(ne);
         return true;
     }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoRecusada() {
+        return false;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaADemonstracaoRemovida() {
+        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoRemovida(m_cand);
+        m_cand.setEstado(ne);
+        return true;
+    }
+
+    @Override
+    public boolean isEstadoCandidaturaADemonstracaoRemovida() {
+        return false;
+    }
+
 }
