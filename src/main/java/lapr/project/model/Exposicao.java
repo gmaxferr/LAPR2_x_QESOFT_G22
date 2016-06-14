@@ -85,45 +85,45 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      *
      */
-    private final RegistoAtribuicoes m_ra;
+    private RegistoAtribuicoes m_ra;
 
     /**
      *
      */
-    private final RegistoFAE m_rfae;
+    private RegistoFAE m_rfae;
 
     /**
      *
      */
-    private final RegistoCandidaturasAExposicao m_rce;
+    private RegistoCandidaturasAExposicao m_rce;
 
     /**
      *
      */
-    private final RegistoCandidaturasRemovidas m_rcr;
+    private RegistoCandidaturasRemovidas m_rcr;
 
     /**
      *
      */
-    private final RegistoOrganizadores m_ro;
+    private RegistoOrganizadores m_ro;
 
     /**
      *
      */
-    private final RegistoDemonstracoes m_rd;
+    private RegistoDemonstracoes m_rd;
 
     /**
      *
      */
-    private final RegistoAtribuicoesStands m_ras;
+    private RegistoAtribuicoesStands m_ras;
 
-    private final RegistoConflitos m_rconf;
+    private RegistoConflitos m_rconf;
 
-    private final RegistoExpositores m_rexpositores;
+    private RegistoExpositores m_rexpositores;
 
-    private final KeywordRanking m_keywordRanking;
+    private KeywordRanking m_keywordRanking;
 
-    private final CentroExposicoes m_ce;
+    private CentroExposicoes m_ce;
 
     /**
      * Construtor de Exposição sem parametros
@@ -163,6 +163,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+
+        this.m_rce = new RegistoCandidaturasAExposicao();
+        this.m_rfae = new RegistoFAE();
+        this.m_rcr = new RegistoCandidaturasRemovidas();
+        this.m_rconf = new RegistoConflitos();
+        this.m_ra = new RegistoAtribuicoes();
+        this.m_rd = new RegistoDemonstracoes();
+        this.m_ro = new RegistoOrganizadores();
+        this.m_ras = new RegistoAtribuicoesStands();
+        this.m_rexpositores = new RegistoExpositores();
     }
 
     /**
@@ -853,7 +863,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     public void addOrganizadores(List<Organizador> m_organizadoresSelecionados) {
-        for(Organizador o: m_organizadoresSelecionados){
+        for (Organizador o : m_organizadoresSelecionados) {
             this.m_ro.addOrganizador(o);
         }
     }

@@ -20,13 +20,13 @@ public class ModeloJTableUtilizadores extends AbstractTableModel {
     }
 
     public ModeloJTableUtilizadores() {
-        
+
     }
 
-    public void setLista(List<Utilizador> listaFae){
-        this.listaUsers=listaFae;
+    public void setLista(List<Utilizador> listaFae) {
+        this.listaUsers = listaFae;
     }
-    
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
@@ -35,6 +35,10 @@ public class ModeloJTableUtilizadores extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return colunas[column];
+    }
+
+    public void addUtilizador(Utilizador utilizador) {
+        this.listaUsers.add(utilizador);
     }
 
     @Override

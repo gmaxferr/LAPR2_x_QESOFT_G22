@@ -107,7 +107,7 @@ public class DefinirFAEController {
      * @return true se for adicionado com sucesso, false se não passar as
      * validações
      */
-    public boolean setFaePeloUsername(String usernameUtilizador) {
+    public boolean criarEAdicionarFaePeloUsername(String usernameUtilizador) {
         m_u = m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
         return m_rfae.adicionaFAE(m_u);
     }

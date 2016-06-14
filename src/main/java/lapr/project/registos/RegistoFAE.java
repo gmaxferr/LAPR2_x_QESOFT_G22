@@ -1,30 +1,21 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
 import lapr.project.model.*;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoFAE";
 
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
-    public static final String LISTA_FAE_TEMP_ELEMENT_NAME = "ListaFaeTemp";
 
     private final List<FAE> m_listaFAE;
     private final List<FAE> m_listaFAETemp;
@@ -156,15 +147,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                     fae.importContentFromXMLNode(n2);
                     this.m_listaFAE.add(fae);
                 }
-
-                this.m_listaFAETemp.clear();
-                nList = elem.getElementsByTagName(LISTA_FAE_TEMP_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    FAE fae = new FAE();
-                    fae.importContentFromXMLNode(n2);
-                    this.m_listaFAETemp.add(fae);
-                }
             }
 
         } catch (ParserConfigurationException ex) {
@@ -187,12 +169,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
             Element elemChild = document.createElement(LISTA_FAE_ELEMENT_NAME);
             for (FAE fae : m_listaFAE) {
-                elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
-            }
-            elementBase.appendChild(elemChild);
-
-            elemChild = document.createElement(LISTA_FAE_TEMP_ELEMENT_NAME);
-            for (FAE fae : m_listaFAETemp) {
                 elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
             }
             elementBase.appendChild(elemChild);
