@@ -127,6 +127,17 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
+     * Confirma o registo de todos os utilizadores registados no centro de
+     * exposições atual. Este método é usado apenas na primeira execução do
+     * programa.
+     */
+    public void confirmarRegistoTodosUtilizadores() {
+        for (Utilizador utilizador : m_listaUtilizadores) {
+            utilizador.confirmarRegistoDoUtilizador();
+        }
+    }
+
+    /**
      * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
      * @param u Utilizador a adicionar
@@ -162,10 +173,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             }
         }
         return list;
-    }
-
-    public boolean validaDadosUnicos(String username, String email) {
-        return true;
     }
 
     @Override
