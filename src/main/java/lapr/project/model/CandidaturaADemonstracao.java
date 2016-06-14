@@ -43,7 +43,8 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     }
 
     /**
-     *
+     * Devolve os dados da candidatura
+     * 
      * @return dados da candidatura
      */
     public String getDadosCandidatura() {

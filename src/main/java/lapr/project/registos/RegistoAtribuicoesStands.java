@@ -51,6 +51,12 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
         m_listaAtribuicoesStand.addAll(listAtr);
     }
 
+    /**
+     * Devolve a lista de atribuições do stand de um representante
+     * 
+     * @param email email de um representante
+     * @return lista de atribuições do stand de um representante
+     */
     public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String email) {
         ArrayList<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
         for (AtribuicaoStand as : m_listaAtribuicoesStand) {

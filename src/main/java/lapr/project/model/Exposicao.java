@@ -441,6 +441,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_rconf;
     }
 
+    /**
+     * Devolve o registo de atribuições
+     * 
+     * @return registo de atribuições
+     */
     public RegistoAtribuicoes getRegistoAtribuicoes() {
         return this.m_ra;
     }
@@ -450,7 +455,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @return the ras
+     * Devolve o registo de atribuicoes stand
+     * 
+     * @return registo de atribuicoes stand
      */
     public RegistoAtribuicoesStands getRegistoAtribuicoesStands() {
         return m_ras;

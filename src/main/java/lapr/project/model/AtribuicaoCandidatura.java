@@ -37,6 +37,11 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         return this.m_candidatura;
     }
 
+    /**
+     * Devolve o registo de FAEAvaliação
+     * 
+     * @return registo de FAEAvaliação
+     */
     public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
         return this.m_rFaeDecisao;
     }

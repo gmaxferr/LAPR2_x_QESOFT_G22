@@ -161,6 +161,12 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoOrganizador;
     }
 
+    /**
+     * Devolve a lista de demonstrações do fae
+     * 
+     * @param usernameFAE username do fae
+     * @return lista de demonstrações do fae
+     */
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE) {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 

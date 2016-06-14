@@ -41,6 +41,12 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return null;
     }
 
+    /**
+     * Devolve a avaliação de um fae
+     * 
+     * @param usernameFAE username de um fae
+     * @return avaliação de um fae
+     */
     public Avaliacao getAvaliacaoDoFae(String usernameFAE) {
         for (FaeAvaliacao faeDecisao : m_listaFaeAvaliacao) {
             if (faeDecisao.getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {

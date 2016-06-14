@@ -35,6 +35,11 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_justificacao = null;
     }
 
+    /**
+     * Verifica se a avalição já foi tomada
+     * 
+     * @return true se a avaliação foi tomada. Caso contrário retorna false.
+     */
     public boolean verificaAvaliacaoJaTomada() {
         if (!this.m_justificacao.isEmpty()) {
             return true;
@@ -42,10 +47,20 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         return false;
     }
 
+    /**
+     * Devolve a avaliação
+     * 
+     * @return avaliação
+     */
     public boolean getAvaliacao() {
         return this.m_avaliacao;
     }
 
+    /**
+     * evolve a justificação
+     * 
+     * @return justificação
+     */
     public String getJustificacao() {
         return this.m_justificacao;
     }
@@ -80,6 +95,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
+    /**
+     * Modifica a avaliação e a justificação
+     * 
+     * @param avaliacao nova avaliação
+     * @param justificacao nova justificação
+     */
     public void setAvalicaoParaDemonstracao(boolean avaliacao, String justificacao){
         this.m_avaliacao = avaliacao;
         this.m_justificacao = justificacao;
