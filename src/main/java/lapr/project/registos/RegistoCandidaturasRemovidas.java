@@ -16,7 +16,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoCandidaturasRemovidas
+ * 
  * @author Ana Leite
  */
 public class RegistoCandidaturasRemovidas implements Importable<RegistoCandidaturasRemovidas>, Exportable {

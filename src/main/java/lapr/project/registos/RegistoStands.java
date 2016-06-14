@@ -17,20 +17,29 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoStans
+ * 
  * @author Ricardo Catalao
  */
 public class RegistoStands implements Importable<RegistoStands>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoStands";
 
+    /**
+     * Lista de Stands
+     */
     private final List<Stand> m_listaStands;
 
+    /**
+     * Construtor de objetos do tipo RegistoStands sem parâmetros
+     */
     public RegistoStands() {
         this.m_listaStands = new ArrayList<>();
     }
 
     /**
+     * Devolve a lista de stands
+     * 
      * @return lista de stands
      */
     public List<Stand> getListaStands() {
@@ -38,12 +47,23 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
     }
 
     /**
-     * @param stand O Stand a adicionar à lista
+     * Adiciona um stand à lista de stands
+     * 
+     * @param stand stand a adicionar à lista
      */
     public void addStand(Stand stand) {
         this.m_listaStands.add(stand);
     }
 
+    /**
+     * Cria um novo stand
+     * 
+     * @param ID ID do novo stand
+     * @param area area do novo stand
+     * @return true se o stand for adicionado à lista de stands. Caso contrário
+     * retorna false.
+     * @throws AreaErradaException 
+     */
     public boolean criarStand(String ID, String area) throws AreaErradaException {
         try {
             int areaDoStand = Integer.parseInt(area);
@@ -62,6 +82,13 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
 
     }
 
+    /**
+     * Valida o stand, verificando se já existe na lista de stands
+     * 
+     * @param novoStand stand a validar
+     * @return true se o stand não existir na lista de stands. Caso contrário
+     * retorna false.
+     */
     private boolean validarStand(Stand novoStand) {
         for (Stand stand : m_listaStands) {
             if (novoStand.equals(stand)) {

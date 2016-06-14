@@ -19,7 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoCandidaturasAExposicao
+ * 
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidaturasAExposicao>, Exportable {
@@ -27,7 +28,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicao";
 
     /**
-     * Atributo lista de candidaturas
+     * Lista de candidaturas
      */
     private List<CandidaturaAExposicao> m_listaCandidaturas;
 
@@ -36,9 +37,9 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que devolve a lista de candidatuas
+     * Devolve a lista de candidatuas à exposição
      *
-     * @return lista de candidatuas
+     * @return lista de candidatuas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
         return this.m_listaCandidaturas;
@@ -48,7 +49,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * Cria uma nova candidatura recebendo como parametro o utilizador que a
      * cria - Expositor.
      *
-     * @param utilizador
+     * @param utilizador utilizador que cria a candidatura
      * @return nova candidatura
      */
     public CandidaturaAExposicao criarCandidatura(Utilizador utilizador) {
@@ -56,11 +57,11 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que valida dados da candidatura
+     * Valida dados da candidatura
      *
      * @param c candidatura
      *
-     * @return boolean que confirma a validação dos dados
+     * @return true se a candidatura for válida. Caso contrário retorna false
      */
     public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
         for (CandidaturaAExposicao candidatura : this.m_listaCandidaturas) {
@@ -72,10 +73,10 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que regista candidatura
+     * Regista candidatura
      *
      * @param candidaturaAExposicao candidatura
-     * @return
+     * @return true se a candidatura for registada. Caso contrário retorna false
      */
     public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         boolean b = validaCandidatua(candidaturaAExposicao);
@@ -86,9 +87,10 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que valida candidatura
+     * Valida candidatura
      *
      * @param c candidatura
+     * @return true
      */
     public boolean validaCandidatua(CandidaturaAExposicao c) {
         //validação global - repetida
@@ -96,7 +98,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que valida a candidatura
+     * Valida a candidatura
      *
      * @param c candidatura
      *
@@ -109,7 +111,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que adiciona uma candidatura
+     * Adiciona uma candidatura
      *
      * @param c candidatura a ser adicionada
      */
@@ -128,6 +130,12 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         m_listaCandidaturas.remove(c);
     }
 
+    /**
+     * Devolve a lista de candidaturas de um representante
+     * 
+     * @param username username do representante
+     * @return lista de candidaturas de um representante
+     */
     public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
         List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
         for (CandidaturaAExposicao c : m_listaCandidaturas) {
@@ -139,8 +147,9 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * @return Retorna uma lista com todas as Candidaturas aceites a esta
-     * Exposição
+     * Devolve a lista de candidaturas aceites a uma exposição
+     * 
+     * @return lista de candidaturas aceites a uma exposição 
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();

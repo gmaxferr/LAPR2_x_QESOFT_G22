@@ -21,25 +21,39 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoCandidaturasADemonstracoes
+ * 
  * @author guima
  */
 public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandidaturaADemonstracoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturaADemonstracoes";
 
+    /**
+     * Lista de candidaturas a demonstração
+     */
     List<CandidaturaADemonstracao> m_listaCandidaturasADemonstracao;
 
+    /**
+     * Construtor de objetos do tipo RegistoCandidaturasADemonstracoes sem 
+     * parâmetros
+     */
     public RegistoCandidaturaADemonstracoes() {
         m_listaCandidaturasADemonstracao = new ArrayList<>();
     }
 
+    /**
+     * Devolve a lista de candidaturas a demonstração  
+     * 
+     * @return lista de candidaturas a demonstração  
+     */
     public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracao() {
         return m_listaCandidaturasADemonstracao;
     }
 
     /**
-     *
+     * Devolve a lista de candidaturas a demonstração de um representante
+     * 
      * @param email - email do representante
      * @return lista de candidaturas a demonstracao do representante
      */
