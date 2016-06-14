@@ -27,7 +27,7 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
      * @param u Utilizador associado ao FAE
      */
     public FAE(Utilizador u) {
-        //copiar todos os dados das variaveis de instância
+        this.m_Utilizador = u;
     }
 
     /**
