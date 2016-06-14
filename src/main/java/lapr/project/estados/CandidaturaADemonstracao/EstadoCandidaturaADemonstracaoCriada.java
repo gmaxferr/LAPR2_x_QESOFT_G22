@@ -78,7 +78,6 @@ public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemo
         } else {
             return false;
         }
->>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
     }
 
     @Override
@@ -116,7 +115,6 @@ public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemo
 =======
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
->>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
         return true;
     }
 
