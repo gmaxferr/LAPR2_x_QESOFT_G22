@@ -33,11 +33,18 @@ public class MenuV2 extends javax.swing.JFrame {
         this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
 
         initComponents();
+        desativarJTabbedPanelDosCargos();
         identificarUtilizador(utilizador);
         modificarFecharJanela();
         addJMenuItemsEstilosDaJanela();
 
         setVisible(true);
+    }
+    private void desativarJTabbedPanelDosCargos() {
+       jTabbedPaneCargos.setEnabledAt(0, false);
+       jTabbedPaneCargos.setEnabledAt(1, false);
+       jTabbedPaneCargos.setEnabledAt(2, false);
+       jTabbedPaneCargos.setEnabledAt(3, false);
     }
 
     /**
@@ -49,16 +56,19 @@ public class MenuV2 extends javax.swing.JFrame {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
         if (utilizador.getIsFAE()) {
             this.jCheckBoxFAE.setSelected(true);
-
+            jTabbedPaneCargos.setEnabledAt(1, true);
         }
         if (utilizador.getIsExpositor()) {
             this.jCheckBoxExpositor.setSelected(true);
+            jTabbedPaneCargos.setEnabledAt(0, true);
         }
         if (utilizador.getIsGestor()) {
             this.jCheckBoxGestor.setSelected(true);
+            jTabbedPaneCargos.setEnabledAt(3, true);
         }
         if (utilizador.getIsOrganizador()) {
             this.jCheckBoxOrganizador.setSelected(true);
+            jTabbedPaneCargos.setEnabledAt(2, true);
         }
     }
 
