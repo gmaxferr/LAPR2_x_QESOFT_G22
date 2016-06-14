@@ -2,13 +2,13 @@ package lapr.project.registos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -65,7 +65,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email) {
+    private boolean validaUtilizador(String username, String email)  {
         return validaUsername(username)
                 && validaEmail(email);
     }
@@ -81,33 +81,23 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * Para um email ser válido tem que conter, de uma forma simplificada,
-     * letras seguido de um "@" com mais letras seguidas, um ponto (".") e mais
-     * letras. Não pode ser vazio nem uma string null, evidentemente.
-     *
-     * Além desta verificação, é necessário que nenhum outro utilizador seja
+     * Para o email ser válido é necessário que nenhum outro utilizador seja
      * portador deste mesmo email.
      *
      * @param email - email a validar
      * @return true se for válido; false caso contrário.
      */
     public boolean validaEmail(String email) {
-        if ((email == null) || (email.trim().length() == 0)) {
-            return false;
-        }
-
-        String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
-        Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-
         boolean valido = true;
+        if ((email == null) || (email.trim().length() == 0)) {
         for (Utilizador u : m_listaUtilizadores) {
             if (u.getEmail().equals(email)) {
                 valido = false;
             }
         }
-
-        return matcher.matches() && valido; //se o padrão coincidir, retorna true; senão retorna false.
+        }
+        return valido;
+      
     }
 
     /**
@@ -180,7 +170,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @param u Utilizador a adicionar
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
-    public boolean addUtilizador(Utilizador u) {
+    public boolean addUtilizador(Utilizador u) throws InvalidPasswordException, InvalidEmailException{
         if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;

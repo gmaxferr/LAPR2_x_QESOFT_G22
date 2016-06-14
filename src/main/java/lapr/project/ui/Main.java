@@ -3,6 +3,8 @@ package lapr.project.ui;
 import java.io.File;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
 
 /**
@@ -30,7 +32,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
-
+        try{
         if (centroExposicoes == null) {
             centroExposicoes = new CentroExposicoes();
             Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
@@ -46,7 +48,10 @@ public class Main {
                     + "\n    username: \"admin\""
                     + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
         }
+        }  catch (InvalidEmailException | InvalidPasswordException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
+        }
         new LoginV2(centroExposicoes);
     }
 }

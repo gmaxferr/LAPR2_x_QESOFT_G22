@@ -9,6 +9,7 @@ public class InvalidPasswordException extends IllegalArgumentException {
 	 * Construtor por defeito
 	 */
 	public InvalidPasswordException() {
+            super();
 	}
 
 	/**
