@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
 
 /**
@@ -18,15 +20,16 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private CentroExposicoes centroExposicoesAtual;
     private RegistarUtilizadorController controller;
     private Utilizador u;
-    
+
     private static final int LARGURA_JANELA_PASSO1 = 470;
     private static final int ALTURA_JANELA_PASSO1 = 420;
 
     private static final int LARGURA_JANELA_PASSO2 = 460;
     private static final int ALTURA_JANELA_PASSO2 = 340;
-    
+
     /**
      * Creates new form JFrameRegistarUtilizadorUI
+     *
      * @param jFrameLogin
      * @param centroExposicoes
      */
@@ -38,14 +41,14 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         controller.getRegistoUtilizadores();
         u = controller.novoUtilizador();
         initComponents();
-        
+
         alterarComportamentoFecharJFrame();
 
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
-    
-     private void alterarComportamentoFecharJFrame() {
+
+    private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 jFrameLogin.setVisible(true);
@@ -208,7 +211,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +219,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -355,8 +358,8 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         this.jFrameLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private boolean validarPasswordIguais(char [] jPasswordField3, char [] jPasswordField2){
-        
+    private boolean validarPasswordIguais(char[] jPasswordField3, char[] jPasswordField2) {
+
         if (jPasswordField3.length == jPasswordField2.length) {
             for (int i = 0; i < jPasswordField3.length; i++) {
                 if (jPasswordField3[i] != jPasswordField2[i]) {
@@ -368,15 +371,18 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controller.setDados(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText());
+        controller.setDados(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
         boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
-        if(controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true){
-        avancarParaCard2();
-        }
-        else{
-           JOptionPane.showMessageDialog(rootPane, "Dados inválidos ou passwords introduzidas diferentes!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
+        try {
+            if (controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true) {
+                avancarParaCard2();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (InvalidPasswordException  | InvalidEmailException e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -388,30 +394,35 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         controller.setDados(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
-        if(controller.addUtilizador(u) == false){
-            JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
-            CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-            cardLayout.show(getContentPane(), "card1");
-            setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-        }else {  
-             JOptionPane.showMessageDialog(rootPane, "Decisão tomada!","Decisão", JOptionPane.INFORMATION_MESSAGE);
-                }
+        try {
+            if (controller.addUtilizador(u) == false) {
+                JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
+                CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+                cardLayout.show(getContentPane(), "card1");
+                setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Utilizador registado com sucesso!", "Registo com sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (InvalidEmailException | InvalidPasswordException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void avancarParaCard2(){
+    private void avancarParaCard2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
         apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador();
     }
-   
-    private void apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador(){
+
+    private void apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador() {
         jLabel11.setText(jTextField1.getText());
         jLabel12.setText(jTextField2.getText());
         jLabel13.setText(jTextField3.getText());
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;

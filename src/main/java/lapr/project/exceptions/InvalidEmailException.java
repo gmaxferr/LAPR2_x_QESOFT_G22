@@ -12,6 +12,7 @@ public class InvalidEmailException extends IllegalArgumentException {
 	 * Construtor por defeito
 	 */
 	public InvalidEmailException() {
+            super();
 	}
 
 	/**

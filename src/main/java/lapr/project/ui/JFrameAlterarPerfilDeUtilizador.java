@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarPerfilDeUtilizadorController;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 
 /**
@@ -357,12 +358,14 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         } else {
             valido = false;
         }
-
+        
         if (valido) {
+            try{
             if (CTRL.changePassword(pass1)) {
                 JOptionPane.showMessageDialog(null, "A password foi alterada. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "A password tem formato incorreto", "Erro...", JOptionPane.WARNING_MESSAGE);
+            } 
+            }  catch (InvalidPasswordException e){
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Password Inválida", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "As password introduzidas são diferentes.", "Erro...", JOptionPane.WARNING_MESSAGE);
