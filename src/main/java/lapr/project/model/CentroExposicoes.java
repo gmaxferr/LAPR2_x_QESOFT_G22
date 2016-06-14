@@ -17,28 +17,38 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
-     *
+     *Registo de Exposições
      */
     private final RegistoExposicoes m_registoExposicoes;
 
     /**
-     *
+     *Registo de Utilizadores
      */
     private final RegistoUtilizadores m_registoUtilizadores;
 
     /**
-     *
+     *Registo de Mecanismos
      */
     private final RegistoMecanismos m_registoMecanismos;
 
     /**
-     *
+     *Registo de recursos
      */
     private final RegistoRecursos m_registoRecursos;
 
+    /**
+     *Registo de Tipos de Conflito
+     */
     private final RegistoTipoConflitos m_registoTipoConflitos;
+    
+    /**
+     *Registo de Expositores
+     */
     private final RegistoExpositores m_registoExpositores;
 
+    /**
+     *Registo de Stands
+     */
     private final RegistoStands m_rStands;
 
     /**

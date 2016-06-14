@@ -132,7 +132,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return true se for válida; false caso contrário
      */
     public boolean valida(Demonstracao m_demoCriada) {
-        return !m_demoCriada.getDescricao().isEmpty() && !m_listaDemonstracoes.contains(m_demoCriada) && !m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty();
+        return (!m_demoCriada.getDescricao().isEmpty()) 
+                && (!m_listaDemonstracoes.contains(m_demoCriada)) 
+                && (!m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty());
     }
 
     /**

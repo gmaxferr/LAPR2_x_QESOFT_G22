@@ -77,7 +77,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
      * @param listaRecursosNecessarios
      */
     public void setListaRecursosNecessarios(List<Recurso> listaRecursosNecessarios) {
-        this.m_listaRecursosNecessarios = listaRecursosNecessarios;
+        this.m_listaRecursosNecessarios.addAll(listaRecursosNecessarios);
     }
 
     @Override

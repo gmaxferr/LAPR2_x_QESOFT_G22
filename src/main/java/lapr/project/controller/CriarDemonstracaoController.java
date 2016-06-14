@@ -133,7 +133,8 @@ public class CriarDemonstracaoController {
      * Atribui a lista de recursos à demonstração
      */
     public void setRecursos() {
-        m_d.getRegistoRecursosNecessarios().setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
+        RegistoRecursos rr = m_d.getRegistoRecursosNecessarios();
+        rr.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
     }
 
     public void registaDemo() {

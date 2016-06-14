@@ -294,7 +294,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         //encontra as exposições do organizador autenticado no sistema.
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) && exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) && (exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoFAEDefinidosSemDemos())) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }
