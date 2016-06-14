@@ -19,7 +19,6 @@ import lapr.project.utils.Data;
  */
 public class EstadoExposicaoInicial extends EstadoExposicao {
 
-    private final Exposicao m_exposicao;
     private final CentroExposicoes m_ce;
 
     private TimerTask inicioSubCand;
@@ -31,7 +30,7 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
     private Data data3;
 
     public EstadoExposicaoInicial(Exposicao exposicao, CentroExposicoes ce) {
-        this.m_exposicao = exposicao;
+        super(exposicao);
         this.m_ce = ce;
     }
 

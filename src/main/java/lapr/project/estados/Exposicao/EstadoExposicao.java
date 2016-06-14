@@ -1,6 +1,7 @@
 package lapr.project.estados.Exposicao;
 
 import lapr.project.estados.Estado;
+import lapr.project.model.Exposicao;
 
 /**
  *
@@ -8,6 +9,12 @@ import lapr.project.estados.Estado;
  */
 public abstract class EstadoExposicao implements Estado {
 
+    final Exposicao m_exposicao;
+
+    public EstadoExposicao(Exposicao exposicao) {
+        this.m_exposicao = exposicao;
+    }
+    
     public boolean setEstadoCriada() {
         return false;
     }

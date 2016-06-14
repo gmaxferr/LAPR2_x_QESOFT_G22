@@ -16,8 +16,8 @@ public abstract class EstadoDemonstracao implements Estado {
     
     final Demonstracao m_demo;
 
-    public EstadoDemonstracao(Demonstracao m_demo) {
-        this.m_demo = m_demo;
+    public EstadoDemonstracao(Demonstracao demo) {
+        this.m_demo = demo;
     }
 
     public boolean setEstadoDemonstracaoPendente() {

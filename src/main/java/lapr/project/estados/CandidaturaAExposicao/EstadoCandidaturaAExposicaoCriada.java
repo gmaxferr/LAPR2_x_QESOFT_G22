@@ -8,10 +8,8 @@ import lapr.project.model.CandidaturaAExposicao;
  */
 public class EstadoCandidaturaAExposicaoCriada extends EstadoCandidaturaAExposicao {
 
-    private CandidaturaAExposicao m_cand;
-
     public EstadoCandidaturaAExposicaoCriada(CandidaturaAExposicao cand) {
-        this.m_cand = cand;
+        super(cand);
     }
 
     @Override

@@ -11,10 +11,8 @@ import lapr.project.utils.Data;
  */
 public class EstadoExposicaoStandsAtribuidos extends EstadoExposicao {
 
-    private final Exposicao m_exposicao;
-
-    public EstadoExposicaoStandsAtribuidos(Exposicao m_exposicao) {
-        this.m_exposicao = m_exposicao;
+    public EstadoExposicaoStandsAtribuidos(Exposicao exposicao) {
+        super(exposicao);
     }
 
     @Override
