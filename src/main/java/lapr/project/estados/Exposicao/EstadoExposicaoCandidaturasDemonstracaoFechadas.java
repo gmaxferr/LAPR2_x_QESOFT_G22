@@ -8,10 +8,8 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoCandidaturasDemonstracaoFechadas extends EstadoExposicao {
 
-    private final Exposicao m_exposicao;
-
     public EstadoExposicaoCandidaturasDemonstracaoFechadas(Exposicao exposicao) {
-        this.m_exposicao = exposicao;
+        super(exposicao);
     }
 
     @Override

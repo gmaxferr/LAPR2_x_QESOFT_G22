@@ -1,12 +1,19 @@
 package lapr.project.estados.CandidaturaAExposicao;
 
 import lapr.project.estados.Estado;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
  * @author Ana Leite e Ricardo Osório
  */
 public abstract class EstadoCandidaturaAExposicao implements Estado {
+
+    final CandidaturaAExposicao m_cand;
+
+    public EstadoCandidaturaAExposicao(CandidaturaAExposicao cand) {
+        this.m_cand = cand;
+    }
 
     public boolean setEstadoCandidaturaInicial() {
         return false;

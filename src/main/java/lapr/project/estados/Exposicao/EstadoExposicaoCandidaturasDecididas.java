@@ -8,10 +8,8 @@ import lapr.project.model.Exposicao;
  */
 public class EstadoExposicaoCandidaturasDecididas extends EstadoExposicao {
 
-    private final Exposicao m_exposicao;
-
     public EstadoExposicaoCandidaturasDecididas(Exposicao exposicao) {
-        this.m_exposicao = exposicao;
+        super(exposicao);
         m_exposicao.getKeywordRanking().setReady();
     }
 
