@@ -16,7 +16,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um Registo Tipo de Conflitos
+ * 
  * @author Ana Leite
  */
 public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, Exportable {
@@ -24,27 +25,66 @@ public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, E
     public static final String ROOT_ELEMENT_NAME = "RegistoTipoConflitos";
     public static final String NUM_CONFLITOS_ATTR_NAME = "numConflitos";
     
+    /**
+     * Contador de numero de conflitos
+     */
     private int numConflitos = 0;
+    
+    /**
+     * Prefixo de um tipo de conflito
+     */
     private static final String m_prefix = "TC-";
+    
+    /**
+     * Lista de tipos de conflito
+     */
     private final List<TipoConflito> m_listaTipoConflitos;
 
+    /**
+     * Construtor de objetos do tipo RegistoTipoConflitos sem parâmetros
+     */
     public RegistoTipoConflitos() {
         numConflitos = 0;
         this.m_listaTipoConflitos = new ArrayList<>();
     }
 
+    /**
+     * Devolve a lista de tipos de conflitos
+     * 
+     * @return lista de tipos de conflitos
+     */
     public List<TipoConflito> getListaTipoConflitos() {
         return this.m_listaTipoConflitos;
     }
 
+    /**
+     * Cria um novo tipo de conflito
+     * 
+     * @return novo tipo de conflito
+     */
     public TipoConflito novoTipoConflito() {
         return new TipoConflito(m_prefix + numConflitos++);
     }
 
+    /**
+     * Valida um tipo de conflito
+     * 
+     * @param tipoConflito tipo de conflito a validar
+     * @return true se a lista de tipo de conflitos não conter o tipo de conflito
+     * a validar. Caso contrário retorna false.
+     */
     public boolean validaTipoDeConflito(TipoConflito tipoConflito) {
         return !m_listaTipoConflitos.contains(tipoConflito);
     }
 
+    /**
+     * Adiciona um tipo de conflito
+     * 
+     * @param tipoConflito tipo de conflito a ser adicionado
+     * 
+     * @return true se o tipo de conflito foi adicionado à lista de tipos de
+     * conflito. Caso contrário retorna false.
+     */
     public boolean add(TipoConflito tipoConflito) {
         boolean b = validaTipoDeConflito(tipoConflito);
         if (b) {

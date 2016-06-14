@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.registos;
 
 import java.util.ArrayList;
@@ -21,26 +16,30 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoRecursos
+ * 
  * @author Ana Leite 
  */
 public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoRecursos";
 
+    /**
+     * Lista de recursos necessários
+     */
     private List<Recurso> m_listaRecursosNecessarios;
 
     /**
-     * Contrutor deste registo. Inicializa lista de recursos
+     * Contrutor de objetos do tipo RegistoRecursos sem parâmetros
      */
     public RegistoRecursos() {
         this.m_listaRecursosNecessarios = new ArrayList<>();
     }
 
     /**
-     * Método que cria um recurso
+     * Cria um recurso
      *
-     * @param nomeRecurso nome do recurso a ser criadp
+     * @param nomeRecurso nome do recurso a ser criado
      */
     public boolean criarRecurso(String nomeRecurso) {
         boolean valido = false;
@@ -69,12 +68,19 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
         return valido && !nomeRec.isEmpty();
     }
 
+    /**
+     * Devolve a lista de recursos necessários
+     * 
+     * @return lista de recursos necessários
+     */
     public List<Recurso> getListaDeRecursos() {
         return this.m_listaRecursosNecessarios;
     }
 
     /**
-     * @param listaRecursosNecessarios
+     * Adiciona a lista de recursos necessários
+     * 
+     * @param listaRecursosNecessarios lista de recursos necessários
      */
     public void setListaRecursosNecessarios(List<Recurso> listaRecursosNecessarios) {
         this.m_listaRecursosNecessarios.addAll(listaRecursosNecessarios);

@@ -16,15 +16,22 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoConflitos
+ * 
  * @author osori
  */
 public class RegistoConflitos implements Importable<RegistoConflitos>, Exportable {
     
     public static final String ROOT_ELEMENT_NAME = "RegistoConflitos";
 
+    /**
+     * Lista de conflitos de interesse
+     */
     private final List<ConflitoDeInteresse> m_listaConflitos;
 
+    /**
+     * Construtor de objetos do tipo RegistoConflitos sem parâmetros
+     */
     public RegistoConflitos() {
         this.m_listaConflitos = new ArrayList<>();
     }
@@ -59,6 +66,8 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
     }
 
     /**
+     * Devolve a lisat de conflitos de interesse
+     * 
      * @return a lista de conflitos
      */
     public List<ConflitoDeInteresse> getListaConflitos() {
@@ -66,7 +75,7 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
     }
 
     /**
-     * Remove um conflito da lista dos mesmos
+     * Remove um conflito da lista de conflitos de interesse
      *
      * @param c - Conflito a remover
      */
@@ -75,7 +84,7 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
     }
 
     /**
-     * Remove um conflito da lista dos mesmos
+     * Adiciona um conflito da lista de conflitos de interesse
      *
      * @param c - Conflito a remover
      */

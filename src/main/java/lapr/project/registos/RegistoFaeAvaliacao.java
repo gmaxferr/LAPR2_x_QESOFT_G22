@@ -19,19 +19,32 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoFaeAvaliação
+ * 
  * @author Ricardo Osorio
  */
 public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoFaeAvaliacao";
     
+    /**
+     * Lista de FaeAvaliação
+     */
     private List<FaeAvaliacao> m_listaFaeAvaliacao;
 
+    /**
+     * Construtor de objectos do tipo RegistoFaeAvaliacao sem parâmetros
+     */
     public RegistoFaeAvaliacao() {
         this.m_listaFaeAvaliacao = new ArrayList<>();
     }
 
+    /**
+     * Devolve o objeto faeDecisao  
+     * 
+     * @param usernameFae username do fae
+     * @return objeto faeDecisao 
+     */
     public FaeAvaliacao getObjFaeDecisaoDoFae(String usernameFae) {
         for (FaeAvaliacao faeDecisao : m_listaFaeAvaliacao) {
             if (faeDecisao.getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFae)) {
@@ -56,10 +69,20 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return null;
     }
 
+    /**
+     * Adiciona um fae à lista FaeAvaliação
+     * 
+     * @param fae fae a ser adicionado
+     */
     public void addFaeAvaliacao(FAE fae) {
         this.m_listaFaeAvaliacao.add(new FaeAvaliacao(fae));
     }
 
+    /**
+     * Devolve a lista de todos os fae
+     * 
+     * @return lista de todos os fae
+     */
     public List<FAE> getListaTodosFAE() {
         ArrayList<FAE> listaTodosFae = new ArrayList<>();
         for (FaeAvaliacao faeDecisao : m_listaFaeAvaliacao) {
@@ -68,6 +91,11 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return listaTodosFae;
     }
 
+    /**
+     * Devolve a lista de utilizadores com papel de fae
+     * 
+     * @return lista de utilizadores com papel de fae
+     */
     public List<Utilizador> getListaUtilizadoresAssociadoAosFAE() {
         List<Utilizador> listaUtilizadoresAssociadoAosFAE = new ArrayList<>();
         for (FaeAvaliacao faeAvaliacao : this.m_listaFaeAvaliacao) {

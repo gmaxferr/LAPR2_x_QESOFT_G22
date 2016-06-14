@@ -178,7 +178,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Método que valida a exposição
      *
-     * @return boolean de confirmação de validação
+     * @return true se a exposição for válida. Caso contrário retorna false.
      */
     public boolean valida() {
         if (m_strTitulo != null && m_strDescricao != null && m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataInicio != null && m_dataFimDetecaoConflitos != null) {
