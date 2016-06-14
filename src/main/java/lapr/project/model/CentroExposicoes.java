@@ -60,7 +60,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de exposições
+     * Devolve o registo de exposições deste centro de exposições
      *
      * @return registo de exposições
      */
@@ -69,7 +69,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de expositores
+     * Devolve o registo de expositores deste centro de exposições
      *
      * @return registo de expositores
      */
@@ -78,7 +78,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores.
+     * Devolve o registo de utilizadores deste centro de exposições
      *
      * @return registo de utilizadores
      */
@@ -87,7 +87,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de mecanismos
+     * Devolve o registo de mecanismos deste centro de exposições
      *
      * @return registo de mecanismos
      */
@@ -96,7 +96,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de recursos
+     * Devolve o registo de recursos deste centro de exposições
      *
      * @return registo de recursos
      */
@@ -105,7 +105,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de tipos de conflitos
+     * Devolve o registo de tipos de conflitos deste centro de exposições
      *
      * @return registo de tipos de conflitos
      */
@@ -123,7 +123,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Método que regista a confirmação de um registo de utilizador
+     * Confirma o registo de um utilizador recebendo como parametro esse
+     * utilizador
      *
      * @param u Utilizador desejado
      */
@@ -133,14 +134,21 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Método que devolve um novo Utilizador
+     * Devolve um novo Utilizador
      *
-     * @return novo Utilizador
+     * @return novo utilizador
      */
     public Utilizador novoUtilizador() {
         return new Utilizador();
     }
 
+    /**
+     * Devolve o objecto Expositor identificado pelo seu username (passado por
+     * parametro)
+     *
+     * @param m_StrUsername username do expositor
+     * @return expositor com o username passado por parametro
+     */
     public Expositor getExpositorPeloUsername(String m_StrUsername) {
         for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
             if (expositor.getUsername().equalsIgnoreCase(m_StrUsername)) {
@@ -150,10 +158,20 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return null;
     }
 
+    /**
+     * Devolve a lista de expositores
+     *
+     * @return lista de expositores
+     */
     public List<Expositor> getListaExpositores() {
         return this.m_registoExpositores.getListaExpositores();
     }
 
+    /**
+     *
+     * @param node
+     * @return
+     */
     @Override
     public CentroExposicoes importContentFromXMLNode(Node node) {
         try {
@@ -186,6 +204,10 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;

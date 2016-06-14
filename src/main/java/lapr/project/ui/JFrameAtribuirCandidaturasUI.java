@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.AtribuirCandidaturasController;
+import lapr.project.controller.AtribuirCandidaturasAExposicaoController;
 import lapr.project.model.*;
 
 /**
@@ -23,7 +23,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private JFrame jFrameMenuPrincipal;
     private final String usernameOrganizador;
     private CentroExposicoes centroExposicoes;
-    private AtribuirCandidaturasController controller;
+    private AtribuirCandidaturasAExposicaoController controller;
     private List<Exposicao> listaExposicoesDoOrganizador;
     private List<Mecanismo> listaMecanismos;
     private String[] listaNomeMecanismos;
@@ -59,7 +59,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameOrganizador = usernameOrganizador;
         this.centroExposicoes = centroExposicoes;
-        controller = new AtribuirCandidaturasController(this.centroExposicoes, this.usernameOrganizador);
+        controller = new AtribuirCandidaturasAExposicaoController(this.centroExposicoes, this.usernameOrganizador);
         controller.getRegistoExposicoes();
         this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador();
 

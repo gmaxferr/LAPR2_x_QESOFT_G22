@@ -10,12 +10,41 @@ import lapr.project.registos.*;
  */
 public class AvaliarCandidaturaAExposicaoController {
 
+    /**
+     * Centro de exposições atual
+     */
     private CentroExposicoes m_centroExposicoesAtual;
+
+    /**
+     * Username do FAE a executar este UC
+     */
     private final String m_usernameFAE;
+
+    /**
+     * Registo de exposições - irá guardar todas as exposições do centro de
+     * exposições atual
+     */
     private RegistoExposicoes m_re;
+
+    /**
+     * Exposição selecionada pelo FAE na UI
+     */
     private Exposicao m_exposicaoSelecionada;
+
+    /**
+     * Registo de atribuições associado à exposição escolhida pelo FAE na UI
+     */
     private RegistoAtribuicoes m_ra;
+
+    /**
+     * Atribuição escolhida pelo FAE na UI
+     */
     private AtribuicaoCandidatura m_atribuicaoEscolhida;
+
+    /**
+     * Objecto Avaliação associado ao FAE a executar este UC e à candidatura
+     * escolhida na UI
+     */
     private Avaliacao m_avaliacaoDoFae;
 
     /**
@@ -30,7 +59,8 @@ public class AvaliarCandidaturaAExposicaoController {
     }
 
     /**
-     *
+     * Busca e guarda o registo de exposições associado ao centro de exposições
+     * atual
      */
     public void getRegistoExposicoes() {
         this.m_re = this.m_centroExposicoesAtual.getRegistoExposicoes();
