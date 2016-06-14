@@ -26,8 +26,8 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO1 = 682;
     private static final int ALTURA_JANELA_PASSO1 = 308;
 
-    private static final int LARGURA_JANELA_PASSO2 = 341;
-    private static final int ALTURA_JANELA_PASSO2 = 266;
+    private static final int LARGURA_JANELA_PASSO2 = 340;
+    private static final int ALTURA_JANELA_PASSO2 = 26;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
@@ -309,7 +309,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +318,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))

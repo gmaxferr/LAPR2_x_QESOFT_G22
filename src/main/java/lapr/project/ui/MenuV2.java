@@ -870,7 +870,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarRegistoUtilizadorUI(); //nada feito
+        new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes); 
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
