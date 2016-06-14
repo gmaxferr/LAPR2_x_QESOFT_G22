@@ -54,6 +54,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public boolean adicionaFAE(Utilizador u) {
         if (validaUtilizador(u)) {
             this.m_listaFAE.add(new FAE(u));
+            u.setIsFAE();
             return true;
         }
         return false;

@@ -2,7 +2,6 @@ package lapr.project.ui;
 
 import java.awt.CardLayout;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.DefinirFAEController;
