@@ -34,7 +34,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
         initComponents();
         desativarJTabbedPanelDosCargos();
-        identificarCargosDoUtilizador(utilizador);
+        identificarCargosDoUtilizador();
         modificarFecharJanela();
         addJMenuItemsEstilosDaJanela();
 
@@ -50,11 +50,11 @@ public class MenuV2 extends javax.swing.JFrame {
     }
 
     /**
-     * Identifica o utilizador com o username passado por parametro
-     *
-     * @param utilizador
+     * Identifica os cargos do utilizador atualmente a utilizador o menu e
+     * atualiza os botões disponiveis de acordo com os privilégios do cargo
+     * deste.
      */
-    private void identificarCargosDoUtilizador(Utilizador utilizador) {
+    public void identificarCargosDoUtilizador() {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
         if (utilizador.getIsFAE()) {
             this.jCheckBoxFAE.setSelected(true);
@@ -73,7 +73,7 @@ public class MenuV2 extends javax.swing.JFrame {
             jTabbedPaneCargos.setEnabledAt(2, true);
         }
         for (int i = 0; i < 4; i++) {
-            if(jTabbedPaneCargos.isEnabledAt(i)){
+            if (jTabbedPaneCargos.isEnabledAt(i)) {
                 jTabbedPaneCargos.setSelectedIndex(i);
                 break;
             }

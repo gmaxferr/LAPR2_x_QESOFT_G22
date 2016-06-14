@@ -152,6 +152,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonLogin">
           <Properties>
+            <Property name="mnemonic" type="int" value="10"/>
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
           <Events>
@@ -179,8 +180,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldUsername">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUsernameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldPassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordFieldPasswordActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
