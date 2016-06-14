@@ -373,10 +373,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controller.setDados(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
         boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
         try {
-            if (controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true) {
+            if (controller.validaDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true) {
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
@@ -395,15 +394,17 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        controller.setDados(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
+        controller.setDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
         try {
             if (controller.addUtilizador(u) == false) {
-                JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes", JOptionPane.WARNING_MESSAGE);
                 CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
                 cardLayout.show(getContentPane(), "card1");
                 setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Utilizador registado com sucesso!", "Registo com sucesso", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                this.jFrameLogin.setVisible(true);
             }
         } catch (InvalidEmailException | InvalidPasswordException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);

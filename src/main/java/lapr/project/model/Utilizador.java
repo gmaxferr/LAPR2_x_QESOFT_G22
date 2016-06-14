@@ -289,7 +289,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
 
         if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
             return false;
