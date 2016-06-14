@@ -6,66 +6,130 @@ import lapr.project.estados.Estado;
  *
  * @author Ricardo Osório e Ana Leite
  */
-public interface EstadoExposicao extends Estado{
+public abstract class EstadoExposicao implements Estado {
 
-    boolean setEstadoCriada();
+    public boolean setEstadoCriada() {
+        return false;
+    }
 
-    boolean setEstadoFAEDefinidosSemDemos();
+    public boolean setEstadoFAEDefinidosSemDemos() {
+        return false;
+    }
 
-    boolean setEstadoDemosDefinidasSemFAE();
+    public boolean setEstadoDemosDefinidasSemFAE() {
+        return false;
+    }
 
-    boolean setEstadoCompleta();
+    public boolean setEstadoCompleta() {
+        return false;
+    }
 
-    boolean setEstadoCandidaturasAbertas();
+    public boolean setEstadoCandidaturasAbertas() {
+        return false;
+    }
 
-    boolean setEstadoCandidaturasFechadas();
+    public boolean setEstadoCandidaturasFechadas() {
+        return false;
+    }
 
-    boolean setEstadoConflitosDetetados();
+    public boolean setEstadoConflitosDetetados() {
+        return false;
+    }
 
-    boolean setEstadoConflitosAlterados();
+    public boolean setEstadoConflitosAlterados() {
+        return false;
+    }
 
-    boolean setEstadoCandidaturasAtribuidas();
+    public boolean setEstadoCandidaturasAtribuidas() {
+        return false;
+    }
 
-    boolean setEstadoCandidaturasAvaliadas();
-    
-    boolean setEstadoCandidaturasDecididas();
-    
-    boolean setEstadoStandsAtribuidos();
-    
-    boolean setEstadoDemonstracoesDecididas();
-    
-    boolean setEstadoCandidaturasDemonstracaoAbertas();
-    
-    boolean setEstadoCandidaturasDemonstracaoFechadas();
-    
-    boolean isEstadoCriada();
+    public boolean setEstadoCandidaturasAvaliadas() {
+        return false;
+    }
 
-    boolean isEstadoFAEDefinidosSemDemos();
+    public boolean setEstadoCandidaturasDecididas() {
+        return false;
+    }
 
-    boolean isEstadoDemosDefinidasSemFAE();
+    public boolean setEstadoStandsAtribuidos() {
+        return false;
+    }
 
-    boolean isEstadoCompleta();
+    public boolean setEstadoDemonstracoesDecididas() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturasAbertas();
+    public boolean setEstadoCandidaturasDemonstracaoAbertas() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturasFechadas();
+    public boolean setEstadoCandidaturasDemonstracaoFechadas() {
+        return false;
+    }
 
-    boolean isEstadoConflitosDetetados();
+    public boolean isEstadoInicial() {
+        return false;
+    }
 
-    boolean isEstadoConflitosAlterados();
+    public boolean isEstadoCriada() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturasAtribuidas();
+    public boolean isEstadoFAEDefinidosSemDemos() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturasAvaliadas();
+    public boolean isEstadoDemosDefinidasSemFAE() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturasDecididas();
-    
-    boolean isEstadoStandsAtribuidos();
-    
-    boolean isEstadoDemonstracoesDecididas();
-    
-    boolean isEstadoCandidaturasDemonstracaoAbertas();
-    
-    boolean isEstadoCandidaturasDemonstracaoFechadas();
-    
+    public boolean isEstadoCompleta() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasAbertas() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasFechadas() {
+        return false;
+    }
+
+    public boolean isEstadoConflitosDetetados() {
+        return false;
+    }
+
+    public boolean isEstadoConflitosAlterados() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasAtribuidas() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasAvaliadas() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasDecididas() {
+        return false;
+    }
+
+    public boolean isEstadoStandsAtribuidos() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracoesDecididas() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasDemonstracaoAbertas() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturasDemonstracaoFechadas() {
+        return false;
+    }
+
 }

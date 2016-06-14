@@ -6,7 +6,7 @@ import lapr.project.model.CandidaturaAExposicao;
  *
  * @author Ricardo Osorio
  */
-public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExposicao {
+public class EstadoCandidaturaAExposicaoInicial extends EstadoCandidaturaAExposicao {
 
     private CandidaturaAExposicao m_cand;
 
@@ -21,117 +21,21 @@ public class EstadoCandidaturaAExposicaoInicial implements EstadoCandidaturaAExp
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
+        if (valida()) {
+            this.m_cand.setEstado(new EstadoCandidaturaAExposicaoCriada(m_cand));
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public boolean setEstadoCandidaturaAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaRejeitada() {
-        return false;
+    private boolean valida() {
+        //TODO
+        return true;
     }
 
     @Override
     public boolean isEstadoCandidaturaIncial() {
         return true;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaRejeitada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaProntaAtribuicoes() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaProntaAtribuicoes() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaNaoAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaStandAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaStandRecusado() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaStandsAtribuidos() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaNaoAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaStandAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaStandRecusado() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaStandsAtribuidos() {
-        return false;
     }
 
 }

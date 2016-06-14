@@ -1,12 +1,17 @@
 package lapr.project.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import lapr.project.controller.ExportarXMLController;
+import lapr.project.controller.ImportarXMLController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 
@@ -35,6 +40,7 @@ public class MenuV2 extends javax.swing.JFrame {
         initComponents();
         identificarUtilizador(utilizador);
         modificarFecharJanela();
+        addJMenuItemsEstilosDaJanela();
 
         setVisible(true);
     }
@@ -145,7 +151,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenuItemGuardarDados = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemTerminarSessao = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuEstiloDaJanela = new javax.swing.JMenu();
         jMenuItemEstiloDaJanela = new javax.swing.JMenuItem();
         jMenuItemAjuda = new javax.swing.JMenuItem();
 
@@ -159,6 +165,11 @@ public class MenuV2 extends javax.swing.JFrame {
         jLabelNomeUtilizador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jButton7.setText("Alterar perfil");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,12 +277,32 @@ public class MenuV2 extends javax.swing.JFrame {
         });
 
         jButton6.setText("Remover candidatura à exposição");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton26.setText("Confrmar stands");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setText("Registar candidatura à demonstração");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
 
         jButton28.setText("Remover candidatura à demonstração");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -310,10 +341,25 @@ public class MenuV2 extends javax.swing.JFrame {
         jTabbedPaneCargos.addTab("Expositor", jPanel3);
 
         jButton2.setText("Avaliar candidaturas à exposição");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton29.setText("Atualizar conflitos de interesse");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
 
         jButton30.setText("Avaliar candidaturas à demonstração");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -342,24 +388,74 @@ public class MenuV2 extends javax.swing.JFrame {
         jTabbedPaneCargos.addTab("FAE", jPanel4);
 
         jButton16.setText("Definir FAE");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("Atribuir candidaturas à exposição");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("Criar demonstração");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setText("Atribuir stands");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton20.setText("Decidir candidaturas à exposição");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setText("Listar candidaturas retiradas");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jButton22.setText("Decidir demonstração");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
 
         jButton23.setText("Qualidade dos FAE");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
 
         jButton24.setText("Atribuir candidaturas à demonstração");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
 
         jButton25.setText("Decidir candidaturas à demonstração");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -422,20 +518,50 @@ public class MenuV2 extends javax.swing.JFrame {
         });
 
         jButton9.setText("Confirmar registo de utilizadores");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Definir recursos");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Alterar candidaturas à exposição");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Definir tipo de conflitos");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Exportar ranking de keywords para CSV");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Criar stand");
 
         jButton14.setText("Percentagem de candidaturas aceites e média de ratings");
 
         jButton15.setText("Alterar candidaturas à demos");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -505,6 +631,11 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenu1.add(jMenuItemCarregarDados);
 
         jMenuItemGuardarDados.setText("Exportar para XML");
+        jMenuItemGuardarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGuardarDadosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemGuardarDados);
 
         jMenuBar1.add(jMenu1);
@@ -522,16 +653,21 @@ public class MenuV2 extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenu2.setText("Outros");
+        jMenuEstiloDaJanela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuEstiloDaJanela.setText("Outros");
 
         jMenuItemEstiloDaJanela.setText("Estilo da janela");
-        jMenu2.add(jMenuItemEstiloDaJanela);
+        jMenuItemEstiloDaJanela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEstiloDaJanelaActionPerformed(evt);
+            }
+        });
+        jMenuEstiloDaJanela.add(jMenuItemEstiloDaJanela);
 
         jMenuItemAjuda.setText("Ajuda");
-        jMenu2.add(jMenuItemAjuda);
+        jMenuEstiloDaJanela.add(jMenuItemAjuda);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuEstiloDaJanela);
 
         setJMenuBar(jMenuBar1);
 
@@ -571,7 +707,26 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItemCarregarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCarregarDadosActionPerformed
-        // TODO add your handling code here:
+        int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+        if (op == JOptionPane.YES_OPTION) {
+            JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showSaveDialog(thisJFrame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                ExportarXMLController CTRL = new ExportarXMLController();
+                if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                    JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    System.exit(0);
+                } else {
+                    returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.YES_NO_OPTION);
+                    if (returnVal == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    }
+                }
+            }
+        } else if (op == JOptionPane.NO_OPTION) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
 
     private void jMenuItemTerminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTerminarSessaoActionPerformed
@@ -599,11 +754,186 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, this.utilizador);
+        new JFrameRegistarExpoUI(); //nada feito
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
+        int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+        if (op == JOptionPane.YES_OPTION) {
+            JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showSaveDialog(thisJFrame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File f = fc.getSelectedFile();
+                String fileName = f.getAbsolutePath();
+                CentroExposicoes importCentroExposicoes = new ImportarXMLController().Import(fileName);
+                if (importCentroExposicoes != null) {
+                    JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else if (op == JOptionPane.NO_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuItemGuardarDadosActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.setVisible(false);
+        new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        this.setVisible(false);
+        new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.setVisible(false);
+        new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        this.setVisible(false);
+        new JFrameRegistarCandidaturaADemonstracaoUI(centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+        new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        this.setVisible(false);
+        new JFrameDefinirFAE(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        this.setVisible(false);
+        new JFrameAtribuirCandidaturasUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        this.setVisible(false);
+        new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        this.setVisible(false);
+        //atribuir stands UI
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        this.setVisible(false);
+        new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        this.setVisible(false);
+        new JFrameListarCandidaturasRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        this.setVisible(false);
+        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        this.setVisible(false);
+        //qualidade dos fae ui
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        this.setVisible(false);
+        //atribuir cand a demos ui
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        this.setVisible(false);
+        //decidir cand as demos ui
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        this.setVisible(false);
+        //alterar cand às expos ui
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        this.setVisible(false);
+        new JFrameConfirmarRegistoUtilizadorUI(); //nada feito
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.setVisible(false);
+        new JFrameDefinirRecursos(centroExposicoes);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        this.setVisible(false);
+        //definir tipo de conflito UI
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        this.setVisible(false);
+        //alterar cand as demos UI
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        this.setVisible(false);
+        //exportar ranking keywords para CSV ui
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jMenuItemEstiloDaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstiloDaJanelaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemEstiloDaJanelaActionPerformed
     private void terminaSessao() {
         new LoginV2(centroExposicoes);
         dispose();
+    }
+
+    private void addJMenuItemsEstilosDaJanela() {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            this.jMenuEstiloDaJanela.add(criarItemEstilo(info));
+        }
+    }
+
+    private JMenuItem criarItemEstilo(UIManager.LookAndFeelInfo info) {
+        JMenuItem item = new JMenuItem(info.getName());
+
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JMenuItem menuItem = (JMenuItem) e.getSource();
+                try {
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if (menuItem.getActionCommand().equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                    SwingUtilities.updateComponentTreeUI(rootPane);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                            rootPane,
+                            ex.getMessage(),
+                            "Estilo " + menuItem.getActionCommand(),
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        return item;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -646,9 +976,9 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelNomeUtilizador;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuEstiloDaJanela;
     private javax.swing.JMenuItem jMenuItemAjuda;
     private javax.swing.JMenuItem jMenuItemCarregarDados;
     private javax.swing.JMenuItem jMenuItemEstiloDaJanela;

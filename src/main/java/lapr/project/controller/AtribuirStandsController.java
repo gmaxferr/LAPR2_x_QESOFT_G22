@@ -49,7 +49,7 @@ public class AtribuirStandsController {
     }
     
     public List<Stand> getListaStands(){
-        rs = expo.getRegistoStands();
+        rs = m_centroDeExposicoes.getRegistoStands();
         return rs.getListaStands();
     }
     

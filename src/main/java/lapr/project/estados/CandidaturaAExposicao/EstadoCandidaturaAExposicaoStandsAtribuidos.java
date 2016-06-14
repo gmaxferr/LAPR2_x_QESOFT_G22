@@ -11,131 +11,33 @@ import lapr.project.model.CandidaturaAExposicao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoCandidaturaAExposicaoStandsAtribuidos implements EstadoCandidaturaAExposicao{
+public class EstadoCandidaturaAExposicaoStandsAtribuidos extends EstadoCandidaturaAExposicao{
 
     private final CandidaturaAExposicao m_cand;
 
     public EstadoCandidaturaAExposicaoStandsAtribuidos(CandidaturaAExposicao m_cand) {
         this.m_cand = m_cand;
     }
-    
-    @Override
-    public boolean setEstadoCandidaturaInicial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public boolean setEstadoCandidaturaCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAtribuida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAvaliada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAceite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaRejeitada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaProntaAtribuicoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaIncial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAtribuida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAvaliada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAceite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaRejeitada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaProntaAtribuicoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public boolean setEstadoCandidaturaNaoAvaliada() {
-        return false;
+    public boolean setEstadoCandidaturaStandsAtribuidos() {
+        return true;
     }
 
     @Override
     public boolean setEstadoCandidaturaStandAceite() {
-        return false;
+        this.m_cand.setEstado(new EstadoCandidaturaAExposicaoStandAceite(m_cand));
+        return true;
     }
 
     @Override
     public boolean setEstadoCandidaturaStandRecusado() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaStandsAtribuidos() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaNaoAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaStandAceite() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaStandRecusado() {
-        return false;
+        this.m_cand.setEstado(new EstadoCandidaturaAExposicaoStandRecusado(m_cand));
+        return true;
     }
 
     @Override
     public boolean isEstadoCandidaturaStandsAtribuidos() {
-        return false;
+        return true;
     }
 }
