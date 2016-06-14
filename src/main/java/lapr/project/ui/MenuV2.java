@@ -1,21 +1,15 @@
 package lapr.project.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
+import java.awt.event.*;
 import java.io.File;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import lapr.project.controller.ExportarXMLController;
-import lapr.project.controller.ImportarXMLController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import javax.swing.*;
+import lapr.project.controller.*;
+import lapr.project.model.*;
 
 /**
+ * Menu principal da aplicação. Permite o acesso a todas as funcionalidades
+ * (UC's), verificar as permissões que o utilizador tem, alternar entre vários
+ * estilos da janela
  *
  * @author G29
  */
@@ -45,6 +39,11 @@ public class MenuV2 extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     * Identifica o utilizador com o username passado por parametro
+     *
+     * @param utilizador 
+     */
     private void identificarUtilizador(Utilizador utilizador) {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
         if (utilizador.getIsFAE()) {

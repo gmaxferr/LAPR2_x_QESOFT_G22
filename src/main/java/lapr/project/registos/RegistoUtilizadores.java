@@ -65,7 +65,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email)  {
+    private boolean validaUtilizador(String username, String email) {
         return validaUsername(username)
                 && validaEmail(email);
     }
@@ -90,14 +90,14 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     public boolean validaEmail(String email) {
         boolean valido = true;
         if ((email == null) || (email.trim().length() == 0)) {
-        for (Utilizador u : m_listaUtilizadores) {
-            if (u.getEmail().equals(email)) {
-                valido = false;
+            for (Utilizador u : m_listaUtilizadores) {
+                if (u.getEmail().equals(email)) {
+                    valido = false;
+                }
             }
         }
-        }
         return valido;
-      
+
     }
 
     /**
@@ -170,7 +170,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @param u Utilizador a adicionar
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
-    public boolean addUtilizador(Utilizador u) throws InvalidPasswordException, InvalidEmailException{
+    public boolean addUtilizador(Utilizador u) throws InvalidPasswordException, InvalidEmailException {
         if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;
@@ -236,7 +236,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
                 Element elem = (Element) n;
 
                 this.m_listaUtilizadores.clear();
-                
+
                 NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

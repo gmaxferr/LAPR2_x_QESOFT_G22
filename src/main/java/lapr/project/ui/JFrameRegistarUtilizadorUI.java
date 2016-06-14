@@ -98,6 +98,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         card1.setPreferredSize(new java.awt.Dimension(547, 200));
@@ -223,8 +224,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(27, 27, 27))
+                    .addComponent(jButton1)))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("jButtonCard1Recuar");
@@ -381,7 +381,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (InvalidPasswordException  | InvalidEmailException e) {
+        } catch (InvalidPasswordException | InvalidEmailException e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -389,6 +389,8 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
+        jPasswordField2.setText("");
+        jPasswordField3.setText("");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
