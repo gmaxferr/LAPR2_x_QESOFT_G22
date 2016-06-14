@@ -20,10 +20,10 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private Utilizador u;
     
     private static final int LARGURA_JANELA_PASSO1 = 470;
-    private static final int ALTURA_JANELA_PASSO1 = 356;
+    private static final int ALTURA_JANELA_PASSO1 = 420;
 
     private static final int LARGURA_JANELA_PASSO2 = 460;
-    private static final int ALTURA_JANELA_PASSO2 = 328;
+    private static final int ALTURA_JANELA_PASSO2 = 340;
     
     /**
      * Creates new form JFrameRegistarUtilizadorUI
@@ -88,11 +88,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -242,8 +240,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
         jLabel9.setText("Username");
 
-        jLabel10.setText("Password");
-
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Apresentar o nome do utilizador");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -256,10 +252,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel13.setText("Apresentar o username do utilizador");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Apresentar a password do utilizador");
-        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -267,7 +259,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -275,8 +266,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -294,21 +284,15 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel7.getAccessibleContext().setAccessibleName("jLabelCard2Nome");
         jLabel8.getAccessibleContext().setAccessibleName("jLabelCard2Email");
         jLabel9.getAccessibleContext().setAccessibleName("jLabelCard2Username");
-        jLabel10.getAccessibleContext().setAccessibleName("jLabelCard2Password");
         jLabel11.getAccessibleContext().setAccessibleName("jLabelCard2NomeApresentar");
         jLabel12.getAccessibleContext().setAccessibleName("jLabelCard2EmailApresentar");
         jLabel13.getAccessibleContext().setAccessibleName("jLabelCard2UsernameApresentar");
-        jLabel14.getAccessibleContext().setAccessibleName("JLabelCard2NomeApresentar");
 
         jButton3.setText("Recuar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -334,13 +318,13 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                         .addGap(123, 123, 123)
                         .addComponent(jLabel6))
                     .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(card2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         card2Layout.setVerticalGroup(
@@ -349,12 +333,12 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6)
                 .addGap(23, 23, 23)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleName("jLabelCard2Titulo");
@@ -371,13 +355,28 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         this.jFrameLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private boolean validarPasswordIguais(char [] jPasswordField3, char [] jPasswordField2){
+        
+        if (jPasswordField3.length == jPasswordField2.length) {
+            for (int i = 0; i < jPasswordField3.length; i++) {
+                if (jPasswordField3[i] != jPasswordField2[i]) {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setDados(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText());
-        if(controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText()) == true){
+        boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
+        if(controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true){
         avancarParaCard2();
         }
         else{
-           JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!", "Campos vazios", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(rootPane, "Dados inválidos ou passwords introduzidas diferentes!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -410,8 +409,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel11.setText(jTextField1.getText());
         jLabel12.setText(jTextField2.getText());
         jLabel13.setText(jTextField3.getText());
-        jLabel14.setText(jPasswordField3.getName());
-        
     }
     
     
@@ -423,11 +420,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
