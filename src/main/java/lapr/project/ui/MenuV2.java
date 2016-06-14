@@ -15,8 +15,9 @@ import lapr.project.model.*;
  */
 public class MenuV2 extends javax.swing.JFrame {
 
+    private CentroExposicoes centroExposicoes;
+
     private final Utilizador utilizador;
-    private final CentroExposicoes centroExposicoes;
     private final JFrame thisJFrame;
 
     /**
@@ -42,7 +43,7 @@ public class MenuV2 extends javax.swing.JFrame {
     /**
      * Identifica o utilizador com o username passado por parametro
      *
-     * @param utilizador 
+     * @param utilizador
      */
     private void identificarUtilizador(Utilizador utilizador) {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
@@ -706,25 +707,18 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItemCarregarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCarregarDadosActionPerformed
-        int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-        if (op == JOptionPane.YES_OPTION) {
-            JFileChooser fc = new JFileChooser();
-            int returnVal = fc.showSaveDialog(thisJFrame);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                ExportarXMLController CTRL = new ExportarXMLController();
-                if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
-                    JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                    System.exit(0);
-                } else {
-                    returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.YES_NO_OPTION);
-                    if (returnVal == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
-                }
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(thisJFrame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            ImportarXMLController CTRL = new ImportarXMLController();
+            CentroExposicoes ce = CTRL.Import(file.getAbsolutePath());
+            if (ce == null) {
+                JOptionPane.showMessageDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                this.centroExposicoes = ce;
+                JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
             }
-        } else if (op == JOptionPane.NO_OPTION) {
-            System.exit(0);
         }
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
 
@@ -757,22 +751,17 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
-        int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
-        if (op == JOptionPane.YES_OPTION) {
-            JFileChooser fc = new JFileChooser();
-            int returnVal = fc.showSaveDialog(thisJFrame);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File f = fc.getSelectedFile();
-                String fileName = f.getAbsolutePath();
-                CentroExposicoes importCentroExposicoes = new ImportarXMLController().Import(fileName);
-                if (importCentroExposicoes != null) {
-                    JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
-                }
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(thisJFrame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String fileName = f.getAbsolutePath();
+            ExportarXMLController CTRL = new ExportarXMLController();
+            if (CTRL.export(fileName, centroExposicoes)) {
+                JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
-        } else if (op == JOptionPane.NO_OPTION) {
-            System.exit(0);
         }
     }//GEN-LAST:event_jMenuItemGuardarDadosActionPerformed
 
