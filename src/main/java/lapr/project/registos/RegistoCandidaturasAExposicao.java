@@ -1,27 +1,17 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Utilizador;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoCandidaturasAExposicao
- * 
- * @author Ana Leite Ricardo Osório
+ *
+ * @author G29
  */
 public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidaturasAExposicao>, Exportable {
 
@@ -87,7 +77,6 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-<<<<<<< HEAD
      * Valida uma candidatura passada por parametro. Verifica se existe outra
      * candidatura neste registo de candidaturas igual. Duas candidaturas são
      * consideradas iguais quando o expositor é o mesmo e em ambas foram decidos
@@ -96,25 +85,13 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @param candidaturaNova candidatura a ser adicionada
      * @return true se a candidatura for válida para ser adicionada a este
      * registo de candidaturas, caso contrário false
-     * Valida candidatura
-     *
-     * @param c candidatura
-     * @return true
      */
-    public boolean validaCandidatua(CandidaturaAExposicao c) {
-        //validação global - repetida
-        return true;
-    }
-
-    /**
-     * Valida a candidatura
-     *
-     * @param c candidatura
-     *
-     * @return boolean de confirmação da validação
-     */
-    private boolean validaCandidatura(CandidaturaAExposicao c) {
-        //validaçao global
+    public boolean validaCandidatua(CandidaturaAExposicao candidaturaNova) {
+        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+            if (candidatura.equals(candidaturaNova)) {
+                return false;
+            }
+        }
         return true;
 
     }
@@ -130,7 +107,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
 
     /**
      * Devolve a lista de candidaturas de um representante
-     * 
+     *
      * @param username username do representante
      * @return lista de candidaturas de um representante
      */
@@ -146,8 +123,8 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
 
     /**
      * Devolve a lista de candidaturas aceites a uma exposição
-     * 
-     * @return lista de candidaturas aceites a uma exposição 
+     *
+     * @return lista de candidaturas aceites a uma exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
