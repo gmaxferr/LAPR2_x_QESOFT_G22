@@ -8,7 +8,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um registo fae
+ * 
  * @author G29
  */
 public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
@@ -17,26 +18,55 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
 
+    /**
+     * Lista de fae
+     */
     private final List<FAE> m_listaFAE;
+    
+    /**
+     * Registo de organizadores
+     */
     private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
 
+    /**
+     * Construtor de objetos do tipo RegistoFAE sem parâmetros
+     */
     public RegistoFAE() {
         this.m_listaFAE = new ArrayList<>();
         this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
     }
 
+    /**
+     * Devolve a lista de fae
+     * 
+     * @return lista de fae
+     */
     public List<FAE> getListaFAE() {
         return this.m_listaFAE;
     }
 
+    /**
+     * Adiciona fae à lista de fae
+     * 
+     * @param u utilizador a ser adicionado
+     * @return true se o fae for adicionado. Caso contrário retorna false.
+     */
     public boolean adicionaFAE(Utilizador u) {
         if (validaUtilizador(u)) {
             this.m_listaFAE.add(new FAE(u));
+            u.setIsFAE();
             return true;
         }
         return false;
     }
 
+    /**
+     * Valida o utilizador
+     * 
+     * @param u utilizador a ser validado
+     * @return true caso o utilizador ainda não esteja na lista de fae ou de 
+     * organizador. Caso contrário retona false.
+     */
     private boolean validaUtilizador(Utilizador u) {
         for (FAE fae : m_listaFAE) {
             if (fae.getUsernameFae().equalsIgnoreCase(u.getUsername())) {
@@ -78,6 +108,11 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         return false;
     }
 
+    /**
+     * Modifica o registo de organizadores
+     * 
+     * @param ro novo registo de organizadores
+     */
     public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
         this.m_rOrganizadoresDestaExposicao = ro;
     }
@@ -97,6 +132,11 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         return null;
     }
 
+    /**
+     * Devolve a lista de utilizadores correspondeste aos fae
+     * 
+     * @return lista de utilizadores correspondeste aos fae
+     */
     public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
         List<Utilizador> listaUtilizadores = new ArrayList<>();
         for (FAE fae : m_listaFAE) {

@@ -12,6 +12,7 @@ public class InvalidUsernameException extends IllegalArgumentException {
 	 * Construtor por defeito
 	 */
 	public InvalidUsernameException() {
+            super();
 	}
 
 	/**

@@ -59,6 +59,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
 
         initComponents();
 
+        setLocationRelativeTo(null);
         setSize(LARGURA_JANELA, ALTURA_JANELA);
         setVisible(true);
     }

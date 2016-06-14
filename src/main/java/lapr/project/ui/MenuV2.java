@@ -38,7 +38,6 @@ public class MenuV2 extends javax.swing.JFrame {
         modificarFecharJanela();
         addJMenuItemsEstilosDaJanela();
 
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -175,7 +174,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenuItemEstiloDaJanela = new javax.swing.JMenuItem();
         jMenuItemAjuda = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -329,11 +328,10 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton28))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -712,10 +710,10 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jTabbedPaneCargos)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(239, 239, 239))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,7 +737,8 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxFAEActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, utilizador);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItemCarregarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCarregarDadosActionPerformed

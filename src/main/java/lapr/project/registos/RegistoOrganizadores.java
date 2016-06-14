@@ -17,24 +17,31 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um registo de organizadores
+ * 
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoOrganizadores";
 
+    /**
+     * Lista de organizadores
+     */
     private final List<Organizador> m_listaOrganizadores;
 
+    /**
+     * Construtor de objetos do tipo RegistoOrganizadores sem parâmetros
+     */
     public RegistoOrganizadores() {
         this.m_listaOrganizadores = new ArrayList<>();
     }
     
     /**
-     * Método que valida a exposição
+     * Valida a exposição
      *
-     * @param o organozador de exposição
-     * @return
+     * @param o organizador de exposição
+     * @return true
      */
     private boolean validaOrganizador(Organizador o) {
         System.out.println("Exposição: validaOrganizador: " + o.toString());
@@ -42,7 +49,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
     }
 
     /**
-     * Método que adiciona o organizador à exposição
+     * Adiciona o organizador à exposição
      *
      * @param ut utilizador/organizador da exposição
      */
@@ -55,7 +62,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
     }
 
     /**
-     * Método que adiciona um organizador à exposição
+     * Adiciona um organizador à exposição
      *
      * @param o organizador a ser adicionado
      */
@@ -63,6 +70,11 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
         m_listaOrganizadores.add(o);
     }
 
+    /**
+     * Devolve a lista de organizadores
+     * 
+     * @return lista de organizadores
+     */
     public List<Organizador> getListaOrganizadores() {
         return this.m_listaOrganizadores;
     }

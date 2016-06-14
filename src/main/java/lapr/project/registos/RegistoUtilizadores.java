@@ -9,7 +9,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação um registo de utilizadores
+ * 
  * @author Ricardo Osório Ana Leite
  */
 public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exportable {
@@ -22,7 +23,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     private final ArrayList<Utilizador> m_listaUtilizadores;
 
     /**
-     * Construtor padrão
+     * Construtor de objectos do tipo RegistoUtilizadores sem parametros
      */
     public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<>();

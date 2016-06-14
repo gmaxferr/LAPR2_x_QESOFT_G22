@@ -16,36 +16,49 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoAtribuicoesStands
+ * 
  * @author Ricardo Catalao
  */
 public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesStands>, Exportable {
     
     public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoesStands";
 
+    /**
+     * Lista de atribuições stand
+     */
     private List<AtribuicaoStand> m_listaAtribuicoesStand;
 
+    /**
+     * Construtor de objetos do tipo RegistoAtribuicoesStands sem parâmetros
+     */
     public RegistoAtribuicoesStands() {
         this.m_listaAtribuicoesStand = new ArrayList<>();
     }
 
     /**
-     * @return the listaAtribuicoesStand
+     * Devolve a lista de atribuições stand
+     * 
+     * @return listaAtribuicoesStand
      */
     public List<AtribuicaoStand> getListaAtribuicoesStand() {
         return m_listaAtribuicoesStand;
     }
 
     /**
-     * @param listaAtribuicoesStand the listaAtribuicoesStand to set
+     * Modidica a lista de atribuicoes stand
+     * 
+     * @param listaAtribuicoesStand  nova listaAtribuicoesStand 
      */
     public void setListaAtribuicoesStand(List<AtribuicaoStand> listaAtribuicoesStand) {
         this.m_listaAtribuicoesStand = listaAtribuicoesStand;
     }
 
     /**
-     * @param listAtr Adiciona todas as atribuicoes passadas como argumento à
-     * lista de atribuicoes de stands
+     * Adiciona todas as atribuições passadas como argumento à lista de 
+     * atribuicoes de stands
+     * 
+     * @param listAtr atribuicoes a ser adicionadas
      */
     public void addAll(List<AtribuicaoStand> listAtr) {
         m_listaAtribuicoesStand.addAll(listAtr);

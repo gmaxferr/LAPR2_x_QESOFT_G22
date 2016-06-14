@@ -17,19 +17,32 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoExpositores
+ * 
  * @author Ricardo Osorio
  */
 public class RegistoExpositores implements Importable<RegistoExpositores>, Exportable {
     
     public static final String ROOT_ELEMENT_NAME = "RegistoExpositores";
 
+    /**
+     * Lista de expositores
+     */
     private List<Expositor> m_listaExpositores;
 
+    /**
+     * Construtor de objetos do tipo RegistoExpositores sem parâmetros
+     */
     public RegistoExpositores() {
         this.m_listaExpositores = new ArrayList<>();
     }
 
+    /**
+     * Adiciona um utilizador/expositor à lista de expositores
+     * 
+     * @param utilizador utilizador/expositor a ser adicionado
+     * @return true se for adicionado. Caso contrário retorna false.
+     */
     public boolean addExpositor(Utilizador utilizador) {
         if (validaExpositor(utilizador)) {
             this.m_listaExpositores.add(new Expositor(utilizador));
@@ -38,6 +51,13 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
         return false;
     }
 
+    /**
+     * Valida o expositor, verificando se já existe na lista de expositores
+     * 
+     * @param utilizador expositor a ser validado
+     * @return true se o expositor não existir na lista de expositores. Caso
+     * contrário retorna false
+     */
     private boolean validaExpositor(Utilizador utilizador) {
         for (Expositor expositor : m_listaExpositores) {
             if (expositor.getEmail().equalsIgnoreCase(utilizador.getEmail())) {
@@ -47,6 +67,11 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
         return true;
     }
 
+    /**
+     * Devolve a lista de expositores
+     * 
+     * @return lista de expositores
+     */
     public List<Expositor> getListaExpositores() {
         return this.m_listaExpositores;
     }
