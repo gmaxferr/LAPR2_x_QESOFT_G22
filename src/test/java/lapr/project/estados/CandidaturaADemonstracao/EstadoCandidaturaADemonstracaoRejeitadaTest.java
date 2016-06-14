@@ -31,11 +31,11 @@ public class EstadoCandidaturaADemonstracaoRejeitadaTest {
     }
     
     private final CandidaturaADemonstracao m_cand = new CandidaturaADemonstracao("dado", "a@b.c");
-    private EstadoCandidaturaADemonstracao instance = new EstadoCandidaturaADemonstracaoRejeitada(m_cand);
+    private EstadoCandidaturaADemonstracao instance = new EstadoCandidaturaADemonstracaoRecusada(m_cand);
 
     @Before
     public void setUp() {
-        m_cand.setEstado(new EstadoCandidaturaADemonstracaoRejeitada(m_cand));
+        m_cand.setEstado(new EstadoCandidaturaADemonstracaoRecusada(m_cand));
     }
     
     @After
