@@ -46,19 +46,19 @@ public class Main {
     }
 
     private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
-        //Admin
-        Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
-        admin.setIsExpositor();
-        admin.setIsFAE();
-        admin.setIsGestor();
-        admin.setIsOrganizador();
-        centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
-
-        JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
-                + "\naceder ao sistema com todos os privilégios:"
-                + "\n\nUtilizador - ADMIN"
-                + "\n    username: \"admin\""
-                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+//        //Admin
+//        Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
+//        admin.setIsExpositor();
+//        admin.setIsFAE();
+//        admin.setIsGestor();
+//        admin.setIsOrganizador();
+//        centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
+//
+//        JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
+//                + "\naceder ao sistema com todos os privilégios:"
+//                + "\n\nUtilizador - ADMIN"
+//                + "\n    username: \"admin\""
+//                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
 
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();
@@ -67,6 +67,17 @@ public class Main {
         ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt"));
         ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt"));
         ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt"));
-        
+        ru.confirmarRegistoTodosUtilizadores();
+
+        //GestorExposições
+        Utilizador utilizador;
+        utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
+        utilizador.setIsGestor();
+
+        JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
+                + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
+                + "\n é igual parar todos: \"Abc-1\".\n"
+                + "\n"
+                + "Exemplo:           Username: \"Ricardo\" e Password: \"Abc-1\".", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 }
