@@ -39,11 +39,6 @@ public class DecidirCandidaturasAExposicaoController {
     private CentroExposicoes m_ce;
 
     /**
-     * Gestor de exposições a executar este UC
-     */
-    private GestorDeExposicoes m_gestorDeExposicoes;
-
-    /**
      * Registo de produtos da candidatura selecionada pelo gestor na UI
      */
     private RegistoProdutos m_rp;
@@ -57,11 +52,10 @@ public class DecidirCandidaturasAExposicaoController {
      * Construtor do controller do UC17 - Decidir candidaturas a exposição
      *
      * @param ce centro de exposições atual
-     * @param gestorDeExposicoes gestor de exposições a executar este UC
+     * @param usernameGestor username do gestor de exposições a executar este UC
      */
-    public DecidirCandidaturasAExposicaoController(CentroExposicoes ce, GestorDeExposicoes gestorDeExposicoes) {
+    public DecidirCandidaturasAExposicaoController(CentroExposicoes ce) {
         this.m_ce = ce;
-        this.m_gestorDeExposicoes = gestorDeExposicoes;
     }
 
     /**
