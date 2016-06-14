@@ -14,7 +14,7 @@ public class EstadoCandidaturaADemonstracaoRecusada extends EstadoCandidaturaADe
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoRecusada() {
-        return super.isEstadoCandidaturaADemonstracaoRecusada(); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
 }

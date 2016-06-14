@@ -134,7 +134,7 @@ public class EstadoCandidaturaADemonstracaoAtribuidaTest {
     @Test
     public void testIsEstadoCandidaturaADemonstracaoAvaliada() {
         System.out.println("isEstadoCandidaturaADemonstracaoAvaliada");
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = instance.isEstadoCandidaturaADemonstracaoAvaliada();
         assertEquals(expResult, result);
     }

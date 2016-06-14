@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author guima
  */
-public class EstadoCandidaturaADemonstracaoRejeitadaTest {
+public class EstadoCandidaturaADemonstracaoRecusadaTest {
     
-    public EstadoCandidaturaADemonstracaoRejeitadaTest() {
+    public EstadoCandidaturaADemonstracaoRecusadaTest() {
     }
     
     @BeforeClass
@@ -178,8 +178,8 @@ public class EstadoCandidaturaADemonstracaoRejeitadaTest {
      * Test of isEstadoCandidaturaADemonstracaoRecusada method, of class EstadoCandidaturaADemonstracaoRejeitada.
      */
     @Test
-    public void testIsEstadoCandidaturaADemonstracaoRejeitada() {
-        System.out.println("isEstadoCandidaturaADemonstracaoRejeitada");
+    public void testIsEstadoCandidaturaADemonstracaoRecusada() {
+        System.out.println("isEstadoCandidaturaADemonstracaoRecusada");
         boolean expResult = true;
         boolean result = instance.isEstadoCandidaturaADemonstracaoRecusada();
         assertEquals(expResult, result);
