@@ -245,12 +245,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword(char[] password) {
-        char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
-        return Utilitarios.hasLowerCase(decryptesPass)
-                && Utilitarios.hasNumber(decryptesPass)
-                && Utilitarios.hasSinalPontuacao(decryptesPass)
-                && Utilitarios.hasUpperCase(decryptesPass)
-                && decryptesPass.length >= 4 && decryptesPass.length <= 7;
+        
+        return Utilitarios.hasLowerCase(password)
+                && Utilitarios.hasNumber(password)
+                && Utilitarios.hasSinalPontuacao(password)
+                && Utilitarios.hasUpperCase(password)
+                && password.length >= 4 && password.length <= 7;
     }
 
     /**

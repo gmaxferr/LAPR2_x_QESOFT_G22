@@ -23,7 +23,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private static final int ALTURA_JANELA_PASSO1 = 420;
 
     private static final int LARGURA_JANELA_PASSO2 = 460;
-    private static final int ALTURA_JANELA_PASSO2 = 320;
+    private static final int ALTURA_JANELA_PASSO2 = 340;
     
     /**
      * Creates new form JFrameRegistarUtilizadorUI
@@ -324,7 +324,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                         .addGap(107, 107, 107)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         card2Layout.setVerticalGroup(
