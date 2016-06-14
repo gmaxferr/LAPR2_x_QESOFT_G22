@@ -13,7 +13,7 @@ import lapr.project.model.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 

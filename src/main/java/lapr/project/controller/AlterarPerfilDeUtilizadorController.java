@@ -46,7 +46,7 @@ public class AlterarPerfilDeUtilizadorController {
     public void identificaUtilizador(String username) {
         //devolve null se não encontrar
         setUsername(username);
-        m_u = m_ru.identificarUtilizador(username);
+        m_u = m_ru.identificarUtilizadorPeloUsername(username);
     }
 
     /**

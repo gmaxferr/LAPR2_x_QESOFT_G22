@@ -4,14 +4,13 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
-<<<<<<< HEAD
-public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoRejeitada implements EstadoCandidaturaADemonstracao {
 
-    CandidaturaADemonstracao m_cand;
+    private CandidaturaADemonstracao m_cand;
 
-    public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
+    public EstadoCandidaturaADemonstracaoRejeitada(CandidaturaADemonstracao cand) {
         this.m_cand = cand;
     }
 
@@ -42,7 +41,7 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoCriada() {
-        return true;
+        return false;
     }
 
     @Override
@@ -56,38 +55,20 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
     }
 
     @Override
+    public boolean setEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    @Override
     public boolean setEstadoCandidaturaADemonstracaoRecusada() {
         return false;
-=======
-public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemonstracao {
-
-    public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
-        super(cand);
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaCriada() {
-        return true;
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAtribuida() {
-        if (valida()) {
-            m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
-        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoProntaAAtribuicao(m_cand);
-        m_cand.setEstado(ne);
-        return true;
+        return false;
     }
 
-<<<<<<< HEAD
     @Override
     public boolean isEstadoCandidaturaADemonstracaoAceite() {
         return false;
@@ -95,7 +76,7 @@ public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemo
 
     @Override
     public boolean isEstadoCandidaturaADemonstracaoRecusada() {
-        return false;
+        return true;
     }
 
     @Override
@@ -103,19 +84,9 @@ public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemo
         return false;
     }
 
-    @Override
-    public boolean setEstadoCandidaturaADemonstracaoAceite() {
-        return false;
-    }
-
-    @Override
+        @Override
     public boolean setEstadoCandidaturaADemonstracaoRemovida() {
-        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoRemovida(m_cand);
-        m_cand.setEstado(ne);
-=======
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
-        return true;
+        return false;
     }
 
     @Override

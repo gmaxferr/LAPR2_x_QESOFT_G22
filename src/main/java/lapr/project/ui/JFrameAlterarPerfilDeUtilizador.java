@@ -23,6 +23,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         CTRL.carregaRegistoUtilizadores();
         CTRL.identificaUtilizador(username);
         initComponents();
+        this.setVisible(true);
     }
 
     /**

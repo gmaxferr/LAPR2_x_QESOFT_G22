@@ -15,36 +15,67 @@ public abstract class EstadoCandidaturaADemonstracao implements Estado {
         this.m_cand = cand;
     }
 
-    public boolean setEstadoCandidaturaInstanciada() {
+    public boolean setEstadoCandidaturaADemonstracaoInstanciada() {
         return false;
     }
 
-    public boolean setEstadoCandidaturaCriada() {
+    public boolean setEstadoCandidaturaADemonstracaoCriada() {
         return false;
     }
 
-    public boolean setEstadoCandidaturaAtribuida() {
+    public boolean setEstadoCandidaturaADemonstracaoAtribuida() {
         return false;
     }
 
-    public boolean setEstadoCandidaturaAvaliada() {
+    public boolean setEstadoCandidaturaADemonstracaoAvaliada() {
         return false;
     }
 
-    public boolean isEstadoCandidaturaInstanciada() {
+    public boolean isEstadoCandidaturaADemonstracaoInstanciada() {
         return false;
     }
 
-    public boolean isEstadoCandidaturaCriada() {
+    public boolean isEstadoCandidaturaADemonstracaoCriada() {
         return false;
     }
 
-    public boolean isEstadoCandidaturaAtribuida() {
+    public boolean isEstadoCandidaturaADemonstracaoAtribuida() {
         return false;
     }
 
-    public boolean isEstadoCandidaturaAvaliada() {
+    public boolean isEstadoCandidaturaADemonstracaoAvaliada() {
         return false;
     }
 
+    public boolean isEstadoCandidaturaADemonstracaoRemovida() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaADemonstracaoRecusada() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaADemonstracaoRemovida() {
+        return false;
+    }
+    
+    public boolean setEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaADemonstracaoProntaAAtribuicao() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaADemonstracaoAceite() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaADemonstracaoRecusada() {
+        return false;
+    }
 }

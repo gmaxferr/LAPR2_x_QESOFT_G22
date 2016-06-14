@@ -40,13 +40,13 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
 
     /**
      *
-     * @param username do representante
+     * @param email - email do representante
      * @return lista de candidaturas a demonstracao do representante
      */
     public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRep(String email) {
         List<CandidaturaADemonstracao> lstCandidaturasRep = new ArrayList<>();
         for (CandidaturaADemonstracao cd : m_listaCandidaturasADemonstracao) {
-            if (cd.getM_emailExpositor().equals(email)) {
+            if (cd.getEmailExpositor().equals(email)) {
                 lstCandidaturasRep.add(cd);
             }
         }
