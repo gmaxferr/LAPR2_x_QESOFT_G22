@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
 public class EstadoCandidaturaADemonstracaoRemovidaTest {
 
