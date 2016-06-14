@@ -12,7 +12,7 @@ import lapr.project.model.*;
 
 /**
  *
- * @author G29
+ * @author Ana Leite
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
@@ -381,7 +381,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
             }
         } catch (InvalidPasswordException | InvalidEmailException e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -407,7 +407,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 this.jFrameLogin.setVisible(true);
             }
         } catch (InvalidEmailException | InvalidPasswordException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
