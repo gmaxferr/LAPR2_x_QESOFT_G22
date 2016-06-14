@@ -11,17 +11,10 @@ import lapr.project.model.Demonstracao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoDemonstracaoConfirmada implements EstadoDemonstracao{
+public class EstadoDemonstracaoConfirmada extends EstadoDemonstracao {
 
-    private Demonstracao m_demo;
-    
-    public EstadoDemonstracaoConfirmada(Demonstracao demo){
-        this.m_demo = demo;
-    }
-    
-    @Override
-    public boolean setEstadoDemonstracaoPendente() {
-        return false;
+    public EstadoDemonstracaoConfirmada(Demonstracao demo) {
+        super(demo);
     }
 
     @Override
@@ -30,13 +23,17 @@ public class EstadoDemonstracaoConfirmada implements EstadoDemonstracao{
     }
 
     @Override
-    public boolean setEstadoDemonstracaoCancelada() {
+    public boolean setEstadoDemonstracaoDatasDefinidas() {
+        if (valida()) {
+            this.m_demo.setEstado(new EstadoDemonstracaoDatasDefinidas(m_demo));
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public boolean isEstadoDemonstracaoPendente() {
-        return false;
+    private boolean valida() {
+        //TODO
+        return true;
     }
 
     @Override
@@ -44,59 +41,4 @@ public class EstadoDemonstracaoConfirmada implements EstadoDemonstracao{
         return true;
     }
 
-    @Override
-    public boolean isEstadoDemonstracaoCancelada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

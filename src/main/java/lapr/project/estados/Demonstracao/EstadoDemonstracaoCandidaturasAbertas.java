@@ -11,92 +11,26 @@ import lapr.project.model.Demonstracao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoDemonstracaoCandidaturasAbertas implements EstadoDemonstracao{
+public class EstadoDemonstracaoCandidaturasAbertas extends EstadoDemonstracao {
 
-    private final Demonstracao m_demo;
-
-    public EstadoDemonstracaoCandidaturasAbertas(Demonstracao m_demo) {
-        this.m_demo = m_demo;
-    }
-    
-    @Override
-    public boolean setEstadoDemonstracaoPendente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoConfirmada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCancelada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoPendente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoConfirmada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCancelada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EstadoDemonstracaoCandidaturasAbertas(Demonstracao demo) {
+        super(demo);
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.m_demo.setEstado(new EstadoDemonstracaoCandidaturasFechadas(m_demo));
+        return true;
     }
 
     @Override
     public boolean isEstadoDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
