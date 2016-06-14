@@ -59,7 +59,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
      *
      * @param o organizador a ser adicionado
      */
-    private void addOrganizador(Organizador o) {
+    public void addOrganizador(Organizador o) {
         m_listaOrganizadores.add(o);
     }
 

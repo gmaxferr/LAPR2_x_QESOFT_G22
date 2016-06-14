@@ -44,7 +44,7 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
         this.m_listaStands.add(stand);
     }
 
-    public void criarStand(String ID, String area) throws AreaErradaException {
+    public boolean criarStand(String ID, String area) throws AreaErradaException {
         try {
             int areaDoStand = Integer.parseInt(area);
             if (areaDoStand < 0) {
@@ -53,7 +53,9 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
             Stand novoStand = new Stand(ID, areaDoStand);
             if (validarStand(novoStand)) {
                 this.m_listaStands.add(novoStand);
+                return true;
             }
+            return false;
         } catch (IllegalArgumentException expection) {
             throw new AreaErradaException("A área introduzida não é válida!");
         }

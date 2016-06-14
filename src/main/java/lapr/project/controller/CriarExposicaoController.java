@@ -19,17 +19,16 @@ public class CriarExposicaoController {
 
     private final RegistoUtilizadores m_ru;
 
-    private final RegistoOrganizadores m_ro;
+    private List<Organizador> m_organizadoresSelecionados;
 
     private Exposicao m_exposicao;
 
     private EstadoExposicao m_estadoExposicao;
 
-    public CriarExposicaoController(CentroExposicoes centro_exposicoes, RegistoExposicoes registoExposicoes, RegistoUtilizadores registoUtilizadores, RegistoOrganizadores registoOrganizadores) {
+    public CriarExposicaoController(CentroExposicoes centro_exposicoes) {
         m_centro_exposicoes = centro_exposicoes;
-        m_re = registoExposicoes;
-        m_ru = registoUtilizadores;
-        m_ro = registoOrganizadores;
+        m_re = centro_exposicoes.getRegistoExposicoes();
+        m_ru = centro_exposicoes.getRegistoUtilizadores();
     }
 
     public void getRegistoExposicao() {
@@ -79,17 +78,12 @@ public class CriarExposicaoController {
         m_exposicao.setDataEncerramentoSubCand(dataAberturaSubCand);
         m_exposicao.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         m_exposicao.setLocal(strLocal);
-
-        for (Utilizador u : lstUtz) {
-            m_ro.addOrganizador(u);
+        if (!m_re.validaExposicao(m_exposicao)) {
+            m_exposicao = null;
         }
-
-        if (m_re.validaExposicao(m_exposicao)) {
-            return m_exposicao;
-        } else {
-            return null;
-        }
+        return m_exposicao;
     }
+
     /**
      * Devolve um boolean que representa o sucesso da operação que é registar
      * uma nova exposição
@@ -102,21 +96,32 @@ public class CriarExposicaoController {
         return m_re.registaExposicao(m_exposicao);
 
     }
-    
+
     /**
      * Adiciona novo organizador à exposição
+     *
      * @param id - identificação do organizador
      * @return true se o organizador é valido e foi adicionado ou false caso contrário
      */
-    public boolean addOrganizador(String id){
-        Utilizador utilizador = m_ru.identificarUtilizadorPeloUsername(id);
-        if(m_exposicao.addOrganizador(utilizador)){
+    public boolean addOrganizador(Utilizador utilizador) {
+        if (m_exposicao.validaOrganizador(utilizador)) {
+            m_organizadoresSelecionados.add(new Organizador(utilizador));
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+    
+    /**
+     * Regista os organizadores selecionados na exposição
+     */
+    public void registarOrganizadores(){
+        m_exposicao.addOrganizadores(m_organizadoresSelecionados);
+    }
 
+    /**
+     * Tenta a transição do estado ca exposição para criada
+     */
     public void setEstadoCriada() {
         this.m_estadoExposicao = this.m_exposicao.getEstado();
         m_estadoExposicao.setEstadoCriada();
