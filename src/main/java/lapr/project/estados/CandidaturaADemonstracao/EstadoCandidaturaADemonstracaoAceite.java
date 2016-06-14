@@ -6,7 +6,7 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author guilherme
  */
-public class EstadoCandidaturaADemonstracaoAceite implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoAceite extends EstadoCandidaturaADemonstracao {
 
     private CandidaturaADemonstracao m_cand;
 

@@ -6,13 +6,10 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author Ana Leite
  */
-<<<<<<< HEAD
-public class EstadoCandidaturaADemonstracaoAvaliada implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoAvaliada extends EstadoCandidaturaADemonstracao {
 
-    CandidaturaADemonstracao m_cand;
-
-    public EstadoCandidaturaADemonstracaoAvaliada(CandidaturaADemonstracao c) {
-        m_cand = c;
+    public EstadoCandidaturaADemonstracaoAvaliada(CandidaturaADemonstracao cand) {
+        super(cand);
     }
 
     @Override
@@ -79,7 +76,7 @@ public class EstadoCandidaturaADemonstracaoAvaliada implements EstadoCandidatura
 
     @Override
     public boolean setEstadoCandidaturaADemonstracaoRecusada() {
-        EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoRejeitada(m_cand);
+        EstadoCandidaturaADemonstracaoRejeitada ne = new EstadoCandidaturaADemonstracaoRejeitada(m_cand);
         m_cand.setEstado(ne);
         return true;
     }
@@ -97,22 +94,4 @@ public class EstadoCandidaturaADemonstracaoAvaliada implements EstadoCandidatura
     @Override
     public boolean isEstadoCandidaturaADemonstracaoRemovida() {
         return false;
-=======
-public class EstadoCandidaturaADemonstracaoAvaliada extends EstadoCandidaturaADemonstracao {
-
-    public EstadoCandidaturaADemonstracaoAvaliada(CandidaturaADemonstracao cand) {
-        super(cand);
-    }
-
-    @Override
-    public boolean setEstadoCandidaturaAvaliada() {
-        return true;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAvaliada() {
-        return true;
->>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
-    }
-
 }
