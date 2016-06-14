@@ -7,7 +7,7 @@ package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.AbstractListModel;
-import lapr.project.model.Utilizador;
+import lapr.project.model.Organizador;
 
 /**
  *
@@ -15,28 +15,32 @@ import lapr.project.model.Utilizador;
  */
 public class ModeloJListPotenciaisOrganizadores extends AbstractListModel {
 
-    private List<Utilizador> lstUtilizadores;
+    private List<Organizador> lstOrganizadores;
 
-    public void setList(List<Utilizador>list){
-        lstUtilizadores = list;
+    public void setList(List<Organizador>list){
+        lstOrganizadores = list;
     }
     
-    public void add(Utilizador user){
-        lstUtilizadores.add(user);
+    public void add(Organizador user){
+        lstOrganizadores.add(user);
     }
     
     public void remove(int index){
-        lstUtilizadores.remove(index);
+        lstOrganizadores.remove(index);
+    }
+    
+    public List<Organizador> getList(){
+        return lstOrganizadores;
     }
     
     @Override
     public int getSize() {
-        return lstUtilizadores.size();
+        return lstOrganizadores.size();
     }
 
     @Override
     public Object getElementAt(int index) {
-        return lstUtilizadores.get(index);
+        return lstOrganizadores.get(index);
     }
 
 }

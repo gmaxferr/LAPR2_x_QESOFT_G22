@@ -541,9 +541,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param utilizador - utilizador a verificar
      * @return true se o utilizador nao é FAEou false caso contrário
      */
-    public boolean validaOrganizador(Utilizador utilizador) {
+    public boolean validaOrganizador(Organizador utilizador) {
         for (FAE f : m_rfae.getListaFAE()) {
-            if (utilizador.getUsername().equals(f.getUsernameFae())) {
+            if (utilizador.getUsernameOrganizador().equals(f.getUsernameFae())) {
                 return false;
             }
         }

@@ -70,7 +70,7 @@ public class CriarExposicaoController {
      * @return o objecto Exposição criado com estes parametros ou null se não
      * foi possivel criar com esses parametros
      */
-    public Exposicao setDados(String strTitulo, String strDescricao, Data dataInicio, Data dataFim, Data dataAberturaSubCand, Data dataEncerramentoSubCand, Data dataFimDetecaoConflitos, Local strLocal, List<Utilizador> lstUtz) {
+    public Exposicao setDados(String strTitulo, String strDescricao, Data dataInicio, Data dataFim, Data dataAberturaSubCand, Data dataEncerramentoSubCand, Data dataFimDetecaoConflitos, Local strLocal) {
         m_exposicao.setTitulo(strTitulo);
         m_exposicao.setDescricao(strDescricao);
         m_exposicao.setPeriodo(dataInicio, dataFim);
@@ -101,24 +101,32 @@ public class CriarExposicaoController {
      * Adiciona novo organizador à exposição
      *
      * @param id - identificação do organizador
-     * @return true se o organizador é valido e foi adicionado ou false caso contrário
+     * @return true se o organizador é valido e foi adicionado ou false caso
+     * contrário
      */
-    public boolean addOrganizador(Utilizador utilizador) {
+    public boolean addOrganizador(Organizador utilizador) {
         if (m_exposicao.validaOrganizador(utilizador)) {
-            m_organizadoresSelecionados.add(new Organizador(utilizador));
+            m_organizadoresSelecionados.add(utilizador);
             return true;
         } else {
             return false;
         }
     }
-    
+
     /**
      * Regista os organizadores selecionados na exposição
      */
-    public void registarOrganizadores(){
+    public void registarOrganizadores() {
         m_exposicao.addOrganizadores(m_organizadoresSelecionados);
     }
 
+    /**
+     * Remove organizador pendente
+     */
+    public void removerOrganizador(int index){
+        m_organizadoresSelecionados.remove(index);
+    }
+    
     /**
      * Tenta a transição do estado ca exposição para criada
      */
