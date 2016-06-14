@@ -52,17 +52,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Método que adiciona uma nova demonstração
-     *
-     * @param demonstracao demostracao a ser adicionada
-     */
-    public void adicionaDemonstracao(Demonstracao demonstracao) {
-        if (valida(demonstracao)) {
-            this.m_listaDemonstracoes.add(demonstracao);
-        }
-    }
-
-    /**
      * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
      * parametro
      *
@@ -120,10 +109,11 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return demosPendentes;
     }
-    
+
     /**
-     * 
-     * @return - lista das demonstrações dentro do periodo de submissão de candidaturas
+     *
+     * @return - lista das demonstrações dentro do periodo de submissão de
+     * candidaturas
      */
     public List<Demonstracao> getDemonstracoesAbertas() {
         List<Demonstracao> demosAbertas = new ArrayList<>();
@@ -134,7 +124,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return demosAbertas;
     }
-    
+
     /**
      * Valida uma demonstração
      *
@@ -153,39 +143,42 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     public void addDemo(Demonstracao m_demoCriada) {
         m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
         m_contadorDemos++;
-        this.m_listaDemonstracoes.add(m_demoCriada);
+        if (valida(m_demoCriada)) {
+            this.m_listaDemonstracoes.add(m_demoCriada);
+        }
     }
 
-    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username){
+    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username) {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
-        
-        for (Demonstracao demonstracao : m_listaDemonstracoes){
-            for (Organizador organizador : demonstracao.getListaOrganizadores()){
-                if(organizador.getUsernameOrganizador().equalsIgnoreCase(username) && demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada())
+
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            for (Organizador organizador : demonstracao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(username) && demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
                     listaDemonstracoesDoOrganizador.add(demonstracao);
-                    }
+                }
+            }
         }
         return listaDemonstracoesDoOrganizador;
     }
-    
-     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE){
+
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE) {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
-        
-        for (Demonstracao demonstracao : m_listaDemonstracoes){
-            for (FAE fae : demonstracao.getListaFAE()){
-                if(fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas())
+
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            for (FAE fae : demonstracao.getListaFAE()) {
+                if (fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
                     listaDemonstracoesDoFAE.add(demonstracao);
-                    }
+                }
+            }
         }
         return listaDemonstracoesDoFAE;
     }
-    
-    
+
     public void fix(RegistoRecursos m_registoRecursos) {
-        for(Demonstracao d : this.m_listaDemonstracoes){
-            for(Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()){
-                for(Recurso r2 : m_registoRecursos.getListaDeRecursos()){
-                    if(r.equals(r2)){
+        for (Demonstracao d : this.m_listaDemonstracoes) {
+            for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {
+                for (Recurso r2 : m_registoRecursos.getListaDeRecursos()) {
+                    if (r.equals(r2)) {
                         r = r2;
                         break;
                     }
@@ -206,7 +199,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_listaDemonstracoes.clear();
 
                 NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
@@ -216,7 +209,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                     demo.importContentFromXMLNode(n2);
                     m_listaDemonstracoes.add(demo);
                 }
-                
+
                 this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
             }
 
@@ -241,7 +234,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                 Node n = demo.exportContentToXMLNode();
                 elementKeyword.appendChild(document.importNode(n, true));
             }
-            
+
             elementKeyword.setAttribute(CONTADOR_ATTR_NAME, String.valueOf(this.m_contadorDemos));
 
             document.appendChild(elementKeyword);

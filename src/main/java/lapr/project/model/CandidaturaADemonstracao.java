@@ -77,10 +77,21 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     /**
      * Altera os dados da candidatura
      */
-    public void setDados(String novosDados){
+    public void setDados(String novosDados) {
         m_dados = novosDados;
     }
-    
+
+    @Override
+    public boolean equals(Object outraCand) {
+        CandidaturaADemonstracao outra = (CandidaturaADemonstracao) outraCand;
+        if (this.m_dados.equals(outra.getM_dadosCandidatura())) {
+            if (this.m_emailExpositor.equals(outra.getM_emailExpositor())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public CandidaturaADemonstracao importContentFromXMLNode(Node node) {
         try {

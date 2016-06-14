@@ -26,7 +26,7 @@ public class AlterarParaCandidaturasFechadas extends TimerTask{
 
     @Override
     public void run() {
-        m_demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasAbertas();
+        m_demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasFechadas();
     }
     
 }

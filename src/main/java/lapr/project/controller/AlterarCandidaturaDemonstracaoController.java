@@ -18,57 +18,76 @@ import lapr.project.registos.RegistoDemonstracoes;
  * @author JoãoCardoso aka K4rd050
  */
 public class AlterarCandidaturaDemonstracaoController {
-    
-    private List<CandidaturaADemonstracao> m_lstCandsDemo;
+
     private Exposicao m_e;
     private CandidaturaADemonstracao m_cd;
     private String m_emailExpositor;
     private String m_novosDados;
-    private RegistoDemonstracoes m_rd; 
-    
-    
+    private RegistoDemonstracoes m_rd;
+
     /**
      * Construtor da UC26
+     *
      * @param email - email do expositor
      * @param e - exposição selecionada
      */
-    public AlterarCandidaturaDemonstracaoController(String email,Exposicao e){
-           m_e = e;
-           m_emailExpositor = email;
+    public AlterarCandidaturaDemonstracaoController(String email, Exposicao e) {
+        m_e = e;
+        m_emailExpositor = email;
     }
+    
+    /**
+     * 
+     * @return - novos dados temporários 
+     */
+    public String getNovosDados(){
+        return m_novosDados;
+    }
+    
+    /**
+     * 
+     * @return - candidatura a demonstracao alterada
+     */
+    public CandidaturaADemonstracao getCandidaturaDemonstracao(){
+        return m_cd;
+    }
+    
     
     /**
      * Permite selecionar temporariamente a candidatura a alterar
+     *
      * @param c - candidatura a alterar
      */
-    public void selectCand(CandidaturaADemonstracao c){
+    public void selectCand(CandidaturaADemonstracao c) {
         m_cd = c;
     }
-    
+
     /**
      * Define novos dados da candidatura a demonstração
+     *
      * @param dados - novos dados da candidatura a demonstração
      */
-    public void setDados(String dados){
+    public void setDados(String dados) {
         m_novosDados = dados;
     }
-    
+
     /**
      * Altera efetivamente os dados da candidatura após confirmação
      */
-    public void alterarCandidatura(){
+    public void alterarCandidatura() {
         m_cd.setDados(m_novosDados);
     }
-    
+
     /**
      * Procura e devolve lista das candidaturas a demonstrações do expositor
+     *
      * @return - lista das candidaturas a demonstrações do expositor
      */
-    public List<CandidaturaADemonstracao>getCandidaturasRepresentante(){
+    public List<CandidaturaADemonstracao> getCandidaturasRepresentante() {
         m_rd = m_e.getRegistoDemonstracoes();
-        List<Demonstracao>lstDemos= m_rd.getDemonstracoesAbertas();
-        List<CandidaturaADemonstracao>lstCands = new ArrayList<>();
-        for(Demonstracao d : lstDemos){
+        List<Demonstracao> lstDemos = m_rd.getDemonstracoesAbertas();
+        List<CandidaturaADemonstracao> lstCands = new ArrayList<>();
+        for (Demonstracao d : lstDemos) {
             RegistoCandidaturaADemonstracoes rcd = d.getRegistoCandidaturasADemonstracao();
             rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
             lstCands.addAll(rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor));

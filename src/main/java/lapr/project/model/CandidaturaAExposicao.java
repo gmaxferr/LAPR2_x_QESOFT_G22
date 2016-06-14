@@ -592,4 +592,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         }
         return node;
     }
+
+    boolean getDecisao() {
+        return m_decisao.getM_bDecisao();
+    }
+
 }
