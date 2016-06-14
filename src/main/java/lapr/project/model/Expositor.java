@@ -35,7 +35,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
     public String getEmail() {
         return this.getUtilizador().getEmail();
     }
-    
+
     /**
      * @return Devolve o username do expositor
      */
@@ -56,7 +56,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
     public void setUtilizador(Utilizador m_utilizador) {
         this.m_utilizador = m_utilizador;
     }
-    
+
     @Override
     public Expositor importContentFromXMLNode(Node node) {
         try {
@@ -90,7 +90,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
-            
+
             Element elem = document.createElement(USERNAME_ELEMENT_NAME);
             elem.setTextContent(this.getUtilizador().getUsername());
             elementBase.appendChild(elem);

@@ -26,7 +26,6 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
 
     private List<Exposicao> listaExposicoes;
     private JFrame jFrameMenuPrincipal;
-    private final Organizador organizador;
     private final DefinirFAEController controller;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
@@ -38,6 +37,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     private final CardLayout cardLayout;
     private List<Utilizador> listaUtilizadores;
     private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
+    private final String usernameOrganizador;
 
     /**
      * Creates new form JFrameDefinirFAE
@@ -46,12 +46,12 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
      * @param centroExposicoes
      * @param organizador
      */
-    public JFrameDefinirFAE(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, Organizador organizador) {
+    public JFrameDefinirFAE(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameOrganizador) {
         super("Definir FAE");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.organizador = organizador;
-        this.controller = new DefinirFAEController(centroExposicoes, organizador.getUsernameOrganizador());
+        this.usernameOrganizador = usernameOrganizador;
+        this.controller = new DefinirFAEController(centroExposicoes, usernameOrganizador);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE();
         this.cardLayout = (CardLayout) getContentPane().getLayout();

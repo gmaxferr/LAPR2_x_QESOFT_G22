@@ -21,7 +21,6 @@ import lapr.project.model.*;
 public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
     private final JFrame jFrameMenuPrincipal;
-    private final GestorDeExposicoes gestorDeExposicoes;
     private DecidirCandidaturasAExposicaoController controller;
     private final ArrayList<Exposicao> listaExposicoes;
 
@@ -40,14 +39,12 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
      *
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
-     * @param gestorExposicoes
      */
-    public JFrameDecidirCandidaturasAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, GestorDeExposicoes gestorExposicoes) {
+    public JFrameDecidirCandidaturasAExposicaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes) {
         super("Decidir candidaturas");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.gestorDeExposicoes = gestorExposicoes;
-        this.controller = new DecidirCandidaturasAExposicaoController(centroExposicoes, gestorExposicoes);
+        this.controller = new DecidirCandidaturasAExposicaoController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAvaliadas();
         this.cardLayout = (CardLayout) getContentPane().getLayout();

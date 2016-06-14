@@ -387,4 +387,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         }
         return node;
     }
+
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

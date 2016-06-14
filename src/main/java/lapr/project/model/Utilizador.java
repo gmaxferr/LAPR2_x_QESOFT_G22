@@ -2,7 +2,11 @@ package lapr.project.model;
 
 import java.util.*;
 import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.xml.parsers.*;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
 import lapr.project.utils.Utilitarios;
@@ -244,13 +248,19 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param password - password a validar
      * @return true se for válida; false caso contrário.
      */
-    public boolean validaPassword(char[] password) {
+    public boolean validaPassword(char[] password) throws InvalidPasswordException {
         char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
-        return Utilitarios.hasLowerCase(decryptesPass)
+        boolean valido = Utilitarios.hasLowerCase(decryptesPass)
                 && Utilitarios.hasNumber(decryptesPass)
                 && Utilitarios.hasSinalPontuacao(decryptesPass)
                 && Utilitarios.hasUpperCase(decryptesPass)
                 && decryptesPass.length >= 4 && decryptesPass.length <= 7;
+
+        if (valido) {
+            return true;
+        } else {
+            throw new InvalidPasswordException("Password inválida!");
+        }
     }
 
     /**
@@ -279,7 +289,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaUtilizador(String nome, char[] password, String username, String email) {
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
 
         if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
             return false;
@@ -291,15 +301,42 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * Valida os dados do Utilizador
      *
      * @param nome nome do utilizador
-     * @param password do utilizador
-     * @param username do utilizador
-     * @param email do utilizador
+     * @param password password do utilizador
+     * @param username username do utilizador
+     * @param email email do utilizador
      *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
-        return !(nome.isEmpty() || String.valueOf(password).trim().isEmpty() || username.isEmpty() || email.isEmpty());
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
+        boolean password1 = validaPassword(password);
+        boolean email1 = validaEmail(email);
+        if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Para um email ser válido tem que conter, de uma forma simplificada,
+     * letras seguido de um "@" com mais letras seguidas, um ponto (".") e mais
+     * letras.
+     *
+     * @param email - email a validar
+     * @return true se for válido; false caso contrário.
+     */
+    public boolean validaEmail(String email) throws InvalidEmailException {
+        boolean validoFinal = false;
+        String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+        Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        validoFinal = matcher.matches();
+        if (validoFinal) {
+            return true;
+        } else {
+            throw new InvalidEmailException("Email inválido!");
+        }
+
     }
 
     /**

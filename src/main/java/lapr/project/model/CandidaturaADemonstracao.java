@@ -46,7 +46,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      *
      * @return dados da candidatura
      */
-    public String getM_dadosCandidatura() {
+    public String getDadosCandidatura() {
         return m_dados;
     }
 
@@ -54,7 +54,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      *
      * @return username do expositor
      */
-    public String getM_emailExpositor() {
+    public String getEmailExpositor() {
         return m_emailExpositor;
     }
 
@@ -149,9 +149,9 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
             elem.setTextContent(this.m_emailExpositor);
             elementRoot.appendChild(elem);
 
-            if (this.m_estado.isEstadoCandidaturaInstanciada()) {
+            if (this.m_estado.isEstadoCandidaturaADemonstracaoInstanciada()) {
                 elementRoot.setAttribute(ESTADO_ATTR_NAME, "instanciada");
-            } else if (this.m_estado.isEstadoCandidaturaCriada()) {
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoCriada()) {
                 elementRoot.setAttribute(ESTADO_ATTR_NAME, "criada");
             }
 
@@ -162,4 +162,5 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
         return node;
     }
+
 }

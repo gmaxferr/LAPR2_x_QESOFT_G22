@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
+import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
@@ -245,4 +247,21 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return node;
     }
 
+    /**
+     * Forma uma lista com as demonstrações em estado avaliadas
+     * @return lista formada
+     */
+    public List<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
+        List<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
+        EstadoDemonstracao estado;
+        for(Demonstracao d: this.m_listaDemonstracoes){
+            estado = d.getEstadoDemo();
+            if(estado.isEstadoDemonstracaoCandidaturasAvaliadas()){
+                listaDemosAvaliadas.add(d);
+            }
+        }
+        return listaDemosAvaliadas;
+    }
+
+    
 }

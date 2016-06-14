@@ -1,21 +1,12 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import lapr.project.exceptions.*;
 import lapr.project.model.Utilizador;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
@@ -65,7 +56,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    private boolean validaUtilizador(String username, String email) {
+    private boolean validaUsernameEEmailDoUtilizador(String username, String email) {
         return validaUsername(username)
                 && validaEmail(email);
     }
@@ -81,33 +72,23 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * Para um email ser válido tem que conter, de uma forma simplificada,
-     * letras seguido de um "@" com mais letras seguidas, um ponto (".") e mais
-     * letras. Não pode ser vazio nem uma string null, evidentemente.
-     *
-     * Além desta verificação, é necessário que nenhum outro utilizador seja
+     * Para o email ser válido é necessário que nenhum outro utilizador seja
      * portador deste mesmo email.
      *
      * @param email - email a validar
      * @return true se for válido; false caso contrário.
      */
     public boolean validaEmail(String email) {
-        if ((email == null) || (email.trim().length() == 0)) {
-            return false;
-        }
-
-        String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
-        Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-
         boolean valido = true;
-        for (Utilizador u : m_listaUtilizadores) {
-            if (u.getEmail().equals(email)) {
-                valido = false;
+        if ((email == null) || (email.trim().length() == 0)) {
+            for (Utilizador u : m_listaUtilizadores) {
+                if (u.getEmail().equals(email)) {
+                    valido = false;
+                }
             }
         }
+        return valido;
 
-        return matcher.matches() && valido; //se o padrão coincidir, retorna true; senão retorna false.
     }
 
     /**
@@ -137,35 +118,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * Devolve um Utilizador identificado pelo seu ID
-     *
-     * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
-     * @return o dado Utilizador se encontrar ou então devolve null
-     */
-    public Utilizador getUtilizador(String id) {
-        for (Utilizador u : m_listaUtilizadores) {
-            if (identificarUtilizadorPeloId(id, u.getEmail(), u.getUsername())) {
-                return u;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Retorna um Utilizador dado um ID (nome ou email)
-     *
-     * @param id forma de identificar o Utilizador, pode ser o seu nome ou email
-     * @return o dado Utilizador se encontrar ou então devolve null
-     */
-    public boolean identificarUtilizadorPeloId(String id, String emailAVerificar, String usernameAVerificar) {
-        if (id.equals(emailAVerificar) || id.equals(usernameAVerificar)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Cria um novo utilizador
      *
      * @return utilizador criado
@@ -175,13 +127,24 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
+     * Confirma o registo de todos os utilizadores registados no centro de
+     * exposições atual. Este método é usado apenas na primeira execução do
+     * programa.
+     */
+    public void confirmarRegistoTodosUtilizadores() {
+        for (Utilizador utilizador : m_listaUtilizadores) {
+            utilizador.confirmarRegistoDoUtilizador();
+        }
+    }
+
+    /**
      * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
      * @param u Utilizador a adicionar
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
-    public boolean addUtilizador(Utilizador u) {
-        if (validaUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
+    public boolean addUtilizador(Utilizador u) throws InvalidPasswordException, InvalidEmailException {
+        if (validaUsernameEEmailDoUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword(u.getPwd())) {
             adicionaUtilizador(u);
             return true;
         }
@@ -212,26 +175,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         return list;
     }
 
-    /**
-     * Procura um utilizador através do seu username
-     *
-     * @param username - username do utilizador a procurar
-     * @return utilizador com o username enviado; null caso não encontre o
-     * utilizador com esse username
-     */
-    public Utilizador identificarUtilizador(String username) {
-        for (Utilizador utilizador : this.m_listaUtilizadores) {
-            if (utilizador.getUsername().equalsIgnoreCase(username)) {
-                return utilizador;
-            }
-        }
-        return null;
-    }
-
-    public boolean validaDadosUnicos(String username, String email) {
-        return true;
-    }
-
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {
         try {
@@ -246,7 +189,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
                 Element elem = (Element) n;
 
                 this.m_listaUtilizadores.clear();
-                
+
                 NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);

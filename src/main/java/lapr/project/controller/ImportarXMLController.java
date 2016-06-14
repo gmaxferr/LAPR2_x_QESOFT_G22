@@ -19,10 +19,10 @@ import org.xml.sax.SAXException;
  * @author Ricardo Catalao
  */
 public class ImportarXMLController {
-    
-    public CentroExposicoes Import(String filename){
+
+    public CentroExposicoes Import(String filename) {
         CentroExposicoes ce = null;
-        
+
         try {
             XMLParser parser = new XMLParser();
             Node node = parser.readXMLElementFromFile(filename);
@@ -31,8 +31,8 @@ public class ImportarXMLController {
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             Logger.getLogger(ImportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return ce;
     }
-    
+
 }

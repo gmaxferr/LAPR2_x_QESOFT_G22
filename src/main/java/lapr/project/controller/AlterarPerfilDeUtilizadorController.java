@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;
@@ -45,7 +46,7 @@ public class AlterarPerfilDeUtilizadorController {
     public void identificaUtilizador(String username) {
         //devolve null se não encontrar
         setUsername(username);
-        m_u = m_ru.identificarUtilizador(username);
+        m_u = m_ru.identificarUtilizadorPeloUsername(username);
     }
 
     /**
@@ -126,7 +127,7 @@ public class AlterarPerfilDeUtilizadorController {
      * @param password - nova password
      * @return true se for válida; false caso contrário.
      */
-    public boolean changePassword(char[] password) {
+    public boolean changePassword(char[] password) throws InvalidPasswordException{
         if (m_u.validaPassword(password)) {
             setPassword(password);
             return true;

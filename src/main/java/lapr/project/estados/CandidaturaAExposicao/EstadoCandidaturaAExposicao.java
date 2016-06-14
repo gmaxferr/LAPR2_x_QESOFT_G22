@@ -1,58 +1,113 @@
 package lapr.project.estados.CandidaturaAExposicao;
 
 import lapr.project.estados.Estado;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
  * @author Ana Leite e Ricardo Osório
  */
-public interface EstadoCandidaturaAExposicao extends Estado{
-    
-    boolean setEstadoCandidaturaInicial();
-    
-    boolean setEstadoCandidaturaCriada();
-    
-    boolean setEstadoCandidaturaAbertaAtualizacaoConflitos();
-   
-    boolean setEstadoCandidaturaAtribuida();
-    
-    boolean setEstadoCandidaturaAvaliada();
-    
-    boolean setEstadoCandidaturaAceite();
-    
-    boolean setEstadoCandidaturaRejeitada();
-    
-    boolean setEstadoCandidaturaProntaAtribuicoes();
-    
-    boolean setEstadoCandidaturaNaoAvaliada();
-    
-    boolean setEstadoCandidaturaStandAceite();
-    
-    boolean setEstadoCandidaturaStandRecusado();
-    
-    boolean setEstadoCandidaturaStandsAtribuidos();
-    
-    boolean isEstadoCandidaturaIncial();
-    
-    boolean isEstadoCandidaturaCriada();
-    
-    boolean isEstadoCandidaturaAbertaAtualizacaoConflitos();
-    
-    boolean isEstadoCandidaturaAtribuida();
-    
-    boolean isEstadoCandidaturaAvaliada();
-    
-    boolean isEstadoCandidaturaAceite();
-    
-    boolean isEstadoCandidaturaRejeitada();
-    
-    boolean isEstadoCandidaturaProntaAtribuicoes();
+public abstract class EstadoCandidaturaAExposicao implements Estado {
 
-    boolean isEstadoCandidaturaNaoAvaliada();
-    
-    boolean isEstadoCandidaturaStandAceite();
-    
-    boolean isEstadoCandidaturaStandRecusado();
-    
-    boolean isEstadoCandidaturaStandsAtribuidos();
+    final CandidaturaAExposicao m_cand;
+
+    public EstadoCandidaturaAExposicao(CandidaturaAExposicao cand) {
+        this.m_cand = cand;
+    }
+
+    public boolean setEstadoCandidaturaInicial() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaCriada() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaProntaAtribuicoes() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaIncial() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaCriada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAceite() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaRejeitada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaProntaAtribuicoes() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaNaoAvaliada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaStandAceite() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaStandRecusado() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaStandsAtribuidos() {
+        return false;
+    }
 }
