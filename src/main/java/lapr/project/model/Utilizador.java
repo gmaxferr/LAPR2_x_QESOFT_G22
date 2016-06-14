@@ -244,7 +244,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
      * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
      * máximo de 7.
-     *
+     * 
      * @param password - password a validar
      * @return true se for válida; false caso contrário.
      */
