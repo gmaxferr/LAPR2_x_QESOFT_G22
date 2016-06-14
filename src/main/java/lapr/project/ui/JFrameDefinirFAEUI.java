@@ -28,9 +28,6 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     private List<Utilizador> listaUtilizadores;
     private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
 
-    private List<Utilizador> listaTempFAE;
-    private ModeloJTableUtilizadores modeloJTableFAE;
-
     /**
      * Creates new form JFrameDefinirFAE
      *
@@ -50,6 +47,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         alterarComportamentoFecharJFrame();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
 
+        setLocationRelativeTo(null);
         setVisible(true);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
@@ -301,17 +299,26 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setText("FAE");
+        jLabel6.setText("FAE (lista temporária)");
 
         jButtonCard2Recuar.setText("Recuar");
+        jButtonCard2Recuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard2RecuarActionPerformed(evt);
+            }
+        });
 
         jButtonCard2Terminar.setText("Terminar");
+        jButtonCard2Terminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard2TerminarActionPerformed(evt);
+            }
+        });
 
         jTableUtilizadores.setModel(new ModeloJTableUtilizadores(this.listaUtilizadores));
         jScrollPane3.setViewportView(jTableUtilizadores);
 
-        this.listaTempFAE=new ArrayList(this.listaUtilizadoresCorrespondentesAosFae);
-        jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaTempFAE));
+        jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
         jScrollPane4.setViewportView(jTableFAE);
 
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
@@ -383,9 +390,9 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
             controller.getRegistoUtilizadores();
             controller.getRegistoOrganizadores();
             controller.getRegistoFAE();
-            controller.setRegistoOrganizadoresParaValidacoes();
             listaUtilizadores = controller.getListaUtilizadores();
             this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
+            jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
             if (!listaUtilizadores.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -398,15 +405,14 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
 
     private void avancarParaCard2() {
         jTableUtilizadores.setModel(new ModeloJTableUtilizadores(this.listaUtilizadores));
-        this.modeloJTableFAE = new ModeloJTableUtilizadores(this.listaTempFAE);
         jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
 
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
-        dispose();
         this.jFrameMenuPrincipal.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
@@ -420,18 +426,47 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
     private void jButtonCard2AdicionarFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarFAEActionPerformed
         if (!jTextFieldCard2IntroduzirUsernameUtilizador.getText().replaceAll(" ", "").isEmpty()) {
-            if (controller.criarEAdicionarFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())) {
-                //jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
-//                this.modeloJTableFAE.addUtilizador(utilizador);
-                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi definido como FAE para a exposição selecionada!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            Utilizador u = controller.identificarUtilizadorPeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText());
+            if (u != null) {
+                if (controller.validaUtilizadorParaAdicionarComoFAE(u)) {
+                    controller.adicionarFaeListaTemp(u);
+                    this.listaUtilizadoresCorrespondentesAosFae.add(u);
+                    this.jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
+                    JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Não foi encontrado nenhum utilizador com o username inserido!", "Erro", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não pode deixar o campo do username vazio!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard2AdicionarFAEActionPerformed
 
+    private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
+        controller.limparFAEJaAdicionados();
+        cardLayout.show(getContentPane(), "card1");
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+    }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
+
+    private void jButtonCard2TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2TerminarActionPerformed
+        if (controller.foramAdicionadosFAE()) {
+            controller.confirmaAddFAE();
+            finalizarUC();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE! Se não pretender adicionar nenhum FAE a esta exposição retorne ao passo anterior e selecione a exposição certa.", "Nenhum FAE adicionado", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCard2TerminarActionPerformed
+    private void finalizarUC() {
+        String[] opcoes2 = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(rootPane, "Confirma os novos FAE?", "Terminar", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+        if (resposta == 0) {
+            setVisible(false);
+            JOptionPane.showMessageDialog(rootPane, "Novos FAE adicionados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            jFrameMenuPrincipal.setVisible(true);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
