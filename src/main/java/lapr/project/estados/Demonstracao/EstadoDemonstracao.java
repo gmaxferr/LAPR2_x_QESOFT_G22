@@ -6,42 +6,89 @@
 package lapr.project.estados.Demonstracao;
 
 import lapr.project.estados.Estado;
+import lapr.project.model.Demonstracao;
 
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
-public interface EstadoDemonstracao extends Estado{
+public abstract class EstadoDemonstracao implements Estado {
+    
+    final Demonstracao m_demo;
 
-    public boolean setEstadoDemonstracaoPendente();
+    public EstadoDemonstracao(Demonstracao m_demo) {
+        this.m_demo = m_demo;
+    }
 
-    public boolean setEstadoDemonstracaoConfirmada();
+    public boolean setEstadoDemonstracaoPendente() {
+        return false;
+    }
 
-    public boolean setEstadoDemonstracaoCancelada();
-    
-    public boolean setEstadoDemonstracaoCandidaturasAtribuidas();
+    public boolean setEstadoDemonstracaoConfirmada() {
+        return false;
+    }
 
-    public boolean setEstadoDemonstracaoCandidaturasAvaliadas();
-    
-    public boolean setEstadoDemonstracaoCandidaturasDecididas();
-    
-    public boolean setEstadoDemonstracaoCandidaturasAbertas();
-    
-    public boolean setEstadoDemonstracaoCandidaturasFechadas();
-    
-    public boolean isEstadoDemonstracaoPendente();
+    public boolean setEstadoDemonstracaoCancelada() {
+        return false;
+    }
 
-    public boolean isEstadoDemonstracaoConfirmada();
+    public boolean setEstadoDemonstracaoDatasDefinidas() {
+        return false;
+    }
 
-    public boolean isEstadoDemonstracaoCancelada();
-    
-    public boolean isEstadoDemonstracaoCandidaturasAtribuidas();
+    public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
+        return false;
+    }
 
-    public boolean isEstadoDemonstracaoCandidaturasAvaliadas();
-    
-    public boolean isEstadoDemonstracaoCandidaturasDecididas();
-    
-    public boolean isEstadoDemonstracaoCandidaturasAbertas();
-    
-    public boolean isEstadoDemonstracaoCandidaturasFechadas();
+    public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
+        return false;
+    }
+
+    public boolean setEstadoDemonstracaoCandidaturasDecididas() {
+        return false;
+    }
+
+    public boolean setEstadoDemonstracaoCandidaturasAbertas() {
+        return false;
+    }
+
+    public boolean setEstadoDemonstracaoCandidaturasFechadas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoPendente() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoConfirmada() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCancelada() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoDatasDefinidas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCandidaturasDecididas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCandidaturasAbertas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoCandidaturasFechadas() {
+        return false;
+    }
 }
