@@ -61,7 +61,7 @@ public class ConfirmarRegistoController {
      *
      * @param u Utilizador escolhido
      */
-    void setUtilizadorRegistado(Utilizador u) {
+    public void setUtilizadorRegistado(Utilizador u) {
         u.setUtilizadorRegistado();
     }
 
