@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.exceptions.AreaErradaException;
 import lapr.project.model.Stand;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -20,7 +21,7 @@ import org.w3c.dom.NodeList;
  * @author Ricardo Catalao
  */
 public class RegistoStands implements Importable<RegistoStands>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "RegistoStands";
 
     private final List<Stand> m_listaStands;
@@ -43,13 +44,20 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
         this.m_listaStands.add(stand);
     }
 
-    public boolean criarStand(String ID, int area) {
-        Stand novoStand = new Stand(ID, area);
-        if (validarStand(novoStand)) {
-            this.m_listaStands.add(novoStand);
-            return true;
+    public void criarStand(String ID, String area) throws AreaErradaException {
+        try {
+            int areaDoStand = Integer.parseInt(area);
+            if (areaDoStand < 0) {
+                throw new AreaErradaException("A área introduzida não é válida!");
+            }
+            Stand novoStand = new Stand(ID, areaDoStand);
+            if (validarStand(novoStand)) {
+                this.m_listaStands.add(novoStand);
+            }
+        } catch (IllegalArgumentException expection) {
+            throw new AreaErradaException("A área introduzida não é válida!");
         }
-        return false;
+
     }
 
     private boolean validarStand(Stand novoStand) {

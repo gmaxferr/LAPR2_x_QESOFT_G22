@@ -13,7 +13,7 @@ import org.w3c.dom.*;
  * @author Ricardo Osório Ana Leite
  */
 public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
@@ -39,6 +39,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     private final RegistoTipoConflitos m_registoTipoConflitos;
     private final RegistoExpositores m_registoExpositores;
 
+    private final RegistoStands m_rStands;
+
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
      */
@@ -54,10 +56,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         this.m_registoRecursos = new RegistoRecursos();
         this.m_registoTipoConflitos = new RegistoTipoConflitos();
         this.m_registoExpositores = new RegistoExpositores();
+        this.m_rStands = new RegistoStands();
     }
 
     /**
-     * Devolve o registo de exposições
+     * Devolve o registo de exposições deste centro de exposições
      *
      * @return registo de exposições
      */
@@ -66,7 +69,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de expositores
+     * Devolve o registo de expositores deste centro de exposições
      *
      * @return registo de expositores
      */
@@ -75,7 +78,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores.
+     * Devolve o registo de utilizadores deste centro de exposições
      *
      * @return registo de utilizadores
      */
@@ -84,7 +87,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de mecanismos
+     * Devolve o registo de mecanismos deste centro de exposições
      *
      * @return registo de mecanismos
      */
@@ -93,7 +96,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de recursos
+     * Devolve o registo de recursos deste centro de exposições
      *
      * @return registo de recursos
      */
@@ -102,7 +105,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de tipos de conflitos
+     * Devolve o registo de tipos de conflitos deste centro de exposições
      *
      * @return registo de tipos de conflitos
      */
@@ -111,26 +114,41 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Método que regista a confirmação de um registo de utilizador
+     * Devolve o registo dos stands existentes neste centro de exposições
+     *
+     * @return registo de stand deste centro de exposições
+     */
+    public RegistoStands getRegistoStands() {
+        return this.m_rStands;
+    }
+
+    /**
+     * Confirma o registo de um utilizador recebendo como parametro esse
+     * utilizador
      *
      * @param u Utilizador desejado
      */
     public void setUtilizadorRegistado(Utilizador u) {
-        //para testar
-        Exposicao expo = new Exposicao(this);
         u.setUtilizadorRegistado();
 
     }
 
     /**
-     * Método que devolve um novo Utilizador
+     * Devolve um novo Utilizador
      *
-     * @return novo Utilizador
+     * @return novo utilizador
      */
     public Utilizador novoUtilizador() {
         return new Utilizador();
     }
 
+    /**
+     * Devolve o objecto Expositor identificado pelo seu username (passado por
+     * parametro)
+     *
+     * @param m_StrUsername username do expositor
+     * @return expositor com o username passado por parametro
+     */
     public Expositor getExpositorPeloUsername(String m_StrUsername) {
         for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
             if (expositor.getUsername().equalsIgnoreCase(m_StrUsername)) {
@@ -140,10 +158,20 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return null;
     }
 
+    /**
+     * Devolve a lista de expositores
+     *
+     * @return lista de expositores
+     */
     public List<Expositor> getListaExpositores() {
         return this.m_registoExpositores.getListaExpositores();
     }
 
+    /**
+     *
+     * @param node
+     * @return
+     */
     @Override
     public CentroExposicoes importContentFromXMLNode(Node node) {
         try {
@@ -153,20 +181,22 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             Document document = builder.newDocument();
 
             document.appendChild(document.importNode(node, true));
-            
+
             NodeList elementsKeyword = document.getChildNodes();
             Node n = elementsKeyword.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
                 this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
+
+                this.m_rStands.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
                 
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExpositores.fix(this.m_registoUtilizadores);
-                
+
                 this.m_registoTipoConflitos.importContentFromXMLNode(elem.getElementsByTagName(RegistoTipoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoRecursos.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_registoExposicoes.importContentFromXMLNode(elem.getElementsByTagName(RegistoExposicoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadores);
             }
@@ -176,6 +206,10 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
@@ -193,7 +227,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoUtilizadores.exportContentToXMLNode(), true));
-            
+            elementExpo.appendChild(document.importNode(this.m_rStands.exportContentToXMLNode(), true));
+
             node = elementExpo;
 
         } catch (ParserConfigurationException ex) {

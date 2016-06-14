@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Expositor;
+import lapr.project.model.Utilizador;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -44,12 +45,14 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Método que cria uma nova candidatura
+     * Cria uma nova candidatura recebendo como parametro o utilizador que a
+     * cria - Expositor.
      *
+     * @param utilizador
      * @return nova candidatura
      */
-    public CandidaturaAExposicao criarCandidatura(Expositor expositor) {
-        return new CandidaturaAExposicao(expositor);
+    public CandidaturaAExposicao criarCandidatura(Utilizador utilizador) {
+        return new CandidaturaAExposicao(new Expositor(utilizador));
     }
 
     /**

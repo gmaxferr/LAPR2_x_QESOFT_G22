@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
@@ -11,47 +6,52 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
+    private JFrame jFrameLogin;
     private CentroExposicoes centroExposicoesAtual;
     private RegistarUtilizadorController controller;
     private Utilizador u;
-    
+
     private static final int LARGURA_JANELA_PASSO1 = 470;
-    private static final int ALTURA_JANELA_PASSO1 = 356;
+    private static final int ALTURA_JANELA_PASSO1 = 380;
 
     private static final int LARGURA_JANELA_PASSO2 = 460;
-    private static final int ALTURA_JANELA_PASSO2 = 328;
-    
+    private static final int ALTURA_JANELA_PASSO2 = 340;
+
     /**
      * Creates new form JFrameRegistarUtilizadorUI
+     *
+     * @param jFrameLogin
+     * @param centroExposicoes
      */
-    public JFrameRegistarUtilizadorUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes) {
+    public JFrameRegistarUtilizadorUI(JFrame jFrameLogin, CentroExposicoes centroExposicoes) {
         super("Registar Utilizador");
-        this.jFrameMenuPrincipal = jFrameMenuPrincipal;
+        this.jFrameLogin = jFrameLogin;
         this.centroExposicoesAtual = centroExposicoes;
         this.controller = new RegistarUtilizadorController(centroExposicoes);
         controller.getRegistoUtilizadores();
         u = controller.novoUtilizador();
         initComponents();
-        
+
         alterarComportamentoFecharJFrame();
 
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
-    
-     private void alterarComportamentoFecharJFrame() {
+
+    private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameMenuPrincipal.setVisible(true);
+                jFrameLogin.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
@@ -91,11 +91,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -119,11 +117,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
         jTextField1.setToolTipText("");
 
-        jPasswordField3.setText("jPasswordField3");
-
         jLabel15.setText("Reintroduza a password");
-
-        jPasswordField2.setText("jPasswordField2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,31 +200,31 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         card1.setLayout(card1Layout);
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
             .addGroup(card1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addGap(27, 27, 27))
+                .addGap(39, 39, 39))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("jButtonCard1Recuar");
@@ -249,8 +243,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
         jLabel9.setText("Username");
 
-        jLabel10.setText("Password");
-
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Apresentar o nome do utilizador");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -263,10 +255,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel13.setText("Apresentar o username do utilizador");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Apresentar a password do utilizador");
-        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -274,7 +262,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -282,8 +269,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -301,21 +287,15 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel7.getAccessibleContext().setAccessibleName("jLabelCard2Nome");
         jLabel8.getAccessibleContext().setAccessibleName("jLabelCard2Email");
         jLabel9.getAccessibleContext().setAccessibleName("jLabelCard2Username");
-        jLabel10.getAccessibleContext().setAccessibleName("jLabelCard2Password");
         jLabel11.getAccessibleContext().setAccessibleName("jLabelCard2NomeApresentar");
         jLabel12.getAccessibleContext().setAccessibleName("jLabelCard2EmailApresentar");
         jLabel13.getAccessibleContext().setAccessibleName("jLabelCard2UsernameApresentar");
-        jLabel14.getAccessibleContext().setAccessibleName("JLabelCard2NomeApresentar");
 
         jButton3.setText("Recuar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -341,13 +321,13 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                         .addGap(123, 123, 123)
                         .addComponent(jLabel6))
                     .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(card2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         card2Layout.setVerticalGroup(
@@ -356,12 +336,12 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6)
                 .addGap(23, 23, 23)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleName("jLabelCard2Titulo");
@@ -375,53 +355,77 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        this.jFrameMenuPrincipal.setVisible(true);
+        this.jFrameLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controller.setDados(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText());
-        if(controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText()) == true){
-        avancarParaCard2();
+    private boolean validarPasswordIguais(char[] jPasswordField3, char[] jPasswordField2) {
+
+        if (jPasswordField3.length == jPasswordField2.length) {
+            for (int i = 0; i < jPasswordField3.length; i++) {
+                if (jPasswordField3[i] != jPasswordField2[i]) {
+                    return false;
+                }
+            }
+        } else {
+            return false;
         }
-        else{
-           JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!", "Campos vazios", JOptionPane.WARNING_MESSAGE);
+        return true;
+    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
+        try {
+            if (controller.validaDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true) {
+                avancarParaCard2();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (InvalidPasswordException | InvalidEmailException e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
+        jPasswordField2.setText("");
+        jPasswordField3.setText("");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        controller.setDados(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
-        if(controller.addUtilizador(u) == false){
-            JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes.", JOptionPane.WARNING_MESSAGE);
-            CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-            cardLayout.show(getContentPane(), "card1");
-            setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-        }else {  
-             JOptionPane.showMessageDialog(rootPane, "Decisão tomada!","Decisão", JOptionPane.INFORMATION_MESSAGE);
-                }
+        controller.setDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText());
+        try {
+            if (controller.addUtilizador(u) == false) {
+                JOptionPane.showMessageDialog(rootPane, "Dados já existentes. Insira novos dados!", "Dados já existentes", JOptionPane.WARNING_MESSAGE);
+                CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+                cardLayout.show(getContentPane(), "card1");
+                setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Utilizador registado com sucesso!", "Registo com sucesso", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                this.jFrameLogin.setVisible(true);
+            }
+        } catch (InvalidEmailException | InvalidPasswordException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void avancarParaCard2(){
+    private void avancarParaCard2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
         apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador();
     }
-   
-    private void apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador(){
+
+    private void apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador() {
         jLabel11.setText(jTextField1.getText());
         jLabel12.setText(jTextField2.getText());
         jLabel13.setText(jTextField3.getText());
-        jLabel14.setText(jPasswordField3.getName());
-        
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
@@ -430,11 +434,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

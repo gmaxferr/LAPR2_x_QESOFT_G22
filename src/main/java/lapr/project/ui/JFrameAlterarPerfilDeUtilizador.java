@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarPerfilDeUtilizadorController;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 
 /**
@@ -22,6 +23,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         CTRL.carregaRegistoUtilizadores();
         CTRL.identificaUtilizador(username);
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -252,9 +254,9 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(m_LabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(m_LabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(m_LabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -357,12 +359,14 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         } else {
             valido = false;
         }
-
+        
         if (valido) {
+            try{
             if (CTRL.changePassword(pass1)) {
                 JOptionPane.showMessageDialog(null, "A password foi alterada. Para confirmar alteração, clique em \"Registar Alteracoes\".", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "A password tem formato incorreto", "Erro...", JOptionPane.WARNING_MESSAGE);
+            } 
+            }  catch (InvalidPasswordException e){
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Password Inválida", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "As password introduzidas são diferentes.", "Erro...", JOptionPane.WARNING_MESSAGE);

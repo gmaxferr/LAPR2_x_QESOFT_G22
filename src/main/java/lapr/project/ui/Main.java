@@ -3,7 +3,10 @@ package lapr.project.ui;
 import java.io.File;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
+import lapr.project.exceptions.InvalidEmailException;
+import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
+import lapr.project.registos.RegistoUtilizadores;
 
 /**
  *
@@ -30,19 +33,40 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
+        try {
+            if (centroExposicoes == null) {
+                centroExposicoes = new CentroExposicoes();
+                instanciarPelaPrimeiraVez(centroExposicoes);
+            }
+        } catch (InvalidEmailException | InvalidPasswordException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
-        if (centroExposicoes == null) {
-            centroExposicoes = new CentroExposicoes();
-            Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
-            centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
-
-            JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
-                    + "\naceder ao sistema na sua primeira utilização:"
-                    + "\n\nUtilizador - ADMIN"
-                    + "\n    username: \"admin\""
-                    + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
         }
-
         new LoginV2(centroExposicoes);
+    }
+
+    private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
+        //Admin
+        Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
+        admin.setIsExpositor();
+        admin.setIsFAE();
+        admin.setIsGestor();
+        admin.setIsOrganizador();
+        centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
+
+        JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
+                + "\naceder ao sistema com todos os privilégios:"
+                + "\n\nUtilizador - ADMIN"
+                + "\n    username: \"admin\""
+                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+
+        //Utilizadores
+        RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();
+        ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt"));
+        ru.addUtilizador(new Utilizador("Ana", "Ana", "Abc-1".toCharArray(), "Ana@email.pt"));
+        ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt"));
+        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt"));
+        ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt"));
+        
     }
 }

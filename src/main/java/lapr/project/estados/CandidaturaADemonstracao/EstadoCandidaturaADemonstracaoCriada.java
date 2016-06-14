@@ -6,6 +6,7 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author guima
  */
+<<<<<<< HEAD
 public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaADemonstracao {
 
     CandidaturaADemonstracao m_cand;
@@ -57,6 +58,27 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
     @Override
     public boolean setEstadoCandidaturaADemonstracaoRecusada() {
         return false;
+=======
+public class EstadoCandidaturaADemonstracaoCriada extends EstadoCandidaturaADemonstracao {
+
+    public EstadoCandidaturaADemonstracaoCriada(CandidaturaADemonstracao cand) {
+        super(cand);
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaCriada() {
+        return true;
+    }
+
+    @Override
+    public boolean setEstadoCandidaturaAtribuida() {
+        if (valida()) {
+            m_cand.setEstado(new EstadoCandidaturaADemonstracaoAtribuida(m_cand));
+            return true;
+        } else {
+            return false;
+        }
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
     }
 
     @Override
@@ -66,6 +88,7 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
         return true;
     }
 
+<<<<<<< HEAD
     @Override
     public boolean isEstadoCandidaturaADemonstracaoAceite() {
         return false;
@@ -90,6 +113,10 @@ public class EstadoCandidaturaADemonstracaoCriada implements EstadoCandidaturaAD
     public boolean setEstadoCandidaturaADemonstracaoRemovida() {
         EstadoCandidaturaADemonstracao ne = new EstadoCandidaturaADemonstracaoRemovida(m_cand);
         m_cand.setEstado(ne);
+=======
+    private boolean valida() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
         return true;
     }
 

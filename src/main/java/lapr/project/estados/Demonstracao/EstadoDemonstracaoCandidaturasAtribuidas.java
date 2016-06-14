@@ -11,99 +11,35 @@ import lapr.project.model.Demonstracao;
  *
  * @author JoãoCardoso aka K4rd050
  */
-public class EstadoDemonstracaoCandidaturasAtribuidas implements EstadoDemonstracao{
+public class EstadoDemonstracaoCandidaturasAtribuidas extends EstadoDemonstracao {
 
-    private final Demonstracao m_demo;
-
-    public EstadoDemonstracaoCandidaturasAtribuidas(Demonstracao m_demo) {
-        this.m_demo = m_demo;
-    }
-    
-    @Override
-    public boolean setEstadoDemonstracaoPendente() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoConfirmada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCancelada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoPendente() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoConfirmada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCancelada() {
-        return false;
+    public EstadoDemonstracaoCandidaturasAtribuidas(Demonstracao demo) {
+        super(demo);
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean setEstadoDemonstracaoCandidaturasAvaliadas() {
-        if(valida()){
-        m_demo.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(m_demo));
-        return true;
-        } else return false;
+        if (valida()) {
+            m_demo.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(m_demo));
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAvaliadas() {
-        return true;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoDemonstracaoCandidaturasFechadas() {
-        return false;
-    }
- 
     private boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
     }
+
+    @Override
+    public boolean isEstadoDemonstracaoCandidaturasAtribuidas() {
+        return true;
+    }
+
 }

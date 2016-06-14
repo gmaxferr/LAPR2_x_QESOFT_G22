@@ -98,10 +98,10 @@ public class CriarCandidaturaAExposicaoController {
     /**
      * Cria uma nova candidatura para uma exposição.
      *
-     * @param expositor
+     * @param utilizador
      */
-    public void criarCandidatura(Expositor expositor) {
-        this.m_candidaturaCriada = m_rc.criarCandidatura(expositor);
+    public void criarCandidatura(Utilizador utilizador) {
+        this.m_candidaturaCriada = m_rc.criarCandidatura(utilizador);
     }
 
     /**

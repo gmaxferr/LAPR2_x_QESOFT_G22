@@ -6,17 +6,27 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author guima
  */
-public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoInstanciada extends  EstadoCandidaturaADemonstracao {
 
+<<<<<<< HEAD
     CandidaturaADemonstracao m_cand;
 
     public EstadoCandidaturaADemonstracaoInstanciada(CandidaturaADemonstracao c) {
         m_cand = c;
+=======
+    public EstadoCandidaturaADemonstracaoInstanciada(CandidaturaADemonstracao cand){
+        super(cand);
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
     }
 
     @Override
+<<<<<<< HEAD
     public boolean setEstadoCandidaturaADemonstracaoInstanciada() {
         return false;
+=======
+    public boolean setEstadoCandidaturaInstanciada() {
+        return true;
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
     }
 
     @Override
@@ -26,6 +36,7 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
         return true;
     }
 
+<<<<<<< HEAD
     @Override
     public boolean setEstadoCandidaturaADemonstracaoAtribuida() {
         return false;
@@ -36,11 +47,14 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
         return false;
     }
 
+=======
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
     @Override
     public boolean isEstadoCandidaturaADemonstracaoInstanciada() {
         return true;
     }
 
+<<<<<<< HEAD
     @Override
     public boolean isEstadoCandidaturaADemonstracaoCriada() {
         return false;
@@ -96,4 +110,6 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
         return false;
     }
 
+=======
+>>>>>>> 38cedc43da7d43e3e5342cc9e1874a1488891bbe
 }
