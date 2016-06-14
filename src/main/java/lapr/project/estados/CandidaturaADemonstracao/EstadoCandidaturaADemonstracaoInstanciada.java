@@ -6,7 +6,7 @@ import lapr.project.model.CandidaturaADemonstracao;
  *
  * @author guima
  */
-public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidaturaADemonstracao {
+public class EstadoCandidaturaADemonstracaoInstanciada extends  EstadoCandidaturaADemonstracao {
 
     CandidaturaADemonstracao m_cand;
     
@@ -16,7 +16,7 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
     
     @Override
     public boolean setEstadoCandidaturaInstanciada() {
-        return false;
+        return true;
     }
 
     @Override
@@ -25,33 +25,9 @@ public class EstadoCandidaturaADemonstracaoInstanciada implements EstadoCandidat
         return true;
     }
 
-     @Override
-    public boolean setEstadoCandidaturaAtribuida() {
-        return false;
-    }
-    
-    @Override
-    public boolean setEstadoCandidaturaAvaliada() {
-        return false;
-    }
-    
     @Override
     public boolean isEstadoCandidaturaInstanciada() {
         return true;
     }
 
-    @Override
-    public boolean isEstadoCandidaturaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean isEstadoCandidaturaAvaliada() {
-        return false;
-    }
 }

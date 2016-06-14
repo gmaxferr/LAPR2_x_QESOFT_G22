@@ -6,22 +6,38 @@ import lapr.project.estados.Estado;
  *
  * @author guima
  */
-public interface EstadoCandidaturaADemonstracao extends Estado{
+public abstract class EstadoCandidaturaADemonstracao implements Estado {
 
-    boolean setEstadoCandidaturaInstanciada();
+    public boolean setEstadoCandidaturaInstanciada() {
+        return false;
+    }
 
-    boolean setEstadoCandidaturaCriada();
-    
-    boolean setEstadoCandidaturaAtribuida();
-    
-    boolean setEstadoCandidaturaAvaliada();
+    public boolean setEstadoCandidaturaCriada() {
+        return false;
+    }
 
-    boolean isEstadoCandidaturaInstanciada();
-    
-    boolean isEstadoCandidaturaCriada();
-    
-    boolean isEstadoCandidaturaAtribuida();
-    
-    boolean isEstadoCandidaturaAvaliada();
+    public boolean setEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    public boolean setEstadoCandidaturaAvaliada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaInstanciada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaCriada() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAtribuida() {
+        return false;
+    }
+
+    public boolean isEstadoCandidaturaAvaliada() {
+        return false;
+    }
 
 }
