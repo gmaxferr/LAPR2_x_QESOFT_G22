@@ -10,8 +10,8 @@ import lapr.project.registos.RegistoUtilizadores;
 /**
  * Representação do Controller do caso de uso - registar utilizador novo
  *
- * @author G29
- */
+ * @author Ana Leite 
+*/
 public class RegistarUtilizadorController {
 
     /**

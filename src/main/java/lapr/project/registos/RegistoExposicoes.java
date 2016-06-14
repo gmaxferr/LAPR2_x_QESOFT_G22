@@ -117,16 +117,15 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Método que devolve a lista de exposições do organizador autenticado no
-     * sistema
+     * Devolve a lista de exposições de um organizador 
      *
-     * @param usernameOrganizador
+     * @param usernameOrganizador username do organizador
+     * 
      * @return lista de exposições do organizador
      */
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(String usernameOrganizador) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
-        //encontra as exposições do organizador autenticado no sistema.
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
                 if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()) {

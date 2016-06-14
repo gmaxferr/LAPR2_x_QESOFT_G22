@@ -267,7 +267,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return
+     * @return registo de candidaturas removidas da exposição
      */
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return m_rcr;
