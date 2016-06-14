@@ -17,35 +17,59 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoAtribuicoes
+ * 
  * @author Ricardo Osório Ana Leite
  */
 public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoes";
 
+    /**
+     * Lista de atribuicaoCandidatura
+     */
     private List<AtribuicaoCandidatura> m_listaAtribuicao;
 
+    /**
+     * Construtor de objetos do tipo RegistoAtribuicoes sem parâmetros
+     */
     public RegistoAtribuicoes() {
         this.m_listaAtribuicao = new ArrayList<>();
     }
 
+    /**
+     * Devolve a lista de atribuicaoCandidatura
+     * 
+     * @return lista de atribuicaoCandidatura
+     */
     public List<AtribuicaoCandidatura> getListaAtribuicoes() {
         return this.m_listaAtribuicao;
     }
 
+    /**
+     * Devolve os dados da candidatura
+     * 
+     * @param c candidatura
+     * @return dados da candidatura
+     */
     public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
         return c.getDadosCandidatura();
     }
 
+    /**
+     * Valida a candidatura
+     * 
+     * @param c candidatura
+     * @return true se a candidatura for validada. Caso contrário retorna false
+     */
     public boolean validarCandidatura(CandidaturaAExposicao c) {
         return c.validaCandidatura();
     }
 
     /**
-     * Métoto que define nova decisao
+     * Define nova decisao
      *
-     * @param candidaturaAExposicao
+     * @param candidaturaAExposicao candidatura
      * @param decisao nova decisao
      */
     public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
@@ -53,9 +77,9 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     }
 
     /**
-     * Método que valida a decisao da candidatura
+     * Valida a decisao da candidatura
      *
-     * @return boolean de confirmação de validação
+     * @return true
      */
     public boolean validaDecidirCandidatura() {
         return true;
@@ -65,6 +89,12 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         this.m_listaAtribuicao = listaAtribuicao;
     }
 
+    /**
+     * Devolve as candidaturas atribuídas a um fae
+     * 
+     * @param usernameFAE username do fae
+     * @return candidaturas atribuídas a um fae
+     */
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
         ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {

@@ -5,7 +5,6 @@ import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
@@ -134,7 +133,8 @@ public class CriarDemonstracaoController {
      * Atribui a lista de recursos à demonstração
      */
     public void setRecursos() {
-        m_d.getRegistoRecursosNecessarios().setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
+        RegistoRecursos rr = m_d.getRegistoRecursosNecessarios();
+        rr.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
     }
 
     public void registaDemo() {

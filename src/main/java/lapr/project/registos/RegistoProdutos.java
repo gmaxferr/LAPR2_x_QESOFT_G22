@@ -17,7 +17,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um registo de produtos
+ * 
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable {
@@ -25,18 +26,31 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     public static final String ROOT_ELEMENT_NAME = "RegistoProdutos";
 
     /**
-     * Atributo produtos a expor de Candidatura
+     * Lista de produtos 
      */
     private List<Produto> m_ProdutosExpor;
 
+    /**
+     * Construtor de objetos do tipo RegistoProdutos sem parâmetros
+     */
     public RegistoProdutos() {
         m_ProdutosExpor = new ArrayList<>();
     }
 
+    /**
+     * Devolve a lista de organizadores
+     * 
+     * @return lista de organizadores
+     */
     public List<Produto> getListaProdutosAExpor() {
         return this.m_ProdutosExpor;
     }
 
+    /**
+     * Devolve as caraterísticas dos produtos do registo de produtos.
+     * 
+     * @return caraterísticas dos produtos do registo de produtos
+     */
     @Override
     public String toString() {
         String str = "";
@@ -47,7 +61,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     /**
-     * Método que cria um novo produto à Candidatura
+     * Cria um novo produto à Candidatura
      *
      * @param nome novo produto associado à Candidatura
      *
@@ -60,12 +74,13 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     /**
-     * Método que valida e adiciona um novo produto
+     * Valida e adiciona um novo produto
      *
      * @param produto produto a ser validado e adicionado
+     * @return true se o produto foi adicionado, caso contrário retorna false
      */
     public boolean adicionaProduto(Produto produto) {
-        boolean b = validaProduto(produto);
+        boolean b = validarProduto(produto);
         if (b) {
             addProduto(produto);
         }
@@ -73,7 +88,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     /**
-     * Método que adiciona um produto de Candidatura
+     * Adiciona um produto de Candidatura
      *
      * @param p produto a ser adicionado
      */
@@ -82,18 +97,23 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     /**
-     * Método que valida produto de Candidatura recebendo-o como parametro
+     * Valida um produto.
      *
-     * @param produto produto a ser validado
+     * @param produtoCriado produto a validar.
+     * @return true se não encontrar o produto na lista de produtos. Caso
+     * contrário retorna false.
      */
-    public boolean validaProduto(Produto produto) {
-
-        //valida produto
+    private boolean validarProduto(Produto produtoCriado) {
+        for (Produto produto : this.m_ProdutosExpor) {
+            if (produtoCriado.equals(produto)) {
+                return false;
+            }
+        }
         return true;
     }
 
     /**
-     * Método que valida os dados repetidos pu invalidos de Candidatura
+     * Valida os dados repetidos pu invalidos de Candidatura
      *
      * @return boolean com a confirmação da validação
      */
@@ -101,10 +121,24 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
         return true;
     }
 
+    /**
+     * Modifica a lista de produtos
+     * 
+     * @param listaProdutos nova lista de produtos
+     */
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.m_ProdutosExpor = listaProdutos;
     }
 
+    /**
+     * Compara o RegistoProdutos a outro objecto passado por parametro. A comparação
+     * entre dois RegistoProdutos é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o RegistoProdutos
+     * @return true se o objeto recebido representar um RegistoProdutos equivalente
+     * ao RegistoProdutos. Caso contrário, retorna false.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -10,7 +10,7 @@ import lapr.project.model.Exposicao;
 public abstract class EstadoExposicao implements Estado {
 
     final Exposicao m_exposicao;
-
+    
     public EstadoExposicao(Exposicao exposicao) {
         this.m_exposicao = exposicao;
     }

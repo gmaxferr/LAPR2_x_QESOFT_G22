@@ -193,7 +193,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     }
     
     /**
-     * Modifica a avaliação
+     * Modifica a avaliação e a justificação
      * 
      * @param avaliacao avaliação
      * @param justificacao justificação
@@ -201,7 +201,10 @@ public class AvaliarCandidaturaADemonstracaoController {
     public void setAvalicaoParaDemonstracao(boolean avaliacao, String justificacao){
         this.m_avaliacaoDoFae.setAvalicaoParaDemonstracao(avaliacao, justificacao);
     }
-    
+    /**
+     * Atualiza o estado da candidatura e da demonstração atualmente selecionadas
+     * pelo FAE na UI para os estados CandidaturasAvaliadas
+     */
     public void setEstadoCandiaturaAvaliada(){
         this.m_estadoCandidatura = this.m_cand.getEstado();
         m_estadoCandidatura.setEstadoCandidaturaADemonstracaoAvaliada();

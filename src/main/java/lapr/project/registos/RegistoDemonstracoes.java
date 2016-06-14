@@ -21,7 +21,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Representação de um RegistoDemonstracoes
+ * 
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
@@ -34,10 +35,19 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     private List<Demonstracao> m_listaDemonstracoes;
 
+    /**
+     * Prefixo das demonstrações
+     */
     private static final String m_Prefixo = "Demo_";
 
+    /**
+     * Contador de demonstrações
+     */
     private int m_contadorDemos;
 
+    /**
+     * Construtor de objetos do tipo RegistoDemonstracoes sem paramentros
+     */
     public RegistoDemonstracoes() {
         this.m_listaDemonstracoes = new ArrayList<>();
     }
@@ -52,7 +62,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Método que valida demonstração de CandidaturaAExposicao recebendo-a como
+     * lista de candidaturas a demonstração  alida demonstração de CandidaturaAExposicao recebendo-a como
      * parametro
      *
      * @param demonstracao demonstração a ser validads
@@ -65,7 +75,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Método que valida os dados repetidos pu invalidos de
+     * Valida os dados repetidos pu invalidos de
      * CandidaturaAExposicao
      *
      * @return boolean com a confirmação da validação
@@ -86,8 +96,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * @param listaDemonstracoes - lista de demonstrações a considerar =======
-     * Permite definir lista de demonstrações
+     * Define a lista de demonstrações
+     * 
+     * @param listaDemonstracoes lista de demonstrações
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         for (Demonstracao d : listaDemonstracoes) {
@@ -97,8 +108,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     *
-     * @return - lista das demonstrações pendentes
+     * Devolve a lista das demonstrações pendentes
+     * 
+     * @return lista das demonstrações pendentes
      */
     public List<Demonstracao> getDemonstracoesPendentes() {
         List<Demonstracao> demosPendentes = new ArrayList<>();
@@ -111,8 +123,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     *
-     * @return - lista das demonstrações dentro do periodo de submissão de
+     * Devolve a lista das demonstrações dentro do periodo de submissão de
+     * candidaturas
+     * 
+     * @return lista das demonstrações dentro do periodo de submissão de
      * candidaturas
      */
     public List<Demonstracao> getDemonstracoesAbertas() {
@@ -132,7 +146,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return true se for válida; false caso contrário
      */
     public boolean valida(Demonstracao m_demoCriada) {
-        return !m_demoCriada.getDescricao().isEmpty() && !m_listaDemonstracoes.contains(m_demoCriada) && !m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty();
+        return (!m_demoCriada.getDescricao().isEmpty()) 
+                && (!m_listaDemonstracoes.contains(m_demoCriada)) 
+                && (!m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty());
     }
 
     /**
@@ -148,6 +164,12 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
     }
 
+    /**
+     * Devolve a lista de demonstrações de um organizador
+     * 
+     * @param username username do organizador
+     * @return lista de demonstrações de um organizador
+     */
     public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username) {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
@@ -161,6 +183,12 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoOrganizador;
     }
 
+    /**
+     * Devolve a lista de demonstrações do fae
+     * 
+     * @param usernameFAE username do fae
+     * @return lista de demonstrações do fae
+     */
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE) {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 

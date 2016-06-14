@@ -171,7 +171,8 @@ public class AtribuirCandidaturasADemonstracaoController {
     }
     
     /**
-     * 
+     * Atualiza o estado da candidatura e da demonstração atualmente selecionadas
+     * pelo organizador na UI para os estados CandidaturasAtribuidas
      */
     public void setEstadoCandidaturaAtribuida(){
         this.m_estadoDemonstracao = this.m_demonstracao.getEstadoDemo();

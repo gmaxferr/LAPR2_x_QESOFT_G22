@@ -36,11 +36,11 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
-    private static final int CARD1_ALTURA_MINIMA = 300;
-    private static final int CARD1_LARGURA_MINIMA = 400;
+    private static final int CARD1_ALTURA = 370;
+    private static final int CARD1_LARGURA = 710;
 
-    private static final int CARD2_LARGURA_MINIMA = 480;
-    private static final int CARD2_ALTURA_MINIMA = 450;
+    private static final int CARD2_LARGURA = 480;
+    private static final int CARD2_ALTURA = 450;
     private final CardLayout cardLayout;
 
     /**
@@ -52,7 +52,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
      */
     public JFrameAvaliarCandidaturasAExposicao(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
         super("Avaliar candidaturas");
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameFAE = usernameFAE;
@@ -61,10 +60,12 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE();
 
         initComponents();
+        this.cardLayout = (CardLayout) getContentPane().getLayout();
         alterarComportamentoFecharJFrame();
 
+        setLocationRelativeTo(null);
         setVisible(true);
-        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
+        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }
 
     private void alterarComportamentoFecharJFrame() {
@@ -147,7 +148,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaCard3Justificacao = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -194,7 +196,9 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         );
         jPanelCard1DescricaoExposicaoLayout.setVerticalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1DescricaoExposicaoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -258,7 +262,9 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         );
         jPanelCard1LocalLayout.setVerticalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1LocalLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -287,11 +293,12 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                         .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(card1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButtonCard1Avancar))
+                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 8, Short.MAX_VALUE))
         );
@@ -306,14 +313,14 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -477,7 +484,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -684,7 +691,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Terminar)
                     .addComponent(jButtonCard3Recuar))
@@ -713,7 +720,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
 
         cardLayout.show(getContentPane(), "card2");
-        setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
+        setSize(CARD2_LARGURA, CARD2_ALTURA);
     }
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
@@ -722,7 +729,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         cardLayout.show(getContentPane(), "card1");
-        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
+        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
@@ -753,7 +760,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 //    }
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
         cardLayout.show(getContentPane(), "card2");
-        setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
+        setSize(CARD2_LARGURA, CARD2_ALTURA);
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
@@ -783,7 +790,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private void voltarASelecionarExposicao() {
         cardLayout.show(getContentPane(), "card1");
-        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
+        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }
 
     private void terminarUC() {

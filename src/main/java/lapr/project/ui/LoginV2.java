@@ -1,7 +1,9 @@
 package lapr.project.ui;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import lapr.project.model.*;
 import lapr.project.utils.Utilitarios;
 
@@ -25,11 +27,12 @@ public class LoginV2 extends javax.swing.JFrame {
         initComponents();
 
         this.centroExposicoes = centroExposicoes;
+        jButtonLogin.setMnemonic(10);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +81,7 @@ public class LoginV2 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 172, 86));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jButtonLogin.setMnemonic('\n');
         jButtonLogin.setText("Login");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +120,18 @@ public class LoginV2 extends javax.swing.JFrame {
         jLabel2.setText("Username:");
 
         jLabel3.setText("Password:");
+
+        jTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsernameActionPerformed(evt);
+            }
+        });
+
+        jPasswordFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +175,10 @@ public class LoginV2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        String user = jTextFieldUsername.getText().trim();
+        executarLogin();
+    }//GEN-LAST:event_jButtonLoginActionPerformed
+private void executarLogin(){
+    String user = jTextFieldUsername.getText().trim();
         char[] pass = jPasswordFieldPassword.getPassword();
 
         if (user.length() == 0 || pass.length == 0) {
@@ -174,12 +193,19 @@ public class LoginV2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Login nao efetuado. Username e/ou password incorretos.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_jButtonLoginActionPerformed
-
+}
     private void jButtonRegistarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarUtilizadorActionPerformed
         this.setVisible(false);
         new JFrameRegistarUtilizadorUI(this, centroExposicoes);
     }//GEN-LAST:event_jButtonRegistarUtilizadorActionPerformed
+
+    private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
+        executarLogin();
+    }//GEN-LAST:event_jTextFieldUsernameActionPerformed
+
+    private void jPasswordFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldPasswordActionPerformed
+        executarLogin();
+    }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
 
     private void loginEfetuadoComSuccesso() {
         new MenuV2(centroExposicoes, utilizador);

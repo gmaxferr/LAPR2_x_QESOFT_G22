@@ -34,7 +34,11 @@ public class ConfirmarStandController {
      */
     private boolean m_decisao;
     
+    /**
+     * Atribuicao Stand
+     */
     private AtribuicaoStand m_atribuicaoStand;
+    
     /**
      * Exposicao escolhida
      */
@@ -84,10 +88,21 @@ public class ConfirmarStandController {
         m_RegistoAtribuicoesStand = m_exposicaoEscolhida.getRegistoAtribuicoesStands();
     }
     
+    /**
+     * Devolve a lista de atribuições do stand de um representante
+     * 
+     * @param email email do representante
+     * @return lista de atribuições do stand de um representante
+     */
     public List<AtribuicaoStand> getAtribuicao(String email){
         return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(email);
     }
     
+    /**
+     * Modifica a decisão do representante
+     * 
+     * @param decisao nova decisão
+     */
     public void setDecisao(boolean decisao){
         this.m_atribuicaoStand.setDecisao(decisao);
         

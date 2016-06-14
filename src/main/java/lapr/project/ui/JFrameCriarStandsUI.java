@@ -59,6 +59,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
 
         initComponents();
 
+        setLocationRelativeTo(null);
         setSize(LARGURA_JANELA, ALTURA_JANELA);
         setVisible(true);
     }
@@ -87,6 +88,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         jButtonTerminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N

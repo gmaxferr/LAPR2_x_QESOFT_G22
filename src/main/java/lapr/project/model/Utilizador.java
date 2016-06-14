@@ -220,7 +220,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Altera a variavel boolean da confirmação de registo do utilizador
+     * Altera a variável boolean da confirmação de registo do utilizador
      */
     public void setUtilizadorRegistado() {
         this.m_boolConfirmaRegisto = true;
