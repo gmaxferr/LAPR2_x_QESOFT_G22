@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.estados.Exposicao;
 
-import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
-import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
-import lapr.project.timerTasks.expo.AlterarParaFechadaCandidaturas;
+import lapr.project.timerTasks.expo.*;
 import java.util.TimerTask;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 import lapr.project.utils.Data;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class EstadoExposicaoInicial extends EstadoExposicao {
 

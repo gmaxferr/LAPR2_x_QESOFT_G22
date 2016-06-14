@@ -366,7 +366,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     public void setKeywords(String keywords) throws KeywordsErradasException {
-        String[] vecKeywords = keywords.split(",");
+        String[] vecKeywords = keywords.split(";");
         if (vecKeywords.length > 5 || vecKeywords.length < 2) {
             throw new KeywordsErradasException("O número de keywords introduzidas não é válido!");
         } else {

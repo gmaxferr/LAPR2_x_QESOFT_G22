@@ -80,43 +80,28 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         boolean b = validaCandidatua(candidaturaAExposicao);
         if (b) {
-            addCandidatura(candidaturaAExposicao);
+            this.m_listaCandidaturas.add(candidaturaAExposicao);
         }
         return b;
     }
 
     /**
-     * Método que valida candidatura
+     * Valida uma candidatura passada por parametro. Verifica se existe outra
+     * candidatura neste registo de candidaturas igual. Duas candidaturas são
+     * consideradas iguais quando o expositor é o mesmo e em ambas foram decidos
+     * expor os mesmos produtos.
      *
-     * @param c candidatura
+     * @param candidaturaNova candidatura a ser adicionada
+     * @return true se a candidatura for válida para ser adicionada a este
+     * registo de candidaturas, caso contrário false
      */
-    public boolean validaCandidatua(CandidaturaAExposicao c) {
-        //validação global - repetida
-        return true;
-    }
-
-    /**
-     * Método que valida a candidatura
-     *
-     * @param c candidatura
-     *
-     * @return boolean de confirmação da validação
-     */
-    private boolean validaCandidatura(CandidaturaAExposicao c) {
-        //validaçao global
-        return true;
-
-    }
-
-    /**
-     * Método que adiciona uma candidatura
-     *
-     * @param c candidatura a ser adicionada
-     */
-    void addCandidatura(CandidaturaAExposicao c) {
-        if (validaCandidatura(c)) {
-            addCandidatura(c);
+    public boolean validaCandidatua(CandidaturaAExposicao candidaturaNova) {
+        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+            if (candidatura.equals(candidaturaNova)) {
+                return false;
+            }
         }
+        return true;
     }
 
     /**

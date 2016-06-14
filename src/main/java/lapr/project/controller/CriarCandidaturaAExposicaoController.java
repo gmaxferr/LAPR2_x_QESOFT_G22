@@ -193,6 +193,7 @@ public class CriarCandidaturaAExposicaoController {
     }
 
     public void setEstadoCandidaturaAExposicaoCriada() {
+        this.m_estadoCandidatura = this.m_candidaturaCriada.getEstado();
         this.m_estadoCandidatura.setEstadoCandidaturaCriada();
     }
 

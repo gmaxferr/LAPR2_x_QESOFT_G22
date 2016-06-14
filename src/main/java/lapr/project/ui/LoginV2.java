@@ -29,7 +29,6 @@ public class LoginV2 extends javax.swing.JFrame {
         this.centroExposicoes = centroExposicoes;
         jButtonLogin.setMnemonic(10);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
