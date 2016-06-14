@@ -171,7 +171,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return boolean de confirmação de validação
      */
     public boolean valida() {
-        return true;
+        if (m_strTitulo != null && m_strDescricao != null && m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataInicio != null && m_dataFimDetecaoConflitos != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -257,22 +261,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return m_rcr;
-    }
-
-    /**
-     * Define novo organizador para esta exposição
-     *
-     * @param utilizador utilizador a ser adicionada como organizador
-     * @return true se for válido, logo adicionado com sucesso. Caso contrário
-     * devolve false
-     */
-    public boolean addOrganizador(Utilizador utilizador) {
-        if (validaOrganizador(utilizador)) {
-            this.m_ro.addOrganizador(utilizador);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -553,7 +541,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param utilizador - utilizador a verificar
      * @return true se o utilizador nao é FAEou false caso contrário
      */
-    private boolean validaOrganizador(Utilizador utilizador) {
+    public boolean validaOrganizador(Utilizador utilizador) {
         for (FAE f : m_rfae.getListaFAE()) {
             if (utilizador.getUsername().equals(f.getUsernameFae())) {
                 return false;
@@ -862,6 +850,12 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public void addOrganizadores(List<Organizador> m_organizadoresSelecionados) {
+        for(Organizador o: m_organizadoresSelecionados){
+            this.m_ro.addOrganizador(o);
+        }
     }
 
 }

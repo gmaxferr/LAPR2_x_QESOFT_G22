@@ -84,8 +84,8 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     @Override
     public boolean equals(Object outraCand) {
         CandidaturaADemonstracao outra = (CandidaturaADemonstracao) outraCand;
-        if (this.m_dados.equals(outra.getM_dadosCandidatura())) {
-            if (this.m_emailExpositor.equals(outra.getM_emailExpositor())) {
+        if (this.m_dados.equals(outra.getDadosCandidatura())) {
+            if (this.m_emailExpositor.equals(outra.getEmailExpositor())) {
                 return true;
             }
         }

@@ -22,6 +22,14 @@ public class Organizador implements Importable<Organizador>, Exportable {
     private Utilizador m_Utilizador;
 
     /**
+     * Construtor com parametros
+     * @param u - utilizador que vai assumir o cargo de organizador
+     */
+    public Organizador(Utilizador u){
+        m_Utilizador = u;
+    }
+    
+    /**
      * Construtor de organizador sem parametros
      */
     public Organizador() {
