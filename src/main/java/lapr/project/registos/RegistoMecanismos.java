@@ -16,6 +16,11 @@ public class RegistoMecanismos {
         this.listaMecanismo = new ArrayList<>();
     }
 
+    /**
+     * Devolve a lista de mecanismos
+     * 
+     * @return lista de mecanismos
+     */
     public List<Mecanismo> getListaMecanismos() {
         return this.listaMecanismo;
     }

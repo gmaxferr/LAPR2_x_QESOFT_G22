@@ -107,8 +107,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     *
-     * @return - registo de candidaturas a demonstração
+     * Devolve o registo de candidaturas a demonstração
+     * 
+     * @return registo de candidaturas a demonstração
      */
     public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
         return m_rcd;

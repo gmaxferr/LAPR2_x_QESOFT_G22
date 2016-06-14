@@ -148,6 +148,12 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
     }
 
+    /**
+     * Devolve a lista de demonstrações de um organizador
+     * 
+     * @param username username do organizador
+     * @return lista de demonstrações de um organizador
+     */
     public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username) {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 

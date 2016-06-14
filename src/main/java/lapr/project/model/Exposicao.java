@@ -417,6 +417,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         candidaturaAExposicao.setDecisao(decisao);
     }
 
+    /**
+     * Devolve o registo de demonstrações
+     * 
+     * @return registo de demonstrações
+     */
     public RegistoDemonstracoes getRegistoDemonstracoes() {
         return this.m_rd;
     }
