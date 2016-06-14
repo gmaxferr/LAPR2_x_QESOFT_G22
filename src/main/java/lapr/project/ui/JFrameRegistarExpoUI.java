@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package lapr.project.ui;
-
-import lapr.project.model.*;
 /**
  *
  * @author JoãoCardoso aka K4rd050
  */
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
+    private ModeloJListPotenciaisOrganizadores model = new ModeloJListPotenciaisOrganizadores();
+
+    
     /**
      * Creates new form JFrameRegistarExpoUI
      */
@@ -93,11 +94,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        organizadoresList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        organizadoresList.setModel(model);
         jScrollPane2.setViewportView(organizadoresList);
 
         jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
