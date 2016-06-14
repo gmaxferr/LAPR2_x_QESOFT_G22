@@ -16,7 +16,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public static final String ROOT_ELEMENT_NAME = "RegistoFAE";
 
     public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
-    public static final String LISTA_FAE_TEMP_ELEMENT_NAME = "ListaFaeTemp";
 
     private final List<FAE> m_listaFAE;
     private final List<FAE> m_listaFAETemp;
@@ -148,15 +147,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                     fae.importContentFromXMLNode(n2);
                     this.m_listaFAE.add(fae);
                 }
-
-                this.m_listaFAETemp.clear();
-                nList = elem.getElementsByTagName(LISTA_FAE_TEMP_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    FAE fae = new FAE();
-                    fae.importContentFromXMLNode(n2);
-                    this.m_listaFAETemp.add(fae);
-                }
             }
 
         } catch (ParserConfigurationException ex) {
@@ -179,12 +169,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
             Element elemChild = document.createElement(LISTA_FAE_ELEMENT_NAME);
             for (FAE fae : m_listaFAE) {
-                elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
-            }
-            elementBase.appendChild(elemChild);
-
-            elemChild = document.createElement(LISTA_FAE_TEMP_ELEMENT_NAME);
-            for (FAE fae : m_listaFAETemp) {
                 elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
             }
             elementBase.appendChild(elemChild);
