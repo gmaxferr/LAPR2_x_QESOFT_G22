@@ -254,7 +254,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 && Utilitarios.hasNumber(decryptesPass)
                 && Utilitarios.hasSinalPontuacao(decryptesPass)
                 && Utilitarios.hasUpperCase(decryptesPass)
-                && decryptesPass.length >= 4 && decryptesPass.length <= 7;
+                && decryptesPass.length >= 4 
+                && decryptesPass.length <= 7;
 
         if (valido) {
             return true;
