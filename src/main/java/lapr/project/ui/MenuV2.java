@@ -771,7 +771,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarExpoUI(); //nada feito
+        new JFrameRegistarExpoUI(centroExposicoes);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed

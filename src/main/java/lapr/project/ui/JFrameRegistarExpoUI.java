@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,13 +15,13 @@ import lapr.project.utils.Data;
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
     private ModeloJListPotenciaisOrganizadores model = new ModeloJListPotenciaisOrganizadores();
+    private ComboBoxModelUtilizadores modelSelectOrg;
     private CriarExposicaoController ctrl;
     private List<Utilizador> lstUtilizadores;
-    private final CardLayout layout;
     private Organizador organizadorSelecionado;
 
     private Data dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos;
-    
+
     /**
      * Creates new form JFrameRegistarExpoUI
      */
@@ -31,7 +30,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         ctrl.novaExposicao();
         initComponents();
         lstUtilizadores = inicializarLista();
-        layout = (CardLayout) getContentPane().getLayout();
+        modelSelectOrg = new ComboBoxModelUtilizadores(lstUtilizadores);
     }
 
     public List<Utilizador> inicializarLista() {
@@ -152,12 +151,22 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         mesFim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
 
         diaFimDetecaoConflitos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        diaFimDetecaoConflitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFimDetecaoConflitosActionPerformed(evt);
+            }
+        });
 
         organizadoresLbl1.setText("Organizadores: (mínimo 2)");
 
         tituloLbl1.setText("Título da exposição:");
 
         diaFim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        diaFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFimActionPerformed(evt);
+            }
+        });
 
         addOrganizadorBtn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         addOrganizadorBtn.setText("Adicionar Organizador");
@@ -229,12 +238,27 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         dataFimExpoLbl1.setText("Fim da exposição:");
 
         diaFimCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        diaFimCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFimCandActionPerformed(evt);
+            }
+        });
 
         diaInicioCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        diaInicioCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaInicioCandActionPerformed(evt);
+            }
+        });
 
         selectOrgLbl1.setText("Selecionar Organizador:");
 
-        orgSelectionComboBox.setModel(new ComboBoxModelUtilizadores(lstUtilizadores));
+        orgSelectionComboBox.setModel(modelSelectOrg);
+        orgSelectionComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgSelectionComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
         card1.setLayout(card1Layout);
@@ -267,9 +291,14 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)))
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(registExpoBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))))
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(mesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(diaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(card1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -284,7 +313,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                 .addGroup(card1Layout.createSequentialGroup()
                                     .addComponent(dataEncerramentoSubmissaoCandLbl1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -292,7 +321,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                 .addGroup(card1Layout.createSequentialGroup()
                                     .addComponent(dataAberturaSubmissaoLbl1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -300,7 +329,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                 .addGroup(card1Layout.createSequentialGroup()
                                     .addComponent(dataLimiteDetecaoConflitosLbl1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(anoFimDetecaoConflitos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(anoFimDetecaoConflitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(mesFimDetecaoConflitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,37 +350,33 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                 .addGroup(card1Layout.createSequentialGroup()
                                     .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(card1Layout.createSequentialGroup()
-                                            .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(card1Layout.createSequentialGroup()
-                                                    .addComponent(dataFimExpoLbl1)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(anoFim, 0, 1, Short.MAX_VALUE))
-                                                .addGroup(card1Layout.createSequentialGroup()
-                                                    .addComponent(inicioExpoLbl1)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(anoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(dataFimExpoLbl1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(anoFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(card1Layout.createSequentialGroup()
-                                                    .addComponent(mesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(diaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(card1Layout.createSequentialGroup()
-                                                    .addComponent(mesFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(diaFim, 0, 1, Short.MAX_VALUE))))
+                                            .addComponent(mesFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(diaFim, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(card1Layout.createSequentialGroup()
                                             .addComponent(tituloLbl1)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(tituloTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(tituloTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(card1Layout.createSequentialGroup()
+                                            .addComponent(inicioExpoLbl1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(anoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap()))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
-                .addGap(362, 362, 362)
+                .addGap(203, 203, 203)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(diaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(137, 137, 137)
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(organizadoresLbl1)
                     .addComponent(selectOrgLbl1))
@@ -392,9 +417,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                             .addGap(29, 29, 29)
                             .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(inicioExpoLbl1)
-                                .addComponent(anoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(mesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(diaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(anoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(35, 35, 35)
                             .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(dataFimExpoLbl1)
@@ -447,12 +470,17 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         registExpoBtn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(model.getSize()>=2){
-                    ctrl.registarOrganizadores();
-                    inicializarDatas();
-                    ctrl.setDados(tituloTxt1.getText(), textoDescritivoTxt1.getText(), dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, new Local(localTxt1.getText()));
-                    ctrl.registaExposicao();
-                }else{
+                if (model.getSize() >= 2) {
+                    if (tituloTxt1.getText() != null && textoDescritivoTxt1.getText() != null && dataInicio != null && dataFim != null && dataInicioSubCand != null && dataFimSubCand != null && dataFimDetecaoConflitos != null) {
+                        ctrl.registarOrganizadores();
+                        inicializarDatas();
+                        ctrl.setDados(tituloTxt1.getText(), textoDescritivoTxt1.getText(), dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, new Local(localTxt1.getText()));
+                        ctrl.registaExposicao();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Todos os campos são de preenchimento obrigatório", "Dados Insuficientes", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
                     JOptionPane.showMessageDialog(null, "Tem de escolher pelo menos 2 organizadores", "Organizadores Insuficientes", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -463,17 +491,21 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                 int ano3 = (Integer) anoInicioCand.getSelectedItem();
                 int ano4 = (Integer) anoFimCand.getSelectedItem();
                 int ano5 = (Integer) anoFimDetecaoConflitos.getSelectedItem();
-                int mes1 = (Integer) mesInicio.getSelectedIndex()+1;
-                int mes2 = (Integer) mesFim.getSelectedIndex()+1;
-                int mes3 = (Integer) mesInicioCand.getSelectedIndex()+1;
-                int mes4 = (Integer) mesFimCand.getSelectedIndex()+1;
-                int mes5 = (Integer) mesFimDetecaoConflitos.getSelectedIndex()+1;
+                int mes1 = (Integer) mesInicio.getSelectedIndex() + 1;
+                int mes2 = (Integer) mesFim.getSelectedIndex() + 1;
+                int mes3 = (Integer) mesInicioCand.getSelectedIndex() + 1;
+                int mes4 = (Integer) mesFimCand.getSelectedIndex() + 1;
+                int mes5 = (Integer) mesFimDetecaoConflitos.getSelectedIndex() + 1;
                 int dia1 = (Integer) diaInicio.getSelectedItem();
-                int dia3 = (Integer) diaFim.getSelectedItem();
-                int dia2 = (Integer) diaInicioCand.getSelectedItem();
+                int dia2 = (Integer) diaFim.getSelectedItem();
+                int dia3 = (Integer) diaInicioCand.getSelectedItem();
                 int dia4 = (Integer) diaFimCand.getSelectedItem();
                 int dia5 = (Integer) diaFimDetecaoConflitos.getSelectedItem();
-                
+                dataInicio = new Data(ano1, mes1, dia1);
+                dataFim = new Data(ano2, mes2, dia2);
+                dataInicioSubCand = new Data(ano3, mes3, dia3);
+                dataFimSubCand = new Data(ano4, mes4, dia4);
+                dataFimDetecaoConflitos = new Data(ano5, mes5, dia5);
             }
         });
     }//GEN-LAST:event_registExpoBtn1ActionPerformed
@@ -524,8 +556,83 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_anoFimActionPerformed
 
     private void mesInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesInicioActionPerformed
-        // TODO add your handling code here:
+        int mes = mesInicio.getSelectedIndex() + 1;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            diaInicio.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            diaInicio.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 2) {
+            if (Data.isAnoBissexto((Integer) anoInicio.getSelectedItem())) {
+                diaInicio.setModel(new ModelComboBox29Dias());
+            } else {
+                diaInicio.setModel(new ModelComboBox28Dias());
+            }
+        }
     }//GEN-LAST:event_mesInicioActionPerformed
+
+    private void diaFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimActionPerformed
+        int mes = mesFim.getSelectedIndex() + 1;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            diaFim.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            diaFim.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 2) {
+            if (Data.isAnoBissexto((Integer) anoFim.getSelectedItem())) {
+                diaFim.setModel(new ModelComboBox29Dias());
+            } else {
+                diaFim.setModel(new ModelComboBox28Dias());
+            }
+        }
+    }//GEN-LAST:event_diaFimActionPerformed
+
+    private void diaInicioCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaInicioCandActionPerformed
+        int mes = mesInicioCand.getSelectedIndex() + 1;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            diaInicioCand.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            diaInicioCand.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 2) {
+            if (Data.isAnoBissexto((Integer) anoInicioCand.getSelectedItem())) {
+                diaInicioCand.setModel(new ModelComboBox29Dias());
+            } else {
+                diaInicioCand.setModel(new ModelComboBox28Dias());
+            }
+        }
+    }//GEN-LAST:event_diaInicioCandActionPerformed
+
+    private void diaFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimCandActionPerformed
+        int mes = mesFimCand.getSelectedIndex() + 1;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            diaFimCand.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            diaFimCand.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 2) {
+            if (Data.isAnoBissexto((Integer) anoFimCand.getSelectedItem())) {
+                diaFimCand.setModel(new ModelComboBox29Dias());
+            } else {
+                diaFimCand.setModel(new ModelComboBox28Dias());
+            }
+        }
+    }//GEN-LAST:event_diaFimCandActionPerformed
+
+    private void diaFimDetecaoConflitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimDetecaoConflitosActionPerformed
+        int mes = mesFimDetecaoConflitos.getSelectedIndex() + 1;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            diaFimDetecaoConflitos.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            diaFimDetecaoConflitos.setModel(new ModelComboBoxt31Dias());
+        } else if (mes == 2) {
+            if (Data.isAnoBissexto((Integer) anoFimDetecaoConflitos.getSelectedItem())) {
+                diaFimDetecaoConflitos.setModel(new ModelComboBox29Dias());
+            } else {
+                diaFimDetecaoConflitos.setModel(new ModelComboBox28Dias());
+            }
+        }
+    }//GEN-LAST:event_diaFimDetecaoConflitosActionPerformed
+
+    private void orgSelectionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgSelectionComboBoxActionPerformed
+        modelSelectOrg.setSelectedItem(anoFim);
+    }//GEN-LAST:event_orgSelectionComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOrganizadorBtn;
