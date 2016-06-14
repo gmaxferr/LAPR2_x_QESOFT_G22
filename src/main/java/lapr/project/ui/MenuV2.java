@@ -34,7 +34,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
         initComponents();
         desativarJTabbedPanelDosCargos();
-        identificarUtilizador(utilizador);
+        identificarCargosDoUtilizador(utilizador);
         modificarFecharJanela();
         addJMenuItemsEstilosDaJanela();
 
@@ -54,7 +54,7 @@ public class MenuV2 extends javax.swing.JFrame {
      *
      * @param utilizador
      */
-    private void identificarUtilizador(Utilizador utilizador) {
+    private void identificarCargosDoUtilizador(Utilizador utilizador) {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
         if (utilizador.getIsFAE()) {
             this.jCheckBoxFAE.setSelected(true);
@@ -71,6 +71,12 @@ public class MenuV2 extends javax.swing.JFrame {
         if (utilizador.getIsOrganizador()) {
             this.jCheckBoxOrganizador.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(2, true);
+        }
+        for (int i = 0; i < 4; i++) {
+            if(jTabbedPaneCargos.isEnabledAt(i)){
+                jTabbedPaneCargos.setSelectedIndex(i);
+                break;
+            }
         }
     }
 
@@ -127,7 +133,6 @@ public class MenuV2 extends javax.swing.JFrame {
         jCheckBoxExpositor = new javax.swing.JCheckBox();
         jTabbedPaneCargos = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
@@ -158,6 +163,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemCarregarDados = new javax.swing.JMenuItem();
@@ -282,13 +288,6 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        jButton1.setText("Criar candidatura à exposição");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton6.setText("Remover candidatura à exposição");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,8 +328,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton28))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(181, 181, 181)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27)))
@@ -341,7 +339,6 @@ public class MenuV2 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButton6)
                     .addComponent(jButton27))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -641,6 +638,13 @@ public class MenuV2 extends javax.swing.JFrame {
 
         jTabbedPaneCargos.addTab("Gestor", jPanel6);
 
+        jButton1.setText("Criar candidatura à exposição");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -707,6 +711,10 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jTabbedPaneCargos)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,7 +725,9 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPaneCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
