@@ -20,7 +20,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private Utilizador u;
     
     private static final int LARGURA_JANELA_PASSO1 = 470;
-    private static final int ALTURA_JANELA_PASSO1 = 380;
+    private static final int ALTURA_JANELA_PASSO1 = 420;
 
     private static final int LARGURA_JANELA_PASSO2 = 460;
     private static final int ALTURA_JANELA_PASSO2 = 320;
@@ -355,12 +355,11 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         this.jFrameLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private boolean validarPasswordIguais(){
-        char[] pass1 = jPasswordField3.getPassword();
-        char[] pass2 = jPasswordField2.getPassword();
-        if (pass1.length == pass2.length) {
-            for (int i = 0; i < pass1.length; i++) {
-                if (pass1[i] != pass2[i]) {
+    private boolean validarPasswordIguais(char [] jPasswordField3, char [] jPasswordField2){
+        
+        if (jPasswordField3.length == jPasswordField2.length) {
+            for (int i = 0; i < jPasswordField3.length; i++) {
+                if (jPasswordField3[i] != jPasswordField2[i]) {
                     return false;
                 }
             }
@@ -372,7 +371,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setDados(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText());
-        boolean valido = validarPasswordIguais();
+        boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
         if(controller.validaUtilizador(jTextField1.getText(), jTextField2.getText(),jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true){
         avancarParaCard2();
         }
