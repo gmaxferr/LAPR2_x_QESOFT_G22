@@ -38,6 +38,7 @@ public class MenuV2 extends javax.swing.JFrame {
         modificarFecharJanela();
         addJMenuItemsEstilosDaJanela();
 
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
     }
