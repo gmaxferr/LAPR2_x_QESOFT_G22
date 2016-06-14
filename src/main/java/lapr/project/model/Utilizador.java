@@ -249,15 +249,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword(char[] password) throws InvalidPasswordException {
-        boolean valido =  Utilitarios.hasLowerCase(password)
-                && Utilitarios.hasNumber(password)
-                && Utilitarios.hasSinalPontuacao(password)
-                && Utilitarios.hasUpperCase(password)
-                && password.length >= 4 && password.length <= 7;
-        
-        if(valido){
+        char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
+        boolean valido = Utilitarios.hasLowerCase(decryptesPass)
+                && Utilitarios.hasNumber(decryptesPass)
+                && Utilitarios.hasSinalPontuacao(decryptesPass)
+                && Utilitarios.hasUpperCase(decryptesPass)
+                && decryptesPass.length >= 4 && decryptesPass.length <= 7;
+
+        if (valido) {
             return true;
-        }else{
+        } else {
             throw new InvalidPasswordException("Password inválida!");
         }
     }
@@ -288,7 +289,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
 
         if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
             return false;
@@ -307,16 +308,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException{
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
         boolean password1 = validaPassword(password);
         boolean email1 = validaEmail(email);
-        if(password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false ){
+        if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
             return false;
         }
         return true;
     }
-    
-     /**
+
+    /**
      * Para um email ser válido tem que conter, de uma forma simplificada,
      * letras seguido de um "@" com mais letras seguidas, um ponto (".") e mais
      * letras.
@@ -324,18 +325,18 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param email - email a validar
      * @return true se for válido; false caso contrário.
      */
-    public boolean validaEmail(String email) throws InvalidEmailException{
+    public boolean validaEmail(String email) throws InvalidEmailException {
         boolean validoFinal = false;
         String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
         Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         validoFinal = matcher.matches();
-        if(validoFinal){
+        if (validoFinal) {
             return true;
-        } else{
+        } else {
             throw new InvalidEmailException("Email inválido!");
         }
-       
+
     }
 
     /**

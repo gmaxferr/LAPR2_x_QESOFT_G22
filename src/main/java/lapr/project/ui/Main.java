@@ -32,23 +32,23 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
-        try{
-        if (centroExposicoes == null) {
-            centroExposicoes = new CentroExposicoes();
-            Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
-            admin.setIsExpositor();
-            admin.setIsFAE();
-            admin.setIsGestor();
-            admin.setIsOrganizador();
-            centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
+        try {
+            if (centroExposicoes == null) {
+                centroExposicoes = new CentroExposicoes();
+                Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
+                admin.setIsExpositor();
+                admin.setIsFAE();
+                admin.setIsGestor();
+                admin.setIsOrganizador();           //utilizador esta encriptado mas no momento de execução do UC registar é uma string apenas
+                centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
 
-            JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
-                    + "\naceder ao sistema com todos os privilégios:"
-                    + "\n\nUtilizador - ADMIN"
-                    + "\n    username: \"admin\""
-                    + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
-        }
-        }  catch (InvalidEmailException | InvalidPasswordException e) {
+                JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
+                        + "\naceder ao sistema com todos os privilégios:"
+                        + "\n\nUtilizador - ADMIN"
+                        + "\n    username: \"admin\""
+                        + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (InvalidEmailException | InvalidPasswordException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
         }

@@ -64,15 +64,15 @@ public class RegistarUtilizadorController {
     * @param password password do utilizador
     * @param username username do utilizador
     */
-    public void setDados(String nome, String email, char[] password, String username) {
+    public void setDadosDoUtilizador(String nome, String email, char[] password, String username) {
         m_utilizador.setEmail(email);
         m_utilizador.setNome(nome);
         m_utilizador.setPwd(password);
         m_utilizador.setUsername(username);
     }
     
-    public boolean validaUtilizador(String nome, String email, char[] password, String username) throws InvalidPasswordException, InvalidEmailException {
-       return m_utilizador.validaUtilizador(nome, password, username, email);
+    public boolean validaDadosDoUtilizador(String nome, String email, char[] password, String username) throws InvalidPasswordException, InvalidEmailException {
+       return m_utilizador.validaDadosDoUtilizador(nome, password, username, email);
     }
 
     /**
