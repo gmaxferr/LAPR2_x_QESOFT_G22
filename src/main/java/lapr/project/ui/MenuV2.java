@@ -40,11 +40,12 @@ public class MenuV2 extends javax.swing.JFrame {
 
         setVisible(true);
     }
+
     private void desativarJTabbedPanelDosCargos() {
-       jTabbedPaneCargos.setEnabledAt(0, false);
-       jTabbedPaneCargos.setEnabledAt(1, false);
-       jTabbedPaneCargos.setEnabledAt(2, false);
-       jTabbedPaneCargos.setEnabledAt(3, false);
+        jTabbedPaneCargos.setEnabledAt(0, false);
+        jTabbedPaneCargos.setEnabledAt(1, false);
+        jTabbedPaneCargos.setEnabledAt(2, false);
+        jTabbedPaneCargos.setEnabledAt(3, false);
     }
 
     /**
@@ -155,6 +156,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemCarregarDados = new javax.swing.JMenuItem();
@@ -573,6 +575,13 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Criar stands");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -594,7 +603,10 @@ public class MenuV2 extends javax.swing.JFrame {
                                 .addComponent(jButton12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton15))
-                            .addComponent(jButton13)))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jButton13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jButton14)
@@ -616,7 +628,9 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton12)
                     .addComponent(jButton15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton3))
                 .addGap(54, 54, 54)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -814,7 +828,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirFAE(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -869,7 +883,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes); 
+        new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -895,6 +909,11 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jMenuItemEstiloDaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstiloDaJanelaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemEstiloDaJanelaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
+    }//GEN-LAST:event_jButton3ActionPerformed
     private void terminaSessao() {
         new LoginV2(centroExposicoes);
         dispose();
@@ -956,6 +975,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;

@@ -8,6 +8,7 @@ import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.FAE;
 import lapr.project.registos.RegistoAtribuicoes;
+import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
  *
@@ -15,140 +16,159 @@ import lapr.project.registos.RegistoAtribuicoes;
  */
 public class QualidadeFaeCalculo {
 
-    private final List<Media<CandidaturaAExposicao>> listCands;
-    private final List<Media<FAE>> listFaes;
-    private final List<Media<FAE>> listFaesParaAnalisar;
+    private final List<Media<CandidaturaAExposicao>> mediaCands;
+    private final List<Media<FAE>> mediaDesviosFaes;
+    private final List<Media<FAE>> mediaDesviosFaesParaAnalisar;
 
     public QualidadeFaeCalculo() {
-        this.listCands = new ArrayList<>();
-        this.listFaes = new ArrayList<>();
-        this.listFaesParaAnalisar = new ArrayList<>();
+        this.mediaCands = new ArrayList<>();
+        this.mediaDesviosFaes = new ArrayList<>();
+        this.mediaDesviosFaesParaAnalisar = new ArrayList<>();
     }
 
     public void calcMedia(CandidaturaAExposicao cand, RegistoAtribuicoes ra) {
-        boolean candEncontrada = false;
-
         Media<CandidaturaAExposicao> res = null;
-        for (Media<CandidaturaAExposicao> medias : listCands) {
+
+        for (Media<CandidaturaAExposicao> medias : mediaCands) {
             if (medias.obj == cand) {
-                candEncontrada = true;
                 res = medias;
                 break;
             }
         }
-        if (!candEncontrada) {
+
+        if (res == null) {
             res = new Media<CandidaturaAExposicao>(cand);
-            listCands.add(res);
+            mediaCands.add(res);
         }
 
         for (AtribuicaoCandidatura atr : ra.getListaAtribuicoes()) {
             if (atr.getCandidaturaAssociada() == cand) {
                 double media = atr.getRegistoFaeAvaliacao().getMediaRatings();
-                res.addSomaMedias(media);
+                res.addValor(media);
                 break;
             }
         }
     }
 
     public void calcMediaAndVariance(FAE fae, RegistoAtribuicoes ra) {
-        boolean faeEncontrado = false;
-
         Media<FAE> res = null;
-        for (Media<FAE> media : listFaes) {
+
+        for (Media<FAE> media : mediaDesviosFaes) {
             if (media.obj == fae) {
-                faeEncontrado = true;
                 res = media;
                 break;
             }
         }
 
-        if (!faeEncontrado) {
+        if (res == null) {
             res = new Media<FAE>(fae);
-            listFaes.add(res);
+            mediaDesviosFaes.add(res);
         }
 
         for (AtribuicaoCandidatura atr : ra.getListaAtribuicoesDoFAE(res.obj.getUsernameFae())) {
             Avaliacao fAval = atr.getRegistoFaeAvaliacao().getAvaliacaoDoFae(res.obj.getUsernameFae());
             double mediaFae = fAval.getMediaRatings();
-            
+
             double variance = 0D;
             CandidaturaAExposicao cand = atr.getCandidaturaAssociada();
-            for(Media<CandidaturaAExposicao> media : listCands){
-                if(media.obj == cand){
+            for (Media<CandidaturaAExposicao> media : mediaCands) {
+                if (media.obj == cand) {
                     variance = Math.pow(media.getMedia() - mediaFae, 2);
                 }
             }
-            
-            res.addSomaMedias(mediaFae);
-            res.addSomaVariancias(variance);
+
+            res.addValor(variance);
         }
     }
 
-    public List<FAE> getListaFAEsWithVarianceOver(double vairancia) {
+    public List<FAE> getListaFAEsWithVarianceOver(double variancia) {
         List<FAE> result = new ArrayList<>();
-        for(Media<FAE> fae : listFaes){
-            if(fae.getMediaVariancia() > vairancia){
+        for (Media<FAE> fae : mediaDesviosFaes) {
+            if (fae.getMedia() > variancia) {
                 result.add(fae.obj);
-                this.listFaesParaAnalisar.add(fae);
+                this.mediaDesviosFaesParaAnalisar.add(fae);
             }
         }
         return result;
     }
 
     public List<FAE> testeHipotese(double grauConfianca) {
-        throw new UnsupportedOperationException("Ainda não implementado.");
+        List<FAE> res = new ArrayList<>();
+
+        NormalDistribution phi = new NormalDistribution(0, 1);
+        double zCritico = phi.inverseCumulativeProbability(grauConfianca / 2);
+
+        for (Media<FAE> mediaFAE : mediaDesviosFaesParaAnalisar) {
+            double mediaDesvios = mediaFAE.getMedia();
+            double variancia = Math.sqrt(mediaFAE.getVariancia());
+            double numValores = mediaFAE.getN();
+
+            double delta = zCritico * (Math.sqrt(variancia / numValores));
+            double lowerBound = mediaDesvios - delta;
+            double higherBound = mediaDesvios - delta;
+
+            double z0 = (mediaDesvios - 0) / (Math.sqrt(variancia / numValores));
+
+            if (z0 >= lowerBound && z0 <= higherBound) {
+                res.add(mediaFAE.obj);
+            }
+        }
+
+        return res;
     }
 
     private class Media<T> {
 
         private final T obj;
 
-        private double somaMedias;
-        private int nMedias;
-
-        private double somaVariancia;
-        private int nVariancias;
+        private List<Double> listaValores;
 
         public Media(T obj) {
             this.obj = obj;
-            this.somaMedias = 0.0D;
-            this.nMedias = 0;
+            this.listaValores = new ArrayList<>();
         }
 
         /**
-         * @param somaMedias the somaMedias to set
+         * @param valor o valor a definir
          */
-        public void addSomaMedias(double somaMedias) {
-            this.somaMedias += somaMedias;
-            this.nMedias++;
-        }
-
-        /**
-         * @param somaMedias the somaMedias to set
-         */
-        public void addSomaVariancias(double somaMedias) {
-            this.somaVariancia += somaMedias;
-            this.nVariancias++;
+        public void addValor(double valor) {
+            this.listaValores.add(valor);
         }
 
         /**
          * @return Devolve a média calculada desta candidatura;
          */
         public double getMedia() {
-            if (nMedias > 0) {
-                return somaMedias / nMedias;
+            if (listaValores.size() > 0) {
+                double somaMedias = 0D;
+                for (Double d : listaValores) {
+                    somaMedias += d;
+                }
+                return somaMedias / listaValores.size();
             }
             return -1;
         }
 
         /**
-         * @return Devolve a média calculada desta candidatura;
+         * @return Devolve a variancia dos valores
          */
-        public double getMediaVariancia() {
-            if (nVariancias > 0) {
-                return somaVariancia / nVariancias;
+        public double getVariancia() {
+            if (listaValores.size() > 0) {
+                double media = getMedia();
+                double somaVariancias = 0D;
+                for (Double d : listaValores) {
+                    somaVariancias += Math.pow(d - media, 2);
+                }
+                return somaVariancias / listaValores.size();
             }
             return -1;
+        }
+
+        /**
+         * @return Devolve o numero de elementos na lista de valores.
+         */
+        public int getN() {
+            return listaValores.size();
         }
 
         @Override
@@ -163,9 +183,8 @@ public class QualidadeFaeCalculo {
         @Override
         public int hashCode() {
             int hash = 7;
-            hash = 59 * hash + Objects.hashCode(this.obj);
-            hash = 59 * hash + (int) (Double.doubleToLongBits(this.somaMedias) ^ (Double.doubleToLongBits(this.somaMedias) >>> 32));
-            hash = 59 * hash + this.nMedias;
+            hash = 97 * hash + Objects.hashCode(this.obj);
+            hash = 97 * hash + Objects.hashCode(this.listaValores);
             return hash;
         }
     }

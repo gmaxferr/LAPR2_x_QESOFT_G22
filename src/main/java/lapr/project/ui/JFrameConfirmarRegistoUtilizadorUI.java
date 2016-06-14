@@ -7,8 +7,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ConfirmarRegistoController;
-import lapr.project.exceptions.InvalidEmailException;
-import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
 
 /**

@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import lapr.project.controller.CriarCandidaturaAExposicaoController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;

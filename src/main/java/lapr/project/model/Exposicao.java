@@ -85,45 +85,45 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      *
      */
-    private final RegistoAtribuicoes m_ra;
+    private RegistoAtribuicoes m_ra;
 
     /**
      *
      */
-    private final RegistoFAE m_rfae;
+    private RegistoFAE m_rfae;
 
     /**
      *
      */
-    private final RegistoCandidaturasAExposicao m_rce;
+    private RegistoCandidaturasAExposicao m_rce;
 
     /**
      *
      */
-    private final RegistoCandidaturasRemovidas m_rcr;
+    private RegistoCandidaturasRemovidas m_rcr;
 
     /**
      *
      */
-    private final RegistoOrganizadores m_ro;
+    private RegistoOrganizadores m_ro;
 
     /**
      *
      */
-    private final RegistoDemonstracoes m_rd;
+    private RegistoDemonstracoes m_rd;
 
     /**
      *
      */
-    private final RegistoAtribuicoesStands m_ras;
+    private RegistoAtribuicoesStands m_ras;
 
-    private final RegistoConflitos m_rconf;
+    private RegistoConflitos m_rconf;
 
-    private final RegistoExpositores m_rexpositores;
+    private RegistoExpositores m_rexpositores;
 
-    private final KeywordRanking m_keywordRanking;
+    private KeywordRanking m_keywordRanking;
 
-    private final CentroExposicoes m_ce;
+    private CentroExposicoes m_ce;
 
     /**
      * Construtor de Exposição sem parametros
@@ -163,6 +163,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+
+        this.m_rce = new RegistoCandidaturasAExposicao();
+        this.m_rfae = new RegistoFAE();
+        this.m_rcr = new RegistoCandidaturasRemovidas();
+        this.m_rconf = new RegistoConflitos();
+        this.m_ra = new RegistoAtribuicoes();
+        this.m_rd = new RegistoDemonstracoes();
+        this.m_ro = new RegistoOrganizadores();
+        this.m_ras = new RegistoAtribuicoesStands();
+        this.m_rexpositores = new RegistoExpositores();
     }
 
     /**
@@ -171,7 +181,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return boolean de confirmação de validação
      */
     public boolean valida() {
-        return true;
+        if (m_strTitulo != null && m_strDescricao != null && m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataInicio != null && m_dataFimDetecaoConflitos != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -257,22 +271,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
         return m_rcr;
-    }
-
-    /**
-     * Define novo organizador para esta exposição
-     *
-     * @param utilizador utilizador a ser adicionada como organizador
-     * @return true se for válido, logo adicionado com sucesso. Caso contrário
-     * devolve false
-     */
-    public boolean addOrganizador(Utilizador utilizador) {
-        if (validaOrganizador(utilizador)) {
-            this.m_ro.addOrganizador(utilizador);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -553,9 +551,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param utilizador - utilizador a verificar
      * @return true se o utilizador nao é FAEou false caso contrário
      */
-    private boolean validaOrganizador(Utilizador utilizador) {
+    public boolean validaOrganizador(Organizador utilizador) {
         for (FAE f : m_rfae.getListaFAE()) {
-            if (utilizador.getUsername().equals(f.getUsernameFae())) {
+            if (utilizador.getUsernameOrganizador().equals(f.getUsernameFae())) {
                 return false;
             }
         }
@@ -862,6 +860,12 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public void addOrganizadores(List<Organizador> m_organizadoresSelecionados) {
+        for (Organizador o : m_organizadoresSelecionados) {
+            this.m_ro.addOrganizador(o);
+        }
     }
 
 }

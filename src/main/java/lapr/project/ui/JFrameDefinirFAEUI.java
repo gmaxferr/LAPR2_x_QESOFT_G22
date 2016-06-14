@@ -1,63 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.DefinirFAEController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Organizador;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author G29
  */
-public class JFrameDefinirFAE extends javax.swing.JFrame {
+public class JFrameDefinirFAEUI extends javax.swing.JFrame {
 
     private List<Exposicao> listaExposicoes;
     private JFrame jFrameMenuPrincipal;
     private final DefinirFAEController controller;
 
-    private static final int LARGURA_JANELA_PASSO1 = 705;
-    private static final int ALTURA_JANELA_PASSO1 = 390;
+    private static final int LARGURA_JANELA_PASSO1 = 710;
+    private static final int ALTURA_JANELA_PASSO1 = 370;
 
-    private static final int LARGURA_JANELA_PASSO2 = 555;
-    private static final int ALTURA_JANELA_PASSO2 = 610;
+    private static final int LARGURA_JANELA_PASSO2 = 722;
+    private static final int ALTURA_JANELA_PASSO2 = 500;
 
     private final CardLayout cardLayout;
     private List<Utilizador> listaUtilizadores;
     private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
-    private final String usernameOrganizador;
+
+    private List<Utilizador> listaTempFAE;
+    private ModeloJTableUtilizadores modeloJTableFAE;
 
     /**
      * Creates new form JFrameDefinirFAE
      *
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
-     * @param organizador
+     * @param usernameOrganizador
      */
-    public JFrameDefinirFAE(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameOrganizador) {
+    public JFrameDefinirFAEUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameOrganizador) {
         super("Definir FAE");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.usernameOrganizador = usernameOrganizador;
         this.controller = new DefinirFAEController(centroExposicoes, usernameOrganizador);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE();
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
 
         initComponents();
         alterarComportamentoFecharJFrame();
+        this.cardLayout = (CardLayout) getContentPane().getLayout();
 
         setVisible(true);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
@@ -103,19 +94,20 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jComboBoxEscolherExposicao = new javax.swing.JComboBox<>();
         card2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jTableCard2UtilizadoresRegistados = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCard2IntroduzirUsernameUtilizador = new javax.swing.JTextField();
         jButtonCard2AdicionarFAE = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jTableCard2FAE = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jButtonCard2Recuar = new javax.swing.JButton();
         jButtonCard2Terminar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableUtilizadores = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableFAE = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -158,11 +150,14 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jPanelCard1DescricaoExposicao.setLayout(jPanelCard1DescricaoExposicaoLayout);
         jPanelCard1DescricaoExposicaoLayout.setHorizontalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1DescricaoExposicaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelCard1DescricaoExposicaoLayout.setVerticalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
         );
 
         jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -212,7 +207,7 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jTextAreaCard1LocalExposicao.setColumns(20);
         jTextAreaCard1LocalExposicao.setLineWrap(true);
         jTextAreaCard1LocalExposicao.setRows(5);
-        jTextAreaCard1LocalExposicao.setText("A apresentar o local da exposição selecionada");
+        jTextAreaCard1LocalExposicao.setText("Local");
         jTextAreaCard1LocalExposicao.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jTextAreaCard1LocalExposicao);
 
@@ -220,13 +215,14 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jPanelCard1Local.setLayout(jPanelCard1LocalLayout);
         jPanelCard1LocalLayout.setHorizontalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCard1LocalLayout.createSequentialGroup()
+            .addGroup(jPanelCard1LocalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelCard1LocalLayout.setVerticalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -242,26 +238,29 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card1Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCard1Avancar)
+                        .addGap(18, 18, 18))))
             .addGroup(card1Layout.createSequentialGroup()
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabelCard1Titulo))
+                        .addGap(254, 254, 254)
+                        .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(card1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(card1Layout.createSequentialGroup()
-                                .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButtonCard1Avancar))
-                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabelCard1Titulo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,14 +273,14 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -289,24 +288,8 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
         jLabel3.setFont(jLabelCard1Titulo.getFont());
         jLabel3.setText("Escolha os utilizadores");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jTableCard2UtilizadoresRegistados.setModel(new lapr.project.ui.ModeloJTableUtilizadores(this.listaUtilizadores));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTableCard2UtilizadoresRegistados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTableCard2UtilizadoresRegistados, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jLabel4.setText("Utilizadores registados");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Utilizadores registados (registo confirmado)");
 
         jLabel5.setText("Introduza o username do utilizador pretendido:");
 
@@ -317,60 +300,52 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jTableCard2FAE.setModel(new ModeloJTableUtilizadores(listaUtilizadoresCorrespondentesAosFae));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTableCard2FAE, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTableCard2FAE, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("FAE");
 
         jButtonCard2Recuar.setText("Recuar");
 
         jButtonCard2Terminar.setText("Terminar");
 
+        jTableUtilizadores.setModel(new ModeloJTableUtilizadores(this.listaUtilizadores));
+        jScrollPane3.setViewportView(jTableUtilizadores);
+
+        this.listaTempFAE=new ArrayList(this.listaUtilizadoresCorrespondentesAosFae);
+        jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaTempFAE));
+        jScrollPane4.setViewportView(jTableFAE);
+
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(214, 214, 214))
             .addGroup(card2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
                     .addGroup(card2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                                    .addGap(21, 21, 21)
+                                    .addComponent(jButtonCard2Recuar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonCard2Terminar)
+                                    .addGap(15, 15, 15))
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))))
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldCard2IntroduzirUsernameUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jButtonCard2AdicionarFAE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(card2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButtonCard2Recuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCard2Terminar)
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(207, 207, 207))
+                        .addComponent(jButtonCard2AdicionarFAE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,21 +355,21 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldCard2IntroduzirUsernameUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCard2AdicionarFAE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard2Recuar)
                     .addComponent(jButtonCard2Terminar))
-                .addGap(19, 19, 19))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         getContentPane().add(card2, "card2");
@@ -404,10 +379,13 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-
+            controller.setExposicao(this.listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            controller.getRegistoUtilizadores();
             controller.getRegistoOrganizadores();
+            controller.getRegistoFAE();
             controller.setRegistoOrganizadoresParaValidacoes();
-
+            listaUtilizadores = controller.getListaUtilizadores();
+            this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
             if (!listaUtilizadores.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -419,11 +397,9 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
     private void avancarParaCard2() {
-        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoUtilizadores();
-        listaUtilizadores = controller.getListaUtilizadores();
-        controller.getRegistoFAE();
-        this.listaUtilizadoresCorrespondentesAosFae = controller.getListaUtilizadoresCorrespondentesAosFae();
+        jTableUtilizadores.setModel(new ModeloJTableUtilizadores(this.listaUtilizadores));
+        this.modeloJTableFAE = new ModeloJTableUtilizadores(this.listaTempFAE);
+        jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
@@ -444,12 +420,15 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
     private void jButtonCard2AdicionarFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarFAEActionPerformed
         if (!jTextFieldCard2IntroduzirUsernameUtilizador.getText().replaceAll(" ", "").isEmpty()) {
-            if (controller.setFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())) {
-                //jTableCard2FAE.add();
-                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi definido como FAE para esta exposição!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            if (controller.criarEAdicionarFaePeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText())) {
+                //jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
+//                this.modeloJTableFAE.addUtilizador(utilizador);
+                JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi definido como FAE para a exposição selecionada!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar o campo do username vazio!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard2AdicionarFAEActionPerformed
 
@@ -471,15 +450,15 @@ public class JFrameDefinirFAE extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableCard2FAE;
-    private javax.swing.JTable jTableCard2UtilizadoresRegistados;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTableFAE;
+    private javax.swing.JTable jTableUtilizadores;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
     private javax.swing.JTextField jTextFieldCard2IntroduzirUsernameUtilizador;

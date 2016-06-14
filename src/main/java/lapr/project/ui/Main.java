@@ -3,10 +3,10 @@ package lapr.project.ui;
 import java.io.File;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
-import lapr.project.exceptions.InvalidEmailException;
-import lapr.project.exceptions.InvalidPasswordException;
+import lapr.project.exceptions.*;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.registos.*;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -73,6 +73,28 @@ public class Main {
         Utilizador utilizador;
         utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
         utilizador.setIsGestor();
+
+        //Organizador
+        utilizador = ru.identificarUtilizadorPeloUsername("Ana");
+        utilizador.setIsOrganizador();
+
+        //Exposições
+        RegistoExposicoes re = centroExposicoes.getRegistoExposicoes();
+        Exposicao exposicao;
+        /*1*/
+        exposicao = new Exposicao("Titulo", "Descricao", new Data(2016, 2, 25), new Data(2016, 3, 5), new Data(2016, 2, 5), new Data(2016, 2, 10), new Data(2016, 2, 15), new Local("Local"), centroExposicoes);
+        re.registaExposicao(exposicao);
+        exposicao.getEstado().setEstadoCriada();
+        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+        /*2*/
+        exposicao = new Exposicao("Titulo2", "Descricao2", new Data(2016, 3, 25), new Data(2016, 4, 5), new Data(2016, 3, 5), new Data(2016, 3, 10), new Data(2016, 3, 15), new Local("Local2"), centroExposicoes);
+        re.registaExposicao(exposicao);
+        exposicao.getEstado().setEstadoCriada();
+        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+        
+        //FAE
+        RegistoFAE rf = exposicao.getRegistoFAE();
+        rf.adicionaFAE(ru.identificarUtilizadorPeloUsername("Joao"));
 
         JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
                 + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
