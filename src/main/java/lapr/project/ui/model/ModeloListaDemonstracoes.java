@@ -1,4 +1,4 @@
-package lapr.project.ui;
+package lapr.project.ui.model;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import lapr.project.model.Demonstracao;

@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.AbstractListModelRecursos;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;

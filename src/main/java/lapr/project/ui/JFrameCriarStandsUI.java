@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.ModeloListaStands;
 import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.CriarStandsController;

@@ -5,6 +5,8 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.AbstractListModelRecursos;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;

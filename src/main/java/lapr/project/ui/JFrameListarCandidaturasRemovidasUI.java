@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

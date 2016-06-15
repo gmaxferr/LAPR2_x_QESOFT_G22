@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import lapr.project.ui.AbstractListModelRecursos;
+import lapr.project.ui.model.AbstractListModelRecursos;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

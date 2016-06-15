@@ -1,5 +1,9 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
+import lapr.project.ui.model.AbstractListModelConflitosDeInteresse;
+import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;

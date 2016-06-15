@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import lapr.project.ui.ComboBoxModelExposicoes;
+import lapr.project.ui.model.ComboBoxModelExposicoes;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
