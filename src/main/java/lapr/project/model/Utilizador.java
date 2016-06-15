@@ -100,7 +100,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return boolean que representa se o registo desse Utilizador já foi
      * confirmado ou não
      */
-    public boolean getBoolConfirmaRegisto() {
+    public boolean getConfirmacaoRegisto() {
         return this.m_boolConfirmaRegisto;
     }
 

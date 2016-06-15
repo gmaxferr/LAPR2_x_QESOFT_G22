@@ -169,7 +169,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     public ArrayList<Utilizador> getListaNovosRegistos() {
         ArrayList<Utilizador> list = new ArrayList<>();
         for (Utilizador u : m_listaUtilizadores) {
-            if (u.getBoolConfirmaRegisto() == false) {
+            if (u.getConfirmacaoRegisto() == false) {
                 list.add(u);
             }
         }
