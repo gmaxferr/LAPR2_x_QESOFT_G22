@@ -24,11 +24,11 @@ import lapr.project.utils.Data;
  */
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
-    private List<PossivelOrganizador> lstPossiveisOrganizadores;
+    private List<PossivelOrganizador> lstPossiveisOrganizadores = new ArrayList<>();
     private ModeloJListPotenciaisOrganizadores model = new ModeloJListPotenciaisOrganizadores(lstPossiveisOrganizadores);
     private ComboBoxModelUtilizadores modelSelectOrg;
     private CriarExposicaoController ctrl;
-    private List<PossivelOrganizador> organizadoresSelecionados;
+    private List<PossivelOrganizador> organizadoresSelecionados = new ArrayList<>();
     private JFrame menuPrincipal;
     private JFrame thisFrame;
     private CentroExposicoes ce;
@@ -649,7 +649,8 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         addOrganizadorBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PossivelOrganizador organizadorSelecionado = (PossivelOrganizador) modelSelectOrg.getSelectedItem();
+                int index = orgSelectionComboBox.getSelectedIndex();
+                PossivelOrganizador organizadorSelecionado = (PossivelOrganizador) modelSelectOrg.getElementAt(index);
                 organizadorSelecionado.setEstado(true);
                 organizadoresSelecionados.add(organizadorSelecionado);
                 organizadoresList1.setModel(new ModeloJListPotenciaisOrganizadores(organizadoresSelecionados));

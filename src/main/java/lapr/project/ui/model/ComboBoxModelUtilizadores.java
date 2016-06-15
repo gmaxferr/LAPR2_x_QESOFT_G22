@@ -20,7 +20,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
     /**
      * Objeto selecionado
      */
-    private String selection;
+    private Object selection;
     
     public ComboBoxModelUtilizadores(List<PossivelOrganizador> listaUtilizadores){
         this.selection = null;
@@ -56,7 +56,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public void setSelectedItem(Object anItem) {
-        selection = (String) anItem;
+        selection = anItem;
     }
 
     /**
