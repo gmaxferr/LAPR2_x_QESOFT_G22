@@ -623,52 +623,52 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
                 this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
 
-                Data invalidData = new Data(0, 0, 0);
+                Data invalidData = new Data(1, 1, 1);
 
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
-                this.m_dataAberturaCandidatura = new Data(0, 0, 0);
+                this.m_dataAberturaCandidatura = new Data(1, 1, 1);
                 this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataAberturaCandidatura.equals(invalidData)) {
                     this.m_dataAberturaCandidatura = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
-                this.m_dataEncerramentoCandidatura = new Data(0, 0, 0);
+                this.m_dataEncerramentoCandidatura = new Data(1, 1, 1);
                 this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataEncerramentoCandidatura.equals(invalidData)) {
                     this.m_dataEncerramentoCandidatura = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
-                this.m_dataFim = new Data(0, 0, 0);
+                this.m_dataFim = new Data(1, 1, 1);
                 this.m_dataFim.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataFim.equals(invalidData)) {
                     this.m_dataFim = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CAND_DEMO_ELEMENT_NAME).item(0);
-                this.m_dataFimCandDemo = new Data(0, 0, 0);
+                this.m_dataFimCandDemo = new Data(1, 1, 1);
                 this.m_dataFimCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataFimCandDemo.equals(invalidData)) {
                     this.m_dataFimCandDemo = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
-                this.m_dataFimDetecaoConflitos = new Data(0, 0, 0);
+                this.m_dataFimDetecaoConflitos = new Data(1, 1, 1);
                 this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataFimDetecaoConflitos.equals(invalidData)) {
                     this.m_dataFimDetecaoConflitos = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
-                this.m_dataInicio = new Data(0, 0, 0);
+                this.m_dataInicio = new Data(1, 1, 1);
                 this.m_dataInicio.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataInicio.equals(invalidData)) {
                     this.m_dataInicio = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_CAND_DEMO_ELEMENT_NAME).item(0);
-                this.m_dataInicioCandDemo = new Data(0, 0, 0);
+                this.m_dataInicioCandDemo = new Data(1, 1, 1);
                 this.m_dataInicioCandDemo.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataInicioCandDemo.equals(invalidData)) {
                     this.m_dataInicioCandDemo = null;
@@ -798,7 +798,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_ABERTURA_CAND_ELEMENT_NAME);
             if (this.m_dataAberturaCandidatura == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataAberturaCandidatura.exportContentToXMLNode(), true));
             }
@@ -806,7 +806,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME);
             if (this.m_dataEncerramentoCandidatura == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataEncerramentoCandidatura.exportContentToXMLNode(), true));
             }
@@ -814,7 +814,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_FIM_CAND_DEMO_ELEMENT_NAME);
             if (this.m_dataFimCandDemo == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataFimCandDemo.exportContentToXMLNode(), true));
             }
@@ -822,7 +822,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_FIM_CONFLITOS_ELEMENT_NAME);
             if (this.m_dataFimDetecaoConflitos == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataFimDetecaoConflitos.exportContentToXMLNode(), true));
             }
@@ -830,7 +830,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_FIM_ELEMENT_NAME);
             if (this.m_dataFim == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataFim.exportContentToXMLNode(), true));
             }
@@ -838,7 +838,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_INICIO_CAND_DEMO_ELEMENT_NAME);
             if (this.m_dataInicioCandDemo == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataInicioCandDemo.exportContentToXMLNode(), true));
             }
@@ -846,7 +846,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elemChild = document.createElement(DATA_INICIO_ELEMENT_NAME);
             if (this.m_dataInicio == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataInicio.exportContentToXMLNode(), true));
             }

@@ -117,6 +117,8 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
             elemChild = doc.createElement(EMAIL_ELEMENT_NAME);
             elemChild.setTextContent(this.m_Utilizador.getEmail());
             elementBase.appendChild(elemChild);
+            
+            node = elementBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(FAE.class.getName()).log(Level.SEVERE, null, ex);
         }
