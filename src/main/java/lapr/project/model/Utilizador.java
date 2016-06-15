@@ -32,6 +32,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
     public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
+    
+    public static final int SHIFTS_MASK = 0x35;
 
     /**
      * true se o utilizador esta selecionado para organizador
@@ -433,7 +435,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
                 this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
 
-                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ 0xffff;
+                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
                 this.keyword = String.valueOf(CaesarsCypher.decrypt(elem.getAttribute(KEYWORD_ATTR_NAME).toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
 
                 String value = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
@@ -469,7 +471,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
             elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
             elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
-            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift ^ 0xffff));
+            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift ^ SHIFTS_MASK));
             elementKeyword.setAttribute(KEYWORD_ATTR_NAME, String.valueOf(CaesarsCypher.encrypt(this.keyword.toCharArray(), randomCaesarShift, COMPLETE_ALFABET)));
 
             Element elementValue = document.createElement(NOME_ELEMENT_NAME);
