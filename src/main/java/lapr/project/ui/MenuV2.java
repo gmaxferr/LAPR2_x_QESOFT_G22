@@ -99,7 +99,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         File file = fc.getSelectedFile();
                         ExportarXMLController CTRL = new ExportarXMLController();
-                        if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                        if (CTRL.exportAndUpdateProperties(file.getAbsolutePath(), centroExposicoes)) {
                             JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                             System.exit(0);
                         } else {
@@ -802,7 +802,7 @@ public class MenuV2 extends javax.swing.JFrame {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 ExportarXMLController CTRL = new ExportarXMLController();
-                if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                if (CTRL.exportAndUpdateProperties(file.getAbsolutePath(), centroExposicoes)) {
                     JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                     terminaSessao();
                 } else {
@@ -829,7 +829,7 @@ public class MenuV2 extends javax.swing.JFrame {
             File f = fc.getSelectedFile();
             String fileName = f.getAbsolutePath();
             ExportarXMLController CTRL = new ExportarXMLController();
-            if (CTRL.export(fileName, centroExposicoes)) {
+            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
                 JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);

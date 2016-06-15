@@ -1,6 +1,10 @@
 package lapr.project.ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
@@ -16,24 +20,50 @@ import lapr.project.utils.Data;
 public class Main {
 
     public static void main(String[] args) {
+        CentroExposicoes centroExposicoes = null;
         MyJFileChooser.personalizarEmPortugues();
 
-        CentroExposicoes centroExposicoes = null;
+        ImportarXMLController CTRL = new ImportarXMLController();
 
-        JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            String filename = file.getAbsolutePath();
-            ImportarXMLController CTRL = new ImportarXMLController();
-            centroExposicoes = CTRL.Import(filename);
+        File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+        try {
+            Scanner in = new Scanner(properties);
 
-            if (centroExposicoes != null) {
-                JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            while (in.hasNext()) {
+                String[] input = in.nextLine().split("=");
+                if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
+                    String[] filePath = input[1].split("\".*\"");
+                    if (filePath.length > 0) {
+                        centroExposicoes = CTRL.Import(filePath[0]);
+
+                        if (centroExposicoes != null) {
+                            JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                }
             }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.CONFIG, "Ficheiro de propriedades não existente.");
         }
+
+        if (centroExposicoes == null) {
+            JFileChooser fc = new JFileChooser();
+
+            int returnVal = fc.showOpenDialog(null);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                String filename = file.getAbsolutePath();
+                centroExposicoes = CTRL.Import(filename);
+
+                if (centroExposicoes != null) {
+                    JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+
         try {
             if (centroExposicoes == null) {
                 centroExposicoes = new CentroExposicoes();
