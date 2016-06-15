@@ -9,7 +9,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um registo fae
- * 
+ *
  * @author G29
  */
 public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
@@ -22,7 +22,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
      * Lista de fae
      */
     private final List<FAE> m_listaFAE;
-    
+
     /**
      * Registo de organizadores
      */
@@ -38,7 +38,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     /**
      * Devolve a lista de fae
-     * 
+     *
      * @return lista de fae
      */
     public List<FAE> getListaFAE() {
@@ -47,7 +47,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     /**
      * Adiciona fae à lista de fae
-     * 
+     *
      * @param u utilizador a ser adicionado
      * @return true se o fae for adicionado. Caso contrário retorna false.
      */
@@ -62,9 +62,9 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     /**
      * Valida o utilizador
-     * 
+     *
      * @param u utilizador a ser validado
-     * @return true caso o utilizador ainda não esteja na lista de fae ou de 
+     * @return true caso o utilizador ainda não esteja na lista de fae ou de
      * organizador. Caso contrário retona false.
      */
     private boolean validaUtilizador(Utilizador u) {
@@ -125,7 +125,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
     /**
      * Devolve a lista de utilizadores correspondeste aos fae
-     * 
+     *
      * @return lista de utilizadores correspondeste aos fae
      */
     public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
@@ -166,11 +166,19 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
                 this.m_listaFAE.clear();
                 NodeList nList = elem.getElementsByTagName(LISTA_FAE_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    FAE fae = new FAE();
-                    fae.importContentFromXMLNode(n2);
-                    this.m_listaFAE.add(fae);
+                Node n2 = nList.item(0);
+
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem2 = (Element) n2;
+
+                    NodeList nList2 = elem2.getElementsByTagName(FAE.ROOT_ELEMENT_NAME);
+                    for (int i = 0; i < nList2.getLength(); i++) {
+                        Node n3 = nList2.item(i);
+
+                        FAE fae = new FAE();
+                        fae.importContentFromXMLNode(n3);
+                        this.m_listaFAE.add(fae);
+                    }
                 }
             }
 

@@ -63,11 +63,11 @@ public class Main {
 
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();
-        ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt"));
-        ru.addUtilizador(new Utilizador("Ana", "Ana", "Abc-1".toCharArray(), "Ana@email.pt"));
-        ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt"));
-        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt"));
-        ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt"));
+        ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt", "abcd"));
+        ru.addUtilizador(new Utilizador("Ana", "Ana", "Abc-1".toCharArray(), "Ana@email.pt", "cheese"));
+        ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt", "sport"));
+        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "deceive"));
+        ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt", "blue"));
         ru.confirmarRegistoTodosUtilizadores();
 
         //GestorExposições
