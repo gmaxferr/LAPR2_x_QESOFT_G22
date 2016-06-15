@@ -30,10 +30,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private AtribuicaoCandidatura atribuicaoEscolhida;
     private Avaliacao avaliacaoDoFae;
 
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
     private static final int CARD1_ALTURA = 370;
@@ -844,11 +840,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
-        } else {
-            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 

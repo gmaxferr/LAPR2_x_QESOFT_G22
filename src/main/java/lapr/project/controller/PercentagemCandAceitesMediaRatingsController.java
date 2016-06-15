@@ -6,7 +6,7 @@ import lapr.project.registos.*;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author G29
  */
 public class PercentagemCandAceitesMediaRatingsController {
 
