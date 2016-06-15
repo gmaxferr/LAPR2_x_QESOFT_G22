@@ -47,29 +47,13 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Valida dados da candidatura
-     *
-     * @param c candidatura
-     *
-     * @return true se a candidatura for válida. Caso contrário retorna false
-     */
-    public boolean validarDadosCandidatura(CandidaturaAExposicao c) {
-        for (CandidaturaAExposicao candidatura : this.m_listaCandidaturas) {
-            if (c.equals(candidatura)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Regista candidatura
      *
      * @param candidaturaAExposicao candidatura
      * @return true se a candidatura for registada. Caso contrário retorna false
      */
     public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
-        boolean b = validaCandidatua(candidaturaAExposicao);
+        boolean b = validaCandidatura(candidaturaAExposicao);
         if (b) {
             this.m_listaCandidaturas.add(candidaturaAExposicao);
         }
@@ -86,7 +70,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @return true se a candidatura for válida para ser adicionada a este
      * registo de candidaturas, caso contrário false
      */
-    public boolean validaCandidatua(CandidaturaAExposicao candidaturaNova) {
+    private boolean validaCandidatura(CandidaturaAExposicao candidaturaNova) {
         for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
             if (candidatura.equals(candidaturaNova)) {
                 return false;

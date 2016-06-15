@@ -197,10 +197,6 @@ public class CriarCandidaturaAExposicaoController {
         this.m_estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
-    public boolean validarDadosCandidatura() {
-        return this.m_rc.validarDadosCandidatura(this.m_candidaturaCriada);
-    }
-
     public void setKeywords(String keywords) throws KeywordsErradasException {
         this.m_candidaturaCriada.setKeywords(keywords);
     }
