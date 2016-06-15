@@ -19,15 +19,21 @@ import lapr.project.utils.Utilitarios;
 public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Utilizador";
+
+    public static final String SHIFTS_ATTR_NAME = "shifts";
+    public static final String KEYWORD_ATTR_NAME = "keyword";
+    public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
+    public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
+
     public static final String NOME_ELEMENT_NAME = "nome";
     public static final String PASSWD_ELEMENT_NAME = "passwd";
     public static final String USERNAME_ELEMENT_NAME = "username";
     public static final String EMAIL_ELEMENT_NAME = "email";
-    public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
-    public static final String SHIFTS_ATTR_NAME = "shifts";
-    public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
     public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
+    public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
+    
+    public static final int SHIFTS_MASK = 0x35;
 
     /**
      * Atributo nome de um Utilizador.
@@ -43,6 +49,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * Numero de shifts usados na encriptação da password.
      */
     private int randomCaesarShift;
+
+    /**
+     * Keyword usada na encriptação dos dados pessoais do utilizador.
+     */
+    private String keyword;
 
     /**
      * Atributo email de um Utilizador.
@@ -91,6 +102,19 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.isFAE = false;
         this.isGestor = false;
         this.isOrganizador = false;
+    }
+
+    public Utilizador(String nome, String username, char[] password, String email, String keyword) {
+        this();
+        this.m_strUsername = username;
+        this.m_strEmail = email;
+        setPwd(password);
+        this.m_strNome = nome;
+        this.isExpositor = false;
+        this.isFAE = false;
+        this.isGestor = false;
+        this.isOrganizador = false;
+        this.keyword = keyword;
     }
 
     /**
@@ -362,6 +386,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
+    /**
+     * @return the keyword
+     */
+    public String getKeyword() {
+        return keyword;
+    }
+
+    /**
+     * @param keyword the keyword to set
+     */
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
     @Override
     public Utilizador importContentFromXMLNode(Node node) {
         try {
@@ -378,11 +416,23 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME));
                 this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
-                this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
-                this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
-                this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+
+                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
+                this.keyword = String.valueOf(CaesarsCypher.decrypt(elem.getAttribute(KEYWORD_ATTR_NAME).toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+                String value = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+                this.m_strNome = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+                value = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
+                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+                this.m_strEmail = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+                value = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+                this.m_strUsername = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
                 this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
             }
         } catch (ParserConfigurationException ex) {
@@ -402,25 +452,32 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
+            elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
+            elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
+            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift ^ SHIFTS_MASK));
+            elementKeyword.setAttribute(KEYWORD_ATTR_NAME, String.valueOf(CaesarsCypher.encrypt(this.keyword.toCharArray(), randomCaesarShift, COMPLETE_ALFABET)));
+
             Element elementValue = document.createElement(NOME_ELEMENT_NAME);
-            elementValue.setTextContent(this.m_strNome);
+            String value = String.valueOf(CaesarsCypher.encrypt(this.m_strNome.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+            value = String.valueOf(TransposeCypher.encrypt(value.toCharArray(), this.keyword.toCharArray()));
+            elementValue.setTextContent(value);
             elementKeyword.appendChild(elementValue);
 
             elementValue = document.createElement(EMAIL_ELEMENT_NAME);
-            elementValue.setTextContent(this.m_strEmail);
+            value = String.valueOf(CaesarsCypher.encrypt(this.m_strEmail.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+            value = String.valueOf(TransposeCypher.encrypt(value.toCharArray(), this.keyword.toCharArray()));
+            elementValue.setTextContent(value);
             elementKeyword.appendChild(elementValue);
 
             elementValue = document.createElement(USERNAME_ELEMENT_NAME);
-            elementValue.setTextContent(this.m_strUsername);
+            value = String.valueOf(CaesarsCypher.encrypt(this.m_strUsername.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+            value = String.valueOf(TransposeCypher.encrypt(value.toCharArray(), this.keyword.toCharArray()));
+            elementValue.setTextContent(value);
             elementKeyword.appendChild(elementValue);
 
             elementValue = document.createElement(PASSWD_ELEMENT_NAME);
             elementValue.setTextContent(String.valueOf(this.m_strPwd));
             elementKeyword.appendChild(elementValue);
-
-            elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
-            elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
-            elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift));
 
             document.appendChild(elementKeyword);
 

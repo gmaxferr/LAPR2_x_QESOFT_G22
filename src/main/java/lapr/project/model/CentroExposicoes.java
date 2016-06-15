@@ -14,6 +14,7 @@ import org.w3c.dom.*;
  */
 public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
 
+    public static final String PROPERTIES_FILE_LOCATION = "user.properties";
     public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
