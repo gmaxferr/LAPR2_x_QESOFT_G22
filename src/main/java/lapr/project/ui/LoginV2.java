@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 import lapr.project.model.*;
 import lapr.project.utils.Utilitarios;
 
