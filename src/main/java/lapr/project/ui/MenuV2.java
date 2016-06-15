@@ -77,10 +77,10 @@ public class MenuV2 extends javax.swing.JFrame {
             this.jCheckBoxOrganizador.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(2, true);
         }
-        if (utilizador.getBoolConfirmaRegisto() == false) {
+        if (utilizador.getConfirmacaoRegisto() == false || utilizador.getIsGestor()==false && utilizador.getIsExpositor()==false && utilizador.getIsFAE()==false && utilizador.getIsOrganizador()==false) {
             jTabbedPaneCargos.setEnabledAt(4, true);
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (jTabbedPaneCargos.isEnabledAt(i)) {
                 jTabbedPaneCargos.setSelectedIndex(i);
                 break;
@@ -183,7 +183,6 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenuItemTerminarSessao = new javax.swing.JMenuItem();
         jMenuEstiloDaJanela = new javax.swing.JMenu();
         jMenuItemEstiloDaJanela = new javax.swing.JMenuItem();
-        jMenuItemAjuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -648,31 +647,32 @@ public class MenuV2 extends javax.swing.JFrame {
 
         jTabbedPaneCargos.addTab("Gestor", jPanel6);
 
-        jLabel7.setText("Infelizmente o seu registo ainda não foi confirmado");
+        jLabel7.setText("Infelizmente o seu registo ainda não foi confirmado ou não detêm cargos");
 
-        jLabel8.setText("Por enquanto não tem permissões para executar nenhuma ação. Por favor aguarda a confirmação do seu registo.");
+        jLabel8.setText("Por enquanto não tem permissões para executar nenhuma ação.");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(50, 50, 50))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(150, 150, 150))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(167, 167, 167))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(32, 32, 32)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel8)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         jTabbedPaneCargos.addTab("Utilizador", jPanel7);
@@ -722,7 +722,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenuEstiloDaJanela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenuEstiloDaJanela.setText("Outros");
+        jMenuEstiloDaJanela.setText("Estilos");
 
         jMenuItemEstiloDaJanela.setText("Estilo da janela");
         jMenuItemEstiloDaJanela.addActionListener(new java.awt.event.ActionListener() {
@@ -731,9 +731,6 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
         jMenuEstiloDaJanela.add(jMenuItemEstiloDaJanela);
-
-        jMenuItemAjuda.setText("Ajuda");
-        jMenuEstiloDaJanela.add(jMenuItemAjuda);
 
         jMenuBar1.add(jMenuEstiloDaJanela);
 
@@ -750,10 +747,10 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jTabbedPaneCargos)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(252, 252, 252)
                 .addComponent(jButton1)
-                .addGap(239, 239, 239))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -764,9 +761,9 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jTabbedPaneCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -1050,7 +1047,6 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEstiloDaJanela;
-    private javax.swing.JMenuItem jMenuItemAjuda;
     private javax.swing.JMenuItem jMenuItemCarregarDados;
     private javax.swing.JMenuItem jMenuItemEstiloDaJanela;
     private javax.swing.JMenuItem jMenuItemGuardarDados;
