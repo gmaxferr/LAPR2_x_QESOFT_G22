@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,8 +31,16 @@ public class EstadoExposicaoConflitosAlteradosTest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoConflitosAlterados instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoConflitosAlterados(e);
     }
     
     @After
@@ -43,12 +53,9 @@ public class EstadoExposicaoConflitosAlteradosTest {
     @Test
     public void testSetEstadoConflitosAlterados() {
         System.out.println("setEstadoConflitosAlterados");
-        EstadoExposicaoConflitosAlterados instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoConflitosAlterados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +64,9 @@ public class EstadoExposicaoConflitosAlteradosTest {
     @Test
     public void testSetEstadoCandidaturasAtribuidas() {
         System.out.println("setEstadoCandidaturasAtribuidas");
-        EstadoExposicaoConflitosAlterados instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoCandidaturasAtribuidas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +75,22 @@ public class EstadoExposicaoConflitosAlteradosTest {
     @Test
     public void testIsEstadoConflitosAlterados() {
         System.out.println("isEstadoConflitosAlterados");
-        EstadoExposicaoConflitosAlterados instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoConflitosAlterados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+    
+    /**
+     * Test of valida method, of class EstadoExposicaoConflitosAlterados.
+     */
+    @Test
+    public void testValida() {
+        System.out.println("valida");
+        boolean expResult = true;
+        boolean result = instance.valida();
+        assertEquals(expResult, result);
+    }
+    
+    
     
 }

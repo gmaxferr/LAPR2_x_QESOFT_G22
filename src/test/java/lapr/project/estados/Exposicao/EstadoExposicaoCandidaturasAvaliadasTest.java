@@ -5,6 +5,7 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAvaliada;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoNaoAvaliada;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -44,7 +45,7 @@ public class EstadoExposicaoCandidaturasAvaliadasTest {
         ce = new CentroExposicoes();
         e = new Exposicao(ce);
         CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(new Utilizador("a", "b", new char[]{'a', 'A', '.', '1', 'd'}, "a@b.c")));
-        cand.setEstado(new EstadoCandidaturaAExposicaoNaoAvaliada(cand));
+        cand.setEstado(new EstadoCandidaturaAExposicaoAvaliada(cand));
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
 
@@ -74,7 +75,7 @@ public class EstadoExposicaoCandidaturasAvaliadasTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        boolean expResult = true;
+        boolean expResult = false; //porque já esta neste estado
         boolean result = instance.valida();
         assertEquals(expResult, result);
 
@@ -87,7 +88,7 @@ public class EstadoExposicaoCandidaturasAvaliadasTest {
     @Test
     public void testIsEstadoCandidaturasAvaliadas() {
         System.out.println("isEstadoCandidaturasAvaliadas");
-        boolean expResult = true;
+        boolean expResult = true; 
         boolean result = instance.isEstadoCandidaturasAvaliadas();
         assertEquals(expResult, result);
 

@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,8 +31,16 @@ public class EstadoExposicaoCriadaTest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoCriada instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoCriada(e);
     }
     
     @After
@@ -43,12 +53,9 @@ public class EstadoExposicaoCriadaTest {
     @Test
     public void testSetEstadoFAEDefinidosSemDemos() {
         System.out.println("setEstadoFAEDefinidosSemDemos");
-        EstadoExposicaoCriada instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoFAEDefinidosSemDemos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +64,9 @@ public class EstadoExposicaoCriadaTest {
     @Test
     public void testSetEstadoDemosDefinidasSemFAE() {
         System.out.println("setEstadoDemosDefinidasSemFAE");
-        EstadoExposicaoCriada instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +75,9 @@ public class EstadoExposicaoCriadaTest {
     @Test
     public void testIsEstadoCriada() {
         System.out.println("isEstadoCriada");
-        EstadoExposicaoCriada instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoCriada();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

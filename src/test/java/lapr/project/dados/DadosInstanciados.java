@@ -22,7 +22,7 @@ public class DadosInstanciados {
     public DadosInstanciados() {
         email1 = "a@iol.com";
         ce = new CentroExposicoes();
-        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 30), new Data(2016, 6, 13), new Data(2016, 6, 18), new Data(2016, 6, 19), new Local("local"), getCe());
+        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 30), new Data(2016, 6, 13), new Data(2016, 6, 18), new Data(2016, 6, 19), new Local("local"), getCentroExposicoes());
         user1 = new Utilizador("user1name", "user1", getPass(), getEmail1());
         representante1 = new Expositor(getUser1());
     }
@@ -71,7 +71,7 @@ public class DadosInstanciados {
     /**
      * @return the ce
      */
-    public CentroExposicoes getCe() {
+    public CentroExposicoes getCentroExposicoes() {
         return ce;
     }
 

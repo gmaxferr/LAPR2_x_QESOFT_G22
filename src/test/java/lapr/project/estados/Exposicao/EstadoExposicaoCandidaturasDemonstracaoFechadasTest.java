@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,9 +31,18 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadasTest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoCandidaturasDemonstracaoFechadas instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoCandidaturasDemonstracaoFechadas(e);
     }
+
     
     @After
     public void tearDown() {
@@ -43,12 +54,9 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadasTest {
     @Test
     public void testSetEstadoCandidaturasDemonstracaoFechadas() {
         System.out.println("setEstadoCandidaturasDemonstracaoFechadas");
-        EstadoExposicaoCandidaturasDemonstracaoFechadas instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasDemonstracaoFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +65,9 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadasTest {
     @Test
     public void testSetEstadoConflitosDetetados() {
         System.out.println("setEstadoConflitosDetetados");
-        EstadoExposicaoCandidaturasDemonstracaoFechadas instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +76,9 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadasTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        EstadoExposicaoCandidaturasDemonstracaoFechadas instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +87,9 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadasTest {
     @Test
     public void testIsEstadoCandidaturasDemonstracaoFechadas() {
         System.out.println("isEstadoCandidaturasDemonstracaoFechadas");
-        EstadoExposicaoCandidaturasDemonstracaoFechadas instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoCandidaturasDemonstracaoFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

@@ -35,6 +35,8 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
 
         data3 = m_exposicao.getDataFimDetecaoConflitos();
 
+        m_exposicao.setEstado(new EstadoExposicaoCriada(m_exposicao));
+        
         inicioSubCand = new AlterarParaAbertaCandidaturas(m_exposicao);
         m_exposicao.schedule(inicioSubCand, data1);
 
@@ -44,12 +46,6 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
         fimDetecaoConflitos = new AlterarParaConflitosAtualizados(m_exposicao);
         m_exposicao.schedule(fimDetecaoConflitos, data3);
 
-        m_exposicao.setEstado(new EstadoExposicaoCriada(m_exposicao));
-        return true;
-    }
-
-    private boolean valida() {
-        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
     }
 

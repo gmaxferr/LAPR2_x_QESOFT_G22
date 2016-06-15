@@ -78,7 +78,7 @@ public class CriarExposicaoController {
         m_exposicao.setDataEncerramentoSubCand(dataAberturaSubCand);
         m_exposicao.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         m_exposicao.setLocal(strLocal);
-        if (!m_re.validaExposicao(m_exposicao)) {
+        if (!m_exposicao.valida()) {
             m_exposicao = null;
         }
         return m_exposicao;
