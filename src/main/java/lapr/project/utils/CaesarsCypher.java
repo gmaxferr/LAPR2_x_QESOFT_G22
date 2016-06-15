@@ -31,7 +31,7 @@ public final class CaesarsCypher {
         for (int i = 0; i < size; i++) {
             int indexOf = alfabet.indexOf(arrChar[i]);
             if (indexOf != -1) {    //Para o raro caso de haver caracteres esquesitos
-                result[i] = (char) (alfabet.charAt(indexOf + shifts) % alfabet.length());
+                result[i] = (char) (alfabet.charAt((indexOf + shifts) % alfabet.length()));
             } else {
                 result[i] = arrChar[i];
             }
