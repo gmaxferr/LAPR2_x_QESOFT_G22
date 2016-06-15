@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import java.util.List;
-import lapr.project.estados.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
