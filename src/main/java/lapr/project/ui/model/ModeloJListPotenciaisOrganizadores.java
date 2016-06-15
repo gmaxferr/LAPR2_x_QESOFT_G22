@@ -5,6 +5,7 @@
  */
 package lapr.project.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import lapr.project.ui.JFrameRegistarExpoUI.PossivelOrganizador;
@@ -15,7 +16,7 @@ import lapr.project.ui.JFrameRegistarExpoUI.PossivelOrganizador;
  */
 public class ModeloJListPotenciaisOrganizadores extends AbstractListModel {
 
-    private List<PossivelOrganizador> lstOrganizadores;
+    private List<PossivelOrganizador> lstOrganizadores = new ArrayList<>();
 
     public ModeloJListPotenciaisOrganizadores(List<PossivelOrganizador>list){
         lstOrganizadores = list;
