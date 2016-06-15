@@ -30,6 +30,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
 
     /**
+     * true se o utilizador esta selecionado para organizador
+     */
+    private boolean isSelecionadoOrganizador;
+
+    /**
      * Atributo nome de um Utilizador.
      */
     private String m_strNome;
@@ -91,6 +96,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.isFAE = false;
         this.isGestor = false;
         this.isOrganizador = false;
+        this.isSelecionadoOrganizador=false;
     }
 
     /**
@@ -130,6 +136,18 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public String getEmail() {
         return this.m_strEmail;
+    }
+
+    /**
+     *
+     * @return true se o utilizador esta na lista de potenciais organizadores
+     */
+    public boolean getSelecionadoOrganizador() {
+        return isSelecionadoOrganizador;
+    }
+
+    public void setSelecionadoOrganizador(boolean op) {
+        isSelecionadoOrganizador = op;
     }
 
     public void setIsFAE() {
@@ -258,11 +276,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Valida a password atual do utilizador: A validação da password é feita da seguinte forma: Uma
-     * password tem que conter um número, uma letra minuscula e outra maiusculo
-     * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
-     * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
-     * máximo de 7.
+     * Valida a password atual do utilizador: A validação da password é feita da
+     * seguinte forma: Uma password tem que conter um número, uma letra
+     * minuscula e outra maiusculo (pelo menos), tem que conter pelo menos um
+     * sinal de pontuação como "," "." ":" ";" ou "-". Tem ainda um tamanho
+     * minimo de 4 caracteres e um máximo de 7.
      *
      * @return true se for válida; false caso contrário.
      */

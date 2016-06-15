@@ -123,8 +123,8 @@ public class CriarExposicaoController {
     /**
      * Remove organizador pendente
      */
-    public void removerOrganizador(int index){
-        m_organizadoresSelecionados.remove(index);
+    public void removerOrganizador(Organizador o){
+        m_organizadoresSelecionados.remove(o);
     }
     
     /**
