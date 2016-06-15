@@ -23,6 +23,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String SHIFTS_ATTR_NAME = "shifts";
     public static final String KEYWORD_ATTR_NAME = "keyword";
     public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
+    public static final String IS_GESTOR_ATTR_NAME = "gestor";
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
     public static final String NOME_ELEMENT_NAME = "nome";
@@ -417,6 +418,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 Element elem = (Element) n;
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
                 this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
+                this.isGestor = Boolean.getBoolean(elem.getAttribute(IS_GESTOR_ATTR_NAME));
 
                 this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
                 this.keyword = String.valueOf(CaesarsCypher.decrypt(elem.getAttribute(KEYWORD_ATTR_NAME).toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
@@ -456,6 +458,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
             elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift ^ SHIFTS_MASK));
             elementKeyword.setAttribute(KEYWORD_ATTR_NAME, String.valueOf(CaesarsCypher.encrypt(this.keyword.toCharArray(), randomCaesarShift, COMPLETE_ALFABET)));
+            elementKeyword.setAttribute(IS_GESTOR_ATTR_NAME, String.valueOf(isGestor));
 
             Element elementValue = document.createElement(NOME_ELEMENT_NAME);
             String value = String.valueOf(CaesarsCypher.encrypt(this.m_strNome.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
