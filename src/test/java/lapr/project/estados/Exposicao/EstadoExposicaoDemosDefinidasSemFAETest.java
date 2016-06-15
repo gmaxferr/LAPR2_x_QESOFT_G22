@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
 public class EstadoExposicaoDemosDefinidasSemFAETest {
     
@@ -29,8 +31,16 @@ public class EstadoExposicaoDemosDefinidasSemFAETest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoDemosDefinidasSemFAE instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoDemosDefinidasSemFAE(e);
     }
     
     @After
@@ -43,12 +53,9 @@ public class EstadoExposicaoDemosDefinidasSemFAETest {
     @Test
     public void testSetEstadoDemosDefinidasSemFAE() {
         System.out.println("setEstadoDemosDefinidasSemFAE");
-        EstadoExposicaoDemosDefinidasSemFAE instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +64,9 @@ public class EstadoExposicaoDemosDefinidasSemFAETest {
     @Test
     public void testSetEstadoCompleta() {
         System.out.println("setEstadoCompleta");
-        EstadoExposicaoDemosDefinidasSemFAE instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoCompleta();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +75,9 @@ public class EstadoExposicaoDemosDefinidasSemFAETest {
     @Test
     public void testIsEstadoDemosDefinidasSemFAE() {
         System.out.println("isEstadoDemosDefinidasSemFAE");
-        EstadoExposicaoDemosDefinidasSemFAE instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

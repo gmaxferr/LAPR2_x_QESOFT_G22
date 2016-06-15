@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guima
+ * @author guilherme
  */
 public class EstadoExposicaoConflitosDetetadosTest {
     
@@ -29,8 +26,16 @@ public class EstadoExposicaoConflitosDetetadosTest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoConflitosDetetados instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoConflitosDetetados(e);
     }
     
     @After
@@ -43,12 +48,9 @@ public class EstadoExposicaoConflitosDetetadosTest {
     @Test
     public void testSetEstadoConflitosDetetados() {
         System.out.println("setEstadoConflitosDetetados");
-        EstadoExposicaoConflitosDetetados instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +59,9 @@ public class EstadoExposicaoConflitosDetetadosTest {
     @Test
     public void testSetEstadoConflitosAlterados() {
         System.out.println("setEstadoConflitosAlterados");
-        EstadoExposicaoConflitosDetetados instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoConflitosAlterados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +70,9 @@ public class EstadoExposicaoConflitosDetetadosTest {
     @Test
     public void testIsEstadoConflitosDetetados() {
         System.out.println("isEstadoConflitosDetetados");
-        EstadoExposicaoConflitosDetetados instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
