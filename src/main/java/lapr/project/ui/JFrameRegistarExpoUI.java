@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -28,17 +28,19 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
      * Creates new form JFrameRegistarExpoUI
      */
     public JFrameRegistarExpoUI(CentroExposicoes ce) {
+        super("Criar Exposiçao");
         ctrl = new CriarExposicaoController(ce);
         ctrl.novaExposicao();
         initComponents();
         lstUtilizadores = inicializarLista();
 
-        layout = (CardLayout) getContentPane().getLayout();
         setLocationRelativeTo(null);
         setVisible(true);
 
         modelSelectOrg = new ComboBoxModelUtilizadores(lstUtilizadores);
-
+        setVisible(true);
+        setMinimumSize(new Dimension(600, 300));
+        setPreferredSize(new Dimension(600, 300));
     }
 
     public List<Utilizador> inicializarLista() {
