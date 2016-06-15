@@ -1,39 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
-import org.w3c.dom.Node;
 
 /**
+ * Testes unitários da classe Local
  *
- * @author guima
+ * @author G29
  */
 public class LocalTest {
-    
+
     public LocalTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,12 +35,8 @@ public class LocalTest {
     @Test
     public void testGetMorada() {
         System.out.println("getMorada");
-        Local instance = null;
-        String expResult = "";
-        String result = instance.getMorada();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Local instance = new Local("morada");
+        assertEquals("morada", instance.getMorada());
     }
 
     /**
@@ -58,11 +45,9 @@ public class LocalTest {
     @Test
     public void testSetMorada() {
         System.out.println("setMorada");
-        String nomeLocal = "";
-        Local instance = null;
-        instance.setMorada(nomeLocal);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Local instance = new Local("morada");
+        instance.setMorada("novaMorada");
+        assertEquals("novaMorada", instance.getMorada());
     }
 
     /**
@@ -71,27 +56,7 @@ public class LocalTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Local instance = null;
-        Local expResult = null;
-        Local result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Local instance = new Local("morada");
+        assertEquals("morada", instance.getMorada());
     }
-
-    /**
-     * Test of exportContentToXMLNode method, of class Local.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        Local instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

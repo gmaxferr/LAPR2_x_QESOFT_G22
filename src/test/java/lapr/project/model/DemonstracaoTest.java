@@ -1,74 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
-import java.util.List;
-import java.util.TimerTask;
+import java.util.*;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoRecursos;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCancelada;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
+import lapr.project.registos.*;
 import lapr.project.utils.Data;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
-import org.w3c.dom.Node;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class DemonstracaoTest {
-    
+
     public DemonstracaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getDescricao method, of class Demonstracao.
+     * Test of setDescricao method, of class Demonstracao.
      */
     @Test
-    public void testGetDescricao_0args() {
+    public void testGetDescricao() {
         System.out.println("getDescricao");
-        Demonstracao instance = null;
-        String expResult = "";
-        String result = instance.getDescricao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDescricao method, of class Demonstracao.
-     */
-    @Test
-    public void testGetDescricao_String() {
-        System.out.println("getDescricao");
-        String descricaoIntroduzidaPeloUtilizador = "";
-        Demonstracao instance = null;
-        instance.getDescricao(descricaoIntroduzidaPeloUtilizador);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        assertEquals("Descricao", instance.getDescricao());
     }
 
     /**
@@ -77,12 +50,7 @@ public class DemonstracaoTest {
     @Test
     public void testGetRegistoRecursosNecessarios() {
         System.out.println("getRegistoRecursosNecessarios");
-        Demonstracao instance = null;
-        RegistoRecursos expResult = null;
-        RegistoRecursos result = instance.getRegistoRecursosNecessarios();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -91,12 +59,9 @@ public class DemonstracaoTest {
     @Test
     public void testGetCodigoIdentificacao() {
         System.out.println("getCodigoIdentificacao");
-        Demonstracao instance = null;
-        String expResult = "";
-        String result = instance.getCodigoIdentificacao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        instance.setCodigoIdentificacao("codigo");
+        assertEquals("codigo", instance.getCodigoIdentificacao());
     }
 
     /**
@@ -105,12 +70,10 @@ public class DemonstracaoTest {
     @Test
     public void testGetEstadoDemo() {
         System.out.println("getEstadoDemo");
-        Demonstracao instance = null;
-        EstadoDemonstracao expResult = null;
-        EstadoDemonstracao result = instance.getEstadoDemo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        EstadoDemonstracao estado = new EstadoDemonstracaoCancelada(instance);
+        instance.setEstado(estado);
+        assertEquals(estado, instance.getEstadoDemo());
     }
 
     /**
@@ -119,12 +82,10 @@ public class DemonstracaoTest {
     @Test
     public void testGetDataInicioCand() {
         System.out.println("getDataInicioCand");
-        Demonstracao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataInicioCand();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        Data data = new Data(1996, 5, 25);
+        instance.setDataInicioCandidaturas(data);
+        assertEquals(data, instance.getDataInicioCand());
     }
 
     /**
@@ -133,12 +94,10 @@ public class DemonstracaoTest {
     @Test
     public void testGetDataFimCand() {
         System.out.println("getDataFimCand");
-        Demonstracao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataFimCand();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        Data data = new Data(1996, 5, 25);
+        instance.setDataFimCandidaturas(data);
+        assertEquals(data, instance.getDataFimCand());
     }
 
     /**
@@ -147,25 +106,19 @@ public class DemonstracaoTest {
     @Test
     public void testSetCodigoIdentificacao() {
         System.out.println("setCodigoIdentificacao");
-        String m_StrCodigoIdentificacao = "";
-        Demonstracao instance = null;
-        instance.setCodigoIdentificacao(m_StrCodigoIdentificacao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        instance.setCodigoIdentificacao("novoCodigo");
+        assertEquals("novoCodigo", instance.getCodigoIdentificacao());
     }
 
     /**
-     * Test of getRegistoCandidaturasADemonstracao method, of class Demonstracao.
+     * Test of getRegistoCandidaturasADemonstracao method, of class
+     * Demonstracao.
      */
     @Test
     public void testGetRegistoCandidaturasADemonstracao() {
         System.out.println("getRegistoCandidaturasADemonstracao");
-        Demonstracao instance = null;
-        RegistoCandidaturaADemonstracoes expResult = null;
-        RegistoCandidaturaADemonstracoes result = instance.getRegistoCandidaturasADemonstracao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -174,11 +127,10 @@ public class DemonstracaoTest {
     @Test
     public void testSetDataInicioCandidaturas() {
         System.out.println("setDataInicioCandidaturas");
-        Data dataInicioCandDemo = null;
-        Demonstracao instance = null;
-        instance.setDataInicioCandidaturas(dataInicioCandDemo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        Data data = new Data(1996, 5, 25);
+        instance.setDataInicioCandidaturas(data);
+        assertEquals(data, instance.getDataInicioCand());
     }
 
     /**
@@ -187,11 +139,10 @@ public class DemonstracaoTest {
     @Test
     public void testSetDataFimCandidaturas() {
         System.out.println("setDataFimCandidaturas");
-        Data dataFimCandDemo = null;
-        Demonstracao instance = null;
-        instance.setDataFimCandidaturas(dataFimCandDemo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance = new Demonstracao("Descricao");
+        Data data = new Data(1996, 5, 25);
+        instance.setDataFimCandidaturas(data);
+        assertEquals(data, instance.getDataFimCand());
     }
 
     /**
@@ -200,13 +151,7 @@ public class DemonstracaoTest {
     @Test
     public void testGetCandidaturasDemoExpositor() {
         System.out.println("getCandidaturasDemoExpositor");
-        String m_emailExpositor = "";
-        Demonstracao instance = null;
-        List<CandidaturaADemonstracao> expResult = null;
-        List<CandidaturaADemonstracao> result = instance.getCandidaturasDemoExpositor(m_emailExpositor);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -215,42 +160,11 @@ public class DemonstracaoTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj = null;
-        Demonstracao instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class Demonstracao.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Demonstracao instance = null;
-        Demonstracao expResult = null;
-        Demonstracao result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of exportContentToXMLNode method, of class Demonstracao.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        Demonstracao instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Demonstracao instance1 = new Demonstracao("Descricao");
+        instance1.setCodigoIdentificacao("codigo");
+        Demonstracao instance2 = new Demonstracao("Descricao");
+        instance2.setCodigoIdentificacao("codigo");
+        assertEquals(true, instance1.equals(instance2));
     }
 
     /**
@@ -259,12 +173,7 @@ public class DemonstracaoTest {
     @Test
     public void testSchedule() {
         System.out.println("schedule");
-        TimerTask m_tt = null;
-        Data date = null;
-        Demonstracao instance = null;
-        instance.schedule(m_tt, date);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -273,12 +182,7 @@ public class DemonstracaoTest {
     @Test
     public void testGetListaOrganizadores() {
         System.out.println("getListaOrganizadores");
-        Demonstracao instance = null;
-        List<Organizador> expResult = null;
-        List<Organizador> result = instance.getListaOrganizadores();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -287,12 +191,7 @@ public class DemonstracaoTest {
     @Test
     public void testGetListaFAE() {
         System.out.println("getListaFAE");
-        Demonstracao instance = null;
-        List<FAE> expResult = null;
-        List<FAE> result = instance.getListaFAE();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -301,11 +200,10 @@ public class DemonstracaoTest {
     @Test
     public void testSetEstado() {
         System.out.println("setEstado");
-        EstadoDemonstracao estado = null;
-        Demonstracao instance = null;
+        Demonstracao instance = new Demonstracao("Descricao");
+        EstadoDemonstracao estado = new EstadoDemonstracaoCandidaturasFechadas(instance);
         instance.setEstado(estado);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(estado, instance.getEstadoDemo());
     }
-    
+
 }
