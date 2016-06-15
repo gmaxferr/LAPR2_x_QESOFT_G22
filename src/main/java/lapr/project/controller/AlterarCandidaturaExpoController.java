@@ -24,11 +24,14 @@ public class AlterarCandidaturaExpoController {
     private String novaArea;
     private String novoNumConvites;
 
-    public AlterarCandidaturaExpoController(Exposicao e, String username) {
+    public AlterarCandidaturaExpoController(String username) {
         this.m_username = username;
-        this.m_exposicao = e;
     }
 
+    public void setExposicao(Exposicao e){
+        this.m_exposicao = e;
+    }
+    
     /**
      *
      */
