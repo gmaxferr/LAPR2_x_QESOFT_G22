@@ -356,13 +356,15 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
+            document.appendChild(document.importNode(node, true));
+            
             Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.ano = Integer.parseInt(elem.getElementsByTagName(ANO_ELEMENT_NAME).item(0).getTextContent());
-                this.mes = Integer.parseInt(elem.getElementsByTagName(MES_ELEMENT_NAME).item(0).getTextContent());
-                this.dia = Integer.parseInt(elem.getElementsByTagName(DIA_ELEMENT_NAME).item(0).getTextContent());
+                this.ano = Integer.parseInt(elem.getAttribute(ANO_ELEMENT_NAME));
+                this.mes = Integer.parseInt(elem.getAttribute(MES_ELEMENT_NAME));
+                this.dia = Integer.parseInt(elem.getAttribute(DIA_ELEMENT_NAME));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
@@ -381,17 +383,9 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
             
-            Element elemChild = document.createElement(ANO_ELEMENT_NAME);
-            elemChild.setTextContent(String.valueOf(this.ano));
-            elemBase.appendChild(elemChild);
-            
-            elemChild = document.createElement(MES_ELEMENT_NAME);
-            elemChild.setTextContent(String.valueOf(this.mes));
-            elemBase.appendChild(elemChild);
-            
-            elemChild = document.createElement(MES_ELEMENT_NAME);
-            elemChild.setTextContent(String.valueOf(this.mes));
-            elemBase.appendChild(elemChild);
+            elemBase.setAttribute(ANO_ELEMENT_NAME, String.valueOf(this.ano));
+            elemBase.setAttribute(MES_ELEMENT_NAME, String.valueOf(this.mes));
+            elemBase.setAttribute(DIA_ELEMENT_NAME, String.valueOf(this.dia));
             
             node = elemBase;
         } catch (ParserConfigurationException ex) {
