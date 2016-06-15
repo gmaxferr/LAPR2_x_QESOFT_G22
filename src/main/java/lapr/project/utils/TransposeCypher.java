@@ -1,5 +1,7 @@
 package lapr.project.utils;
 
+import java.util.Arrays;
+
 /**
  * Cifra de Transposição em colunas.<!-- -->Permita a encriptação de arrays de
  * caracteres usando uma técnica de transposição em colunas e com auxílio de uma
@@ -79,7 +81,7 @@ public class TransposeCypher {
         char[][] table = new char[tableLines][tableCol];
 
         int index = 0;
-        char fillerChar = 'a';
+        char fillerChar = '~';
         for (int i = 0; i < tableLines; i++) {
             for (int j = 0; j < tableCol; j++) {
                 if (index < message.length) {
@@ -87,7 +89,6 @@ public class TransposeCypher {
                     index++;
                 } else {
                     table[i][j] = fillerChar;
-                    fillerChar++;
                 }
             }
         }
@@ -137,13 +138,24 @@ public class TransposeCypher {
             }
         }
 
-        char[] result = new char[tableCol * tableLines];
+        char[] uncripted = new char[tableCol * tableLines];
         index = 0;
-        for (int i = 0; i < tableCol; i++) {
-            for (int j = 0; j < tableLines; j++) {
-                result[index++] = table[i][j];
+        for (int i = 0; i < tableLines; i++) {
+            for (int j = 0; j < tableCol; j++) {
+                uncripted[index++] = table[i][j];
             }
         }
+
+        int len = uncripted.length;
+        for (int i = uncripted.length - 1; i >= 0; i--) {
+            if (uncripted[i] != '~') {
+                len = i + 1;
+                break;
+            }
+        }
+
+        char[] result = new char[len];
+        System.arraycopy(uncripted, 0, result, 0, len);
 
         return result;
     }
