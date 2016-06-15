@@ -1,5 +1,8 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.ModelComboBoxDias;
+import lapr.project.ui.model.ComboBoxModelUtilizadores;
+import lapr.project.ui.model.ModeloJListPotenciaisOrganizadores;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -893,7 +896,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     private javax.swing.JLabel ucNameLbl1;
     // End of variables declaration//GEN-END:variables
 
-    protected class PossivelOrganizador {
+    public class PossivelOrganizador {
 
         private Organizador m_o;
         private boolean m_isSelected;

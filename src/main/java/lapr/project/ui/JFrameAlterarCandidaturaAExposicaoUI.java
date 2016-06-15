@@ -5,14 +5,28 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelDemonstracoes;
+import lapr.project.ui.model.ModeloListaDemonstracoes;
+import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.ModeloListaProdutos;
+import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarCandidaturaExpoController;
-import lapr.project.controller.AvaliarCandidaturaAExposicaoController;
+import lapr.project.exceptions.AreaErradaException;
+import lapr.project.exceptions.KeywordsErradasException;
+import lapr.project.exceptions.NumeroConvitesErradoException;
+import lapr.project.exceptions.TelemovelEmpresaErradoException;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ListaDemonstracoes;
+import lapr.project.model.Produto;
 
 /**
  *
@@ -23,18 +37,31 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private List<Exposicao> m_listaExposicoes;
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes m_ce;
+    private Exposicao m_expo;
     private String username;
     private AlterarCandidaturaExpoController controller;
-    
+    private List<CandidaturaAExposicao> m_listaCandidaturas;
+    private CandidaturaAExposicao m_candidaturaSelecionada;
+    private ModeloListaProdutos modeloJListaProdutosCard2;
+    private int numProdutos;
+    private ModeloListaDemonstracoes listModelDemonstracoes;
+    private List<Demonstracao>listaDemonstracoes;
+    private int numDemonstracoes;
+
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-
+    private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
+    private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
+    
+    
     private static final int CARD1_ALTURA = 370;
     private static final int CARD1_LARGURA = 710;
-
     private static final int CARD2_LARGURA = 480;
     private static final int CARD2_ALTURA = 450;
+    private static final int CARD3_LARGURA_MINIMA = 400;
+    private static final int CARD3_ALTURA_MINIMA = 240;
+
     private final CardLayout cardLayout;
 
     /**
@@ -42,12 +69,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
      */
     public JFrameAlterarCandidaturaAExposicaoUI(String username, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
         super("Alterar candidatura");
-
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getListaExposicoesComCanditaturasAtribuidasDoRepresentante(username);
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.username = username;
-        this.controller = new AlterarCandidaturaExpoController(username);
-        this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE();
-
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
         alterarComportamentoFecharJFrame();
@@ -99,7 +123,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListCard2ListaProdutos = new javax.swing.JList<>(LISTA_PRODUTOS_POR_OMISSAO);
-        jComboBoxCard2EscolherCandidatura = new javax.swing.JComboBox<>();
+        escolherCandComboBox = new javax.swing.JComboBox<>();
         jButtonCard2Avancar = new javax.swing.JButton();
         jButtonCard2Recuar = new javax.swing.JButton();
         Card3 = new javax.swing.JPanel();
@@ -108,29 +132,42 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextFieldCard2DadosEmpresaNomeEmpresa1 = new javax.swing.JTextField();
-        jTextFieldCard2DadosEmpresaMorada = new javax.swing.JTextField();
-        jTextFieldCard2DadosEmpresaTelemovel = new javax.swing.JTextField();
+        nomeEmpresaTxt = new javax.swing.JTextField();
+        moradaEmpresaTxt = new javax.swing.JTextField();
+        telemovelTxt = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jTextFieldCard2DadosCandidaturaArea = new javax.swing.JTextField();
+        areaTxt = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldCard2DadosCandidaturaNumeroConvites = new javax.swing.JTextField();
+        numConvitesTxt = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListCard2ListaProdutos1 = new javax.swing.JList<>();
-        jButtonCard2AdicionarProduto = new javax.swing.JButton();
-        jButtonCard2RemoverProduto = new javax.swing.JButton();
+        adicionarProdutoBtn = new javax.swing.JButton();
+        removerProdutoBtn = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
-        jTextFieldCard2IntroduzirKeywords = new javax.swing.JTextField();
+        keywordsTxt = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jRadioButtonCard2Sim = new javax.swing.JRadioButton();
         jRadioButtonCard2Nao = new javax.swing.JRadioButton();
-        jButtonCard2Recuar1 = new javax.swing.JButton();
-        jButtonCard2Avancar1 = new javax.swing.JButton();
+        voltarParaEscolherCandBtn = new javax.swing.JButton();
+        terminarAlteracaoBtn = new javax.swing.JButton();
+        Card4 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jComboBoxCard3EscolherDemonstracao = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextAreaCard3DescricaoDemonstracao = new javax.swing.JTextArea();
+        jButtonCard3AdicionarDemonstracao = new javax.swing.JButton();
+        jButtonCard3RemoverDemonstracao = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jListCard3ListaDemonstracoes = new javax.swing.JList<>();
+        jButtonCard3Recuar = new javax.swing.JButton();
+        jButtonCard3Terminar = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -251,7 +288,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxEscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
+        jComboBoxEscolherExposicao.setModel(new ComboBoxModelExposicoes(this.m_listaExposicoes));
         jComboBoxEscolherExposicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEscolherExposicaoActionPerformed(evt);
@@ -416,10 +453,10 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE));
-        jComboBoxCard2EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
+        escolherCandComboBox.setModel(new ComboBoxModelCandidaturaAExposicao(m_listaCandidaturas));
+        escolherCandComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCard2EscolherCandidaturaActionPerformed(evt);
+                escolherCandComboBoxActionPerformed(evt);
             }
         });
 
@@ -454,7 +491,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card2Layout.createSequentialGroup()
-                        .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(escolherCandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(254, 254, 254))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -466,7 +503,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(escolherCandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -489,9 +526,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
         jLabel18.setText("Telemóvel:");
 
-        jTextFieldCard2DadosEmpresaNomeEmpresa1.addActionListener(new java.awt.event.ActionListener() {
+        nomeEmpresaTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCard2DadosEmpresaNomeEmpresa1ActionPerformed(evt);
+                nomeEmpresaTxtActionPerformed(evt);
             }
         });
 
@@ -507,11 +544,11 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCard2DadosEmpresaMorada)
+                    .addComponent(moradaEmpresaTxt)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextFieldCard2DadosEmpresaTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telemovelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 319, Short.MAX_VALUE))
-                    .addComponent(jTextFieldCard2DadosEmpresaNomeEmpresa1))
+                    .addComponent(nomeEmpresaTxt))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -520,14 +557,14 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextFieldCard2DadosEmpresaNomeEmpresa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nomeEmpresaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextFieldCard2DadosEmpresaMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(moradaEmpresaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCard2DadosEmpresaTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telemovelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -540,9 +577,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
         jLabel21.setText("Número de convites:");
 
-        jTextFieldCard2DadosCandidaturaNumeroConvites.addActionListener(new java.awt.event.ActionListener() {
+        numConvitesTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCard2DadosCandidaturaNumeroConvitesActionPerformed(evt);
+                numConvitesTxtActionPerformed(evt);
             }
         });
 
@@ -552,28 +589,28 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jListCard2ListaProdutos1.setModel(this.modeloJListaProdutosCard2);
         jScrollPane4.setViewportView(jListCard2ListaProdutos1);
 
-        jButtonCard2AdicionarProduto.setText("Adicionar");
-        jButtonCard2AdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
+        adicionarProdutoBtn.setText("Adicionar");
+        adicionarProdutoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCard2AdicionarProdutoActionPerformed(evt);
+                adicionarProdutoBtnActionPerformed(evt);
             }
         });
 
-        jButtonCard2RemoverProduto.setText("Remover");
-        jButtonCard2RemoverProduto.setEnabled(false);
-        jButtonCard2RemoverProduto.addActionListener(new java.awt.event.ActionListener() {
+        removerProdutoBtn.setText("Remover");
+        removerProdutoBtn.setEnabled(false);
+        removerProdutoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCard2RemoverProdutoActionPerformed(evt);
+                removerProdutoBtnActionPerformed(evt);
             }
         });
 
         jLabel23.setText("Descrição do(s) produto(s) introduzidos:");
 
-        jTextFieldCard2IntroduzirKeywords.setToolTipText("Introduza entre 2 a 5 keywords separadas por \";\"");
-        jTextFieldCard2IntroduzirKeywords.setEnabled(false);
-        jTextFieldCard2IntroduzirKeywords.addActionListener(new java.awt.event.ActionListener() {
+        keywordsTxt.setToolTipText("Introduza entre 2 a 5 keywords separadas por \";\"");
+        keywordsTxt.setEnabled(false);
+        keywordsTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCard2IntroduzirKeywordsActionPerformed(evt);
+                keywordsTxtActionPerformed(evt);
             }
         });
 
@@ -591,8 +628,8 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonCard2AdicionarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonCard2RemoverProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(adicionarProdutoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(removerProdutoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -600,13 +637,13 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldCard2DadosCandidaturaArea, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(areaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel20))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldCard2DadosCandidaturaNumeroConvites, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(numConvitesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel22))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -615,7 +652,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                                 .addComponent(jLabel24))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jTextFieldCard2IntroduzirKeywords)))
+                        .addComponent(keywordsTxt)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -624,20 +661,20 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextFieldCard2DadosCandidaturaArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(areaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextFieldCard2DadosCandidaturaNumeroConvites, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numConvitesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jButtonCard2AdicionarProduto)
+                        .addComponent(adicionarProdutoBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonCard2RemoverProduto))
+                        .addComponent(removerProdutoBtn))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -646,7 +683,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     .addComponent(jLabel24)
                     .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldCard2IntroduzirKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(keywordsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -693,17 +730,17 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     .addComponent(jRadioButtonCard2Nao)))
         );
 
-        jButtonCard2Recuar1.setText("Recuar");
-        jButtonCard2Recuar1.addActionListener(new java.awt.event.ActionListener() {
+        voltarParaEscolherCandBtn.setText("Recuar");
+        voltarParaEscolherCandBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCard2Recuar1ActionPerformed(evt);
+                voltarParaEscolherCandBtnActionPerformed(evt);
             }
         });
 
-        jButtonCard2Avancar1.setText("Terminar");
-        jButtonCard2Avancar1.addActionListener(new java.awt.event.ActionListener() {
+        terminarAlteracaoBtn.setText("Terminar");
+        terminarAlteracaoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCard2Avancar1ActionPerformed(evt);
+                terminarAlteracaoBtnActionPerformed(evt);
             }
         });
 
@@ -723,9 +760,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jButtonCard2Recuar1)
+                        .addComponent(voltarParaEscolherCandBtn)
                         .addGap(33, 33, 33)
-                        .addComponent(jButtonCard2Avancar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(terminarAlteracaoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Card3Layout.createSequentialGroup()
                         .addGap(149, 149, 149)
                         .addComponent(jLabel13)))
@@ -746,24 +783,175 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     .addGroup(Card3Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(Card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCard2Recuar1)
-                            .addComponent(jButtonCard2Avancar1))))
+                            .addComponent(voltarParaEscolherCandBtn)
+                            .addComponent(terminarAlteracaoBtn))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(Card3, "card2");
 
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel26.setText("Escolha as demonstrações pretendidas");
+
+        jComboBoxCard3EscolherDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCard3EscolherDemonstracaoActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jScrollPane5.setBorder(null);
+
+        jTextAreaCard3DescricaoDemonstracao.setEditable(false);
+        jTextAreaCard3DescricaoDemonstracao.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.background"));
+        jTextAreaCard3DescricaoDemonstracao.setColumns(20);
+        jTextAreaCard3DescricaoDemonstracao.setLineWrap(true);
+        jTextAreaCard3DescricaoDemonstracao.setRows(5);
+        jTextAreaCard3DescricaoDemonstracao.setText("A apresentar a descrição da demonstração selecionada");
+        jTextAreaCard3DescricaoDemonstracao.setWrapStyleWord(true);
+        jScrollPane5.setViewportView(jTextAreaCard3DescricaoDemonstracao);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+        );
+
+        jButtonCard3AdicionarDemonstracao.setText("Adicionar");
+        jButtonCard3AdicionarDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard3AdicionarDemonstracaoActionPerformed(evt);
+            }
+        });
+
+        jButtonCard3RemoverDemonstracao.setText("Remover");
+        jButtonCard3RemoverDemonstracao.setEnabled(false);
+        jButtonCard3RemoverDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard3RemoverDemonstracaoActionPerformed(evt);
+            }
+        });
+
+        listModelDemonstracoes = new ModeloListaDemonstracoes(new ListaDemonstracoes());
+        jListCard3ListaDemonstracoes.setModel(listModelDemonstracoes);
+        jScrollPane6.setViewportView(jListCard3ListaDemonstracoes);
+
+        jButtonCard3Recuar.setText("Recuar");
+        jButtonCard3Recuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard3RecuarActionPerformed(evt);
+            }
+        });
+
+        jButtonCard3Terminar.setText("Registar candidatura");
+        jButtonCard3Terminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCard3TerminarActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setText("Lista de demonstrações adicionadas:");
+
+        javax.swing.GroupLayout Card4Layout = new javax.swing.GroupLayout(Card4);
+        Card4.setLayout(Card4Layout);
+        Card4Layout.setHorizontalGroup(
+            Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Card4Layout.createSequentialGroup()
+                .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Card4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(Card4Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jComboBoxCard3EscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(Card4Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jButtonCard3Recuar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCard3Terminar)
+                .addGap(78, 78, 78))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card4Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card4Layout.createSequentialGroup()
+                        .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonCard3RemoverDemonstracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCard3AdicionarDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))))
+        );
+        Card4Layout.setVerticalGroup(
+            Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Card4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxCard3EscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Card4Layout.createSequentialGroup()
+                        .addComponent(jButtonCard3AdicionarDemonstracao)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCard3RemoverDemonstracao)
+                        .addGap(18, 18, 18)))
+                .addGap(18, 18, 18)
+                .addGroup(Card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCard3Recuar)
+                    .addComponent(jButtonCard3Terminar))
+                .addContainerGap())
+        );
+
+        getContentPane().add(Card4, "card3");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                dispose();
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
+            }
+        });
+    }
+
     private void avancarParaCard2() {
-        ctrl.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoAtribuicoes();
-        listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
+        controller.setExposicao(m_listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+        m_listaCandidaturas = controller.getM_ListaCandidaturasRepresentante();
+        cardLayout.show(getContentPane(), "Card2");
+        setSize(CARD2_LARGURA, CARD2_ALTURA);
     }
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            if (!listaAtribuicoesDoFAE.isEmpty()) {
+            this.m_expo = (Exposicao) jComboBoxEscolherExposicao.getSelectedItem();
+            if (!m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(username).isEmpty()) {
+                this.controller = new AlterarCandidaturaExpoController(username);
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
@@ -780,7 +968,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            Exposicao expo = listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
+            Exposicao expo = m_listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
             jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
@@ -799,69 +987,97 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
-        if (jComboBoxCard2EscolherCandidatura.getSelectedItem() != null) {
+        if (escolherCandComboBox.getSelectedItem() != null) {
             avancarParaCard3();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma candidatura primeiro!", "Candidatura em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
 
-    private void jComboBoxCard2EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
-        if (jComboBoxCard2EscolherCandidatura.getSelectedItem() != null) {
+    private void avancarParaCard3() {
+        m_candidaturaSelecionada = (CandidaturaAExposicao) escolherCandComboBox.getSelectedItem();
+        cardLayout.show(getContentPane(), "Card3");
+        setSize(CARD3_LARGURA_MINIMA, CARD3_ALTURA_MINIMA);
+    }
+
+    private void escolherCandComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolherCandComboBoxActionPerformed
+        if (escolherCandComboBox.getSelectedItem() != null) {
             preencherDados();
         }
-    }//GEN-LAST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
+    }//GEN-LAST:event_escolherCandComboBoxActionPerformed
 
-    private void jTextFieldCard2DadosEmpresaNomeEmpresa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard2DadosEmpresaNomeEmpresa1ActionPerformed
+    private void preencherDados() {
+        CandidaturaAExposicao cand = m_listaCandidaturas.get(escolherCandComboBox.getSelectedIndex());
+        jLabelCard2DadosEmpresaNome.setText(cand.getNomeEmpresa());
+        String telemovelEmpresa = Integer.toString(cand.getTelemovel());
+        jLabelCard2DadosEmpresaTelemovel.setText(telemovelEmpresa);
+        jLabelCard2DadosEmpresaMorada.setText(cand.getMoradaEmpresa());
+        String numConvites = Integer.toString(cand.getNumConvites());
+        jLabelCard2DadosCandidaturaNumeroConvites.setText(numConvites);
+        String area = Integer.toString(cand.getArea());
+        jLabelCard2DadosCandidaturaArea.setText(area);
+        String[] vetorProdutosCandSelecionada = card2CriarVetorListaProdutosCandidaturaSelecionada(cand.getRegistoProdutos().getListaProdutosAExpor());
+        jListCard2ListaProdutos.setListData(vetorProdutosCandSelecionada);
+    }
+
+    private String[] card2CriarVetorListaProdutosCandidaturaSelecionada(List<Produto> listaProdutos) {
+        String[] vetorProdutos = new String[listaProdutos.size()];
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            vetorProdutos[i] = listaProdutos.get(i).getNome();
+        }
+        return vetorProdutos;
+    }
+
+    private void nomeEmpresaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeEmpresaTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCard2DadosEmpresaNomeEmpresa1ActionPerformed
+    }//GEN-LAST:event_nomeEmpresaTxtActionPerformed
 
-    private void jTextFieldCard2DadosCandidaturaNumeroConvitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard2DadosCandidaturaNumeroConvitesActionPerformed
+    private void numConvitesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numConvitesTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCard2DadosCandidaturaNumeroConvitesActionPerformed
+    }//GEN-LAST:event_numConvitesTxtActionPerformed
 
-    private void jButtonCard2AdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AdicionarProdutoActionPerformed
+    private void adicionarProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProdutoBtnActionPerformed
         String input = JOptionPane.showInputDialog(rootPane,
-            "Introduza o produto que quer exibir",
-            "Adicionar produto",
-            JOptionPane.OK_CANCEL_OPTION);
+                "Introduza o produto que quer exibir",
+                "Adicionar produto",
+                JOptionPane.OK_CANCEL_OPTION);
         if (input != null && !input.replaceAll(" ", "").isEmpty()) {
             boolean b = this.modeloJListaProdutosCard2.addProduto(input);
             if (b == true) {
-                jButtonCard2RemoverProduto.setEnabled(true);
+                removerProdutoBtn.setEnabled(true);
                 numProdutos++;
-                jTextFieldCard2IntroduzirKeywords.setEnabled(true);
+                keywordsTxt.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane,
-                    "Produto já existente!",
-                    "Erro",
-                    JOptionPane.WARNING_MESSAGE);
+                        "Produto já existente!",
+                        "Erro",
+                        JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane,
-                "Tem de introduzir algo!",
-                "Erro",
-                JOptionPane.WARNING_MESSAGE);
+                    "Tem de introduzir algo!",
+                    "Erro",
+                    JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonCard2AdicionarProdutoActionPerformed
+    }//GEN-LAST:event_adicionarProdutoBtnActionPerformed
 
-    private void jButtonCard2RemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RemoverProdutoActionPerformed
+    private void removerProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerProdutoBtnActionPerformed
         if (!jListCard2ListaProdutos.isSelectionEmpty()) {
             modeloJListaProdutosCard2.removeProduto((String) jListCard2ListaProdutos.getSelectedValue());
             numProdutos--;
             if (numProdutos == 0) {
-                jButtonCard2RemoverProduto.setEnabled(false);
-                jTextFieldCard2IntroduzirKeywords.setEnabled(false);
-                jTextFieldCard2IntroduzirKeywords.setText("");
+                removerProdutoBtn.setEnabled(false);
+                keywordsTxt.setEnabled(false);
+                keywordsTxt.setText("");
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Nenhum produto selecionado", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonCard2RemoverProdutoActionPerformed
+    }//GEN-LAST:event_removerProdutoBtnActionPerformed
 
-    private void jTextFieldCard2IntroduzirKeywordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard2IntroduzirKeywordsActionPerformed
+    private void keywordsTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keywordsTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCard2IntroduzirKeywordsActionPerformed
+    }//GEN-LAST:event_keywordsTxtActionPerformed
 
     private void jRadioButtonCard2SimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCard2SimActionPerformed
         jButtonCard2Avancar.setText("Continuar");
@@ -873,26 +1089,27 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jButtonCard2Avancar.setToolTipText("Terminar candidatura. Cria a candidatura se todos os dados forem válidos.");
     }//GEN-LAST:event_jRadioButtonCard2NaoActionPerformed
 
-    private void jButtonCard2Recuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2Recuar1ActionPerformed
+    private void voltarParaEscolherCandBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarParaEscolherCandBtnActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-    }//GEN-LAST:event_jButtonCard2Recuar1ActionPerformed
+        setSize(CARD1_LARGURA, CARD1_ALTURA);
+    }//GEN-LAST:event_voltarParaEscolherCandBtnActionPerformed
 
-    private void jButtonCard2Avancar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2Avancar1ActionPerformed
+    
+    
+    private void terminarAlteracaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarAlteracaoBtnActionPerformed
         if (camposPorPreencher() == false) {
             try {
-                controller.setDados(jTextFieldCard2DadosEmpresaNomeEmpresa.getText(),
-                    jTextFieldCard2DadosEmpresaMorada.getText(),
-                    jTextFieldCard2DadosEmpresaTelemovel.getText(),
-                    jTextFieldCard2DadosCandidaturaArea.getText(),
-                    jTextFieldCard2DadosCandidaturaNumeroConvites.getText());
+                controller.setDadosCandidatura(nomeEmpresaTxt.getText(),
+                        moradaEmpresaTxt.getText(),
+                        telemovelTxt.getText(),
+                        areaTxt.getText(),
+                        numConvitesTxt.getText());
                 if (this.numProdutos != 0) {
-                    controller.setKeywords(jTextFieldCard2IntroduzirKeywords.getText());
+                    controller.setKeywords(keywordsTxt.getText());
                 }
                 if (jRadioButtonCard2Sim.isSelected()) {
-                    controller.getRegistoDemonstracoes();
-                    listaDemonstracoes = controller.getListaDemonstracoes();
+                    listaDemonstracoes = m_expo.getRegistoDemonstracoes().getListaDemonstracoes();
                     if (!listaDemonstracoes.isEmpty()) {
                         jComboBoxCard3EscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(this.listaDemonstracoes));
                         avancarParaCard3();
@@ -902,8 +1119,10 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         jRadioButtonCard2Nao.setSelected(true);
                     }
                 } else {
-                    controller.setListaProdutosCandidatura(modeloJListaProdutosCard2.getListaProdutos());
-                    finalizarCandidatura();
+                    for(Produto p :modeloJListaProdutosCard2.getListaProdutos()){
+                        controller.adicionarProduto(p);
+                    }
+                    controller.alterarCandidatura();
                 }
             } catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException | KeywordsErradasException exception) {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
@@ -911,64 +1130,83 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonCard2Avancar1ActionPerformed
+    }//GEN-LAST:event_terminarAlteracaoBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarCandidaturaAExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarCandidaturaAExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarCandidaturaAExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarCandidaturaAExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jComboBoxCard3EscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
+        if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
+            jTextAreaCard3DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()).getDescricao());
+        } else {
+            jTextAreaCard3DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_jComboBoxCard3EscolherDemonstracaoActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameAlterarCandidaturaAExposicaoUI().setVisible(true);
+    private void jButtonCard3AdicionarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3AdicionarDemonstracaoActionPerformed
+        if (jComboBoxCard3EscolherDemonstracao.getSelectedItem() != null) {
+            boolean b = listModelDemonstracoes.adicionaDemonstracao(listaDemonstracoes.get(jComboBoxCard3EscolherDemonstracao.getSelectedIndex()));
+            if (b) {
+                numDemonstracoes++;
+                jButtonCard3RemoverDemonstracao.setEnabled(true);
             }
-        });
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma demonstracao selecionada.", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCard3AdicionarDemonstracaoActionPerformed
+
+    private void jButtonCard3RemoverDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RemoverDemonstracaoActionPerformed
+        if (!jListCard3ListaDemonstracoes.isSelectionEmpty()) {
+            listModelDemonstracoes.removeDemonstracao((String) jListCard3ListaDemonstracoes.getSelectedValue());
+            numDemonstracoes--;
+            if (numDemonstracoes == 0) {
+                jButtonCard3RemoverDemonstracao.setEnabled(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma demonstracao selecionada.", "Nada selecionado", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCard3RemoverDemonstracaoActionPerformed
+
+    private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
+        //jMenuItemPreencherCampos.setEnabled(true);
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card2");
+        setSize(CARD2_LARGURA, CARD2_ALTURA);
+    }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
+
+    private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
+        if (listModelDemonstracoes.getSize() != 0) {
+            controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
+
+    private boolean camposPorPreencher() {
+        if (this.numProdutos != 0) {
+            return areaTxt.getText().isEmpty() || moradaEmpresaTxt.getText().isEmpty() || nomeEmpresaTxt.getText().isEmpty() || numConvitesTxt.getText().isEmpty() || telemovelTxt.getText().isEmpty() || keywordsTxt.getText().split(";").length < 2 || keywordsTxt.getText().split(";").length > 5;
+        } else {
+            return areaTxt.getText().isEmpty() || moradaEmpresaTxt.getText().isEmpty() || nomeEmpresaTxt.getText().isEmpty() || numConvitesTxt.getText().isEmpty() || telemovelTxt.getText().isEmpty();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Card1;
     private javax.swing.JPanel Card2;
     private javax.swing.JPanel Card3;
-    private javax.swing.JPanel card3;
+    private javax.swing.JPanel Card4;
+    private javax.swing.JButton adicionarProdutoBtn;
+    private javax.swing.JTextField areaTxt;
+    private javax.swing.JComboBox<String> escolherCandComboBox;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
-    private javax.swing.JButton jButtonCard2AdicionarProduto;
     private javax.swing.JButton jButtonCard2Avancar;
-    private javax.swing.JButton jButtonCard2Avancar1;
     private javax.swing.JButton jButtonCard2Recuar;
-    private javax.swing.JButton jButtonCard2Recuar1;
-    private javax.swing.JButton jButtonCard2RemoverProduto;
-    private javax.swing.JComboBox<String> jComboBoxCard2EscolherCandidatura;
+    private javax.swing.JButton jButtonCard3AdicionarDemonstracao;
+    private javax.swing.JButton jButtonCard3Recuar;
+    private javax.swing.JButton jButtonCard3RemoverDemonstracao;
+    private javax.swing.JButton jButtonCard3Terminar;
+    private javax.swing.JComboBox<String> jComboBoxCard3EscolherDemonstracao;
     private javax.swing.JComboBox<String> jComboBoxEscolherExposicao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -984,13 +1222,12 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
@@ -1001,11 +1238,12 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard2DadosEmpresaTelemovel;
     private javax.swing.JList<String> jListCard2ListaProdutos;
     private javax.swing.JList<String> jListCard2ListaProdutos1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JList<String> jListCard3ListaDemonstracoes;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
@@ -1015,14 +1253,18 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
-    private javax.swing.JTextField jTextFieldCard2DadosCandidaturaArea;
-    private javax.swing.JTextField jTextFieldCard2DadosCandidaturaNumeroConvites;
-    private javax.swing.JTextField jTextFieldCard2DadosEmpresaMorada;
-    private javax.swing.JTextField jTextFieldCard2DadosEmpresaNomeEmpresa;
-    private javax.swing.JTextField jTextFieldCard2DadosEmpresaNomeEmpresa1;
-    private javax.swing.JTextField jTextFieldCard2DadosEmpresaTelemovel;
-    private javax.swing.JTextField jTextFieldCard2IntroduzirKeywords;
+    private javax.swing.JTextArea jTextAreaCard3DescricaoDemonstracao;
+    private javax.swing.JTextField keywordsTxt;
+    private javax.swing.JTextField moradaEmpresaTxt;
+    private javax.swing.JTextField nomeEmpresaTxt;
+    private javax.swing.JTextField numConvitesTxt;
+    private javax.swing.JButton removerProdutoBtn;
+    private javax.swing.JTextField telemovelTxt;
+    private javax.swing.JButton terminarAlteracaoBtn;
+    private javax.swing.JButton voltarParaEscolherCandBtn;
     // End of variables declaration//GEN-END:variables
 }

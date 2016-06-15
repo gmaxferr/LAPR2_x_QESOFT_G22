@@ -594,7 +594,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     boolean getDecisao() {
-        return m_decisao.getM_bDecisao();
+        return m_decisao.getDecisao();
     }
 
 }

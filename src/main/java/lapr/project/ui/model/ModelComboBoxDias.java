@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.ui;
+package lapr.project.ui.model;
 
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;

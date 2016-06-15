@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.ui;
+package lapr.project.ui.model;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
