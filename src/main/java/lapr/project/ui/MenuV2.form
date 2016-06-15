@@ -179,7 +179,7 @@
                       <Component id="jLabelNomeUtilizador" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -541,11 +541,7 @@
                           <Component id="jButton24" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton25" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-<<<<<<< HEAD
                       <EmptySpace pref="88" max="32767" attributes="0"/>
-=======
-                      <EmptySpace max="32767" attributes="0"/>
->>>>>>> 06330560144c15ad501fedb0445e04b37cebd272
                   </Group>
               </Group>
             </DimensionLayout>
