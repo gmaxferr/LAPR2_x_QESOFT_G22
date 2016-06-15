@@ -55,6 +55,7 @@ public class CriarDemonstracaoControllerTest {
         e.setDataEncerramentoSubCand(new Data("12/12/2015"));
         e.setDescricao("desc");
         e.setPeriodo(new Data("10/05/2014"), new Data("11/05/2014"));
+        e.setDataFimDetecaoConflitos(new Data("30/1/3018"));
         e.setLocal(new Local("local"));
         
         
@@ -89,7 +90,8 @@ public class CriarDemonstracaoControllerTest {
     @Test
     public void testGetListaExposicoesDoOrganizador() {
         System.out.println("getListaExposicoesDoOrganizador");
-        instance.mudaEstado();
+        instance.setExposicao(e);
+        instance.pullRegistosCE();
         e.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(e));
         re = ce.getRegistoExposicoes();
         re.registaExposicao(e);
@@ -139,6 +141,7 @@ public class CriarDemonstracaoControllerTest {
     @Test
     public void testGetListaDeRecursos() {
         System.out.println("getListaDeRecursos");
+        instance.pullRegistosCE();
         List<Recurso> expResult = ce.getRegistoRecursos().getListaDeRecursos();
         List<Recurso> result = instance.getListaDeRecursos();
         assertEquals(expResult, result);
