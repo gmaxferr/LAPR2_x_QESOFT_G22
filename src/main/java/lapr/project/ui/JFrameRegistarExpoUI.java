@@ -32,6 +32,8 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         initComponents();
         lstUtilizadores = inicializarLista();
         layout = (CardLayout) getContentPane().getLayout();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public List<Utilizador> inicializarLista() {
