@@ -244,24 +244,31 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
      * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
      * máximo de 7.
-     * 
+     *
      * @param password - password a validar
      * @return true se for válida; false caso contrário.
      */
-    public boolean validaPassword(char[] password) throws InvalidPasswordException {
-        char[] decryptesPass = CaesarsCypher.decrypt(password, this.randomCaesarShift, PASSWORD_ALFABET);
-        boolean valido = Utilitarios.hasLowerCase(decryptesPass)
-                && Utilitarios.hasNumber(decryptesPass)
-                && Utilitarios.hasSinalPontuacao(decryptesPass)
-                && Utilitarios.hasUpperCase(decryptesPass)
-                && decryptesPass.length >= 4 
-                && decryptesPass.length <= 7;
+    public boolean validaPassword(char[] password) {
+        return Utilitarios.hasLowerCase(password)
+                && Utilitarios.hasNumber(password)
+                && Utilitarios.hasSinalPontuacao(password)
+                && Utilitarios.hasUpperCase(password)
+                && password.length >= 4
+                && password.length <= 7;
+    }
 
-        if (valido) {
-            return true;
-        } else {
-            throw new InvalidPasswordException("Password inválida!");
-        }
+    /**
+     * Valida a password atual do utilizador: A validação da password é feita da seguinte forma: Uma
+     * password tem que conter um número, uma letra minuscula e outra maiusculo
+     * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
+     * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
+     * máximo de 7.
+     *
+     * @return true se for válida; false caso contrário.
+     */
+    public boolean validaPassword() {
+        char[] decryptesPass = CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, PASSWORD_ALFABET);
+        return validaPassword(decryptesPass);
     }
 
     /**
