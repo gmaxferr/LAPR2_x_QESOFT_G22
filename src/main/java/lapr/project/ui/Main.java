@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Formatter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,7 @@ public class Main {
         File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
         try {
             Scanner in = new Scanner(properties);
+            boolean canceledLoad = false;
 
             while (in.hasNext()) {
                 String[] input = in.nextLine().split("=");
@@ -41,12 +43,20 @@ public class Main {
                                     + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
                             if (resultVal == JOptionPane.YES_OPTION) {
                                 JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                            }else{
+                            } else {
+                                canceledLoad = true;
                                 centroExposicoes = null;
                             }
                         }
                     }
                 }
+            }
+
+            if (canceledLoad) {
+                in.close();
+                Formatter out = new Formatter(properties);
+                out.flush();
+                out.close();
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.CONFIG, "Ficheiro de propriedades não existente.");
@@ -59,7 +69,7 @@ public class Main {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 String filename = file.getAbsolutePath();
-                centroExposicoes = CTRL.Import(filename);
+                centroExposicoes = CTRL.importAndUpdateProperties(filename);
 
                 if (centroExposicoes != null) {
                     JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
@@ -119,7 +129,7 @@ public class Main {
         RegistoExposicoes re = centroExposicoes.getRegistoExposicoes();
         Exposicao exposicao;
         /*1*/
-        exposicao = new Exposicao("Titulo", "Descricao", new Data(2016, 2, 25), new Data(2016, 3, 5), new Data(2016, 2, 5), new Data(2016, 2, 10), new Data(2016, 2, 15), new Local("Local"), centroExposicoes);
+        exposicao = new Exposicao("Titulo", "Descricao", new Data(2016, 7, 25), new Data(2016, 7, 5), new Data(2016, 7, 5), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local"), centroExposicoes);
         re.registaExposicao(exposicao);
         exposicao.getEstado().setEstadoCriada();
         exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
@@ -129,7 +139,7 @@ public class Main {
         rf.adicionaFAE(ru.identificarUtilizadorPeloUsername("Joao"));
 
         /*2*/
-        exposicao = new Exposicao("Titulo2", "Descricao2", new Data(2016, 3, 25), new Data(2016, 4, 5), new Data(2016, 3, 5), new Data(2016, 3, 10), new Data(2016, 3, 15), new Local("Local2"), centroExposicoes);
+        exposicao = new Exposicao("Titulo2", "Descricao2", new Data(2016, 7, 25), new Data(2016, 7, 5), new Data(2016, 7, 5), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local2"), centroExposicoes);
         re.registaExposicao(exposicao);
         exposicao.setEstado(new EstadoExposicaoCandidaturasAbertas(exposicao));
         exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
