@@ -76,7 +76,7 @@ public class CriarCandidaturaAExposicaoController {
      * @return lista de Exposições
      */
     public List<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
-        return this.m_re.getlistaExposicoesEstadoCandidaturasAbertas();
+        return this.m_re.getListaExposicoesEstadoCandidaturasAbertas();
     }
 
     /**

@@ -89,21 +89,6 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com as exposições no estado candidaturas abertas
-     *
-     * @return lista com as exposições no estado candidaturas abertas
-     */
-    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
-        ArrayList<Exposicao> lista = new ArrayList<>();
-        for (Exposicao exposicao : this.m_listaExposicoes) {
-            if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
-                lista.add(exposicao);
-            }
-        }
-        return lista;
-    }
-
-    /**
      * Devolve a lista de exposições de um organizador
      *
      * @param usernameOrganizador username do organizador
@@ -115,7 +100,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()) {
+                if (organizador != null && organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && (exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoDemosDefinidasSemFAE())) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }
@@ -192,7 +177,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      *
      * @return lista com as exposições no estado candidaturas abertas
      */
-    public List<Exposicao> getlistaExposicoesEstadoCandidaturasAbertas() {
+    public List<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
         ArrayList<Exposicao> listaExposicoesEstadoCandidaturasAbertas = new ArrayList<>();
         for (Exposicao exposicao : m_listaExposicoes) {
             if (exposicao.getEstado().isEstadoCandidaturasAbertas()) {
@@ -300,8 +285,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      * @return lista de exposições no estado criada ou fae definidos sem demos
      * de um organizador
      */
-    public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
-        ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
+        List<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
@@ -325,7 +310,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         List<Exposicao> result = new ArrayList<>();
         for (Exposicao expo : m_listaExposicoes) {
             EstadoExposicao state = expo.getEstado();
-            if (!state.isEstadoCriada()
+            if (!state.isEstadoInicial()
+                    && !state.isEstadoCriada()
                     && !state.isEstadoFAEDefinidosSemDemos()
                     && !state.isEstadoDemosDefinidasSemFAE()
                     && !state.isEstadoCompleta()
@@ -402,7 +388,23 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return node;
     }
 
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
+        List<Exposicao> result = new ArrayList<>();
+        
+        for(Exposicao e : m_listaExposicoes){
+            for(Organizador o : e.getListaOrganizadores()){
+                if(o.getUsernameOrganizador().equals(username)){
+                    for(Demonstracao d : e.getRegistoDemonstracoes().getListaDemonstracoes()){
+                        if(d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAvaliadas()){
+                            result.add(e);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        
+        return result;
     }
 }

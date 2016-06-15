@@ -238,7 +238,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      *
      * @param strPwd nova password de utilizador
      */
-    public void setPwd(char[] strPwd) {
+    public final void setPwd(char[] strPwd) {
         Random r = new Random();
         this.randomCaesarShift = r.nextInt(PASSWORD_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
         m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);

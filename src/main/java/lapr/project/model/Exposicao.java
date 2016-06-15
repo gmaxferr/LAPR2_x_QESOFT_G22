@@ -386,14 +386,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     *
-     * @return
-     */
-    public RegistoDemonstracoes getRd() {
-        return m_rd;
-    }
-
-    /**
      * Método que valida candidatura
      *
      * @param c candidatura
@@ -419,7 +411,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de demonstrações
-     * 
+     *
      * @return registo de demonstrações
      */
     public RegistoDemonstracoes getRegistoDemonstracoes() {
@@ -448,7 +440,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de atribuições
-     * 
+     *
      * @return registo de atribuições
      */
     public RegistoAtribuicoes getRegistoAtribuicoes() {
@@ -461,7 +453,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de atribuicoes stand
-     * 
+     *
      * @return registo de atribuicoes stand
      */
     public RegistoAtribuicoesStands getRegistoAtribuicoesStands() {
@@ -548,15 +540,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
-    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
-        this.m_ro.fix(m_registoUtilizadores);
-        this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
-        this.m_rexpositores.fix(m_registoUtilizadores);
-        this.m_rce.fix(m_registoUtilizadores, this.m_rd);
-        this.m_rd.fix(m_registoRecursos);
-        this.m_ra.fix(this.m_rce, m_registoUtilizadores);
-    }
-
     /**
      * Verifica se o utilizadoré FAE desta exposição
      *
@@ -570,6 +553,56 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             }
         }
         return true;
+    }
+
+    /**
+     * @return the m_ce
+     */
+    public CentroExposicoes getCentroExposicoes() {
+        return m_ce;
+    }
+
+    /**
+     * @param ce the ce to set
+     */
+    public void setCentroExposicoes(CentroExposicoes ce) {
+        this.m_ce = ce;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof Exposicao) {
+            Exposicao o = (Exposicao) obj;
+            return (local == null ? o.local == null : local.equals(o.local))
+                    && (m_ce == null ? o.m_ce == null : m_ce.equals(o.m_ce))
+                    && (m_dataAberturaCandidatura == null ? o.m_dataAberturaCandidatura == null : m_dataAberturaCandidatura.equals(o.m_dataAberturaCandidatura))
+                    && (m_dataEncerramentoCandidatura == null ? o.m_dataEncerramentoCandidatura == null : m_dataEncerramentoCandidatura.equals(o.m_dataEncerramentoCandidatura))
+                    && (m_dataFim == null ? o.m_dataFim == null : m_dataFim.equals(o.m_dataFim))
+                    && (m_dataFimCandDemo == null ? o.m_dataFimCandDemo == null : m_dataFimCandDemo.equals(o.m_dataFimCandDemo))
+                    && (m_dataFimDetecaoConflitos == null ? o.m_dataFimDetecaoConflitos == null : m_dataFimDetecaoConflitos.equals(o.m_dataFimDetecaoConflitos))
+                    && (m_dataInicio == null ? o.m_dataInicio == null : m_dataInicio.equals(o.m_dataInicio))
+                    && (m_dataInicioCandDemo == null ? o.m_dataInicioCandDemo == null : m_dataInicioCandDemo.equals(o.m_dataInicioCandDemo))
+                    && (m_strTitulo == null ? o.m_strTitulo == null : m_strTitulo.equals(o.m_strTitulo))
+                    && (m_strDescricao == null ? o.m_strDescricao == null : m_strDescricao.equals(o.m_strDescricao));
+        }
+        return false;
+    }
+
+    /**
+     * Corrige as discrepâncias nas referências deste objeto causadas pela
+     * exportação e importação de XML.
+     *
+     * @param m_registoRecursos Registo de recursos
+     * @param m_registoTipoConflitos Registo de tipos de conflito
+     * @param m_registoUtilizadores Registo de Utilizadores
+     */
+    public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
+        this.m_ro.fix(m_registoUtilizadores);
+        this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
+        this.m_rexpositores.fix(m_registoUtilizadores);
+        this.m_rce.fix(m_registoUtilizadores, this.m_rd);
+        this.m_rd.fix(m_registoRecursos);
+        this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
 
     /**
