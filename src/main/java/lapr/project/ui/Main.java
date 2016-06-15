@@ -37,7 +37,13 @@ public class Main {
                         centroExposicoes = CTRL.Import(filePath[0]);
 
                         if (centroExposicoes != null) {
-                            JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
+                                    + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
+                            if (resultVal == JOptionPane.YES_OPTION) {
+                                JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                centroExposicoes = null;
+                            }
                         }
                     }
                 }

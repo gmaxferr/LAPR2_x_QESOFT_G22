@@ -416,8 +416,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                this.m_boolConfirmaRegisto = Boolean.getBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
-                this.isGestor = Boolean.getBoolean(elem.getAttribute(IS_GESTOR_ATTR_NAME));
+                this.m_boolConfirmaRegisto = Boolean.parseBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
+                this.isGestor = Boolean.parseBoolean(elem.getAttribute(IS_GESTOR_ATTR_NAME));
 
                 this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
                 this.keyword = String.valueOf(CaesarsCypher.decrypt(elem.getAttribute(KEYWORD_ATTR_NAME).toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
