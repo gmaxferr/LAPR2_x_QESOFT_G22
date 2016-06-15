@@ -17,10 +17,6 @@ public class EstadoCandidaturaAExposicaoStandRecusado extends EstadoCandidaturaA
         super(cand);
     }
 
-    @Override
-    public boolean setEstadoCandidaturaStandRecusado() {
-        return true;
-    }
 
     @Override
     public boolean isEstadoCandidaturaStandRecusado() {

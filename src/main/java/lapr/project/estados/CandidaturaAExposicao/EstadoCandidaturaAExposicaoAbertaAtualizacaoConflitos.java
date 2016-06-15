@@ -17,10 +17,6 @@ public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos extends Estad
         super(cand);
     }
     
-    @Override
-    public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoCandidaturaProntaAtribuicoes() {

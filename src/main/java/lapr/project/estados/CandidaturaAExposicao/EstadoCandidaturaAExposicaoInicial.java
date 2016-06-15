@@ -12,10 +12,6 @@ public class EstadoCandidaturaAExposicaoInicial extends EstadoCandidaturaAExposi
         super(cand);
     }
 
-    @Override
-    public boolean setEstadoCandidaturaInicial() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoCandidaturaCriada() {
