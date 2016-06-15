@@ -22,6 +22,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     private Organizador organizadorSelecionado;
 
     private Data dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos;
+    private final CardLayout layout;
 
     /**
      * Creates new form JFrameRegistarExpoUI
@@ -32,6 +33,10 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         ctrl.novaExposicao();
         initComponents();
         lstUtilizadores = inicializarLista();
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+
         modelSelectOrg = new ComboBoxModelUtilizadores(lstUtilizadores);
         setVisible(true);
         setMinimumSize(new Dimension(600, 300));
