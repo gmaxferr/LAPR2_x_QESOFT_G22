@@ -69,7 +69,7 @@ public class ConfirmarStandController {
      * @return lista das exposições de um representante
      */
     public List<Exposicao> getListaExposicoesDoRepresentante(String username){
-        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesRepresentante(username);
+        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesDoRepresentante(username);
     }
     
     /**

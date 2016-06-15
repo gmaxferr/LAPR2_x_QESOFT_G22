@@ -13,11 +13,6 @@ public class EstadoDemonstracaoCandidaturasFechadas extends EstadoDemonstracao {
     }
 
     @Override
-    public boolean setEstadoDemonstracaoCandidaturasFechadas() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoDemonstracaoCandidaturasAtribuidas() {
         if (valida()) {
             m_demo.setEstado(new EstadoDemonstracaoCandidaturasAtribuidas(m_demo));

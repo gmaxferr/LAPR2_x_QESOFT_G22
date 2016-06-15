@@ -39,7 +39,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public List<Exposicao> getListaDeExposicoes() {
         m_re = m_ce.getRegistoExposicoes();
-        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesRepresentante(m_usernameRep);
+        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesDoRepresentante(m_usernameRep);
         return m_listExpos;
     }
 

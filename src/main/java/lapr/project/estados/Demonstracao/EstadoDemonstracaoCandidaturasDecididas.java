@@ -18,11 +18,6 @@ public class EstadoDemonstracaoCandidaturasDecididas extends EstadoDemonstracao 
     }
 
     @Override
-    public boolean setEstadoDemonstracaoCandidaturasDecididas() {
-        return true;
-    }
-
-    @Override
     public boolean isEstadoDemonstracaoCandidaturasDecididas() {
         return true;
     }
