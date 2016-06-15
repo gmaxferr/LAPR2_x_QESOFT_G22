@@ -16,11 +16,6 @@ public class EstadoDemonstracaoCancelada extends EstadoDemonstracao{
     public EstadoDemonstracaoCancelada(Demonstracao demo){
         super(demo);
     }
-    
-    @Override
-    public boolean setEstadoDemonstracaoCancelada() {
-        return true;
-    }
 
     @Override
     public boolean isEstadoDemonstracaoCancelada() {

@@ -13,11 +13,6 @@ public class EstadoExposicaoConflitosDetetados extends EstadoExposicao {
     }
 
     @Override
-    public boolean setEstadoConflitosDetetados() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoConflitosAlterados() {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoConflitosAlterados(this.m_exposicao));

@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import lapr.project.model.Organizador;
@@ -17,16 +18,12 @@ public class ModeloJListPotenciaisOrganizadores extends AbstractListModel {
 
     private List<Organizador> lstOrganizadores;
 
-    public void setList(List<Organizador>list){
+    public ModeloJListPotenciaisOrganizadores(List<Organizador>list){
         lstOrganizadores = list;
     }
     
-    public void add(Organizador user){
-        lstOrganizadores.add(user);
-    }
-    
-    public void remove(int index){
-        lstOrganizadores.remove(index);
+    public void setList(List<Organizador>list){
+        lstOrganizadores = list;
     }
     
     public List<Organizador> getList(){

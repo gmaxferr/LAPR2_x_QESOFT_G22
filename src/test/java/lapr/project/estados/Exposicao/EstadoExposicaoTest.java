@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +19,31 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class EstadoExposicaoTest {
-    
+
     public EstadoExposicaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private EstadoExposicao instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicao(e) {
+        };
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,12 +54,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCriada() {
         System.out.println("setEstadoCriada");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCriada();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +65,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoFAEDefinidosSemDemos() {
         System.out.println("setEstadoFAEDefinidosSemDemos");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoFAEDefinidosSemDemos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +76,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoDemosDefinidasSemFAE() {
         System.out.println("setEstadoDemosDefinidasSemFAE");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +87,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCompleta() {
         System.out.println("setEstadoCompleta");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCompleta();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -99,12 +98,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCandidaturasAbertas() {
         System.out.println("setEstadoCandidaturasAbertas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasAbertas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,12 +109,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCandidaturasFechadas() {
         System.out.println("setEstadoCandidaturasFechadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -127,12 +120,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoConflitosDetetados() {
         System.out.println("setEstadoConflitosDetetados");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -141,12 +131,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoConflitosAlterados() {
         System.out.println("setEstadoConflitosAlterados");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoConflitosAlterados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -155,12 +142,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCandidaturasAtribuidas() {
         System.out.println("setEstadoCandidaturasAtribuidas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasAtribuidas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -169,12 +153,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCandidaturasAvaliadas() {
         System.out.println("setEstadoCandidaturasAvaliadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasAvaliadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -183,12 +164,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoCandidaturasDecididas() {
         System.out.println("setEstadoCandidaturasDecididas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasDecididas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -197,12 +175,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoStandsAtribuidos() {
         System.out.println("setEstadoStandsAtribuidos");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoStandsAtribuidos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -211,40 +186,33 @@ public class EstadoExposicaoTest {
     @Test
     public void testSetEstadoDemonstracoesDecididas() {
         System.out.println("setEstadoDemonstracoesDecididas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoDemonstracoesDecididas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setEstadoCandidaturasDemonstracaoAbertas method, of class EstadoExposicao.
+     * Test of setEstadoCandidaturasDemonstracaoAbertas method, of class
+     * EstadoExposicao.
      */
     @Test
     public void testSetEstadoCandidaturasDemonstracaoAbertas() {
         System.out.println("setEstadoCandidaturasDemonstracaoAbertas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasDemonstracaoAbertas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setEstadoCandidaturasDemonstracaoFechadas method, of class EstadoExposicao.
+     * Test of setEstadoCandidaturasDemonstracaoFechadas method, of class
+     * EstadoExposicao.
      */
     @Test
     public void testSetEstadoCandidaturasDemonstracaoFechadas() {
         System.out.println("setEstadoCandidaturasDemonstracaoFechadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasDemonstracaoFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -253,12 +221,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoInicial() {
         System.out.println("isEstadoInicial");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoInicial();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -267,12 +232,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCriada() {
         System.out.println("isEstadoCriada");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCriada();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -281,12 +243,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoFAEDefinidosSemDemos() {
         System.out.println("isEstadoFAEDefinidosSemDemos");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoFAEDefinidosSemDemos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -295,12 +254,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoDemosDefinidasSemFAE() {
         System.out.println("isEstadoDemosDefinidasSemFAE");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -309,12 +265,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCompleta() {
         System.out.println("isEstadoCompleta");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCompleta();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -323,12 +276,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCandidaturasAbertas() {
         System.out.println("isEstadoCandidaturasAbertas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasAbertas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -337,12 +287,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCandidaturasFechadas() {
         System.out.println("isEstadoCandidaturasFechadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -351,12 +298,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoConflitosDetetados() {
         System.out.println("isEstadoConflitosDetetados");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -365,12 +309,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoConflitosAlterados() {
         System.out.println("isEstadoConflitosAlterados");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoConflitosAlterados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -379,12 +320,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCandidaturasAtribuidas() {
         System.out.println("isEstadoCandidaturasAtribuidas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasAtribuidas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -393,12 +331,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCandidaturasAvaliadas() {
         System.out.println("isEstadoCandidaturasAvaliadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasAvaliadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -407,12 +342,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoCandidaturasDecididas() {
         System.out.println("isEstadoCandidaturasDecididas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasDecididas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -421,12 +353,9 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoStandsAtribuidos() {
         System.out.println("isEstadoStandsAtribuidos");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoStandsAtribuidos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -435,40 +364,33 @@ public class EstadoExposicaoTest {
     @Test
     public void testIsEstadoDemonstracoesDecididas() {
         System.out.println("isEstadoDemonstracoesDecididas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoDemonstracoesDecididas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of isEstadoCandidaturasDemonstracaoAbertas method, of class EstadoExposicao.
+     * Test of isEstadoCandidaturasDemonstracaoAbertas method, of class
+     * EstadoExposicao.
      */
     @Test
     public void testIsEstadoCandidaturasDemonstracaoAbertas() {
         System.out.println("isEstadoCandidaturasDemonstracaoAbertas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasDemonstracaoAbertas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of isEstadoCandidaturasDemonstracaoFechadas method, of class EstadoExposicao.
+     * Test of isEstadoCandidaturasDemonstracaoFechadas method, of class
+     * EstadoExposicao.
      */
     @Test
     public void testIsEstadoCandidaturasDemonstracaoFechadas() {
         System.out.println("isEstadoCandidaturasDemonstracaoFechadas");
-        EstadoExposicao instance = null;
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasDemonstracaoFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     public class EstadoExposicaoImpl extends EstadoExposicao {
@@ -477,5 +399,4 @@ public class EstadoExposicaoTest {
             super(null);
         }
     }
-    
 }

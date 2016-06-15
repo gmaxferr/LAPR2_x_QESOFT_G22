@@ -1,25 +1,17 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.model.*;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoExposicoes
- * 
- * @author Ricardo Osório Ana Leite
+ *
+ * @author G29
  */
 public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exportable {
 
@@ -38,8 +30,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     /**
      * Construtor de objetos do tipo RegsitoExposicoes com o parâmetro centro de
      * exposicoes
-     * 
-     * @param ce centro de exposicoes 
+     *
+     * @param ce centro de exposicoes
      */
     public RegistoExposicoes(CentroExposicoes ce) {
         m_listaExposicoes = new ArrayList<>();
@@ -71,32 +63,12 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      * @return true se a exposição foi adionada. Caso contrário retorna false
      */
     public boolean registaExposicao(Exposicao e) {
-        if (validaExposicao(e)) {
-            addExposicao(e);
+        if (e.valida()) {
+            m_listaExposicoes.add(e);
             return true;
         } else {
             return false;
         }
-
-    }
-
-    /**
-     * Adiciona uma exposição
-     *
-     * @param e exposição para adicionar
-     */
-    private void addExposicao(Exposicao e) {
-        m_listaExposicoes.add(e);
-    }
-
-    /**
-     * Valida exposição
-     *
-     * @param e exposição pretendida
-     * @return boolean que representa o sucesso da operação
-     */
-    public boolean validaExposicao(Exposicao e) {
-        return e.valida();
     }
 
     /**
@@ -118,7 +90,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     /**
      * Devolve uma lista com as exposições no estado candidaturas abertas
-     * 
+     *
      * @return lista com as exposições no estado candidaturas abertas
      */
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAbertas() {
@@ -132,10 +104,10 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve a lista de exposições de um organizador 
+     * Devolve a lista de exposições de um organizador
      *
      * @param usernameOrganizador username do organizador
-     * 
+     *
      * @return lista de exposições do organizador
      */
     public ArrayList<Exposicao> getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(String usernameOrganizador) {
@@ -154,14 +126,14 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com as exposições em que existem candidaturas aceites de
-     * um representante
+     * Devolve uma lista com as exposições em que existem candidaturas aceites
+     * de um representante
      *
      * @param username - username do representante
      * @return lista com as exposições em que existem candidaturas aceites de um
      * representante
      */
-    public List<Exposicao> getListaExposicoesComCanditaturasAceitesRepresentante(String username) {
+    public List<Exposicao> getListaExposicoesComCanditaturasAceitesDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
@@ -202,7 +174,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     /**
      * Devolve uma lista com as exposições no estado candidaturas avaliadas
-     * 
+     *
      * @return lista com as exposições no estado candidaturas avaliadas
      */
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadas() {
@@ -217,7 +189,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     /**
      * Devolve uma lista com as exposições no estado candidaturas abertas
-     * 
+     *
      * @return lista com as exposições no estado candidaturas abertas
      */
     public List<Exposicao> getlistaExposicoesEstadoCandidaturasAbertas() {
@@ -232,7 +204,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     /**
      * Devolve uma lista de exposiçoes no estado candidaturas atribuidas do fae
-     * 
+     *
      * @param usernameFAE username do fae
      * @return lista de exposiçoes no estado candidaturas atribuidas do fae
      */
@@ -271,7 +243,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     /**
      * Devolve uma lista de exposições de um fae
-     * 
+     *
      * @param usernameFae username do fae
      * @return lista de exposições do fae
      */
@@ -286,11 +258,10 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com todas as exposições em estado de
-     * candidaturas decididas
-     * 
-     * @return lista com todas as exposições em estado de
-     * candidaturas decididas
+     * Devolve uma lista com todas as exposições em estado de candidaturas
+     * decididas
+     *
+     * @return lista com todas as exposições em estado de candidaturas decididas
      */
     public List<Exposicao> getListaExposicoesEstadoCandidaturasDecididas() {
         List<Exposicao> listExpo = new ArrayList<>();
@@ -305,11 +276,11 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com todas as exposições cujo ranking está
-     * pronto para ser exportado para um ficheiro
-     * 
-     * @return lista com todas as exposições cujo ranking está
-     * pronto para ser exportado para um ficheiro
+     * Devolve uma lista com todas as exposições cujo ranking está pronto para
+     * ser exportado para um ficheiro
+     *
+     * @return lista com todas as exposições cujo ranking está pronto para ser
+     * exportado para um ficheiro
      */
     public List<Exposicao> getListaExposicoesRankingPronto() {
         List<Exposicao> result = new ArrayList<>();
@@ -322,9 +293,9 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista de exposições no estado criada ou fae definidos sem demos
-     * de um organizador
-     * 
+     * Devolve uma lista de exposições no estado criada ou fae definidos sem
+     * demos de um organizador
+     *
      * @param usernameOrg username do organizador
      * @return lista de exposições no estado criada ou fae definidos sem demos
      * de um organizador
@@ -344,11 +315,11 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista de exposições no estado de
-     * CandidaturasAvaliadas ou mais avançado.
-     * 
-     * @return lista de exposições no estado de
-     * CandidaturasAvaliadas ou mais avançado.
+     * Devolve uma lista de exposições no estado de CandidaturasAvaliadas ou
+     * mais avançado.
+     *
+     * @return lista de exposições no estado de CandidaturasAvaliadas ou mais
+     * avançado.
      */
     public List<Exposicao> getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado() {
         List<Exposicao> result = new ArrayList<>();

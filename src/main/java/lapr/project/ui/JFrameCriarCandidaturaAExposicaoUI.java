@@ -136,7 +136,6 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jRadioButtonCard2Nao = new javax.swing.JRadioButton();
         jButtonCard2Recuar = new javax.swing.JButton();
         jButtonCard2Avancar = new javax.swing.JButton();
-        jButtonCard2ValidarDados = new javax.swing.JButton();
         card3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jComboBoxCard3EscolherDemonstracao = new javax.swing.JComboBox<>();
@@ -483,9 +482,9 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldCard2IntroduzirKeywords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -550,8 +549,6 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             }
         });
 
-        jButtonCard2ValidarDados.setText("Validar dados introduzidos");
-
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
@@ -571,13 +568,10 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCard2ValidarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(card2Layout.createSequentialGroup()
-                                .addComponent(jButtonCard2Recuar)
-                                .addGap(33, 33, 33)
-                                .addComponent(jButtonCard2Avancar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(jButtonCard2Recuar)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButtonCard2Avancar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,9 +586,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jButtonCard2ValidarDados)
-                        .addGap(27, 27, 27)
+                        .addGap(59, 59, 59)
                         .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonCard2Recuar)
                             .addComponent(jButtonCard2Avancar))))
@@ -993,7 +985,6 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCard2Avancar;
     private javax.swing.JButton jButtonCard2Recuar;
     private javax.swing.JButton jButtonCard2RemoverProduto;
-    private javax.swing.JButton jButtonCard2ValidarDados;
     private javax.swing.JButton jButtonCard3AdicionarDemonstracao;
     private javax.swing.JButton jButtonCard3Recuar;
     private javax.swing.JButton jButtonCard3RemoverDemonstracao;

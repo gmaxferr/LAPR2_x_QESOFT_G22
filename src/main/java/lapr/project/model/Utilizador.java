@@ -34,6 +34,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
 
     /**
+     * true se o utilizador esta selecionado para organizador
+     */
+    private boolean isSelecionadoOrganizador;
+
+    /**
      * Atributo nome de um Utilizador.
      */
     private String m_strNome;
@@ -100,6 +105,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.isFAE = false;
         this.isGestor = false;
         this.isOrganizador = false;
+        this.isSelecionadoOrganizador=false;
     }
 
     public Utilizador(String nome, String username, char[] password, String email, String keyword) {
@@ -152,6 +158,18 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public String getEmail() {
         return this.m_strEmail;
+    }
+
+    /**
+     *
+     * @return true se o utilizador esta na lista de potenciais organizadores
+     */
+    public boolean getSelecionadoOrganizador() {
+        return isSelecionadoOrganizador;
+    }
+
+    public void setSelecionadoOrganizador(boolean op) {
+        isSelecionadoOrganizador = op;
     }
 
     public void setIsFAE() {

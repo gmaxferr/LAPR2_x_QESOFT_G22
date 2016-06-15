@@ -13,11 +13,6 @@ public class EstadoExposicaoFAEDefinidosSemDemos extends EstadoExposicao {
     }
 
     @Override
-    public boolean setEstadoFAEDefinidosSemDemos() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoDemosDefinidasSemFAE() {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(this.m_exposicao));

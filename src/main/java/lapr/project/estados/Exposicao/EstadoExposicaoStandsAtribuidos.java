@@ -3,7 +3,6 @@ package lapr.project.estados.Exposicao;
 import lapr.project.model.Exposicao;
 import lapr.project.timerTasks.expo.AlterarParaCandDemoAberta;
 import lapr.project.timerTasks.expo.AlterarParaCandDemoFechada;
-import lapr.project.utils.Data;
 
 /**
  *
@@ -13,11 +12,6 @@ public class EstadoExposicaoStandsAtribuidos extends EstadoExposicao {
 
     public EstadoExposicaoStandsAtribuidos(Exposicao exposicao) {
         super(exposicao);
-    }
-
-    @Override
-    public boolean setEstadoStandsAtribuidos() {
-        return true;
     }
 
     @Override

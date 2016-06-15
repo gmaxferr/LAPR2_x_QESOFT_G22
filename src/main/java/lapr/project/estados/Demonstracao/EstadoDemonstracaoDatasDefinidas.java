@@ -18,11 +18,6 @@ public class EstadoDemonstracaoDatasDefinidas extends EstadoDemonstracao {
     }
 
     @Override
-    public boolean setEstadoDemonstracaoDatasDefinidas() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoDemonstracaoCandidaturasAbertas() {
         this.m_demo.setEstado(new EstadoDemonstracaoCandidaturasAbertas(m_demo));
         return true;
