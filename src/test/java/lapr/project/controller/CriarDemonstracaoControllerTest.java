@@ -97,7 +97,7 @@ public class CriarDemonstracaoControllerTest {
         re.registaExposicao(e);
         ArrayList<Exposicao> expResult = new ArrayList<Exposicao>();
         expResult.add(e);
-        ArrayList<Exposicao> result = instance.getListaExposicoesDoOrganizador();
+        List<Exposicao> result = instance.getListaExposicoesDoOrganizador();
         assertEquals(expResult, result);
     }
 

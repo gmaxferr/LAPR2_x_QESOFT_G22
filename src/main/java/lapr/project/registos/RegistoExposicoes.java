@@ -110,30 +110,32 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     }
 
-        /**
-     * Devolve uma lista com as exposições em que existem candidaturas atribuidas
-     * de um representante
+    /**
+     * Devolve uma lista com as exposições em que existem candidaturas
+     * atribuidas de um representante
      *
      * @param username - username do representante
-     * @return lista com as exposições em que existem candidaturas atribuidas de um
-     * representante
+     * @return lista com as exposições em que existem candidaturas atribuidas de
+     * um representante
      */
     public List<Exposicao> getListaExposicoesComCanditaturasAtribuidasDoRepresentante(String username) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
-            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getUsernameExpositor().equals(username)) {
-                    if (c.getEstado().isEstadoCandidaturaAtribuida()) {
-                        listaExpoRep.add(e);
-                        break;
+            if (e.getEstado().isEstadoCandidaturasAbertas()) {
+                RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
+                for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+                    if (c.getUsernameExpositor().equals(username)) {
+                        if (!c.getEstado().isEstadoCandidaturaAvaliada()) {
+                            listaExpoRep.add(e);
+                            break;
+                        }
                     }
                 }
             }
         }
         return listaExpoRep;
     }
-    
+
     /**
      * Devolve uma lista com as exposições em que existem candidaturas aceites
      * de um representante
@@ -414,12 +416,12 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
     public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
         List<Exposicao> result = new ArrayList<>();
-        
-        for(Exposicao e : m_listaExposicoes){
-            for(Organizador o : e.getListaOrganizadores()){
-                if(o.getUsernameOrganizador().equals(username)){
-                    for(Demonstracao d : e.getRegistoDemonstracoes().getListaDemonstracoes()){
-                        if(d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAvaliadas()){
+
+        for (Exposicao e : m_listaExposicoes) {
+            for (Organizador o : e.getListaOrganizadores()) {
+                if (o.getUsernameOrganizador().equals(username)) {
+                    for (Demonstracao d : e.getRegistoDemonstracoes().getListaDemonstracoes()) {
+                        if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAvaliadas()) {
                             result.add(e);
                             break;
                         }
@@ -428,7 +430,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
                 }
             }
         }
-        
+
         return result;
     }
 }
