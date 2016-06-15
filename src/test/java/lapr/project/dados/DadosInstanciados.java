@@ -1,27 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.dados;
 
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Local;
-import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoRecursos;
+import java.util.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 import lapr.project.utils.Data;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class DadosInstanciados {
 
