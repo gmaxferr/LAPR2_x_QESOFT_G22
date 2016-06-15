@@ -18,7 +18,10 @@ import org.w3c.dom.*;
 public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "CandidaturaAExposicao";
-    public static final String ESTADO_ATTR_NAME = "Estado";
+
+    public static final String ESTADO_ATTR_NAME = "estado";
+    public static final String TEM_DECISAO_ATTR_NAME = "decisao";
+
     public static final String TLM_ELEMENT_NAME = "telemovel";
     public static final String NUM_CONVITES_ELEMENT_NAME = "numConvites";
     public static final String AREA_ELEMENT_NAME = "area";
@@ -445,8 +448,12 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
                 this.m_StrMoradaEmpresa = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME).item(0).getTextContent();
                 this.m_StrNomeEmpresa = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME).item(0).getTextContent();
-                this.m_decisao = new Decisao();
-                this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
+                boolean temDecisao = Boolean.parseBoolean(elem.getAttribute(TEM_DECISAO_ATTR_NAME));
+                if (temDecisao) {
+                    this.m_decisao = new Decisao();
+                    this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
+                }
+                this.m_expositor = new Expositor(null);
                 this.m_expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
                 this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
                 this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
@@ -554,7 +561,10 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             child.setTextContent(String.valueOf(this.m_intTelemovel));
             elementCandAExpo.appendChild(child);
 
-            elementCandAExpo.appendChild(document.importNode(this.m_decisao.exportContentToXMLNode(), true));
+            elementCandAExpo.setAttribute(TEM_DECISAO_ATTR_NAME, String.valueOf(this.m_decisao != null));
+            if (this.m_decisao != null) {
+                elementCandAExpo.appendChild(document.importNode(this.m_decisao.exportContentToXMLNode(), true));
+            }
             elementCandAExpo.appendChild(document.importNode(this.m_expositor.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));

@@ -277,9 +277,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return Utilitarios.hasLowerCase(password)
                 && Utilitarios.hasNumber(password)
                 && Utilitarios.hasSinalPontuacao(password)
-                && Utilitarios.hasUpperCase(password)
-                && password.length >= 4
-                && password.length <= 7;
+                && Utilitarios.hasUpperCase(password);
     }
 
     /**
@@ -398,6 +396,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public boolean validaKeyword() {
+        if (keyword != null) {
+            int keyLen = keyword.length();
+            return keyLen >= 4
+                    && keyLen <= 7;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isValid() {
+        return validaPassword() && validaKeyword();
     }
 
     @Override
