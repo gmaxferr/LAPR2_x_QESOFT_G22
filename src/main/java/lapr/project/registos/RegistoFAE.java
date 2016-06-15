@@ -90,6 +90,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void confirmaAddFAE(List<FAE> listaNovosFAEParaAdicionar) {
         for (FAE fae : listaNovosFAEParaAdicionar) {
             this.m_listaFAE.add(fae);
+            fae.getUtilizador().setIsFAE();
         }
     }
 

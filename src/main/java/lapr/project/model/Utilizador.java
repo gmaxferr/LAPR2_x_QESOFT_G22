@@ -33,7 +33,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
     public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
-    
+
     public static final int SHIFTS_MASK = 0x35;
 
     /**
@@ -77,9 +77,9 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     private int nAvaliacoesDesdeSempre;
 
-    private boolean isExpositor;
-    private boolean isOrganizador;
-    private boolean isFAE;
+    private int isExpositor;
+    private int isOrganizador;
+    private int isFAE;
     private boolean isGestor;
 
     /**
@@ -87,10 +87,10 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public Utilizador() {
         this.nAvaliacoesDesdeSempre = 0;
-        this.isExpositor = false;
-        this.isFAE = false;
+        this.isExpositor = 0;
+        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = false;
+        this.isOrganizador = 0;
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
@@ -99,10 +99,10 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.m_strEmail = email;
         setPwd(password);
         this.m_strNome = nome;
-        this.isExpositor = false;
-        this.isFAE = false;
+        this.isExpositor = 0;
+        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = false;
+        this.isOrganizador = 0;
     }
 
     public Utilizador(String nome, String username, char[] password, String email, String keyword) {
@@ -111,10 +111,10 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.m_strEmail = email;
         setPwd(password);
         this.m_strNome = nome;
-        this.isExpositor = false;
-        this.isFAE = false;
+        this.isExpositor = 0;
+        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = false;
+        this.isOrganizador = 0;
         this.keyword = keyword;
     }
 
@@ -157,13 +157,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return this.m_strEmail;
     }
 
-
     public void setIsFAE() {
-        this.isFAE = true;
+        this.isFAE++;
     }
 
     public void setIsOrganizador() {
-        this.isOrganizador = true;
+        this.isOrganizador++;
     }
 
     public void setIsGestor() {
@@ -171,14 +170,14 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     public void setIsExpositor() {
-        this.isExpositor = true;
+        this.isExpositor++;
     }
 
-    public boolean getIsFAE() {
+    public int getIsFAE() {
         return this.isFAE;
     }
 
-    public boolean getIsOrganizador() {
+    public int getIsOrganizador() {
         return this.isOrganizador;
     }
 
@@ -186,7 +185,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return this.isGestor;
     }
 
-    public boolean getIsExpositor() {
+    public int getIsExpositor() {
         return this.isExpositor;
     }
 
