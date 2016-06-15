@@ -26,19 +26,30 @@ public class Decisao implements Importable<Decisao>, Exportable {
     }
 
     /**
-     * Construtor
+     * Construtor. Recebe por parametro a decisão tomada pelo Gestor
      *
-     * @param decisao
+     * @param decisao decisao tomada pelo gestor
      */
     public Decisao(boolean decisao) {
         this.m_decisao = decisao;
     }
 
-    public void setM_bDecisao(boolean decisao) {
+    /**
+     * Define uma nova decisão (true ou false) para esta Decisão recebendo-a por
+     * parametro
+     *
+     * @param decisao nova decisão tomada pelo gestor
+     */
+    public void setDecisao(boolean decisao) {
         this.m_decisao = decisao;
     }
 
-    public boolean getM_bDecisao() {
+    /**
+     * Devolve a decisão tomada pelo Gestor
+     *
+     * @return decisão tomada pelo gestor
+     */
+    public boolean getDecisao() {
         return this.m_decisao;
     }
 
@@ -75,7 +86,7 @@ public class Decisao implements Importable<Decisao>, Exportable {
             Document document = builder.newDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
-            
+
             elementKeyword.setAttribute(DECISAO_ATTR_NAME, String.valueOf(m_decisao));
 
             document.appendChild(elementKeyword);
