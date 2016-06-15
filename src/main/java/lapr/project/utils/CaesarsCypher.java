@@ -11,10 +11,10 @@ package lapr.project.utils;
  * @author Ricardo Catalao
  */
 public final class CaesarsCypher {
-    
-    private CaesarsCypher(){
+
+    private CaesarsCypher() {
     }
-    
+
     /**
      * Encripta um array de caracteres usando a cifra de César.<!-- -->Cada
      * caracter é deslocado n {@code shifts} para a direita e, caso isso exceda
@@ -29,7 +29,12 @@ public final class CaesarsCypher {
         int size = arrChar.length;
         char[] result = new char[size];
         for (int i = 0; i < size; i++) {
-            result[i] = alfabet.charAt((alfabet.indexOf(arrChar[i]) + shifts) % alfabet.length());
+            int indexOf = alfabet.indexOf(arrChar[i]);
+            if (indexOf != -1) {    //Para o raro caso de haver caracteres esquesitos
+                result[i] = (char) (alfabet.charAt(indexOf + shifts) % alfabet.length());
+            } else {
+                result[i] = arrChar[i];
+            }
         }
         return result;
     }
@@ -49,7 +54,12 @@ public final class CaesarsCypher {
         int size = arrChar.length;
         char[] result = new char[size];
         for (int i = 0; i < size; i++) {
-            result[i] = alfabet.charAt((alfabet.indexOf(arrChar[i]) + alfabet.length() - shifts) % alfabet.length());
+            int indexOf = alfabet.indexOf(arrChar[i]);
+            if (indexOf != -1) {    //Para o raro caso de haver caracteres esquesitos
+                result[i] = alfabet.charAt((indexOf + alfabet.length() - shifts) % alfabet.length());
+            } else {
+                result[i] = arrChar[i];
+            }
         }
         return result;
     }
