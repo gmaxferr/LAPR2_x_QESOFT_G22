@@ -46,18 +46,6 @@ public class RegistoExposicoesTest {
     KeywordRanking rank = new KeywordRanking();
 
     public RegistoExposicoesTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
         ce = new CentroExposicoes();
 
         re = ce.getRegistoExposicoes();
@@ -131,6 +119,18 @@ public class RegistoExposicoesTest {
         re.getListaExposicoes().add(expo9);
         re.getListaExposicoes().add(expo10);
         re.getListaExposicoes().add(expo11);
+    }
+
+    @BeforeClass
+    public static void setUpClass() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
     }
 
     /**
