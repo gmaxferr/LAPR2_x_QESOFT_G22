@@ -49,6 +49,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         alterarComportamentoFecharJFrame();
 
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
     
@@ -98,6 +99,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N

@@ -42,11 +42,16 @@ public class MenuV2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Desativa as tabs no JTabbedPane responsável por mostrar os cargos e
+     * respectivas permissões
+     */
     private void desativarJTabbedPanelDosCargos() {
         jTabbedPaneCargos.setEnabledAt(0, false);
         jTabbedPaneCargos.setEnabledAt(1, false);
         jTabbedPaneCargos.setEnabledAt(2, false);
         jTabbedPaneCargos.setEnabledAt(3, false);
+        jTabbedPaneCargos.setEnabledAt(4, false);
     }
 
     /**
@@ -71,6 +76,9 @@ public class MenuV2 extends javax.swing.JFrame {
         if (utilizador.getIsOrganizador()) {
             this.jCheckBoxOrganizador.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(2, true);
+        }
+        if (utilizador.getBoolConfirmaRegisto() == false) {
+            jTabbedPaneCargos.setEnabledAt(4, true);
         }
         for (int i = 0; i < 4; i++) {
             if (jTabbedPaneCargos.isEnabledAt(i)) {
@@ -163,6 +171,9 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -331,7 +342,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +355,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton26)
                     .addComponent(jButton28))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Expositor", jPanel3);
@@ -381,7 +392,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jButton29)
                 .addGap(10, 10, 10)
                 .addComponent(jButton30)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,7 +402,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton29)
                     .addComponent(jButton30))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("FAE", jPanel4);
@@ -493,7 +504,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +525,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton23)
                     .addComponent(jButton24)
                     .addComponent(jButton25))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Organizador", jPanel5);
@@ -609,7 +620,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton14)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -636,6 +647,35 @@ public class MenuV2 extends javax.swing.JFrame {
         );
 
         jTabbedPaneCargos.addTab("Gestor", jPanel6);
+
+        jLabel7.setText("Infelizmente o seu registo ainda não foi confirmado");
+
+        jLabel8.setText("Por enquanto não tem permissões para executar nenhuma ação. Por favor aguarda a confirmação do seu registo.");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(50, 50, 50))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel7)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel8)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneCargos.addTab("Utilizador", jPanel7);
 
         jButton1.setText("Criar candidatura à exposição");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -722,9 +762,9 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPaneCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -783,7 +823,6 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
         new JFrameRegistarExpoUI(centroExposicoes);
-        new JFrameRegistarExpoUI(centroExposicoes); //nada feito
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
@@ -1004,6 +1043,8 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelNomeUtilizador;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
@@ -1020,6 +1061,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jTabbedPaneCargos;
     // End of variables declaration//GEN-END:variables
 }
