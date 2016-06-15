@@ -18,11 +18,6 @@ public class EstadoCandidaturaAExposicaoAceite extends EstadoCandidaturaAExposic
     }
 
     @Override
-    public boolean setEstadoCandidaturaAceite() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoCandidaturaStandsAtribuidos() {
         if (valida()) {
             this.m_cand.setEstado(new EstadoCandidaturaAExposicaoStandsAtribuidos(m_cand));

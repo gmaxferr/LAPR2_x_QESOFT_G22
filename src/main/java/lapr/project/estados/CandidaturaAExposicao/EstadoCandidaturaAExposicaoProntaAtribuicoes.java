@@ -23,10 +23,6 @@ public class EstadoCandidaturaAExposicaoProntaAtribuicoes extends EstadoCandidat
         return true;
     }
 
-    @Override
-    public boolean setEstadoCandidaturaProntaAtribuicoes() {
-        return true;
-    }
 
     @Override
     public boolean isEstadoCandidaturaProntaAtribuicoes() {

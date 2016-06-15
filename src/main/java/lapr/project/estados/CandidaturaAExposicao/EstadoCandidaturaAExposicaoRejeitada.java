@@ -18,11 +18,6 @@ public class EstadoCandidaturaAExposicaoRejeitada extends EstadoCandidaturaAExpo
     }
 
     @Override
-    public boolean setEstadoCandidaturaRejeitada() {
-        return true;
-    }
-
-    @Override
     public boolean isEstadoCandidaturaRejeitada() {
         return true;
     }

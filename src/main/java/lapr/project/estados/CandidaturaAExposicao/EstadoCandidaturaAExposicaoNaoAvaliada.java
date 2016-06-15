@@ -18,11 +18,6 @@ public class EstadoCandidaturaAExposicaoNaoAvaliada extends EstadoCandidaturaAEx
     }
 
     @Override
-    public boolean setEstadoCandidaturaNaoAvaliada() {
-        return true;
-    }
-
-    @Override
     public boolean isEstadoCandidaturaNaoAvaliada() {
         return true;
     }

@@ -109,15 +109,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     }
 
     /**
-     * Modifica o registo de organizadores
-     * 
-     * @param ro novo registo de organizadores
-     */
-    public void setRegistoOrganizadoresParaValidacoes(RegistoOrganizadores ro) {
-        this.m_rOrganizadoresDestaExposicao = ro;
-    }
-
-    /**
      * Retorn ao FAE que tem determinado username
      *
      * @param usernameFAE - usernmae do FAE
