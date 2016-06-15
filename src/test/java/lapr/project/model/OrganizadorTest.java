@@ -15,11 +15,11 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author guima
  */
-public class ExpositorTest {
+public class OrganizadorTest {
     
-    public ExpositorTest() {
+    public OrganizadorTest() {
     }
     
     @BeforeClass
@@ -39,39 +39,12 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of getM_strUsername method, of class Expositor.
-     */
-    @Test
-    public void testGetUsername() {
-        System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
-        Expositor instance = new Expositor(u);
-        String expResult = "us3r";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getEmail method, of class Expositor.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Expositor instance = null;
-        String expResult = "";
-        String result = instance.getEmail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUtilizador method, of class Expositor.
+     * Test of getUtilizador method, of class Organizador.
      */
     @Test
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
-        Expositor instance = null;
+        Organizador instance = new Organizador();
         Utilizador expResult = null;
         Utilizador result = instance.getUtilizador();
         assertEquals(expResult, result);
@@ -80,40 +53,68 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of setUtilizador method, of class Expositor.
+     * Test of setUtilizador method, of class Organizador.
      */
     @Test
     public void testSetUtilizador() {
         System.out.println("setUtilizador");
-        Utilizador m_utilizador = null;
-        Expositor instance = null;
-        instance.setUtilizador(m_utilizador);
+        Utilizador u = null;
+        Organizador instance = new Organizador();
+        instance.setUtilizador(u);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class Expositor.
+     * Test of getUsernameOrganizador method, of class Organizador.
      */
     @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+    public void testGetUsernameOrganizador() {
+        System.out.println("getUsernameOrganizador");
+        Organizador instance = new Organizador();
+        String expResult = "";
+        String result = instance.getUsernameOrganizador();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of toString method, of class Organizador.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Organizador instance = new Organizador();
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Organizador.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        Organizador instance = new Organizador();
+        Organizador expResult = null;
+        Organizador result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Organizador.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
+        Organizador instance = new Organizador();
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);

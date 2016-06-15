@@ -513,4 +513,45 @@ public class CandidaturaAExposicaoTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of setEstado method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testSetEstado() {
+        System.out.println("setEstado");
+        EstadoCandidaturaAExposicao ne = null;
+        CandidaturaAExposicao instance = null;
+        instance.setEstado(ne);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of hashCode method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        CandidaturaAExposicao instance = null;
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getDecisao method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testGetDecisao() {
+        System.out.println("getDecisao");
+        CandidaturaAExposicao instance = null;
+        boolean expResult = false;
+        boolean result = instance.getDecisao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

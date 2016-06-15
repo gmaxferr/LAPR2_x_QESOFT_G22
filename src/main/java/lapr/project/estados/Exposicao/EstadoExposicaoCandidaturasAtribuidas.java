@@ -12,10 +12,6 @@ public class EstadoExposicaoCandidaturasAtribuidas extends EstadoExposicao {
         super(exposicao);
     }
 
-    @Override
-    public boolean setEstadoCandidaturasAtribuidas() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoCandidaturasAvaliadas() {

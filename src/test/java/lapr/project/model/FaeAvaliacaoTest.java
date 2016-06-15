@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.registos.RegistoUtilizadores;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,11 +16,11 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author guima
  */
-public class ExpositorTest {
+public class FaeAvaliacaoTest {
     
-    public ExpositorTest() {
+    public FaeAvaliacaoTest() {
     }
     
     @BeforeClass
@@ -39,81 +40,68 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of getM_strUsername method, of class Expositor.
+     * Test of getFaeAssociado method, of class FaeAvaliacao.
      */
     @Test
-    public void testGetUsername() {
-        System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
-        Expositor instance = new Expositor(u);
-        String expResult = "us3r";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getEmail method, of class Expositor.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Expositor instance = null;
-        String expResult = "";
-        String result = instance.getEmail();
+    public void testGetFaeAssociado() {
+        System.out.println("getFaeAssociado");
+        FaeAvaliacao instance = new FaeAvaliacao();
+        FAE expResult = null;
+        FAE result = instance.getFaeAssociado();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUtilizador method, of class Expositor.
+     * Test of getAvaliacao method, of class FaeAvaliacao.
      */
     @Test
-    public void testGetUtilizador() {
-        System.out.println("getUtilizador");
-        Expositor instance = null;
-        Utilizador expResult = null;
-        Utilizador result = instance.getUtilizador();
+    public void testGetAvaliacao() {
+        System.out.println("getAvaliacao");
+        FaeAvaliacao instance = new FaeAvaliacao();
+        Avaliacao expResult = null;
+        Avaliacao result = instance.getAvaliacao();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setUtilizador method, of class Expositor.
+     * Test of fix method, of class FaeAvaliacao.
      */
     @Test
-    public void testSetUtilizador() {
-        System.out.println("setUtilizador");
-        Utilizador m_utilizador = null;
-        Expositor instance = null;
-        instance.setUtilizador(m_utilizador);
+    public void testFix() {
+        System.out.println("fix");
+        RegistoUtilizadores m_registoUtilizadores = null;
+        FaeAvaliacao instance = new FaeAvaliacao();
+        instance.fix(m_registoUtilizadores);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class Expositor.
+     * Test of importContentFromXMLNode method, of class FaeAvaliacao.
      */
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+        FaeAvaliacao instance = new FaeAvaliacao();
+        FaeAvaliacao expResult = null;
+        FaeAvaliacao result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of exportContentToXMLNode method, of class FaeAvaliacao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
+        FaeAvaliacao instance = new FaeAvaliacao();
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);

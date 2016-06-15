@@ -13,10 +13,6 @@ public class EstadoExposicaoCandidaturasAvaliadas extends EstadoExposicao {
         super(exposicao);
     }
 
-    @Override
-    public boolean setEstadoCandidaturasAvaliadas() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoCandidaturasDecididas() {
@@ -41,7 +37,7 @@ public class EstadoExposicaoCandidaturasAvaliadas extends EstadoExposicao {
     }
 
     @Override
-    public boolean isEstadoCandidaturasAtribuidas() {
+    public boolean isEstadoCandidaturasAvaliadas() {
         return true;
     }
 

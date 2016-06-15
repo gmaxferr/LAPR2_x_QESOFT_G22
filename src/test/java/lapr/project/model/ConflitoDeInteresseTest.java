@@ -15,11 +15,11 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author guima
  */
-public class ExpositorTest {
+public class ConflitoDeInteresseTest {
     
-    public ExpositorTest() {
+    public ConflitoDeInteresseTest() {
     }
     
     @BeforeClass
@@ -39,81 +39,69 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of getM_strUsername method, of class Expositor.
+     * Test of getFae method, of class ConflitoDeInteresse.
      */
     @Test
-    public void testGetUsername() {
-        System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
-        Expositor instance = new Expositor(u);
-        String expResult = "us3r";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getEmail method, of class Expositor.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Expositor instance = null;
-        String expResult = "";
-        String result = instance.getEmail();
+    public void testGetFae() {
+        System.out.println("getFae");
+        ConflitoDeInteresse instance = null;
+        FAE expResult = null;
+        FAE result = instance.getFae();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUtilizador method, of class Expositor.
+     * Test of getCandidatura method, of class ConflitoDeInteresse.
      */
     @Test
-    public void testGetUtilizador() {
-        System.out.println("getUtilizador");
-        Expositor instance = null;
-        Utilizador expResult = null;
-        Utilizador result = instance.getUtilizador();
+    public void testGetCandidatura() {
+        System.out.println("getCandidatura");
+        ConflitoDeInteresse instance = null;
+        CandidaturaAExposicao expResult = null;
+        CandidaturaAExposicao result = instance.getCandidatura();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setUtilizador method, of class Expositor.
+     * Test of getTipo method, of class ConflitoDeInteresse.
      */
     @Test
-    public void testSetUtilizador() {
-        System.out.println("setUtilizador");
-        Utilizador m_utilizador = null;
-        Expositor instance = null;
-        instance.setUtilizador(m_utilizador);
+    public void testGetTipo() {
+        System.out.println("getTipo");
+        ConflitoDeInteresse instance = null;
+        TipoConflito expResult = null;
+        TipoConflito result = instance.getTipo();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class Expositor.
+     * Test of importContentFromXMLNode method, of class ConflitoDeInteresse.
      */
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+        ConflitoDeInteresse instance = null;
+        ConflitoDeInteresse expResult = null;
+        ConflitoDeInteresse result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of exportContentToXMLNode method, of class ConflitoDeInteresse.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
+        ConflitoDeInteresse instance = null;
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);

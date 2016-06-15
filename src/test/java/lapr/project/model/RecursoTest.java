@@ -15,11 +15,11 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author guima
  */
-public class ExpositorTest {
+public class RecursoTest {
     
-    public ExpositorTest() {
+    public RecursoTest() {
     }
     
     @BeforeClass
@@ -39,81 +39,69 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of getM_strUsername method, of class Expositor.
+     * Test of getNomeRecurso method, of class Recurso.
      */
     @Test
-    public void testGetUsername() {
-        System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
-        Expositor instance = new Expositor(u);
-        String expResult = "us3r";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getEmail method, of class Expositor.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Expositor instance = null;
+    public void testGetNomeRecurso() {
+        System.out.println("getNomeRecurso");
+        Recurso instance = null;
         String expResult = "";
-        String result = instance.getEmail();
+        String result = instance.getNomeRecurso();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUtilizador method, of class Expositor.
+     * Test of setNomeRecurso method, of class Recurso.
      */
     @Test
-    public void testGetUtilizador() {
-        System.out.println("getUtilizador");
-        Expositor instance = null;
-        Utilizador expResult = null;
-        Utilizador result = instance.getUtilizador();
+    public void testSetNomeRecurso() {
+        System.out.println("setNomeRecurso");
+        String nomeRecurso = "";
+        Recurso instance = null;
+        instance.setNomeRecurso(nomeRecurso);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Recurso.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object obj = null;
+        Recurso instance = null;
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setUtilizador method, of class Expositor.
-     */
-    @Test
-    public void testSetUtilizador() {
-        System.out.println("setUtilizador");
-        Utilizador m_utilizador = null;
-        Expositor instance = null;
-        instance.setUtilizador(m_utilizador);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class Expositor.
+     * Test of importContentFromXMLNode method, of class Recurso.
      */
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+        Recurso instance = null;
+        Recurso expResult = null;
+        Recurso result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of exportContentToXMLNode method, of class Recurso.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
+        Recurso instance = null;
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);

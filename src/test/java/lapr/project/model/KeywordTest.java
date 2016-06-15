@@ -15,11 +15,11 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author guima
  */
-public class ExpositorTest {
+public class KeywordTest {
     
-    public ExpositorTest() {
+    public KeywordTest() {
     }
     
     @BeforeClass
@@ -39,81 +39,83 @@ public class ExpositorTest {
     }
 
     /**
-     * Test of getM_strUsername method, of class Expositor.
+     * Test of getValue method, of class Keyword.
      */
     @Test
-    public void testGetUsername() {
-        System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("", "us3r", "".toCharArray(), "");
-        Expositor instance = new Expositor(u);
-        String expResult = "us3r";
-        String result = instance.getUsername();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getEmail method, of class Expositor.
-     */
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Expositor instance = null;
+    public void testGetValue() {
+        System.out.println("getValue");
+        Keyword instance = new Keyword();
         String expResult = "";
-        String result = instance.getEmail();
+        String result = instance.getValue();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUtilizador method, of class Expositor.
+     * Test of setValue method, of class Keyword.
      */
     @Test
-    public void testGetUtilizador() {
-        System.out.println("getUtilizador");
-        Expositor instance = null;
-        Utilizador expResult = null;
-        Utilizador result = instance.getUtilizador();
+    public void testSetValue() {
+        System.out.println("setValue");
+        String keyword = "";
+        Keyword instance = new Keyword();
+        instance.setValue(keyword);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Keyword.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object o = null;
+        Keyword instance = new Keyword();
+        boolean expResult = false;
+        boolean result = instance.equals(o);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setUtilizador method, of class Expositor.
+     * Test of hashCode method, of class Keyword.
      */
     @Test
-    public void testSetUtilizador() {
-        System.out.println("setUtilizador");
-        Utilizador m_utilizador = null;
-        Expositor instance = null;
-        instance.setUtilizador(m_utilizador);
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Keyword instance = new Keyword();
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class Expositor.
+     * Test of importContentFromXMLNode method, of class Keyword.
      */
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+        Keyword instance = new Keyword();
+        Keyword expResult = null;
+        Keyword result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of exportContentToXMLNode method, of class Keyword.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
+        Keyword instance = new Keyword();
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);

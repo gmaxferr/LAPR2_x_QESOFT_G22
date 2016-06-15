@@ -15,6 +15,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -157,5 +158,60 @@ public class KeywordRankingTest {
         }
         List<ScoredKeyword> result = instance.getScoredKeywords();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setReady method, of class KeywordRanking.
+     */
+    @Test
+    public void testSetReady() {
+        System.out.println("setReady");
+        KeywordRanking instance = new KeywordRanking();
+        instance.setReady();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isReady method, of class KeywordRanking.
+     */
+    @Test
+    public void testIsReady() {
+        System.out.println("isReady");
+        KeywordRanking instance = new KeywordRanking();
+        boolean expResult = false;
+        boolean result = instance.isReady();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class KeywordRanking.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        KeywordRanking instance = new KeywordRanking();
+        KeywordRanking expResult = null;
+        KeywordRanking result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class KeywordRanking.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        KeywordRanking instance = new KeywordRanking();
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }
