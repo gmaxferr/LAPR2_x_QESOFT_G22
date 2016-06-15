@@ -1,8 +1,9 @@
-package lapr.project.model;
+package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
+import lapr.project.ui.JFrameRegistarExpoUI.PossivelOrganizador;
 
 /**
  * Representação de uma ComboBoxModel de utilizadores
@@ -14,14 +15,14 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
     /**
      * Lista de utilizadores
      */
-    private List<Utilizador> m_listaUtilizadores;
+    private List<PossivelOrganizador> m_listaUtilizadores;
     
     /**
      * Objeto selecionado
      */
     private String selection;
     
-    public ComboBoxModelUtilizadores(List<Utilizador> listaUtilizadores){
+    public ComboBoxModelUtilizadores(List<PossivelOrganizador> listaUtilizadores){
         this.selection = null;
         this.m_listaUtilizadores = listaUtilizadores;
     }
@@ -45,7 +46,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public Object getElementAt(int index) {
-        return this.m_listaUtilizadores.get(index).getUsername();
+        return this.m_listaUtilizadores.get(index).getOrganizador().getUtilizador();
     }
 
     /**

@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.DefinirRecursoController;
-import lapr.project.model.AbstractListModelRecursos;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Recurso;
 

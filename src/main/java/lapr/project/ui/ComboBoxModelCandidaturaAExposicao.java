@@ -1,8 +1,9 @@
-package lapr.project.model;
+package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *

@@ -15,7 +15,6 @@ import lapr.project.controller.RemoverCandidaturaExpoController;
 import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Produto;
 

@@ -1,7 +1,9 @@
-package lapr.project.model;
+package lapr.project.ui;
 
 import java.util.List;
 import javax.swing.*;
+import lapr.project.model.AtribuicaoCandidatura;
+import lapr.project.model.CandidaturaAExposicao;
 
 /**
  * Representação de uma ComboBoxModel de atribuições.

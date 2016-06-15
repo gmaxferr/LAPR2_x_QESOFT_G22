@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DecidirDemonstracaoController;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 
