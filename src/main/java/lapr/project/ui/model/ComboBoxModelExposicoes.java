@@ -44,10 +44,10 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
     }
 
     /**
-     * Devolve uma exposição.
+     * Devolve o titulo da exposição.
      *
      * @param index posição da exposição.
-     * 
+     *
      * @return exposição.
      */
     @Override

@@ -3,7 +3,6 @@ package lapr.project.controller;
 import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
-import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.*;
 import lapr.project.registos.*;

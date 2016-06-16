@@ -2,7 +2,7 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.registos.RegistoCandidaturasRemovidas;
+import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
 import lapr.project.model.*;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
@@ -88,7 +88,7 @@ public class RemoverCandidaturaExpoController {
 
     public void removerCandidatura() {
         m_rc.removeCandidatura(m_candidaturaARemover);
-        RegistoCandidaturasRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasRemovidas();
+        RegistoCandidaturasAExposicaoRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasAExposicaoRemovidas();
         rcr.adicionarCandidatura(m_candidaturaARemover);
     }
 

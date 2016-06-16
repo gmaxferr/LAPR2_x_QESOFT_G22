@@ -56,7 +56,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      */
     private Data m_dataFimSubCand;
-
+    
+    /**
+     * 
+     */
+    private Data m_dataFimDetecaoConflitos;
+    
     /**
      *
      */
@@ -175,6 +180,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return m_rcd;
     }
 
+    void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
+        this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
+    }
+    
     /**
      * Define uma data de inicio de candidaturas à demonstração e cria timer
      *
@@ -406,5 +415,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     public void setEstado(EstadoDemonstracao estado) {
         this.m_estado = estado;
+    }
+
+    Data getDataFimDetecaoConflitos() {
+        return m_dataFimDetecaoConflitos;
     }
 }
