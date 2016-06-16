@@ -151,8 +151,6 @@ public class XMLParser {
     public static Document createDocument() throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.newDocument();
-
-        return document;
+        return builder.newDocument();
     }
 }
