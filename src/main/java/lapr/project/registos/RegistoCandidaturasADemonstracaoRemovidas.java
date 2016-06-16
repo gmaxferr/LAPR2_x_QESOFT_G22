@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package lapr.project.registos;
 
 import java.util.ArrayList;
@@ -7,7 +13,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -16,47 +22,30 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Representação de um RegistoCandidaturasRemovidas
- * 
+ *
  * @author Ana Leite
  */
-public class RegistoCandidaturasRemovidas implements Importable<RegistoCandidaturasRemovidas>, Exportable {
+public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<RegistoCandidaturasADemonstracaoRemovidas>,  Exportable{
+
+    public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasADemonstracaoRemovidas";
+
+    private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasRemovidas";
-
-    /**
-     * Lista de candidaturas removidas.
-     */
-    private List<CandidaturaAExposicao> m_listaCandidaturasRemovidas;
-
-    /**
-     * Contrutor de objetos do tipo RegistoCandidaturasRemovidas sem parâmetros.
-     */
-    public RegistoCandidaturasRemovidas() {
+    public RegistoCandidaturasADemonstracaoRemovidas(){
         this.m_listaCandidaturasRemovidas = new ArrayList<>();
     }
-
-    /**
-     * Adiciona uma candidatura removida do registo de candidaturas
-     *
-     * @param c - candidatura removida do registo de candidaturas
-     */
-    public void adicionarCandidatura(CandidaturaAExposicao c) {
+    
+    public void adicionarCandidatura(CandidaturaADemonstracao c){
         m_listaCandidaturasRemovidas.add(c);
     }
-
-    /**
-     * Devolve a lista de candidaturas removidas.
-     *
-     * @return lista de candidaturas removidas
-     */
-    public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
+    
+    public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRemovidas(){
         return this.m_listaCandidaturasRemovidas;
     }
 
     @Override
-    public RegistoCandidaturasRemovidas importContentFromXMLNode(Node node) {
-        try {
+    public RegistoCandidaturasADemonstracaoRemovidas importContentFromXMLNode(Node node) {
+     try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
@@ -69,17 +58,17 @@ public class RegistoCandidaturasRemovidas implements Importable<RegistoCandidatu
                 
                 this.m_listaCandidaturasRemovidas.clear();
                 
-                NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
+                NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
-                    CandidaturaAExposicao cand = new CandidaturaAExposicao(null);
+                    CandidaturaADemonstracao cand = new CandidaturaADemonstracao(null, null);
                     cand.importContentFromXMLNode(n2);
                     this.m_listaCandidaturasRemovidas.add(cand);
                 }
             }
 
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturasRemovidas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex){
+           Logger.getLogger(RegistoCandidaturasADemonstracaoRemovidas.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -95,7 +84,7 @@ public class RegistoCandidaturasRemovidas implements Importable<RegistoCandidatu
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
 
-            for (CandidaturaAExposicao cand : m_listaCandidaturasRemovidas) {
+            for (CandidaturaADemonstracao cand : m_listaCandidaturasRemovidas) {
                 Node n = cand.exportContentToXMLNode();
                 elementBase.appendChild(document.importNode(n, true));
             }
@@ -105,8 +94,9 @@ public class RegistoCandidaturasRemovidas implements Importable<RegistoCandidatu
             node = elementBase;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturasRemovidas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoCandidaturasADemonstracaoRemovidas.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
+    
 }

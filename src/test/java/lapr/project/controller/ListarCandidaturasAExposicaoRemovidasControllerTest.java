@@ -101,11 +101,11 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
     public void testGetRegistoCandidaturasRemovidas() {
         System.out.println("getRegistoCandidaturasRemovidas");
         instance.setExposicao(e);
-        instance.getRegistoCandidaturasRemovidas();
+        instance.getRegistoCandidaturasAExposicaoRemovidas();
     }
 
     /**
-     * Test of getListaCandidaturasRemovidas method, of class 
+     * Test of getListaCandidaturasAExposicaoRemovidas method, of class 
  ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
@@ -113,9 +113,9 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
         System.out.println("getListaCandidaturasRemovidas");
         instance.setExposicao(e);
         instance.getRegistoExposicoes();
-        instance.getRegistoCandidaturasRemovidas();
+        instance.getRegistoCandidaturasAExposicaoRemovidas();
         List<CandidaturaAExposicao> expResult = new ArrayList<CandidaturaAExposicao>();
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasRemovidas();
+        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
     }
     
