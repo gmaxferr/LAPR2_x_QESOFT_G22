@@ -2,6 +2,9 @@ package lapr.project.ui;
 
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
@@ -811,12 +814,13 @@ public class MenuV2 extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             ImportarXMLController CTRL = new ImportarXMLController();
-            CentroExposicoes ce = CTRL.Import(file.getAbsolutePath());
-            if (ce == null) {
-                JOptionPane.showMessageDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+            CentroExposicoes ce;
+            try {
+                ce = CTRL.Import(file.getAbsolutePath());
                 this.centroExposicoes = ce;
                 JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
@@ -1041,7 +1045,7 @@ public class MenuV2 extends javax.swing.JFrame {
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b);
-        if(b){
+        if (b) {
             identificarCargosDoUtilizador();
         }
     }

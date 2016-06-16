@@ -18,14 +18,24 @@ import org.xml.sax.SAXException;
  */
 public class ImportarXMLController {
 
-    public CentroExposicoes Import(String filename) {
+    /**
+     * Importa a informação de um ficheiro para um Centro de Exposições.
+     *
+     * @param filename Nome completo do ficheiro
+     * @return Centro de Exposicoes com informação carregada a partir do
+     * ficheiro
+     * @throws FileNotFoundException
+     */
+    public CentroExposicoes Import(String filename) throws FileNotFoundException {
         CentroExposicoes ce = null;
 
         try {
             XMLParser parser = new XMLParser();
             Node node = parser.readXMLElementFromFile(filename);
-            ce = new CentroExposicoes();
-            ce.importContentFromXMLNode(node);
+            if (node != null) {
+                ce = new CentroExposicoes();
+                ce.importContentFromXMLNode(node);
+            }
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             Logger.getLogger(ImportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -33,7 +43,16 @@ public class ImportarXMLController {
         return ce;
     }
 
-    public CentroExposicoes importAndUpdateProperties(String filename) {
+    /**
+     * Importa a informação de um ficheiro para um Centro de Exposições e
+     * atualiza o ficheiro propriedades.
+     *
+     * @param filename Nome completo do ficheiro
+     * @return Centro de Exposicoes com informação carregada a partir do
+     * ficheiro
+     * @throws FileNotFoundException
+     */
+    public CentroExposicoes importAndUpdateProperties(String filename) throws FileNotFoundException {
         CentroExposicoes ce = Import(filename);
         if (ce != null) {
             File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
