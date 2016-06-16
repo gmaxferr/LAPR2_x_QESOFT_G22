@@ -500,10 +500,23 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (modeloJList.getSize() >= 2) {
-                        inicializarDatas();
-                    if (tituloTxt1.getText() != null && textoDescritivoTxt1.getText() != null && dataInicio != null && dataFim != null && dataInicioSubCand != null && dataFimSubCand != null && dataFimDetecaoConflitos != null) {
+                    inicializarDatas();
+                    if (tituloTxt1.getText() != null
+                            && textoDescritivoTxt1.getText() != null
+                            && dataInicio != null
+                            && dataFim != null
+                            && dataInicioSubCand != null
+                            && dataFimSubCand != null
+                            && dataFimDetecaoConflitos != null) {
                         ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
-                        ctrl.setDados(tituloTxt1.getText(), textoDescritivoTxt1.getText(), dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, new Local(localTxt1.getText()));
+                        ctrl.setDados(tituloTxt1.getText(),
+                                textoDescritivoTxt1.getText(),
+                                dataInicio,
+                                dataFim,
+                                dataInicioSubCand,
+                                dataFimSubCand,
+                                dataFimDetecaoConflitos,
+                                new Local(localTxt1.getText()));
                         ctrl.registaExposicao();
                         menuPrincipal.setVisible(true);
                         JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
@@ -518,21 +531,21 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
             }
 
             private void inicializarDatas() {
-                int ano1 = (Integer) anoInicio.getSelectedItem();
-                int ano2 = (Integer) anoFim.getSelectedItem();
-                int ano3 = (Integer) anoInicioCand.getSelectedItem();
-                int ano4 = (Integer) anoFimCand.getSelectedItem();
-                int ano5 = (Integer) anoFimDetecaoConflitos.getSelectedItem();
-                int mes1 = (Integer) mesInicio.getSelectedIndex() + 1;
-                int mes2 = (Integer) mesFim.getSelectedIndex() + 1;
-                int mes3 = (Integer) mesInicioCand.getSelectedIndex() + 1;
-                int mes4 = (Integer) mesFimCand.getSelectedIndex() + 1;
-                int mes5 = (Integer) mesFimDetecaoConflitos.getSelectedIndex() + 1;
-                int dia1 = (Integer) diaInicio.getSelectedItem();
-                int dia2 = (Integer) diaFim.getSelectedItem();
-                int dia3 = (Integer) diaInicioCand.getSelectedItem();
-                int dia4 = (Integer) diaFimCand.getSelectedItem();
-                int dia5 = (Integer) diaFimDetecaoConflitos.getSelectedItem();
+                int ano1 = Integer.parseInt(anoInicio.getSelectedItem().toString());
+                int ano2 = Integer.parseInt(anoFim.getSelectedItem().toString());
+                int ano3 = Integer.parseInt(anoInicioCand.getSelectedItem().toString());
+                int ano4 = Integer.parseInt(anoFimCand.getSelectedItem().toString());
+                int ano5 = Integer.parseInt(anoFimDetecaoConflitos.getSelectedItem().toString());
+                int mes1 = mesInicio.getSelectedIndex() + 1;
+                int mes2 = mesFim.getSelectedIndex() + 1;
+                int mes3 = mesInicioCand.getSelectedIndex() + 1;
+                int mes4 = mesFimCand.getSelectedIndex() + 1;
+                int mes5 = mesFimDetecaoConflitos.getSelectedIndex() + 1;
+                int dia1 = Integer.parseInt(diaInicio.getSelectedItem().toString());
+                int dia2 = Integer.parseInt(diaFim.getSelectedItem().toString());
+                int dia3 = Integer.parseInt(diaInicioCand.getSelectedItem().toString());
+                int dia4 = Integer.parseInt(diaFimCand.getSelectedItem().toString());
+                int dia5 = Integer.parseInt(diaFimDetecaoConflitos.getSelectedItem().toString());
                 dataInicio = new Data(ano1, mes1, dia1);
                 dataFim = new Data(ano2, mes2, dia2);
                 dataInicioSubCand = new Data(ano3, mes3, dia3);
