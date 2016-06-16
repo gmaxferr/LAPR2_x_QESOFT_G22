@@ -61,7 +61,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     private boolean validarRecurso(String nomeRec) {
         boolean valido = true;
         for (Recurso rec : m_listaRecursosNecessarios) {
-            if (rec.getNomeRecurso().equals(nomeRec)) {
+            if (rec.getNomeRecurso().equals(nomeRec.trim())) {
                 valido = false;
             }
         }
