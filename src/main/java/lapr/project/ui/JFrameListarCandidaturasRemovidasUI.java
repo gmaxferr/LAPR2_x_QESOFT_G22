@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.ListarCandidaturasRemovidasController;
+import lapr.project.controller.ListarCandidaturasAExposicaoRemovidasController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 
@@ -20,7 +20,7 @@ public class JFrameListarCandidaturasRemovidasUI extends javax.swing.JFrame {
     private JFrame jFrameMenuPrincipal;
     private CentroExposicoes centroExposicoesAtual;
     private String usernameOrganizador;
-    private ListarCandidaturasRemovidasController controller;
+    private ListarCandidaturasAExposicaoRemovidasController controller;
     private List<Exposicao> listaExposicoes;
     
     
@@ -43,7 +43,7 @@ public class JFrameListarCandidaturasRemovidasUI extends javax.swing.JFrame {
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.centroExposicoesAtual = centroExposicoes;
         this.usernameOrganizador = usernameOrganizador;
-        this.controller = new ListarCandidaturasRemovidasController(centroExposicoes);
+        this.controller = new ListarCandidaturasAExposicaoRemovidasController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesDoOrganizador(usernameOrganizador);
         initComponents();
