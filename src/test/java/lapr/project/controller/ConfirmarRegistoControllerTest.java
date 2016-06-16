@@ -68,7 +68,6 @@ public class ConfirmarRegistoControllerTest {
     public void testGetListaNovosRegistos() {
         System.out.println("getListaNovosRegistos");
         instance.getRegistoUtilizadores();
-        instance.getListaNovosRegistos();
         ArrayList<Utilizador> expResult = listaUtilizadores;
         ArrayList<Utilizador> result = instance.getListaNovosRegistos();
         assertEquals(expResult, result);

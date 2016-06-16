@@ -9,12 +9,12 @@ import lapr.project.registos.*;
  * 
  * @author Ana Leite
  */
-public class ListarCandidaturasRemovidasController {
+public class ListarCandidaturasAExposicaoRemovidasController {
 
     /**
      * Registo de candidaturas removidas.
      */
-    private RegistoCandidaturasRemovidas m_rcr;
+    private RegistoCandidaturasAExposicaoRemovidas m_rcr;
 
     /**
      * Registo de Exposições
@@ -37,7 +37,7 @@ public class ListarCandidaturasRemovidasController {
      *
      * @param centro_exposicoes centro de exposições
      */
-    public ListarCandidaturasRemovidasController(CentroExposicoes centro_exposicoes) {
+    public ListarCandidaturasAExposicaoRemovidasController(CentroExposicoes centro_exposicoes) {
         this.m_centroExposicoes = centro_exposicoes;
     }
 
@@ -72,7 +72,7 @@ public class ListarCandidaturasRemovidasController {
      * Guarda o registo de candidaturas removidas.
      */
     public void getRegistoCandidaturasRemovidas() {
-        this.m_rcr = m_exposicaoEscolhida.getRegistoCandidaturasRemovidas();
+        this.m_rcr = m_exposicaoEscolhida.getRegistoCandidaturasAExposicaoRemovidas();
     }
 
     /**
