@@ -714,6 +714,9 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         po.setEstado(false);
         model = new ModeloJListPotenciaisOrganizadores(organizadoresSelecionados);
         organizadoresList1.setModel(model);
+        
+        organizadoresList1.repaint();
+        organizadoresList1.revalidate();
         orgSelectionComboBox.setModel(new ComboBoxModelUtilizadores(atualizarListaOrganizadoresSelecionados()));
         ctrl.removerOrganizador(po.getOrganizador());
     }//GEN-LAST:event_removeOrganizadorBtn1ActionPerformed
