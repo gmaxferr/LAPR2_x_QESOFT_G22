@@ -157,4 +157,33 @@ public class AvaliacaoTest {
         instance.setAvalicao(true, "just", 1, 2, 3, 4, 5);
         assertEquals(2f, instance.getMediaRatings());
     }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Avaliacao.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        Avaliacao instance = new Avaliacao();
+        Avaliacao expResult = null;
+        Avaliacao result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Avaliacao.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Avaliacao instance = new Avaliacao();
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }

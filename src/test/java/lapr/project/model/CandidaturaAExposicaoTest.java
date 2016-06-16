@@ -407,4 +407,47 @@ public class CandidaturaAExposicaoTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of fix method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testFix() {
+        System.out.println("fix");
+        RegistoUtilizadores m_registoUtilizadores = null;
+        RegistoDemonstracoes m_rd = null;
+        CandidaturaAExposicao instance = null;
+        instance.fix(m_registoUtilizadores, m_rd);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        CandidaturaAExposicao instance = null;
+        CandidaturaAExposicao expResult = null;
+        CandidaturaAExposicao result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        CandidaturaAExposicao instance = null;
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

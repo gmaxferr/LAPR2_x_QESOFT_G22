@@ -859,5 +859,45 @@ public class ExposicaoTest {
         e.setRegistoExpositores(m_rexpositores);
         
     }
+
+    /**
+     * Test of hashCode method, of class Exposicao.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Exposicao instance = null;
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoAtribuicoes method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoes() {
+        System.out.println("setRegistoAtribuicoes");
+        RegistoAtribuicoes m_ra = null;
+        Exposicao instance = null;
+        instance.setRegistoAtribuicoes(m_ra);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoAtribuicoesStands method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoesStands() {
+        System.out.println("setRegistoAtribuicoesStands");
+        RegistoAtribuicoesStands m_ras = null;
+        Exposicao instance = null;
+        instance.setRegistoAtribuicoesStands(m_ras);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

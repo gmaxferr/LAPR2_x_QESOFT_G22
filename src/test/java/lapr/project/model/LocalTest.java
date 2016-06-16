@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.w3c.dom.Node;
 
 /**
  * Testes unitários da classe Local
@@ -58,5 +59,19 @@ public class LocalTest {
         System.out.println("importContentFromXMLNode");
         Local instance = new Local("morada");
         assertEquals("morada", instance.getMorada());
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Local.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Local instance = null;
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }
