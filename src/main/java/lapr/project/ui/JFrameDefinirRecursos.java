@@ -133,6 +133,7 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
         String nomeRecurso;
         nomeRecurso = JOptionPane.showInputDialog(null, "Qual o nome do recurso a adicionar?");
         if(CTRL.criarRecurso(nomeRecurso)){
+            jList1.setModel(AbstListRecursos);
             JOptionPane.showMessageDialog(null, "Recurso adicionado com sucesso.", "Sucesso!", INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "Nome de recurso inválido ou recurso já existente.", "ERRO", ERROR_MESSAGE);
