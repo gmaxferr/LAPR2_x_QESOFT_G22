@@ -465,4 +465,60 @@ public class UtilizadorTest {
         result = instance.isValid();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getShifts method, of class Utilizador.
+     */
+    @Test
+    public void testGetShifts() {
+        System.out.println("getShifts");
+        Utilizador instance = new Utilizador();
+        int expResult = 0;
+        int result = instance.getShifts();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setShifts method, of class Utilizador.
+     */
+    @Test
+    public void testSetShifts() {
+        System.out.println("setShifts");
+        int shifts = 0;
+        Utilizador instance = new Utilizador();
+        instance.setShifts(shifts);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Utilizador.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        Utilizador instance = new Utilizador();
+        Utilizador expResult = null;
+        Utilizador result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Utilizador.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Utilizador instance = new Utilizador();
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }

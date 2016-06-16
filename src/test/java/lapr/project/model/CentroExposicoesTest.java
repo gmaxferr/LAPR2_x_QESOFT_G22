@@ -220,4 +220,95 @@ public class CentroExposicoesTest {
 
     }
 
+    /**
+     * Test of setRegistoExposicoes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoExposicoes() {
+        System.out.println("setRegistoExposicoes");
+        RegistoExposicoes m_registoExposicoes = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoExposicoes(m_registoExposicoes);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoUtilizadores method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoUtilizadores() {
+        System.out.println("setRegistoUtilizadores");
+        RegistoUtilizadores m_registoUtilizadores = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoUtilizadores(m_registoUtilizadores);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoMecanismos method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoMecanismos() {
+        System.out.println("setRegistoMecanismos");
+        RegistoMecanismos m_registoMecanismos = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoMecanismos(m_registoMecanismos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoRecursos method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoRecursos() {
+        System.out.println("setRegistoRecursos");
+        RegistoRecursos m_registoRecursos = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoRecursos(m_registoRecursos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoTipoConflitos method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoTipoConflitos() {
+        System.out.println("setRegistoTipoConflitos");
+        RegistoTipoConflitos m_registoTipoConflitos = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoTipoConflitos(m_registoTipoConflitos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoExpositores method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoExpositores() {
+        System.out.println("setRegistoExpositores");
+        RegistoExpositores m_registoExpositores = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoExpositores(m_registoExpositores);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoStands method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoStands() {
+        System.out.println("setRegistoStands");
+        RegistoStands m_rStands = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoStands(m_rStands);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

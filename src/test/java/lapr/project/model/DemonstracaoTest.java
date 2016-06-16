@@ -8,6 +8,7 @@ import lapr.project.registos.*;
 import lapr.project.utils.Data;
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -204,6 +205,90 @@ public class DemonstracaoTest {
         EstadoDemonstracao estado = new EstadoDemonstracaoCandidaturasFechadas(instance);
         instance.setEstado(estado);
         assertEquals(estado, instance.getEstadoDemo());
+    }
+
+    /**
+     * Test of getRegistoCandidaturasADemonstracaoRemovidas method, of class Demonstracao.
+     */
+    @Test
+    public void testGetRegistoCandidaturasADemonstracaoRemovidas() {
+        System.out.println("getRegistoCandidaturasADemonstracaoRemovidas");
+        Demonstracao instance = null;
+        RegistoCandidaturasADemonstracaoRemovidas expResult = null;
+        RegistoCandidaturasADemonstracaoRemovidas result = instance.getRegistoCandidaturasADemonstracaoRemovidas();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataFimDetecaoConflitos method, of class Demonstracao.
+     */
+    @Test
+    public void testSetDataFimDetecaoConflitos() {
+        System.out.println("setDataFimDetecaoConflitos");
+        Data dataFimDetecaoConflitos = null;
+        Demonstracao instance = null;
+        instance.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of hashCode method, of class Demonstracao.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Demonstracao instance = null;
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Demonstracao.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        Demonstracao instance = null;
+        Demonstracao expResult = null;
+        Demonstracao result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Demonstracao.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Demonstracao instance = null;
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getDataFimDetecaoConflitos method, of class Demonstracao.
+     */
+    @Test
+    public void testGetDataFimDetecaoConflitos() {
+        System.out.println("getDataFimDetecaoConflitos");
+        Demonstracao instance = null;
+        Data expResult = null;
+        Data result = instance.getDataFimDetecaoConflitos();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

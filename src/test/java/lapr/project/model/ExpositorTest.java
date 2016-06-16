@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -76,5 +77,34 @@ public class ExpositorTest {
         Utilizador u2 = new Utilizador("nome", "username2", "password".toCharArray(), "email2@email.pt");
         instance.setUtilizador(u2);
         assertEquals(u2, instance.getUtilizador());
+    }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Expositor.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = null;
+        Expositor instance = null;
+        Expositor expResult = null;
+        Expositor result = instance.importContentFromXMLNode(node);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class Expositor.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Expositor instance = null;
+        Node expResult = null;
+        Node result = instance.exportContentToXMLNode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

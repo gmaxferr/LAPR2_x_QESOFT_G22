@@ -850,4 +850,38 @@ public class ExposicaoTest {
 
     }
 
+    /**
+     * Test of hashCode method, of class Exposicao.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Exposicao expo = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        expo.setDataFimCandDemo(data6);
+        expo.setDataInicioCandDemo(data7);
+        int expResult = expo.hashCode();
+        int result = e.hashCode();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRegistoAtribuicoes method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoes() {
+        System.out.println("setRegistoAtribuicoes");
+        RegistoAtribuicoes m_ra = new RegistoAtribuicoes();
+        e.setRegistoAtribuicoes(m_ra);
+    }
+
+    /**
+     * Test of setRegistoAtribuicoesStands method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoesStands() {
+        System.out.println("setRegistoAtribuicoesStands");
+        RegistoAtribuicoesStands m_ras = new RegistoAtribuicoesStands();
+        e.setRegistoAtribuicoesStands(m_ras);
+    }
+
 }
