@@ -13,11 +13,6 @@ public class EstadoExposicaoCandidaturasFechadas extends EstadoExposicao {
     }
 
     @Override
-    public boolean setEstadoCandidaturasFechadas() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoConflitosDetetados() {
         //validação se pode passar para o próximo passo
         if (valida()) {

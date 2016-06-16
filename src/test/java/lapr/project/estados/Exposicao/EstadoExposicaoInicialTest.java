@@ -5,6 +5,10 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Local;
+import lapr.project.utils.Data;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,9 +33,26 @@ public class EstadoExposicaoInicialTest {
     public static void tearDownClass() {
     }
     
+    private EstadoExposicaoInicial instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+        e.setTitulo("Titulo");
+        e.setDataInicioCandDemo(new Data("2016/06/19"));
+        e.setDataAberturaSubCand(new Data("2016/07/10"));
+        e.setDataEncerramentoSubCand(new Data("2016/08/18"));
+        e.setDescricao("descrição");
+        e.setPeriodo(new Data("2016/09/15"), new Data("2016/09/28"));
+        e.setDataFimDetecaoConflitos(new Data("2016/06/21"));
+        e.setLocal(new Local("local"));
+
+        instance = new EstadoExposicaoInicial(e, ce);
     }
+
     
     @After
     public void tearDown() {
@@ -43,12 +64,9 @@ public class EstadoExposicaoInicialTest {
     @Test
     public void testSetEstadoCriada() {
         System.out.println("setEstadoCriada");
-        EstadoExposicaoInicial instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoCriada();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +75,9 @@ public class EstadoExposicaoInicialTest {
     @Test
     public void testIsEstadoInicial() {
         System.out.println("isEstadoInicial");
-        EstadoExposicaoInicial instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoInicial();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

@@ -12,10 +12,6 @@ public class EstadoExposicaoConflitosAlterados extends EstadoExposicao {
         super(exposicao);
     }
 
-    @Override
-    public boolean setEstadoConflitosAlterados() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoCandidaturasAtribuidas() {
@@ -27,7 +23,7 @@ public class EstadoExposicaoConflitosAlterados extends EstadoExposicao {
         }
     }
 
-    private boolean valida() {
+    public boolean valida() {
         //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
         return true;
     }

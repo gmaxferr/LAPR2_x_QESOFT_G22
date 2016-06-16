@@ -1,16 +1,16 @@
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
+import lapr.project.ui.model.AbstractListModelConflitosDeInteresse;
+import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.AtualizarConflitosDeInteresseController;
-import lapr.project.model.AbstractListModelConflitosDeInteresse;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelCandidaturaAExposicao;
-import lapr.project.model.ComboBoxModelExposicoes;
-import lapr.project.model.ComboBoxModelTipoDeConflito;
 import lapr.project.model.ConflitoDeInteresse;
 import lapr.project.model.Exposicao;
 import lapr.project.model.TipoConflito;

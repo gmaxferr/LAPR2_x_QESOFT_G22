@@ -1,26 +1,124 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.registos;
 
-import java.util.*;
-import lapr.project.dados.DadosInstanciados;
+import java.util.ArrayList;
+import java.util.List;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAvaliadas;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
 import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
+import lapr.project.estados.Exposicao.EstadoExposicaoDemonstracoesDecididas;
+import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
+import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.KeywordRanking;
 import lapr.project.model.Local;
+import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author Ricardo Catalao
  */
 public class RegistoExposicoesTest {
 
+    CentroExposicoes ce;
+    RegistoExposicoes re;
+    Exposicao expo1, expo2, expo3, expo4, expo5, expo6, expo7, expo8, expo9, expo10, expo11;
+    KeywordRanking rank = new KeywordRanking();
+
     public RegistoExposicoesTest() {
+        ce = new CentroExposicoes();
+
+        re = ce.getRegistoExposicoes();
+
+        Utilizador user1 = new Utilizador("Joaquim", "user1", "Secret-1".toCharArray(), "mail@mail.com");
+        Utilizador user2 = new Utilizador("Joaquim", "user2", "Secret-1".toCharArray(), "mail@mail.com");
+        Utilizador user3 = new Utilizador("Joaquim", "user3", "Secret-1".toCharArray(), "mail@mail.com");
+
+        Data data1 = new Data(2016, 1, 2);
+
+        expo1 = new Exposicao(ce);
+
+        expo2 = new Exposicao("titulo2", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo2.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expo2));
+
+        expo3 = new Exposicao("titulo3", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo3.getRegistoOrganizadores().addOrganizador(user1);
+        expo3.getRegistoOrganizadores().addOrganizador(user1);
+        expo3.setEstado(new EstadoExposicaoCandidaturasDecididas(expo3));
+        expo3.getKeywordRanking().setReady();
+
+        expo4 = new Exposicao("titulo4", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo4.setEstado(new EstadoExposicaoCandidaturasAbertas(expo4));
+
+        expo5 = new Exposicao("titulo5", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo5.getRegistoOrganizadores().addOrganizador(user1);
+        expo5.setEstado(new EstadoExposicaoCriada(expo5));
+
+        expo6 = new Exposicao("titulo6", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo6.getRegistoOrganizadores().addOrganizador(user2);
+        expo6.setEstado(new EstadoExposicaoCriada(expo6));
+
+        expo7 = new Exposicao("titulo7", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo7.getRegistoOrganizadores().addOrganizador(user2);
+        expo7.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expo7));
+
+        expo8 = new Exposicao("titulo8", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo8.getRegistoOrganizadores().addOrganizador(user2);
+        expo8.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expo8));
+        
+        expo9 = new Exposicao("titulo9", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo9.getRegistoOrganizadores().addOrganizador(user3);
+        expo9.getRegistoFAE().adicionaFAE(user1);
+        CandidaturaAExposicao cand1 = expo9.getRegistoCandidaturasAExposicao().criarCandidatura(user3);
+        cand1.setEstado(new EstadoCandidaturaAExposicaoAceite(cand1));
+        expo9.getRegistoCandidaturasAExposicao().registaCandidatura(cand1);
+        expo9.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expo9));
+        Demonstracao demo1 = expo9.getRegistoDemonstracoes().novaDemonstracao("Uma demonstração");
+        demo1.setEstado(new EstadoDemonstracaoPendente(demo1));
+        demo1.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
+        expo9.getRegistoDemonstracoes().addDemo(demo1);
+
+        expo10 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo10.setEstado(new EstadoExposicaoDemonstracoesDecididas(expo10));
+        
+        expo11 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo11.getRegistoOrganizadores().addOrganizador(user3);
+        Demonstracao demo2 = expo11.getRegistoDemonstracoes().novaDemonstracao("Outra demonstração");
+        demo2.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(demo2));
+        demo2.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
+        expo11.getRegistoDemonstracoes().addDemo(demo2);
+        
+        re.getListaExposicoes().add(expo1);
+        re.getListaExposicoes().add(expo2);
+        re.getListaExposicoes().add(expo3);
+        re.getListaExposicoes().add(expo4);
+        re.getListaExposicoes().add(expo5);
+        re.getListaExposicoes().add(expo6);
+        re.getListaExposicoes().add(expo7);
+        re.getListaExposicoes().add(expo8);
+        re.getListaExposicoes().add(expo9);
+        re.getListaExposicoes().add(expo10);
+        re.getListaExposicoes().add(expo11);
     }
 
     @BeforeClass
@@ -35,125 +133,81 @@ public class RegistoExposicoesTest {
     public void setUp() {
     }
 
-    @After
-    public void tearDown() {
+    /**
+     * Test of getListaExposicoes method, of class RegistoExposicoes.
+     */
+    @Test
+    public void testGetListaExposicoes() {
+        System.out.println("getListaExposicoes");
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo1);
+        expResult.add(expo2);
+        expResult.add(expo3);
+        expResult.add(expo4);
+        expResult.add(expo5);
+        expResult.add(expo6);
+        expResult.add(expo7);
+        expResult.add(expo8);
+        expResult.add(expo9);
+        expResult.add(expo10);
+        expResult.add(expo11);
+        List<Exposicao> result = re.getListaExposicoes();
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of registaExposicao method, of class RegistoExposicoes. Testa se
-     * adiciona uma exposição válida a um centro de exposições
+     * Test of novaExposicao method, of class RegistoExposicoes.
      */
     @Test
-    public void testRegistaExposicaoValida() {
-        System.out.println("registaExposicao Testa se adiciona uma exposição válida a um centro de exposições");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        CentroExposicoes ce = x.getCentroExposicoes();
-        boolean adicionou = ce.getRegistoExposicoes().registaExposicao(expo);
-        assertEquals(true, adicionou);
+    public void testNovaExposicao() {
+        System.out.println("novaExposicao");
+        boolean expResult = true;
+        boolean result = re.novaExposicao().getCentroExposicoes() == ce;
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of registaExposicao method, of class RegistoExposicoes. Testa se
-     * adiciona uma exposição repetida a um centro de exposições
+     * Test of registaExposicao method, of class RegistoExposicoes.
      */
     @Test
-    public void testRegistaExposicaoInvalida() {
-        System.out.println("registaExposicao Testa se adiciona uma exposição repetida a um centro de exposições");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        CentroExposicoes ce = x.getCentroExposicoes();
-        ce.getRegistoExposicoes().registaExposicao(expo);
-        boolean adicionou = ce.getRegistoExposicoes().registaExposicao(expo);
-        assertEquals(false, adicionou);
+    public void testRegistaExposicao() {
+        System.out.println("registaExposicao");
+        Exposicao e = new Exposicao(ce);
+        boolean expResult = false;
+        boolean result = re.registaExposicao(e);
+        assertEquals(expResult, result);
+
+        e = new Exposicao("titulo", "desc", new Data(2016, 1, 2), new Data(2018, 1, 3), new Data(2016, 1, 3), new Data(2016, 1, 4), new Data(2016, 1, 6), new Local("Rua das flores... :P"), ce);
+        expResult = true;
+        result = re.registaExposicao(e);
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of getListaExposicoesValidas method, of class RegistoExposicoes.
-     * Testa se o método devolve uma lista vazia quando existem apenas
-     * exposições inválidas no registo de exposições em questão
-     */
-    @Test
-    public void testGetListaExposicoesInvalidas() {
-        System.out.println("getListaExposicoesValidas Testa se o método devolve uma lista vazia "
-                + "quando existem apenas exposições inválidas no registo de exposições em questão");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        CentroExposicoes ce = x.getCentroExposicoes();
-        ce.getRegistoExposicoes().registaExposicao(expo); //sem organizadores
-        assertEquals(true, ce.getRegistoExposicoes().getListaExposicoesValidas().isEmpty());
-    }
-
-    /**
-     * Test of getListaExposicoesValidas method, of class RegistoExposicoes.
-     * Testa se o método devolve uma lista não vazia quando existe pelo menos
-     * uma exposição válida no registo de exposições em questão"
      */
     @Test
     public void testGetListaExposicoesValidas() {
-        System.out.println("getListaExposicoesValidas Testa se o método devolve uma lista não vazia "
-                + "quando existe pelo menos uma exposição válida no registo de exposições em questão");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        CentroExposicoes ce = x.getCentroExposicoes();
-        ce.getRegistoExposicoes().registaExposicao(expo); //com organizadores
-
-        assertEquals(false, ce.getRegistoExposicoes().getListaExposicoesValidas().isEmpty());
+        System.out.println("getListaExposicoesValidas");
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo3);
+        List<Exposicao> result = re.getListaExposicoesValidas();
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of getListaExposicoesEstadoCandidaturasAbertas method, of class
-     * RegistoExposicoes. Testa se quando chamado este método apenas retorna as
-     * exposições no estado certo. Para isso foram adicionadas duas exposições,
-     * uma no estado certo e outra no estado Criada. Apenas uma deve de ser
-     * devolvida quando o método é chamado
+     * RegistoExposicoes.
      */
     @Test
-    public void testGetListaExposicoesEstadoCandidaturasAbertasUmaExpoCorretaOutraErrada() {
+    public void testGetListaExposicoesEstadoCandidaturasAbertas() {
         System.out.println("getListaExposicoesEstadoCandidaturasAbertas");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo.setEstado(new EstadoExposicaoCandidaturasAbertas(expo));
-        CentroExposicoes ce = x.getCentroExposicoes();
-        Exposicao expo2 = new Exposicao("Titulo2", "Descricao2", new Data(2016, 3, 25), new Data(2016, 4, 5), new Data(2016, 3, 5), new Data(2016, 3, 10), new Data(2016, 3, 15), new Local("Local2"), ce);
-        expo2.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo2.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo2.setEstado(new EstadoExposicaoCriada(expo));
-        ce.getRegistoExposicoes().registaExposicao(expo); //valida
-        ce.getRegistoExposicoes().registaExposicao(expo2); //valida
-
-        assertEquals(true, ce.getRegistoExposicoes().getListaExposicoesEstadoCandidaturasAbertas().size() == 1);
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo4);
+        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasAbertas();
+        assertEquals(expResult, result);
     }
-    /**
-     * Test of getListaExposicoesEstadoCandidaturasAbertas method, of class
-     * RegistoExposicoes. Testa se quando chamado este método apenas retorna as
-     * exposições no estado certo. Para isso foram adicionadas duas exposições
-     * num estado diferente de CandidaturasAbertas. Não devem de ser
-     * devolvidas nenhuma exposição quando o método é chamado.
-     */
-    @Test
-    public void testGetListaExposicoesEstadoCandidaturasAbertasComExposErradasApenas() {
-        System.out.println("getListaExposicoesEstadoCandidaturasAbertas");
-        DadosInstanciados x = new DadosInstanciados();
-        Exposicao expo = x.getExpo1();
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo.setEstado(new EstadoExposicaoCandidaturasDecididas(expo));
-        CentroExposicoes ce = x.getCentroExposicoes();
-        Exposicao expo2 = new Exposicao("Titulo2", "Descricao2", new Data(2016, 3, 25), new Data(2016, 4, 5), new Data(2016, 3, 5), new Data(2016, 3, 10), new Data(2016, 3, 15), new Local("Local2"), ce);
-        expo2.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo2.getRegistoOrganizadores().addOrganizador(new Utilizador());
-        expo2.setEstado(new EstadoExposicaoCriada(expo));
-        ce.getRegistoExposicoes().registaExposicao(expo); //valida
-        ce.getRegistoExposicoes().registaExposicao(expo2); //valida
 
-        assertEquals(true, ce.getRegistoExposicoes().getListaExposicoesEstadoCandidaturasAbertas().isEmpty());
-    }
-so para me lembrar onde ia
     /**
      * Test of getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE
      * method, of class RegistoExposicoes.
@@ -161,13 +215,12 @@ so para me lembrar onde ia
     @Test
     public void testGetlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE() {
         System.out.println("getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE");
-        String usernameOrganizador = "";
-        RegistoExposicoes instance = null;
-        ArrayList<Exposicao> expResult = null;
-        ArrayList<Exposicao> result = instance.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
+        String usernameOrganizador = "user2";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo6);
+        expResult.add(expo7);
+        ArrayList<Exposicao> result = re.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(usernameOrganizador);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -175,15 +228,13 @@ so para me lembrar onde ia
      * of class RegistoExposicoes.
      */
     @Test
-    public void testGetListaExposicoesComCanditaturasAceitesRepresentante() {
-        System.out.println("getListaExposicoesComCanditaturasAceitesRepresentante");
-        String username = "";
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesComCanditaturasAceitesDoRepresentante(username);
+    public void testGetListaExposicoesComCanditaturasAceitesDoRepresentante() {
+        System.out.println("getListaExposicoesComCanditaturasAceitesDoRepresentante");
+        String username = "user3";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo9);
+        List<Exposicao> result = re.getListaExposicoesComCanditaturasAceitesDoRepresentante(username);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -192,13 +243,11 @@ so para me lembrar onde ia
     @Test
     public void testGetExposicoesDoRepresentante() {
         System.out.println("getExposicoesDoRepresentante");
-        String username = "";
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getExposicoesDoRepresentante(username);
+        String username = "user3";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo9);
+        List<Exposicao> result = re.getExposicoesDoRepresentante(username);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -208,27 +257,10 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesEstadoCandidaturasAvaliadas() {
         System.out.println("getListaExposicoesEstadoCandidaturasAvaliadas");
-        RegistoExposicoes instance = null;
-        ArrayList<Exposicao> expResult = null;
-        ArrayList<Exposicao> result = instance.getListaExposicoesEstadoCandidaturasAvaliadas();
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo2);
+        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasAvaliadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getlistaExposicoesEstadoCandidaturasAbertas method, of class
-     * RegistoExposicoes.
-     */
-    @Test
-    public void testGetlistaExposicoesEstadoCandidaturasAbertas() {
-        System.out.println("getlistaExposicoesEstadoCandidaturasAbertas");
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getlistaExposicoesEstadoCandidaturasAbertas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -238,13 +270,11 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesEstadoCandidaturasAtribuidasDoFAE() {
         System.out.println("getListaExposicoesEstadoCandidaturasAtribuidasDoFAE");
-        String usernameFAE = "";
-        RegistoExposicoes instance = null;
-        ArrayList<Exposicao> expResult = null;
-        ArrayList<Exposicao> result = instance.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(usernameFAE);
+        String usernameFAE = "user1";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo9);
+        ArrayList<Exposicao> result = re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(usernameFAE);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -254,13 +284,11 @@ so para me lembrar onde ia
     @Test
     public void testGetlistaExposicoesDoOrganizadorComDemos() {
         System.out.println("getlistaExposicoesDoOrganizadorComDemos");
-        String usernameOrganizador = "";
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getlistaExposicoesDoOrganizadorComDemos(usernameOrganizador);
+        String usernameOrganizador = "user3";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo9);
+        List<Exposicao> result = re.getlistaExposicoesDoOrganizadorComDemos(usernameOrganizador);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -269,13 +297,11 @@ so para me lembrar onde ia
     @Test
     public void testGetFaeExpos() {
         System.out.println("getFaeExpos");
-        String usernameFae = "";
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getFaeExpos(usernameFae);
+        String usernameFae = "user1";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo9);
+        List<Exposicao> result = re.getFaeExpos(usernameFae);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -285,12 +311,10 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesEstadoCandidaturasDecididas() {
         System.out.println("getListaExposicoesEstadoCandidaturasDecididas");
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoCandidaturasDecididas();
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo3);
+        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasDecididas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -300,12 +324,10 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesRankingPronto() {
         System.out.println("getListaExposicoesRankingPronto");
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesRankingPronto();
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo3);
+        List<Exposicao> result = re.getListaExposicoesRankingPronto();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -315,13 +337,12 @@ so para me lembrar onde ia
     @Test
     public void testGetlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos() {
         System.out.println("getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos");
-        String usernameOrg = "";
-        RegistoExposicoes instance = null;
-        ArrayList<Exposicao> expResult = null;
-        ArrayList<Exposicao> result = instance.getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(usernameOrg);
+        String usernameOrg = "user2";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo6);
+        expResult.add(expo8);
+        List<Exposicao> result = re.getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(usernameOrg);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -331,56 +352,12 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesEstadoCandidaturasAvaliadasOuAvancado() {
         System.out.println("getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado");
-        RegistoExposicoes instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo2);
+        expResult.add(expo3);
+        expResult.add(expo10);
+        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of fix method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testFix() {
-        System.out.println("fix");
-        RegistoRecursos m_registoRecursos = null;
-        RegistoTipoConflitos m_registoTipoConflitos = null;
-        RegistoUtilizadores m_registoUtilizadores = null;
-        RegistoExposicoes instance = null;
-        instance.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        RegistoExposicoes instance = null;
-        RegistoExposicoes expResult = null;
-        RegistoExposicoes result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of exportContentToXMLNode method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        RegistoExposicoes instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -391,13 +368,10 @@ so para me lembrar onde ia
     @Test
     public void testGetListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas() {
         System.out.println("getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas");
-        String username = "";
-        RegistoExposicoes instance = null;
-        ArrayList<Exposicao> expResult = null;
-        ArrayList<Exposicao> result = instance.getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(username);
+        String username = "user3";
+        List<Exposicao> expResult = new ArrayList<>();
+        expResult.add(expo11);
+        List<Exposicao> result = re.getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(username);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
 }

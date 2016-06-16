@@ -5,6 +5,8 @@
  */
 package lapr.project.estados.Exposicao;
 
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,66 +19,67 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class EstadoExposicaoCandidaturasFechadasTest {
-    
+
     public EstadoExposicaoCandidaturasFechadasTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private EstadoExposicaoCandidaturasFechadas instance;
+    private Exposicao e;
+    private CentroExposicoes ce;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        e = new Exposicao(ce);
+
+        instance = new EstadoExposicaoCandidaturasFechadas(e);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of setEstadoCandidaturasFechadas method, of class EstadoExposicaoCandidaturasFechadas.
+     * Test of setEstadoCandidaturasFechadas method, of class
+     * EstadoExposicaoCandidaturasFechadas.
      */
     @Test
     public void testSetEstadoCandidaturasFechadas() {
         System.out.println("setEstadoCandidaturasFechadas");
-        EstadoExposicaoCandidaturasFechadas instance = null;
         boolean expResult = false;
         boolean result = instance.setEstadoCandidaturasFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setEstadoConflitosDetetados method, of class EstadoExposicaoCandidaturasFechadas.
+     * Test of setEstadoConflitosDetetados method, of class
+     * EstadoExposicaoCandidaturasFechadas.
      */
     @Test
     public void testSetEstadoConflitosDetetados() {
         System.out.println("setEstadoConflitosDetetados");
-        EstadoExposicaoCandidaturasFechadas instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setEstadoConflitosDetetados();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of isEstadoCandidaturasFechadas method, of class EstadoExposicaoCandidaturasFechadas.
+     * Test of isEstadoCandidaturasFechadas method, of class
+     * EstadoExposicaoCandidaturasFechadas.
      */
     @Test
     public void testIsEstadoCandidaturasFechadas() {
         System.out.println("isEstadoCandidaturasFechadas");
-        EstadoExposicaoCandidaturasFechadas instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEstadoCandidaturasFechadas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }

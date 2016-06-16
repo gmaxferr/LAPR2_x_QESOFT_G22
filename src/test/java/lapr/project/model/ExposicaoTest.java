@@ -382,7 +382,7 @@ public class ExposicaoTest {
         System.out.println("getRd");
         Exposicao instance = null;
         RegistoDemonstracoes expResult = null;
-        RegistoDemonstracoes result = instance.getRd();
+        RegistoDemonstracoes result = instance.getRegistoDemonstracoes();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

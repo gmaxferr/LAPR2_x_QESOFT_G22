@@ -8,14 +8,28 @@ import org.w3c.dom.*;
 /**
  * Representação de um Expositor
  *
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class Expositor implements Importable<Expositor>, Exportable {
 
+    /**
+     *
+     */
     public static final String ROOT_ELEMENT_NAME = "Expositor";
+
+    /**
+     *
+     */
     public static final String USERNAME_ELEMENT_NAME = "Username";
+
+    /**
+     *
+     */
     public static final String EMAIL_ELEMENT_NAME = "Email";
 
+    /**
+     * Utilizador por detrás do papel de expositor
+     */
     private Utilizador m_utilizador;
 
     /**
@@ -37,21 +51,27 @@ public class Expositor implements Importable<Expositor>, Exportable {
     }
 
     /**
-     * @return Devolve o username do expositor
+     * Devolve o username do expositor
+     *
+     * @return username do expositor
      */
     public String getUsername() {
         return this.getUtilizador().getUsername();
     }
 
     /**
-     * @return the m_utilizador
+     * Devolve o Utilizador por detrás do papel de expositor
+     *
+     * @return utilizador por detrás do papel de expositor
      */
     public Utilizador getUtilizador() {
         return m_utilizador;
     }
 
     /**
-     * @param m_utilizador the m_utilizador to set
+     * Define um novo Utilizador para substituir o antigo
+     *
+     * @param m_utilizador novo utilizador
      */
     public void setUtilizador(Utilizador m_utilizador) {
         this.m_utilizador = m_utilizador;

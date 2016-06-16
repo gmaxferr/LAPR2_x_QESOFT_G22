@@ -5,6 +5,8 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.ModeloJTableDecidirDemonstracoes;
+import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DecidirDemonstracaoController;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 

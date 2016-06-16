@@ -5,6 +5,8 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.AbstractListModelRecursos;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +14,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.CriarDemonstracaoController;
-import lapr.project.model.AbstractListModelRecursos;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Recurso;
 

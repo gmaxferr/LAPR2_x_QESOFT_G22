@@ -11,29 +11,91 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
+ * Representação de uma demonstração
  *
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class Demonstracao implements Agendavel, Importable<Demonstracao>, Exportable {
 
+    /**
+     *
+     */
     public static final String ROOT_ELEMENT_NAME = "Demonstracao";
+
+    /**
+     *
+     */
     public static final String DATA_INICIO_SUB_CAND_ELEMENT_NAME = "DataInicioSubmissaoCandidaturas";
+
+    /**
+     *
+     */
     public static final String DATA_FIM_SUB_CAND_ELEMENT_NAME = "DataFimSubmissaoCandidaturas";
+
+    /**
+     *
+     */
     public static final String DESCR_ELEMENT_NAME = "Descricao";
+
+    /**
+     *
+     */
     public static final String ID_ATTR_NAME = "ID";
+
+    /**
+     *
+     */
     public static final String ESTADO_ATTR_NAME = "estado";
 
+    /**
+     *
+     */
     private Data m_dataInicioSubCand;
+
+    /**
+     *
+     */
     private Data m_dataFimSubCand;
 
+    /**
+     *
+     */
     private String m_StrDescricao;
+
+    /**
+     *
+     */
     private String m_StrCodigoIdentificacao;
+
+    /**
+     *
+     */
     private RegistoRecursos rc;
+
+    /**
+     *
+     */
     private RegistoOrganizadores m_ro;
+
+    /**
+     *
+     */
     private RegistoFAE m_rFAE;
+
+    /**
+     *
+     */
     private EstadoDemonstracao m_estado;
+
+    /**
+     *
+     */
     private RegistoCandidaturaADemonstracoes m_rcd;
 
+    /**
+     *
+     * @param descricao
+     */
     public Demonstracao(String descricao) {
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
@@ -42,6 +104,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve a descrição da demonstração
      *
      * @return descrição da demonstração
      */
@@ -50,15 +113,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     * Permite alterar a descrição da demonstração
-     *
-     * @param descricaoIntroduzidaPeloUtilizador
-     */
-    public void getDescricao(String descricaoIntroduzidaPeloUtilizador) {
-        this.m_StrDescricao = descricaoIntroduzidaPeloUtilizador;
-    }
-
-    /**
+     * Devolve o registo dos recursos necessários à demonstração
      *
      * @return registo dos recursos necessários à demonstração
      */
@@ -67,8 +122,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve o código de identificação da demonstração
      *
-     * @return código da demonstração
+     * @return código de identificação da demonstração
      */
     public String getCodigoIdentificacao() {
         return this.m_StrCodigoIdentificacao;
@@ -84,6 +140,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve a data de inicio de submissão de candidaturas à demonstração
      *
      * @return data de inicio de submissão de candidaturas à demonstração
      */
@@ -92,6 +149,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve a data de fim de submissão de candidaturas à demonstração
      *
      * @return data de fim de submissão de candidaturas à demonstração
      */
@@ -100,23 +158,25 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     * @param m_StrCodigoIdentificacao the m_StrCodigoIdentificacao to set
+     * Permite alterar o código de identificação da demonstração
+     *
+     * @param m_StrCodigoIdentificacao novo código de identificação
      */
     public void setCodigoIdentificacao(String m_StrCodigoIdentificacao) {
         this.m_StrCodigoIdentificacao = m_StrCodigoIdentificacao;
     }
 
     /**
-     * Devolve o registo de candidaturas a demonstração
-     * 
-     * @return registo de candidaturas a demonstração
+     * Devolve o registo de candidaturas à demonstração
+     *
+     * @return registo de candidaturas à demonstração
      */
     public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
         return m_rcd;
     }
 
     /**
-     * Define data de inicio de candidaturas à demonstração e cria timer
+     * Define uma data de inicio de candidaturas à demonstração e cria timer
      *
      * @param dataInicioCandDemo - data de inicio de candidaturas à demonstração
      */
@@ -126,7 +186,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     * Define data de fim de candidaturas à demonstração e cria timer
+     * Define uma data de fim de candidaturas à demonstração e cria timer
      *
      * @param dataFimCandDemo - data de fim de candidaturas à demonstração
      */
@@ -147,6 +207,16 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     }
 
+    /**
+     * Permite comparar esta demonstração a outro objecto passado por parametro.
+     * Duas demonstrações são comparadas recorrendo ao código de identificação
+     * apenas. Duas demonstrações são consideradas iguais quando os seus códigos
+     * de identificação são iguais.
+     *
+     * @param obj objecto a comparar a esta demonstração
+     * @return true se esta demonstração for igual à passada por parametro,
+     * false todos os restantes casos.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -301,6 +371,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     }
 
+    /**
+     *
+     * @param m_tt
+     * @param date
+     */
     @Override
     public void schedule(TimerTask m_tt, Data date) {
         Timer timer = new Timer();
@@ -308,23 +383,26 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     * @return Retorna a lista de organizadores.
+     *
+     * @return
      */
     public List<Organizador> getListaOrganizadores() {
         return this.m_ro.getListaOrganizadores();
     }
 
-     /**
-     * @return Retorna a lista de fae
+    /**
+     *
+     * @return
      */
     public List<FAE> getListaFAE() {
         return this.m_rFAE.getListaFAE();
     }
-    
+
     /**
-     * Define o estado
+     * Define um novo estado para a demonstração. Recebe o novo estado por
+     * parametro.
      *
-     * @param estado EstadoDemonstracao
+     * @param estado novo estado da demonstração
      */
     public void setEstado(EstadoDemonstracao estado) {
         this.m_estado = estado;

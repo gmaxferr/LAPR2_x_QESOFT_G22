@@ -1,7 +1,9 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.exceptions.KeywordsErradasException;
 import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Produto;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
@@ -23,12 +25,19 @@ public class AlterarCandidaturaExpoController {
     private String novoTelemovel;
     private String novaArea;
     private String novoNumConvites;
+    private String keywords;
+    private List<Integer>produtosARemover;
+    private List<Produto>produtosAAdicionar;
+    private List<Alteracao>produtosAAlterar;
 
-    public AlterarCandidaturaExpoController(Exposicao e, String username) {
+    public AlterarCandidaturaExpoController(String username) {
         this.m_username = username;
-        this.m_exposicao = e;
     }
 
+    public void setExposicao(Exposicao e){
+        this.m_exposicao = e;
+    }
+    
     /**
      *
      */
@@ -99,11 +108,7 @@ public class AlterarCandidaturaExpoController {
      * @param index - índice do produto a remover
      */
     public void removerProduto(int index) {
-        try {
-            m_cand.removeProduto(index);
-        } catch (IllegalArgumentException e) {
-
-        }
+        produtosARemover.add(index);
     }
 
     /**
@@ -112,7 +117,7 @@ public class AlterarCandidaturaExpoController {
      * @param p - novo produto
      */
     public void adicionarProduto(Produto p) {
-        m_cand.addProduto(p);
+        produtosAAdicionar.add(p);
     }
 
     /**
@@ -122,7 +127,7 @@ public class AlterarCandidaturaExpoController {
      * @param novoProduto
      */
     public void editarProduto(int index, String novoProduto) {
-        m_cand.editProduto(index, novoProduto);
+        produtosAAlterar.add(new Alteracao(index, novoProduto));
     }
 
     /**
@@ -140,6 +145,7 @@ public class AlterarCandidaturaExpoController {
         novaMoradaEmpresa = moradaEmpresa;
         novoNumConvites = numConvites;
         novoTelemovel = telemovel;
+        
     }
 
     /**
@@ -157,5 +163,44 @@ public class AlterarCandidaturaExpoController {
         m_cand.setTelemovel(novoTelemovel);
         m_cand.setArea(novaArea);
         m_cand.setNumConvites(novoNumConvites);
+        m_cand.setKeywords(keywords);
+        try {
+            for(Integer i : produtosARemover){
+                m_cand.removeProduto(i);
+            }
+        } catch (IllegalArgumentException e) {
+        }
+        for(Alteracao a : produtosAAlterar){
+            m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
+        }
+        for(Produto p : produtosAAdicionar){
+            m_cand.addProduto(p);
+        }
     }
+    public void setKeywords(String keywords) throws KeywordsErradasException {
+        this.keywords = keywords;
+    }
+
+    public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
+        m_cand.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
+    }
+    
+    private class Alteracao{
+        int indiceProduto;
+        String novoProduto;
+        
+        public Alteracao (int index, String novoNome){
+            indiceProduto = index;
+            novoProduto = novoNome;
+        }
+    
+        public int getIndiceProduto(){
+            return indiceProduto;
+        }
+        
+        public String getNovoProduto(){
+            return novoProduto;
+        }
+    }
+    
 }

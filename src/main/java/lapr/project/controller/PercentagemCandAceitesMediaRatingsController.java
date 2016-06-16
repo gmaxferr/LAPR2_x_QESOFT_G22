@@ -1,17 +1,12 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author G29
  */
 public class PercentagemCandAceitesMediaRatingsController {
 

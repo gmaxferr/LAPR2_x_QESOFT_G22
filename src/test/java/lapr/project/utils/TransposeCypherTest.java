@@ -69,8 +69,9 @@ public class TransposeCypherTest {
         System.out.println("encrypt");
         char[] message = "pleasetransferonemilliondollarstomyswissbankaccountsixtwotwo".toCharArray();
         char[] passwd = "MEGABUCK".toCharArray();
-        char[] expResult = "afllsksoselawaiatoossctclnmomantesilyntwrnntsowdpaedobuoeriricxb".toCharArray();
+        char[] expResult = ("afllsksoselawai~toossct~lnmomantesilyntwrnntsow~paedobuoeriricx~").toCharArray();
         char[] result = TransposeCypher.encrypt(message, passwd);
+        System.out.println(String.valueOf(result));
         assertArrayEquals(expResult, result);
     }
 
@@ -80,10 +81,11 @@ public class TransposeCypherTest {
     @Test
     public void testDecrypt() {
         System.out.println("decrypt");
-        char[] message = "afllsksoselawaiatoossctclnmomantesilyntwrnntsowdpaedobuoeriricxb".toCharArray();
+        char[] message = ("afllsksoselawai~toossct~lnmomantesilyntwrnntsow~paedobuoeriricx~").toCharArray();
         char[] passwd = "MEGABUCK".toCharArray();
-        char[] expResult = "pleasetransferonemilliondollarstomyswissbankaccountsixtwotwoabcd".toCharArray();
+        char[] expResult = "pleasetransferonemilliondollarstomyswissbankaccountsixtwotwo".toCharArray();
         char[] result = TransposeCypher.decrypt(message, passwd);
+        System.out.println(String.valueOf(result));
         assertArrayEquals(expResult, result);
     }
 

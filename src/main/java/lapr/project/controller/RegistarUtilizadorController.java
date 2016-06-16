@@ -64,11 +64,12 @@ public class RegistarUtilizadorController {
     * @param password password do utilizador
     * @param username username do utilizador
     */
-    public void setDadosDoUtilizador(String nome, String email, char[] password, String username) {
+    public void setDadosDoUtilizador(String nome, String email, char[] password, String username, String keyword) {
         m_utilizador.setEmail(email);
         m_utilizador.setNome(nome);
         m_utilizador.setPwd(password);
         m_utilizador.setUsername(username);
+        m_utilizador.setKeyword(keyword);
     }
     
     /**

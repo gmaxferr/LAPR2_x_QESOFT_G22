@@ -12,10 +12,6 @@ public class EstadoExposicaoCandidaturasDemonstracaoFechadas extends EstadoExpos
         super(exposicao);
     }
 
-    @Override
-    public boolean setEstadoCandidaturasDemonstracaoFechadas() {
-        return true;
-    }
 
     @Override
     public boolean setEstadoConflitosDetetados() {

@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -15,7 +16,6 @@ import lapr.project.controller.RemoverCandidaturaExpoController;
 import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Produto;
 

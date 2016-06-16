@@ -48,8 +48,8 @@ public class CriarDemonstracaoController {
      * @return lista de exposições, do organizador, que não têm demonstrações
      * definidas
      */
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
-        return m_re.getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(m_usernameOrg);
+    public List<Exposicao> getListaExposicoesDoOrganizador() {
+        return m_re.getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(m_usernameOrg);
     }
 
     /**

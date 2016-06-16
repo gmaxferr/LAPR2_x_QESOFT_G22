@@ -13,11 +13,6 @@ public class EstadoExposicaoDemonstracoesDecididas extends EstadoExposicao {
     }
 
     @Override
-    public boolean setEstadoDemonstracoesDecididas() {
-        return true;
-    }
-
-    @Override
     public boolean setEstadoCandidaturasDemonstracaoAbertas() {
         this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(m_exposicao));
         return true;

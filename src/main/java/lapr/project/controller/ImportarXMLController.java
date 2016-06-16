@@ -5,7 +5,10 @@
  */
 package lapr.project.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,4 +38,18 @@ public class ImportarXMLController {
         return ce;
     }
 
+    public CentroExposicoes importAndUpdateProperties(String filename) {
+        CentroExposicoes ce = Import(filename);
+        if (ce != null) {
+            File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+            try {
+                Formatter out = new Formatter(properties);
+                out.format("saveFileLocation=%s%n", filename);
+                out.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ExportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ce;
+    }
 }

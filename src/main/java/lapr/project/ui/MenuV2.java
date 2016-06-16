@@ -61,11 +61,11 @@ public class MenuV2 extends javax.swing.JFrame {
      */
     public void identificarCargosDoUtilizador() {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
-        if (utilizador.getIsFAE()) {
+        if (utilizador.getIsFAE() > 0) {
             this.jCheckBoxFAE.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(1, true);
         }
-        if (utilizador.getIsExpositor()) {
+        if (utilizador.getIsExpositor() > 0) {
             this.jCheckBoxExpositor.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(0, true);
         }
@@ -73,11 +73,11 @@ public class MenuV2 extends javax.swing.JFrame {
             this.jCheckBoxGestor.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(3, true);
         }
-        if (utilizador.getIsOrganizador()) {
+        if (utilizador.getIsOrganizador() > 0) {
             this.jCheckBoxOrganizador.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(2, true);
         }
-        if (utilizador.getConfirmacaoRegisto() == false || utilizador.getIsGestor()==false && utilizador.getIsExpositor()==false && utilizador.getIsFAE()==false && utilizador.getIsOrganizador()==false) {
+        if (utilizador.getConfirmacaoRegisto() == false || utilizador.getIsGestor() == false && utilizador.getIsExpositor() == 0 && utilizador.getIsFAE() == 0 && utilizador.getIsOrganizador() == 0) {
             jTabbedPaneCargos.setEnabledAt(4, true);
         }
         for (int i = 0; i < 5; i++) {
@@ -99,7 +99,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         File file = fc.getSelectedFile();
                         ExportarXMLController CTRL = new ExportarXMLController();
-                        if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                        if (CTRL.exportAndUpdateProperties(file.getAbsolutePath(), centroExposicoes)) {
                             JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                             System.exit(0);
                         } else {
@@ -145,6 +145,8 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
@@ -221,7 +223,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabelNomeUtilizador)
                     .addComponent(jButton7))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -326,22 +328,40 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Alterar candidatura à exposição");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton31.setText("Alterar candidatura à demonstração");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton28)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton31))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton27)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                        .addComponent(jButton27)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,12 +369,14 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
-                    .addComponent(jButton27))
+                    .addComponent(jButton27)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton26)
+                    .addComponent(jButton31)
                     .addComponent(jButton28))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Expositor", jPanel3);
@@ -391,7 +413,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jButton29)
                 .addGap(10, 10, 10)
                 .addComponent(jButton30)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,7 +525,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +546,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton23)
                     .addComponent(jButton24)
                     .addComponent(jButton25))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Organizador", jPanel5);
@@ -619,7 +641,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton14)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,7 +678,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
+                .addContainerGap(207, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -748,7 +770,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(252, 252, 252)
+                .addGap(286, 286, 286)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -802,7 +824,7 @@ public class MenuV2 extends javax.swing.JFrame {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 ExportarXMLController CTRL = new ExportarXMLController();
-                if (CTRL.export(file.getAbsolutePath(), centroExposicoes)) {
+                if (CTRL.exportAndUpdateProperties(file.getAbsolutePath(), centroExposicoes)) {
                     JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                     terminaSessao();
                 } else {
@@ -819,7 +841,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarExpoUI(centroExposicoes);
+        new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
@@ -829,7 +851,7 @@ public class MenuV2 extends javax.swing.JFrame {
             File f = fc.getSelectedFile();
             String fileName = f.getAbsolutePath();
             ExportarXMLController CTRL = new ExportarXMLController();
-            if (CTRL.export(fileName, centroExposicoes)) {
+            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
                 JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -926,7 +948,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-        //alterar cand às expos ui
+        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -962,6 +984,16 @@ public class MenuV2 extends javax.swing.JFrame {
         this.setVisible(false);
         new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.setVisible(false);
+        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton31ActionPerformed
+    
     private void terminaSessao() {
         new LoginV2(centroExposicoes);
         dispose();
@@ -1025,7 +1057,9 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

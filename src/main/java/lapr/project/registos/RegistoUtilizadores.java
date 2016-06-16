@@ -145,7 +145,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return TRUE se foi adicionado com sucesso, FALSE caso contrário
      */
     public boolean addUtilizador(Utilizador u) throws InvalidPasswordException, InvalidEmailException {
-        if (validaUsernameEEmailDoUtilizador(u.getUsername(), u.getEmail()) && u.validaPassword()) {
+        if (validaUsernameEEmailDoUtilizador(u.getUsername(), u.getEmail()) && u.isValid()) {
             adicionaUtilizador(u);
             return true;
         }
