@@ -18,37 +18,37 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public static final String ROOT_ELEMENT_NAME = "CentroExposicoes";
 
     /**
-     *Registo de Exposições
+     * Registo de Exposições
      */
     private final RegistoExposicoes m_registoExposicoes;
 
     /**
-     *Registo de Utilizadores
+     * Registo de Utilizadores
      */
     private final RegistoUtilizadores m_registoUtilizadores;
 
     /**
-     *Registo de Mecanismos
+     * Registo de Mecanismos
      */
     private final RegistoMecanismos m_registoMecanismos;
 
     /**
-     *Registo de recursos
+     * Registo de recursos
      */
     private final RegistoRecursos m_registoRecursos;
 
     /**
-     *Registo de Tipos de Conflito
+     * Registo de Tipos de Conflito
      */
     private final RegistoTipoConflitos m_registoTipoConflitos;
-    
+
     /**
-     *Registo de Expositores
+     * Registo de Expositores
      */
     private final RegistoExpositores m_registoExpositores;
 
     /**
-     *Registo de Stands
+     * Registo de Stands
      */
     private final RegistoStands m_rStands;
 
@@ -179,8 +179,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     public boolean isFae(Utilizador utilizador) {
-        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
-            if(e.getRegistoFAE().isFAE(utilizador.getUsername())){
+        for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
+            if (e.getRegistoFAE().isFAE(utilizador.getUsername())) {
                 return true;
             }
         }
@@ -188,9 +188,9 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     public boolean isExpositor(Utilizador utilizador) {
-        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
-            for(CandidaturaAExposicao cand : e.getRegistoCandidaturasAExposicao().getListaCandidaturas()){
-                if(cand.getExpositor().getUsername().equals(utilizador.getUsername())){
+        for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
+            for (CandidaturaAExposicao cand : e.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
+                if (cand.getExpositor().getUsername().equals(utilizador.getUsername())) {
                     return true;
                 }
             }
@@ -199,9 +199,9 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     public boolean isOrganizador(Utilizador utilizador) {
-        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
-            for(Organizador o : e.getRegistoOrganizadores().getListaOrganizadores()){
-                if(o.getUsernameOrganizador().equals(utilizador.getUsername())){
+        for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
+            for (Organizador o : e.getRegistoOrganizadores().getListaOrganizadores()) {
+                if (o.getUsernameOrganizador().equals(utilizador.getUsername())) {
                     return true;
                 }
             }
@@ -217,12 +217,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     @Override
     public CentroExposicoes importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
             Node n = elementsKeyword.item(0);
@@ -232,7 +227,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
                 this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_rStands.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoExpositores.fix(this.m_registoUtilizadores);
 
@@ -257,9 +252,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementExpo);

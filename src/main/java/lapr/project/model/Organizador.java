@@ -15,7 +15,7 @@ public class Organizador implements Importable<Organizador>, Exportable {
     public static final String ROOT_ELEMENT_NAME = "Organizador";
     public static final String USERNAME_ELEMENT_NAME = "Username";
     public static final String EMAIL_ELEMENT_NAME = "Email";
-    
+
     /**
      * Atributo utilizador de organizador
      */
@@ -23,12 +23,13 @@ public class Organizador implements Importable<Organizador>, Exportable {
 
     /**
      * Construtor com parametros
+     *
      * @param u - utilizador que vai assumir o cargo de organizador
      */
-    public Organizador(Utilizador u){
+    public Organizador(Utilizador u) {
         m_Utilizador = u;
     }
-    
+
     /**
      * Construtor de organizador sem parametros
      */
@@ -70,17 +71,13 @@ public class Organizador implements Importable<Organizador>, Exportable {
 
         return str;
     }
-    
+
     @Override
     public Organizador importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument(node, true);
 
-            doc.appendChild(doc.importNode(node, true));
-
-            Node n = doc.getChildNodes().item(0);
+            Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.m_Utilizador = new Utilizador();
@@ -98,13 +95,11 @@ public class Organizador implements Importable<Organizador>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
-            
+
             Element elem = document.createElement(USERNAME_ELEMENT_NAME);
             elem.setTextContent(this.m_Utilizador.getUsername());
             elementBase.appendChild(elem);

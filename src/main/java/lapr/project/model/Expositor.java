@@ -80,13 +80,9 @@ public class Expositor implements Importable<Expositor>, Exportable {
     @Override
     public Expositor importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument(node, true);
 
-            doc.appendChild(doc.importNode(node, true));
-
-            Node n = doc.getChildNodes().item(0);
+            Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.setUtilizador(new Utilizador());
@@ -104,9 +100,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);

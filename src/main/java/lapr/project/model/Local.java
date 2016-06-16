@@ -57,13 +57,9 @@ public class Local implements Importable<Local>, Exportable {
     @Override
     public Local importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument(node, true);
 
-            doc.appendChild(doc.importNode(node, true));
-
-            Node n = doc.getChildNodes().item(0);
+            Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
@@ -79,14 +75,12 @@ public class Local implements Importable<Local>, Exportable {
     public Node exportContentToXMLNode() {
         Node node = null;
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
-            Element elementBase = doc.createElement(ROOT_ELEMENT_NAME);
-            doc.appendChild(elementBase);
+            Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementBase);
 
-            Element elemChild = doc.createElement(MORADA_ELEMENT_NAME);
+            Element elemChild = document.createElement(MORADA_ELEMENT_NAME);
             elemChild.setTextContent(this.m_StrMorada);
             elementBase.appendChild(elemChild);
 

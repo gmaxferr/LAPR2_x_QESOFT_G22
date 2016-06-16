@@ -88,12 +88,7 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     @Override
     public Keyword importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -113,9 +108,7 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
             Element elementValue = document.createElement(VALUE_ELEMENT_NAME);

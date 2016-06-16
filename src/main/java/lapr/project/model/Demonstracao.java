@@ -96,7 +96,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      */
     private RegistoCandidaturaADemonstracoes m_rcd;
-    
+
     /**
      * Registo de candidaturas a demonstracao removidas
      */
@@ -188,13 +188,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     /**
      * Devolve o registo de candidaturas a demonstração removidas
-     * 
+     *
      * @return registo de candidaturas a demonstração removidas
      */
-    public RegistoCandidaturasADemonstracaoRemovidas getRegistoCandidaturasADemonstracaoRemovidas(){
+    public RegistoCandidaturasADemonstracaoRemovidas getRegistoCandidaturasADemonstracaoRemovidas() {
         return m_rcdr;
-        
+
     }
+
     void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
     }
@@ -269,12 +270,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     @Override
     public Demonstracao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -285,11 +281,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
                 this.rc = new RegistoRecursos();
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcd = new RegistoCandidaturaADemonstracoes();                
+                this.m_rcd = new RegistoCandidaturaADemonstracoes();
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
                 this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
-                
+
                 Data invalidData = new Data(0, 0, 0);
 
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
@@ -349,9 +345,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
@@ -363,8 +357,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcdr.exportContentToXMLNode(), true));
-            
-            
+
             elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
             elemChild = document.createElement(DATA_INICIO_SUB_CAND_ELEMENT_NAME);

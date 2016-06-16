@@ -124,4 +124,35 @@ public class XMLParser {
 
         transformer.transform(source, result);
     }
+
+    /**
+     * Cria um novo documento de XML, importando no Node passado como parametro.
+     *
+     * @param node Node a importar
+     * @param deep Estildo de importação do Node
+     * @return Novo documento cujo conteudo é o resultado da importação do Node
+     * passado como parâmetro
+     * @throws ParserConfigurationException
+     */
+    public static Document createDocument(Node node, boolean deep) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+
+        document.appendChild(document.importNode(node, deep));
+
+        return document;
+    }
+
+    /**
+     * @return Retorna um novo Documento de XML, vazio.
+     * @throws ParserConfigurationException
+     */
+    public static Document createDocument() throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+
+        return document;
+    }
 }

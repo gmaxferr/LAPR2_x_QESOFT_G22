@@ -15,7 +15,7 @@ public class Produto implements Importable<Produto>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Produto";
     public static final String NOME_ELEMENT_NAME = "Nome";
-    
+
     /**
      * Atributo m_nome do produto
      */
@@ -57,18 +57,16 @@ public class Produto implements Importable<Produto>, Exportable {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null){
+        if (obj == null) {
             return false;
-        }else{
-            if (obj instanceof Produto){
-                if(obj == this){
-                    return true;
-                }
-                Produto o = (Produto) obj;
-                return o.getNome().equals(this.m_nome);
-            }else{
-                return false;
+        } else if (obj instanceof Produto) {
+            if (obj == this) {
+                return true;
             }
+            Produto o = (Produto) obj;
+            return o.getNome().equals(this.m_nome);
+        } else {
+            return false;
         }
     }
 
@@ -82,12 +80,7 @@ public class Produto implements Importable<Produto>, Exportable {
     @Override
     public Produto importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -107,9 +100,7 @@ public class Produto implements Importable<Produto>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementProduto = document.createElement(ROOT_ELEMENT_NAME);
             Element elementNome = document.createElement(NOME_ELEMENT_NAME);

@@ -356,7 +356,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_rce.getListaCandidaturas();
     }
 
-
     /**
      *
      * @return
@@ -663,12 +662,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
             Node n = elementsKeyword.item(0);
@@ -807,9 +801,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementExpo);
