@@ -19,8 +19,8 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class RegistarUtilizadorControllerTest {
-    
-   private RegistarUtilizadorController instance;
+
+    private RegistarUtilizadorController instance;
     private Utilizador u;
     private CentroExposicoes ce;
     private final String nome = "nome";
@@ -76,7 +76,7 @@ public class RegistarUtilizadorControllerTest {
         boolean expResult = true;
         instance.getRegistoUtilizadores();
         Utilizador u1 = instance.novoUtilizador();
-        boolean result = u1.getEmail() == null 
+        boolean result = u1.getEmail() == null
                 && u1.getKeyword() == null
                 && u1.getNome() == null
                 && u1.getUsername() == null
@@ -118,9 +118,13 @@ public class RegistarUtilizadorControllerTest {
     public void testAddUtilizador() {
         System.out.println("addUtilizador");
         instance.getRegistoUtilizadores();
-        Utilizador u = new Utilizador(nome, email, password, username);
-        boolean expResult = true;
-        boolean result = instance.addUtilizador(u);
+        Utilizador utilizador = new Utilizador(nome, username, password, email, keyword);
+        boolean expResult = false;
+        boolean result = instance.addUtilizador(utilizador);
+        assertEquals(expResult, result);
+        Utilizador utilizador2 = new Utilizador("user", "usernameeee", password, "hehe@com.hotmail", "pokemon");
+        expResult = true;
+        result = instance.addUtilizador(utilizador2);
         assertEquals(expResult, result);
     }
 }
