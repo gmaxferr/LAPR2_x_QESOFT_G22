@@ -473,11 +473,10 @@ public class UtilizadorTest {
     public void testGetShifts() {
         System.out.println("getShifts");
         Utilizador instance = new Utilizador();
-        int expResult = 0;
+        instance.setPwd("secret".toCharArray());
+        int expResult = instance.getShifts();
         int result = instance.getShifts();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result);    //Visto que é calculado a partir de um random
     }
 
     /**
@@ -486,11 +485,10 @@ public class UtilizadorTest {
     @Test
     public void testSetShifts() {
         System.out.println("setShifts");
-        int shifts = 0;
+        int shifts = 3;
         Utilizador instance = new Utilizador();
         instance.setShifts(shifts);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(shifts, instance.getShifts());
     }
 
     /**
@@ -499,13 +497,12 @@ public class UtilizadorTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
         Utilizador instance = new Utilizador();
-        Utilizador expResult = null;
-        Utilizador result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        Utilizador expResult = new Utilizador();
+        expResult.importContentFromXMLNode(node);
+        Utilizador result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -515,10 +512,10 @@ public class UtilizadorTest {
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
         Utilizador instance = new Utilizador();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Utilizador expResult = new Utilizador();
+        expResult.importContentFromXMLNode(node);
+        Utilizador result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

@@ -85,6 +85,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public Utilizador() {
         this.nAvaliacoesDesdeSempre = 0;
         this.isGestor = false;
+        this.m_strUsername = "";
+        this.m_strEmail = "";
+        this.m_strPwd = new char[0];
+        this.m_strNome = "";
+        this.keyword = "";
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
