@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.controller;
 
-import lapr.project.model.*;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,14 +16,12 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ana
+ * @author guima
  */
 public class RegistarUtilizadorControllerTest {
-
-    private RegistarUtilizadorController instance;
-    private RegistoUtilizadores ru;
+    
+   private RegistarUtilizadorController instance;
     private Utilizador u;
-    private Utilizador u1;
     private CentroExposicoes ce;
     private final String nome = "nome";
     private final String email = "aaaa@dfg.com";
@@ -40,13 +43,13 @@ public class RegistarUtilizadorControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        ru = ce.getRegistoUtilizadores();
         u = new Utilizador();
         u.setNome(nome);
         u.setUsername(username);
         u.setEmail(email);
         u.setPwd(password);
-        ru.addUtilizador(u);
+        u.setKeyword(keyword);
+        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
         instance = new RegistarUtilizadorController(ce);
     }
 
@@ -70,19 +73,14 @@ public class RegistarUtilizadorControllerTest {
     @Test
     public void testNovoUtilizador() {
         System.out.println("novoUtilizador");
+        boolean expResult = true;
         instance.getRegistoUtilizadores();
-        u1 = ce.novoUtilizador();
-        Utilizador expResult = u1;
-        expResult.setPasswordTestUseOnly(password);
-        expResult.setNome(nome);
-        expResult.setUsername(username);
-        expResult.setEmail(email);
-        Utilizador result = instance.novoUtilizador();
-        result.setNome(nome);
-        result.setEmail(email);
-        result.setUsername(username);
-        result.setPasswordTestUseOnly(password);
-        expResult = result;
+        Utilizador u1 = instance.novoUtilizador();
+        boolean result = u1.getEmail() == null 
+                && u1.getKeyword() == null
+                && u1.getNome() == null
+                && u1.getUsername() == null
+                && u1.getPwd() == null;
         assertEquals(expResult, result);
     }
 
@@ -125,5 +123,4 @@ public class RegistarUtilizadorControllerTest {
         boolean result = instance.addUtilizador(u);
         assertEquals(expResult, result);
     }
-
 }
