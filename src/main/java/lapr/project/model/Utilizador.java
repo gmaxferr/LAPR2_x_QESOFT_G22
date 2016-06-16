@@ -390,6 +390,26 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj != null
+                && obj instanceof Utilizador) {
+            Utilizador o = (Utilizador) obj;
+            if (this.isGestor == o.isGestor
+                    && this.m_boolConfirmaRegisto == o.m_boolConfirmaRegisto
+                    && (this.keyword == null ? o.keyword == null : this.keyword.equals(o.keyword))
+                    && this.nAvaliacoesDesdeSempre == o.nAvaliacoesDesdeSempre
+                    && (this.m_strEmail == null ? o.m_strEmail == null : this.m_strEmail.equals(o.m_strEmail))
+                    && (this.m_strNome == null ? o.m_strNome == null : this.m_strNome.equals(o.m_strNome))
+                    && (this.m_strUsername == null ? o.m_strUsername == null : this.m_strUsername.equals(o.m_strUsername))
+                    && (this.m_strPwd == null ? o.m_strPwd == null : Arrays.equals(CaesarsCypher.decrypt(this.m_strPwd, this.randomCaesarShift, PARCIAL_ALFABET),
+                                    CaesarsCypher.decrypt(o.m_strPwd, o.randomCaesarShift, PARCIAL_ALFABET)))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public Utilizador importContentFromXMLNode(Node node) {
         try {
             Document document = XMLParser.createDocument(node, true);
