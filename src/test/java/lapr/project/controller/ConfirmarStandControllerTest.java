@@ -54,12 +54,14 @@ public class ConfirmarStandControllerTest {
     
     @Before
     public void setUp() {
+        listAtrib = new ArrayList<AtribuicaoStand>();
         ce = new CentroExposicoes();
         e = new Exposicao(ce);
         re = ce.getRegistoExposicoes();
         ras = e.getRegistoAtribuicoesStands();
         instance = new ConfirmarStandController(ce);
         u = new Utilizador();
+        decisao = true;
     }
     
     @After
@@ -138,9 +140,13 @@ public class ConfirmarStandControllerTest {
         instance.setExposicao(e);
         instance.getRegistoAtribuicoesStands();
         instance.getAtribuicao("");
-        instance.setAtribuicao(atribuicaoStand);
-        listAtrib.add(atribuicaoStand);
+        
+        atribuicaoStand = new AtribuicaoStand(new Stand("stand", 10),
+                new CandidaturaAExposicao(new Expositor(u)),
+                true);
+        
         decisao = true;
+        instance.setAtribuicao(atribuicaoStand);
         instance.setDecisao(decisao);
     }
 
