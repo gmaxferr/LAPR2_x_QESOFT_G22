@@ -20,37 +20,37 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     /**
      * Registo de Exposições
      */
-    private final RegistoExposicoes m_registoExposicoes;
+    private RegistoExposicoes m_registoExposicoes;
 
     /**
      * Registo de Utilizadores
      */
-    private final RegistoUtilizadores m_registoUtilizadores;
+    private RegistoUtilizadores m_registoUtilizadores;
 
     /**
      * Registo de Mecanismos
      */
-    private final RegistoMecanismos m_registoMecanismos;
+    private RegistoMecanismos m_registoMecanismos;
 
     /**
      * Registo de recursos
      */
-    private final RegistoRecursos m_registoRecursos;
+    private RegistoRecursos m_registoRecursos;
 
     /**
      * Registo de Tipos de Conflito
      */
-    private final RegistoTipoConflitos m_registoTipoConflitos;
+    private RegistoTipoConflitos m_registoTipoConflitos;
 
     /**
      * Registo de Expositores
      */
-    private final RegistoExpositores m_registoExpositores;
+    private RegistoExpositores m_registoExpositores;
 
     /**
      * Registo de Stands
      */
-    private final RegistoStands m_rStands;
+    private RegistoStands m_rStands;
 
     /**
      * Construtor de objectos do tipo CentroExposicoes sem parametros
@@ -133,50 +133,6 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return this.m_rStands;
     }
 
-    /**
-     * Confirma o registo de um utilizador recebendo como parametro esse
-     * utilizador
-     *
-     * @param u Utilizador desejado
-     */
-    public void setUtilizadorRegistado(Utilizador u) {
-        u.setUtilizadorRegistado();
-
-    }
-
-    /**
-     * Devolve um novo Utilizador
-     *
-     * @return novo utilizador
-     */
-    public Utilizador novoUtilizador() {
-        return new Utilizador();
-    }
-
-    /**
-     * Devolve o objecto Expositor identificado pelo seu username (passado por
-     * parametro)
-     *
-     * @param m_StrUsername username do expositor
-     * @return expositor com o username passado por parametro
-     */
-    public Expositor getExpositorPeloUsername(String m_StrUsername) {
-        for (Expositor expositor : this.getRegistoExpositores().getListaExpositores()) {
-            if (expositor.getUsername().equalsIgnoreCase(m_StrUsername)) {
-                return expositor;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Devolve a lista de expositores
-     *
-     * @return lista de expositores
-     */
-    public List<Expositor> getListaExpositores() {
-        return this.m_registoExpositores.getListaExpositores();
-    }
 
     public boolean isFae(Utilizador utilizador) {
         for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
@@ -270,5 +226,61 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoExposicoes the m_registoExposicoes to set
+     */
+    public void setRegistoExposicoes(RegistoExposicoes m_registoExposicoes) {
+        this.m_registoExposicoes = m_registoExposicoes;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoUtilizadores the m_registoUtilizadores to set
+     */
+    public void setRegistoUtilizadores(RegistoUtilizadores m_registoUtilizadores) {
+        this.m_registoUtilizadores = m_registoUtilizadores;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoMecanismos the m_registoMecanismos to set
+     */
+    public void setRegistoMecanismos(RegistoMecanismos m_registoMecanismos) {
+        this.m_registoMecanismos = m_registoMecanismos;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoRecursos the m_registoRecursos to set
+     */
+    public void setRegistoRecursos(RegistoRecursos m_registoRecursos) {
+        this.m_registoRecursos = m_registoRecursos;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoTipoConflitos the m_registoTipoConflitos to set
+     */
+    public void setRegistoTipoConflitos(RegistoTipoConflitos m_registoTipoConflitos) {
+        this.m_registoTipoConflitos = m_registoTipoConflitos;
+    }
+
+    /**
+     *      * PARA TESTES APENAS
+     * @param m_registoExpositores the m_registoExpositores to set
+     */
+    public void setRegistoExpositores(RegistoExpositores m_registoExpositores) {
+        this.m_registoExpositores = m_registoExpositores;
+    }
+
+    /**
+     * PARA TESTES APENAS
+     * @param m_rStands the m_rStands to set
+     */
+    public void setRegistoStands(RegistoStands m_rStands) {
+        this.m_rStands = m_rStands;
     }
 }

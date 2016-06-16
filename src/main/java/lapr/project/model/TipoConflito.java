@@ -80,4 +80,11 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
         }
         return node;
     }
+
+    /**
+     * @param m_mec the m_mec to set
+     */
+    public void setMecanismo(MecanismoDetecaoConflito m_mec) {
+        this.m_mec = m_mec;
+    }
 }

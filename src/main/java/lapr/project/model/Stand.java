@@ -59,7 +59,7 @@ public class Stand implements Importable<Stand>, Exportable {
             return true;
         } else if (obj instanceof Stand) {
             Stand stand = (Stand) obj;
-            if (this.m_ID.equals(stand.getID())) {
+            if (this.m_ID.equals(stand.getID()) && this.m_area == ((Stand) obj).getArea()) {
                 return true;
             } else {
                 return false;
