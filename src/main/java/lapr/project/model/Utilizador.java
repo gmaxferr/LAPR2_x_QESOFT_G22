@@ -350,6 +350,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
+     * Método apenas para fins de teste
+     * @param passowrd - nova password
+     */
+    public void setPasswordTestUseOnly(char[] passowrd){
+        this.m_strPwd = passowrd;
+    }
+    
+    
+    /**
      * @return the keyword
      */
     public String getKeyword() {
