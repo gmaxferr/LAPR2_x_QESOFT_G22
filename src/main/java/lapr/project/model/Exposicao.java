@@ -267,9 +267,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return registo de candidaturas removidas 
+     * @return registo de candidaturas removidas
      */
-     public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
+    public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
         return m_rcr;
     }
 
@@ -545,14 +545,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
-    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos){
+    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
                 d.setDataFimCandidaturas(dataFimDetecaoConflitos);
             }
         }
     }
-    
+
     /**
      * Verifica se o utilizadoré FAE desta exposição
      *
@@ -599,6 +599,22 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     && (m_strDescricao == null ? o.m_strDescricao == null : m_strDescricao.equals(o.m_strDescricao));
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.m_strTitulo);
+        hash = 97 * hash + Objects.hashCode(this.m_strDescricao);
+        hash = 97 * hash + Objects.hashCode(this.m_dataInicio);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFim);
+        hash = 97 * hash + Objects.hashCode(this.m_dataAberturaCandidatura);
+        hash = 97 * hash + Objects.hashCode(this.m_dataEncerramentoCandidatura);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFimDetecaoConflitos);
+        hash = 97 * hash + Objects.hashCode(this.m_dataInicioCandDemo);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFimCandDemo);
+        hash = 97 * hash + Objects.hashCode(this.local);
+        return hash;
     }
 
     /**

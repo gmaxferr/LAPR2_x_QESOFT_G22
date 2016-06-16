@@ -116,7 +116,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @return média dos ratings da avaliação
      */
     public float getMediaRatings() {
-        float soma = this.m_ratingAdequacaoAExposicao
+        float soma = (float) this.m_ratingAdequacaoAExposicao
                 + this.m_ratingAdequacaoAsDemos
                 + this.m_ratingAdequacaoNumConvites
                 + this.m_ratingConhecimentoSobreOTema

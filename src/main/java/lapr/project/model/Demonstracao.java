@@ -56,12 +56,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      */
     private Data m_dataFimSubCand;
-    
+
     /**
-     * 
+     *
      */
     private Data m_dataFimDetecaoConflitos;
-    
+
     /**
      *
      */
@@ -183,7 +183,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
     }
-    
+
     /**
      * Define uma data de inicio de candidaturas à demonstração e cria timer
      *
@@ -238,6 +238,17 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             return this.m_StrCodigoIdentificacao == o.m_StrCodigoIdentificacao;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.m_dataInicioSubCand);
+        hash = 37 * hash + Objects.hashCode(this.m_dataFimSubCand);
+        hash = 37 * hash + Objects.hashCode(this.m_dataFimDetecaoConflitos);
+        hash = 37 * hash + Objects.hashCode(this.m_StrDescricao);
+        hash = 37 * hash + Objects.hashCode(this.m_StrCodigoIdentificacao);
+        return hash;
     }
 
     @Override

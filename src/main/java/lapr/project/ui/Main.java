@@ -37,7 +37,7 @@ public class Main {
                     String[] filePath = input[1].split("\".*\"");
                     if (filePath.length > 0) {
                         File file = new File(filePath[0]);
-                        if(!file.exists()){
+                        if (!file.exists()) {
                             break;
                         }
                         int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
@@ -54,10 +54,14 @@ public class Main {
                             } catch (FileNotFoundException ex) {
                                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                             }
+                        } else {
+                            canceledLoad = true;
                         }
                     }
                 }
             }
+
+            in.close();
 
             if (canceledLoad) {
                 in.close();

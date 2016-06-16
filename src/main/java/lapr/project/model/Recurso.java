@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -48,6 +49,13 @@ public class Recurso implements Importable<Recurso>, Exportable {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.m_nomeRecurso);
+        return hash;
     }
 
     @Override
