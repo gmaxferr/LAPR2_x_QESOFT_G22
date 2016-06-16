@@ -321,12 +321,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válido; false caso contrário.
      */
     public boolean validaEmail(String email) throws InvalidEmailException {
-        boolean validoFinal = false;
-        String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
-        Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        validoFinal = matcher.matches();
-        if (validoFinal) {
+        boolean isValidEmail = false;
+        String emailPt = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+        Pattern pt = Pattern.compile(emailPt, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pt.matcher(email);
+        isValidEmail = matcher.matches();
+        
+        if (isValidEmail) {
             return true;
         } else {
             throw new InvalidEmailException("Email inválido!");
