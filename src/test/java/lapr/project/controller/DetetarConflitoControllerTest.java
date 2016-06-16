@@ -44,6 +44,7 @@ public class DetetarConflitoControllerTest {
     public void setUp() {
         ce = new CentroExposicoes();
         expo = new Exposicao(ce);
+        instance = new DetetarConflitoController(ce);
         expo.setEstado(new EstadoExposicaoCompleta(expo));
         Utilizador u1 = new Utilizador("u1", "p", new char[]{'a', 'b', 'C', '.', '2'}, "1@2.3");
         Utilizador u2 = new Utilizador("u2", "y", new char[]{'a', 'b', 'C', '.', '2'}, "2@2.3");
@@ -55,6 +56,7 @@ public class DetetarConflitoControllerTest {
         TipoConflito tc1 = new TipoConflito("tipo1");
         TipoConflito tc2 = new TipoConflito("tipo2");
         TipoConflito tc3 = new TipoConflito("tipo3");
+        ce.getRegistoExposicoes().getListaExposicoes().add(expo);
         ce.getRegistoUtilizadores().getListaUtilizadores().add(u1);
         ce.getRegistoUtilizadores().getListaUtilizadores().add(u2);
         ce.getRegistoUtilizadores().getListaUtilizadores().add(u3);
@@ -82,8 +84,7 @@ public class DetetarConflitoControllerTest {
     @Test
     public void testDetetaConflitos() {
         System.out.println("detetaConflitos");
-        Exposicao e = expo;
-        instance.detetaConflitos(e);
+        instance.detetaConflitos(expo);
     }
     
 }

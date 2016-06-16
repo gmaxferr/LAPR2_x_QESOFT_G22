@@ -23,6 +23,7 @@ public class RegistarUtilizadorControllerTest {
     private final String nome = "nome";
     private final String email = "aaaa@dfg.com";
     private final String username = "username";
+    private final String keyword = "abcdef";
     private final char[] password = {'D', 'v', '.', '2', '3'};
 
     public RegistarUtilizadorControllerTest() {
@@ -92,10 +93,10 @@ public class RegistarUtilizadorControllerTest {
     @Test
     public void testSetDadosDoUtilizador() {
         System.out.println("setDadosDoUtilizador");
-        instance.getRegistoUtilizadores();;
+        instance.getRegistoUtilizadores();
         instance.novoUtilizador();
 
-        instance.setDadosDoUtilizador(nome, email, password, username);
+        instance.setDadosDoUtilizador(nome, email, password, username, keyword);
     }
 
     /**

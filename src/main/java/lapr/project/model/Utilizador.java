@@ -386,6 +386,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
+     * Método apenas para fins de teste
+     * @param passowrd - nova password
+     */
+    public void setPasswordTestUseOnly(char[] passowrd){
+        this.m_strPwd = passowrd;
+    }
+    
+    
+    /**
      * @return the keyword
      */
     public String getKeyword() {
@@ -502,5 +511,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public void setPasswordTestUseOnly(char[] password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setPasswordTestUseOnly(char[] password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
