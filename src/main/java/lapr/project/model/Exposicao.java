@@ -545,6 +545,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
+    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos){
+        for (Demonstracao d : m_rd.getListaDemonstracoes()) {
+            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
+                d.setDataFimCandidaturas(dataFimDetecaoConflitos);
+            }
+        }
+    }
+    
     /**
      * Verifica se o utilizadoré FAE desta exposição
      *
@@ -619,6 +627,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             for (Demonstracao d : lstDemos) {
                 d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
                 d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
+                d.schedule(new AlterarParaConflitosDetetados(d), d.getDataFimDetecaoConflitos());
             }
 
         }

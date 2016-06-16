@@ -7,7 +7,7 @@ import lapr.project.model.ListaDemonstracoes;
 /**
  * Representação de um Modelo Lista de Demonstrações.
  * 
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class ModeloListaDemonstracoes extends AbstractListModel {
 
