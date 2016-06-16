@@ -20,6 +20,7 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 16
 * UC 27
 * UC 28
+* UC 35
 
 ### João Pedro Santos Cardoso ###
 
