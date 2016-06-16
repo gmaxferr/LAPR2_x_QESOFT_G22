@@ -99,6 +99,15 @@ public class ConfirmarStandController {
     }
     
     /**
+     * Modifica a atribuicao
+     * 
+     * @param atribuicao atribuicao escolhida
+     */
+    public void setAtribuicao(AtribuicaoStand atribuicao){
+        this.m_atribuicaoStand = atribuicao;
+    }
+    
+    /**
      * Modifica a decisão do representante
      * 
      * @param decisao nova decisão

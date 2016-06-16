@@ -71,7 +71,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
      * @return lista de atribuições do stand de um representante
      */
     public List<AtribuicaoStand> getListAtribuicoesStandDoRepresentante(String email) {
-        ArrayList<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
+        List<AtribuicaoStand> listaAtribuicoesStandRepresentante = new ArrayList<>();
         for (AtribuicaoStand as : m_listaAtribuicoesStand) {
             if (as.getCand().getExpositor().getEmail().equalsIgnoreCase(email)) {
                 listaAtribuicoesStandRepresentante.add(as);
