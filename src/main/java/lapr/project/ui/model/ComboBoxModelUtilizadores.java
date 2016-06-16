@@ -49,14 +49,9 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public void setSelectedItem(Object anItem) {
-        for(Organizador o : m_listaUtilizadores){
-            if(o.getUsernameOrganizador().equals((String)anItem)){
-                selection = o;
-            }
-        }
-=======
+
         this.usernameUtilizadorSelecionado = (String) anItem;
->>>>>>> 1225be995dd7ed74242a07ea7c2592dbd6306d84
+
     }
 
     /**
@@ -66,13 +61,9 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public Object getSelectedItem() {
-<<<<<<< HEAD
-        Organizador o = (Organizador) selection;
-        m_listaUtilizadores.remove((Organizador)selection);
-        return o;
-=======
+
         return this.usernameUtilizadorSelecionado;
->>>>>>> 1225be995dd7ed74242a07ea7c2592dbd6306d84
+
     }
 
     @Override
