@@ -48,7 +48,7 @@ public class RegistoFAETest {
         RegistoFAE rfae = new RegistoFAE();
         Utilizador u = new Utilizador("Ricardo", "Ricardo", "password".toCharArray(), "email@hot.com");
         rfae.adicionaFAE(u);
-        assertEquals(true, u.getIsFAE());
+        assertEquals(true, rfae.isFAE(u.getUsername()));
     }
 
     /**
@@ -89,7 +89,7 @@ public class RegistoFAETest {
         Utilizador u = new Utilizador("Ricardo", "Ricardo", "password".toCharArray(), "email@hot.com");
         expo.getRegistoOrganizadores().addOrganizador(u); //valido
         RegistoFAE rfae = expo.getRegistoFAE();
-        boolean adicionou = rfae.adicionaFAE(u); //nao pode adicionar
+        boolean adicionou = expo.addFAE(u); //nao pode adicionar
         assertEquals(false, adicionou);
     }
 
@@ -103,7 +103,7 @@ public class RegistoFAETest {
         Exposicao expo = new DadosInstanciados().getExpo1();
         Utilizador u = new Utilizador("Ricardo", "Ricardo", "password".toCharArray(), "email@hot.com");
         expo.getRegistoFAE().adicionaFAE(u);
-        assertEquals(true, u.getIsFAE());
+        assertEquals(true, expo.getRegistoFAE().isFAE(u.getUsername()));
     }
 
     /**
@@ -119,7 +119,13 @@ public class RegistoFAETest {
         expo.getRegistoFAE().adicionaFAE(u);
         u = new Utilizador("Ricardo2", "Ricardo", "password".toCharArray(), "email@hot.com");
         expo.getRegistoFAE().adicionaFAE(u); //nao adiciona
-        assertEquals(false, u.getIsFAE());
+        boolean existe = false;
+        for(FAE fae : expo.getRegistoFAE().getListaFAE()){
+            if(fae.getUtilizador().equals(u)){
+                existe = true;
+            }
+        }
+        assertEquals(false, existe);
     }
 
     /**
@@ -152,7 +158,7 @@ public class RegistoFAETest {
         Utilizador u = new Utilizador("Ricardo", "Ricardo", "password".toCharArray(), "email@hot.com");
         expo.getRegistoFAE().adicionaFAE(u);
         FAE fae = expo.getRegistoFAE().getFAE("Ricardo2");
-        if (fae.getUtilizador().equals(u)) {
+        if (fae != null && fae.getUtilizador().equals(u)) {
             encontrou = true;
         }
         assertEquals(false, encontrou);

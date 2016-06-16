@@ -178,6 +178,37 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return this.m_registoExpositores.getListaExpositores();
     }
 
+    public boolean isFae(Utilizador utilizador) {
+        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
+            if(e.getRegistoFAE().isFAE(utilizador.getUsername())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isExpositor(Utilizador utilizador) {
+        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
+            for(CandidaturaAExposicao cand : e.getRegistoCandidaturasAExposicao().getListaCandidaturas()){
+                if(cand.getExpositor().getUsername().equals(utilizador.getUsername())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isOrganizador(Utilizador utilizador) {
+        for(Exposicao e : m_registoExposicoes.getListaExposicoes()){
+            for(Organizador o : e.getRegistoOrganizadores().getListaOrganizadores()){
+                if(o.getUsernameOrganizador().equals(utilizador.getUsername())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      *
      * @param node

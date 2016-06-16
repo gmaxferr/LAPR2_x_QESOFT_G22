@@ -93,31 +93,7 @@ public class UtilizadorTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of setIsFAE method, of class Utilizador.
-     */
-    @Test
-    public void testSetIsFAE() {
-        System.out.println("setIsFAE");
-        Utilizador instance = new Utilizador();
-        instance.setIsFAE();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setIsOrganizador method, of class Utilizador.
-     */
-    @Test
-    public void testSetIsOrganizador() {
-        System.out.println("setIsOrganizador");
-        Utilizador instance = new Utilizador();
-        instance.setIsOrganizador();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of setIsGestor method, of class Utilizador.
      */
@@ -131,46 +107,6 @@ public class UtilizadorTest {
     }
 
     /**
-     * Test of setIsExpositor method, of class Utilizador.
-     */
-    @Test
-    public void testSetIsExpositor() {
-        System.out.println("setIsExpositor");
-        Utilizador instance = new Utilizador();
-        instance.setIsExpositor();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIsFAE method, of class Utilizador.
-     */
-    @Test
-    public void testGetIsFAE() {
-        System.out.println("getIsFAE");
-        Utilizador instance = new Utilizador();
-        boolean expResult = false;
-        boolean result = instance.getIsFAE();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIsOrganizador method, of class Utilizador.
-     */
-    @Test
-    public void testGetIsOrganizador() {
-        System.out.println("getIsOrganizador");
-        Utilizador instance = new Utilizador();
-        boolean expResult = false;
-        boolean result = instance.getIsOrganizador();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getIsGestor method, of class Utilizador.
      */
     @Test
@@ -178,21 +114,7 @@ public class UtilizadorTest {
         System.out.println("getIsGestor");
         Utilizador instance = new Utilizador();
         boolean expResult = false;
-        boolean result = instance.getIsGestor();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIsExpositor method, of class Utilizador.
-     */
-    @Test
-    public void testGetIsExpositor() {
-        System.out.println("getIsExpositor");
-        Utilizador instance = new Utilizador();
-        boolean expResult = false;
-        boolean result = instance.getIsExpositor();
+        boolean result = instance.isGestor();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

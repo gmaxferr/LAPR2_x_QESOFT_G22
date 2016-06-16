@@ -123,7 +123,6 @@ public class Main {
 
         //Organizador
         utilizador = ru.identificarUtilizadorPeloUsername("Ana");
-        utilizador.setIsOrganizador();
 
         //Exposições
         RegistoExposicoes re = centroExposicoes.getRegistoExposicoes();

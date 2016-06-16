@@ -77,9 +77,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     private int nAvaliacoesDesdeSempre;
 
-    private int isExpositor;
-    private int isOrganizador;
-    private int isFAE;
     private boolean isGestor;
 
     /**
@@ -87,10 +84,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public Utilizador() {
         this.nAvaliacoesDesdeSempre = 0;
-        this.isExpositor = 0;
-        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = 0;
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
@@ -99,10 +93,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.m_strEmail = email;
         setPwd(password);
         this.m_strNome = nome;
-        this.isExpositor = 0;
-        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = 0;
     }
 
     public Utilizador(String nome, String username, char[] password, String email, String keyword) {
@@ -111,10 +102,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.m_strEmail = email;
         setPwd(password);
         this.m_strNome = nome;
-        this.isExpositor = 0;
-        this.isFAE = 0;
         this.isGestor = false;
-        this.isOrganizador = 0;
         this.keyword = keyword;
     }
 
@@ -157,36 +145,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return this.m_strEmail;
     }
 
-    public void setIsFAE() {
-        this.isFAE++;
-    }
-
-    public void setIsOrganizador() {
-        this.isOrganizador++;
-    }
-
     public void setIsGestor() {
         this.isGestor = true;
     }
 
-    public void setIsExpositor() {
-        this.isExpositor++;
-    }
-
-    public int getIsFAE() {
-        return this.isFAE;
-    }
-
-    public int getIsOrganizador() {
-        return this.isOrganizador;
-    }
-
-    public boolean getIsGestor() {
+    public boolean isGestor() {
         return this.isGestor;
-    }
-
-    public int getIsExpositor() {
-        return this.isExpositor;
     }
 
     /**

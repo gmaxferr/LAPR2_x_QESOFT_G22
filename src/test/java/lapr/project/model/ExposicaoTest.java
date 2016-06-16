@@ -375,20 +375,6 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of getRd method, of class Exposicao.
-     */
-    @Test
-    public void testGetRd() {
-        System.out.println("getRd");
-        Exposicao instance = null;
-        RegistoDemonstracoes expResult = null;
-        RegistoDemonstracoes result = instance.getRd();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of validarCandidatura method, of class Exposicao.
      */
     @Test
