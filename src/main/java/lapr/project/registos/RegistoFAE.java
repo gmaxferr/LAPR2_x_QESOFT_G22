@@ -24,16 +24,10 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     private final List<FAE> m_listaFAE;
 
     /**
-     * Registo de organizadores
-     */
-    private RegistoOrganizadores m_rOrganizadoresDestaExposicao;
-
-    /**
      * Construtor de objetos do tipo RegistoFAE sem parâmetros
      */
     public RegistoFAE() {
         this.m_listaFAE = new ArrayList<>();
-        this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
     }
 
     /**
@@ -54,7 +48,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public boolean adicionaFAE(Utilizador u) {
         if (validaUtilizador(u)) {
             this.m_listaFAE.add(new FAE(u));
-            u.setIsFAE();
             return true;
         }
         return false;
@@ -73,11 +66,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                 return false;
             }
         }
-        for (Organizador organizador : this.m_rOrganizadoresDestaExposicao.getListaOrganizadores()) {
-            if (organizador.getUsernameOrganizador().equalsIgnoreCase(u.getUsername())) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -90,7 +78,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
     public void confirmaAddFAE(List<FAE> listaNovosFAEParaAdicionar) {
         for (FAE fae : listaNovosFAEParaAdicionar) {
             this.m_listaFAE.add(fae);
-            fae.getUtilizador().setIsFAE();
         }
     }
 
@@ -146,7 +133,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                 }
             }
         }
-        this.m_rOrganizadoresDestaExposicao.fix(m_ro);
     }
 
     @Override
@@ -161,9 +147,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-
-                this.m_rOrganizadoresDestaExposicao = new RegistoOrganizadores();
-                this.m_rOrganizadoresDestaExposicao.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_listaFAE.clear();
                 NodeList nList = elem.getElementsByTagName(LISTA_FAE_ELEMENT_NAME);
@@ -206,8 +189,6 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                 elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
             }
             elementBase.appendChild(elemChild);
-
-            elementBase.appendChild(document.importNode(this.m_rOrganizadoresDestaExposicao.exportContentToXMLNode(), true));
 
             node = elementBase;
 

@@ -36,16 +36,15 @@ public class Main {
                 if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
                     String[] filePath = input[1].split("\".*\"");
                     if (filePath.length > 0) {
-                        centroExposicoes = CTRL.Import(filePath[0]);
+                        int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
+                                + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
 
-                        if (centroExposicoes != null) {
-                            int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
-                                    + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
-                            if (resultVal == JOptionPane.YES_OPTION) {
+                        if (resultVal == JOptionPane.YES_OPTION) {
+                            centroExposicoes = CTRL.Import(filePath[0]);
+                            if (centroExposicoes != null) {
                                 JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                             } else {
-                                canceledLoad = true;
-                                centroExposicoes = null;
+                                JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                     }
@@ -123,7 +122,6 @@ public class Main {
 
         //Organizador
         utilizador = ru.identificarUtilizadorPeloUsername("Ana");
-        utilizador.setIsOrganizador();
 
         //Exposições
         RegistoExposicoes re = centroExposicoes.getRegistoExposicoes();

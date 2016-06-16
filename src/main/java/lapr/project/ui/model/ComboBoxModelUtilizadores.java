@@ -3,7 +3,7 @@ package lapr.project.ui.model;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
-import lapr.project.ui.JFrameRegistarExpoUI.PossivelOrganizador;
+import lapr.project.model.Organizador;
 
 /**
  * Representação de uma ComboBoxModel de utilizadores
@@ -15,14 +15,14 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
     /**
      * Lista de utilizadores
      */
-    private List<PossivelOrganizador> m_listaUtilizadores;
+    private List<Organizador> m_listaUtilizadores;
     
     /**
      * Objeto selecionado
      */
     private Object selection;
     
-    public ComboBoxModelUtilizadores(List<PossivelOrganizador> listaUtilizadores){
+    public ComboBoxModelUtilizadores(List<Organizador> listaUtilizadores){
         this.selection = null;
         this.m_listaUtilizadores = listaUtilizadores;
     }
@@ -37,17 +37,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
             return this.m_listaUtilizadores.size();
     }
 
-    /**
-     * Devolve um utilizador
-     * 
-     * @param index posição do utilizador
-     * 
-     * @return posição do utilizador
-     */
-    @Override
-    public Object getElementAt(int index) {
-        return this.m_listaUtilizadores.get(index);
-    }
+    
 
     /**
      * Define o item selecionado
@@ -66,7 +56,14 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public Object getSelectedItem() {
-        return selection;
+        Organizador o = (Organizador)selection;
+        m_listaUtilizadores.remove((Organizador)selection);
+        return o;
+    }
+
+    @Override
+    public Object getElementAt(int index) {
+        return m_listaUtilizadores.get(index).getUtilizador().getUsername();
     }
 
 }

@@ -61,23 +61,28 @@ public class MenuV2 extends javax.swing.JFrame {
      */
     public void identificarCargosDoUtilizador() {
         this.jLabelNomeUtilizador.setText(utilizador.getNome());
-        if (utilizador.getIsFAE() > 0) {
-            this.jCheckBoxFAE.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(1, true);
-        }
-        if (utilizador.getIsExpositor() > 0) {
-            this.jCheckBoxExpositor.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(0, true);
-        }
-        if (utilizador.getIsGestor()) {
+        boolean temPapeis = false;
+        if (utilizador.isGestor()) {
             this.jCheckBoxGestor.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(3, true);
+            temPapeis = true;
         }
-        if (utilizador.getIsOrganizador() > 0) {
+        if (centroExposicoes.isFae(utilizador)) {
+            this.jCheckBoxFAE.setSelected(true);
+            jTabbedPaneCargos.setEnabledAt(1, true);
+            temPapeis = true;
+        }
+        if (centroExposicoes.isExpositor(utilizador)) {
+            this.jCheckBoxExpositor.setSelected(true);
+            jTabbedPaneCargos.setEnabledAt(0, true);
+            temPapeis = true;
+        }
+        if (centroExposicoes.isOrganizador(utilizador)) {
             this.jCheckBoxOrganizador.setSelected(true);
             jTabbedPaneCargos.setEnabledAt(2, true);
+            temPapeis = true;
         }
-        if (utilizador.getConfirmacaoRegisto() == false || utilizador.getIsGestor() == false && utilizador.getIsExpositor() == 0 && utilizador.getIsFAE() == 0 && utilizador.getIsOrganizador() == 0) {
+        if (!temPapeis) {
             jTabbedPaneCargos.setEnabledAt(4, true);
         }
         for (int i = 0; i < 5; i++) {

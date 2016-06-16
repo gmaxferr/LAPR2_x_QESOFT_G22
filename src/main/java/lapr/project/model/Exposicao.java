@@ -335,11 +335,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * Adiciona um novo fae à exposição recebendo o utilizador como parametro
      *
      * @param u utilizador que passará a ser considerado como FAE da exposição
+     * @return Retorna TRUE se o utilizador foi adicionado com successo
      */
-    public void addFAE(Utilizador u) {
+    public boolean addFAE(Utilizador u) {
         //cria o fae a partir do utilizador recebido (u)
-        this.m_rfae.adicionaFAE(u);
-
+        for (Organizador o : this.m_ro.getListaOrganizadores()) {
+            if (o.getUsernameOrganizador().equals(u.getUsername())) {
+                return false;
+            }
+        }
+        return this.m_rfae.adicionaFAE(u);
     }
 
     /**
