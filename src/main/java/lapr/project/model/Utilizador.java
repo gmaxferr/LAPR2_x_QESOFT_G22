@@ -198,6 +198,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
+     * @return the randomCaesarShift
+     */
+    public int getShifts() {
+        return randomCaesarShift;
+    }
+
+    /**
+     * @param shifts the randomCaesarShift to set
+     */
+    public void setShifts(int shifts) {
+        this.randomCaesarShift = shifts;
+    }
+    
+    /**
      * Define uma nova password de utilizador
      *
      * @param strPwd nova password de utilizador
@@ -224,7 +238,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
+        return Arrays.equals(CaesarsCypher.encrypt(password, this.randomCaesarShift, PASSWORD_ALFABET), this.m_strPwd);
     }
 
     /**
@@ -348,15 +362,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public void setnAvaliacoesDesdeSempre(int nAvaliacoesDesdeSempre) {
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
-
-    /**
-     * Método apenas para fins de teste
-     * @param passowrd - nova password
-     */
-    public void setPasswordTestUseOnly(char[] passowrd){
-        this.m_strPwd = passowrd;
-    }
-    
     
     /**
      * @return the keyword
