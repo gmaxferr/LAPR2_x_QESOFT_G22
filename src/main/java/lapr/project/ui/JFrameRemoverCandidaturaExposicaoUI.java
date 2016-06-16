@@ -29,9 +29,9 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
-    private List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
-    private Exposicao expoSelecionada;
-    private List<Exposicao> listaExposicoes;
+    private transient List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
+    private transient Exposicao expoSelecionada;
+    private transient List<Exposicao> listaExposicoes;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     private static final int CARD1_ALTURA_MINIMA = 300;
@@ -39,11 +39,11 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
 
     private static final int CARD2_LARGURA_MINIMA = 480;
     private static final int CARD2_ALTURA_MINIMA = 450;
-    private final CardLayout cardLayout;
-    private String username;
-    private CentroExposicoes ce;
-    private RemoverCandidaturaExpoController ctrl;
-    private JFrame janelaMae;
+    private transient final CardLayout cardLayout;
+    private transient String username;
+    private transient CentroExposicoes ce;
+    private transient RemoverCandidaturaExpoController ctrl;
+    private transient JFrame janelaMae;
 
     /**
      * Creates new form JFrameRemoverCandidaturaUI

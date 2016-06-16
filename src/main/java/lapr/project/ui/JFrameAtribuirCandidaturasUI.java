@@ -24,16 +24,16 @@ import lapr.project.model.*;
  */
 public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
-    private final String usernameOrganizador;
-    private CentroExposicoes centroExposicoes;
-    private AtribuirCandidaturasAExposicaoController controller;
-    private List<Exposicao> listaExposicoesDoOrganizador;
-    private List<Mecanismo> listaMecanismos;
-    private String[] listaNomeMecanismos;
-    private Mecanismo mecanismoEscolhido;
-    private List<AtribuicaoCandidatura> listaAtribuicoes;
-    private ModeloJTableUtilizadores modeloJTableFAEPorCandidatura;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient final String usernameOrganizador;
+    private transient CentroExposicoes centroExposicoes;
+    private transient AtribuirCandidaturasAExposicaoController controller;
+    private transient List<Exposicao> listaExposicoesDoOrganizador;
+    private transient List<Mecanismo> listaMecanismos;
+    private transient String[] listaNomeMecanismos;
+    private transient Mecanismo mecanismoEscolhido;
+    private transient List<AtribuicaoCandidatura> listaAtribuicoes;
+    private transient ModeloJTableUtilizadores modeloJTableFAEPorCandidatura;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 382;

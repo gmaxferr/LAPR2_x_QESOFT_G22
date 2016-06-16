@@ -20,16 +20,16 @@ import lapr.project.model.*;
  */
 public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
-    private final JFrame jFrameMenuPrincipal;
-    private final CentroExposicoes centroExposicoesAtual;
-    private int numDemonstracoes;
-    private int numProdutos;
-    private Utilizador utilizador;
-    private final CriarCandidaturaAExposicaoController controller;
-    private final List<Exposicao> listaExposicoes;
-    private ModeloListaProdutos modeloJListaProdutosCard2;
-    private List<Demonstracao> listaDemonstracoes;
-    private ModeloListaDemonstracoes listModelDemonstracoes;
+    private transient final JFrame jFrameMenuPrincipal;
+    private transient final CentroExposicoes centroExposicoesAtual;
+    private transient int numDemonstracoes;
+    private transient int numProdutos;
+    private transient Utilizador utilizador;
+    private transient final CriarCandidaturaAExposicaoController controller;
+    private transient final List<Exposicao> listaExposicoes;
+    private transient ModeloListaProdutos modeloJListaProdutosCard2;
+    private transient List<Demonstracao> listaDemonstracoes;
+    private transient ModeloListaDemonstracoes listModelDemonstracoes;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;

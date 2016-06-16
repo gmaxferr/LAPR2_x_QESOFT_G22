@@ -17,11 +17,11 @@ import lapr.project.model.Exposicao;
  */
 public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
-    private CentroExposicoes centroExposicoesAtual;
-    private String usernameOrganizador;
-    private ListarCandidaturasAExposicaoRemovidasController controller;
-    private List<Exposicao> listaExposicoes;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient CentroExposicoes centroExposicoesAtual;
+    private transient String usernameOrganizador;
+    private transient ListarCandidaturasAExposicaoRemovidasController controller;
+    private transient List<Exposicao> listaExposicoes;
     
     
     
@@ -349,8 +349,8 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
 
     private void avancarParaCard2(){
         controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoCandidaturasRemovidas();;
-        controller.getListaCandidaturasRemovidas();
+        controller.getRegistoCandidaturasAExposicaoRemovidas();;
+        controller.getListaCandidaturasAExposicaoRemovidas();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);

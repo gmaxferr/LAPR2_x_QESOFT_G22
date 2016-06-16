@@ -20,8 +20,8 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
-    private RegistarCandidaturaADemonstracaoController CTRL;
-    private List<Exposicao> listaExposicoes;
+    private transient RegistarCandidaturaADemonstracaoController CTRL;
+    private transient List<Exposicao> listaExposicoes;
 
     ;
     /**

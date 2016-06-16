@@ -126,12 +126,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
     @Override
     public ScoredKeyword importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -154,9 +149,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 

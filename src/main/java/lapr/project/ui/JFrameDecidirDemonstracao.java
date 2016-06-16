@@ -24,15 +24,15 @@ import lapr.project.model.Exposicao;
  */
 public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
-    private DecidirDemonstracaoController ctrl;
-    private CentroExposicoes ce;
-    private String username;
-    private List<Exposicao> listaExposicoes;
-    private List<Demonstracao> lstDemos;
-    private boolean[] decisoes;
-    private Exposicao expoSelecionada;
-    private final JFrame janelaMae;
-    private CardLayout cardLayout;
+    private transient DecidirDemonstracaoController ctrl;
+    private transient CentroExposicoes ce;
+    private transient String username;
+    private transient List<Exposicao> listaExposicoes;
+    private transient List<Demonstracao> lstDemos;
+    private transient boolean[] decisoes;
+    private transient Exposicao expoSelecionada;
+    private transient final JFrame janelaMae;
+    private transient CardLayout cardLayout;
 
     private static final int LARGURA_JANELA_PASSO1 = 700;
     private static final int ALTURA_JANELA_PASSO1 = 390;

@@ -146,18 +146,8 @@ public class ConfirmarStandControllerTest {
                 true);
         
         decisao = true;
-        instance.setAtribuicao(atribuicaoStand);
         instance.setDecisao(decisao);
     }
 
-    /**
-     * Test of setAtribuicao method, of class ConfirmarStandController.
-     */
-    @Test
-    public void testSetAtribuicao() {
-        System.out.println("setAtribuicao");
-        AtribuicaoStand atribuicao = new AtribuicaoStand(new Stand("id", 23), new CandidaturaAExposicao(new Expositor (u)), decisao );
-        instance.setAtribuicao(atribuicao);
-    }
     
 }

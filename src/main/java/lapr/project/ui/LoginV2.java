@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.model.*;
 import lapr.project.utils.Utilitarios;
@@ -11,8 +12,8 @@ import lapr.project.utils.Utilitarios;
 public class LoginV2 extends javax.swing.JFrame {
 
     private static final String FRAME_TITLE = "Login";
-    private final CentroExposicoes centroExposicoes;
-    private Utilizador utilizador;
+    private transient final CentroExposicoes centroExposicoes;
+    private transient Utilizador utilizador;
 
     /**
      * Creates new form JFrameV2
@@ -29,7 +30,6 @@ public class LoginV2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -174,8 +174,8 @@ public class LoginV2 extends javax.swing.JFrame {
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         executarLogin();
     }//GEN-LAST:event_jButtonLoginActionPerformed
-private void executarLogin(){
-    String user = jTextFieldUsername.getText().trim();
+    private void executarLogin() {
+        String user = jTextFieldUsername.getText().trim();
         char[] pass = jPasswordFieldPassword.getPassword();
 
         if (user.length() == 0 || pass.length == 0) {
@@ -190,10 +190,10 @@ private void executarLogin(){
                 JOptionPane.showMessageDialog(null, "Login nao efetuado. Username e/ou password incorretos.", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
-}
+    }
     private void jButtonRegistarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarUtilizadorActionPerformed
         this.setVisible(false);
-        new JFrameRegistarUtilizadorUI(this, centroExposicoes);
+        JFrame frame = new JFrameRegistarUtilizadorUI(this, centroExposicoes);
     }//GEN-LAST:event_jButtonRegistarUtilizadorActionPerformed
 
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
@@ -205,7 +205,7 @@ private void executarLogin(){
     }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
 
     private void loginEfetuadoComSuccesso() {
-        new MenuV2(centroExposicoes, utilizador);
+        JFrame frame = new MenuV2(centroExposicoes, utilizador);
         dispose();
     }
 

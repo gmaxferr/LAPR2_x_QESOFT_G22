@@ -17,12 +17,12 @@ import lapr.project.model.*;
  */
 public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
-    private CentroExposicoes centroExposicoesAtual;
-    private String emailRepresentante;
-    private List<Exposicao> listaExposicoes;
-    private List<AtribuicaoStand> listaAtribuicaoStand;
-    private ConfirmarStandController controller;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient CentroExposicoes centroExposicoesAtual;
+    private transient String emailRepresentante;
+    private transient List<Exposicao> listaExposicoes;
+    private transient List<AtribuicaoStand> listaAtribuicaoStand;
+    private transient ConfirmarStandController controller;
     
     private static final int LARGURA_JANELA_PASSO1 = 682;
     private static final int ALTURA_JANELA_PASSO1 = 308;

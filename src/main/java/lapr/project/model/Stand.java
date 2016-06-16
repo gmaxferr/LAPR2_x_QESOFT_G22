@@ -11,9 +11,9 @@ import org.w3c.dom.*;
  * @author Ricardo Catalao
  */
 public class Stand implements Importable<Stand>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "Stand";
-    
+
     public static final String ID_ELEMENT_NAME = "Id";
     public static final String AREA_ELEMENT_NAME = "Area";
 
@@ -79,19 +79,14 @@ public class Stand implements Importable<Stand>, Exportable {
     @Override
     public Stand importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
             Node n = elementsKeyword.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_ID = elem.getElementsByTagName(ID_ELEMENT_NAME).item(0).getTextContent();
                 this.m_area = Integer.parseInt(elem.getElementsByTagName(ID_ELEMENT_NAME).item(0).getTextContent());
             }
@@ -106,13 +101,11 @@ public class Stand implements Importable<Stand>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
-            
+
             Element elemChild = document.createElement(ID_ELEMENT_NAME);
             elemChild.setTextContent(this.m_ID);
             elementBase.appendChild(elemChild);
@@ -120,7 +113,7 @@ public class Stand implements Importable<Stand>, Exportable {
             elemChild = document.createElement(AREA_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_area));
             elementBase.appendChild(elemChild);
-            
+
             node = elementBase;
 
         } catch (ParserConfigurationException ex) {

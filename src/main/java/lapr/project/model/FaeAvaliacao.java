@@ -34,8 +34,8 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
-        for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
-            if(m_FaeAssociado.getUtilizador().getUsername().equals(u.getUsername())){
+        for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+            if (m_FaeAssociado.getUtilizador().getUsername().equals(u.getUsername())) {
                 this.m_FaeAssociado.setUtilizador(u);
                 break;
             }
@@ -45,12 +45,7 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     @Override
     public FaeAvaliacao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -74,9 +69,7 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);

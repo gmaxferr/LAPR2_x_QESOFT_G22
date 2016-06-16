@@ -76,13 +76,9 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
     @Override
     public FAE importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument(node, true);
 
-            doc.appendChild(doc.importNode(node, true));
-
-            NodeList nList = doc.getChildNodes();
+            NodeList nList = document.getChildNodes();
 
             Node n = nList.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
@@ -103,18 +99,16 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+            Document document = XMLParser.createDocument(node, true);
 
-            Element elementBase = doc.createElement(ROOT_ELEMENT_NAME);
-            doc.appendChild(elementBase);
+            Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
+            document.appendChild(elementBase);
 
-            Element elemChild = doc.createElement(USERNAME_ELEMENT_NAME);
+            Element elemChild = document.createElement(USERNAME_ELEMENT_NAME);
             elemChild.setTextContent(this.m_Utilizador.getUsername());
             elementBase.appendChild(elemChild);
 
-            elemChild = doc.createElement(EMAIL_ELEMENT_NAME);
+            elemChild = document.createElement(EMAIL_ELEMENT_NAME);
             elemChild.setTextContent(this.m_Utilizador.getEmail());
             elementBase.appendChild(elemChild);
             

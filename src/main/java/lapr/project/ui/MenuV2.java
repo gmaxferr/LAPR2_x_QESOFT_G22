@@ -18,10 +18,10 @@ import lapr.project.model.*;
  */
 public class MenuV2 extends javax.swing.JFrame {
 
-    private CentroExposicoes centroExposicoes;
+    private transient CentroExposicoes centroExposicoes;
 
-    private final Utilizador utilizador;
-    private final JFrame thisJFrame;
+    private transient final Utilizador utilizador;
+    private transient final JFrame thisJFrame;
 
     /**
      * Creates new form Menu
@@ -805,7 +805,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, utilizador);
+        JFrame frame = new JFrameCriarCandidaturaAExposicaoUI(thisJFrame, centroExposicoes, utilizador);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItemCarregarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCarregarDadosActionPerformed
@@ -850,7 +850,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
@@ -870,12 +870,12 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.setVisible(false);
-        new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -884,17 +884,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.setVisible(false);
-        new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarCandidaturaADemonstracaoUI(centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
@@ -907,17 +907,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.setVisible(false);
-        new JFrameAtribuirCandidaturasUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAtribuirCandidaturasUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.setVisible(false);
-        new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -927,17 +927,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         this.setVisible(false);
-        new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+        JFrame frame = new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -957,17 +957,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirRecursos(centroExposicoes);
+        JFrame frame = new JFrameDefinirRecursos(centroExposicoes);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -991,12 +991,12 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.setVisible(false);
-        new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.setVisible(false);
-        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -1004,7 +1004,7 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void terminaSessao() {
-        new LoginV2(centroExposicoes);
+        JFrame frame = new LoginV2(centroExposicoes);
         dispose();
     }
 

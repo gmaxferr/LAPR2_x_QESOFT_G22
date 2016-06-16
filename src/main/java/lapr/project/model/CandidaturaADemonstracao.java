@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -44,7 +45,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
     /**
      * Devolve os dados da candidatura
-     * 
+     *
      * @return dados da candidatura
      */
     public String getDadosCandidatura() {
@@ -83,14 +84,25 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     }
 
     @Override
-    public boolean equals(Object outraCand) {
-        CandidaturaADemonstracao outra = (CandidaturaADemonstracao) outraCand;
-        if (this.m_dados.equals(outra.getDadosCandidatura())) {
-            if (this.m_emailExpositor.equals(outra.getEmailExpositor())) {
-                return true;
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof CandidaturaADemonstracao) {
+            CandidaturaADemonstracao o = (CandidaturaADemonstracao) obj;
+            String oDados = o.getDadosCandidatura();
+            if (oDados != null && this.m_dados.equals(oDados)) {
+                if (this.m_emailExpositor.equals(o.getEmailExpositor())) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 43 * hash + Objects.hashCode(this.m_dados);
+        hash = 43 * hash + Objects.hashCode(this.m_emailExpositor);
+        return hash;
     }
 
     @Override

@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
  */
 public class RegistoCandidaturasAExposicaoRemovidas implements Importable<RegistoCandidaturasAExposicaoRemovidas>,  Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasRemovidas";
+    public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicaoRemovidas";
 
     /**
      * Lista de candidaturas removidas.

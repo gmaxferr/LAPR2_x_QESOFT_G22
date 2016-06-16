@@ -11,7 +11,7 @@ import lapr.project.model.Produto;
  */
 public class ModeloListaProdutos extends AbstractListModel {
 
-    ListaProdutos listaProdutos;
+    private transient ListaProdutos listaProdutos;
 
     public ModeloListaProdutos() {
         this.listaProdutos = new ListaProdutos();

@@ -305,7 +305,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return this.m_rp.getListaProdutosAExpor();
     }
 
-
     /**
      * Define nova decisao e justificação de candidatura
      *
@@ -424,12 +423,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     @Override
     public CandidaturaAExposicao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -518,9 +512,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementCandAExpo = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementCandAExpo);

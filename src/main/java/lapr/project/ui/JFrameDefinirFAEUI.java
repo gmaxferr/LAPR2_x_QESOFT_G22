@@ -15,9 +15,9 @@ import lapr.project.model.*;
  */
 public class JFrameDefinirFAEUI extends javax.swing.JFrame {
 
-    private List<Exposicao> listaExposicoes;
-    private JFrame jFrameMenuPrincipal;
-    private final DefinirFAEController controller;
+    private transient List<Exposicao> listaExposicoes;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient final DefinirFAEController controller;
 
     private static final int LARGURA_JANELA_PASSO1 = 710;
     private static final int ALTURA_JANELA_PASSO1 = 370;
@@ -25,9 +25,9 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO2 = 722;
     private static final int ALTURA_JANELA_PASSO2 = 500;
 
-    private final CardLayout cardLayout;
-    private List<Utilizador> listaUtilizadores;
-    private List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
+    private transient final CardLayout cardLayout;
+    private transient List<Utilizador> listaUtilizadores;
+    private transient List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
 
     /**
      * Creates new form JFrameDefinirFAE

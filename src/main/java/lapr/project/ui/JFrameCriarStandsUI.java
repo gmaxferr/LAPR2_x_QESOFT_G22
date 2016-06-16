@@ -27,22 +27,22 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
     /**
      * Referência à JFrame do menu
      */
-    private final JFrame jFrameMenuPrincipal;
+    private transient final JFrame jFrameMenuPrincipal;
 
     /**
      * Centro de exposições atual
      */
-    private final CentroExposicoes centroExposicoesAtual;
+    private transient final CentroExposicoes centroExposicoesAtual;
 
     /**
      * Controller deste Caso de Uso - CriarStandsController
      */
-    private final CriarStandsController controller;
+    private transient final CriarStandsController controller;
     
     /**
      * Lista de stands existentes no centro de exposições atual
      */
-    private final List<Stand> listaStands;
+    private transient final List<Stand> listaStands;
 
     /**
      * Creates new form JFrameCriarStandsUI

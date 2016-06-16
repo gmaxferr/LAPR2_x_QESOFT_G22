@@ -73,22 +73,18 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
     @Override
     public AtribuicaoStand importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, m_decisao));
+            Document document = XMLParser.createDocument(node, true);
 
             Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 this.m_cand = new CandidaturaAExposicao(null);
                 this.m_cand.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_stand = new Stand("", 0);
                 this.m_stand.importContentFromXMLNode(elem.getElementsByTagName(Stand.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_decisao = Boolean.valueOf(elem.getAttribute(DECISAO_ATTR_NAME));
             }
         } catch (ParserConfigurationException ex) {
@@ -100,22 +96,20 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
-        
+
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            
+            Document document = XMLParser.createDocument();
+
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
-            
+
             elemBase.appendChild(document.importNode(this.m_cand.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_stand.exportContentToXMLNode(), true));
             elemBase.setAttribute(DECISAO_ATTR_NAME, String.valueOf(m_decisao));
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoStand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return node;
     }
 

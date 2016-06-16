@@ -28,15 +28,15 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
-    private CriarDemonstracaoController CTRL;
-    private List<Exposicao> m_listaExposicoes;
-    private List<Recurso> m_listaRecursos;
+    private transient CriarDemonstracaoController CTRL;
+    private transient List<Exposicao> m_listaExposicoes;
+    private transient List<Recurso> m_listaRecursos;
     
-    private String m_usernameOrg;
-    private CentroExposicoes m_ce;
+    private transient String m_usernameOrg;
+    private transient CentroExposicoes m_ce;
 
-    private Exposicao m_e;
-    private boolean continua;
+    private transient Exposicao m_e;
+    private transient boolean continua;
     /**
      * Creates new form JFrameCriarDemonstracaoUI
      */

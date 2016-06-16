@@ -11,7 +11,7 @@ import lapr.project.model.Utilizador;
  */
 public class ModeloJTableUtilizadores extends AbstractTableModel {
 
-    private List<Utilizador> listaUsers;
+    private transient List<Utilizador> listaUsers;
 
     private final String[] colunas = {"Nome", "Username", "Email"};
 

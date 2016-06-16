@@ -343,6 +343,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaCandidaturasAExposicao() {
         System.out.println("getListaCandidaturasAExposicao");
+<<<<<<< HEAD
         CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(u));
         List<CandidaturaAExposicao> expResult = new ArrayList<>();
         expResult.add(cand);
@@ -350,6 +351,14 @@ public class ExposicaoTest {
         List<CandidaturaAExposicao> result = e.getListaCandidaturasAExposicao();
         assertEquals(expResult, result);
         
+=======
+        Exposicao instance = null;
+        List<CandidaturaAExposicao> expResult = null;
+        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+>>>>>>> 5dbe7dc19f3e65eaf1ac0afc6dd03f54afb5504a
     }
 
     /**

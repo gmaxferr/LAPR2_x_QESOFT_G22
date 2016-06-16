@@ -22,13 +22,13 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
 
     private static final int CARD2_LARGURA = 370;
     private static final int CARD2_ALTURA = 250;
-    private final CardLayout cardLayout;
+    private transient final CardLayout cardLayout;
 
-    private final JFrame jFrameMenuPrincipal;
-    private final PercentagemCandAceitesMediaRatingsController controller;
-    private final List<Exposicao> listaExposicoes;
-    private List<CandidaturaAExposicao> listaCandEstadoAceites;
-    private float[] listaMediaRatingsPorCandidatura;
+    private transient final JFrame jFrameMenuPrincipal;
+    private transient final PercentagemCandAceitesMediaRatingsController controller;
+    private transient final List<Exposicao> listaExposicoes;
+    private transient List<CandidaturaAExposicao> listaCandEstadoAceites;
+    private transient float[] listaMediaRatingsPorCandidatura;
 
     /**
      * Creates new form JFramePercentagemCandAceitesMediaRatings

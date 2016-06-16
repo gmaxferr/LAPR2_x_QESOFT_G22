@@ -15,7 +15,7 @@ import lapr.project.model.Demonstracao;
  */
 public class ModeloJTableDecidirDemonstracoes extends AbstractTableModel {
 
-    private List<Demonstracao> listaDemos;
+    private transient List<Demonstracao> listaDemos;
     private final boolean[] decisoes;
     private final String[] cabecalho = {"Demonstração", "Demonstrações confirmadas"};
 

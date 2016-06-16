@@ -19,7 +19,7 @@ public class ModelComboBoxDias extends AbstractListModel implements ComboBoxMode
     int[] dias_30 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
     int[] dias_31 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
 
-    private Object selectedItem;
+    private transient Object selectedItem;
     private int opcao;
 
     public ModelComboBoxDias(int opcao) {

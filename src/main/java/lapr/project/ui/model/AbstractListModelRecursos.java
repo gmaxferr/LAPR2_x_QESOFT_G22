@@ -15,7 +15,7 @@ import lapr.project.model.Recurso;
  */
 public class AbstractListModelRecursos extends AbstractListModel {
 
-    private List<Recurso> m_listaRecursos;
+    private transient List<Recurso> m_listaRecursos;
 
     public AbstractListModelRecursos(List<Recurso> listaRecursos) {
         this.m_listaRecursos = listaRecursos;

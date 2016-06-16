@@ -590,6 +590,22 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.m_strTitulo);
+        hash = 97 * hash + Objects.hashCode(this.m_strDescricao);
+        hash = 97 * hash + Objects.hashCode(this.m_dataInicio);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFim);
+        hash = 97 * hash + Objects.hashCode(this.m_dataAberturaCandidatura);
+        hash = 97 * hash + Objects.hashCode(this.m_dataEncerramentoCandidatura);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFimDetecaoConflitos);
+        hash = 97 * hash + Objects.hashCode(this.m_dataInicioCandDemo);
+        hash = 97 * hash + Objects.hashCode(this.m_dataFimCandDemo);
+        hash = 97 * hash + Objects.hashCode(this.local);
+        return hash;
+    }
+
     /**
      * Corrige as discrepâncias nas referências deste objeto causadas pela
      * exportação e importação de XML.
@@ -645,12 +661,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
             Node n = elementsKeyword.item(0);
@@ -789,9 +800,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementExpo = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementExpo);

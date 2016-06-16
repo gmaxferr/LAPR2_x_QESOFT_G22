@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -51,14 +52,16 @@ public class Recurso implements Importable<Recurso>, Exportable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.m_nomeRecurso);
+        return hash;
+    }
+
+    @Override
     public Recurso importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -78,9 +81,7 @@ public class Recurso implements Importable<Recurso>, Exportable {
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementRecurso = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementRecurso);

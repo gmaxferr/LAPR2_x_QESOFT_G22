@@ -15,7 +15,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
     /**
      * Lista de Exposições.
      */
-    private List<Exposicao> m_listaExposicoes;
+    private transient List<Exposicao> m_listaExposicoes;
 
     /**
      * Objeto selecionado.

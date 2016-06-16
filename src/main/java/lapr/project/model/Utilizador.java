@@ -27,11 +27,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
     public static final String NOME_ELEMENT_NAME = "nome";
-    public static final String PASSWD_ELEMENT_NAME = "passwd";
+    public static final String PASSE_ELEMENT_NAME = "passwd";
     public static final String USERNAME_ELEMENT_NAME = "username";
     public static final String EMAIL_ELEMENT_NAME = "email";
 
-    public static final String PASSWORD_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
+    public static final String PARCIAL_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
     public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
 
     public static final int SHIFTS_MASK = 0x35;
@@ -218,8 +218,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public final void setPwd(char[] strPwd) {
         Random r = new Random();
-        this.randomCaesarShift = r.nextInt(PASSWORD_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);
+        this.randomCaesarShift = r.nextInt(PARCIAL_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PARCIAL_ALFABET);
     }
 
     /**
@@ -238,7 +238,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.encrypt(password, this.randomCaesarShift, PASSWORD_ALFABET), this.m_strPwd);
+        return Arrays.equals(CaesarsCypher.encrypt(password, this.randomCaesarShift, PARCIAL_ALFABET), this.m_strPwd);
     }
 
     /**
@@ -268,7 +268,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword() {
-        char[] decryptesPass = CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, PASSWORD_ALFABET);
+        char[] decryptesPass = CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, PARCIAL_ALFABET);
         return validaPassword(decryptesPass);
     }
 
@@ -392,12 +392,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     @Override
     public Utilizador importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -423,7 +418,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
                 this.m_strUsername = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
 
-                this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
+                this.m_strPwd = elem.getElementsByTagName(PASSE_ELEMENT_NAME).item(0).getTextContent().toCharArray();
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
@@ -436,9 +431,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
@@ -466,7 +459,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             elementValue.setTextContent(value);
             elementKeyword.appendChild(elementValue);
 
-            elementValue = document.createElement(PASSWD_ELEMENT_NAME);
+            elementValue = document.createElement(PASSE_ELEMENT_NAME);
             elementValue.setTextContent(String.valueOf(this.m_strPwd));
             elementKeyword.appendChild(elementValue);
 

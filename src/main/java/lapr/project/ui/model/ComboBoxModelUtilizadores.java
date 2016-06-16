@@ -16,7 +16,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
     /**
      * Lista de utilizadores
      */
-    private List<Utilizador> m_listaUtilizadores;
+    private transient List<Utilizador> m_listaUtilizadores;
 
     /**
      * Utilizador selecionado

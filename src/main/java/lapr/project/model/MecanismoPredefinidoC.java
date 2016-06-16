@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -15,7 +14,7 @@ import java.util.*;
  *
  * @author G29
  */
-public class MecanismoPredefinidoC implements MecanismoIteragivel, Serializable {
+public class MecanismoPredefinidoC implements MecanismoIteragivel {
 
     /**
      * Identificação do mecanismo.

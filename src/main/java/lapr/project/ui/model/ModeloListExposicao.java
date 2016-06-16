@@ -15,7 +15,7 @@ import lapr.project.model.Exposicao;
  */
 public class ModeloListExposicao extends AbstractListModel {
 
-    private List<Exposicao> listExpo;
+    private transient List<Exposicao> listExpo;
 
     public void add(List<Exposicao> l) {
         listExpo.addAll(l);

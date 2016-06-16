@@ -10,6 +10,7 @@ import lapr.project.registos.RegistoFaeAvaliacao;
 import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
+import lapr.project.utils.XMLParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,7 +40,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
     /**
      * Devolve o registo de FAEAvaliação
-     * 
+     *
      * @return registo de FAEAvaliação
      */
     public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
@@ -51,40 +52,36 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
     }
 
     public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
-        for(CandidaturaAExposicao cand : m_rce.getListaCandidaturas()){
-            if(cand.equals(m_candidatura)){
+        for (CandidaturaAExposicao cand : m_rce.getListaCandidaturas()) {
+            if (cand.equals(m_candidatura)) {
                 m_candidatura = cand;
                 break;
             }
         }
         this.m_rFaeDecisao.fix(m_registoUtilizadores);
     }
-    
+
     @Override
     public AtribuicaoCandidatura importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                
+
                 Expositor expositor = new Expositor(null);
                 expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
                 this.m_candidatura = new CandidaturaAExposicao(expositor);
-                
+
                 NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
-                for(int i=0; i<nList.getLength(); i++){
+                for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
                     Keyword key = new Keyword();
                     key.importContentFromXMLNode(n2);
                     this.m_candidatura.getListKeyword().add(key);
                 }
-                
+
                 this.m_rFaeDecisao = new RegistoFaeAvaliacao();
                 this.m_rFaeDecisao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
             }
@@ -99,15 +96,13 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
-            
+
             elemBase.appendChild(document.importNode(this.m_candidatura.getExpositor().exportContentToXMLNode(), true));
-            for(Keyword k : this.m_candidatura.getListKeyword()){
+            for (Keyword k : this.m_candidatura.getListKeyword()) {
                 elemBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
             elemBase.appendChild(document.importNode(this.m_rFaeDecisao.exportContentToXMLNode(), true));

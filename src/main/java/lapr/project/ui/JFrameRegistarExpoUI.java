@@ -15,14 +15,14 @@ import lapr.project.utils.Data;
  */
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
-    private List<Utilizador> listaUtilizadores;
-    private ModeloJListUtilizadores modeloJList;
-    private ComboBoxModelUtilizadores modeloComboBox;
-    private CriarExposicaoController ctrl;
-    private JFrame menuPrincipal;
-    private CentroExposicoes ce;
+    private transient List<Utilizador> listaUtilizadores;
+    private transient ModeloJListUtilizadores modeloJList;
+    private transient ComboBoxModelUtilizadores modeloComboBox;
+    private transient CriarExposicaoController ctrl;
+    private transient JFrame menuPrincipal;
+    private transient CentroExposicoes ce;
 
-    private Data dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos;
+    private transient Data dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos;
 
     /**
      * Creates new form JFrameRegistarExpoUI

@@ -56,12 +56,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      */
     private Data m_dataFimSubCand;
-    
+
     /**
-     * 
+     *
      */
     private Data m_dataFimDetecaoConflitos;
-    
+
     /**
      *
      */
@@ -98,6 +98,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private RegistoCandidaturaADemonstracoes m_rcd;
 
     /**
+     * Registo de candidaturas a demonstracao removidas
+     */
+    private RegistoCandidaturasADemonstracaoRemovidas m_rcdr;
+
+    /**
      *
      * @param descricao
      */
@@ -105,6 +110,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
         this.m_rcd = new RegistoCandidaturaADemonstracoes();
+        this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
     }
 
@@ -180,10 +186,20 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return m_rcd;
     }
 
+    /**
+     * Devolve o registo de candidaturas a demonstração removidas
+     *
+     * @return registo de candidaturas a demonstração removidas
+     */
+    public RegistoCandidaturasADemonstracaoRemovidas getRegistoCandidaturasADemonstracaoRemovidas() {
+        return m_rcdr;
+
+    }
+
     void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
     }
-    
+
     /**
      * Define uma data de inicio de candidaturas à demonstração e cria timer
      *
@@ -241,14 +257,20 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.m_dataInicioSubCand);
+        hash = 37 * hash + Objects.hashCode(this.m_dataFimSubCand);
+        hash = 37 * hash + Objects.hashCode(this.m_dataFimDetecaoConflitos);
+        hash = 37 * hash + Objects.hashCode(this.m_StrDescricao);
+        hash = 37 * hash + Objects.hashCode(this.m_StrCodigoIdentificacao);
+        return hash;
+    }
+
+    @Override
     public Demonstracao importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+            Document document = XMLParser.createDocument(node, true);
 
             NodeList elementsKeyword = document.getChildNodes();
 
@@ -261,6 +283,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcd = new RegistoCandidaturaADemonstracoes();
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
+                this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
 
                 Data invalidData = new Data(0, 0, 0);
 
@@ -321,9 +345,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
@@ -334,6 +356,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
             elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_rcdr.exportContentToXMLNode(), true));
 
             elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 

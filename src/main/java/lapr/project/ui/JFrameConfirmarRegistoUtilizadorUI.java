@@ -15,10 +15,10 @@ import lapr.project.model.*;
  */
 public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
-    private JFrame jFrameLogin;
-    private CentroExposicoes centroExposicoesAtual;
-    private ConfirmarRegistoController controller;
-    private List<Utilizador> listaUtilizadores;
+    private transient JFrame jFrameLogin;
+    private transient CentroExposicoes centroExposicoesAtual;
+    private transient ConfirmarRegistoController controller;
+    private transient List<Utilizador> listaUtilizadores;
     private final CardLayout cardLayout;
 
     private static final int LARGURA_JANELA_PASSO1 = 485;
