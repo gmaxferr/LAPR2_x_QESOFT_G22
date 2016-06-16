@@ -210,7 +210,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public void setShifts(int shifts) {
         this.randomCaesarShift = shifts;
     }
-    
+
     /**
      * Define uma nova password de utilizador
      *
@@ -293,12 +293,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
-
-        if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
-            return false;
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) {
+        if (validarDadosRepetidosOuInvalidos(nome, password, username, email)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -312,13 +311,17 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
-        boolean password1 = validaPassword(password);
-        boolean email1 = validaEmail(email);
-        if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
+        try {
+            boolean password1 = validaPassword(password);
+            boolean email1 = validaEmail(email);
+            if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
+                return false;
+            }
+            return true;
+        } catch (InvalidEmailException | InvalidPasswordException ex) {
             return false;
         }
-        return true;
     }
 
     /**
@@ -357,7 +360,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public void setnAvaliacoesDesdeSempre(int nAvaliacoesDesdeSempre) {
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
-    
+
     /**
      * @return the keyword
      */
