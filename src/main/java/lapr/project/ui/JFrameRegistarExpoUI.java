@@ -24,11 +24,11 @@ import lapr.project.utils.Data;
  */
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
 
-    private List<PossivelOrganizador> lstPossiveisOrganizadores = new ArrayList<>();
+    private List<Organizador> lstPossiveisOrganizadores = new ArrayList<>();
     private ModeloJListPotenciaisOrganizadores model = new ModeloJListPotenciaisOrganizadores(lstPossiveisOrganizadores);
     private ComboBoxModelUtilizadores modelSelectOrg;
     private CriarExposicaoController ctrl;
-    private List<PossivelOrganizador> organizadoresSelecionados = new ArrayList<>();
+    private List<Organizador> organizadoresSelecionados = new ArrayList<>();
     private JFrame menuPrincipal;
     private JFrame thisFrame;
     private CentroExposicoes ce;
@@ -40,14 +40,14 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
      */
     public JFrameRegistarExpoUI(CentroExposicoes ce, JFrame menuPrincipal) {
         super("Criar Exposiçao");
+        ctrl = new CriarExposicaoController(ce);
+        this.ce = ce;
+        ctrl.novaExposicao();
+        lstPossiveisOrganizadores = inicializarListaUtilizadores();
+        modelSelectOrg = new ComboBoxModelUtilizadores(lstPossiveisOrganizadores);
         this.thisFrame = (JFrame) SwingUtilities.getRoot(this);
         this.menuPrincipal = menuPrincipal;
-        ctrl = new CriarExposicaoController(ce);
-        ctrl.novaExposicao();
-        this.ce = ce;
-        lstPossiveisOrganizadores = inicializarListaUtilizadores();
         setLocationRelativeTo(rootPane);
-        modelSelectOrg = new ComboBoxModelUtilizadores(lstPossiveisOrganizadores);
         initComponents();
         setVisible(true);
         setMinimumSize(new Dimension(600, 300));
@@ -71,29 +71,13 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         });
     }
 
-    public List<PossivelOrganizador> inicializarListaUtilizadores() {
-        List<PossivelOrganizador> utilizadoresAApresentar = new ArrayList<>();
+    public List<Organizador> inicializarListaUtilizadores() {
+        List<Organizador> utilizadoresAApresentar = new ArrayList<>();
         for (Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()) {
             Organizador o = new Organizador(u);
-            utilizadoresAApresentar.add(new PossivelOrganizador(o));
+            utilizadoresAApresentar.add(o);
         }
         return utilizadoresAApresentar;
-    }
-
-    /**
-     * Atualiza a lista de possiveis organizadores, isto é, a lista de
-     * utilizadores ainda náo selecionados
-     *
-     * @return
-     */
-    public List<PossivelOrganizador> atualizarListaOrganizadoresSelecionados() {
-        List<PossivelOrganizador> novosPossiveisOrganizadores = new ArrayList<>();
-        for (PossivelOrganizador po : lstPossiveisOrganizadores) {
-            if (po.getEstado() != true) {
-                novosPossiveisOrganizadores.add(po);
-            }
-        }
-        return novosPossiveisOrganizadores;
     }
 
     /**
@@ -649,16 +633,16 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         addOrganizadorBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = orgSelectionComboBox.getSelectedIndex();
-                PossivelOrganizador organizadorSelecionado = (PossivelOrganizador) modelSelectOrg.getElementAt(index);
-                organizadorSelecionado.setEstado(true);
+                Organizador organizadorSelecionado = (Organizador) modelSelectOrg.getSelectedItem();
                 organizadoresSelecionados.add(organizadorSelecionado);
-                organizadoresList1.setModel(new ModeloJListPotenciaisOrganizadores(organizadoresSelecionados));
+                model = new ModeloJListPotenciaisOrganizadores(organizadoresSelecionados);
+                organizadoresList1.setModel(model);
                 organizadoresList1.revalidate();
                 organizadoresList1.repaint();
-                modelSelectOrg = new ComboBoxModelUtilizadores(atualizarListaOrganizadoresSelecionados());
+                lstPossiveisOrganizadores.remove(organizadorSelecionado);
+                modelSelectOrg = new ComboBoxModelUtilizadores(lstPossiveisOrganizadores);
                 orgSelectionComboBox.setModel(modelSelectOrg);
-                ctrl.addOrganizador(organizadorSelecionado.getOrganizador());
+                ctrl.addOrganizador(organizadorSelecionado);
             }
         });
     }//GEN-LAST:event_addOrganizadorBtnActionPerformed
@@ -709,16 +693,17 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_mesFimCandActionPerformed
 
     private void removeOrganizadorBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrganizadorBtn1ActionPerformed
-        PossivelOrganizador po = (PossivelOrganizador) organizadoresList1.getSelectedValue();
-        organizadoresSelecionados.remove(po);
-        po.setEstado(false);
+        int index = organizadoresList1.getSelectedIndex();
+        model.setSelectedItem(index);
+        Organizador organizadorARemover = model.getOrganizador();
+        organizadoresSelecionados.remove(organizadorARemover);
         model = new ModeloJListPotenciaisOrganizadores(organizadoresSelecionados);
         organizadoresList1.setModel(model);
-        
         organizadoresList1.repaint();
         organizadoresList1.revalidate();
-        orgSelectionComboBox.setModel(new ComboBoxModelUtilizadores(atualizarListaOrganizadoresSelecionados()));
-        ctrl.removerOrganizador(po.getOrganizador());
+        lstPossiveisOrganizadores.add(organizadorARemover);
+        orgSelectionComboBox.setModel(new ComboBoxModelUtilizadores(lstPossiveisOrganizadores));
+        ctrl.removerOrganizador(organizadorARemover);
     }//GEN-LAST:event_removeOrganizadorBtn1ActionPerformed
 
     private void localTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localTxt1ActionPerformed
@@ -779,7 +764,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_diaInicioCandActionPerformed
 
     private void diaFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimCandActionPerformed
-        
+
     }//GEN-LAST:event_diaFimCandActionPerformed
 
     private void diaFimDetecaoConflitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimDetecaoConflitosActionPerformed
@@ -900,32 +885,6 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     private javax.swing.JLabel ucNameLbl1;
     // End of variables declaration//GEN-END:variables
 
-    public class PossivelOrganizador {
-
-        private Organizador m_o;
-        private boolean m_isSelected;
-
-        public PossivelOrganizador(Organizador o) {
-            this.m_o = o;
-            m_isSelected = false;
-        }
-
-        public Organizador getOrganizador() {
-            return m_o;
-        }
-
-        public boolean getEstado() {
-            return m_isSelected;
-        }
-
-        public void setEstado(boolean estado) {
-            m_isSelected = estado;
-        }
-
-        public String toString() {
-            return m_o.getUsernameOrganizador();
-        }
-
-    }
+    
 
 }

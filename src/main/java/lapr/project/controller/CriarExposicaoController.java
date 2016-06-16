@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import java.util.List;
 import lapr.project.model.*;
@@ -19,7 +20,7 @@ public class CriarExposicaoController {
 
     private final RegistoUtilizadores m_ru;
 
-    private List<Organizador> m_organizadoresSelecionados;
+    private List<Organizador> m_organizadoresSelecionados = new ArrayList<>();
 
     private Exposicao m_exposicao;
 
