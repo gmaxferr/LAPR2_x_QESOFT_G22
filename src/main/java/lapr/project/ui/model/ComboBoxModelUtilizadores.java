@@ -46,7 +46,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     @Override
     public Object getElementAt(int index) {
-        return this.m_listaUtilizadores.get(index).getOrganizador().getUtilizador();
+        return this.m_listaUtilizadores.get(index);
     }
 
     /**
