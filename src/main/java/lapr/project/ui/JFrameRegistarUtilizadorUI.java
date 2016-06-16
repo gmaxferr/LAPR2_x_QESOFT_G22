@@ -36,7 +36,6 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         controller.getRegistoUtilizadores();
         u = controller.novoUtilizador();
         initComponents();
-        setSize(431, 344);
         alterarComportamentoFecharJFrame();
         setVisible(true);
     }

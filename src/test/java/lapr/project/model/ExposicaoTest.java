@@ -12,7 +12,7 @@ import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoCandidaturasRemovidas;
+import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
 import lapr.project.registos.RegistoConflitos;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoFAE;
@@ -195,14 +195,14 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of getRegistoCandidaturasRemovidas method, of class Exposicao.
+     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class Exposicao.
      */
     @Test
     public void testGetRegistoCandidaturasRemovidas() {
         System.out.println("getRegistoCandidaturasRemovidas");
         Exposicao instance = null;
-        RegistoCandidaturasRemovidas expResult = null;
-        RegistoCandidaturasRemovidas result = instance.getRegistoCandidaturasRemovidas();
+        RegistoCandidaturasAExposicaoRemovidas expResult = null;
+        RegistoCandidaturasAExposicaoRemovidas result = instance.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

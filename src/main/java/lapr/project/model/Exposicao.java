@@ -100,7 +100,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      *
      */
-    private RegistoCandidaturasRemovidas m_rcr;
+    private RegistoCandidaturasAExposicaoRemovidas m_rcr;
 
     /**
      *
@@ -132,7 +132,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_ce = ce;
         this.m_rce = new RegistoCandidaturasAExposicao();
         this.m_rfae = new RegistoFAE();
-        this.m_rcr = new RegistoCandidaturasRemovidas();
+        this.m_rcr = new RegistoCandidaturasAExposicaoRemovidas();
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
@@ -166,7 +166,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
         this.m_rce = new RegistoCandidaturasAExposicao();
         this.m_rfae = new RegistoFAE();
-        this.m_rcr = new RegistoCandidaturasRemovidas();
+        this.m_rcr = new RegistoCandidaturasAExposicaoRemovidas();
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
@@ -267,9 +267,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return registo de candidaturas removidas da exposição
+     * @return registo de candidaturas removidas 
      */
-    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
+     public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
         return m_rcr;
     }
 
@@ -545,6 +545,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
+    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos){
+        for (Demonstracao d : m_rd.getListaDemonstracoes()) {
+            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
+                d.setDataFimCandidaturas(dataFimDetecaoConflitos);
+            }
+        }
+    }
+    
     /**
      * Verifica se o utilizadoré FAE desta exposição
      *
@@ -619,6 +627,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             for (Demonstracao d : lstDemos) {
                 d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
                 d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
+                d.schedule(new AlterarParaConflitosDetetados(d), d.getDataFimDetecaoConflitos());
             }
 
         }
@@ -716,7 +725,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
                 this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
                 this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasRemovidas.ROOT_ELEMENT_NAME).item(0));
+                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
                 this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));

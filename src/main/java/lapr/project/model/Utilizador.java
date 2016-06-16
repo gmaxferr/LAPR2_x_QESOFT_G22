@@ -198,6 +198,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
+     * @return the randomCaesarShift
+     */
+    public int getShifts() {
+        return randomCaesarShift;
+    }
+
+    /**
+     * @param shifts the randomCaesarShift to set
+     */
+    public void setShifts(int shifts) {
+        this.randomCaesarShift = shifts;
+    }
+
+    /**
      * Define uma nova password de utilizador
      *
      * @param strPwd nova password de utilizador
@@ -224,7 +238,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
+        return Arrays.equals(CaesarsCypher.encrypt(password, this.randomCaesarShift, PASSWORD_ALFABET), this.m_strPwd);
     }
 
     /**
@@ -265,12 +279,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     @Override
     public String toString() {
-        String str = "Utilizador:\n";
-        str += "\tNome: " + this.m_strNome + "\n";
-        str += "\tPwd: " + this.m_strPwd + "\n";
-        str += "\tEmail: " + this.m_strEmail + "\n";
-
-        return str;
+        return this.m_strUsername;
     }
 
     /**
@@ -284,12 +293,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
-
-        if (validarDadosRepetidosOuInvalidos(nome, password, username, email) == false) {
-            return false;
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) {
+        if (validarDadosRepetidosOuInvalidos(nome, password, username, email)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -303,13 +311,17 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
      * retorna false
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
-        boolean password1 = validaPassword(password);
-        boolean email1 = validaEmail(email);
-        if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
+        try {
+            boolean password1 = validaPassword(password);
+            boolean email1 = validaEmail(email);
+            if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
+                return false;
+            }
+            return true;
+        } catch (InvalidEmailException | InvalidPasswordException ex) {
             return false;
         }
-        return true;
     }
 
     /**
@@ -326,7 +338,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         Pattern pt = Pattern.compile(emailPt, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pt.matcher(email);
         isValidEmail = matcher.matches();
-        
+
         if (isValidEmail) {
             return true;
         } else {
@@ -349,15 +361,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
-    /**
-     * Método apenas para fins de teste
-     * @param passowrd - nova password
-     */
-    public void setPasswordTestUseOnly(char[] passowrd){
-        this.m_strPwd = passowrd;
-    }
-    
-    
     /**
      * @return the keyword
      */

@@ -1,69 +1,77 @@
 package lapr.project.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
-import lapr.project.model.Organizador;
+import lapr.project.model.*;
 
 /**
  * Representação de uma ComboBoxModel de utilizadores
- * 
- * @author Ana Leite
+ *
+ * @author G29
  */
 public class ComboBoxModelUtilizadores extends AbstractListModel implements ComboBoxModel {
 
     /**
      * Lista de utilizadores
      */
-    private List<Organizador> m_listaUtilizadores;
-    
+    private List<Utilizador> m_listaUtilizadores;
+
     /**
-     * Objeto selecionado
+     * Utilizador selecionado
      */
-    private Object selection;
-    
-    public ComboBoxModelUtilizadores(List<Organizador> listaUtilizadores){
-        this.selection = null;
-        this.m_listaUtilizadores = listaUtilizadores;
+    private String usernameUtilizadorSelecionado;
+
+    public ComboBoxModelUtilizadores(List<Utilizador> listaUtilizadores) {
+        this.usernameUtilizadorSelecionado = null;
+        this.m_listaUtilizadores = new ArrayList(listaUtilizadores);
     }
-    
+
+    public void adicionarUtilizador(Utilizador utilizadorNovo) {
+        this.m_listaUtilizadores.add(utilizadorNovo);
+    }
+
     /**
      * Devolve o tamanho da lista de utilizadores
-     * 
+     *
      * @return tamanho da lista de utilizadores
      */
     @Override
     public int getSize() {
-            return this.m_listaUtilizadores.size();
+        return this.m_listaUtilizadores.size();
     }
-
-    
 
     /**
      * Define o item selecionado
-     * 
+     *
      * @param anItem item selecionado
      */
     @Override
     public void setSelectedItem(Object anItem) {
-        selection = anItem;
+
+        this.usernameUtilizadorSelecionado = (String) anItem;
+
     }
 
     /**
      * Devolve o item selecionado
-     * 
+     *
      * @return item selecionado
      */
     @Override
     public Object getSelectedItem() {
-        Organizador o = (Organizador)selection;
-        m_listaUtilizadores.remove((Organizador)selection);
-        return o;
+
+        return this.usernameUtilizadorSelecionado;
+
     }
 
     @Override
     public Object getElementAt(int index) {
-        return m_listaUtilizadores.get(index).getUtilizador().getUsername();
+        return this.m_listaUtilizadores.get(index).getUsername();
     }
 
+    public void removerUtilizador(Utilizador utilizador) {
+        this.m_listaUtilizadores.remove(utilizador);
+    }
 }

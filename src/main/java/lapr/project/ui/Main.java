@@ -36,14 +36,22 @@ public class Main {
                 if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
                     String[] filePath = input[1].split("\".*\"");
                     if (filePath.length > 0) {
+                        File file = new File(filePath[0]);
+                        if(!file.exists()){
+                            break;
+                        }
                         int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
                                 + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
 
                         if (resultVal == JOptionPane.YES_OPTION) {
-                            centroExposicoes = CTRL.Import(filePath[0]);
-                            if (centroExposicoes != null) {
-                                JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
+                            try {
+                                centroExposicoes = CTRL.Import(filePath[0]);
+                                if (centroExposicoes != null) {
+                                    JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } catch (FileNotFoundException ex) {
                                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                             }
                         }
@@ -68,11 +76,14 @@ public class Main {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 String filename = file.getAbsolutePath();
-                centroExposicoes = CTRL.importAndUpdateProperties(filename);
-
-                if (centroExposicoes != null) {
-                    JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                try {
+                    centroExposicoes = CTRL.importAndUpdateProperties(filename);
+                    if (centroExposicoes != null) {
+                        JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
             }
