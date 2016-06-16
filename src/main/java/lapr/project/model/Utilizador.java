@@ -265,12 +265,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     @Override
     public String toString() {
-        String str = "Utilizador:\n";
-        str += "\tNome: " + this.m_strNome + "\n";
-        str += "\tPwd: " + this.m_strPwd + "\n";
-        str += "\tEmail: " + this.m_strEmail + "\n";
-
-        return str;
+        return this.m_strUsername;
     }
 
     /**
@@ -326,7 +321,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         Pattern pt = Pattern.compile(emailPt, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pt.matcher(email);
         isValidEmail = matcher.matches();
-        
+
         if (isValidEmail) {
             return true;
         } else {
@@ -351,13 +346,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Método apenas para fins de teste
+     *
      * @param passowrd - nova password
      */
-    public void setPasswordTestUseOnly(char[] passowrd){
+    public void setPasswordTestUseOnly(char[] passowrd) {
         this.m_strPwd = passowrd;
     }
-    
-    
+
     /**
      * @return the keyword
      */

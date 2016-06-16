@@ -124,16 +124,26 @@ public class CriarExposicaoController {
     /**
      * Remove organizador pendente
      */
-    public void removerOrganizador(Organizador o){
+    public void removerOrganizador(Organizador o) {
         m_organizadoresSelecionados.remove(o);
     }
-    
+
     /**
      * Tenta a transição do estado ca exposição para criada
      */
     public void setEstadoCriada() {
         this.m_estadoExposicao = this.m_exposicao.getEstado();
         m_estadoExposicao.setEstadoCriada();
+    }
+
+    public void registarOrganizadores(List<Utilizador> listaDeUtilizadoresAdicionados) {
+        for (Utilizador utilizador : listaDeUtilizadoresAdicionados) {
+            this.m_exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+        }
+    }
+
+    public Utilizador identificarUtilizadorPeloUsername(String username) {
+        return this.m_ru.identificarUtilizadorPeloUsername(username);
     }
 
 }
