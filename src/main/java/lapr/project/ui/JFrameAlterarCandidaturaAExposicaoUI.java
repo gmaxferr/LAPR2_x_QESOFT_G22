@@ -34,19 +34,19 @@ import lapr.project.model.Produto;
  */
 public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
-    private List<Exposicao> m_listaExposicoes;
-    private JFrame jFrameMenuPrincipal;
-    private CentroExposicoes m_ce;
-    private Exposicao m_expo;
-    private String username;
-    private AlterarCandidaturaExpoController controller;
-    private List<CandidaturaAExposicao> m_listaCandidaturas;
-    private CandidaturaAExposicao m_candidaturaSelecionada;
-    private ModeloListaProdutos modeloJListaProdutosCard2;
-    private int numProdutos;
-    private ModeloListaDemonstracoes listModelDemonstracoes;
-    private List<Demonstracao>listaDemonstracoes;
-    private int numDemonstracoes;
+    private transient List<Exposicao> m_listaExposicoes;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient CentroExposicoes m_ce;
+    private transient Exposicao m_expo;
+    private transient String username;
+    private transient AlterarCandidaturaExpoController controller;
+    private transient List<CandidaturaAExposicao> m_listaCandidaturas;
+    private transient CandidaturaAExposicao m_candidaturaSelecionada;
+    private transient ModeloListaProdutos modeloJListaProdutosCard2;
+    private transient int numProdutos;
+    private transient ModeloListaDemonstracoes listModelDemonstracoes;
+    private transient List<Demonstracao>listaDemonstracoes;
+    private transient int numDemonstracoes;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";

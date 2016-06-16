@@ -11,7 +11,7 @@ import lapr.project.model.ListaDemonstracoes;
  */
 public class ModeloListaDemonstracoes extends AbstractListModel {
 
-    private ListaDemonstracoes listaDemonstracoes;
+    private transient ListaDemonstracoes listaDemonstracoes;
 
     public ModeloListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
         this.listaDemonstracoes = listaDemonstracoes;

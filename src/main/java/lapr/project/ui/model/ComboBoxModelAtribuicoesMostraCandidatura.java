@@ -15,7 +15,7 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
     /**
      * Lista de Atribuições.
      */
-    private List<AtribuicaoCandidatura> m_listaAtribuicoes;
+    private transient List<AtribuicaoCandidatura> m_listaAtribuicoes;
 
     /**
      * Objeto selecionado.

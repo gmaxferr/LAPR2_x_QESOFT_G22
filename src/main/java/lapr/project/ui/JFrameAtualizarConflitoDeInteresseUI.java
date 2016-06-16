@@ -21,15 +21,16 @@ import lapr.project.model.TipoConflito;
  */
 public class JFrameAtualizarConflitoDeInteresseUI extends javax.swing.JFrame {
 
-    private AtualizarConflitosDeInteresseController CTRL;
+    private transient AtualizarConflitosDeInteresseController CTRL;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-    private List<Exposicao> listaExposicoes;
-    private List<CandidaturaAExposicao> listaCandidaturas;
-    private List<ConflitoDeInteresse> listaConflitos;
-    private List<TipoConflito> listaTiposConflito;
+    
+    private transient List<Exposicao> listaExposicoes;
+    private transient List<CandidaturaAExposicao> listaCandidaturas;
+    private transient List<ConflitoDeInteresse> listaConflitos;
+    private transient List<TipoConflito> listaTiposConflito;
 
     /**
      * Creates new form JFrameAtualizarConflitoDeInteresseUI

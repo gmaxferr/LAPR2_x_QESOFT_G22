@@ -15,7 +15,7 @@ public class ComboBoxModelMecanismos extends AbstractListModel implements ComboB
     /**
      * Lista de Mecanismos.
      */
-    private List<Mecanismo> m_listaMecanismos;
+    private transient List<Mecanismo> m_listaMecanismos;
 
     /**
      * Objeto selecionado.

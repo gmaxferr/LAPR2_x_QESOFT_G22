@@ -17,11 +17,11 @@ import lapr.project.model.Exposicao;
  */
 public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
-    private CentroExposicoes centroExposicoesAtual;
-    private String usernameOrganizador;
-    private ListarCandidaturasAExposicaoRemovidasController controller;
-    private List<Exposicao> listaExposicoes;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient CentroExposicoes centroExposicoesAtual;
+    private transient String usernameOrganizador;
+    private transient ListarCandidaturasAExposicaoRemovidasController controller;
+    private transient List<Exposicao> listaExposicoes;
     
     
     

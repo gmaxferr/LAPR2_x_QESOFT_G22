@@ -14,7 +14,7 @@ public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements C
     /**
      * Lista de tipos de conflito.
      */
-    private List<TipoConflito> m_listaTipos;
+    private transient List<TipoConflito> m_listaTipos;
 
     /**
      * Objeto (tipo de conflito) selecionado.

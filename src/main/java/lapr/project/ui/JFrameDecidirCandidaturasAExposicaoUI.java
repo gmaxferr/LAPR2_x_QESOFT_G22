@@ -21,9 +21,9 @@ import lapr.project.model.*;
  */
 public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
-    private final JFrame jFrameMenuPrincipal;
-    private DecidirCandidaturasAExposicaoController controller;
-    private final ArrayList<Exposicao> listaExposicoes;
+    private transient final JFrame jFrameMenuPrincipal;
+    private transient DecidirCandidaturasAExposicaoController controller;
+    private transient final ArrayList<Exposicao> listaExposicoes;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;

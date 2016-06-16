@@ -19,7 +19,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
     /**
      * Lista de FAEs.
      */
-    private List<FAE> m_listaFae;
+    private transient List<FAE> m_listaFae;
 
     /**
      * Objeto (FAE) selecionado.

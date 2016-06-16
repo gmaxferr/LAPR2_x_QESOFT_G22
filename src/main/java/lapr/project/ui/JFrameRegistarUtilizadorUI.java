@@ -16,10 +16,10 @@ import lapr.project.model.*;
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
-    private JFrame jFrameLogin;
-    private CentroExposicoes centroExposicoesAtual;
-    private RegistarUtilizadorController controller;
-    private Utilizador u;
+    private transient JFrame jFrameLogin;
+    private transient CentroExposicoes centroExposicoesAtual;
+    private transient RegistarUtilizadorController controller;
+    private transient Utilizador u;
 
 
     /**

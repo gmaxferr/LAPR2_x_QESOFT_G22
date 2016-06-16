@@ -22,15 +22,15 @@ import lapr.project.model.*;
  */
 public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
+    private transient JFrame jFrameMenuPrincipal;
     private static final int CARD3_LARGURA_MINIMA = 400;
     private static final int CARD3_ALTURA_MINIMA = 240;
-    private final String usernameFAE;
-    private final AvaliarCandidaturaAExposicaoController controller;
-    private final List<Exposicao> listaExposicoes;
-    private List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
-    private AtribuicaoCandidatura atribuicaoEscolhida;
-    private Avaliacao avaliacaoDoFae;
+    private transient final String usernameFAE;
+    private transient final AvaliarCandidaturaAExposicaoController controller;
+    private transient final List<Exposicao> listaExposicoes;
+    private transient List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
+    private transient AtribuicaoCandidatura atribuicaoEscolhida;
+    private transient Avaliacao avaliacaoDoFae;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 

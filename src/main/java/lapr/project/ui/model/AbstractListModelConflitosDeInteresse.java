@@ -15,7 +15,7 @@ import lapr.project.model.ConflitoDeInteresse;
  */
 public class AbstractListModelConflitosDeInteresse extends AbstractListModel {
 
-    private List<ConflitoDeInteresse> m_listaConflitos;
+    private transient List<ConflitoDeInteresse> m_listaConflitos;
 
     public AbstractListModelConflitosDeInteresse(List<ConflitoDeInteresse> listaConflitos) {
         this.m_listaConflitos = listaConflitos;

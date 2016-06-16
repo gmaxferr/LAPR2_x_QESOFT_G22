@@ -10,7 +10,7 @@ import lapr.project.model.Stand;
  */
 public class ModeloListaStands extends AbstractListModel {
 
-    private List<Stand> listaStands;
+    private transient List<Stand> listaStands;
 
     public ModeloListaStands(List<Stand> listaStands) {
         this.listaStands = listaStands;

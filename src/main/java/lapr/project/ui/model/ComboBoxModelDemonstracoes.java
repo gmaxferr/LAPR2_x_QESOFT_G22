@@ -15,7 +15,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
     /**
      * Lista de demonstrações.
      */
-    private List<Demonstracao> m_listaDemonstracoes;
+    private transient List<Demonstracao> m_listaDemonstracoes;
 
     /**
      * Objeto selecionado.

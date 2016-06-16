@@ -15,9 +15,9 @@ import lapr.project.model.Recurso;
  */
 public class JFrameDefinirRecursos extends javax.swing.JFrame {
 
-    private DefinirRecursoController CTRL;
-    private List<Recurso> listaRecursos;
-    private AbstractListModelRecursos AbstListRecursos;
+    private transient DefinirRecursoController CTRL;
+    private transient List<Recurso> listaRecursos;
+    private transient AbstractListModelRecursos AbstListRecursos;
 
     /**
      * Cria novo JForm (JFrameDefinirRecursos)

@@ -16,7 +16,7 @@ import lapr.project.model.*;
  */
 public class ModeloJListUtilizadores extends AbstractListModel {
 
-    private List<Utilizador> m_listaUtilizadores;
+    private transient List<Utilizador> m_listaUtilizadores;
 
     public ModeloJListUtilizadores() {
         this.m_listaUtilizadores = new ArrayList<>();
