@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -32,7 +33,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     private String m_justificacao;
 
     public Avaliacao() {
-        this.m_justificacao = null;
+        this.m_justificacao = "";
     }
 
     /**
@@ -165,6 +166,36 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj != null
+                && obj instanceof Avaliacao) {
+            Avaliacao o = (Avaliacao) obj;
+            return this.m_justificacao.equals(o.m_justificacao)
+                    && this.m_avaliacao == o.m_avaliacao
+                    && this.m_ratingAdequacaoAExposicao == o.m_ratingAdequacaoAExposicao
+                    && this.m_ratingAdequacaoAsDemos == o.m_ratingAdequacaoAsDemos
+                    && this.m_ratingAdequacaoNumConvites == o.m_ratingAdequacaoNumConvites
+                    && this.m_ratingConhecimentoSobreOTema == o.m_ratingConhecimentoSobreOTema
+                    && this.m_ratingRecomendacaoGlobal == o.m_ratingRecomendacaoGlobal
+                    && this.getMediaRatings() == o.getMediaRatings();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.m_ratingConhecimentoSobreOTema;
+        hash = 89 * hash + this.m_ratingAdequacaoAExposicao;
+        hash = 89 * hash + this.m_ratingAdequacaoAsDemos;
+        hash = 89 * hash + this.m_ratingAdequacaoNumConvites;
+        hash = 89 * hash + this.m_ratingRecomendacaoGlobal;
+        hash = 89 * hash + (this.m_avaliacao ? 1 : 0);
+        hash = 89 * hash + Objects.hashCode(this.m_justificacao);
+        return hash;
+    }
+
+    @Override
     public Avaliacao importContentFromXMLNode(Node node) {
         try {
             Document document = XMLParser.createDocument(node, true);
@@ -210,6 +241,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             elementBase.setAttribute(RATING_ADEQ_NUM_CONVITES_ATTR_NAME, String.valueOf(this.m_ratingAdequacaoNumConvites));
             elementBase.setAttribute(RATING_CONHECIMENTO_TEMA_ATTR_NAME, String.valueOf(this.m_ratingConhecimentoSobreOTema));
             elementBase.setAttribute(RATING_REC_GLOBAL_ATTR_NAME, String.valueOf(this.m_ratingRecomendacaoGlobal));
+
+            node = elementBase;
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);

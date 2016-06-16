@@ -36,8 +36,8 @@ public class AvaliacaoTest {
     public void testVerificaAvaliacaoJaTomada() {
         System.out.println("verificaAvaliacaoJaTomada");
         Avaliacao instance = new Avaliacao();
+        assertEquals(false, instance.verificaAvaliacaoJaTomada());
         instance.setAvalicao(true, "fgfg", 0, 0, 0, 0, 0);
-
         assertEquals(true, instance.verificaAvaliacaoJaTomada());
     }
 
@@ -155,7 +155,7 @@ public class AvaliacaoTest {
         System.out.println("getMediaRatings");
         Avaliacao instance = new Avaliacao();
         instance.setAvalicao(true, "just", 1, 2, 3, 4, 5);
-        assertEquals(2f, instance.getMediaRatings());
+        assertEquals(3f, instance.getMediaRatings(), 0.1f);
     }
 
     /**
@@ -164,13 +164,12 @@ public class AvaliacaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
         Avaliacao instance = new Avaliacao();
-        Avaliacao expResult = null;
-        Avaliacao result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        Avaliacao expResult = new Avaliacao();
+        expResult.importContentFromXMLNode(node);
+        Avaliacao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -180,10 +179,36 @@ public class AvaliacaoTest {
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
         Avaliacao instance = new Avaliacao();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Avaliacao expResult = new Avaliacao();
+        expResult.importContentFromXMLNode(node);
+        Avaliacao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Avaliacao.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Avaliacao obj = new Avaliacao();
+        Avaliacao instance = new Avaliacao();
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class Avaliacao.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Avaliacao obj = new Avaliacao();
+        Avaliacao instance = new Avaliacao();
+        int expResult = obj.hashCode();
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
     }
 }

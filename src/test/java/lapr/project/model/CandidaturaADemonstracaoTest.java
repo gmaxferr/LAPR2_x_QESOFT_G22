@@ -20,14 +20,14 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class CandidaturaADemonstracaoTest {
-    
+
     public CandidaturaADemonstracaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -35,14 +35,14 @@ public class CandidaturaADemonstracaoTest {
     private CandidaturaADemonstracao instance;
     private String dados;
     private String email;
-    
+
     @Before
     public void setUp() {
         dados = "dados";
         email = "email@b.c";
         instance = new CandidaturaADemonstracao(dados, email);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -119,26 +119,25 @@ public class CandidaturaADemonstracaoTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        int expResult = 0;
+        CandidaturaADemonstracao cand = new CandidaturaADemonstracao(dados, email);
+        int expResult = cand.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class CandidaturaADemonstracao.
+     * Test of importContentFromXMLNode method, of class
+     * CandidaturaADemonstracao.
      */
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        CandidaturaADemonstracao instance = null;
-        CandidaturaADemonstracao expResult = null;
-        CandidaturaADemonstracao result = instance.importContentFromXMLNode(node);
+        instance = new CandidaturaADemonstracao(dados, email);
+        Node node = instance.exportContentToXMLNode();
+        CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
+        expResult.importContentFromXMLNode(node);
+        CandidaturaADemonstracao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -147,12 +146,12 @@ public class CandidaturaADemonstracaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        CandidaturaADemonstracao instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        instance = new CandidaturaADemonstracao(dados, email);
+        Node node = instance.exportContentToXMLNode();
+        CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
+        expResult.importContentFromXMLNode(node);
+        CandidaturaADemonstracao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }
