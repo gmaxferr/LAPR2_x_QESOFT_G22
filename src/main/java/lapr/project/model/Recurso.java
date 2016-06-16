@@ -38,6 +38,7 @@ public class Recurso implements Importable<Recurso>, Exportable {
         this.m_nomeRecurso = nomeRecurso;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if(obj != null){

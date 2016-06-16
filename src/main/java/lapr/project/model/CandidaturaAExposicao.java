@@ -305,15 +305,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return this.m_rp.getListaProdutosAExpor();
     }
 
-    /**
-     * Devolve os dados da candidatura (...)
-     *
-     * @return dados de CandidaturaAExposicao
-     */
-    public ArrayList getDadosCandidatura() {
-        ArrayList<String> dados = new ArrayList<>();
-        return dados;
-    }
 
     /**
      * Define nova decisao e justificação de candidatura

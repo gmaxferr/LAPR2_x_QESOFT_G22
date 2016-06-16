@@ -47,16 +47,6 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     }
 
     /**
-     * Devolve os dados da candidatura
-     * 
-     * @param c candidatura
-     * @return dados da candidatura
-     */
-    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
-        return c.getDadosCandidatura();
-    }
-
-    /**
      * Valida a candidatura
      * 
      * @param c candidatura
