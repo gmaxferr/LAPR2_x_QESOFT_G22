@@ -512,12 +512,4 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         }
         return node;
     }
-
-    public void setPasswordTestUseOnly(char[] password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setPasswordTestUseOnly(char[] password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
