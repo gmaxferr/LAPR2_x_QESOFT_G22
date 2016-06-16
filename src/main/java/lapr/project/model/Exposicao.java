@@ -356,15 +356,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_rce.getListaCandidaturas();
     }
 
-    /**
-     * Método que devolve os dados da candidatura
-     *
-     * @param c candidatura
-     * @return dados da candidatura
-     */
-    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
-        return c.getDadosCandidatura();
-    }
 
     /**
      *

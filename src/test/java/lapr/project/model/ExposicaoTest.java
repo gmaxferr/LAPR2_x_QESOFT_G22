@@ -318,21 +318,6 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of getDadosCandidatura method, of class Exposicao.
-     */
-    @Test
-    public void testGetDadosCandidatura() {
-        System.out.println("getDadosCandidatura");
-        CandidaturaAExposicao c = null;
-        Exposicao instance = null;
-        ArrayList expResult = null;
-        ArrayList result = instance.getDadosCandidatura(c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getRegistoFAE method, of class Exposicao.
      */
     @Test

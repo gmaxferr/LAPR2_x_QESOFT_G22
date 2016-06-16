@@ -1,18 +1,18 @@
-package lapr.project.controller;
+        package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Representação do Controller do caso de uso - listar candidaturas removidas
+ * Representação do Controller do caso de uso - listar candidaturas a exposição removidas
  * 
  * @author Ana Leite
  */
 public class ListarCandidaturasAExposicaoRemovidasController {
 
     /**
-     * Registo de candidaturas removidas.
+     * Registo de candidaturas a exposição removidas.
      */
     private RegistoCandidaturasAExposicaoRemovidas m_rcr;
 
@@ -32,7 +32,7 @@ public class ListarCandidaturasAExposicaoRemovidasController {
     private CentroExposicoes m_centroExposicoes;
 
     /**
-     * Constrói uma instância de ListarCandidaturasController recebendo como
+     * Constrói uma instância de ListarCandidaturasAExposicaoController recebendo como
      * parâmetro o centro de exposições
      *
      * @param centro_exposicoes centro de exposições
@@ -69,18 +69,18 @@ public class ListarCandidaturasAExposicaoRemovidasController {
     }
 
     /**
-     * Guarda o registo de candidaturas removidas.
+     * Guarda o registo de candidaturas a exposição removidas.
      */
-    public void getRegistoCandidaturasRemovidas() {
+    public void getRegistoCandidaturasAExposicaoRemovidas() {
         this.m_rcr = m_exposicaoEscolhida.getRegistoCandidaturasAExposicaoRemovidas();
     }
 
     /**
-     * Devolve a lista de candidaturas removidas
+     * Devolve a lista de candidaturas a exposição removidas
      *
-     * @return lista de candidaturas removidas
+     * @return lista de candidaturas a exposição removidas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoRemovidas() {
         return this.m_rcr.getListaCandidaturasAExposicaoRemovidas();
     }
 
