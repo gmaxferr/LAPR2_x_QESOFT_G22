@@ -9,17 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 import lapr.project.estados.Exposicao.EstadoExposicao;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
 import lapr.project.registos.RegistoAtribuicoes;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
 import lapr.project.registos.RegistoConflitos;
 import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.registos.RegistoExpositores;
 import lapr.project.registos.RegistoFAE;
 import lapr.project.registos.RegistoOrganizadores;
 import lapr.project.registos.RegistoRecursos;
 import lapr.project.registos.RegistoTipoConflitos;
 import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
 import lapr.project.utils.Data;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,8 +49,52 @@ public class ExposicaoTest {
     public static void tearDownClass() {
     }
     
+    private Local local;
+    private Data data1;
+    private Data data2;
+    private Data data3;
+    private Data data4;
+    private Data data5;
+    private Data data6;
+    private Data data7;
+    private String titulo;
+    private String desc;
+    private CentroExposicoes ce;
+    private Exposicao e;
+    private Utilizador u;
+    private Utilizador u2;
+    private CandidaturaAExposicao c;
+    
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        titulo = "titulo";
+        desc = "desc";
+        local = new Local("rua");
+        c = new CandidaturaAExposicao(new Expositor(u));
+        c.criarProduto("p");
+        c.criarProduto("q");
+        c.setArea("100");
+        c.setDecisao(true);
+        c.setKeywords("a;b;c;D;e");
+        c.setMorada("rua");
+        c.setNomeEmpresa("emp");
+        c.setNumConvites("15");
+        c.setTelemovel("915632569");
+        u = new Utilizador("a", "b", new char[]{'a', 'A', '.', '7'}, "1@2.3");
+        u2 = new Utilizador("a1", "b1", new char[]{'a', 'A', '.', '7'}, "12@2.3");
+        data1 = new Data("2016/10/05");
+        data2 = new Data("2016/10/06");
+        data3 = new Data("2016/10/07");
+        data4 = new Data("2016/10/08");
+        data5 = new Data("2016/10/09");
+        data6 = new Data("2016/10/10");
+        data7 = new Data("2016/10/11");
+        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        e.setDataFimCandDemo(data6);
+        e.setDataInicioCandDemo(data7);
+        ce.getRegistoExposicoes().getListaExposicoes().add(e);
+        
     }
     
     @After
@@ -60,12 +107,11 @@ public class ExposicaoTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        Exposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.valida();
+        
+        boolean expResult = true;
+        boolean result = e.valida();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -74,12 +120,11 @@ public class ExposicaoTest {
     @Test
     public void testGetTitulo() {
         System.out.println("getTitulo");
-        Exposicao instance = null;
-        String expResult = "";
-        String result = instance.getTitulo();
+        
+        String expResult = titulo;
+        String result = e.getTitulo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -88,12 +133,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDescricao() {
         System.out.println("getDescricao");
-        Exposicao instance = null;
-        String expResult = "";
-        String result = instance.getDescricao();
+        
+        String expResult = desc;
+        String result = e.getDescricao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -102,12 +146,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicioSubCand() {
         System.out.println("getDataInicioSubCand");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataInicioSubCand();
+        
+        Data expResult = data3;
+        Data result = e.getDataInicioSubCand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -116,12 +159,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimSubCand() {
         System.out.println("getDataFimSubCand");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataFimSubCand();
+        
+        Data expResult = data4;
+        Data result = e.getDataFimSubCand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -130,12 +172,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimDetecaoConflitos() {
         System.out.println("getDataFimDetecaoConflitos");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataFimDetecaoConflitos();
+        
+        Data expResult = data5;
+        Data result = e.getDataFimDetecaoConflitos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -144,12 +185,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicio() {
         System.out.println("getDataInicio");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataInicio();
+        
+        Data expResult = data1;
+        Data result = e.getDataInicio();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -158,12 +198,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFim() {
         System.out.println("getDataFim");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataFim();
+        
+        Data expResult = data2;
+        Data result = e.getDataFim();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -172,12 +211,11 @@ public class ExposicaoTest {
     @Test
     public void testGetLocal() {
         System.out.println("getLocal");
-        Exposicao instance = null;
-        Local expResult = null;
-        Local result = instance.getLocal();
+        
+        Local expResult = local;
+        Local result = e.getLocal();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -186,26 +224,27 @@ public class ExposicaoTest {
     @Test
     public void testGetKeywordRanking() {
         System.out.println("getKeywordRanking");
-        Exposicao instance = null;
-        KeywordRanking expResult = null;
-        KeywordRanking result = instance.getKeywordRanking();
+        
+        KeywordRanking expResult = new KeywordRanking();
+        e.setKeywordRanking(expResult);
+        KeywordRanking result = e.getKeywordRanking();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
-     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class Exposicao.
+     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class
+     * Exposicao.
      */
     @Test
     public void testGetRegistoCandidaturasRemovidas() {
         System.out.println("getRegistoCandidaturasRemovidas");
-        Exposicao instance = null;
-        RegistoCandidaturasAExposicaoRemovidas expResult = null;
-        RegistoCandidaturasAExposicaoRemovidas result = instance.getRegistoCandidaturasAExposicaoRemovidas();
+        
+        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
+        e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
+        RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -215,10 +254,9 @@ public class ExposicaoTest {
     public void testSetTitulo() {
         System.out.println("setTitulo");
         String strTitulo = "";
-        Exposicao instance = null;
-        instance.setTitulo(strTitulo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setTitulo(strTitulo);
+        
     }
 
     /**
@@ -228,10 +266,9 @@ public class ExposicaoTest {
     public void testSetDescricao() {
         System.out.println("setDescricao");
         String strDescricao = "";
-        Exposicao instance = null;
-        instance.setDescricao(strDescricao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setDescricao(strDescricao);
+        
     }
 
     /**
@@ -242,10 +279,9 @@ public class ExposicaoTest {
         System.out.println("setPeriodo");
         Data dataInicio = null;
         Data dataFim = null;
-        Exposicao instance = null;
-        instance.setPeriodo(dataInicio, dataFim);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setPeriodo(dataInicio, dataFim);
+        
     }
 
     /**
@@ -255,10 +291,9 @@ public class ExposicaoTest {
     public void testSetLocal() {
         System.out.println("setLocal");
         Local local = null;
-        Exposicao instance = null;
-        instance.setLocal(local);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setLocal(local);
+        
     }
 
     /**
@@ -267,12 +302,13 @@ public class ExposicaoTest {
     @Test
     public void testGetListaOrganizadores() {
         System.out.println("getListaOrganizadores");
-        Exposicao instance = null;
-        List<Organizador> expResult = null;
-        List<Organizador> result = instance.getListaOrganizadores();
+        Organizador o = new Organizador(u);
+        List<Organizador> expResult = new ArrayList<Organizador>();
+        expResult.add(o);
+        e.getRegistoOrganizadores().getListaOrganizadores().add(o);
+        List<Organizador> result = e.getListaOrganizadores();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -282,12 +318,11 @@ public class ExposicaoTest {
     public void testValidarDadosCandidatura() {
         System.out.println("validarDadosCandidatura");
         CandidaturaAExposicao candidaturaAValidar = null;
-        Exposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.validarDadosCandidatura(candidaturaAValidar);
+        
+        boolean expResult = true;
+        boolean result = e.validarDadosCandidatura(candidaturaAValidar);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -297,10 +332,9 @@ public class ExposicaoTest {
     public void testAddFAE() {
         System.out.println("addFAE");
         Utilizador u = null;
-        Exposicao instance = null;
-        instance.addFAE(u);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.addFAE(u);
+        
     }
 
     /**
@@ -309,27 +343,13 @@ public class ExposicaoTest {
     @Test
     public void testGetListaCandidaturasAExposicao() {
         System.out.println("getListaCandidaturasAExposicao");
-        Exposicao instance = null;
-        List<CandidaturaAExposicao> expResult = null;
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicao();
+        CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(u));
+        List<CandidaturaAExposicao> expResult = new ArrayList<>();
+        expResult.add(cand);
+        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
+        List<CandidaturaAExposicao> result = e.getListaCandidaturasAExposicao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDadosCandidatura method, of class Exposicao.
-     */
-    @Test
-    public void testGetDadosCandidatura() {
-        System.out.println("getDadosCandidatura");
-        CandidaturaAExposicao c = null;
-        Exposicao instance = null;
-        ArrayList expResult = null;
-        ArrayList result = instance.getDadosCandidatura(c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -338,12 +358,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoFAE() {
         System.out.println("getRegistoFAE");
-        Exposicao instance = null;
-        RegistoFAE expResult = null;
-        RegistoFAE result = instance.getRegistoFAE();
+        
+        RegistoFAE expResult = new RegistoFAE();
+        e.setRegistoFAE(expResult);
+        RegistoFAE result = e.getRegistoFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -352,26 +372,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoCandidaturasAExposicao() {
         System.out.println("getRegistoCandidaturasAExposicao");
-        Exposicao instance = null;
-        RegistoCandidaturasAExposicao expResult = null;
-        RegistoCandidaturasAExposicao result = instance.getRegistoCandidaturasAExposicao();
+        
+        RegistoCandidaturasAExposicao expResult = new RegistoCandidaturasAExposicao();
+        e.setRegistoCandidaturasAExposicao(expResult);
+        RegistoCandidaturasAExposicao result = e.getRegistoCandidaturasAExposicao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getRo method, of class Exposicao.
-     */
-    @Test
-    public void testGetRo() {
-        System.out.println("getRo");
-        Exposicao instance = null;
-        RegistoOrganizadores expResult = null;
-        RegistoOrganizadores result = instance.getRo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -380,13 +386,9 @@ public class ExposicaoTest {
     @Test
     public void testValidarCandidatura() {
         System.out.println("validarCandidatura");
-        CandidaturaAExposicao c = null;
-        Exposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.validarCandidatura(c);
+        boolean expResult = true;
+        boolean result = e.validarCandidatura(c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -395,11 +397,8 @@ public class ExposicaoTest {
     @Test
     public void testSetEstado() {
         System.out.println("setEstado");
-        EstadoExposicao estado = null;
-        Exposicao instance = null;
-        instance.setEstado(estado);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        EstadoExposicao estado = new EstadoExposicaoCandidaturasAbertas(e);
+        e.setEstado(estado);
     }
 
     /**
@@ -408,12 +407,9 @@ public class ExposicaoTest {
     @Test
     public void testSetDecisao() {
         System.out.println("setDecisao");
-        CandidaturaAExposicao candidaturaAExposicao = null;
-        boolean decisao = false;
-        Exposicao instance = null;
-        instance.setDecisao(candidaturaAExposicao, decisao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        CandidaturaAExposicao candidaturaAExposicao = new CandidaturaAExposicao(new Expositor(u));
+        boolean decisao = true;
+        e.setDecisao(candidaturaAExposicao, decisao);
     }
 
     /**
@@ -422,12 +418,11 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoDemonstracoes() {
         System.out.println("getRegistoDemonstracoes");
-        Exposicao instance = null;
-        RegistoDemonstracoes expResult = null;
-        RegistoDemonstracoes result = instance.getRegistoDemonstracoes();
+        RegistoDemonstracoes expResult = new RegistoDemonstracoes();
+        e.setRegistoDemonstracoes(expResult);
+        RegistoDemonstracoes result = e.getRegistoDemonstracoes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -436,12 +431,14 @@ public class ExposicaoTest {
     @Test
     public void testDadosMinimosObrigatorios() {
         System.out.println("dadosMinimosObrigatorios");
-        Exposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.dadosMinimosObrigatorios();
+        boolean expResult = true;
+        List<Organizador> lista = new ArrayList<Organizador>();
+        lista.add(new Organizador(u));
+        lista.add(new Organizador(u2));
+        e.addOrganizadores(lista);
+        boolean result = e.dadosMinimosObrigatorios();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -450,12 +447,12 @@ public class ExposicaoTest {
     @Test
     public void testGetEstado() {
         System.out.println("getEstado");
-        Exposicao instance = null;
-        EstadoExposicao expResult = null;
-        EstadoExposicao result = instance.getEstado();
+        EstadoExposicao ee = new EstadoExposicaoCandidaturasAbertas(e);
+        e.setEstado(ee)
+        EstadoExposicao expResult = ee;
+        EstadoExposicao result = e.getEstado();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -464,12 +461,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoConflitos() {
         System.out.println("getRegistoConflitos");
-        Exposicao instance = null;
-        RegistoConflitos expResult = null;
-        RegistoConflitos result = instance.getRegistoConflitos();
+        
+        RegistoConflitos expResult = new RegistoConflitos();
+        e.setRegistoConflitos(expResult);
+        RegistoConflitos result = e.getRegistoConflitos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -478,26 +475,11 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoAtribuicoes() {
         System.out.println("getRegistoAtribuicoes");
-        Exposicao instance = null;
-        RegistoAtribuicoes expResult = null;
-        RegistoAtribuicoes result = instance.getRegistoAtribuicoes();
+        RegistoAtribuicoes expResult = new RegistoAtribuicoes();
+        e.setRegistoAtribuicoes(expResult);
+        RegistoAtribuicoes result = e.getRegistoAtribuicoes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getRegistoOrganizadores method, of class Exposicao.
-     */
-    @Test
-    public void testGetRegistoOrganizadores() {
-        System.out.println("getRegistoOrganizadores");
-        Exposicao instance = null;
-        RegistoOrganizadores expResult = null;
-        RegistoOrganizadores result = instance.getRegistoOrganizadores();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -506,12 +488,11 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoAtribuicoesStands() {
         System.out.println("getRegistoAtribuicoesStands");
-        Exposicao instance = null;
-        RegistoAtribuicoesStands expResult = null;
-        RegistoAtribuicoesStands result = instance.getRegistoAtribuicoesStands();
+        RegistoAtribuicoesStands expResult = new RegistoAtribuicoesStands();
+        e.setRegistoAtribuicoesStands(expResult);
+        RegistoAtribuicoesStands result = e.getRegistoAtribuicoesStands();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -520,12 +501,9 @@ public class ExposicaoTest {
     @Test
     public void testSchedule() {
         System.out.println("schedule");
-        TimerTask m_tt = null;
-        Data date = null;
-        Exposicao instance = null;
-        instance.schedule(m_tt, date);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        TimerTask m_tt = new AlterarParaAbertaCandidaturas(e);
+        Data date = data1;
+        e.schedule(m_tt, date);
     }
 
     /**
@@ -535,10 +513,9 @@ public class ExposicaoTest {
     public void testSetDataAberturaSubCand() {
         System.out.println("setDataAberturaSubCand");
         Data dataAberturaSubCand = null;
-        Exposicao instance = null;
-        instance.setDataAberturaSubCand(dataAberturaSubCand);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setDataAberturaSubCand(dataAberturaSubCand);
+        
     }
 
     /**
@@ -548,10 +525,9 @@ public class ExposicaoTest {
     public void testSetDataEncerramentoSubCand() {
         System.out.println("setDataEncerramentoSubCand");
         Data dataEncerramentoSubCand = null;
-        Exposicao instance = null;
-        instance.setDataEncerramentoSubCand(dataEncerramentoSubCand);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setDataEncerramentoSubCand(dataEncerramentoSubCand);
+        
     }
 
     /**
@@ -561,10 +537,9 @@ public class ExposicaoTest {
     public void testSetDataFimDetecaoConflitos() {
         System.out.println("setDataFimDetecaoConflitos");
         Data dataFimDetecaoConflitos = null;
-        Exposicao instance = null;
-        instance.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
+        
     }
 
     /**
@@ -573,12 +548,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicioCandDemo() {
         System.out.println("getDataInicioCandDemo");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataInicioCandDemo();
+        
+        Data expResult = data7;
+        Data result = e.getDataInicioCandDemo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -588,10 +562,9 @@ public class ExposicaoTest {
     public void testSetDataInicioCandDemo() {
         System.out.println("setDataInicioCandDemo");
         Data dataInicioCandDemo = null;
-        Exposicao instance = null;
-        instance.setDataInicioCandDemo(dataInicioCandDemo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.setDataInicioCandDemo(dataInicioCandDemo);
+        
     }
 
     /**
@@ -600,12 +573,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimCandDemo() {
         System.out.println("getDataFimCandDemo");
-        Exposicao instance = null;
-        Data expResult = null;
-        Data result = instance.getDataFimCandDemo();
+        
+        Data expResult = data6;
+        Data result = e.getDataFimCandDemo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -614,11 +586,9 @@ public class ExposicaoTest {
     @Test
     public void testSetDataFimCandDemo() {
         System.out.println("setDataFimCandDemo");
-        Data dataFimCandDemo = null;
-        Exposicao instance = null;
-        instance.setDataFimCandDemo(dataFimCandDemo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Data dataFimCandDemo = data3;
+        e.setDataFimCandDemo(dataFimCandDemo);
+        
     }
 
     /**
@@ -630,10 +600,9 @@ public class ExposicaoTest {
         RegistoRecursos m_registoRecursos = null;
         RegistoTipoConflitos m_registoTipoConflitos = null;
         RegistoUtilizadores m_registoUtilizadores = null;
-        Exposicao instance = null;
-        instance.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
+        
     }
 
     /**
@@ -643,12 +612,11 @@ public class ExposicaoTest {
     public void testValidaOrganizador() {
         System.out.println("validaOrganizador");
         Organizador utilizador = null;
-        Exposicao instance = null;
-        boolean expResult = false;
-        boolean result = instance.validaOrganizador(utilizador);
+        
+        boolean expResult = true;
+        boolean result = e.validaOrganizador(utilizador);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -657,10 +625,9 @@ public class ExposicaoTest {
     @Test
     public void testRecriarTimersDemo() {
         System.out.println("recriarTimersDemo");
-        Exposicao instance = null;
-        instance.recriarTimersDemo();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        e.getRegistoDemonstracoes().getListaDemonstracoes().add(new Demonstracao("d"));
+        e.recriarTimersDemo();
+        
     }
 
     /**
@@ -669,10 +636,94 @@ public class ExposicaoTest {
     @Test
     public void testRecriarTimersExpo() {
         System.out.println("recriarTimersExpo");
-        Exposicao instance = null;
-        instance.recriarTimersExpo();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        e.recriarTimersExpo();
+        
+    }
+
+    /**
+     * Test of addOrganizadores method, of class Exposicao.
+     */
+    @Test
+    public void testAddOrganizadores() {
+        System.out.println("addOrganizadores");
+        List<Organizador> lista = new ArrayList<Organizador>();
+        lista.add(new Organizador(u));
+        e.addOrganizadores(lista);
+        
+    }
+
+    /**
+     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class
+     * Exposicao.
+     */
+    @Test
+    public void testGetRegistoCandidaturasAExposicaoRemovidas() {
+        System.out.println("getRegistoCandidaturasAExposicaoRemovidas");
+        
+        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
+        e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
+        RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of setDataFimDetecaoConflitosDemo method, of class Exposicao.
+     */
+    @Test
+    public void testSetDataFimDetecaoConflitosDemo() {
+        System.out.println("setDataFimDetecaoConflitosDemo");
+        Data dataFimDetecaoConflitos = null;
+        
+        e.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
+        
+    }
+
+    /**
+     * Test of getCentroExposicoes method, of class Exposicao.
+     */
+    @Test
+    public void testGetCentroExposicoes() {
+        System.out.println("getCentroExposicoes");
+        
+        CentroExposicoes expResult = ce;
+        CentroExposicoes result = e.getCentroExposicoes();
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of setCentroExposicoes method, of class Exposicao.
+     */
+    @Test
+    public void testSetCentroExposicoes() {
+        System.out.println("setCentroExposicoes");
+        e.setCentroExposicoes(ce);
+    }
+
+    /**
+     * Test of equals method, of class Exposicao.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Exposicao expo = e;
+        boolean expResult = true;
+        boolean result = e.equals(expo);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getRegistoOrganizadores method, of class Exposicao.
+     */
+    @Test
+    public void testGetRegistoOrganizadores() {
+        System.out.println("getRegistoOrganizadores");
+        RegistoOrganizadores expResult = new RegistoOrganizadores();
+        e.setRegistoOrganizadores(expResult);
+        RegistoOrganizadores result = e.getRegistoOrganizadores();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -682,12 +733,9 @@ public class ExposicaoTest {
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        Exposicao instance = null;
         Exposicao expResult = null;
-        Exposicao result = instance.importContentFromXMLNode(node);
+        Exposicao result = e.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -696,25 +744,111 @@ public class ExposicaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Exposicao instance = null;
         Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node result = e.exportContentToXMLNode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addOrganizadores method, of class Exposicao.
+     * Test of setKeywordRanking method, of class Exposicao.
      */
     @Test
-    public void testAddOrganizadores() {
-        System.out.println("addOrganizadores");
-        List<Organizador> m_organizadoresSelecionados = null;
-        Exposicao instance = null;
-        instance.addOrganizadores(m_organizadoresSelecionados);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetKeywordRanking() {
+        System.out.println("setKeywordRanking");
+        KeywordRanking m_keywordRanking = null;
+        e.setKeywordRanking(m_keywordRanking);
+    }
+
+    /**
+     * Test of setRegistoAtribuicoesStands method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoes_RegistoAtribuicoes() {
+        System.out.println("setRegistoAtribuicoes");
+        RegistoAtribuicoes m_ra = null;
+        e.setRegistoAtribuicoes(m_ra);
+    }
+
+    /**
+     * Test of setRegistoFAE method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoFAE() {
+        System.out.println("setRegistoFAE");
+        RegistoFAE m_rfae = null;
+        e.setRegistoFAE(m_rfae);
+    }
+
+    /**
+     * Test of setRegistoCandidaturasAExposicao method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoCandidaturasAExposicao() {
+        System.out.println("setRegistoCandidaturasAExposicao");
+        RegistoCandidaturasAExposicao m_rce = null;
+        e.setRegistoCandidaturasAExposicao(m_rce);
+    }
+
+    /**
+     * Test of setRegistoCandidaturasAExposicaoRemovidas method, of class
+     * Exposicao.
+     */
+    @Test
+    public void testSetRegistoCandidaturasAExposicaoRemovidas() {
+        System.out.println("setRegistoCandidaturasAExposicaoRemovidas");
+        RegistoCandidaturasAExposicaoRemovidas m_rcr = null;
+        e.setRegistoCandidaturasAExposicaoRemovidas(m_rcr);
+    }
+
+    /**
+     * Test of setRegistoOrganizadores method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoOrganizadores() {
+        System.out.println("setRegistoOrganizadores");
+        RegistoOrganizadores m_ro = null;
+        e.setRegistoOrganizadores(m_ro);
+    }
+
+    /**
+     * Test of setRegistoDemonstracoes method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoDemonstracoes() {
+        System.out.println("setRegistoDemonstracoes");
+        RegistoDemonstracoes m_rd = null;
+        e.setRegistoDemonstracoes(m_rd);
+    }
+
+    /**
+     * Test of setRegistoAtribuicoesStands method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoAtribuicoes_RegistoAtribuicoesStands() {
+        System.out.println("setRegistoAtribuicoes");
+        RegistoAtribuicoesStands m_ras = null;
+        e.setRegistoAtribuicoesStands(m_ras);
+    }
+
+    /**
+     * Test of setRegistoConflitos method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoConflitos() {
+        System.out.println("setRegistoConflitos");
+        RegistoConflitos m_rconf = null;
+        e.setRegistoConflitos(m_rconf);
+    }
+
+    /**
+     * Test of setRegistoExpositores method, of class Exposicao.
+     */
+    @Test
+    public void testSetRegistoExpositores() {
+        System.out.println("setRegistoExpositores");
+        RegistoExpositores m_rexpositores = null;
+        e.setRegistoExpositores(m_rexpositores);
+        
     }
     
 }

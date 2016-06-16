@@ -267,9 +267,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      * Devolve o registo de candidaturas removidas da exposição
      *
-     * @return registo de candidaturas removidas 
+     * @return registo de candidaturas removidas
      */
-     public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
+    public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
         return m_rcr;
     }
 
@@ -357,16 +357,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Método que devolve os dados da candidatura
-     *
-     * @param c candidatura
-     * @return dados da candidatura
-     */
-    public ArrayList getDadosCandidatura(CandidaturaAExposicao c) {
-        return c.getDadosCandidatura();
-    }
-
-    /**
      *
      * @return
      */
@@ -380,14 +370,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public RegistoCandidaturasAExposicao getRegistoCandidaturasAExposicao() {
         return m_rce;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public RegistoOrganizadores getRo() {
-        return m_ro;
     }
 
     /**
@@ -428,7 +410,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return
      */
     public boolean dadosMinimosObrigatorios() {
-        if (m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataFimDetecaoConflitos != null && m_dataInicio != null && m_ro.getListaOrganizadores().size() >= 2 && m_strTitulo.length() > 0 && m_strDescricao.length() > 0 && local != null) {
+        if (m_dataAberturaCandidatura != null
+                && m_dataEncerramentoCandidatura != null
+                && m_dataFim != null && m_dataFimDetecaoConflitos != null
+                && m_dataInicio != null
+                && m_ro.getListaOrganizadores().size() >= 2
+                && m_strTitulo.length() > 0
+                && m_strDescricao.length() > 0
+                && local != null) {
             return true;
         } else {
             return false;
@@ -545,14 +534,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
-    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos){
+    public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
                 d.setDataFimCandidaturas(dataFimDetecaoConflitos);
             }
         }
     }
-    
+
     /**
      * Verifica se o utilizadoré FAE desta exposição
      *
@@ -925,6 +914,96 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         for (Organizador o : m_organizadoresSelecionados) {
             this.m_ro.addOrganizador(o);
         }
+    }
+
+    /**
+     * Apenas para uso de TESTES
+     *
+     * @param m_keywordRanking the m_keywordRanking to set
+     */
+    public void setKeywordRanking(KeywordRanking m_keywordRanking) {
+        this.m_keywordRanking = m_keywordRanking;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_ra the m_ra to set
+     */
+    public void setRegistoAtribuicoes(RegistoAtribuicoes m_ra) {
+        this.m_ra = m_ra;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rfae the m_rfae to set
+     */
+    public void setRegistoFAE(RegistoFAE m_rfae) {
+        this.m_rfae = m_rfae;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rce the m_rce to set
+     */
+    public void setRegistoCandidaturasAExposicao(RegistoCandidaturasAExposicao m_rce) {
+        this.m_rce = m_rce;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rcr the m_rcr to set
+     */
+    public void setRegistoCandidaturasAExposicaoRemovidas(RegistoCandidaturasAExposicaoRemovidas m_rcr) {
+        this.m_rcr = m_rcr;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_ro the m_ro to set
+     */
+    public void setRegistoOrganizadores(RegistoOrganizadores m_ro) {
+        this.m_ro = m_ro;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rd the m_rd to set
+     */
+    public void setRegistoDemonstracoes(RegistoDemonstracoes m_rd) {
+        this.m_rd = m_rd;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_ras the m_ras to set
+     */
+    public void setRegistoAtribuicoesStands(RegistoAtribuicoesStands m_ras) {
+        this.m_ras = m_ras;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rconf the m_rconf to set
+     */
+    public void setRegistoConflitos(RegistoConflitos m_rconf) {
+        this.m_rconf = m_rconf;
+    }
+
+    /**
+     * * APENAS PARA TESTES
+     *
+     * @param m_rexpositores the m_rexpositores to set
+     */
+    public void setRegistoExpositores(RegistoExpositores m_rexpositores) {
+        this.m_rexpositores = m_rexpositores;
     }
 
 }
