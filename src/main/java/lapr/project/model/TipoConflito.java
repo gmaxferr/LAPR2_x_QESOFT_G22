@@ -10,17 +10,17 @@ import org.w3c.dom.*;
  * @author Ricardo Catalão
  */
 public class TipoConflito implements Importable<TipoConflito>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "TipoConflito";
     public static final String ID_ATTR_NAME = "ID";
-    
+
     private String ID;
 
     /**
      * Mecanismo de deteção de conflitos.
      */
     private MecanismoDetecaoConflito m_mec;
-    
+
     /**
      * Contrutor por definição.
      */
@@ -28,12 +28,12 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
         m_mec = new MecanismoDetecaoConflito(this);
         this.ID = ID;
     }
-    
+
     /**
      * Define os dados para este tipo de conflitos.
      */
-    public void setDadosTipoConflito() {
-        throw new UnsupportedOperationException("Não sabemos que tipo de dados compõem um tipo de conflito.");
+    public void setDadosTipoConflito(String tipoConflito) {
+        this.ID = tipoConflito;
     }
 
     /**
@@ -42,7 +42,7 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     public MecanismoDetecaoConflito getMecanismoDetecaoConflito() {
         return m_mec;
     }
-    
+
     @Override
     public TipoConflito importContentFromXMLNode(Node node) {
         try {
@@ -77,9 +77,9 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
-            
+
             elementBase.setAttribute(ID_ATTR_NAME, this.ID);
-            
+
             node = elementBase;
 
         } catch (ParserConfigurationException ex) {

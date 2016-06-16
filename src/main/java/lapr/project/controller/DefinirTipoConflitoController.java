@@ -47,8 +47,8 @@ public class DefinirTipoConflitoController {
     /**
      * Define os dados necessários para o novo tipo de conflito.
      */
-    public void setDadosTipoConflito() {
-        m_TipoConflito.setDadosTipoConflito();
+    public void setDadosTipoConflito(String tipoConflito) {
+        m_TipoConflito.setDadosTipoConflito(tipoConflito);
     }
 
     /**

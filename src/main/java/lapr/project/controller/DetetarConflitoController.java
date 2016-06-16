@@ -6,7 +6,6 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.MecanismoDetecaoConflito;
 import lapr.project.model.TipoConflito;
-import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoTipoConflitos;
 
 /**
