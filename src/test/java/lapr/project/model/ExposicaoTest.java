@@ -37,18 +37,18 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class ExposicaoTest {
-    
+
     public ExposicaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     private Local local;
     private Data data1;
     private Data data2;
@@ -64,7 +64,7 @@ public class ExposicaoTest {
     private Utilizador u;
     private Utilizador u2;
     private CandidaturaAExposicao c;
-    
+
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
@@ -94,9 +94,9 @@ public class ExposicaoTest {
         e.setDataFimCandDemo(data6);
         e.setDataInicioCandDemo(data7);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
-        
+
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -107,11 +107,11 @@ public class ExposicaoTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        
+
         boolean expResult = true;
         boolean result = e.valida();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -120,11 +120,11 @@ public class ExposicaoTest {
     @Test
     public void testGetTitulo() {
         System.out.println("getTitulo");
-        
+
         String expResult = titulo;
         String result = e.getTitulo();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -133,11 +133,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDescricao() {
         System.out.println("getDescricao");
-        
+
         String expResult = desc;
         String result = e.getDescricao();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -146,11 +146,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicioSubCand() {
         System.out.println("getDataInicioSubCand");
-        
+
         Data expResult = data3;
         Data result = e.getDataInicioSubCand();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -159,11 +159,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimSubCand() {
         System.out.println("getDataFimSubCand");
-        
+
         Data expResult = data4;
         Data result = e.getDataFimSubCand();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -172,11 +172,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimDetecaoConflitos() {
         System.out.println("getDataFimDetecaoConflitos");
-        
+
         Data expResult = data5;
         Data result = e.getDataFimDetecaoConflitos();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -185,11 +185,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicio() {
         System.out.println("getDataInicio");
-        
+
         Data expResult = data1;
         Data result = e.getDataInicio();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -198,11 +198,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFim() {
         System.out.println("getDataFim");
-        
+
         Data expResult = data2;
         Data result = e.getDataFim();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -211,11 +211,11 @@ public class ExposicaoTest {
     @Test
     public void testGetLocal() {
         System.out.println("getLocal");
-        
+
         Local expResult = local;
         Local result = e.getLocal();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -224,12 +224,12 @@ public class ExposicaoTest {
     @Test
     public void testGetKeywordRanking() {
         System.out.println("getKeywordRanking");
-        
+
         KeywordRanking expResult = new KeywordRanking();
         e.setKeywordRanking(expResult);
         KeywordRanking result = e.getKeywordRanking();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -239,12 +239,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoCandidaturasRemovidas() {
         System.out.println("getRegistoCandidaturasRemovidas");
-        
+
         RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
         e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
         RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -254,9 +254,9 @@ public class ExposicaoTest {
     public void testSetTitulo() {
         System.out.println("setTitulo");
         String strTitulo = "";
-        
+
         e.setTitulo(strTitulo);
-        
+
     }
 
     /**
@@ -266,9 +266,9 @@ public class ExposicaoTest {
     public void testSetDescricao() {
         System.out.println("setDescricao");
         String strDescricao = "";
-        
+
         e.setDescricao(strDescricao);
-        
+
     }
 
     /**
@@ -279,9 +279,9 @@ public class ExposicaoTest {
         System.out.println("setPeriodo");
         Data dataInicio = null;
         Data dataFim = null;
-        
+
         e.setPeriodo(dataInicio, dataFim);
-        
+
     }
 
     /**
@@ -291,9 +291,9 @@ public class ExposicaoTest {
     public void testSetLocal() {
         System.out.println("setLocal");
         Local local = null;
-        
+
         e.setLocal(local);
-        
+
     }
 
     /**
@@ -308,7 +308,7 @@ public class ExposicaoTest {
         e.getRegistoOrganizadores().getListaOrganizadores().add(o);
         List<Organizador> result = e.getListaOrganizadores();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -318,11 +318,11 @@ public class ExposicaoTest {
     public void testValidarDadosCandidatura() {
         System.out.println("validarDadosCandidatura");
         CandidaturaAExposicao candidaturaAValidar = null;
-        
+
         boolean expResult = true;
         boolean result = e.validarDadosCandidatura(candidaturaAValidar);
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -332,9 +332,9 @@ public class ExposicaoTest {
     public void testAddFAE() {
         System.out.println("addFAE");
         Utilizador u = null;
-        
+
         e.addFAE(u);
-        
+
     }
 
     /**
@@ -343,22 +343,12 @@ public class ExposicaoTest {
     @Test
     public void testGetListaCandidaturasAExposicao() {
         System.out.println("getListaCandidaturasAExposicao");
-<<<<<<< HEAD
         CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(u));
         List<CandidaturaAExposicao> expResult = new ArrayList<>();
         expResult.add(cand);
         e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
         List<CandidaturaAExposicao> result = e.getListaCandidaturasAExposicao();
         assertEquals(expResult, result);
-        
-=======
-        Exposicao instance = null;
-        List<CandidaturaAExposicao> expResult = null;
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
->>>>>>> 5dbe7dc19f3e65eaf1ac0afc6dd03f54afb5504a
     }
 
     /**
@@ -367,12 +357,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoFAE() {
         System.out.println("getRegistoFAE");
-        
+
         RegistoFAE expResult = new RegistoFAE();
         e.setRegistoFAE(expResult);
         RegistoFAE result = e.getRegistoFAE();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -381,12 +371,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoCandidaturasAExposicao() {
         System.out.println("getRegistoCandidaturasAExposicao");
-        
+
         RegistoCandidaturasAExposicao expResult = new RegistoCandidaturasAExposicao();
         e.setRegistoCandidaturasAExposicao(expResult);
         RegistoCandidaturasAExposicao result = e.getRegistoCandidaturasAExposicao();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -431,7 +421,7 @@ public class ExposicaoTest {
         e.setRegistoDemonstracoes(expResult);
         RegistoDemonstracoes result = e.getRegistoDemonstracoes();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -447,7 +437,7 @@ public class ExposicaoTest {
         e.addOrganizadores(lista);
         boolean result = e.dadosMinimosObrigatorios();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -457,11 +447,11 @@ public class ExposicaoTest {
     public void testGetEstado() {
         System.out.println("getEstado");
         EstadoExposicao ee = new EstadoExposicaoCandidaturasAbertas(e);
-        e.setEstado(ee)
+        e.setEstado(ee);
         EstadoExposicao expResult = ee;
         EstadoExposicao result = e.getEstado();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -470,12 +460,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoConflitos() {
         System.out.println("getRegistoConflitos");
-        
+
         RegistoConflitos expResult = new RegistoConflitos();
         e.setRegistoConflitos(expResult);
         RegistoConflitos result = e.getRegistoConflitos();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -488,7 +478,7 @@ public class ExposicaoTest {
         e.setRegistoAtribuicoes(expResult);
         RegistoAtribuicoes result = e.getRegistoAtribuicoes();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -501,7 +491,7 @@ public class ExposicaoTest {
         e.setRegistoAtribuicoesStands(expResult);
         RegistoAtribuicoesStands result = e.getRegistoAtribuicoesStands();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -522,9 +512,9 @@ public class ExposicaoTest {
     public void testSetDataAberturaSubCand() {
         System.out.println("setDataAberturaSubCand");
         Data dataAberturaSubCand = null;
-        
+
         e.setDataAberturaSubCand(dataAberturaSubCand);
-        
+
     }
 
     /**
@@ -534,9 +524,9 @@ public class ExposicaoTest {
     public void testSetDataEncerramentoSubCand() {
         System.out.println("setDataEncerramentoSubCand");
         Data dataEncerramentoSubCand = null;
-        
+
         e.setDataEncerramentoSubCand(dataEncerramentoSubCand);
-        
+
     }
 
     /**
@@ -546,9 +536,9 @@ public class ExposicaoTest {
     public void testSetDataFimDetecaoConflitos() {
         System.out.println("setDataFimDetecaoConflitos");
         Data dataFimDetecaoConflitos = null;
-        
+
         e.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
-        
+
     }
 
     /**
@@ -557,11 +547,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataInicioCandDemo() {
         System.out.println("getDataInicioCandDemo");
-        
+
         Data expResult = data7;
         Data result = e.getDataInicioCandDemo();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -571,9 +561,9 @@ public class ExposicaoTest {
     public void testSetDataInicioCandDemo() {
         System.out.println("setDataInicioCandDemo");
         Data dataInicioCandDemo = null;
-        
+
         e.setDataInicioCandDemo(dataInicioCandDemo);
-        
+
     }
 
     /**
@@ -582,11 +572,11 @@ public class ExposicaoTest {
     @Test
     public void testGetDataFimCandDemo() {
         System.out.println("getDataFimCandDemo");
-        
+
         Data expResult = data6;
         Data result = e.getDataFimCandDemo();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -597,7 +587,7 @@ public class ExposicaoTest {
         System.out.println("setDataFimCandDemo");
         Data dataFimCandDemo = data3;
         e.setDataFimCandDemo(dataFimCandDemo);
-        
+
     }
 
     /**
@@ -609,9 +599,9 @@ public class ExposicaoTest {
         RegistoRecursos m_registoRecursos = null;
         RegistoTipoConflitos m_registoTipoConflitos = null;
         RegistoUtilizadores m_registoUtilizadores = null;
-        
+
         e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);
-        
+
     }
 
     /**
@@ -621,11 +611,11 @@ public class ExposicaoTest {
     public void testValidaOrganizador() {
         System.out.println("validaOrganizador");
         Organizador utilizador = null;
-        
+
         boolean expResult = true;
         boolean result = e.validaOrganizador(utilizador);
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -636,7 +626,7 @@ public class ExposicaoTest {
         System.out.println("recriarTimersDemo");
         e.getRegistoDemonstracoes().getListaDemonstracoes().add(new Demonstracao("d"));
         e.recriarTimersDemo();
-        
+
     }
 
     /**
@@ -645,9 +635,9 @@ public class ExposicaoTest {
     @Test
     public void testRecriarTimersExpo() {
         System.out.println("recriarTimersExpo");
-        
+
         e.recriarTimersExpo();
-        
+
     }
 
     /**
@@ -659,7 +649,7 @@ public class ExposicaoTest {
         List<Organizador> lista = new ArrayList<Organizador>();
         lista.add(new Organizador(u));
         e.addOrganizadores(lista);
-        
+
     }
 
     /**
@@ -669,12 +659,12 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoCandidaturasAExposicaoRemovidas() {
         System.out.println("getRegistoCandidaturasAExposicaoRemovidas");
-        
+
         RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
         e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
         RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -684,9 +674,9 @@ public class ExposicaoTest {
     public void testSetDataFimDetecaoConflitosDemo() {
         System.out.println("setDataFimDetecaoConflitosDemo");
         Data dataFimDetecaoConflitos = null;
-        
+
         e.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
-        
+
     }
 
     /**
@@ -695,11 +685,11 @@ public class ExposicaoTest {
     @Test
     public void testGetCentroExposicoes() {
         System.out.println("getCentroExposicoes");
-        
+
         CentroExposicoes expResult = ce;
         CentroExposicoes result = e.getCentroExposicoes();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -857,7 +847,7 @@ public class ExposicaoTest {
         System.out.println("setRegistoExpositores");
         RegistoExpositores m_rexpositores = null;
         e.setRegistoExpositores(m_rexpositores);
-        
+
     }
-    
+
 }
