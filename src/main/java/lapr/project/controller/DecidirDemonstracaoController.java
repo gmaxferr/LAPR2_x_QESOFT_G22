@@ -28,6 +28,7 @@ public class DecidirDemonstracaoController {
     
     Data dataInicioCandDemo;
     Data dataFimCandDemo;
+    Data dataFimDetecaoConflitos;
     
     public DecidirDemonstracaoController(CentroExposicoes ce, String username) {
         m_re = ce.getRegistoExposicoes();
@@ -63,6 +64,18 @@ public class DecidirDemonstracaoController {
     }
 
     /**
+     * Define as datas da demonstração
+     * @param dataInicioSubCand - data de inicio de submissao de candidaturas
+     * @param dataFimSubCand - data de fim de submissao de candidaturas
+     * @param dataFimDetecaoConflitos  - data de inicio de detecao de conflitos
+     */
+    public void setDatas(Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos){
+        this.dataInicioCandDemo = dataInicioSubCand;
+        this.dataFimCandDemo = dataFimSubCand;
+        this.dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+    }
+    
+    /**
      * Regista decisões para as demonstrações pendentes da exposição
      */
     public void registarDecisoes() {
@@ -75,6 +88,7 @@ public class DecidirDemonstracaoController {
             
             this.m_expo.setDataInicioCandDemo(dataInicioCandDemo);
             this.m_expo.setDataFimCandDemo(dataFimCandDemo);
+            this.m_expo.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
         }
     }
 }

@@ -13,7 +13,7 @@ import lapr.project.model.Demonstracao;
  * @author JoãoCardoso aka K4rd050
  */
 public abstract class EstadoDemonstracao implements Estado {
-    
+
     final Demonstracao m_demo;
 
     public EstadoDemonstracao(Demonstracao demo) {
@@ -56,6 +56,14 @@ public abstract class EstadoDemonstracao implements Estado {
         return false;
     }
 
+    public boolean setEstadoDemonstracaoConflitosDetetados() {
+        return false;
+    }
+
+    public boolean setEstadoDemonstracaoConflitosAlterados() {
+        return false;
+    }
+
     public boolean isEstadoDemonstracaoPendente() {
         return false;
     }
@@ -89,6 +97,14 @@ public abstract class EstadoDemonstracao implements Estado {
     }
 
     public boolean isEstadoDemonstracaoCandidaturasFechadas() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoConflitosDetetados() {
+        return false;
+    }
+
+    public boolean isEstadoDemonstracaoConflitosAlterados() {
         return false;
     }
 }
