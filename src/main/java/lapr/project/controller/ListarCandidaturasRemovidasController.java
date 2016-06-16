@@ -20,6 +20,7 @@ public class ListarCandidaturasRemovidasController {
      * Registo de Exposições
      */
     private RegistoExposicoes m_re;
+    
     /**
      * Exposicao escolhida.
      */
