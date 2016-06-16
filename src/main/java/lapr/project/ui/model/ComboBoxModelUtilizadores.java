@@ -54,6 +54,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
                 selection = o;
             }
         }
+=======
         this.usernameUtilizadorSelecionado = (String) anItem;
 >>>>>>> 1225be995dd7ed74242a07ea7c2592dbd6306d84
     }
