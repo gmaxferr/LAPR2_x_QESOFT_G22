@@ -81,7 +81,7 @@ public class ListarCandidaturasAExposicaoRemovidasController {
      * @return lista de candidaturas removidas
      */
     public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
-        return this.m_rcr.getListaCandidaturasRemovidas();
+        return this.m_rcr.getListaCandidaturasAExposicaoRemovidas();
     }
 
 }

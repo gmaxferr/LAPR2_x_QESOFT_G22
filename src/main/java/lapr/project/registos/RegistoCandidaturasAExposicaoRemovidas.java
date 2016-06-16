@@ -29,9 +29,10 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
      */
     private List<CandidaturaAExposicao> m_listaCandidaturasRemovidas;
 
-    
-    /**
-     * Contrutor de objetos do tipo RegistoCandidaturasRemovidas sem pRegistoCandidaturasAExposicaoRemovidasc RegistoCandidaturasRemovidas() {
+   /**
+     * Contrutor de objetos do tipo RegistoCandidaturasAExposicaoRemovidas sem parâmetros.
+     */
+    public RegistoCandidaturasAExposicaoRemovidas() {
         this.m_listaCandidaturasRemovidas = new ArrayList<>();
     }
 
@@ -49,7 +50,7 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
      *
      * @return lista de candidaturas removidas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturasRemovidas() {
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoRemovidas() {
         return this.m_listaCandidaturasRemovidas;
     }
     
