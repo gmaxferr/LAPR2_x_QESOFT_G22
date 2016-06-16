@@ -96,6 +96,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      */
     private RegistoCandidaturaADemonstracoes m_rcd;
+    
+    /**
+     * Registo de candidaturas a demonstracao removidas
+     */
+    private RegistoCandidaturasADemonstracaoRemovidas m_rcdr;
 
     /**
      *
@@ -105,6 +110,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.rc = new RegistoRecursos();
         this.m_StrDescricao = descricao;
         this.m_rcd = new RegistoCandidaturaADemonstracoes();
+        this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
     }
 
@@ -180,6 +186,15 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return m_rcd;
     }
 
+    /**
+     * Devolve o registo de candidaturas a demonstração removidas
+     * 
+     * @return registo de candidaturas a demonstração removidas
+     */
+    public RegistoCandidaturasADemonstracaoRemovidas getRegistoCandidaturasADemonstracaoRemovidas(){
+        return m_rcdr;
+        
+    }
     void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
         this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
     }
@@ -259,9 +274,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
                 this.rc = new RegistoRecursos();
                 this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcd = new RegistoCandidaturaADemonstracoes();
+                this.m_rcd = new RegistoCandidaturaADemonstracoes();                
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
-
+                this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
+                this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
+                
                 Data invalidData = new Data(0, 0, 0);
 
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
@@ -334,7 +351,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
             elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
-
+            elemBase.appendChild(document.importNode(this.m_rcdr.exportContentToXMLNode(), true));
+            
+            
             elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
             elemChild = document.createElement(DATA_INICIO_SUB_CAND_ELEMENT_NAME);
