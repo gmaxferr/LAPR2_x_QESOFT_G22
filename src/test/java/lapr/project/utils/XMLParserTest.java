@@ -78,16 +78,29 @@ public class XMLParserTest {
     @Test
     public void testReadXMLElementFromFile() throws Exception {
         System.out.println("readXMLElementFromFile");
+        
         File testFile = testFolder.newFile("testFile");
         String filename = testFile.getAbsolutePath();
+        
         XMLParser instance = new XMLParser();
+        
         Node expResult = new Keyword("keyWordValue").exportContentToXMLNode();
         instance.writeXMLElementToFile(expResult, filename);
+        
         Node resultNode = instance.readXMLElementFromFile(filename);
+        
         Keyword key = new Keyword();
         key.importContentFromXMLNode(resultNode);
+        
         boolean result = key.getValue().equals("keyWordValue");
         assertEquals(true, result);
+
+        testFile = testFolder.newFile("testFile2");
+        filename = testFile.getAbsolutePath();
+
+        resultNode = instance.readXMLElementFromFile(filename);
+
+        assertEquals(null, resultNode);
     }
 
     /**

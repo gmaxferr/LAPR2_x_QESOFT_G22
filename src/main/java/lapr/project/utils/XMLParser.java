@@ -17,6 +17,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -94,14 +96,19 @@ public class XMLParser {
      * @throws org.xml.sax.SAXException
      * @throws java.io.FileNotFoundException
      */
-    public Node readXMLElementFromFile(String filename) throws ParserConfigurationException, IOException, SAXException, FileNotFoundException {
+    public Node readXMLElementFromFile(String filename) throws ParserConfigurationException, IOException, FileNotFoundException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         File file = new File(filename);
         if (file.exists()) {
-            FileInputStream fileStream = new FileInputStream(file);
-            Document document = builder.parse(fileStream);
-            return document.getDocumentElement();
+            try {
+                FileInputStream fileStream = new FileInputStream(file);
+                Document document;
+                document = builder.parse(fileStream);
+                return document.getDocumentElement();
+            } catch (SAXException ex) {
+                Logger.getLogger(XMLParser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
