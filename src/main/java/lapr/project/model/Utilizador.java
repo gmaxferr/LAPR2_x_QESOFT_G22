@@ -37,7 +37,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     /**
      * Atributo password de um Utilizador.
      */
-    private char[] m_strPwd;
+    private char[] m_Pwd;
 
     /**
      * Numero de shifts usados na encriptação da password.
@@ -94,6 +94,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
+     * Apenas para uso de testes. De forma a que não haja encriptação com shift
+     * aleatórios.
+     *
+     * @param password - nova password
+     */
+    public void setPasswordTestUseOnly(char[] password) {
+        this.m_Pwd = password;
+    }
+
+    /**
      * Devolve o valor da variavel boolean que regista se o registo desse
      * Utilizador já foi confirmado ou não
      *
@@ -120,7 +130,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public char[] getPwd() {
         //fazer toString? depende se for um get para ser usado na UI
-        return this.m_strPwd;
+        return this.m_Pwd;
     }
 
     /**
@@ -216,7 +226,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public void setPwd(char[] strPwd) {
         Random r = new Random();
         this.randomCaesarShift = r.nextInt(PASSWORD_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);
+        m_Pwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PASSWORD_ALFABET);
     }
 
     /**
@@ -235,7 +245,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * à armazenada no sistema, FALSE caso contrário
      */
     public boolean VerificaCorrespondenciaPassword(char[] password) {
-        return Arrays.equals(CaesarsCypher.decrypt(m_strPwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
+        return Arrays.equals(CaesarsCypher.decrypt(m_Pwd, this.randomCaesarShift, PASSWORD_ALFABET), password);
     }
 
     /**
@@ -258,16 +268,16 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Valida a password atual do utilizador: A validação da password é feita da seguinte forma: Uma
-     * password tem que conter um número, uma letra minuscula e outra maiusculo
-     * (pelo menos), tem que conter pelo menos um sinal de pontuação como ","
-     * "." ":" ";" ou "-". Tem ainda um tamanho minimo de 4 caracteres e um
-     * máximo de 7.
+     * Valida a password atual do utilizador: A validação da password é feita da
+     * seguinte forma: Uma password tem que conter um número, uma letra
+     * minuscula e outra maiusculo (pelo menos), tem que conter pelo menos um
+     * sinal de pontuação como "," "." ":" ";" ou "-". Tem ainda um tamanho
+     * minimo de 4 caracteres e um máximo de 7.
      *
      * @return true se for válida; false caso contrário.
      */
     public boolean validaPassword() {
-        char[] decryptesPass = CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, PASSWORD_ALFABET);
+        char[] decryptesPass = CaesarsCypher.decrypt(m_Pwd, randomCaesarShift, PASSWORD_ALFABET);
         return validaPassword(decryptesPass);
     }
 
@@ -280,7 +290,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public String toString() {
         String str = "Utilizador:\n";
         str += "\tNome: " + this.m_strNome + "\n";
-        str += "\tPwd: " + this.m_strPwd + "\n";
+        str += "\tPwd: " + this.m_Pwd + "\n";
         str += "\tEmail: " + this.m_strEmail + "\n";
 
         return str;
@@ -382,7 +392,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 this.m_strNome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
                 this.m_strEmail = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
                 this.m_strUsername = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
-                this.m_strPwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
+                this.m_Pwd = elem.getElementsByTagName(PASSWD_ELEMENT_NAME).item(0).getTextContent().toCharArray();
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
@@ -414,7 +424,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             elementKeyword.appendChild(elementValue);
 
             elementValue = document.createElement(PASSWD_ELEMENT_NAME);
-            elementValue.setTextContent(String.valueOf(this.m_strPwd));
+            elementValue.setTextContent(String.valueOf(this.m_Pwd));
             elementKeyword.appendChild(elementValue);
 
             elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
