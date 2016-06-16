@@ -998,7 +998,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton31ActionPerformed
-    
+
     private void terminaSessao() {
         new LoginV2(centroExposicoes);
         dispose();
@@ -1037,6 +1037,15 @@ public class MenuV2 extends javax.swing.JFrame {
 
         return item;
     }
+
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
+        if(b){
+            identificarCargosDoUtilizador();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
