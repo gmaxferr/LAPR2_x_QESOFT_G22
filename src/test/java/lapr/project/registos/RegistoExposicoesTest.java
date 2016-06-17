@@ -93,7 +93,7 @@ public class RegistoExposicoesTest {
         cand1.setEstado(new EstadoCandidaturaAExposicaoAceite(cand1));
         expo9.getRegistoCandidaturasAExposicao().registaCandidatura(cand1);
         expo9.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expo9));
-        Demonstracao demo1 = expo9.getRegistoDemonstracoes().novaDemonstracao("Uma demonstração");
+        Demonstracao demo1 = expo9.getRegistoDemonstracoes().novaDemonstracao("Uma demonstração", expo9);
         demo1.setEstado(new EstadoDemonstracaoPendente(demo1));
         demo1.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
         expo9.getRegistoDemonstracoes().addDemo(demo1);
@@ -103,7 +103,7 @@ public class RegistoExposicoesTest {
         
         expo11 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo11.getRegistoOrganizadores().addOrganizador(user3);
-        Demonstracao demo2 = expo11.getRegistoDemonstracoes().novaDemonstracao("Outra demonstração");
+        Demonstracao demo2 = expo11.getRegistoDemonstracoes().novaDemonstracao("Outra demonstração", expo11);
         demo2.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(demo2));
         demo2.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
         expo11.getRegistoDemonstracoes().addDemo(demo2);

@@ -64,10 +64,9 @@ public class Main {
 
             if (canceledLoad) {
                 in.close();
-                try (Formatter out = new Formatter(properties)) {
-                    out.flush();
-                    out.close();
-                }
+                Formatter out = new Formatter(properties);
+                out.flush();
+                out.close();
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.CONFIG, "Ficheiro de propriedades não existente.");
