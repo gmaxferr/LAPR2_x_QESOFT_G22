@@ -44,7 +44,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     /**
      * Altura da janela
      */
-    private static final int ALTURA_JANELA_3 = 490;
+    private static final int ALTURA_JANELA_3 = 310;
 
     private transient CriarDemonstracaoController controller;
     private transient List<Exposicao> m_listaExposicoes;
@@ -127,7 +127,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        m_textAreaDescricao = new javax.swing.JTextArea();
+        jTextAreaCard2DescricaoDemonstracao = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -136,9 +136,10 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         m_listaRecursosCE = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -328,9 +329,9 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Descrição:");
 
-        m_textAreaDescricao.setColumns(20);
-        m_textAreaDescricao.setRows(5);
-        jScrollPane1.setViewportView(m_textAreaDescricao);
+        jTextAreaCard2DescricaoDemonstracao.setColumns(20);
+        jTextAreaCard2DescricaoDemonstracao.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaCard2DescricaoDemonstracao);
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -409,6 +410,13 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Confirmar e criar demonstração");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,12 +424,34 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Confirmar e criar demonstração");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
         card3.setLayout(card3Layout);
@@ -433,12 +463,9 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,19 +474,11 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
+                .addGap(18, 18, 18)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(31, 31, 31))))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         getContentPane().add(card3, "card3");
@@ -469,12 +488,13 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!m_textAreaDescricao.getText().isEmpty()) {
-            controller.novaDemonstracao(m_textAreaDescricao.getText());
+        if (!jTextAreaCard2DescricaoDemonstracao.getText().isEmpty()) {
+            controller.novaDemonstracao(jTextAreaCard2DescricaoDemonstracao.getText());
             passaParaPanel3();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Tem de escrever uma justificação para a demonstração!", "Descrição em falta", JOptionPane.WARNING_MESSAGE);
-
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar o campo da descrição em branco. Por favor preencha com uma pequena descrição da demonstração.",
+                    "Descrição em falta",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -490,6 +510,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
+        this.jFrameMenu.setVisible(true);
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
@@ -514,19 +535,24 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         int[] selected = m_listaRecursosCE.getSelectedIndices();
         List<Recurso> alreadyInList = new ArrayList();
         boolean adicionadosRecursos = false;
-        for (int i : selected) {
-            Recurso r = m_listaRecursos.get(i);
-            if (!controller.exists(r)) {
-                controller.addRecurso(r);
-                adicionadosRecursos = true;
-            } else {
-                alreadyInList.add(r);
+        int pos = 0;
+        if (selected.length > 0) {
+            for (int i : selected) {
+                pos++;
+                Recurso r = m_listaRecursos.get(i);
+                if (!controller.exists(r)) {
+                    controller.addRecurso(r);
+                    adicionadosRecursos = true;
+                } else {
+                    alreadyInList.add(r);
+                }
+                if (pos == selected.length && alreadyInList.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Os recursos selecionados foram adicionados!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
-            if (i == selected.length - 1 && alreadyInList.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Os recursos selecionados foram adicionados!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhum recurso selecionado!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
         //numa unica JOptionPane mostra todos os recursos que já se encontravam registados
         if (!alreadyInList.isEmpty()) {
             String aux = "O(s) recurso(s) selecionados já se encontra(m) na lista\n";
@@ -545,15 +571,34 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         controller.setRecursos();
         if (controller.valida()) {
             controller.registaDemo();
-            JOptionPane.showMessageDialog(this, "Demonstração registada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
             controller.mudaEstado();
-            dispose();
-            this.jFrameMenu.setVisible(true);
+            String[] opcoes2 = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(rootPane, "Demonstração criada!\nDeseja criar outra?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+            if (resposta == 0) {
+                criarOutraDemonstracao();
+            } else {
+                terminarUC();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Tem de escolher pelo menos um recurso para a demonstração!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Permite repetir o processo de ciar uma demonstração nova
+     */
+    private void criarOutraDemonstracao() {
+        passaParaPanel1();
+        jTextAreaCard2DescricaoDemonstracao.setText("");
+    }
+
+    /**
+     * Termina o UC e volta ao menu
+     */
+    private void terminarUC() {
+        dispose();
+        this.jFrameMenu.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
@@ -578,6 +623,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
@@ -587,8 +633,8 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
+    private javax.swing.JTextArea jTextAreaCard2DescricaoDemonstracao;
     private javax.swing.JList<String> m_listaRecursosCE;
-    private javax.swing.JTextArea m_textAreaDescricao;
     // End of variables declaration//GEN-END:variables
 
     private void passaParaPanel1() {
