@@ -776,7 +776,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel26.setText("Escolha as demonstrações pretendidas");
@@ -911,7 +911,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(card4, "card3");
+        getContentPane().add(card4, "card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
