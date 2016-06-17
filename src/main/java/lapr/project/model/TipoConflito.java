@@ -56,7 +56,7 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
                 this.ID = elem.getAttribute(ID_ATTR_NAME);
             }
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoConflito.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
@@ -76,7 +76,7 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
             node = elementBase;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoConflito.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
