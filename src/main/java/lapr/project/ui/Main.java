@@ -2,7 +2,8 @@ package lapr.project.ui;
 
 import java.io.*;
 import java.util.*;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
@@ -63,9 +64,7 @@ public class Main {
 
             if (canceledLoad) {
                 in.close();
-                try {
-                    Formatter out = new Formatter(properties)
-                } catch (exception e) {
+                try (Formatter out = new Formatter(properties)) {
                     out.flush();
                     out.close();
                 }
