@@ -177,7 +177,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
                     && this.m_ratingAdequacaoNumConvites == o.m_ratingAdequacaoNumConvites
                     && this.m_ratingConhecimentoSobreOTema == o.m_ratingConhecimentoSobreOTema
                     && this.m_ratingRecomendacaoGlobal == o.m_ratingRecomendacaoGlobal
-                    && this.getMediaRatings() == o.getMediaRatings();
+                    && Float.compare(this.getMediaRatings(), o.getMediaRatings()) == 0;
         }
         return false;
     }
