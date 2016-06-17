@@ -571,7 +571,7 @@ public class UtilizadorTest {
                 obj.setNome((j & 0x08) > 0 ? nome : null);
                 obj.setUsername((j & 0x10) > 0 ? username : null);
                 obj.setPwd((j & 0x20) > 0 ? passe : null);
-                obj.setnAvaliacoesDesdeSempre((i & 0x40) > 0 ? 1 : 0);
+                obj.setnAvaliacoesDesdeSempre((j & 0x40) > 0 ? 1 : 0);
 
                 expResult = i == j;
                 result = instance.equals(obj);
