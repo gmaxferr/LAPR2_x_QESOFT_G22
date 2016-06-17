@@ -433,4 +433,18 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         return result;
     }
+
+    public List<Exposicao> getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(String usernameOrganizador) {
+        List<Exposicao> listaExposicoesDoOrganizadorEstadoConflitosAlterados = new ArrayList<>();
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && (exposicao.getEstado().isEstadoConflitosAlterados())) {
+                    listaExposicoesDoOrganizadorEstadoConflitosAlterados.add(exposicao);
+                }
+            }
+        }
+
+        return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
+    }
 }
