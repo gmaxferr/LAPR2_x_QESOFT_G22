@@ -120,6 +120,12 @@ public class Main {
 //                + "\n    username: \"admin\""
 //                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
 
+        //recursos
+        RegistoRecursos rr = centroExposicoes.getRegistoRecursos();
+        rr.criarRecurso("agua");
+        rr.criarRecurso("luz");
+        rr.criarRecurso("shit");
+
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();
         ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt", "abcd"));

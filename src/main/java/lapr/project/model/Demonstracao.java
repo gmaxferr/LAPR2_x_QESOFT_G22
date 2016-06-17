@@ -126,6 +126,15 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
     }
 
+    public Demonstracao() {
+        this.rc = new RegistoRecursos();
+        this.m_expo = null;
+        this.m_rcd = new RegistoCandidaturaADemonstracoes();
+        this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
+        this.m_estado = new EstadoDemonstracaoPendente(this);
+        this.m_rconfDemo = new RegistoConflitosDemonstracao();
+    }
+
     /**
      *
      * @param descricao
@@ -138,6 +147,16 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
+    }
+
+    /**
+     * Define uma nova descrição para a exposição. Recebe a nova descrição por
+     * parametro
+     *
+     * @param descricao nova descrição
+     */
+    public void setDescricao(String descricao) {
+        this.m_StrDescricao = descricao;
     }
 
     /**
@@ -326,8 +345,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         hash = 37 * hash + Objects.hashCode(this.m_StrCodigoIdentificacao);
         return hash;
     }
-    
-    public void fix(RegistoOrganizadores ro, RegistoUtilizadores ru, RegistoCandidaturasAExposicao rCand, Exposicao e){
+
+    public void fix(RegistoOrganizadores ro, RegistoUtilizadores ru, RegistoCandidaturasAExposicao rCand, Exposicao e) {
         this.m_ro.fix(ro);
         this.m_rFAE.fix(ru, m_ro);
         this.m_rconfDemo.fix(rCand);

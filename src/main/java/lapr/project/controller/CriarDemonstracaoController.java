@@ -9,7 +9,7 @@ import lapr.project.registos.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class CriarDemonstracaoController {
 
@@ -20,8 +20,6 @@ public class CriarDemonstracaoController {
     private Exposicao m_e;
     private Demonstracao m_d;
     private EstadoExposicao m_estado;
-    private EstadoExposicaoCriada m_estadoExposicaoCriada;
-    private EstadoExposicaoDemosDefinidasSemFAE m_estadoExposicaoDemosDef;
     private String m_usernameOrg;
 
     /**
@@ -112,9 +110,9 @@ public class CriarDemonstracaoController {
     public void mudaEstado() {
         m_estado = this.m_e.getEstado();
         if (m_estado.isEstadoFAEDefinidosSemDemos()) {
-            m_estadoExposicaoDemosDef.setEstadoCompleta();
+            m_estado.setEstadoCompleta();
         } else if (m_estado.isEstadoCriada()) {
-            m_estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();
+            m_estado.setEstadoDemosDefinidasSemFAE();
         }
     }
 

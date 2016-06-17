@@ -1,54 +1,100 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.AbstractListModelRecursos;
+import lapr.project.ui.model.*;
 import java.awt.CardLayout;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.*;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.CriarDemonstracaoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Recurso;
+import lapr.project.model.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+    /**
+     * Largura da janela
+     */
+    private static final int LARGURA_JANELA_1 = 705;
 
-    private transient CriarDemonstracaoController CTRL;
+    /**
+     * Altura da janela
+     */
+    private static final int ALTURA_JANELA_1 = 390;
+
+    /**
+     * Largura da janela
+     */
+    private static final int LARGURA_JANELA_2 = 620;
+
+    /**
+     * Altura da janela
+     */
+    private static final int ALTURA_JANELA_2 = 340;
+
+    /**
+     * Largura da janela
+     */
+    private static final int LARGURA_JANELA_3 = 780;
+
+    /**
+     * Altura da janela
+     */
+    private static final int ALTURA_JANELA_3 = 490;
+
+    private transient CriarDemonstracaoController controller;
     private transient List<Exposicao> m_listaExposicoes;
     private transient List<Recurso> m_listaRecursos;
-    
+
     private transient String m_usernameOrg;
     private transient CentroExposicoes m_ce;
 
+    private ModeloListaProdutos modeloListaRecursosAdicionados;
+    private List<Produto> listaRecursoAdicionados;
+
     private transient Exposicao m_e;
-    private transient boolean continua;
+    private final JFrame jFrameMenu;
+
     /**
      * Creates new form JFrameCriarDemonstracaoUI
+     *
+     * @param usernameOrg username do organizador a executar este UC
+     * @param ce centro de exposições
      */
-    public JFrameCriarDemonstracaoUI(String usernameOrg, CentroExposicoes ce) {
-        CTRL = new CriarDemonstracaoController(usernameOrg, ce);
-        CTRL.pullRegistosCE();
-        m_listaExposicoes = CTRL.getListaExposicoesDoOrganizador();
-        
+    public JFrameCriarDemonstracaoUI(String usernameOrg, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
+        controller = new CriarDemonstracaoController(usernameOrg, ce);
+        controller.pullRegistosCE(); //getRegistoExposicoes e getRegistoRecursos
+        m_listaRecursos = controller.getListaDeRecursos();
+        m_listaExposicoes = controller.getListaExposicoesDoOrganizador();
+        this.jFrameMenu = jFrameMenuPrincipal;
+        this.listaRecursoAdicionados = new ArrayList<>();
+
         this.m_usernameOrg = usernameOrg;
         this.m_ce = ce;
-        
+
         initComponents();
+        alterarComportamentoFecharJFrame();
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setSize(LARGURA_JANELA_1, ALTURA_JANELA_1);
+    }
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                jFrameMenu.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -61,7 +107,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        card1 = new javax.swing.JPanel();
         jButtonCard1Avancar = new javax.swing.JButton();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jPanelCard1DescricaoExposicao = new javax.swing.JPanel();
@@ -77,15 +123,15 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaCard1LocalExposicao = new javax.swing.JTextArea();
         jComboBoxEscolherExposicao = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        card2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        m_textAreadDescricao = new javax.swing.JTextArea();
+        m_textAreaDescricao = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        card3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -96,7 +142,8 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jButtonCard1Avancar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -135,7 +182,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         );
         jPanelCard1DescricaoExposicaoLayout.setVerticalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2)
         );
 
         jButtonCard1Fechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -207,7 +254,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         );
         jPanelCard1LocalLayout.setVerticalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -218,58 +265,61 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
+        card1.setLayout(card1Layout);
+        card1Layout.setHorizontalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
+                .addContainerGap(395, Short.MAX_VALUE)
+                .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCard1Avancar)
+                .addGap(28, 28, 28))
+            .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card1Layout.createSequentialGroup()
                     .addGap(19, 19, 19)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(card1Layout.createSequentialGroup()
                             .addGap(244, 244, 244)
                             .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(card1Layout.createSequentialGroup()
                             .addGap(184, 184, 184)
                             .addComponent(jLabelCard1Titulo))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(card1Layout.createSequentialGroup()
                             .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(jButtonCard1Avancar))
                                 .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
+        card1Layout.setVerticalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
+                .addContainerGap(314, Short.MAX_VALUE)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCard1Fechar)
+                    .addComponent(jButtonCard1Avancar))
+                .addContainerGap())
+            .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
                     .addComponent(jLabelCard1Titulo)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(12, 12, 12)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(card1Layout.createSequentialGroup()
                             .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(24, 24, 24)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButtonCard1Fechar)
-                                .addComponent(jButtonCard1Avancar)))
-                        .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(48, Short.MAX_VALUE)))
+                            .addGap(0, 38, Short.MAX_VALUE))
+                        .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
         );
 
-        getContentPane().add(jPanel4, "card1");
-        jPanel4.getAccessibleContext().setAccessibleName("card1");
+        getContentPane().add(card1, "card1");
+        card1.getAccessibleContext().setAccessibleName("card1");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("  Criar nova demonstração  ");
@@ -278,9 +328,9 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Descrição:");
 
-        m_textAreadDescricao.setColumns(20);
-        m_textAreadDescricao.setRows(5);
-        jScrollPane1.setViewportView(m_textAreadDescricao);
+        m_textAreaDescricao.setColumns(20);
+        m_textAreaDescricao.setRows(5);
+        jScrollPane1.setViewportView(m_textAreaDescricao);
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -301,49 +351,46 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
         jLabel2.setText("Escreva uma descrição para a nova demonstração.");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
+        card2.setLayout(card2Layout);
+        card2Layout.setHorizontalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(card2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(card2Layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        card2Layout.setVerticalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                .addGap(32, 32, 32))
         );
 
-        getContentPane().add(jPanel3, "card2");
-        jPanel3.getAccessibleContext().setAccessibleName("card2");
+        getContentPane().add(card2, "card2");
+        card2.getAccessibleContext().setAccessibleName("card2");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("  Criar Nova Demonstração  ");
@@ -355,7 +402,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         );
         jScrollPane4.setViewportView(m_listaRecursosCE);
 
-        jButton3.setText("Adicionar Selecionados");
+        jButton3.setText("Adicionar delecionados");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -369,72 +416,75 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Confrimar e Criar Demonstração");
+        jButton5.setText("Confirmar e criar demonstração");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
+        card3.setLayout(card3Layout);
+        card3Layout.setHorizontalGroup(
+            card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        card3Layout.setVerticalGroup(
+            card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton5)
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4)
-                        .addGap(41, 41, 41))))
+                        .addGap(31, 31, 31))))
         );
 
-        getContentPane().add(jPanel1, "card3");
-        jPanel1.getAccessibleContext().setAccessibleName("card3");
+        getContentPane().add(card3, "card3");
+        card3.getAccessibleContext().setAccessibleName("card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CTRL.novaDemonstracao(m_textAreadDescricao.getText());
-        m_listaRecursos = CTRL.getListaDeRecursos();
-        passaParaPanel3();
+        if (!m_textAreaDescricao.getText().isEmpty()) {
+            controller.novaDemonstracao(m_textAreaDescricao.getText());
+            passaParaPanel3();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tem de escrever uma justificação para a demonstração!", "Descrição em falta", JOptionPane.WARNING_MESSAGE);
 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
-        Exposicao e = (Exposicao) jComboBoxEscolherExposicao.getSelectedItem();
-        if (e != null) {
-            CTRL.setExposicao(e);
-            m_e = e;
-            CTRL.pullRegistoDemonstracaoDaExposicao();
+        if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
+            controller.setExposicao(this.m_listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            controller.pullRegistoDemonstracaoDaExposicao();
             passaParaPanel2();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
@@ -449,11 +499,6 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
             jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(e.getDataFim().toAnoMesDiaString());
-        } else {
-            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
@@ -468,51 +513,52 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int[] selected = m_listaRecursosCE.getSelectedIndices();
         List<Recurso> alreadyInList = new ArrayList();
+        boolean adicionadosRecursos = false;
         for (int i : selected) {
             Recurso r = m_listaRecursos.get(i);
-            if (!CTRL.exists(r)) {
-                CTRL.addRecurso(r);
+            if (!controller.exists(r)) {
+                controller.addRecurso(r);
+                adicionadosRecursos = true;
             } else {
                 alreadyInList.add(r);
+            }
+            if (i == selected.length - 1 && alreadyInList.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Os recursos selecionados foram adicionados!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 
         //numa unica JOptionPane mostra todos os recursos que já se encontravam registados
         if (!alreadyInList.isEmpty()) {
-            String aux = "O(s) seguinte(s) recurso(s) já se encontra(m) na lista\n";
-            for (Recurso r : alreadyInList) {
-                aux += r.getNomeRecurso() + "\n";
+            String aux = "O(s) recurso(s) selecionados já se encontra(m) na lista\n";
+            if (adicionadosRecursos == true) {
+                aux = "Apenas alguns recursos dos selecionados foram adicionados. Os recursos seguintes estariam a ser repetidos:\n";
             }
-            JOptionPane.showMessageDialog(null, aux, "Atenção!", ERROR_MESSAGE);
+            for (Recurso r : alreadyInList) {
+                aux += "   -" + r.getNomeRecurso() + "\n";
+            }
+            JOptionPane.showMessageDialog(null, aux, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CTRL.setRecursos();
-        if (CTRL.valida()) {
-            CTRL.registaDemo();
-            int opcao = JOptionPane.showConfirmDialog(null, "Demonstração registada com sucesso!", "Sucesso!", INFORMATION_MESSAGE);
-            if(opcao == JOptionPane.OK_OPTION){
-                CTRL = new CriarDemonstracaoController(m_usernameOrg, m_ce);
-                CTRL.setExposicao(m_e);
-                CTRL.pullRegistoDemonstracaoDaExposicao();
-                passaParaPanel2();
-            }else{
-                CTRL.mudaEstado();
-                dispose();
-            }
+        controller.setRecursos();
+        if (controller.valida()) {
+            controller.registaDemo();
+            JOptionPane.showMessageDialog(this, "Demonstração registada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            controller.mudaEstado();
+            dispose();
+            this.jFrameMenu.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Erro a resgistar Demonstração, veja se cometeu alguns dos seguintes erros:"
-                    + "\n1.Não introduziu descrição."
-                    + "\n2.Não selecionou recursos.", "Erro!", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tem de escolher pelo menos um recurso para a demonstração!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        CTRL = new CriarDemonstracaoController(m_usernameOrg, m_ce);
-        passaParaPanel1();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel card1;
+    private javax.swing.JPanel card2;
+    private javax.swing.JPanel card3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -532,9 +578,6 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
@@ -545,25 +588,25 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
     private javax.swing.JList<String> m_listaRecursosCE;
-    private javax.swing.JTextArea m_textAreadDescricao;
+    private javax.swing.JTextArea m_textAreaDescricao;
     // End of variables declaration//GEN-END:variables
 
     private void passaParaPanel1() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(this.getSize());
+        setSize(LARGURA_JANELA_1, ALTURA_JANELA_1);
     }
 
     private void passaParaPanel2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
-        setSize(this.getSize());
+        setSize(LARGURA_JANELA_2, ALTURA_JANELA_2);
     }
 
     private void passaParaPanel3() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
-        setSize(this.getSize());
+        setSize(LARGURA_JANELA_3, ALTURA_JANELA_3);
     }
 
 }

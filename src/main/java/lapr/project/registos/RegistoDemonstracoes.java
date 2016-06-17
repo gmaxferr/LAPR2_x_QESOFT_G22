@@ -169,8 +169,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return true se for válida; false caso contrário
      */
     public boolean valida(Demonstracao m_demoCriada) {
-        return (!m_demoCriada.getDescricao().isEmpty())
-                && (!m_listaDemonstracoes.contains(m_demoCriada))
+        return (!m_listaDemonstracoes.contains(m_demoCriada))
                 && (!m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty());
     }
 
@@ -197,7 +196,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
-            if(m_expo != null){
+            if (m_expo != null) {
                 demonstracao.setExpo(m_expo);
             }
             for (Organizador organizador : demonstracao.getListaOrganizadores()) {
@@ -219,7 +218,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
-            if(m_expo != null){
+            if (m_expo != null) {
                 demonstracao.setExpo(m_expo);
             }
             for (FAE fae : demonstracao.getListaFAE()) {
