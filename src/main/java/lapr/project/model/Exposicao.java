@@ -136,6 +136,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
+        this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this, ce);
         this.m_keywordRanking = new KeywordRanking();
@@ -170,6 +171,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
+        this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
@@ -639,7 +641,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
         this.m_rexpositores.fix(m_registoUtilizadores);
         this.m_rce.fix(m_registoUtilizadores, this.m_rd);
-        this.m_rd.fix(m_registoRecursos);
+        this.m_rd.setExposicao(this);
+        this.m_rd.fix(m_registoRecursos, m_ro, m_registoUtilizadores, m_rce);
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
 
@@ -750,6 +753,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
                 this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_rd.setExposicao(this);
                 this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
                 this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));

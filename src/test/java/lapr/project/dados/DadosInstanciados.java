@@ -30,7 +30,7 @@ public class DadosInstanciados {
     public Exposicao inicializarNovaExposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes ce) {
         Exposicao e = new Exposicao(titulo, descricao, dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, local, ce);
         RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
-        Demonstracao d = new Demonstracao("descricao");
+        Demonstracao d = new Demonstracao("descricao", e);
         RegistoRecursos rr = d.getRegistoRecursosNecessarios();
         rr.criarRecurso("recurso1");
         rr.criarRecurso("recurso2");

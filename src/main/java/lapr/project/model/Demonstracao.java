@@ -311,7 +311,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             if (o == this) {
                 return true;
             }
-            return this.m_StrCodigoIdentificacao == o.m_StrCodigoIdentificacao;
+            return this.m_StrCodigoIdentificacao == null ? o.m_StrCodigoIdentificacao == null : this.m_StrCodigoIdentificacao.equals(o.m_StrCodigoIdentificacao);
         }
         return false;
     }
@@ -325,6 +325,13 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         hash = 37 * hash + Objects.hashCode(this.m_StrDescricao);
         hash = 37 * hash + Objects.hashCode(this.m_StrCodigoIdentificacao);
         return hash;
+    }
+    
+    public void fix(RegistoOrganizadores ro, RegistoUtilizadores ru, RegistoCandidaturasAExposicao rCand, Exposicao e){
+        this.m_ro.fix(ro);
+        this.m_rFAE.fix(ru, m_ro);
+        this.m_rconfDemo.fix(rCand);
+        this.m_expo = e;
     }
 
     @Override
@@ -345,6 +352,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
                 this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
+                this.m_ro = new RegistoOrganizadores();
+                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+                this.m_rFAE = new RegistoFAE();
+                this.m_rFAE.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
+                this.m_rconfDemo = new RegistoConflitosDemonstracao();
+                this.m_rconfDemo.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitosDemonstracao.ROOT_ELEMENT_NAME).item(0));
 
                 Data invalidData = new Data(0, 0, 0);
 
@@ -417,6 +430,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcdr.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_rFAE.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_rconfDemo.exportContentToXMLNode(), true));
 
             elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
 
