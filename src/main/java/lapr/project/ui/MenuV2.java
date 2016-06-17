@@ -1,10 +1,7 @@
 package lapr.project.ui;
 
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
 import javax.swing.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;

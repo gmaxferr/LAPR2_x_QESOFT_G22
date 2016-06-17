@@ -41,6 +41,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      * Registo de Tipos de Conflito
      */
     private RegistoTipoConflitos m_registoTipoConflitos;
+    
+    /**
+     * Registo de tipos de conflito da demonstração
+     */
+    private RegistoTiposConflitoDemonstracao m_registoTipoConflitosDemonstracao;
 
     /**
      * Registo de Expositores
@@ -66,6 +71,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
         this.m_registoRecursos = new RegistoRecursos();
         this.m_registoTipoConflitos = new RegistoTipoConflitos();
+        this.m_registoTipoConflitosDemonstracao = new RegistoTiposConflitoDemonstracao();
         this.m_registoExpositores = new RegistoExpositores();
         this.m_rStands = new RegistoStands();
     }
@@ -122,6 +128,10 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      */
     public RegistoTipoConflitos getRegistoTiposConflitos() {
         return m_registoTipoConflitos;
+    }
+    
+    public RegistoTiposConflitoDemonstracao getRegistoTiposConflitosDemonstracao() {
+        return m_registoTipoConflitosDemonstracao;
     }
 
     /**
@@ -283,4 +293,6 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public void setRegistoStands(RegistoStands m_rStands) {
         this.m_rStands = m_rStands;
     }
+
+    
 }

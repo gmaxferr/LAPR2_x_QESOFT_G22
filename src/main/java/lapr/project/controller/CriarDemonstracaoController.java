@@ -75,7 +75,7 @@ public class CriarDemonstracaoController {
      * @param descricaoIntroduzidaPeloUtilizador - descrição da demonstração
      */
     public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        this.m_d = m_rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
+        this.m_d = m_rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador, m_e);
         this.m_listaRecursosParaDemonstracao = m_d.getRegistoRecursosNecessarios().getListaDeRecursos();
     }
 

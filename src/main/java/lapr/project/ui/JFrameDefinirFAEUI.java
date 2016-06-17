@@ -429,8 +429,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         if (!jTextFieldCard2IntroduzirUsernameUtilizador.getText().replaceAll(" ", "").isEmpty()) {
             Utilizador u = controller.identificarUtilizadorPeloUsername(jTextFieldCard2IntroduzirUsernameUtilizador.getText());
             if (u != null) {
-                if (controller.validaUtilizadorParaAdicionarComoFAE(u)) {
-                    controller.adicionarFaeListaTemp(u);
+                if (controller.adicionarFaeListaTemp(u)) {
                     this.listaUtilizadoresCorrespondentesAosFae.add(u);
                     this.jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
                     JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -454,6 +453,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     private void jButtonCard2TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2TerminarActionPerformed
         if (controller.foramAdicionadosFAE()) {
             controller.confirmaAddFAE();
+            controller.setEstado();
             finalizarUC();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE! Se não pretender adicionar nenhum FAE a esta exposição retorne ao passo anterior e selecione a exposição certa.", "Nenhum FAE adicionado", JOptionPane.WARNING_MESSAGE);

@@ -73,6 +73,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private String m_StrCodigoIdentificacao;
 
     /**
+     * 
+     */
+    private Exposicao m_expo;
+    
+    /**
      *
      */
     private RegistoRecursos rc;
@@ -98,6 +103,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private RegistoCandidaturaADemonstracoes m_rcd;
 
     /**
+     * 
+     */
+    private RegistoConflitosDemonstracao m_rconfDemo;
+    
+    /**
      * Registo de candidaturas a demonstracao removidas
      */
     private RegistoCandidaturasADemonstracaoRemovidas m_rcdr;
@@ -106,12 +116,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @param descricao
      */
-    public Demonstracao(String descricao) {
+    public Demonstracao(String descricao, Exposicao e) {
         this.rc = new RegistoRecursos();
+        this.m_expo = e;
         this.m_StrDescricao = descricao;
         this.m_rcd = new RegistoCandidaturaADemonstracoes();
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
+        this.m_rconfDemo = new RegistoConflitosDemonstracao();
     }
 
     /**
@@ -124,6 +136,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
+     * Devolve a exposição em que a demonstração vai ocorrer
+     * @return - exposição
+     */
+    public Exposicao getExpo(){
+        return m_expo;
+    }
+    
+    /**
      * Devolve o registo dos recursos necessários à demonstração
      *
      * @return registo dos recursos necessários à demonstração
@@ -132,6 +152,14 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return this.rc;
     }
 
+    /**
+     * Devolve o registo de conflitos da demonstração
+     * @return registo de conflitos da demonstração
+     */
+    public RegistoConflitosDemonstracao getRegistoConflitosDemonstracao() {
+        return this.m_rconfDemo;
+    }
+    
     /**
      * Devolve o código de identificação da demonstração
      *

@@ -501,26 +501,42 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (modeloJList.getSize() >= 2) {
                     inicializarDatas();
-                    if (tituloTxt1.getText() != null
-                            && textoDescritivoTxt1.getText() != null
-                            && dataInicio != null
-                            && dataFim != null
-                            && dataInicioSubCand != null
-                            && dataFimSubCand != null
-                            && dataFimDetecaoConflitos != null) {
-                        ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
-                        ctrl.setDados(tituloTxt1.getText(),
-                                textoDescritivoTxt1.getText(),
-                                dataInicio,
-                                dataFim,
-                                dataInicioSubCand,
-                                dataFimSubCand,
-                                dataFimDetecaoConflitos,
-                                new Local(localTxt1.getText()));
-                        ctrl.registaExposicao();
-                        menuPrincipal.setVisible(true);
-                        JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
-                        dispose();
+                    if (!dataInicio.isMaior(dataFim)) {
+                        if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
+                            if (!dataFimSubCand.isMaior(dataInicio)) {
+                                if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
+                                    if (tituloTxt1.getText() != null
+                                            && textoDescritivoTxt1.getText() != null
+                                            && dataInicio != null
+                                            && dataFim != null
+                                            && dataInicioSubCand != null
+                                            && dataFimSubCand != null
+                                            && dataFimDetecaoConflitos != null) {
+                                        ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
+                                        ctrl.setDados(tituloTxt1.getText(),
+                                                textoDescritivoTxt1.getText(),
+                                                dataInicio,
+                                                dataFim,
+                                                dataInicioSubCand,
+                                                dataFimSubCand,
+                                                dataFimDetecaoConflitos,
+                                                new Local(localTxt1.getText()));
+                                        ctrl.registaExposicao();
+                                        menuPrincipal.setVisible(true);
+                                        JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                                        dispose();
+                                    } else {
+                                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "A data de fim submissão de candidaturas à exposição tem de ser anterior à data de inicio da exposição", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "A data de início submissão de candidaturas à exposição não pode ser posterior à data de fim de submissão", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "A data de início de exposição não pode ser posterior à data de fim", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Todos os campos são de preenchimento obrigatório", "Dados Insuficientes", JOptionPane.ERROR_MESSAGE);
                     }

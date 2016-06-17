@@ -55,15 +55,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     
     
-    private static final int CARD1_ALTURA = 370;
-    private static final int CARD1_LARGURA = 710;
-    private static final int CARD2_LARGURA = 480;
-    private static final int CARD2_ALTURA = 450;
-    private static final int CARD3_LARGURA_MINIMA = 400;
-    private static final int CARD3_ALTURA_MINIMA = 240;
-
-
-    /**
+   /**
      * Creates new form JFrameAlterarCandidaturaAExposicao
      */
     public JFrameAlterarCandidaturaAExposicaoUI(String username, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
@@ -75,7 +67,6 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         alterarComportamentoFecharJFrame();
         setLocationRelativeTo(null);
         setVisible(true);
-        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }
 
     /**
@@ -337,7 +328,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -478,7 +469,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             .addGroup(card2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(card2Layout.createSequentialGroup()
                         .addComponent(jButtonCard2Recuar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -785,7 +776,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel26.setText("Escolha as demonstrações pretendidas");
@@ -920,7 +911,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(card4, "card3");
+        getContentPane().add(card4, "card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -939,15 +930,18 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }
 
     private void avancarParaCard2() {
-        controller.setExposicao(m_listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+        controller.setExposicao(m_expo);
         m_listaCandidaturas = controller.getM_ListaCandidaturasRepresentante();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "Card2");
-        setSize(CARD2_LARGURA, CARD2_ALTURA);
+        cardLayout.show(getContentPane(), "card3");
     }
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            this.m_expo = (Exposicao) jComboBoxEscolherExposicao.getSelectedItem();
+            for(Exposicao e : m_listaExposicoes){
+                if(e.getTitulo().equalsIgnoreCase((String)jComboBoxEscolherExposicao.getSelectedItem())){
+                    m_expo = e;
+                }
+            }
             if (!m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(username).isEmpty()) {
                 this.controller = new AlterarCandidaturaExpoController(username);
                 avancarParaCard2();
@@ -982,7 +976,6 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
@@ -996,8 +989,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void avancarParaCard3() {
         m_candidaturaSelecionada = (CandidaturaAExposicao) escolherCandComboBox.getSelectedItem();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "Card3");
-        setSize(CARD3_LARGURA_MINIMA, CARD3_ALTURA_MINIMA);
+        cardLayout.show(getContentPane(), "card3");
     }
 
     private void escolherCandComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolherCandComboBoxActionPerformed
@@ -1092,7 +1084,6 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void voltarParaEscolherCandBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarParaEscolherCandBtnActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }//GEN-LAST:event_voltarParaEscolherCandBtnActionPerformed
 
     
@@ -1168,7 +1159,6 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         //jMenuItemPreencherCampos.setEnabled(true);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
-        setSize(CARD2_LARGURA, CARD2_ALTURA);
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
