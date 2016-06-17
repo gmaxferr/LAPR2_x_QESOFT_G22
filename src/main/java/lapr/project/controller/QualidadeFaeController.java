@@ -16,36 +16,38 @@ import lapr.project.utils.QualidadeFaeCalculo;
  * @author Ricardo Catalao
  */
 public class QualidadeFaeController {
-    
+
+    public static final double DESVIO_MAXIMO_PERMITIDO = 1D;
+
     private final CentroExposicoes ce;
     private QualidadeFaeCalculo qualFaeCalc;
 
     public QualidadeFaeController(CentroExposicoes ce) {
         this.ce = ce;
     }
-    
-    public List<FAE> getListaFAE(){
+
+    public List<FAE> getListaFAE() {
         qualFaeCalc = new QualidadeFaeCalculo();
         RegistoExposicoes re = ce.getRegistoExposicoes();
         List<Exposicao> listExpo = re.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
-        for(Exposicao expo : listExpo){
+        for (Exposicao expo : listExpo) {
             RegistoCandidaturasAExposicao rc = expo.getRegistoCandidaturasAExposicao();
             RegistoAtribuicoes ra = expo.getRegistoAtribuicoes();
             List<CandidaturaAExposicao> listCand = rc.getListaCandidaturas();
-            for(CandidaturaAExposicao cand : listCand){
+            for (CandidaturaAExposicao cand : listCand) {
                 qualFaeCalc.calcMedia(cand, ra);
             }
             RegistoFAE rfae = expo.getRegistoFAE();
             List<FAE> listFae = rfae.getListaFAE();
-            for(FAE fae : listFae){
+            for (FAE fae : listFae) {
                 qualFaeCalc.calcMediaAndVariance(fae, ra);
             }
         }
-        return qualFaeCalc.getListaFAEsWithVarianceOver(1);
+        return qualFaeCalc.getListaFAEsComDesvioPadraoAcimaDe(1);
     }
-    
-    public List<FAE> testeHipotese(double grauConfianca){
-        return qualFaeCalc.testeHipotese(grauConfianca);
+
+    public List<FAE> testeHipotese(double grauConfianca) {
+        return qualFaeCalc.testeHipotese(DESVIO_MAXIMO_PERMITIDO, grauConfianca);
     }
-    
+
 }

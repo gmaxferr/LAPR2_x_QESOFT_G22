@@ -89,7 +89,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida()
-                    && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE).getFaeAssociado().getUsernameFae().equalsIgnoreCase(usernameFAE)) {
+                    && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
                 listaAtrib.add(atribuicao);
             }
         }

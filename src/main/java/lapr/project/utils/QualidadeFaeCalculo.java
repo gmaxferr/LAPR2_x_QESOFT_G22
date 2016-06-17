@@ -26,7 +26,16 @@ public class QualidadeFaeCalculo {
         this.mediaDesviosFaesParaAnalisar = new ArrayList<>();
     }
 
-    public void calcMedia(CandidaturaAExposicao cand, RegistoAtribuicoes ra) {
+    /**
+     * Calcula a média de todas as avaliações a uma
+     * CandidaturaAExposição.<!-- -->Se já tiver calculado isto antes, adiciona
+     * os valores aos já existentes.
+     *
+     * @param cand Candidatura da qual queremos saber a média das avaliações
+     * @param ra Registo de Atribuicoes
+     * @return Retorna o valor atual da média de avaliações desta Candidatura
+     */
+    public double calcMedia(CandidaturaAExposicao cand, RegistoAtribuicoes ra) {
         Media<CandidaturaAExposicao> res = null;
 
         for (Media<CandidaturaAExposicao> medias : mediaCands) {
@@ -37,7 +46,7 @@ public class QualidadeFaeCalculo {
         }
 
         if (res == null) {
-            res = new Media<CandidaturaAExposicao>(cand);
+            res = new Media<>(cand);
             mediaCands.add(res);
         }
 
@@ -45,12 +54,22 @@ public class QualidadeFaeCalculo {
             if (atr.getCandidaturaAssociada() == cand) {
                 double media = atr.getRegistoFaeAvaliacao().getMediaRatings();
                 res.addValor(media);
-                break;
             }
         }
+
+        return res.getMedia();
     }
 
-    public void calcMediaAndVariance(FAE fae, RegistoAtribuicoes ra) {
+    /**
+     * Calcula a média dos desvios e a variância da média desses mesmos desvios
+     * para um determinado FAE.
+     *
+     * @param fae FAE que se pretende calcular estes valores
+     * @param ra Registo de atribuicoes
+     * @return Retorna uma distribuição normal de média equivalente à média dos
+     * desvios calculado e desvio padrão igual ao desvio padrão calculado
+     */
+    public NormalDistribution calcMediaAndVariance(FAE fae, RegistoAtribuicoes ra) {
         Media<FAE> res = null;
 
         for (Media<FAE> media : mediaDesviosFaes) {
@@ -61,7 +80,7 @@ public class QualidadeFaeCalculo {
         }
 
         if (res == null) {
-            res = new Media<FAE>(fae);
+            res = new Media<>(fae);
             mediaDesviosFaes.add(res);
         }
 
@@ -79,12 +98,21 @@ public class QualidadeFaeCalculo {
 
             res.addValor(variance);
         }
+
+        double mediaDesvios = res.getMediaDesvios();
+        double desvioPadrao = Math.sqrt(res.getVarianciaDesvios());
+        return new NormalDistribution(mediaDesvios, Double.compare(desvioPadrao, 0D) == 0 ? Double.MIN_VALUE : desvioPadrao);
     }
 
-    public List<FAE> getListaFAEsWithVarianceOver(double variancia) {
+    /**
+     * @param desvioPadrao Desvio padrao limite.
+     * @return Lista de FAEs cujo valor da media dos desvios seja maior que o
+     * desvio padrao passado como limite
+     */
+    public List<FAE> getListaFAEsComDesvioPadraoAcimaDe(double desvioPadrao) {
         List<FAE> result = new ArrayList<>();
         for (Media<FAE> fae : mediaDesviosFaes) {
-            if (fae.getMedia() > variancia) {
+            if (fae.getMediaDesvios() > desvioPadrao) {
                 result.add(fae.obj);
                 this.mediaDesviosFaesParaAnalisar.add(fae);
             }
@@ -92,24 +120,31 @@ public class QualidadeFaeCalculo {
         return result;
     }
 
-    public List<FAE> testeHipotese(double grauConfianca) {
+    /**
+     * @param valorIdeal Valor que o desvio padrão do FAE não pode ultrapassar
+     * (hipótese nula (H0))
+     * @param grauConfianca Grau de confiança para usar no teste de Hipoteses,
+     * entre 0 e 1
+     * @return Retorna uma lista inteira de FAEs para a qual a hipotese nula foi
+     * rejeitada, para o grau de confiança especificado
+     */
+    public List<FAE> testeHipotese(double valorIdeal, double grauConfianca) {
         List<FAE> res = new ArrayList<>();
 
         NormalDistribution phi = new NormalDistribution(0, 1);
-        double zCritico = phi.inverseCumulativeProbability(grauConfianca / 2);
+        double zCritico = phi.inverseCumulativeProbability(grauConfianca);
 
         for (Media<FAE> mediaFAE : mediaDesviosFaesParaAnalisar) {
-            double mediaDesvios = mediaFAE.getMedia();
-            double variancia = Math.sqrt(mediaFAE.getVariancia());
+            double mediaDesvios = mediaFAE.getMediaDesvios();
+            double desvioPadrao = Math.sqrt(mediaFAE.getVarianciaDesvios());
             double numValores = mediaFAE.getN();
 
-            double delta = zCritico * (Math.sqrt(variancia / numValores));
-            double lowerBound = mediaDesvios - delta;
-            double higherBound = mediaDesvios - delta;
+            double delta = zCritico * (desvioPadrao / Math.sqrt(numValores));
+            double lowerBound = mediaDesvios + delta;
 
-            double z0 = (mediaDesvios - 0) / (Math.sqrt(variancia / numValores));
+            double z0 = (mediaDesvios - valorIdeal) / (desvioPadrao / Math.sqrt(numValores));
 
-            if (z0 >= lowerBound && z0 <= higherBound) {
+            if (z0 >= lowerBound) {
                 res.add(mediaFAE.obj);
             }
         }
@@ -139,7 +174,7 @@ public class QualidadeFaeCalculo {
          * @return Devolve a média calculada desta candidatura;
          */
         public double getMedia() {
-            if (listaValores.size() > 0) {
+            if (!listaValores.isEmpty()) {
                 double somaMedias = 0D;
                 for (Double d : listaValores) {
                     somaMedias += d;
@@ -153,11 +188,36 @@ public class QualidadeFaeCalculo {
          * @return Devolve a variancia dos valores
          */
         public double getVariancia() {
-            if (listaValores.size() > 0) {
+            if (!listaValores.isEmpty()) {
                 double media = getMedia();
                 double somaVariancias = 0D;
                 for (Double d : listaValores) {
                     somaVariancias += Math.pow(d - media, 2);
+                }
+                return somaVariancias / listaValores.size();
+            }
+            return -1;
+        }
+
+        /**
+         * @return Devolve a média calculada desta candidatura;
+         */
+        public double getMediaDesvios() {
+            if (!listaValores.isEmpty()) {
+                return Math.sqrt(getMedia());
+            }
+            return -1;
+        }
+
+        /**
+         * @return Devolve a variancia dos valores
+         */
+        public double getVarianciaDesvios() {
+            if (!listaValores.isEmpty()) {
+                double media = getMediaDesvios();
+                double somaVariancias = 0D;
+                for (Double d : listaValores) {
+                    somaVariancias += Math.pow(Math.sqrt(d) - media, 2);
                 }
                 return somaVariancias / listaValores.size();
             }
