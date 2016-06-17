@@ -100,6 +100,12 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
     public void adiciona(ConflitoDeInteresseDemonstracao c) {
         m_listaConflitos.add(c);
     }
+    
+    public void fix(RegistoCandidaturasAExposicao rc){
+        for(ConflitoDeInteresseDemonstracao conf : m_listaConflitos){
+            conf.fix(rc);
+        }
+    }
 
     @Override
     public RegistoConflitosDemonstracao importContentFromXMLNode(Node node) {
