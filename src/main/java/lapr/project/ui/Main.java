@@ -133,7 +133,7 @@ public class Main {
         //GestorExposições
         Utilizador utilizador;
         utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
-        utilizador.setIsGestor();
+        utilizador.setIsGestor(true);
 
         //Organizador
         utilizador = ru.identificarUtilizadorPeloUsername("Ana");
