@@ -537,7 +537,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimCandidaturas(dataFimDetecaoConflitos);
+                d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
             }
         }
     }

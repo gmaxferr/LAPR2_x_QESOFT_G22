@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
@@ -52,6 +52,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         this.m_listaDemonstracoes = new ArrayList<>();
     }
 
+    private Exposicao m_expo;
+    
     /**
      * Devolve uma lista com todas as demostrações
      *
@@ -90,8 +92,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @param descricao - descrição da demonstração
      * @return nova demonstração
      */
-    public Demonstracao novaDemonstracao(String descricao) {
-        Demonstracao demo = new Demonstracao(descricao);
+    public Demonstracao novaDemonstracao(String descricao, Exposicao expo) {
+        m_expo = expo;
+        Demonstracao demo = new Demonstracao(descricao, expo);
         return demo;
     }
 
@@ -233,7 +236,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                 NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
-                    Demonstracao demo = new Demonstracao("");
+                    Demonstracao demo = new Demonstracao("",m_expo);
                     demo.importContentFromXMLNode(n2);
                     m_listaDemonstracoes.add(demo);
                 }
