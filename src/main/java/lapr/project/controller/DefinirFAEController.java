@@ -137,7 +137,7 @@ public class DefinirFAEController {
      * @return true se o utilizador é válido para ser adicionado, false caso
      * contrário
      */
-    private boolean validaUtilizadorParaAdicionarComoFAE(Utilizador u) {
+    public boolean validaUtilizadorParaAdicionarComoFAE(Utilizador u) {
         for (FAE fae : this.m_rfae.getListaFAE()) {
             if (fae.getUtilizador().equals(u)) {
                 return false;
