@@ -576,7 +576,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         if (obj != null && obj instanceof Exposicao) {
             Exposicao o = (Exposicao) obj;
             return (local == null ? o.local == null : local.equals(o.local))
-                    && (m_ce == null ? o.m_ce == null : m_ce.equals(o.m_ce))
                     && (m_dataAberturaCandidatura == null ? o.m_dataAberturaCandidatura == null : m_dataAberturaCandidatura.equals(o.m_dataAberturaCandidatura))
                     && (m_dataEncerramentoCandidatura == null ? o.m_dataEncerramentoCandidatura == null : m_dataEncerramentoCandidatura.equals(o.m_dataEncerramentoCandidatura))
                     && (m_dataFim == null ? o.m_dataFim == null : m_dataFim.equals(o.m_dataFim))
@@ -669,6 +668,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
+                if (this.m_strTitulo.equals("")) {
+                    this.m_strTitulo = null;
+                }
 
                 Data invalidData = new Data(1, 1, 1);
 
