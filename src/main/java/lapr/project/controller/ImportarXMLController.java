@@ -36,7 +36,7 @@ public class ImportarXMLController {
                 ce = new CentroExposicoes();
                 ce.importContentFromXMLNode(node);
             }
-        } catch (ParserConfigurationException | IOException | SAXException ex) {
+        } catch (ParserConfigurationException | IOException ex) {
             Logger.getLogger(ImportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
