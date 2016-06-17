@@ -731,10 +731,13 @@ public class ExposicaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Exposicao expResult = null;
-        Exposicao result = e.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
+        Exposicao instance = new Exposicao(ce);
+        Node node = instance.exportContentToXMLNode();
+        Exposicao expResult = new Exposicao(ce);
+        expResult.importContentFromXMLNode(node);
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        boolean result = instance.equals(expResult);
+        assertEquals(true, result);
     }
 
     /**
@@ -743,9 +746,13 @@ public class ExposicaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Node expResult = null;
-        Node result = e.exportContentToXMLNode();
-        assertEquals(expResult, result);
+        Exposicao instance = new Exposicao(ce);
+        Node node = instance.exportContentToXMLNode();
+        Exposicao expResult = new Exposicao(ce);
+        expResult.importContentFromXMLNode(node);
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        boolean result = instance.equals(expResult);
+        assertEquals(true, result);
     }
 
     /**
