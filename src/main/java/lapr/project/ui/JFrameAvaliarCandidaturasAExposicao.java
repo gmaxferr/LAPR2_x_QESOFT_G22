@@ -1,35 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelAtribuicoesMostraCandidatura;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.*;
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.AvaliarCandidaturaAExposicaoController;
 import lapr.project.model.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private transient JFrame jFrameMenuPrincipal;
     private static final int CARD3_LARGURA_MINIMA = 400;
     private static final int CARD3_ALTURA_MINIMA = 240;
-    private transient final String usernameFAE;
     private transient final AvaliarCandidaturaAExposicaoController controller;
     private transient final List<Exposicao> listaExposicoes;
     private transient List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
-    private transient AtribuicaoCandidatura atribuicaoEscolhida;
     private transient Avaliacao avaliacaoDoFae;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
@@ -52,7 +42,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         super("Avaliar candidaturas");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.usernameFAE = usernameFAE;
         this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes, usernameFAE);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE();
@@ -762,7 +751,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
     private void avancarParaCard3() {
         controller.setAtribuicao(listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
-        atribuicaoEscolhida = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex());
         this.avaliacaoDoFae = controller.getAvaliacaoDoFae();
         cardLayout.show(getContentPane(), "card3");
         setSize(CARD3_LARGURA_MINIMA, CARD3_ALTURA_MINIMA);

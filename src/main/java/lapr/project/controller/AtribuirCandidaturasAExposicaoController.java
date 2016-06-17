@@ -18,7 +18,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * Lista de exposições - a ser preechida pelas exposições do organizador a
      * executar o UC
      */
-    private ArrayList<Exposicao> m_listaExpo;
+    private List<Exposicao> m_listaExpo;
 
     /**
      *
@@ -64,6 +64,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * Username do organizador a executar este UC
      */
     private final String m_usernameOrganizador;
+    private List<AtribuicaoCandidatura> m_listaAtribuicoesGeradas;
 
     /**
      * Construtor do controller do UC - atribuir candidaturas
@@ -90,8 +91,8 @@ public class AtribuirCandidaturasAExposicaoController {
      *
      * @return lista de exposições o organizador
      */
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizador() {
-        m_listaExpo = m_centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE(this.m_usernameOrganizador);
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoConflitosAlterados() {
+        m_listaExpo = m_centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(this.m_usernameOrganizador);
         return m_listaExpo;
     }
 
@@ -145,11 +146,9 @@ public class AtribuirCandidaturasAExposicaoController {
      */
     public List<AtribuicaoCandidatura> atribui(Mecanismo mec) {
         MecanismoSimples mecanismo = (MecanismoSimples) mec;
-        return mecanismo.atribui(this.m_exposicaoEscolhida);
-    }
-
-    public void setCandidatura(CandidaturaAExposicao candidatura) {
-        this.m_cand = candidatura;
+        List<AtribuicaoCandidatura> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicaoEscolhida);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
     }
 
     /**
@@ -176,14 +175,17 @@ public class AtribuirCandidaturasAExposicaoController {
     }
 
     /**
-     * Atualiza o estado da candidatura e da exposição atualmente selecionadas
+     * Atualiza o estado das candidaturas sobre as quais foram geradas atribuições e da exposição atualmente selecionada
      * pelo organizador na UI para os estados CandidaturasAtribuidas
      */
     public void setEstadoCandidaturaAtribuida() {
         this.m_estadoExposicao = this.m_exposicaoEscolhida.getEstado();
         m_estadoExposicao.setEstadoCandidaturasAtribuidas();
 
-        this.m_estadoCandidatura = this.m_cand.getEstado();
-        m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas) {
+            this.m_estadoCandidatura = atribuicao.getCandidaturaAssociada().getEstado();
+            m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+        }
+
     }
 }

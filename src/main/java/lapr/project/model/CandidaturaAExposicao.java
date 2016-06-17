@@ -591,4 +591,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return m_decisao.getDecisao();
     }
 
+    @Override
+    public String toString(){
+        return m_StrNomeEmpresa;
+    }
+    
 }

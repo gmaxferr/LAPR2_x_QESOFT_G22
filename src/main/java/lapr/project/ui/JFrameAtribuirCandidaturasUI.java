@@ -65,7 +65,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         this.centroExposicoes = centroExposicoes;
         controller = new AtribuirCandidaturasAExposicaoController(this.centroExposicoes, this.usernameOrganizador);
         controller.getRegistoExposicoes();
-        this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador();
+        this.listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizadorEstadoConflitosAlterados();
 
         initComponents();
         alterarComportamentoFecharJFrame();
@@ -129,9 +129,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jComboBoxCard3EscolherCandidatura = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -415,15 +412,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
 
         jLabel6.setText("Candidatura:");
 
-        jLabel7.setText("Lista de FAE não atribuidos:");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(jList1);
-
         jButton3.setText("Recuar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -443,48 +431,38 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxCard3EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 49, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5))
-                .addContainerGap())
-            .addGroup(card3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(31, 31, 31))
             .addGroup(card3Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxCard3EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(jLabel5)))
+                .addContainerGap(180, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCard3EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -587,6 +565,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         int resposta = JOptionPane.showOptionDialog(rootPane, "Tem a certeza que pretende esta distribuição?", "Terminar", 0, JOptionPane.QUESTION_MESSAGE, null, OPCOES_SIM_NAO_DIALOG, OPCOES_SIM_NAO_DIALOG[1]);
         if (resposta == 0) {
             controller.registaAtribuicao(listaAtribuicoes);
+            controller.setEstadoCandidaturaAtribuida();
             setVisible(false);
             JOptionPane.showMessageDialog(rootPane, "Distribuição registada!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             jFrameMenuPrincipal.setVisible(true);
@@ -657,12 +636,10 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JLabel jLabelCard2DadosAdicionais;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
@@ -672,7 +649,6 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;

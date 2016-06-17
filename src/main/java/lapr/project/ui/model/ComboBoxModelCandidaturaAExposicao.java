@@ -19,7 +19,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
     /**
      * Objeto (Candidaturas) selecionado.
      */
-    String selection;
+    Object selection;
 
     /**
      * Construtor de objetos do tipo ComboBoxModelCandidaturaAExposicao com o
@@ -59,7 +59,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      */
     @Override
     public void setSelectedItem(Object anItem) {
-        selection = (String) anItem;
+        selection = anItem;
     }
 
     /**
