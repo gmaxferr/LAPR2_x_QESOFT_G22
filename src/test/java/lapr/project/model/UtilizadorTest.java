@@ -582,9 +582,6 @@ public class UtilizadorTest {
 
                 expResult = i == j;
                 result = instance.equals(obj);
-                if (expResult != result) {
-                    System.err.println(i + " " + j);
-                }
                 assertEquals(expResult, result);
             }
         }

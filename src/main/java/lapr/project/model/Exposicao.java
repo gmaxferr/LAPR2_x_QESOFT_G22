@@ -279,7 +279,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param strTitulo novo título para esta exposição
      */
     public void setTitulo(String strTitulo) {
-        this.m_strTitulo = strTitulo;
+        this.m_strTitulo = (strTitulo == null || strTitulo.equals("")) ? null : strTitulo;
     }
 
     /**
@@ -288,7 +288,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param strDescricao nova descrição para esta exposição
      */
     public void setDescricao(String strDescricao) {
-        this.m_strDescricao = strDescricao;
+        this.m_strDescricao = (strDescricao == null || strDescricao.equals("")) ? null : strDescricao;
     }
 
     /**
@@ -299,6 +299,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setPeriodo(Data dataInicio, Data dataFim) {
         this.m_dataInicio = dataInicio;
+        this.m_dataFim = dataFim;
+    }
+
+    /**
+     * Define a data de início para a realização desta exposição
+     *
+     * @param dataInicio nova data de inicio
+     */
+    public void setDataInicio(Data dataInicio) {
+        this.m_dataInicio = dataInicio;
+    }
+
+    /**
+     * Define a data de fim para a realização desta exposição
+     *
+     * @param dataFim nova data de fim
+     */
+    public void setDataFim(Data dataFim) {
         this.m_dataFim = dataFim;
     }
 
@@ -412,10 +430,13 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public boolean dadosMinimosObrigatorios() {
         if (m_dataAberturaCandidatura != null
                 && m_dataEncerramentoCandidatura != null
-                && m_dataFim != null && m_dataFimDetecaoConflitos != null
+                && m_dataFim != null
+                && m_dataFimDetecaoConflitos != null
                 && m_dataInicio != null
                 && m_ro.getListaOrganizadores().size() >= 2
+                && m_strTitulo != null
                 && m_strTitulo.length() > 0
+                && m_strDescricao != null
                 && m_strDescricao.length() > 0
                 && local != null) {
             return true;
@@ -735,6 +756,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
+                    case "inicial":
+                        this.m_estado = new EstadoExposicaoInicial(this, m_ce);
+                        break;
                     case "criada":
                         this.m_estado = new EstadoExposicaoCriada(this);
                         recriarTimersExpo();
@@ -809,7 +833,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elementExpo.setAttribute(TITUTLO_ATTR_NAME, this.m_strTitulo);
 
-            if (this.m_estado.isEstadoCriada()) {
+            if (this.m_estado.isEstadoInicial()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "inicial");
+            } else if (this.m_estado.isEstadoCriada()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "criada");
             } else if (this.m_estado.isEstadoDemosDefinidasSemFAE()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosSemFAE");

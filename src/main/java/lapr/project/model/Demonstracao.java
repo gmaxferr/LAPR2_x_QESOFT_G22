@@ -197,7 +197,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     void setDataFimDetecaoConflitos(Data dataFimDetecaoConflitos) {
-        this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
+        if (dataFimDetecaoConflitos != null) {
+            m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+            this.schedule(new AlterarParaConflitosDetetados(this), m_dataFimDetecaoConflitos);
+        }
     }
 
     /**
@@ -206,8 +209,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @param dataInicioCandDemo - data de inicio de candidaturas à demonstração
      */
     void setDataInicioCandidaturas(Data dataInicioCandDemo) {
-        m_dataInicioSubCand = dataInicioCandDemo;
-        this.schedule(new AlterarParaCandidaturasAbertas(this), m_dataInicioSubCand);
+        if (dataInicioCandDemo != null) {
+            m_dataInicioSubCand = dataInicioCandDemo;
+            this.schedule(new AlterarParaCandidaturasAbertas(this), m_dataInicioSubCand);
+        }
     }
 
     /**
@@ -216,8 +221,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @param dataFimCandDemo - data de fim de candidaturas à demonstração
      */
     void setDataFimCandidaturas(Data dataFimCandDemo) {
-        m_dataFimSubCand = dataFimCandDemo;
-        this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
+        if (dataFimCandDemo != null) {
+            m_dataFimSubCand = dataFimCandDemo;
+            this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
+        }
     }
 
     /**
