@@ -32,6 +32,7 @@ public class AlterarCandidaturaExpoController {
 
     public AlterarCandidaturaExpoController(String username) {
         this.m_username = username;
+        keywords = "";
     }
 
     public void setExposicao(Exposicao e) {
@@ -157,18 +158,26 @@ public class AlterarCandidaturaExpoController {
         m_cand.setTelemovel(novoTelemovel);
         m_cand.setArea(novaArea);
         m_cand.setNumConvites(novoNumConvites);
-        m_cand.setKeywords(keywords);
-        try {
-            for (Integer i : produtosARemover) {
-                m_cand.removeProduto(i);
+        if (!keywords.isEmpty()) {
+            m_cand.setKeywords(keywords);
+        }
+        if (!keywords.isEmpty()) {
+            try {
+                for (Integer i : produtosARemover) {
+                    m_cand.removeProduto(i);
+                }
+            } catch (IllegalArgumentException e) {
             }
-        } catch (IllegalArgumentException e) {
         }
-        for (Alteracao a : produtosAAlterar) {
-            m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
+        if (!keywords.isEmpty()) {
+            for (Alteracao a : produtosAAlterar) {
+                m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
+            }
         }
-        for (Produto p : produtosAAdicionar) {
-            m_cand.addProduto(p);
+        if (!keywords.isEmpty()) {
+            for (Produto p : produtosAAdicionar) {
+                m_cand.addProduto(p);
+            }
         }
     }
 

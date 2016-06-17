@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import java.util.List;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.registos.*;
