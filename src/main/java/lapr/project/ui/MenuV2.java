@@ -815,9 +815,9 @@ public class MenuV2 extends javax.swing.JFrame {
             try {
                 ce = CTRL.Import(file.getAbsolutePath());
                 this.centroExposicoes = ce;
-                JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(thisJFrame, "Informação carregada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(thisJFrame, "Erro no carregamento da informação.", "ERRO", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
