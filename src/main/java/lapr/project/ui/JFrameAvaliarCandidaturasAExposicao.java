@@ -715,6 +715,9 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
+            controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            controller.getRegistoAtribuicoes();
+            listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -725,10 +728,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
     private void avancarParaCard2() {
-        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoAtribuicoes();
-        listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
-
         cardLayout.show(getContentPane(), "card2");
         setSize(CARD2_LARGURA, CARD2_ALTURA);
     }

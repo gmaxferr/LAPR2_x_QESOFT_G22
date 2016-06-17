@@ -161,7 +161,9 @@ public class AtribuirCandidaturasAExposicaoController {
      */
     public List<AtribuicaoCandidatura> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
         MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
-        return mecanismo.atribui(this.m_exposicaoEscolhida, numeroFAEOuExperiencia);
+        List<AtribuicaoCandidatura> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicaoEscolhida, numeroFAEOuExperiencia);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
     }
 
     /**

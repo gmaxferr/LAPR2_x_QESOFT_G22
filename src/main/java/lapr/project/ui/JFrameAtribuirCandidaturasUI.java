@@ -530,6 +530,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
                     String dadosAdicionais = jTextFieldDadosAdicionais.getText();
                     listaAtribuicoes = controller.atribui(mecanismoEscolhido, dadosAdicionais);
                     if (!listaAtribuicoes.isEmpty()) {
+                        jComboBoxCard3EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoes));
                         avancarPasso3();
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Não foi gerada nenhuma atribuição! Verifique se existem FAE/Candidaturas suficientes", "Erro", JOptionPane.WARNING_MESSAGE);
