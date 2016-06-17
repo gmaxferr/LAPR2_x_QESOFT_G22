@@ -1,36 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelDemonstracoes;
-import lapr.project.ui.model.ModeloListaDemonstracoes;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ModeloListaProdutos;
-import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.ui.model.*;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.AlterarCandidaturaExpoController;
+import lapr.project.controller.*;
 import lapr.project.exceptions.AreaErradaException;
 import lapr.project.exceptions.KeywordsErradasException;
 import lapr.project.exceptions.NumeroConvitesErradoException;
 import lapr.project.exceptions.TelemovelEmpresaErradoException;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.ListaDemonstracoes;
-import lapr.project.model.Produto;
+import lapr.project.model.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 

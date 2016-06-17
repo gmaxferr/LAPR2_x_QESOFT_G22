@@ -88,6 +88,22 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
         ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+            if (atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
+                listaAtrib.add(atribuicao);
+            }
+        }
+        return listaAtrib;
+    }
+    
+    /**
+     * Devolve as candidaturas atribuídas a um fae que se encontrem no estado atribuidas
+     * 
+     * @param usernameFAE username do fae
+     * @return candidaturas atribuídas a um fae
+     */
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE) {
+        ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida()
                     && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
                 listaAtrib.add(atribuicao);

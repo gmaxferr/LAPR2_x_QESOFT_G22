@@ -100,8 +100,8 @@ public class AvaliarCandidaturaAExposicaoController {
      *
      * @return lista de atribuiçoes do FAE a executar este UC
      */
-    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoAE() {
-        return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAEEstaadoAtribuidas() {
+        return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(this.m_usernameFAE);
     }
 
     /**

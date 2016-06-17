@@ -717,7 +717,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
-            listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoAE();
+            listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAEEstaadoAtribuidas();
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
             } else {

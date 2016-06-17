@@ -203,4 +203,15 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         }
         return node;
     }
+
+    public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
+        List<CandidaturaAExposicao> listCand = new ArrayList<>();
+        for (CandidaturaAExposicao cand : m_listaCandidaturas) {
+            EstadoCandidaturaAExposicao state = cand.getEstado();
+            if (state.isEstadoCandidaturaProntaAtribuicoes()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
 }

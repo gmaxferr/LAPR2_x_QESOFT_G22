@@ -70,6 +70,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         initComponents();
         alterarComportamentoFecharJFrame();
 
+        setLocationRelativeTo(null);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
