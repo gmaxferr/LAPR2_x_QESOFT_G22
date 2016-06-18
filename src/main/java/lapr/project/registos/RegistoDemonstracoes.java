@@ -224,6 +224,19 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoFAE;
     }
 
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasFechadas() {
+        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasFechadas()) {
+                listaDemonstracoesDoOrganizador.add(demonstracao);
+            }
+        }
+        return listaDemonstracoesDoOrganizador;
+    }
+
     public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
             for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {

@@ -95,8 +95,12 @@ public class AtribuirCandidaturasADemonstracaoController {
      * @param usernameOrganizador username do organizador
      * @return lista de demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String usernameOrganizador){
-        return m_rd.getListaDemonstracoesDoOrganizador(usernameOrganizador);
+    public List<Demonstracao> getListaDemonstracoesEestadoCandidaturasFechadas(String usernameOrganizador){
+         for(Organizador o: m_exposicao.getListaOrganizadores()){
+            if( o.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) )
+        return m_rd.getListaDemonstracoesEstadoCandidaturasFechadas(); 
+         }  
+         return new ArrayList<>();
     }
     
     /**
