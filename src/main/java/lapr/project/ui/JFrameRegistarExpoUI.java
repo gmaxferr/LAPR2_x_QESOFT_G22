@@ -496,79 +496,77 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tituloTxt1ActionPerformed
 
     private void registExpoBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registExpoBtn1ActionPerformed
-        registExpoBtn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (modeloJList.getSize() >= 2) {
-                    inicializarDatas();
-                    if (!dataInicio.isMaior(dataFim)) {
-                        if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
-                            if (!dataFimSubCand.isMaior(dataInicio)) {
-                                if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
-                                    if (tituloTxt1.getText() != null
-                                            && textoDescritivoTxt1.getText() != null
-                                            && dataInicio != null
-                                            && dataFim != null
-                                            && dataInicioSubCand != null
-                                            && dataFimSubCand != null
-                                            && dataFimDetecaoConflitos != null) {
-                                        ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
-                                        ctrl.setDados(tituloTxt1.getText(),
-                                                textoDescritivoTxt1.getText(),
-                                                dataInicio,
-                                                dataFim,
-                                                dataInicioSubCand,
-                                                dataFimSubCand,
-                                                dataFimDetecaoConflitos,
-                                                new Local(localTxt1.getText()));
-                                        ctrl.registaExposicao();
-                                        menuPrincipal.setVisible(true);
-                                        JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
-                                        dispose();
-                                    } else {
-                                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
-                                    }
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane, "A data de fim submissão de candidaturas à exposição tem de ser anterior à data de inicio da exposição", "Data Inválida", JOptionPane.ERROR_MESSAGE);
-                                }
+
+        if (modeloJList.getSize() >= 2) {
+            if (tituloTxt1.getText().length() > 0
+                    && textoDescritivoTxt1.getText().length() > 0
+                    && localTxt1.getText().length() > 0
+                    && diaInicio.getSelectedItem() != null
+                    && diaFim.getSelectedItem() != null
+                    && diaInicioCand.getSelectedItem() != null
+                    && diaFimCand.getSelectedItem() != null
+                    && diaFimDetecaoConflitos.getSelectedItem() != null) {
+                ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
+                inicializarDatas();
+                if (!dataInicio.isMaior(dataFim)) {
+                    if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
+                        if (!dataFimSubCand.isMaior(dataInicio)) {
+                            if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
+                                ctrl.setDados(tituloTxt1.getText(),
+                                        textoDescritivoTxt1.getText(),
+                                        dataInicio,
+                                        dataFim,
+                                        dataInicioSubCand,
+                                        dataFimSubCand,
+                                        dataFimDetecaoConflitos,
+                                        new Local(localTxt1.getText()));
+                                ctrl.registaExposicao();
+                                menuPrincipal.setVisible(true);
+                                JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                                dispose();
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "A data de início submissão de candidaturas à exposição não pode ser posterior à data de fim de submissão", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "A data de início de exposição não pode ser posterior à data de fim", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "A data de fim submissão de candidaturas à exposição tem de ser anterior à data de inicio da exposição", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Todos os campos são de preenchimento obrigatório", "Dados Insuficientes", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "A data de início submissão de candidaturas à exposição não pode ser posterior à data de fim de submissão", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                     }
-
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Tem de escolher pelo menos 2 organizadores", "Organizadores Insuficientes", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "A data de início de exposição não pode ser posterior à data de fim", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Todos os campos são de preenchimento obrigatório", "Dados Insuficientes", JOptionPane.ERROR_MESSAGE);
             }
 
-            private void inicializarDatas() {
-                int ano1 = Integer.parseInt(anoInicio.getSelectedItem().toString());
-                int ano2 = Integer.parseInt(anoFim.getSelectedItem().toString());
-                int ano3 = Integer.parseInt(anoInicioCand.getSelectedItem().toString());
-                int ano4 = Integer.parseInt(anoFimCand.getSelectedItem().toString());
-                int ano5 = Integer.parseInt(anoFimDetecaoConflitos.getSelectedItem().toString());
-                int mes1 = mesInicio.getSelectedIndex() + 1;
-                int mes2 = mesFim.getSelectedIndex() + 1;
-                int mes3 = mesInicioCand.getSelectedIndex() + 1;
-                int mes4 = mesFimCand.getSelectedIndex() + 1;
-                int mes5 = mesFimDetecaoConflitos.getSelectedIndex() + 1;
-                int dia1 = Integer.parseInt(diaInicio.getSelectedItem().toString());
-                int dia2 = Integer.parseInt(diaFim.getSelectedItem().toString());
-                int dia3 = Integer.parseInt(diaInicioCand.getSelectedItem().toString());
-                int dia4 = Integer.parseInt(diaFimCand.getSelectedItem().toString());
-                int dia5 = Integer.parseInt(diaFimDetecaoConflitos.getSelectedItem().toString());
-                dataInicio = new Data(ano1, mes1, dia1);
-                dataFim = new Data(ano2, mes2, dia2);
-                dataInicioSubCand = new Data(ano3, mes3, dia3);
-                dataFimSubCand = new Data(ano4, mes4, dia4);
-                dataFimDetecaoConflitos = new Data(ano5, mes5, dia5);
-            }
-        });
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tem de escolher pelo menos 2 organizadores", "Organizadores Insuficientes", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void inicializarDatas() {
+        int ano1 = Integer.parseInt(anoInicio.getSelectedItem().toString());
+        int ano2 = Integer.parseInt(anoFim.getSelectedItem().toString());
+        int ano3 = Integer.parseInt(anoInicioCand.getSelectedItem().toString());
+        int ano4 = Integer.parseInt(anoFimCand.getSelectedItem().toString());
+        int ano5 = Integer.parseInt(anoFimDetecaoConflitos.getSelectedItem().toString());
+        int mes1 = mesInicio.getSelectedIndex() + 1;
+        int mes2 = mesFim.getSelectedIndex() + 1;
+        int mes3 = mesInicioCand.getSelectedIndex() + 1;
+        int mes4 = mesFimCand.getSelectedIndex() + 1;
+        int mes5 = mesFimDetecaoConflitos.getSelectedIndex() + 1;
+        int dia1 = Integer.parseInt(diaInicio.getSelectedItem().toString());
+        int dia2 = Integer.parseInt(diaFim.getSelectedItem().toString());
+        int dia3 = Integer.parseInt(diaInicioCand.getSelectedItem().toString());
+        int dia4 = Integer.parseInt(diaFimCand.getSelectedItem().toString());
+        int dia5 = Integer.parseInt(diaFimDetecaoConflitos.getSelectedItem().toString());
+        dataInicio = new Data(ano1, mes1, dia1);
+        dataFim = new Data(ano2, mes2, dia2);
+        dataInicioSubCand = new Data(ano3, mes3, dia3);
+        dataFimSubCand = new Data(ano4, mes4, dia4);
+        dataFimDetecaoConflitos = new Data(ano5, mes5, dia5);
+
     }//GEN-LAST:event_registExpoBtn1ActionPerformed
 
     private void anoFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoFimCandActionPerformed
