@@ -13,11 +13,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RemoverCandidaturaExpoController;
-import lapr.project.model.AtribuicaoCandidatura;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Produto;
+import lapr.project.model.*;
+import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
 
 /**
  *
@@ -25,40 +22,34 @@ import lapr.project.model.Produto;
  */
 public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
 
+    private transient List<Exposicao> m_listaExposicoes;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient JFrame thisFrame;
+    private transient CentroExposicoes m_ce;
+    private transient Exposicao m_expo;
+    private transient String username;
+    private transient RemoverCandidaturaExpoController controller;
+    private transient List<CandidaturaAExposicao> m_listaCandidaturas;
+    private transient CandidaturaAExposicao m_candidaturaSelecionada;
+
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-
-    private transient List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
-    private transient Exposicao expoSelecionada;
-    private transient List<Exposicao> listaExposicoes;
-
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
-    private static final int CARD1_ALTURA_MINIMA = 300;
-    private static final int CARD1_LARGURA_MINIMA = 400;
-
-    private static final int CARD2_LARGURA_MINIMA = 480;
-    private static final int CARD2_ALTURA_MINIMA = 450;
-    private transient final CardLayout cardLayout;
-    private transient String username;
-    private transient CentroExposicoes ce;
-    private transient RemoverCandidaturaExpoController ctrl;
-    private transient JFrame janelaMae;
 
     /**
      * Creates new form JFrameRemoverCandidaturaUI
      */
     public JFrameRemoverCandidaturaExposicaoUI(JFrame janelaMae, CentroExposicoes ce, String username) {
-        this.ctrl = new RemoverCandidaturaExpoController(username, ce);
-        this.ce = ce;
+        this.controller = new RemoverCandidaturaExpoController(username, ce);
+        this.m_ce = ce;
         this.username = username;
-        this.janelaMae = janelaMae;
-        this.listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentante(username);
+        this.jFrameMenuPrincipal = janelaMae;
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentante(username);
+        this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
         setVisible(true);
-        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }
 
     private void alterarComportamentoFecharJFrame() {
@@ -69,7 +60,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
-                janelaMae.setVisible(true);
+                jFrameMenuPrincipal.setVisible(true);
             }
         });
     }
@@ -83,7 +74,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Card1 = new javax.swing.JPanel();
+        card1 = new javax.swing.JPanel();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jButtonCard1Avancar = new javax.swing.JButton();
         jButtonCard1Fechar = new javax.swing.JButton();
@@ -98,7 +89,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
         jPanelCard1Local = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaCard1LocalExposicao = new javax.swing.JTextArea();
-        jComboBoxCard1EscolherExposicao = new javax.swing.JComboBox<>();
+        jComboBoxEscolherExposicao = new javax.swing.JComboBox<>();
         card2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -225,55 +216,55 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
         );
 
-        jComboBoxCard1EscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxCard1EscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
-        jComboBoxCard1EscolherExposicao.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBoxEscolherExposicao.setModel(new ComboBoxModelExposicoes(this.m_listaExposicoes));
+        jComboBoxEscolherExposicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCard1EscolherExposicaoActionPerformed(evt);
+                jComboBoxEscolherExposicaoActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout Card1Layout = new javax.swing.GroupLayout(Card1);
-        Card1.setLayout(Card1Layout);
-        Card1Layout.setHorizontalGroup(
-            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card1Layout.createSequentialGroup()
+        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
+        card1.setLayout(card1Layout);
+        card1Layout.setHorizontalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
                 .addGap(254, 254, 254)
-                .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(Card1Layout.createSequentialGroup()
-                .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Card1Layout.createSequentialGroup()
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(jLabelCard1Titulo))
-                    .addGroup(Card1Layout.createSequentialGroup()
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(Card1Layout.createSequentialGroup()
+                            .addGroup(card1Layout.createSequentialGroup()
                                 .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jButtonCard1Avancar))
                             .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        Card1Layout.setVerticalGroup(
-            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card1Layout.createSequentialGroup()
+        card1Layout.setVerticalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelCard1Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Card1Layout.createSequentialGroup()
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar))
                         .addGap(0, 133, Short.MAX_VALUE))
@@ -281,7 +272,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(Card1, "card2");
+        getContentPane().add(card1, "card1");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Escolha a candidatura a remover");
@@ -391,14 +382,14 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBoxCard2EscolherCandidatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCard2EscolherCandidatura.setToolTipText("");
         jComboBoxCard2EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCard2EscolherCandidaturaActionPerformed(evt);
             }
         });
 
-        jButtonCard2Avancar.setText("Avançar");
+        jButtonCard2Avancar.setText("Remover Candidatura");
         jButtonCard2Avancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCard2AvancarActionPerformed(evt);
@@ -457,30 +448,50 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
-        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
-            ctrl.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
-            ctrl.getRegistoAtribuicoes();
-            listaAtribuicoesDoFAE = ctrl.getListaAtribuicoesComOFAE();
-            avancarParaCard2();
+        if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
+            for (Exposicao e : m_listaExposicoes) {
+                if (e.getTitulo().equalsIgnoreCase((String) jComboBoxEscolherExposicao.getSelectedItem())) {
+                    this.m_expo = e;
+                }
+            }
+            if (!this.m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(username).isEmpty()) {
+                this.controller = new RemoverCandidaturaExpoController(username, m_ce);
+                avancarParaCard2();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
+    private void avancarParaCard2() {
+        controller.setExposicao(m_expo);
+        m_listaCandidaturas = controller.getListaCandidaturas(username);
+        jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(m_listaCandidaturas));
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card2");
+    }
+
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
-        this.janelaMae.setVisible(true);
+        this.jFrameMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButtonCard1FecharActionPerformed
 
-    private void jComboBoxCard1EscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard1EscolherExposicaoActionPerformed
-        if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
-            Exposicao expo = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
+    private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
+        if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
+            Exposicao expo = m_listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());
             jTextAreaCard1DescricaoExposicao.setText(expo.getDescricao());
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
+        } else {
+            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
+            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
+            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
-    }//GEN-LAST:event_jComboBoxCard1EscolherExposicaoActionPerformed
+    }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
     private void jComboBoxCard2EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
         if (jComboBoxCard2EscolherCandidatura.getSelectedItem() != null) {
@@ -489,7 +500,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
 
     private void preencherDados() {
-        CandidaturaAExposicao cand = listaAtribuicoesDoFAE.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()).getCandidaturaAssociada();
+        CandidaturaAExposicao cand = m_listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex());
         jLabelCard2DadosEmpresaNome.setText(cand.getNomeEmpresa());
         String telemovelEmpresa = Integer.toString(cand.getTelemovel());
         jLabelCard2DadosEmpresaTelemovel.setText(telemovelEmpresa);
@@ -511,12 +522,16 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     }
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
-        CandidaturaAExposicao c = (CandidaturaAExposicao) jComboBoxCard2EscolherCandidatura.getSelectedItem();
-        if (c != null) {
+        int c = jComboBoxCard2EscolherCandidatura.getSelectedIndex();
+        this.m_candidaturaSelecionada = m_listaCandidaturas.get(c);
+        if (m_candidaturaSelecionada != null) {
             int op = JOptionPane.showConfirmDialog(null, "Confirma a remoção da candidatura selecionada?", "Confirmação da remoção", JOptionPane.YES_NO_OPTION);
-            if(op == 0){
-                ctrl.setCandidaturaARemover(c);
-                ctrl.removerCandidatura();
+            if (op == 0) {
+                controller.setCandidaturaARemover(m_candidaturaSelecionada);
+                controller.removerCandidatura();
+                JOptionPane.showMessageDialog(rootPane, "Candidatura Removida!", "Remoção bem sucedida", JOptionPane.PLAIN_MESSAGE);
+                this.thisFrame.dispose();
+                this.jFrameMenuPrincipal.setVisible(true);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma candidatura primeiro!", "Candidatura em falta", JOptionPane.WARNING_MESSAGE);
@@ -526,23 +541,18 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
-    private void avancarParaCard2() {
-        cardLayout.show(getContentPane(), "card2");
-        setSize(CARD2_LARGURA_MINIMA, CARD2_ALTURA_MINIMA);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Card1;
+    private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
     private javax.swing.JButton jButtonCard2Avancar;
     private javax.swing.JButton jButtonCard2Recuar;
-    private javax.swing.JComboBox<String> jComboBoxCard1EscolherExposicao;
     private javax.swing.JComboBox<String> jComboBoxCard2EscolherCandidatura;
+    private javax.swing.JComboBox<String> jComboBoxEscolherExposicao;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
