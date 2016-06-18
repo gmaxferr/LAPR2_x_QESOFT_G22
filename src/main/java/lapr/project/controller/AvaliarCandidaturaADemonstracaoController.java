@@ -4,16 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.model.AtribuicaoCandidatura;
-import lapr.project.model.Avaliacao;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoFaeAvaliacao;
-
+import lapr.project.model.*;
+import lapr.project.registos.*;
 /**
  * Representação do Controller do caso de uso - avaliar candidatura a demonstração
  * 
@@ -126,7 +118,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @return candidaturas atribuídas a um fae
      */
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoAE(String usernameFAE) {
-        return this.m_ra.getListaAtribuicoesDoFAE(usernameFAE);
+        return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(usernameFAE);
     }
     
     /**

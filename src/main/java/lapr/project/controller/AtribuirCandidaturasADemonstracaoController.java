@@ -69,6 +69,8 @@ public class AtribuirCandidaturasADemonstracaoController {
      */
     private CandidaturaADemonstracao m_cand;
     
+    private List<AtribuicaoCandidatura> m_listaAtribuicoesGeradas;
+    
     /**
      * Constrói uma instância de AtribuirCandidaturasADemonstracaoController 
      * recebendo como parâmetro o centro de exposições
@@ -145,7 +147,9 @@ public class AtribuirCandidaturasADemonstracaoController {
      */
     public List<AtribuicaoCandidatura> atribui(Mecanismo mec) {
         MecanismoSimples mecanismo = (MecanismoSimples) mec;
-        return mecanismo.atribui(this.m_demonstracao);
+        List<AtribuicaoCandidatura> listaAtribuicoesGeradas = mecanismo.atribui(this.m_demonstracao);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
     }
     
     /**
@@ -158,7 +162,9 @@ public class AtribuirCandidaturasADemonstracaoController {
      */
     public List<AtribuicaoCandidatura> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
         MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
-        return mecanismo.atribui(this.m_demonstracao, numeroFAEOuExperiencia);
+        List<AtribuicaoCandidatura> listaAtribuicoesGeradas = mecanismo.atribui(this.m_demonstracao, numeroFAEOuExperiencia);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
     }
     
     /**
@@ -178,7 +184,9 @@ public class AtribuirCandidaturasADemonstracaoController {
         this.m_estadoDemonstracao = this.m_demonstracao.getEstadoDemo();
         m_estadoDemonstracao.setEstadoDemonstracaoCandidaturasAtribuidas();
         
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas){
         this.m_estadoCandidatura = this.m_cand.getEstado();
         m_estadoCandidatura.setEstadoCandidaturaADemonstracaoAtribuida();
+        }
     }
 }
