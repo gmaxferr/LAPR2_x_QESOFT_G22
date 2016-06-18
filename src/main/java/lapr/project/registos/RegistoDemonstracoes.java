@@ -189,20 +189,17 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Devolve a lista de demonstrações de um organizador
      *
-     * @param username username do organizador
      * @return lista de demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username) {
+    public List<Demonstracao> getListaDemonstracoesEstadoConfirmada() {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
             if (m_expo != null) {
                 demonstracao.setExpo(m_expo);
             }
-            for (Organizador organizador : demonstracao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(username) && demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                    listaDemonstracoesDoOrganizador.add(demonstracao);
-                }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
+                listaDemonstracoesDoOrganizador.add(demonstracao);
             }
         }
         return listaDemonstracoesDoOrganizador;
@@ -211,26 +208,23 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Devolve a lista de demonstrações do fae
      *
-     * @param usernameFAE username do fae
      * @return lista de demonstrações do fae
      */
-    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE) {
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidas() {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
             if (m_expo != null) {
                 demonstracao.setExpo(m_expo);
             }
-            for (FAE fae : demonstracao.getListaFAE()) {
-                if (fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
-                    listaDemonstracoesDoFAE.add(demonstracao);
-                }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
+                listaDemonstracoesDoFAE.add(demonstracao);
             }
         }
         return listaDemonstracoesDoFAE;
     }
 
-    public void fix(RegistoRecursos m_registoRecursos, RegistoOrganizadores ro, RegistoUtilizadores ru, RegistoCandidaturasAExposicao rCand) {
+    public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
             for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {
                 for (Recurso r2 : m_registoRecursos.getListaDeRecursos()) {
@@ -243,7 +237,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
 
         for (Demonstracao d : m_listaDemonstracoes) {
-            d.fix(ro, ru, rCand, m_expo);
+            d.fix(rCand, m_expo);
         }
     }
 

@@ -85,16 +85,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     /**
      *
      */
-    private RegistoOrganizadores m_ro;
-
-    /**
-     *
-     */
-    private RegistoFAE m_rFAE;
-
-    /**
-     *
-     */
     private EstadoDemonstracao m_estado;
 
     /**
@@ -112,20 +102,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoCandidaturasADemonstracaoRemovidas m_rcdr;
 
-    /**
-     *
-     * @param descricao
-     */
-    public Demonstracao(String descricao) {
-        this.rc = new RegistoRecursos();
-        this.m_expo = null;
-        this.m_StrDescricao = descricao;
-        this.m_rcd = new RegistoCandidaturaADemonstracoes();
-        this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
-        this.m_estado = new EstadoDemonstracaoPendente(this);
-        this.m_rconfDemo = new RegistoConflitosDemonstracao();
-    }
-
     public Demonstracao() {
         this.rc = new RegistoRecursos();
         this.m_expo = null;
@@ -139,14 +115,20 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @param descricao
      */
+    public Demonstracao(String descricao) {
+        this();
+        this.m_expo = null;
+        this.m_StrDescricao = descricao;
+    }
+    
+    /**
+     *
+     * @param descricao
+     */
     public Demonstracao(String descricao, Exposicao e) {
-        this.rc = new RegistoRecursos();
+        this();
         this.m_expo = e;
         this.m_StrDescricao = descricao;
-        this.m_rcd = new RegistoCandidaturaADemonstracoes();
-        this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
-        this.m_estado = new EstadoDemonstracaoPendente(this);
-        this.m_rconfDemo = new RegistoConflitosDemonstracao();
     }
 
     /**
@@ -346,9 +328,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return hash;
     }
 
-    public void fix(RegistoOrganizadores ro, RegistoUtilizadores ru, RegistoCandidaturasAExposicao rCand, Exposicao e) {
-        this.m_ro.fix(ro);
-        this.m_rFAE.fix(ru, m_ro);
+    public void fix(RegistoCandidaturasAExposicao rCand, Exposicao e) {
         this.m_rconfDemo.fix(rCand);
         this.m_expo = e;
     }
@@ -371,10 +351,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
                 this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
-                this.m_ro = new RegistoOrganizadores();
-                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
-                this.m_rFAE = new RegistoFAE();
-                this.m_rFAE.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
                 this.m_rconfDemo = new RegistoConflitosDemonstracao();
                 this.m_rconfDemo.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitosDemonstracao.ROOT_ELEMENT_NAME).item(0));
 
@@ -449,8 +425,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             elemBase.appendChild(document.importNode(this.rc.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcd.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rcdr.exportContentToXMLNode(), true));
-            elemBase.appendChild(document.importNode(this.m_rFAE.exportContentToXMLNode(), true));
-            elemBase.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_rconfDemo.exportContentToXMLNode(), true));
 
             elemBase.setAttribute(ID_ATTR_NAME, this.m_StrCodigoIdentificacao);
@@ -507,22 +481,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public void schedule(TimerTask m_tt, Data date) {
         Timer timer = new Timer();
         timer.schedule(m_tt, date.toDate());
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<Organizador> getListaOrganizadores() {
-        return this.m_ro.getListaOrganizadores();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<FAE> getListaFAE() {
-        return this.m_rFAE.getListaFAE();
     }
 
     /**
