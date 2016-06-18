@@ -39,7 +39,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
      * Creates new form JFrameListarCandidaturasremovidas
      */
     public JFrameListarCandidaturasAExposicaoRemovidasUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String usernameOrganizador) {
-        super("Listar candidaturas removidas");
+        super("Listar candidaturas a exposição removidas");
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.centroExposicoesAtual = centroExposicoes;
         this.usernameOrganizador = usernameOrganizador;
