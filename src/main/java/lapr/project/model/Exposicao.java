@@ -331,10 +331,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.local = local;
     }
 
+    /**
+     * Devolve a lista de organizadores
+     * 
+     * @return lista de organizadores
+     */
     public List<Organizador> getListaOrganizadores() {
         return this.m_ro.getListaOrganizadores();
     }
 
+    /**
+     * Devolve a lista de fae
+     * 
+     * @return lista de fae
+     */
+    public List<FAE> getListaFAE(){
+        return this.m_rfae.getListaFAE();
+    }
+    
     /**
      * Valida os dados de um candidatura nova
      *

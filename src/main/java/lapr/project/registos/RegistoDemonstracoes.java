@@ -210,7 +210,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      *
      * @return lista de demonstrações do fae
      */
-    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidas() {
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasAtribuidas() {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
