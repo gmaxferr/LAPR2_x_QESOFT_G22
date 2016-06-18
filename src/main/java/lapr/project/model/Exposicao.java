@@ -760,6 +760,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
                 this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+                this.local.importContentFromXMLNode(elem.getElementsByTagName(Local.ROOT_ELEMENT_NAME).item(0));
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
@@ -945,6 +946,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             elementExpo.appendChild(document.importNode(this.m_rexpositores.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rfae.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.local.exportContentToXMLNode(), true));
 
             node = elementExpo;
 
