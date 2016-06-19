@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
@@ -12,12 +7,11 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ListarCandidaturasADemonstracaoRemovidasController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
+import lapr.project.model.*;
 
 /**
  *
- * @author Ana
+ * @author Ana Leite
  */
 public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swing.JFrame {
 
@@ -268,12 +262,21 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     private void avancarParaCard2() {
         controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
         controller.getRegistoCandidaturasADemonstracaoRemovidas();
-        controller.getListaCandidaturasADemonstracaoRemovidas();
+        String [] vetorCandidaturasRemovidas = criarVetorListaCandidaturasADemonstracaoRemovidas(controller.getListaCandidaturasADemonstracaoRemovidas());        
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        jListCard2ListaCandidaturas.setListData(vetorCandidaturasRemovidas);
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
 
+    private String[] criarVetorListaCandidaturasADemonstracaoRemovidas(List<CandidaturaADemonstracao> listaCandidaturas){
+        String[] vetorCandidaturasRemovidas = new String [listaCandidaturas.size()];
+        for(int i = 0; i < listaCandidaturas.size(); i++){
+            vetorCandidaturasRemovidas[i] = listaCandidaturas.get(i).getDadosCandidatura();
+        }
+        return vetorCandidaturasRemovidas;
+    }
+    
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
         this.jFrameMenuPrincipal.setVisible(true);

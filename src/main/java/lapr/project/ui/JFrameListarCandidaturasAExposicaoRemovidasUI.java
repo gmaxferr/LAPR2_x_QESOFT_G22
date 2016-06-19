@@ -8,12 +8,11 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ListarCandidaturasAExposicaoRemovidasController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 
 /**
  *
- * @author Ana
+ * @author Ana Leite
  */
 public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.JFrame {
 
@@ -22,8 +21,6 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
     private transient String usernameOrganizador;
     private transient ListarCandidaturasAExposicaoRemovidasController controller;
     private transient List<Exposicao> listaExposicoes;
-    
-    
     
     private static final int LARGURA_JANELA_PASSO1 = 682;
     private static final int ALTURA_JANELA_PASSO1 = 308;
@@ -276,11 +273,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         jLabel4.setFont(jLabelCard1Titulo.getFont());
         jLabel4.setText("Lista de Candidaturas Removidas");
 
-        jListCard2ListaCandidaturas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jListCard2ListaCandidaturas.setToolTipText("");
         JScrollPaneCard2.setViewportView(jListCard2ListaCandidaturas);
 
         jButtonCard2Recuar.setFont(jButtonCard1Avancar.getFont());
@@ -350,10 +343,19 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
     private void avancarParaCard2(){
         controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
         controller.getRegistoCandidaturasAExposicaoRemovidas();;
-        controller.getListaCandidaturasAExposicaoRemovidas();
+        String [] vetorCandidaturasRemovidas = criarVetorListaCandidaturasAExposicaoRemovidas(controller.getListaCandidaturasAExposicaoRemovidas());
+        jListCard2ListaCandidaturas.setListData(vetorCandidaturasRemovidas);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+    }
+    
+    private String[] criarVetorListaCandidaturasAExposicaoRemovidas(List<CandidaturaAExposicao> listaCandidaturas){
+        String[] vetorCandidaturasRemovidas = new String [listaCandidaturas.size()];
+        for(int i = 0; i < listaCandidaturas.size(); i++){
+            vetorCandidaturasRemovidas[i] = listaCandidaturas.get(i).getNomeEmpresa();
+        }
+        return vetorCandidaturasRemovidas;
     }
     
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
