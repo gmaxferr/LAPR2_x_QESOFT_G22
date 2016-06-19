@@ -354,17 +354,17 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 this.m_rconfDemo = new RegistoConflitosDemonstracao();
                 this.m_rconfDemo.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitosDemonstracao.ROOT_ELEMENT_NAME).item(0));
 
-                Data invalidData = new Data(0, 0, 0);
+                Data invalidData = new Data(1, 1, 1);
 
                 Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
-                this.m_dataInicioSubCand = new Data(0, 0, 0);
+                this.m_dataInicioSubCand = new Data(1, 1, 1);
                 this.m_dataInicioSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataInicioSubCand.equals(invalidData)) {
                     this.m_dataInicioSubCand = null;
                 }
 
                 elem2 = (Element) elem.getElementsByTagName(DATA_FIM_SUB_CAND_ELEMENT_NAME).item(0);
-                this.m_dataFimSubCand = new Data(0, 0, 0);
+                this.m_dataFimSubCand = new Data(1, 1, 1);
                 this.m_dataFimSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
                 if (this.m_dataFimSubCand.equals(invalidData)) {
                     this.m_dataFimSubCand = null;
@@ -431,7 +431,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
             elemChild = document.createElement(DATA_INICIO_SUB_CAND_ELEMENT_NAME);
             if (this.m_dataInicioSubCand == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataInicioSubCand.exportContentToXMLNode(), true));
             }
@@ -439,7 +439,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
             elemChild = document.createElement(DATA_FIM_SUB_CAND_ELEMENT_NAME);
             if (this.m_dataFimSubCand == null) {
-                elemChild.appendChild(document.importNode(new Data(0, 0, 0).exportContentToXMLNode(), true));
+                elemChild.appendChild(document.importNode(new Data(1, 1, 1).exportContentToXMLNode(), true));
             } else {
                 elemChild.appendChild(document.importNode(this.m_dataFimSubCand.exportContentToXMLNode(), true));
             }
