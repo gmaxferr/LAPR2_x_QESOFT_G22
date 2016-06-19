@@ -27,6 +27,10 @@ public class DefinirFAEController {
      * Registo de organizadores
      */
     private RegistoOrganizadores m_ro;
+
+    /**
+     * Registo de FAE
+     */
     private RegistoFAE m_rfae;
 
     /**
@@ -44,6 +48,9 @@ public class DefinirFAEController {
      */
     private final String m_usernameOrganizador;
 
+    /**
+     * Lista temporária dos FAE adicionados na UI até serem confirmados
+     */
     private List<FAE> listaFaeTemp;
 
     /**
@@ -62,7 +69,7 @@ public class DefinirFAEController {
 
     /**
      * Devolve uma lista com as exposições associadas ao organizador que esta a
-     * executar o UC
+     * executar o UC e que se encontrem nos estados adequados a executar o UC
      *
      * @return lista com as exposições associadas ao organizador
      */
@@ -101,6 +108,12 @@ public class DefinirFAEController {
         return this.adicionarFaeListaTemp(u);
     }
 
+    /**
+     * Identifica o utilizador passando por parametro apenas o seu username
+     *
+     * @param usernameUtilizador username do utilizador
+     * @return utilizador identificado. Se não encontrar devolve null
+     */
     public Utilizador identificarUtilizadorPeloUsername(String usernameUtilizador) {
         return this.m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
     }
@@ -108,13 +121,22 @@ public class DefinirFAEController {
     public boolean adicionarFaeListaTemp(Utilizador u) {
         boolean faeValida = validaUtilizadorParaAdicionarComoFAE(u);
         if (faeValida) {
-            this.listaFaeTemp.add(new FAE(u));
+            FAE novoFAE = new FAE(u);
+            this.listaFaeTemp.add(novoFAE);
             return true;
         } else {
             return false;
         }
     }
 
+    /**
+     * Valida se o utilizador adicionada na UI pode realemente ser adicionado
+     * como FAE para a exposição selecionada.
+     *
+     * @param u utilizador selecionadao na UI
+     * @return true se o utilizador é válido para ser adicionado, false caso
+     * contrário
+     */
     public boolean validaUtilizadorParaAdicionarComoFAE(Utilizador u) {
         for (FAE fae : this.m_rfae.getListaFAE()) {
             if (fae.getUtilizador().equals(u)) {

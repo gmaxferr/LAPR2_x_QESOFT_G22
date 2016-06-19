@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -50,6 +51,15 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
      */
     public TipoConflito getTipo() {
         return this.m_tipoConflito;
+    }
+    
+    public void fix(RegistoCandidaturasAExposicao rc){
+        for(CandidaturaAExposicao cand : rc.getListaCandidaturas()){
+            if(this.m_candidatura.equals(cand)){
+                this.m_candidatura = cand;
+                break;
+            }
+        }
     }
 
     @Override

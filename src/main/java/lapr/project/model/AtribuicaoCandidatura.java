@@ -2,8 +2,6 @@ package lapr.project.model;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoFaeAvaliacao;
@@ -106,6 +104,8 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
                 elemBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
             elemBase.appendChild(document.importNode(this.m_rFaeDecisao.exportContentToXMLNode(), true));
+            
+            node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoCandidatura.class.getName()).log(Level.SEVERE, null, ex);
         }

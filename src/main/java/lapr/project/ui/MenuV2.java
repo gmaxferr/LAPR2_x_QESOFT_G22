@@ -1,10 +1,7 @@
 package lapr.project.ui;
 
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
 import javax.swing.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
@@ -818,9 +815,9 @@ public class MenuV2 extends javax.swing.JFrame {
             try {
                 ce = CTRL.Import(file.getAbsolutePath());
                 this.centroExposicoes = ce;
-                JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(thisJFrame, "Informação carregada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o encerramento do programa?", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(thisJFrame, "Erro no carregamento da informação.", "ERRO", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_jMenuItemCarregarDadosActionPerformed
@@ -907,17 +904,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameAtribuirCandidaturasUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        new JFrameAtribuirCandidaturasUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes);
+        new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -927,17 +924,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
+        new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+       new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -957,17 +954,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
+         new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
+        new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameDefinirRecursos(centroExposicoes);
+         new JFrameDefinirRecursos(centroExposicoes);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

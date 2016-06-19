@@ -26,22 +26,17 @@ public class AlterarCandidaturaExpoController {
     private String novaArea;
     private String novoNumConvites;
     private String keywords;
-    private List<Integer>produtosARemover;
-    private List<Produto>produtosAAdicionar;
-    private List<Alteracao>produtosAAlterar;
+    private List<Integer> produtosARemover;
+    private List<Produto> produtosAAdicionar;
+    private List<Alteracao> produtosAAlterar;
 
     public AlterarCandidaturaExpoController(String username) {
         this.m_username = username;
+        keywords = "";
     }
 
-    public void setExposicao(Exposicao e){
+    public void setExposicao(Exposicao e) {
         this.m_exposicao = e;
-    }
-    
-    /**
-     *
-     */
-    public void getM_RegistoCandidaturas() {
         this.m_rc = m_exposicao.getRegistoCandidaturasAExposicao();
     }
 
@@ -145,7 +140,7 @@ public class AlterarCandidaturaExpoController {
         novaMoradaEmpresa = moradaEmpresa;
         novoNumConvites = numConvites;
         novoTelemovel = telemovel;
-        
+
     }
 
     /**
@@ -163,20 +158,29 @@ public class AlterarCandidaturaExpoController {
         m_cand.setTelemovel(novoTelemovel);
         m_cand.setArea(novaArea);
         m_cand.setNumConvites(novoNumConvites);
-        m_cand.setKeywords(keywords);
-        try {
-            for(Integer i : produtosARemover){
-                m_cand.removeProduto(i);
+        if (!keywords.isEmpty()) {
+            m_cand.setKeywords(keywords);
+        }
+        if (!keywords.isEmpty()) {
+            try {
+                for (Integer i : produtosARemover) {
+                    m_cand.removeProduto(i);
+                }
+            } catch (IllegalArgumentException e) {
             }
-        } catch (IllegalArgumentException e) {
         }
-        for(Alteracao a : produtosAAlterar){
-            m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
+        if (!keywords.isEmpty()) {
+            for (Alteracao a : produtosAAlterar) {
+                m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
+            }
         }
-        for(Produto p : produtosAAdicionar){
-            m_cand.addProduto(p);
+        if (!keywords.isEmpty()) {
+            for (Produto p : produtosAAdicionar) {
+                m_cand.addProduto(p);
+            }
         }
     }
+
     public void setKeywords(String keywords) throws KeywordsErradasException {
         this.keywords = keywords;
     }
@@ -184,23 +188,24 @@ public class AlterarCandidaturaExpoController {
     public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
         m_cand.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
     }
-    
-    private class Alteracao{
+
+    private class Alteracao {
+
         int indiceProduto;
         String novoProduto;
-        
-        public Alteracao (int index, String novoNome){
+
+        public Alteracao(int index, String novoNome) {
             indiceProduto = index;
             novoProduto = novoNome;
         }
-    
-        public int getIndiceProduto(){
+
+        public int getIndiceProduto() {
             return indiceProduto;
         }
-        
-        public String getNovoProduto(){
+
+        public String getNovoProduto() {
             return novoProduto;
         }
     }
-    
+
 }

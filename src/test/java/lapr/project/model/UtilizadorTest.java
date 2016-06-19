@@ -100,7 +100,7 @@ public class UtilizadorTest {
         System.out.println("setIsGestor");
         Utilizador instance = new Utilizador();
         assertEquals(false, instance.isGestor());
-        instance.setIsGestor();
+        instance.setIsGestor(true);
         assertEquals(true, instance.isGestor());
     }
 
@@ -112,7 +112,7 @@ public class UtilizadorTest {
         System.out.println("isGestor");
         Utilizador instance = new Utilizador();
         assertEquals(false, instance.isGestor());
-        instance.setIsGestor();
+        instance.setIsGestor(true);
         assertEquals(true, instance.isGestor());
     }
 
@@ -221,14 +221,27 @@ public class UtilizadorTest {
     @Test
     public void testValidaPassword_charArr() {
         System.out.println("validaPassword");
-        char[] password = "secretCode".toCharArray();
+        char[] password = "secretCode-123".toCharArray();
         Utilizador instance = new Utilizador();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.validaPassword(password);
         assertEquals(expResult, result);
 
-        password = "secretCode-123".toCharArray();
-        expResult = true;
+        expResult = false;
+
+        password = "SECRETCODE-123".toCharArray();
+        result = instance.validaPassword(password);
+        assertEquals(expResult, result);
+
+        password = "secretCode-;".toCharArray();
+        result = instance.validaPassword(password);
+        assertEquals(expResult, result);
+
+        password = "secretCode123".toCharArray();
+        result = instance.validaPassword(password);
+        assertEquals(expResult, result);
+
+        password = "secretcode-123".toCharArray();
         result = instance.validaPassword(password);
         assertEquals(expResult, result);
     }
@@ -445,6 +458,11 @@ public class UtilizadorTest {
         expResult = false;
         result = instance.validaKeyword();
         assertEquals(expResult, result);
+
+        keyword = null;
+        instance.setKeyword(keyword);
+        result = instance.validaKeyword();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -473,11 +491,10 @@ public class UtilizadorTest {
     public void testGetShifts() {
         System.out.println("getShifts");
         Utilizador instance = new Utilizador();
-        int expResult = 0;
+        instance.setPwd("secret".toCharArray());
+        int expResult = instance.getShifts();
         int result = instance.getShifts();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result);    //Visto que é calculado a partir de um random
     }
 
     /**
@@ -486,11 +503,10 @@ public class UtilizadorTest {
     @Test
     public void testSetShifts() {
         System.out.println("setShifts");
-        int shifts = 0;
+        int shifts = 3;
         Utilizador instance = new Utilizador();
         instance.setShifts(shifts);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(shifts, instance.getShifts());
     }
 
     /**
@@ -499,13 +515,12 @@ public class UtilizadorTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
         Utilizador instance = new Utilizador();
-        Utilizador expResult = null;
-        Utilizador result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        Utilizador expResult = new Utilizador();
+        expResult.importContentFromXMLNode(node);
+        Utilizador result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -515,10 +530,82 @@ public class UtilizadorTest {
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
         Utilizador instance = new Utilizador();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Utilizador expResult = new Utilizador();
+        expResult.importContentFromXMLNode(node);
+        Utilizador result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Utilizador.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Utilizador obj = new Utilizador();
+        Utilizador instance = new Utilizador();
+
+        boolean expResult = false;
+        boolean result = instance.equals(null);
+        assertEquals(expResult, result);
+
+        String keyword = "INDIGO";
+        String mail = "mail@mail.com";
+        String nome = "nome";
+        String username = "username";
+        char[] passe = "secret".toCharArray();
+
+        for (int i = 0; i < Math.pow(2, 8); i++) {
+            instance.setIsGestor((i & 0x01) > 0);
+            instance.setKeyword((i & 0x02) > 0 ? keyword : null);
+            instance.setEmail((i & 0x04) > 0 ? mail : null);
+            instance.setNome((i & 0x08) > 0 ? nome : null);
+            instance.setUsername((i & 0x10) > 0 ? username : null);
+            instance.setPwd((i & 0x20) > 0 ? passe : null);
+            instance.setnAvaliacoesDesdeSempre((i & 0x40) > 0 ? 1 : 0);
+            if ((i & 0x80) > 0) {
+                instance.confirmarRegistoDoUtilizador();
+            }
+            obj = new Utilizador();
+            for (int j = 0; j < Math.pow(2, 8); j++) {
+                obj.setIsGestor((j & 0x01) > 0);
+                obj.setKeyword((j & 0x02) > 0 ? keyword : null);
+                obj.setEmail((j & 0x04) > 0 ? mail : null);
+                obj.setNome((j & 0x08) > 0 ? nome : null);
+                obj.setUsername((j & 0x10) > 0 ? username : null);
+                obj.setPwd((j & 0x20) > 0 ? passe : null);
+                obj.setnAvaliacoesDesdeSempre((j & 0x40) > 0 ? 1 : 0);
+                if ((j & 0x80) > 0) {
+                    obj.confirmarRegistoDoUtilizador();
+                }
+
+                expResult = i == j;
+                result = instance.equals(obj);
+                assertEquals(expResult, result);
+            }
+        }
+
+    }
+
+    /**
+     * Test of hashCode method, of class Utilizador.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Utilizador obj = new Utilizador();
+        Utilizador instance = new Utilizador();
+        int expResult = obj.hashCode();
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+
+        obj.confirmarRegistoDoUtilizador();
+        obj.setIsGestor(true);
+        instance.confirmarRegistoDoUtilizador();
+        instance.setIsGestor(true);
+        expResult = obj.hashCode();
+        result = instance.hashCode();
+        assertEquals(expResult, result);
     }
 }

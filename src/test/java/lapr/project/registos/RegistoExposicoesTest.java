@@ -246,7 +246,7 @@ public class RegistoExposicoesTest {
         String username = "user3";
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo9);
-        List<Exposicao> result = re.getExposicoesDoRepresentante(username);
+        List<Exposicao> result = re.getExposicoesDoRepresentanteCandidaturasAbertas(username);
         assertEquals(expResult, result);
     }
 

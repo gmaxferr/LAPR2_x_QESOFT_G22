@@ -136,6 +136,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
+        this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this, ce);
         this.m_keywordRanking = new KeywordRanking();
@@ -170,6 +171,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoes();
         this.m_rd = new RegistoDemonstracoes();
+        this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
@@ -279,7 +281,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param strTitulo novo título para esta exposição
      */
     public void setTitulo(String strTitulo) {
-        this.m_strTitulo = strTitulo;
+        this.m_strTitulo = (strTitulo == null || strTitulo.equals("")) ? null : strTitulo;
     }
 
     /**
@@ -288,7 +290,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param strDescricao nova descrição para esta exposição
      */
     public void setDescricao(String strDescricao) {
-        this.m_strDescricao = strDescricao;
+        this.m_strDescricao = (strDescricao == null || strDescricao.equals("")) ? null : strDescricao;
     }
 
     /**
@@ -303,6 +305,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
+     * Define a data de início para a realização desta exposição
+     *
+     * @param dataInicio nova data de inicio
+     */
+    public void setDataInicio(Data dataInicio) {
+        this.m_dataInicio = dataInicio;
+    }
+
+    /**
+     * Define a data de fim para a realização desta exposição
+     *
+     * @param dataFim nova data de fim
+     */
+    public void setDataFim(Data dataFim) {
+        this.m_dataFim = dataFim;
+    }
+
+    /**
      * Define um novo local de exposição
      *
      * @param local novo local de exposição
@@ -311,10 +331,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.local = local;
     }
 
+    /**
+     * Devolve a lista de organizadores
+     * 
+     * @return lista de organizadores
+     */
     public List<Organizador> getListaOrganizadores() {
         return this.m_ro.getListaOrganizadores();
     }
 
+    /**
+     * Devolve a lista de fae
+     * 
+     * @return lista de fae
+     */
+    public List<FAE> getListaFAE(){
+        return this.m_rfae.getListaFAE();
+    }
+    
     /**
      * Valida os dados de um candidatura nova
      *
@@ -402,6 +436,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return registo de demonstrações
      */
     public RegistoDemonstracoes getRegistoDemonstracoes() {
+        if(this.m_rd.getExposicao() == null){
+            this.m_rd.setExposicao(this);
+        }
         return this.m_rd;
     }
 
@@ -412,10 +449,13 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public boolean dadosMinimosObrigatorios() {
         if (m_dataAberturaCandidatura != null
                 && m_dataEncerramentoCandidatura != null
-                && m_dataFim != null && m_dataFimDetecaoConflitos != null
+                && m_dataFim != null
+                && m_dataFimDetecaoConflitos != null
                 && m_dataInicio != null
                 && m_ro.getListaOrganizadores().size() >= 2
+                && m_strTitulo != null
                 && m_strTitulo.length() > 0
+                && m_strDescricao != null
                 && m_strDescricao.length() > 0
                 && local != null) {
             return true;
@@ -537,7 +577,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimCandidaturas(dataFimDetecaoConflitos);
+                d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
             }
         }
     }
@@ -576,7 +616,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         if (obj != null && obj instanceof Exposicao) {
             Exposicao o = (Exposicao) obj;
             return (local == null ? o.local == null : local.equals(o.local))
-                    && (m_ce == null ? o.m_ce == null : m_ce.equals(o.m_ce))
                     && (m_dataAberturaCandidatura == null ? o.m_dataAberturaCandidatura == null : m_dataAberturaCandidatura.equals(o.m_dataAberturaCandidatura))
                     && (m_dataEncerramentoCandidatura == null ? o.m_dataEncerramentoCandidatura == null : m_dataEncerramentoCandidatura.equals(o.m_dataEncerramentoCandidatura))
                     && (m_dataFim == null ? o.m_dataFim == null : m_dataFim.equals(o.m_dataFim))
@@ -619,7 +658,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
         this.m_rexpositores.fix(m_registoUtilizadores);
         this.m_rce.fix(m_registoUtilizadores, this.m_rd);
-        this.m_rd.fix(m_registoRecursos);
+        this.m_rd.setExposicao(this);
+        this.m_rd.fix(m_registoRecursos, m_rce);
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
 
@@ -669,6 +709,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_strTitulo = elem.getAttribute(TITUTLO_ATTR_NAME);
+                if (this.m_strTitulo.equals("")) {
+                    this.m_strTitulo = null;
+                }
 
                 Data invalidData = new Data(1, 1, 1);
 
@@ -727,12 +770,18 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
                 this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_rd.setExposicao(this);
                 this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
                 this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
                 this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+                this.local = new Local("");
+                this.local.importContentFromXMLNode(elem.getElementsByTagName(Local.ROOT_ELEMENT_NAME).item(0));
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
+                    case "inicial":
+                        this.m_estado = new EstadoExposicaoInicial(this, m_ce);
+                        break;
                     case "criada":
                         this.m_estado = new EstadoExposicaoCriada(this);
                         recriarTimersExpo();
@@ -807,7 +856,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
             elementExpo.setAttribute(TITUTLO_ATTR_NAME, this.m_strTitulo);
 
-            if (this.m_estado.isEstadoCriada()) {
+            if (this.m_estado.isEstadoInicial()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "inicial");
+            } else if (this.m_estado.isEstadoCriada()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "criada");
             } else if (this.m_estado.isEstadoDemosDefinidasSemFAE()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosSemFAE");
@@ -910,6 +961,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             elementExpo.appendChild(document.importNode(this.m_rexpositores.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rfae.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.local.exportContentToXMLNode(), true));
 
             node = elementExpo;
 

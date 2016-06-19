@@ -71,13 +71,20 @@ public class TransposeCypher {
      * argumento usando uma palavra-passe, também passada como argumento.
      *
      * @param message Mensagem a encriptar
-     * @param passwd Palavra-passe com que encriptar a mensagem
+     * @param password Palavra-passe com que encriptar a mensagem
      * @return Retorna a mensagem encriptada com a palavra-passe passada como
      * argumento
      */
-    public static char[] encrypt(char[] message, char[] passwd) {
-        int tableCol = passwd.length;
-        int tableLines = message.length / passwd.length + 1;
+    public static char[] encrypt(char[] message, char[] password) {
+        char[] pwd;
+        if(password.length == 0){
+            pwd = "a".toCharArray();
+        }else{
+            pwd = password;
+        }
+        
+        int tableCol = pwd.length;
+        int tableLines = message.length / pwd.length + 1;
         char[][] table = new char[tableLines][tableCol];
 
         int index = 0;
@@ -93,7 +100,7 @@ public class TransposeCypher {
             }
         }
 
-        int[] order = getOrder(passwd);
+        int[] order = getOrder(pwd);
         order = convertToMask(order);
 
         char[] result = new char[tableCol * tableLines];
@@ -112,22 +119,29 @@ public class TransposeCypher {
      * argumento usando uma palavra-passe, também passada como argumento.
      *
      * @param message Mensagem a desencriptar
-     * @param passwd Palavra-chave de desencriptação
+     * @param password Palavra-chave de desencriptação
      * @return Retorna a mensagem desencriptada através da codificação, exceto
      * quando se verificar que a mensagem passada como parametro nao podesse ter
      * sido encriptada com a palavra-passe dada.<!-- -->Nesse caso, e apenas
      * nesse caso, retorna null.
      */
-    public static char[] decrypt(char[] message, char[] passwd) {
-        if (message.length % passwd.length != 0) {
+    public static char[] decrypt(char[] message, char[] password) {
+        char[] pwd;
+        if(password.length == 0){
+            pwd = "a".toCharArray();
+        }else{
+            pwd = password;
+        }
+        
+        if (message.length % pwd.length != 0) {
             return null;
         }
 
-        int tableCol = passwd.length;
-        int tableLines = message.length / passwd.length;
+        int tableCol = pwd.length;
+        int tableLines = message.length / pwd.length;
         char[][] table = new char[tableLines][tableCol];
 
-        int[] order = getOrder(passwd);
+        int[] order = getOrder(pwd);
         order = convertToMask(order);
         int index = 0;
 
@@ -146,7 +160,7 @@ public class TransposeCypher {
             }
         }
 
-        int len = uncripted.length;
+        int len = 0;
         for (int i = uncripted.length - 1; i >= 0; i--) {
             if (uncripted[i] != '~') {
                 len = i + 1;

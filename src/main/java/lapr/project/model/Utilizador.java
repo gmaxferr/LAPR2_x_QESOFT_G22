@@ -85,6 +85,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public Utilizador() {
         this.nAvaliacoesDesdeSempre = 0;
         this.isGestor = false;
+        this.m_strUsername = "";
+        this.m_strEmail = "";
+        this.m_strPwd = new char[0];
+        this.m_strNome = "";
+        this.keyword = "";
     }
 
     public Utilizador(String nome, String username, char[] password, String email) {
@@ -145,8 +150,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return this.m_strEmail;
     }
 
-    public void setIsGestor() {
-        this.isGestor = true;
+    public void setIsGestor(boolean b) {
+        this.isGestor = b;
     }
 
     public boolean isGestor() {
@@ -217,9 +222,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param strPwd nova password de utilizador
      */
     public final void setPwd(char[] strPwd) {
-        Random r = new Random();
-        this.randomCaesarShift = r.nextInt(PARCIAL_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
-        m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PARCIAL_ALFABET);
+        if (strPwd == null) {
+            this.m_strPwd = new char[0];
+        } else {
+            Random r = new Random();
+            this.randomCaesarShift = r.nextInt(PARCIAL_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
+            m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PARCIAL_ALFABET);
+        }
     }
 
     /**
@@ -387,6 +396,40 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     public boolean isValid() {
         return validaPassword() && validaKeyword();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null
+                && obj instanceof Utilizador) {
+            Utilizador o = (Utilizador) obj;
+            if (this.isGestor == o.isGestor
+                    && this.m_boolConfirmaRegisto == o.m_boolConfirmaRegisto
+                    && (this.keyword == null ? o.keyword == null : this.keyword.equals(o.keyword))
+                    && this.nAvaliacoesDesdeSempre == o.nAvaliacoesDesdeSempre
+                    && (this.m_strEmail == null ? o.m_strEmail == null : this.m_strEmail.equals(o.m_strEmail))
+                    && (this.m_strNome == null ? o.m_strNome == null : this.m_strNome.equals(o.m_strNome))
+                    && (this.m_strUsername == null ? o.m_strUsername == null : this.m_strUsername.equals(o.m_strUsername))
+                    && Arrays.equals(CaesarsCypher.decrypt(this.m_strPwd, this.randomCaesarShift, PARCIAL_ALFABET),
+                            CaesarsCypher.decrypt(o.m_strPwd, o.randomCaesarShift, PARCIAL_ALFABET))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.m_strNome);
+        hash = 37 * hash + Arrays.hashCode(this.m_strPwd);
+        hash = 37 * hash + Objects.hashCode(this.keyword);
+        hash = 37 * hash + Objects.hashCode(this.m_strEmail);
+        hash = 37 * hash + Objects.hashCode(this.m_strUsername);
+        hash = 37 * hash + (this.m_boolConfirmaRegisto ? 1 : 0);
+        hash = 37 * hash + this.nAvaliacoesDesdeSempre;
+        hash = 37 * hash + (this.isGestor ? 1 : 0);
+        return hash;
     }
 
     @Override

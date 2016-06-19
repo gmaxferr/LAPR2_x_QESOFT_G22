@@ -9,19 +9,17 @@ import lapr.project.registos.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class CriarDemonstracaoController {
 
     private RegistoExposicoes m_re;
     private RegistoRecursos m_rr;
-    private RegistoDemonstracoes m_rd;
+    private RegistoDemonstracoes m_registoDemonstracoes;
     private CentroExposicoes m_ce;
     private Exposicao m_e;
-    private Demonstracao m_d;
+    private Demonstracao m_demostracao;
     private EstadoExposicao m_estado;
-    private EstadoExposicaoCriada m_estadoExposicaoCriada;
-    private EstadoExposicaoDemosDefinidasSemFAE m_estadoExposicaoDemosDef;
     private String m_usernameOrg;
 
     /**
@@ -65,7 +63,7 @@ public class CriarDemonstracaoController {
      * controller.
      */
     public void pullRegistoDemonstracaoDaExposicao() {
-        this.m_rd = m_e.getRegistoDemonstracoes();
+        this.m_registoDemonstracoes = m_e.getRegistoDemonstracoes();
     }
 
     /**
@@ -75,8 +73,8 @@ public class CriarDemonstracaoController {
      * @param descricaoIntroduzidaPeloUtilizador - descrição da demonstração
      */
     public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
-        this.m_d = m_rd.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
-        this.m_listaRecursosParaDemonstracao = m_d.getRegistoRecursosNecessarios().getListaDeRecursos();
+        this.m_demostracao = m_registoDemonstracoes.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
+        this.m_listaRecursosParaDemonstracao = m_demostracao.getRegistoRecursosNecessarios().getListaDeRecursos();
     }
 
     /**
@@ -101,7 +99,7 @@ public class CriarDemonstracaoController {
      * @return true se for válida, false caso contrário.
      */
     public boolean valida() {
-        return m_rd.valida(m_d);
+        return m_registoDemonstracoes.valida(m_demostracao);
     }
 
     /**
@@ -112,9 +110,9 @@ public class CriarDemonstracaoController {
     public void mudaEstado() {
         m_estado = this.m_e.getEstado();
         if (m_estado.isEstadoFAEDefinidosSemDemos()) {
-            m_estadoExposicaoDemosDef.setEstadoCompleta();
+            m_estado.setEstadoCompleta();
         } else if (m_estado.isEstadoCriada()) {
-            m_estadoExposicaoCriada.setEstadoDemosDefinidasSemFAE();
+            m_estado.setEstadoDemosDefinidasSemFAE();
         }
     }
 
@@ -132,11 +130,11 @@ public class CriarDemonstracaoController {
      * Atribui a lista de recursos à demonstração
      */
     public void setRecursos() {
-        RegistoRecursos rr = m_d.getRegistoRecursosNecessarios();
+        RegistoRecursos rr = m_demostracao.getRegistoRecursosNecessarios();
         rr.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
     }
 
     public void registaDemo() {
-        m_rd.addDemo(m_d);
+        m_registoDemonstracoes.addDemo(m_demostracao);
     }
 }

@@ -99,7 +99,7 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
         Node node = null;
 
         try {
-            Document document = XMLParser.createDocument(node, true);
+            Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);

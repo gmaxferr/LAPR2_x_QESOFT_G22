@@ -44,6 +44,7 @@ public class CandidaturaAExposicaoTest {
     private Exposicao e;
     private Demonstracao d;
     private RegistoDemonstracoes rd;
+    private RegistoUtilizadores ru;
 
     private final String nome = "nome";
     private final String email = "112sss@aaa444.ccc888";
@@ -63,8 +64,10 @@ public class CandidaturaAExposicaoTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
+        ru = new RegistoUtilizadores();
         e = new Exposicao(ce);
         u = new Utilizador(nome, username, password, email);
+        ru.getListaUtilizadores().add(u);
         expositor = new Expositor(u);
         instance = new CandidaturaAExposicao(expositor);
         instance.criarProduto(nomeProd1);
@@ -413,12 +416,20 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testFix() {
         System.out.println("fix");
-        RegistoUtilizadores m_registoUtilizadores = null;
-        RegistoDemonstracoes m_rd = null;
-        CandidaturaAExposicao instance = null;
-        instance.fix(m_registoUtilizadores, m_rd);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        instance = new CandidaturaAExposicao(expositor);
+        Node node = instance.exportContentToXMLNode();
+
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(null);
+        expResult.importContentFromXMLNode(node);
+
+        boolean result = instance.equals(expResult);
+        assertEquals(false, result);
+
+        expResult.fix(ru, rd);
+
+        result = instance.equals(expResult);
+        assertEquals(true, result);
     }
 
     /**
@@ -427,13 +438,13 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        CandidaturaAExposicao instance = null;
-        CandidaturaAExposicao expResult = null;
-        CandidaturaAExposicao result = instance.importContentFromXMLNode(node);
+        instance = new CandidaturaAExposicao(expositor);
+        Node node = instance.exportContentToXMLNode();
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(expositor);
+        expResult.importContentFromXMLNode(node);
+        expResult.fix(ru, rd);
+        CandidaturaAExposicao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -442,12 +453,13 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        CandidaturaAExposicao instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        instance = new CandidaturaAExposicao(expositor);
+        Node node = instance.exportContentToXMLNode();
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(expositor);
+        expResult.importContentFromXMLNode(node);
+        expResult.fix(ru, rd);
+        CandidaturaAExposicao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

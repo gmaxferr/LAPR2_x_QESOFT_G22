@@ -332,7 +332,8 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             return true;
         } else if (obj instanceof CandidaturaAExposicao) {
             CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
-            if (this.getRegistoProdutos().equals(cand.getRegistoProdutos()) && this.getExpositor().getEmail().equalsIgnoreCase(cand.getExpositor().getEmail())) {
+            if (this.getRegistoProdutos().equals(cand.getRegistoProdutos())
+                    && this.getExpositor().getUtilizador().equals(cand.getExpositor().getUtilizador())) {
                 return true;
             } else {
                 return false;
@@ -590,4 +591,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return m_decisao.getDecisao();
     }
 
+    @Override
+    public String toString(){
+        return m_StrNomeEmpresa;
+    }
+    
 }

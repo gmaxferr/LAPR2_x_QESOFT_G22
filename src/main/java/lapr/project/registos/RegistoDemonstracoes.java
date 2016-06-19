@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * Representação de um RegistoDemonstracoes
- * 
+ *
  * @author Ana Leite Ricardo Osório
  */
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
@@ -45,11 +45,30 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     private int m_contadorDemos;
 
+    private Exposicao m_expo;
+
     /**
      * Construtor de objetos do tipo RegistoDemonstracoes sem paramentros
      */
     public RegistoDemonstracoes() {
         this.m_listaDemonstracoes = new ArrayList<>();
+        this.m_expo = null;
+    }
+
+    /**
+     * Define uma nova Exposicao para este RegistoDemonstracoes
+     *
+     * @param e Exposicao
+     */
+    public void setExposicao(Exposicao e) {
+        this.m_expo = e;
+    }
+
+    /**
+     * @return Devolve a exposição a que pertence este RegistoDemonstracoes
+     */
+    public Exposicao getExposicao() {
+        return m_expo;
     }
 
     /**
@@ -62,8 +81,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * lista de candidaturas a demonstração  alida demonstração de CandidaturaAExposicao recebendo-a como
-     * parametro
+     * lista de candidaturas a demonstração alida demonstração de
+     * CandidaturaAExposicao recebendo-a como parametro
      *
      * @param demonstracao demonstração a ser validads
      */
@@ -75,8 +94,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Valida os dados repetidos pu invalidos de
-     * CandidaturaAExposicao
+     * Valida os dados repetidos pu invalidos de CandidaturaAExposicao
      *
      * @return boolean com a confirmação da validação
      */
@@ -91,13 +109,18 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return nova demonstração
      */
     public Demonstracao novaDemonstracao(String descricao) {
-        Demonstracao demo = new Demonstracao(descricao);
+        Demonstracao demo;
+        if (m_expo == null) {
+            demo = new Demonstracao(descricao);
+        } else {
+            demo = new Demonstracao(descricao, m_expo);
+        }
         return demo;
     }
 
     /**
      * Define a lista de demonstrações
-     * 
+     *
      * @param listaDemonstracoes lista de demonstrações
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
@@ -109,7 +132,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Devolve a lista das demonstrações pendentes
-     * 
+     *
      * @return lista das demonstrações pendentes
      */
     public List<Demonstracao> getDemonstracoesPendentes() {
@@ -125,7 +148,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Devolve a lista das demonstrações dentro do periodo de submissão de
      * candidaturas
-     * 
+     *
      * @return lista das demonstrações dentro do periodo de submissão de
      * candidaturas
      */
@@ -146,8 +169,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return true se for válida; false caso contrário
      */
     public boolean valida(Demonstracao m_demoCriada) {
-        return (!m_demoCriada.getDescricao().isEmpty()) 
-                && (!m_listaDemonstracoes.contains(m_demoCriada)) 
+        return (!m_listaDemonstracoes.contains(m_demoCriada))
                 && (!m_demoCriada.getRegistoRecursosNecessarios().getListaDeRecursos().isEmpty());
     }
 
@@ -166,18 +188,18 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Devolve a lista de demonstrações de um organizador
-     * 
-     * @param username username do organizador
+     *
      * @return lista de demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesDoOrganizador(String username) {
+    public List<Demonstracao> getListaDemonstracoesEstadoConfirmada() {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
-            for (Organizador organizador : demonstracao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(username) && demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                    listaDemonstracoesDoOrganizador.add(demonstracao);
-                }
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
+                listaDemonstracoesDoOrganizador.add(demonstracao);
             }
         }
         return listaDemonstracoesDoOrganizador;
@@ -185,24 +207,37 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Devolve a lista de demonstrações do fae
-     * 
-     * @param usernameFAE username do fae
+     *
      * @return lista de demonstrações do fae
      */
-    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturaAtribuidaDoFae(String usernameFAE) {
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasAtribuidas() {
         List<Demonstracao> listaDemonstracoesDoFAE = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
-            for (FAE fae : demonstracao.getListaFAE()) {
-                if (fae.getUsernameFae().equalsIgnoreCase(usernameFAE) && demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
-                    listaDemonstracoesDoFAE.add(demonstracao);
-                }
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
+                listaDemonstracoesDoFAE.add(demonstracao);
             }
         }
         return listaDemonstracoesDoFAE;
     }
 
-    public void fix(RegistoRecursos m_registoRecursos) {
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasFechadas() {
+        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasFechadas()) {
+                listaDemonstracoesDoOrganizador.add(demonstracao);
+            }
+        }
+        return listaDemonstracoesDoOrganizador;
+    }
+
+    public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
             for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {
                 for (Recurso r2 : m_registoRecursos.getListaDeRecursos()) {
@@ -212,6 +247,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                     }
                 }
             }
+        }
+
+        for (Demonstracao d : m_listaDemonstracoes) {
+            d.fix(rCand, m_expo);
         }
     }
 
@@ -233,7 +272,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                 NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
-                    Demonstracao demo = new Demonstracao("");
+                    Demonstracao demo = new Demonstracao("", m_expo);
                     demo.importContentFromXMLNode(n2);
                     m_listaDemonstracoes.add(demo);
                 }
@@ -277,19 +316,19 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Forma uma lista com as demonstrações em estado avaliadas
+     *
      * @return lista formada
      */
     public List<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
         List<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
         EstadoDemonstracao estado;
-        for(Demonstracao d: this.m_listaDemonstracoes){
+        for (Demonstracao d : this.m_listaDemonstracoes) {
             estado = d.getEstadoDemo();
-            if(estado.isEstadoDemonstracaoCandidaturasAvaliadas()){
+            if (estado.isEstadoDemonstracaoCandidaturasAvaliadas()) {
                 listaDemosAvaliadas.add(d);
             }
         }
         return listaDemosAvaliadas;
     }
 
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui.model;
 
 import java.util.List;
@@ -11,7 +6,7 @@ import lapr.project.model.Recurso;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class AbstractListModelRecursos extends AbstractListModel {
 
@@ -37,7 +32,7 @@ public class AbstractListModelRecursos extends AbstractListModel {
      */
     @Override
     public Object getElementAt(int i) {
-        return m_listaRecursos.get(i);
+        return m_listaRecursos.get(i).getNomeRecurso();
     }
 
 }

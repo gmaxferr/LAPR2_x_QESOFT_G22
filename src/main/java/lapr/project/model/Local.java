@@ -55,6 +55,15 @@ public class Local implements Importable<Local>, Exportable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof Local) {
+            Local o = (Local) obj;
+            return this.m_StrMorada == null ? o.m_StrMorada == null : this.m_StrMorada.equals(o.m_StrMorada);
+        }
+        return false;
+    }
+
+    @Override
     public Local importContentFromXMLNode(Node node) {
         try {
             Document document = XMLParser.createDocument(node, true);

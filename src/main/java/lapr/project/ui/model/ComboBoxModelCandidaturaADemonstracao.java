@@ -1,20 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.ui.model;
 
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
+import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
- * @author guilherme
+ * @author JoãoCardoso aka K4rd050
  */
-public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implements ComboBoxModel {
+public class ComboBoxModelCandidaturaADemonstracao extends AbstractListModel implements ComboBoxModel {
 
     /**
      * Lista de Candidaturas.
      */
-    private transient List<CandidaturaAExposicao> m_listaCands;
+    private transient List<CandidaturaADemonstracao> m_listaCands;
 
     /**
      * Objeto (Candidaturas) selecionado.
@@ -22,12 +28,12 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
     Object selection;
 
     /**
-     * Construtor de objetos do tipo ComboBoxModelCandidaturaAExposicao com o
+     * Construtor de objetos do tipo ComboBoxModelCandidaturaADemonstracao com o
      * parâmetro lista de candidaturas.
      *
      * @param listaCands - lista de Candidaturas
      */
-    public ComboBoxModelCandidaturaAExposicao(List<CandidaturaAExposicao> listaCands) {
+    public ComboBoxModelCandidaturaADemonstracao(List<CandidaturaADemonstracao> listaCands) {
         this.selection = null;
         this.m_listaCands = listaCands;
     }
@@ -72,4 +78,5 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
         return selection;
     }
 
+    
 }

@@ -65,7 +65,7 @@ public class RemoverCandidaturaExpoController {
     public List<Exposicao> getExposRepresentante(String username) {
         List<Exposicao> exposicoesLst = new ArrayList();
         RegistoExposicoes re = m_ce.getRegistoExposicoes();
-        exposicoesLst = re.getExposicoesDoRepresentante(username);
+        exposicoesLst = re.getExposicoesDoRepresentanteCandidaturasAbertas(username);
         return exposicoesLst;
     }
 

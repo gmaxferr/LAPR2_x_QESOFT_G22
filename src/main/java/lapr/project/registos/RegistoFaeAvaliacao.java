@@ -20,17 +20,17 @@ import org.w3c.dom.NodeList;
 
 /**
  * Representação de um RegistoFaeAvaliação
- * 
+ *
  * @author Ricardo Osorio
  */
 public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "RegistoFaeAvaliacao";
-    
+
     /**
      * Lista de FaeAvaliação
      */
-    private List<FaeAvaliacao> m_listaFaeAvaliacao;
+    private final List<FaeAvaliacao> m_listaFaeAvaliacao;
 
     /**
      * Construtor de objectos do tipo RegistoFaeAvaliacao sem parâmetros
@@ -40,10 +40,10 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
-     * Devolve o objeto faeDecisao  
-     * 
+     * Devolve o objeto faeDecisao
+     *
      * @param usernameFae username do fae
-     * @return objeto faeDecisao 
+     * @return objeto faeDecisao
      */
     public FaeAvaliacao getObjFaeDecisaoDoFae(String usernameFae) {
         for (FaeAvaliacao faeDecisao : m_listaFaeAvaliacao) {
@@ -56,7 +56,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
 
     /**
      * Devolve a avaliação de um fae
-     * 
+     *
      * @param usernameFAE username de um fae
      * @return avaliação de um fae
      */
@@ -71,7 +71,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
 
     /**
      * Adiciona um fae à lista FaeAvaliação
-     * 
+     *
      * @param fae fae a ser adicionado
      */
     public void addFaeAvaliacao(FAE fae) {
@@ -79,8 +79,15 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
+     * @return Retorna a lista de todas as Avaliações deste registo
+     */
+    public List<FaeAvaliacao> getListaFaeAvaliacao() {
+        return m_listaFaeAvaliacao;
+    }
+
+    /**
      * Devolve a lista de todos os fae
-     * 
+     *
      * @return lista de todos os fae
      */
     public List<FAE> getListaTodosFAE() {
@@ -93,7 +100,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
 
     /**
      * Devolve a lista de utilizadores com papel de fae
-     * 
+     *
      * @return lista de utilizadores com papel de fae
      */
     public List<Utilizador> getListaUtilizadoresAssociadoAosFAE() {
@@ -121,11 +128,11 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
-        for(FaeAvaliacao f : m_listaFaeAvaliacao){
+        for (FaeAvaliacao f : m_listaFaeAvaliacao) {
             f.fix(m_registoUtilizadores);
         }
     }
-    
+
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) {
         try {

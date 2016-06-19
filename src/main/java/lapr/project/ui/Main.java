@@ -1,14 +1,13 @@
 package lapr.project.ui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Formatter;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import lapr.project.controller.ImportarXMLController;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
+import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
@@ -121,19 +120,25 @@ public class Main {
 //                + "\n    username: \"admin\""
 //                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
 
+        //recursos
+        RegistoRecursos rr = centroExposicoes.getRegistoRecursos();
+        rr.criarRecurso("agua");
+        rr.criarRecurso("luz");
+        rr.criarRecurso("shit");
+
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();
         ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt", "abcd"));
         ru.addUtilizador(new Utilizador("Ana", "Ana", "Abc-1".toCharArray(), "Ana@email.pt", "cheese"));
         ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt", "sport"));
-        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "deceive"));
+        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "careful"));
         ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt", "blue"));
         ru.confirmarRegistoTodosUtilizadores();
 
         //GestorExposições
         Utilizador utilizador;
         utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
-        utilizador.setIsGestor();
+        utilizador.setIsGestor(true);
 
         //Organizador
         utilizador = ru.identificarUtilizadorPeloUsername("Ana");
@@ -156,6 +161,23 @@ public class Main {
         re.registaExposicao(exposicao);
         exposicao.setEstado(new EstadoExposicaoCandidaturasAbertas(exposicao));
         exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+
+        /*3*/
+        exposicao = new Exposicao("Titulo3", "Descricao23", new Data(2016, 7, 28), new Data(2016, 7, 7), new Data(2016, 7, 10), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local3"), centroExposicoes);
+        re.registaExposicao(exposicao);
+        exposicao.setEstado(new EstadoExposicaoConflitosAlterados(exposicao));
+        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+        utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
+        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
+        exposicao.getRegistoFAE().adicionaFAE(ru.identificarUtilizadorPeloUsername("Guilherme"));
+        CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(ru.identificarUtilizadorPeloUsername("Joao")));
+        cand.getEstado().setEstadoCandidaturaAtribuida();
+        exposicao.getRegistoCandidaturasAExposicao().registaCandidatura(cand);
+        List<AtribuicaoCandidatura> listaAtribuicao = new ArrayList<>();
+        AtribuicaoCandidatura atribuicao = new AtribuicaoCandidatura(cand);
+        atribuicao.addFaeAvaliacao(new FAE(ru.identificarUtilizadorPeloUsername("Guilherme")));
+        listaAtribuicao.add(atribuicao);
+        exposicao.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
 
         JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
                 + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
