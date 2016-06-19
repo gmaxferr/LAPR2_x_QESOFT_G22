@@ -886,7 +886,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
