@@ -475,7 +475,7 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
-        jButton22.setText("Decidir demonstração");
+        jButton22.setText("Decidir demonstrações");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
@@ -933,7 +933,7 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        this.setVisible(false);
+       this.setVisible(false);
        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
