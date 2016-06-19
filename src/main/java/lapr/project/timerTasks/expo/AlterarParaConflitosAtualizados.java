@@ -6,6 +6,7 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 
@@ -31,5 +32,6 @@ public class AlterarParaConflitosAtualizados extends TimerTask {
         for (CandidaturaAExposicao c : m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
             c.getEstado().setEstadoCandidaturaProntaAtribuicoes();
         }
+        JOptionPane.showMessageDialog(null, "Terminou o período de atualização de conflitos de interesse!");
     }
 }

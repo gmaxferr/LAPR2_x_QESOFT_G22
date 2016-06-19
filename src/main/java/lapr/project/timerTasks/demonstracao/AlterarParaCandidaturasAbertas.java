@@ -6,6 +6,7 @@
 package lapr.project.timerTasks.demonstracao;
 
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import lapr.project.model.Demonstracao;
 
 /**
@@ -27,6 +28,7 @@ public class AlterarParaCandidaturasAbertas extends TimerTask{
     @Override
     public void run() {
         m_demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasAbertas();
+        JOptionPane.showMessageDialog(null, "Iniciou o período de submissão de candidaturas à demonstração com o código: "+m_demo.getCodigoIdentificacao());
     }
     
 }
