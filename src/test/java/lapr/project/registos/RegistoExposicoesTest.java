@@ -341,7 +341,7 @@ public class RegistoExposicoesTest {
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo6);
         expResult.add(expo8);
-        List<Exposicao> result = re.getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(usernameOrg);
+        List<Exposicao> result = re.getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemosOuCompleta(usernameOrg);
         assertEquals(expResult, result);
     }
 

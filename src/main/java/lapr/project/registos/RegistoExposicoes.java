@@ -314,12 +314,15 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      * @return lista de exposições no estado criada ou fae definidos sem demos
      * de um organizador
      */
-    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemosOuCompleta(String usernameOrg) {
         List<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) && (exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoFAEDefinidosSemDemos())) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) 
+                        && (exposicao.getEstado().isEstadoCriada() 
+                                    || exposicao.getEstado().isEstadoFAEDefinidosSemDemos())
+                                    || exposicao.getEstado().isEstadoCompleta()) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }
