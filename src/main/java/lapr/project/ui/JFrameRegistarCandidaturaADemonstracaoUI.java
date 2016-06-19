@@ -2,6 +2,9 @@ package lapr.project.ui;
 
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,8 +25,9 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
     private transient RegistarCandidaturaADemonstracaoController CTRL;
-    private transient List<Exposicao> listaExposicoes;
-    private transient List<Demonstracao> listaDemos;
+    private transient List<Exposicao> listaExposicoes = new ArrayList<>();
+    private transient List<Demonstracao> listaDemos = new ArrayList<>();
+    private transient JFrame jFrameMenuPrincipal;
 
     ;
     /**
@@ -32,12 +36,27 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
      * @param ce - Centro de Exposções
      * @param usernameRep - username do representante
      */
-    public JFrameRegistarCandidaturaADemonstracaoUI(CentroExposicoes ce, String usernameRep) {
+    public JFrameRegistarCandidaturaADemonstracaoUI(JFrame janelaMae, CentroExposicoes ce, String usernameRep) {
         CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
-
+        
         initComponents();
+        alterarComportamentoFecharJFrame();
+        setVisible(true);
     }
 
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                jFrameMenuPrincipal.setVisible(true);
+                dispose();
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

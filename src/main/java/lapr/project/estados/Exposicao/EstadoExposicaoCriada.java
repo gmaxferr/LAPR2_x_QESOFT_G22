@@ -25,6 +25,11 @@ public class EstadoExposicaoCriada extends EstadoExposicao {
     }
 
     @Override
+    public boolean setEstadoCriada(){
+        return true;
+    }
+    
+    @Override
     public boolean isEstadoCriada() {
         return true;
     }

@@ -6,6 +6,7 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import lapr.project.controller.DetetarConflitoController;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -38,5 +39,6 @@ public class AlterarParaFechadaCandidaturas extends TimerTask {
         }
         DetetarConflitoController ctrl = new DetetarConflitoController(m_ce);
         ctrl.detetaConflitos(m_exposicao);
+        JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição");
     }
 }

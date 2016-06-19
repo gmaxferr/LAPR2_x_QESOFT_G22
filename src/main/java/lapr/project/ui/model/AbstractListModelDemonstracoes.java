@@ -17,8 +17,8 @@ public class AbstractListModelDemonstracoes extends AbstractListModel {
 
     private transient List<Demonstracao> m_listaDemonstracoes;
 
-    public AbstractListModelDemonstracoes(List<Demonstracao> listaConflitos) {
-        this.m_listaDemonstracoes = listaConflitos;
+    public AbstractListModelDemonstracoes(List<Demonstracao> listaDemonstracoes) {
+        this.m_listaDemonstracoes = listaDemonstracoes;
     }
 
     @Override

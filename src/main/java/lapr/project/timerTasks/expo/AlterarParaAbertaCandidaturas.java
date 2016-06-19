@@ -6,6 +6,7 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import lapr.project.model.Exposicao;
 
 /**
@@ -27,6 +28,7 @@ public class AlterarParaAbertaCandidaturas extends TimerTask {
     @Override
     public void run() {
         m_exposicao.getEstado().setEstadoCandidaturasAbertas();
+        JOptionPane.showMessageDialog(null, "Iniciou o período de submissão de candidaturas à exposição"+m_exposicao.getTitulo());
     }
 
 }

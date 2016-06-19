@@ -124,7 +124,7 @@ public class Main {
         RegistoRecursos rr = centroExposicoes.getRegistoRecursos();
         rr.criarRecurso("agua");
         rr.criarRecurso("luz");
-        rr.criarRecurso("shit");
+        rr.criarRecurso("gás");
 
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadores();

@@ -64,6 +64,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      */
     public boolean registaExposicao(Exposicao e) {
         if (e.valida()) {
+            e.getEstado().setEstadoCriada();
             m_listaExposicoes.add(e);
             return true;
         } else {
