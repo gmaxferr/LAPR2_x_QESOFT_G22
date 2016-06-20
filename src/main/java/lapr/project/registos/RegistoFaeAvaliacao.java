@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoFaeAvaliacao";
+    public static final String ROOT_ELEMENT_NAME = "registoFaeAvaliacao";
 
     /**
      * Lista de FaeAvaliação

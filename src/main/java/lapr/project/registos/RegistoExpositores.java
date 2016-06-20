@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoExpositores implements Importable<RegistoExpositores>, Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoExpositores";
+    public static final String ROOT_ELEMENT_NAME = "registoExpositores";
 
     /**
      * Lista de expositores

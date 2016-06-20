@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoProdutos";
+    public static final String ROOT_ELEMENT_NAME = "registoProdutos";
 
     /**
      * Lista de produtos 

@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoRecursos";
+    public static final String ROOT_ELEMENT_NAME = "registoRecursos";
 
     /**
      * Lista de recursos necessários

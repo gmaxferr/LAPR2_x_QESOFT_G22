@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesStands>, Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoesStands";
+    public static final String ROOT_ELEMENT_NAME = "registoAtribuicoesStands";
 
     /**
      * Lista de atribuições stand
