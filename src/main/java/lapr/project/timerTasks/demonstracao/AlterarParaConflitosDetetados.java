@@ -6,6 +6,7 @@
 package lapr.project.timerTasks.demonstracao;
 
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConflitosDetetados;
 import lapr.project.model.Demonstracao;
@@ -26,6 +27,7 @@ public class AlterarParaConflitosDetetados extends TimerTask{
     public void run() {
         EstadoDemonstracao e = m_demo.getEstadoDemo();
         e = new EstadoDemonstracaoConflitosDetetados(m_demo);
+        JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da demonstração");
     }
     
     

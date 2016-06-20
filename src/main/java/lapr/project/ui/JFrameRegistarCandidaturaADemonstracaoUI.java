@@ -2,12 +2,16 @@ package lapr.project.ui;
 
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.RegistarCandidaturaADemonstracaoController;
 import lapr.project.model.*;
+import lapr.project.ui.model.AbstractListModelDemonstracoes;
 
 /**
  *
@@ -21,7 +25,9 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
     private transient RegistarCandidaturaADemonstracaoController CTRL;
-    private transient List<Exposicao> listaExposicoes;
+    private transient List<Exposicao> listaExposicoes = new ArrayList<>();
+    private transient List<Demonstracao> listaDemos = new ArrayList<>();
+    private transient JFrame jFrameMenuPrincipal;
 
     ;
     /**
@@ -30,10 +36,25 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
      * @param ce - Centro de Exposções
      * @param usernameRep - username do representante
      */
-    public JFrameRegistarCandidaturaADemonstracaoUI(CentroExposicoes ce, String usernameRep) {
+    public JFrameRegistarCandidaturaADemonstracaoUI(JFrame janelaMae, CentroExposicoes ce, String usernameRep) {
         CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
-
+        jFrameMenuPrincipal = janelaMae;
         initComponents();
+        alterarComportamentoFecharJFrame();
+        setVisible(true);
+    }
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                jFrameMenuPrincipal.setVisible(true);
+                dispose();
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
     }
 
     /**
@@ -251,11 +272,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
         jLabel4.setText("Selecione uma das demonstrações abaixo a que quer submeter candidatura:");
 
-        listaCard2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        listaCard2.setModel(new AbstractListModelDemonstracoes(listaDemos));
         listaCard2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(listaCard2);
 
@@ -355,22 +372,18 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                         .addGap(1, 1, 1)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(272, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(27, 27, 27))))
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton8)
+                        .addGap(165, 165, 165)
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,11 +392,11 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
                     .addComponent(jButton7)
@@ -419,6 +432,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void boataoCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boataoCancelar2ActionPerformed
+        jFrameMenuPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_boataoCancelar2ActionPerformed
 
@@ -431,6 +445,8 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_botaoSelecionaExpoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+
+        jFrameMenuPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
@@ -487,7 +503,9 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         setSize(this.getSize());
 
     }
+
     private void passaParaPanel2() {
+        listaDemos = CTRL.getListaDemos();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(this.getSize());

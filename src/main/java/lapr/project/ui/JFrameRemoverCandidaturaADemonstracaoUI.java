@@ -505,8 +505,11 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         if (jComboBoxCandidaturas.getSelectedItem() != null) {
+            int op = JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende remover a candidatura à demonstração selecionada?", "Confirma a remoção?", JOptionPane.YES_NO_OPTION);
+            if(op==1){
             CandidaturaADemonstracao cand = m_listaCandidaturas.get(jComboBoxCandidaturas.getSelectedIndex());
             m_listaCandidaturas.remove(cand);
+            }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Não selecionou nenhuma candidatura!", "Erro", JOptionPane.ERROR_MESSAGE);
         }

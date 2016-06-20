@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import javax.swing.JOptionPane;
 import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
@@ -85,12 +86,8 @@ public class AlterarPerfilDeUtilizadorController {
      * @param nome - novo nome
      * @return true se for válido; false caso contrário.
      */
-    public boolean changeNome(String nome) {
-        if (m_ru.validaNome(nome)) {
-            setNome(nome);
-            return true;
-        }
-        return false;
+    public boolean validaNome(String nome) {
+        return m_ru.validaNome(nome)  && !nome.isEmpty();
     }
 
     /**
@@ -99,12 +96,8 @@ public class AlterarPerfilDeUtilizadorController {
      * @param username - novo username
      * @return true se for válido; false caso contrário.
      */
-    public boolean changeUsername(String username) {
-        if (m_ru.validaUsername(username)) {
-            setNome(username);
-            return true;
-        }
-        return false;
+    public boolean validaUsername(String username) {
+        return m_ru.validaUsername(username)  && !username.isEmpty();
     }
 
     /**
@@ -113,12 +106,9 @@ public class AlterarPerfilDeUtilizadorController {
      * @param email - novo email
      * @return true se for válido; false caso contrário.
      */
-    public boolean changeEmail(String email) {
-        if (m_ru.validaEmail(email)) {
-            setEmail(email);
-            return true;
-        }
-        return false;
+    public boolean validaEmail(String email) {
+        return m_ru.validaEmail(email) && !email.isEmpty();
+
     }
 
     /**
@@ -127,12 +117,8 @@ public class AlterarPerfilDeUtilizadorController {
      * @param password - nova password
      * @return true se for válida; false caso contrário.
      */
-    public boolean changePassword(char[] password) throws InvalidPasswordException{
-        if (m_u.validaPassword(password)) {
-            setPassword(password);
-            return true;
-        }
-        return false;
+    public boolean validaPassword(char[] password) throws InvalidPasswordException {
+        return m_u.validaPassword(password);
     }
 
     /**
@@ -140,7 +126,7 @@ public class AlterarPerfilDeUtilizadorController {
      *
      * @param username - parametro a armazenar
      */
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.m_username = username;
     }
 
@@ -149,7 +135,7 @@ public class AlterarPerfilDeUtilizadorController {
      *
      * @param password - parametro a armazenar
      */
-    private void setPassword(char[] password) {
+    public void setPassword(char[] password) {
         this.m_password = password;
     }
 
@@ -158,7 +144,7 @@ public class AlterarPerfilDeUtilizadorController {
      *
      * @param email - parametro a armazenar
      */
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.m_email = email;
     }
 
@@ -167,18 +153,41 @@ public class AlterarPerfilDeUtilizadorController {
      *
      * @param nome - parametro a armazenar
      */
-    private void setNome(String nome) {
+    public void setNome(String nome) {
         this.m_nome = nome;
     }
 
     /**
      * Regista os dados do utilizador, tornando-os efetivos.
+     * @return string com alterações (para expor ao utilizador)
      */
-    public void confirmaAlteracoes() {
-        m_u.setNome(m_nome);
-        m_u.setEmail(m_email);
-        m_u.setUsername(m_username);
-        m_u.setPwd(m_password);
+    public String confirmaAlteracoes() {
+        String aux = "Alterações Efetuadas:";
+        if (validaNome(m_nome)) {
+            m_u.setNome(m_nome);
+            aux += "\nNome: alterado.";
+        } else {
+            aux += "\nNome: não alterado.";
+        }
+        if (validaEmail(m_email)) {
+            m_u.setEmail(m_email);
+            aux += "\nEmail: alterado.";
+        } else {
+            aux += "\nEmail: não alterado.";
+        }
+        if (validaUsername(m_username)) {
+            m_u.setUsername(m_username);
+            aux += "\nUsername: alterado.";
+        } else {
+            aux += "\nUsername: não alterado.";
+        }
+        if (validaPassword(m_password)) {
+            m_u.setPwd(m_password);
+            aux += "\nPassword: alterada.";
+        } else {
+            aux += "\nPassword: não alterada.";
+        }
+        return aux;
     }
 
 }
