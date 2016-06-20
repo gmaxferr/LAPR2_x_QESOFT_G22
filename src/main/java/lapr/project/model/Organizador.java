@@ -12,9 +12,7 @@ import org.w3c.dom.*;
  */
 public class Organizador implements Importable<Organizador>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "Organizador";
-    public static final String USERNAME_ELEMENT_NAME = "Username";
-    public static final String EMAIL_ELEMENT_NAME = "Email";
+    public static final String ROOT_ELEMENT_NAME = "organizador";
 
     /**
      * Atributo utilizador de organizador
@@ -81,8 +79,7 @@ public class Organizador implements Importable<Organizador>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.m_Utilizador = new Utilizador();
-                this.m_Utilizador.setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
-                this.m_Utilizador.setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
+                this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Organizador.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,14 +96,11 @@ public class Organizador implements Importable<Organizador>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
+            
+            Utilizador savedUser = new Utilizador("", m_Utilizador.getUsername(), "".toCharArray(), m_Utilizador.getEmail(), "");
+            savedUser.setShifts(0);
 
-            Element elem = document.createElement(USERNAME_ELEMENT_NAME);
-            elem.setTextContent(this.m_Utilizador.getUsername());
-            elementBase.appendChild(elem);
-
-            elem = document.createElement(EMAIL_ELEMENT_NAME);
-            elem.setTextContent(this.m_Utilizador.getEmail());
-            elementBase.appendChild(elem);
+            elementBase.appendChild(savedUser.exportContentToXMLNode());
 
             node = elementBase;
 

@@ -64,12 +64,12 @@ public class CandidaturaAExposicaoTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        ru = new RegistoUtilizadores();
+        ru = new RegistoUtilizadores("");
         e = new Exposicao(ce);
         u = new Utilizador(nome, username, password, email);
         ru.getListaUtilizadores().add(u);
         expositor = new Expositor(u);
-        instance = new CandidaturaAExposicao(expositor);
+        instance = new CandidaturaAExposicao(e, expositor);
         instance.criarProduto(nomeProd1);
         instance.criarProduto(nomeProd2);
         instance.criarProduto(nomeProd3);
@@ -381,7 +381,7 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testGetListKeyword() {
         System.out.println("getListKeyword");
-        CandidaturaAExposicao cand2 = new CandidaturaAExposicao(expositor);
+        CandidaturaAExposicao cand2 = new CandidaturaAExposicao(e, expositor);
         cand2.setKeywords(keyword);
         List<Keyword> expResult = cand2.getListKeyword();
         List<Keyword> result = instance.getListKeyword();
@@ -417,10 +417,10 @@ public class CandidaturaAExposicaoTest {
     public void testFix() {
         System.out.println("fix");
 
-        instance = new CandidaturaAExposicao(expositor);
+        instance = new CandidaturaAExposicao(e, expositor);
         Node node = instance.exportContentToXMLNode();
 
-        CandidaturaAExposicao expResult = new CandidaturaAExposicao(null);
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, null);
         expResult.importContentFromXMLNode(node);
 
         boolean result = instance.equals(expResult);
@@ -438,9 +438,9 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        instance = new CandidaturaAExposicao(expositor);
+        instance = new CandidaturaAExposicao(e, expositor);
         Node node = instance.exportContentToXMLNode();
-        CandidaturaAExposicao expResult = new CandidaturaAExposicao(expositor);
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, expositor);
         expResult.importContentFromXMLNode(node);
         expResult.fix(ru, rd);
         CandidaturaAExposicao result = instance;
@@ -453,9 +453,9 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        instance = new CandidaturaAExposicao(expositor);
+        instance = new CandidaturaAExposicao(e, expositor);
         Node node = instance.exportContentToXMLNode();
-        CandidaturaAExposicao expResult = new CandidaturaAExposicao(expositor);
+        CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, expositor);
         expResult.importContentFromXMLNode(node);
         expResult.fix(ru, rd);
         CandidaturaAExposicao result = instance;

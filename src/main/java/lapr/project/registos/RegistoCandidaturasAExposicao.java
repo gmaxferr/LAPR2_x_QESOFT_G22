@@ -15,18 +15,21 @@ import org.w3c.dom.*;
  */
 public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidaturasAExposicao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicao";
+    public static final String ROOT_ELEMENT_NAME = "registoCandidaturas";
 
+    public final Exposicao e;
+    
     /**
      * Lista de candidaturas a exposição
      */
-    private List<CandidaturaAExposicao> m_listaCandidaturas;
+    private final List<CandidaturaAExposicao> m_listaCandidaturas;
 
     /**
      * Construtor de objetos do tipo RegistoCandidaturaAExposicao sem parâmetros
      */
-    public RegistoCandidaturasAExposicao() {
+    public RegistoCandidaturasAExposicao(Exposicao e) {
         this.m_listaCandidaturas = new ArrayList<>();
+        this.e = e;
     }
 
     /**
@@ -46,7 +49,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @return nova candidatura
      */
     public CandidaturaAExposicao criarCandidatura(Utilizador utilizador) {
-        return new CandidaturaAExposicao(new Expositor(utilizador));
+        return new CandidaturaAExposicao(this.e, new Expositor(utilizador));
     }
 
     /**
@@ -176,7 +179,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
                 NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
-                    CandidaturaAExposicao cand = new CandidaturaAExposicao(null);
+                    CandidaturaAExposicao cand = new CandidaturaAExposicao(this.e, null);
                     cand.importContentFromXMLNode(n2);
                     m_listaCandidaturas.add(cand);
                 }

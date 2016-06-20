@@ -86,7 +86,7 @@ public class CentroExposicoesTest {
     public void testGetRegistoUtilizadores() {
         System.out.println("getRegistoUtilizadores");
 
-        RegistoUtilizadores expResult = new RegistoUtilizadores();
+        RegistoUtilizadores expResult = new RegistoUtilizadores("");
         ce.setRegistoUtilizadoresPendentes(expResult);
         RegistoUtilizadores result = ce.getRegistoUtilizadoresPendentes();
         assertEquals(expResult, result);

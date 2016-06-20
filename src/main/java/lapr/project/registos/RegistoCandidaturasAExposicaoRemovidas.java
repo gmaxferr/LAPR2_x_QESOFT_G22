@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Exposicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -24,6 +25,8 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
     
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicaoRemovidas";
 
+    public final Exposicao e;
+    
     /**
      * Lista de candidaturas removidas.
      */
@@ -32,8 +35,9 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
    /**
      * Contrutor de objetos do tipo RegistoCandidaturasAExposicaoRemovidas sem parâmetros.
      */
-    public RegistoCandidaturasAExposicaoRemovidas() {
+    public RegistoCandidaturasAExposicaoRemovidas(Exposicao e) {
         this.m_listaCandidaturasRemovidas = new ArrayList<>();
+        this.e = e;
     }
 
     /**
@@ -71,7 +75,7 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
                 NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
-                    CandidaturaAExposicao cand = new CandidaturaAExposicao(null);
+                    CandidaturaAExposicao cand = new CandidaturaAExposicao(e, null);
                     cand.importContentFromXMLNode(n2);
                     this.m_listaCandidaturasRemovidas.add(cand);
                 }

@@ -17,83 +17,105 @@ import org.w3c.dom.*;
  */
 public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "CandidaturaAExposicao";
+    public static final String ROOT_ELEMENT_NAME = "candidatura";
 
     public static final String ESTADO_ATTR_NAME = "estado";
-    public static final String TEM_DECISAO_ATTR_NAME = "decisao";
 
+    public static final String DESCRICAO_ELEMENT_NAME = "descricao";
+    public static final String AREA_ELEMENT_NAME = "areaPretendida";
+    public static final String NUM_CONVITES_ELEMENT_NAME = "quantidadeConvites";
+    public static final String AVALIACOES_ELEMENT_NAME = "avaliacoes";
     public static final String TLM_ELEMENT_NAME = "telemovel";
-    public static final String NUM_CONVITES_ELEMENT_NAME = "numConvites";
-    public static final String AREA_ELEMENT_NAME = "area";
     public static final String NOME_EMPRESA_ELEMENT_NAME = "nomeEmpresa";
     public static final String MORADA_EMPRESA_ELEMENT_NAME = "moradaEmpresa";
     public static final String KEYWORDS_ELEMENT_NAME = "keywords";
 
-    private EstadoCandidaturaAExposicao m_estado;
     /**
-     * Atributo numero de telemovel de CandidaturaAExposicao
+     * Estado atual da Candidatura a Exposição.
+     */
+    private EstadoCandidaturaAExposicao m_estado;
+
+    public final Exposicao e;
+
+    /**
+     * Atributo numero de telemovel de CandidaturaAExposicao.
      */
     private int m_intTelemovel;
 
     /**
-     * Atributo numero de convites de CandidaturaAExposicao
+     * Atributo numero de convites de CandidaturaAExposicao.
      */
     private int m_intNumConvites;
 
     /**
-     * Atributo area de CandidaturaAExposicao
+     * Atributo area de CandidaturaAExposicao.
      */
     private int m_intArea;
 
     /**
-     *
+     * Nome da empresa que se candidata.
      */
     private String m_StrNomeEmpresa;
 
     /**
-     *
+     * Morada da empresa que se candidata.
      */
     private String m_StrMoradaEmpresa;
 
     /**
-     * Registo(lista) dos produtos que o expositor pretende expor
+     * Descrição da candidatura.
+     */
+    private String m_descricao;
+
+    /**
+     * Registo(lista) dos produtos que o expositor pretende expor.
      */
     private RegistoProdutos m_rp;
 
     /**
      * Registo (lista) das demonstrações em que o expositor demonstra interesse
-     * durante a candidatura
+     * durante a candidatura.
      */
     private RegistoDemonstracoes m_rd;
 
     /**
      * Decisão tomada sobre esta candidatura durante o UC Decidir Candidatura a
-     * Exposição
+     * Exposição.
      */
     private Decisao m_decisao;
 
     /**
-     * Expositor gerador desta candidatura
+     * Expositor gerador desta candidatura.
      */
     private Expositor m_expositor;
 
     /**
      * Keywords descritivas dos produtos a expor pelo expositor - introduzidas
-     * no momento da candidatura
+     * no momento da candidatura.
      */
     private List<Keyword> m_keywords;
 
     /**
-     * Contrutor de Candidatura sem parametros
+     * Contrutor de Candidatura sem parametros.
      *
      * @param expositor
      */
+    public CandidaturaAExposicao(Exposicao e, Expositor expositor) {
+        this.m_expositor = expositor;
+        this.m_rp = new RegistoProdutos();
+        this.m_rd = new RegistoDemonstracoes();
+        this.m_keywords = new ArrayList<>();
+        setEstado(new EstadoCandidaturaAExposicaoCriada(this));
+        this.e = e;
+    }
+
     public CandidaturaAExposicao(Expositor expositor) {
         this.m_expositor = expositor;
         this.m_rp = new RegistoProdutos();
         this.m_rd = new RegistoDemonstracoes();
         this.m_keywords = new ArrayList<>();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
+        this.e = null;
     }
 
     /**
@@ -242,6 +264,20 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
+     * @return a descricao
+     */
+    public String getDescricao() {
+        return m_descricao;
+    }
+
+    /**
+     * @param m_descricao a descricao a definir
+     */
+    public void setDescricao(String m_descricao) {
+        this.m_descricao = m_descricao;
+    }
+
+    /**
      * Cria um novo produto recebendo como parametro o seu nome e adiciona-o ao
      * registo de produtos desta candidatura
      *
@@ -324,6 +360,19 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     public void setEstado(EstadoCandidaturaAExposicao ne) {
         this.m_estado = ne;
+    }
+
+    boolean getDecisao() {
+        return m_decisao.getDecisao();
+    }
+
+    void setExpositor(Expositor expositor) {
+        this.m_expositor = expositor;
+    }
+
+    @Override
+    public String toString() {
+        return m_StrNomeEmpresa;
     }
 
     @Override
@@ -432,33 +481,87 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_StrMoradaEmpresa = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME).item(0).getTextContent();
-                this.m_StrNomeEmpresa = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME).item(0).getTextContent();
-                boolean temDecisao = Boolean.parseBoolean(elem.getAttribute(TEM_DECISAO_ATTR_NAME));
-                if (temDecisao) {
-                    this.m_decisao = new Decisao();
-                    this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
-                }
-                this.m_expositor = new Expositor(null);
-                this.m_expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
+                this.m_decisao = new Decisao();
+                this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
+                this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
                 this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
                 this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
-                this.m_intTelemovel = Integer.parseInt(elem.getElementsByTagName(TLM_ELEMENT_NAME).item(0).getTextContent());
-                Node m = elem.getElementsByTagName(KEYWORDS_ELEMENT_NAME).item(0);
-                if (m.getNodeType() == Node.ELEMENT_NODE) {
-                    Element m2 = (Element) m;
-                    NodeList keywords = m2.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
-                    this.m_keywords.clear();
-                    for (int i = 0; i < keywords.getLength(); i++) {
-                        Keyword key = new Keyword();
-                        key.importContentFromXMLNode(keywords.item(i));
-                        this.m_keywords.add(key);
+                Node n2 = elem.getElementsByTagName(AVALIACOES_ELEMENT_NAME).item(0);
+                NodeList avaliacoesList = ((Element) n2).getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < avaliacoesList.getLength(); i++) {
+
+                    Avaliacao aval = new Avaliacao();
+                    Node n3 = avaliacoesList.item(0);
+                    aval.importContentFromXMLNode(n3);
+
+                    FAE fae = new FAE();
+                    Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
+                    fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+
+                    RegistoAtribuicoes ra = e.getRegistoAtribuicoes();
+                    List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoesDoFAE(fae.getUsernameFae());
+                    AtribuicaoCandidatura atr = null;
+                    for (AtribuicaoCandidatura atrCand : listAtr) {
+                        if (atrCand.getCandidaturaAssociada().equals(this)) {
+                            atr = atrCand;
+                        }
+                    }
+
+                    if (atr == null) {
+                        atr = new AtribuicaoCandidatura(this);
+                        listAtr.add(atr);
+                    }
+
+                    FaeAvaliacao fAval = atr.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae());
+                    if (fAval == null) {
+                        fAval = new FaeAvaliacao(fae);
+                        atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
+                    }
+
+                    fAval.setAvaliacao(aval);
+                }
+
+                NodeList tempList = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_StrMoradaEmpresa = tempList.item(0).getTextContent();
+                }
+                tempList = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_StrNomeEmpresa = tempList.item(0).getTextContent();
+                }
+                tempList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_expositor = new Expositor(null);
+                    this.m_expositor.importContentFromXMLNode(tempList.item(0));
+                }
+                tempList = elem.getElementsByTagName(TLM_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_intTelemovel = Integer.parseInt(tempList.item(0).getTextContent());
+                }
+                tempList = elem.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    Node m = tempList.item(0);
+                    if (m.getNodeType() == Node.ELEMENT_NODE) {
+                        Element m2 = (Element) m;
+                        NodeList keywords = m2.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
+                        this.m_keywords.clear();
+                        for (int i = 0; i < keywords.getLength(); i++) {
+                            Keyword key = new Keyword();
+                            key.importContentFromXMLNode(keywords.item(i));
+                            this.m_keywords.add(key);
+                        }
                     }
                 }
-                this.m_rd = new RegistoDemonstracoes();
-                this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_rp = new RegistoProdutos();
-                this.m_rp.importContentFromXMLNode(elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME).item(0));
+                tempList = elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_rd = new RegistoDemonstracoes();
+                    this.m_rd.importContentFromXMLNode(tempList.item(0));
+                }
+                tempList = elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME);
+                if (tempList.getLength() > 0) {
+                    this.m_rp = new RegistoProdutos();
+                    this.m_rp.importContentFromXMLNode(tempList.item(0));
+                }
 
                 String estado = elem.getAttribute(ESTADO_ATTR_NAME);
                 switch (estado) {
@@ -518,8 +621,21 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             Element elementCandAExpo = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementCandAExpo);
 
-            Element child = document.createElement(AREA_ELEMENT_NAME);
+            elementCandAExpo.appendChild(document.importNode(this.m_decisao.exportContentToXMLNode(), true));
+            elementCandAExpo.appendChild(document.importNode(this.m_expositor.exportContentToXMLNode(), true));
+            elementCandAExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
+            elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));
+
+            Element child = document.createElement(DESCRICAO_ELEMENT_NAME);
+            child.setTextContent(this.m_descricao);
+            elementCandAExpo.appendChild(child);
+
+            child = document.createElement(AREA_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intArea));
+            elementCandAExpo.appendChild(child);
+
+            child = document.createElement(NUM_CONVITES_ELEMENT_NAME);
+            child.setTextContent(String.valueOf(this.m_intNumConvites));
             elementCandAExpo.appendChild(child);
 
             child = document.createElement(KEYWORDS_ELEMENT_NAME);
@@ -537,21 +653,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             child.setTextContent(this.m_StrNomeEmpresa);
             elementCandAExpo.appendChild(child);
 
-            child = document.createElement(NUM_CONVITES_ELEMENT_NAME);
-            child.setTextContent(String.valueOf(this.m_intNumConvites));
-            elementCandAExpo.appendChild(child);
-
             child = document.createElement(TLM_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intTelemovel));
             elementCandAExpo.appendChild(child);
-
-            elementCandAExpo.setAttribute(TEM_DECISAO_ATTR_NAME, String.valueOf(this.m_decisao != null));
-            if (this.m_decisao != null) {
-                elementCandAExpo.appendChild(document.importNode(this.m_decisao.exportContentToXMLNode(), true));
-            }
-            elementCandAExpo.appendChild(document.importNode(this.m_expositor.exportContentToXMLNode(), true));
-            elementCandAExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
-            elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));
 
             if (this.m_estado.isEstadoCandidaturaIncial()) {
                 elementCandAExpo.setAttribute(ESTADO_ATTR_NAME, "inicial");
@@ -586,14 +690,4 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         }
         return node;
     }
-
-    boolean getDecisao() {
-        return m_decisao.getDecisao();
-    }
-
-    @Override
-    public String toString(){
-        return m_StrNomeEmpresa;
-    }
-    
 }

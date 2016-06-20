@@ -15,12 +15,12 @@ import org.w3c.dom.*;
  */
 public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoExposicoes";
+    public static final String ROOT_ELEMENT_NAME = "registoExposicoes";
 
     /**
      * Lista de exposições existentes
      */
-    private final ArrayList<Exposicao> m_listaExposicoes;
+    private final List<Exposicao> m_listaExposicoes;
 
     /**
      * Centro de exposições

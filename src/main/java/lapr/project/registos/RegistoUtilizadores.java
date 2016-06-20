@@ -15,7 +15,8 @@ import org.w3c.dom.*;
  */
 public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoUtilizadores";
+    public static final String ROOT_ELEMENT_NAME = "registoUtilizadores";
+    public final String TAG_SUFFIX;
 
     /**
      * Lista de utilizadores
@@ -25,7 +26,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     /**
      * Construtor de objectos do tipo RegistoUtilizadores sem parametros
      */
-    public RegistoUtilizadores() {
+    public RegistoUtilizadores(String tagSuffix) {
+        this.TAG_SUFFIX = tagSuffix;
         m_listaUtilizadores = new ArrayList<>();
     }
 
@@ -155,10 +157,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+            Document doc = XMLParser.createDocument(node, true);
 
             Node n = doc.getChildNodes().item(0);
 
@@ -191,7 +190,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME + TAG_SUFFIX);
 
             for (Utilizador u : m_listaUtilizadores) {
                 Node n = u.exportContentToXMLNode();

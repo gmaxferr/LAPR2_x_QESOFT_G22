@@ -85,10 +85,15 @@ public class ExposicaoTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
+        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        e.setDataFimCandDemo(data6);
+        e.setDataInicioCandDemo(data7);
+        e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
+        ce.getRegistoExposicoes().getListaExposicoes().add(e);
         titulo = "titulo";
         desc = "desc";
         local = new Local("rua");
-        c = new CandidaturaAExposicao(new Expositor(u));
+        c = new CandidaturaAExposicao(e, new Expositor(u));
         c.criarProduto("p");
         c.criarProduto("q");
         c.setArea("100");
@@ -100,24 +105,18 @@ public class ExposicaoTest {
         c.setTelemovel("915632569");
         u = new Utilizador("a", "b", new char[]{'a', 'A', '.', '7'}, "1@2.3");
         u2 = new Utilizador("a1", "b1", new char[]{'a', 'A', '.', '7'}, "12@2.3");
-        data1 = new Data("2016/10/05");
-        data2 = new Data("2016/10/06");
-        data3 = new Data("2016/10/07");
-        data4 = new Data("2016/10/08");
-        data5 = new Data("2016/10/09");
-        data6 = new Data("2016/10/10");
-        data7 = new Data("2016/10/11");
+        data1 = new Data("2016-10-05T00:00:00Z");
+        data2 = new Data("2016-10-06T00:00:00Z");
+        data3 = new Data("2016-10-07T00:00:00Z");
+        data4 = new Data("2016-10-08T00:00:00Z");
+        data5 = new Data("2016-10-09T00:00:00Z");
+        data6 = new Data("2016-10-10T00:00:00Z");
+        data7 = new Data("2016-10-11T00:00:00Z");
         demo = new Demonstracao("descr");
         demo.setEstado(new EstadoDemonstracaoConfirmada(demo));
         demo.setDataInicioCandidaturas(data4);
         demo.setDataFimDetecaoConflitos(data4);
         demo.setDataFimCandidaturas(data4);
-        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
-        e.setDataFimCandDemo(data6);
-        e.setDataInicioCandDemo(data7);
-        e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
-        ce.getRegistoExposicoes().getListaExposicoes().add(e);
-
     }
 
     @After
@@ -275,7 +274,7 @@ public class ExposicaoTest {
     public void testGetRegistoCandidaturasRemovidas() {
         System.out.println("getRegistoCandidaturasRemovidas");
 
-        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
+        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas(e);
         e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
         RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
@@ -356,18 +355,18 @@ public class ExposicaoTest {
         Expositor expositor = new Expositor(u);
         Expositor expositor2 = new Expositor(u2);
 
-        CandidaturaAExposicao candidaturaAValidar = new CandidaturaAExposicao(expositor);
+        CandidaturaAExposicao candidaturaAValidar = new CandidaturaAExposicao(e, expositor);
 
         boolean expResult = true;
         boolean result = e.validarDadosCandidatura(candidaturaAValidar);
         assertEquals(expResult, result);
 
-        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(new CandidaturaAExposicao(expositor2));
+        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(new CandidaturaAExposicao(e, expositor2));
         result = e.validarDadosCandidatura(candidaturaAValidar);
         assertEquals(expResult, result);
 
         expResult = false;
-        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(new CandidaturaAExposicao(expositor));
+        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(new CandidaturaAExposicao(e, expositor));
         result = e.validarDadosCandidatura(candidaturaAValidar);
         assertEquals(expResult, result);
     }
@@ -404,7 +403,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaCandidaturasAExposicao() {
         System.out.println("getListaCandidaturasAExposicao");
-        CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(u));
+        CandidaturaAExposicao cand = new CandidaturaAExposicao(e, new Expositor(u));
         List<CandidaturaAExposicao> expResult = new ArrayList<>();
         expResult.add(cand);
         e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
@@ -433,7 +432,7 @@ public class ExposicaoTest {
     public void testGetRegistoCandidaturasAExposicao() {
         System.out.println("getRegistoCandidaturasAExposicao");
 
-        RegistoCandidaturasAExposicao expResult = new RegistoCandidaturasAExposicao();
+        RegistoCandidaturasAExposicao expResult = new RegistoCandidaturasAExposicao(e);
         e.setRegistoCandidaturasAExposicao(expResult);
         RegistoCandidaturasAExposicao result = e.getRegistoCandidaturasAExposicao();
         assertEquals(expResult, result);
@@ -467,7 +466,7 @@ public class ExposicaoTest {
     @Test
     public void testSetDecisao() {
         System.out.println("setDecisao");
-        CandidaturaAExposicao candidaturaAExposicao = new CandidaturaAExposicao(new Expositor(u));
+        CandidaturaAExposicao candidaturaAExposicao = new CandidaturaAExposicao(e, new Expositor(u));
         boolean decisao = true;
         e.setDecisao(candidaturaAExposicao, decisao);
     }
@@ -622,19 +621,6 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of getDataInicioCandDemo method, of class Exposicao.
-     */
-    @Test
-    public void testGetDataInicioCandDemo() {
-        System.out.println("getDataInicioCandDemo");
-
-        Data expResult = data7;
-        Data result = e.getDataInicioCandDemo();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
      * Test of setDataInicioCandDemo method, of class Exposicao.
      */
     @Test
@@ -643,19 +629,6 @@ public class ExposicaoTest {
         Data dataInicioCandDemo = null;
 
         e.setDataInicioCandDemo(dataInicioCandDemo);
-
-    }
-
-    /**
-     * Test of getDataFimCandDemo method, of class Exposicao.
-     */
-    @Test
-    public void testGetDataFimCandDemo() {
-        System.out.println("getDataFimCandDemo");
-
-        Data expResult = data6;
-        Data result = e.getDataFimCandDemo();
-        assertEquals(expResult, result);
 
     }
 
@@ -749,7 +722,7 @@ public class ExposicaoTest {
     public void testGetRegistoCandidaturasAExposicaoRemovidas() {
         System.out.println("getRegistoCandidaturasAExposicaoRemovidas");
 
-        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas();
+        RegistoCandidaturasAExposicaoRemovidas expResult = new RegistoCandidaturasAExposicaoRemovidas(e);
         e.setRegistoCandidaturasAExposicaoRemovidas(expResult);
         RegistoCandidaturasAExposicaoRemovidas result = e.getRegistoCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);

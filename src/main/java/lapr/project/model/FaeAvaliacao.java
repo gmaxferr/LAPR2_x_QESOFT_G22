@@ -34,8 +34,12 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
         return this.m_avaliacao;
     }
 
-    public void setAvalicao(boolean b, String just, int i, int i0, int i1, int i2, int i3) {
-        this.m_avaliacao.setAvalicao(b, just, i, i0, i1, i2, i3);
+    public void setAvaliacao(Avaliacao aval){
+        this.m_avaliacao = aval;
+    }
+    
+    public void setAvalicao(String just, int i, int i0, int i1, int i2, int i3) {
+        this.m_avaliacao.setAvalicao(just, i, i0, i1, i2, i3);
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {

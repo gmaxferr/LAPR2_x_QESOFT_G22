@@ -12,8 +12,7 @@ import org.w3c.dom.*;
  */
 public class Decisao implements Importable<Decisao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "Decisao";
-    public static final String DECISAO_ATTR_NAME = "decisao";
+    public static final String ROOT_ELEMENT_NAME = "aceite";
 
     private boolean m_decisao;
 
@@ -63,7 +62,7 @@ public class Decisao implements Importable<Decisao>, Exportable {
             Node n = elementsKeyword.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                this.m_decisao = Boolean.valueOf(elem.getAttribute(DECISAO_ATTR_NAME));
+                this.m_decisao = Boolean.valueOf(elem.getTextContent());
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Decisao.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,9 +79,7 @@ public class Decisao implements Importable<Decisao>, Exportable {
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
-            elementKeyword.setAttribute(DECISAO_ATTR_NAME, String.valueOf(m_decisao));
-
-            document.appendChild(elementKeyword);
+            elementKeyword.setTextContent(String.valueOf(m_decisao));
 
             node = elementKeyword;
 

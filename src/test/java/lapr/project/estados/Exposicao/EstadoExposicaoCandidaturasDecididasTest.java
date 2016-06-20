@@ -42,7 +42,7 @@ public class EstadoExposicaoCandidaturasDecididasTest {
     public void setUp() {
         ce = new CentroExposicoes();
         e = new Exposicao(ce);
-        CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(new Utilizador("a", "b", new char[]{'a', 'A', '.', '1', 'd'}, "a@b.c")));
+        CandidaturaAExposicao cand = new CandidaturaAExposicao(e, new Expositor(new Utilizador("a", "b", new char[]{'a', 'A', '.', '1', 'd'}, "a@b.c")));
         cand.setDecisao(true);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
