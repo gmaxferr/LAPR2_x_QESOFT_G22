@@ -199,12 +199,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      * programa.
      */
     public void confirmarRegistoTodosUtilizadores() {
-        for (int i = 0; i < this.m_registoUtilizadoresPendentes.getListaUtilizadores().size(); i++) {
+        for (int i = 0; i < this.m_registoUtilizadoresPendentes.getListaUtilizadores().size();) {
             Utilizador utilizador = this.m_registoUtilizadoresPendentes.getListaUtilizadores().get(i);
             this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(utilizador);
             this.m_registoUtilizadoresConfirmados.getListaUtilizadores().add(utilizador);
         }
-        this.m_registoUtilizadoresPendentes.getListaUtilizadores().clear();
     }
 
     /**

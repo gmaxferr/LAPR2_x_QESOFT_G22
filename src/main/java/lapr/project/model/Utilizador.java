@@ -112,7 +112,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return nome do utilizador
      */
     public String getNome() {
-        return this.m_strNome;
+        return this.m_strNome != null ? this.m_strNome : "";
     }
 
     /**
