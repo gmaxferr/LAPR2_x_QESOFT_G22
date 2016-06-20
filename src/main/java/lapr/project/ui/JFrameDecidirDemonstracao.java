@@ -5,18 +5,30 @@
  */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ModeloJTableDecidirDemonstracoes;
+import java.awt.BorderLayout;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import lapr.project.controller.DecidirDemonstracaoController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.ui.model.ModelComboBoxDias;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -25,36 +37,37 @@ import lapr.project.model.Exposicao;
 public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
     private transient DecidirDemonstracaoController ctrl;
-    private transient CentroExposicoes ce;
-    private transient String username;
     private transient List<Exposicao> listaExposicoes;
-    private transient List<Demonstracao> lstDemos;
+
     private transient boolean[] decisoes;
     private transient Exposicao expoSelecionada;
     private transient final JFrame janelaMae;
     private transient CardLayout cardLayout;
 
-    private static final int LARGURA_JANELA_PASSO1 = 700;
-    private static final int ALTURA_JANELA_PASSO1 = 390;
+    private List<Demonstracao> m_listaDemonstracoes = new ArrayList();
+    private Data dataInicioSubCand;
+    private Data dataFimSubCand;
+    private Data dataFimDetecaoConflitos;
 
-    private static final int LARGURA_JANELA_PASSO2 = 850;
-    private static final int ALTURA_JANELA_PASSO2 = 600;
+    private boolean[] m_decisoes;
+    private List<JCheckBox> listaCheckBoxes = new ArrayList();
+
+    private JFrame thisFrame;
+
+    private int numeroDemonstracao = 0;
 
     /**
      * Creates new form JFrameDecidirCandidatura
      */
     public JFrameDecidirDemonstracao(CentroExposicoes ce, String username, JFrame menuPrincipal) {
-        this.ce = ce;
-        this.username = username;
         this.listaExposicoes = ce.getRegistoExposicoes().getlistaExposicoesDoOrganizadorComDemos(username);
         this.ctrl = new DecidirDemonstracaoController(ce, username);
-        this.lstDemos = ctrl.setExposicao(expoSelecionada);
         this.janelaMae = menuPrincipal;
         initComponents();
         alterarComportamentoFecharJFrame();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
+        thisFrame = this;
         setVisible(true);
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
     private void alterarComportamentoFecharJFrame() {
@@ -79,7 +92,12 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Card1 = new javax.swing.JPanel();
+        confirmBtn = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        card1 = new javax.swing.JPanel();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jButtonCard1Avancar = new javax.swing.JButton();
         jButtonCard1Fechar = new javax.swing.JButton();
@@ -95,14 +113,42 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaCard1LocalExposicao = new javax.swing.JTextArea();
         jComboBoxCard1EscolherExposicao = new javax.swing.JComboBox<>();
-        Card2 = new javax.swing.JPanel();
-        confirmBtn = new javax.swing.JButton();
+        card2 = new javax.swing.JPanel();
+        card3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaDemonstracoes = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        anoFimCand = new javax.swing.JComboBox<>();
+        mesInicioCand = new javax.swing.JComboBox<>();
+        diaInicioCand = new javax.swing.JComboBox<>();
+        anoInicioCand = new javax.swing.JComboBox<>();
+        mesFimCand = new javax.swing.JComboBox<>();
+        diaFimCand = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
+        confirmarDatas = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        anoFimDetConf = new javax.swing.JComboBox<>();
+        mesFimDetConf = new javax.swing.JComboBox<>();
+        diaFimDetConf = new javax.swing.JComboBox<>();
+
+        confirmBtn.setText("Confirmar");
+        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBtnActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha a exposição pretendida");
@@ -214,66 +260,121 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout Card1Layout = new javax.swing.GroupLayout(Card1);
-        Card1.setLayout(Card1Layout);
-        Card1Layout.setHorizontalGroup(
-            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card1Layout.createSequentialGroup()
+        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
+        card1.setLayout(card1Layout);
+        card1Layout.setHorizontalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
                 .addGap(254, 254, 254)
                 .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(Card1Layout.createSequentialGroup()
-                .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Card1Layout.createSequentialGroup()
+            .addGroup(card1Layout.createSequentialGroup()
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(jLabelCard1Titulo))
-                    .addGroup(Card1Layout.createSequentialGroup()
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(Card1Layout.createSequentialGroup()
+                            .addGroup(card1Layout.createSequentialGroup()
                                 .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jButtonCard1Avancar))
                             .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        Card1Layout.setVerticalGroup(
-            Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card1Layout.createSequentialGroup()
+        card1Layout.setVerticalGroup(
+            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelCard1Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Card1Layout.createSequentialGroup()
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(Card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar))
-                        .addGap(0, 21, Short.MAX_VALUE))
+                        .addGap(0, 71, Short.MAX_VALUE))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        confirmBtn.setText("Confirmar");
-        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(card1, "card1");
+
+        javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
+        card2.setLayout(card2Layout);
+        card2Layout.setHorizontalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 686, Short.MAX_VALUE)
+        );
+        card2Layout.setVerticalGroup(
+            card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 413, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(card2, "card2");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Definir período de submissão de candidaturas");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText(" ");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("às demonstrações confirmadas");
+
+        anoFimCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2017", "2016" }));
+        anoFimCand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmBtnActionPerformed(evt);
+                anoFimCandActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
-        jLabel1.setText("Decidir Demonstrações");
+        mesInicioCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesInicioCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesInicioCandActionPerformed(evt);
+            }
+        });
 
-        tabelaDemonstracoes.setModel(new ModeloJTableDecidirDemonstracoes(lstDemos, decisoes));
-        jScrollPane1.setViewportView(tabelaDemonstracoes);
+        diaInicioCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaInicioCandActionPerformed(evt);
+            }
+        });
+
+        anoInicioCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2017", "2016" }));
+        anoInicioCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anoInicioCandActionPerformed(evt);
+            }
+        });
+
+        mesFimCand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesFimCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesFimCandActionPerformed(evt);
+            }
+        });
+
+        diaFimCand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFimCandActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Data de abertura da submissão de candidaturas às demonstrações:");
+
+        jLabel8.setText("Data de encerramento da submissão de candidaturas às demonstrações:");
 
         cancelBtn.setText("Cancelar");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -282,97 +383,140 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout Card2Layout = new javax.swing.GroupLayout(Card2);
-        Card2.setLayout(Card2Layout);
-        Card2Layout.setHorizontalGroup(
-            Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(250, Short.MAX_VALUE))
-            .addGroup(Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Card2Layout.createSequentialGroup()
-                    .addGap(669, 669, 669)
-                    .addGroup(Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(49, Short.MAX_VALUE)))
+        confirmarDatas.setText("Confirmar Datas");
+        confirmarDatas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarDatasActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Data de fim de deteção de conflitos de interesse:");
+
+        anoFimDetConf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2017", "2016" }));
+        anoFimDetConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anoFimDetConfActionPerformed(evt);
+            }
+        });
+
+        mesFimDetConf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        mesFimDetConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesFimDetConfActionPerformed(evt);
+            }
+        });
+
+        diaFimDetConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaFimDetConfActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
+        card3.setLayout(card3Layout);
+        card3Layout.setHorizontalGroup(
+            card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card3Layout.createSequentialGroup()
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(card3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(256, 256, 256)
+                                .addComponent(jLabel4))
+                            .addGroup(card3Layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(jLabel9))
+                            .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                                        .addGap(201, 201, 201)
+                                        .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(110, 110, 110))
+                                    .addGroup(card3Layout.createSequentialGroup()
+                                        .addGap(149, 149, 149)
+                                        .addComponent(jLabel7)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                                    .addGap(118, 118, 118)
+                                    .addComponent(jLabel8))
+                                .addGroup(card3Layout.createSequentialGroup()
+                                    .addGap(108, 108, 108)
+                                    .addComponent(cancelBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(confirmarDatas)))))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel6))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
-        Card2Layout.setVerticalGroup(
-            Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Card2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        card3Layout.setVerticalGroup(
+            card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(card3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(Card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Card2Layout.createSequentialGroup()
-                    .addGap(401, 401, 401)
-                    .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30)
-                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBtn)
+                    .addComponent(confirmarDatas))
+                .addGap(35, 35, 35))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Card2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Card1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        this.janelaMae.setVisible(true);
-    }//GEN-LAST:event_cancelBtnActionPerformed
-
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        int op1 = JOptionPane.showConfirmDialog(null, "Confirma as suas decisões?", "Confirma?", JOptionPane.YES_NO_CANCEL_OPTION);
-        switch (op1) {
-            case 0:
-                ctrl.registarDecisoes();
-                JOptionPane.showMessageDialog(null, "Decisões Registadas");
-                int op2 = JOptionPane.showConfirmDialog(null, "Pretende selecionar uma nova exposição?", "Nova exposição?", JOptionPane.YES_NO_OPTION);
-                if (op2 == 0) {
-                    voltarParaCard1();
-                } else {
-                    janelaMae.setVisible(true);
-                }
-            case 1:
-                int op3 = JOptionPane.showConfirmDialog(null, "Pretende selecionar uma nova exposição?", "Nova exposição?", JOptionPane.YES_NO_CANCEL_OPTION);
-                switch (op3) {
-                    case 0:
-                        voltarParaCard1();
 
-                    case 1:
-                        janelaMae.setVisible(true);
-                }
-        }
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
@@ -382,6 +526,75 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
+
+    private void inicializarCard2() {
+        listaCheckBoxes = new ArrayList<>();
+        for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
+            listaCheckBoxes.add(new JCheckBox());
+        }
+        card2.setVisible(true);
+        card2.setLayout(new BorderLayout());
+        card2.add(new JLabel("Selecione as demonstrações que se irão realizar!"), BorderLayout.NORTH);
+        JPanel painelListaDemonstracoes = new JPanel(new GridLayout(m_listaDemonstracoes.size(), 2));
+        for (Demonstracao d : m_listaDemonstracoes) {
+            int i = 0;
+            painelListaDemonstracoes.add(new JLabel(d.getDescricao()));
+            painelListaDemonstracoes.add(listaCheckBoxes.get(i));
+            i++;
+        }
+        card2.add(painelListaDemonstracoes, BorderLayout.CENTER);
+        inicializarBotoes();
+
+    }
+
+    private void inicializarBotoes() {
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        JButton confirmBtn = new JButton("Confirmar Decisoes");
+        confirmBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende confirmar apenas as demonstrações selecionadas e cancelar as restantes? As decisões serão irreversíveis!", "Confirma?", JOptionPane.YES_NO_OPTION) == 1) {
+                    for (int i = 0; i < listaCheckBoxes.size(); i++) {
+                        if (listaCheckBoxes.get(i).isSelected()) {
+                            decisoes[i] = true;
+                        }
+                    }
+                    for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
+                        if (decisoes[i] == true) {
+                            m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
+                        } else {
+                            m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
+                        }
+                    }
+                    JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                    thisFrame.dispose();
+                    janelaMae.setVisible(true);
+                }
+            }
+        });
+        JButton voltarCard1Btn = new JButton("Voltar");
+        voltarCard1Btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                voltarParaCard1();
+            }
+        });
+        JButton escolherDatasBtn = new JButton();
+        escolherDatasBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                avancarParaCard3();
+            }
+        });
+        painelBotoes.add(confirmBtn);
+        painelBotoes.add(voltarCard1Btn);
+        painelBotoes.add(escolherDatasBtn);
+        card2.add(painelBotoes, BorderLayout.SOUTH);
+    }
+
+    private void avancarParaCard3() {
+        cardLayout.show(getContentPane(), "card3");
+    }
 
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
@@ -398,39 +611,213 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxCard1EscolherExposicaoActionPerformed
 
+    private void anoFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoFimCandActionPerformed
+        int mes = mesInicioCand.getSelectedIndex() + 1;
+        if (mes == 2) {
+            String ano = (String) anoFimCand.getSelectedItem();
+            int anoInt = Integer.parseInt(ano);
+            if (Data.isAnoBissexto(anoInt)) {
+                diaInicioCand.setModel(new ModelComboBoxDias(29));
+            } else {
+                diaInicioCand.setModel(new ModelComboBoxDias(28));
+            }
+        }
+    }//GEN-LAST:event_anoFimCandActionPerformed
+
+    private void mesInicioCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesInicioCandActionPerformed
+        int mes = mesInicioCand.getSelectedIndex() + 1;
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                diaInicioCand.setModel(new ModelComboBoxDias(31));
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diaInicioCand.setModel(new ModelComboBoxDias(30));
+                break;
+            case 2:
+                String ano = (String) anoFimCand.getSelectedItem();
+                int anoInt = Integer.parseInt(ano);
+                if (Data.isAnoBissexto(anoInt)) {
+                    diaInicioCand.setModel(new ModelComboBoxDias(29));
+                } else {
+                    diaInicioCand.setModel(new ModelComboBoxDias(28));
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_mesInicioCandActionPerformed
+
+    private void diaInicioCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaInicioCandActionPerformed
+
+    }//GEN-LAST:event_diaInicioCandActionPerformed
+
+    private void anoInicioCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoInicioCandActionPerformed
+        int mes = mesFimCand.getSelectedIndex() + 1;
+        if (mes == 2) {
+            String ano = (String) anoInicioCand.getSelectedItem();
+            int anoInt = Integer.parseInt(ano);
+            if (Data.isAnoBissexto(anoInt)) {
+                diaFimCand.setModel(new ModelComboBoxDias(29));
+            } else {
+                diaFimCand.setModel(new ModelComboBoxDias(28));
+            }
+        }
+    }//GEN-LAST:event_anoInicioCandActionPerformed
+
+    private void mesFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesFimCandActionPerformed
+        int mes = mesFimCand.getSelectedIndex() + 1;
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                diaFimCand.setModel(new ModelComboBoxDias(31));
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diaFimCand.setModel(new ModelComboBoxDias(30));
+                break;
+            case 2:
+                String ano = (String) anoFimCand.getSelectedItem();
+                int anoInt = Integer.parseInt(ano);
+                if (Data.isAnoBissexto(anoInt)) {
+                    diaFimCand.setModel(new ModelComboBoxDias(29));
+                } else {
+                    diaFimCand.setModel(new ModelComboBoxDias(28));
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_mesFimCandActionPerformed
+
+    private void diaFimCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimCandActionPerformed
+
+    }//GEN-LAST:event_diaFimCandActionPerformed
+
+    private void confirmarDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDatasActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == 1) {
+            if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
+                getDatas();
+                if (dataFimSubCand.isMaior(dataInicioSubCand)) {
+                    if(dataFimDetecaoConflitos.isMaior(dataFimSubCand)){
+                    ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR);
+            }
+        }
+    }//GEN-LAST:event_confirmarDatasActionPerformed
+
+    private void getDatas() {
+        int d1 = diaInicioCand.getSelectedIndex() + 1;
+        int m1 = mesInicioCand.getSelectedIndex() + 1;
+        int a1 = (Integer) anoInicioCand.getSelectedItem();
+        int d2 = diaFimCand.getSelectedIndex() + 1;
+        int m2 = mesFimCand.getSelectedIndex() + 1;
+        int a2 = (Integer) anoFimCand.getSelectedItem();
+        int d3 = diaFimDetConf.getSelectedIndex() + 1;
+        int m3 = mesFimDetConf.getSelectedIndex() + 1;
+        int a3 = (Integer) anoFimDetConf.getSelectedItem();
+
+        dataInicioSubCand = new Data(d1, m1, a1);
+        dataFimSubCand = new Data(d2, m2, a2);
+        dataFimDetecaoConflitos = new Data(d3, m3, a3);
+    }
+
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende cancelar o processo? Todas as alterações serão perdidas", "Aviso", JOptionPane.YES_NO_OPTION) == 1) {
+            thisFrame.dispose();
+            janelaMae.setVisible(true);
+        }
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void anoFimDetConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoFimDetConfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anoFimDetConfActionPerformed
+
+    private void mesFimDetConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesFimDetConfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesFimDetConfActionPerformed
+
+    private void diaFimDetConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimDetConfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diaFimDetConfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Card1;
-    private javax.swing.JPanel Card2;
+    private javax.swing.JComboBox<String> anoFimCand;
+    private javax.swing.JComboBox<String> anoFimDetConf;
+    private javax.swing.JComboBox<String> anoInicioCand;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JPanel card1;
+    private javax.swing.JPanel card2;
+    private javax.swing.JPanel card3;
     private javax.swing.JButton confirmBtn;
+    private javax.swing.JButton confirmarDatas;
+    private javax.swing.JComboBox<String> diaFimCand;
+    private javax.swing.JComboBox<String> diaFimDetConf;
+    private javax.swing.JComboBox<String> diaInicioCand;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButtonCard1Avancar;
     private javax.swing.JButton jButtonCard1Fechar;
     private javax.swing.JComboBox<String> jComboBoxCard1EscolherExposicao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
-    private javax.swing.JTable tabelaDemonstracoes;
+    private javax.swing.JComboBox<String> mesFimCand;
+    private javax.swing.JComboBox<String> mesFimDetConf;
+    private javax.swing.JComboBox<String> mesInicioCand;
     // End of variables declaration//GEN-END:variables
 
     private void avancarParaCard2() {
-        ctrl.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
-        cardLayout.show(getContentPane(), "Card2");
-        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+        expoSelecionada = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
+        m_listaDemonstracoes = ctrl.setExposicao(expoSelecionada);
+        m_decisoes = ctrl.getDecisoesTemp();
+        inicializarCard2();
+        cardLayout.show(getContentPane(), "card2");
     }
 
     private void voltarParaCard1() {
-        cardLayout.show(getContentPane(), "Card1");
+        cardLayout.show(getContentPane(), "card1");
     }
+
 }

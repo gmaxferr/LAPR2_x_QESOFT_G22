@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.*;
 import lapr.project.registos.*;
@@ -78,10 +79,10 @@ public class DecidirDemonstracaoController {
             } else {
                 m_listDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
             }
-
-            this.m_expo.setDataInicioCandDemo(dataInicioCandDemo);
-            this.m_expo.setDataFimCandDemo(dataFimCandDemo);
-            this.m_expo.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
         }
+        this.m_expo.setDataInicioCandDemo(dataInicioCandDemo);
+        this.m_expo.setDataFimCandDemo(dataFimCandDemo);
+        this.m_expo.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
     }
+
 }
