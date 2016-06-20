@@ -89,7 +89,7 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"),new Local ("l"), ce);
+        Exposicao e = new Exposicao("a", "b", new Data(2015,05,03), new Data(2015,05,04),  new Data(2015,05,05),  new Data(2015,05,06),  new Data(2015,05,07),new Local ("l"), ce);
         instance.setExposicao(e);
     }
 

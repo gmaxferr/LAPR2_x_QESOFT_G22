@@ -44,16 +44,7 @@ public class CriarDemonstracaoControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        e = new Exposicao(ce);
-        e.setTitulo("titulo");
-        e.setDataAberturaSubCand(new Data("21/05/45"));
-        e.setDataEncerramentoSubCand(new Data("12/12/2015"));
-        e.setDescricao("desc");
-        e.setPeriodo(new Data("10/05/2014"), new Data("11/05/2014"));
-        e.setDataFimDetecaoConflitos(new Data("30/1/3018"));
-        e.setLocal(new Local("local"));
-        
-        
+        e = new Exposicao("titulo", "descricao", new Data(2015, 01, 03), new Data(2015, 01, 04), new Data(2015, 01, 05), new Data(2015, 01, 06), new Data(2015, 01, 07), new Local("Local"), ce);
         instance = new CriarDemonstracaoController("b", ce);
         Utilizador u = new Utilizador("a", "b", new char[]{'a', 'b', 'c', 's'}, "d");
         Organizador o = new Organizador(u);
@@ -102,7 +93,6 @@ public class CriarDemonstracaoControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data("21/05/05"), new Data("21/05/05"), new Data("21/05/05"), new Data("21/05/05"), new Data("21/05/05"), new Local("s"), ce);
         instance.setExposicao(e);
     }
 

@@ -53,8 +53,8 @@ public class DefinirFAEControllerTest {
         u = new Utilizador("organizador", "org", new char[]{'a', 'A', '1', '.'}, "1@2.3", "keyword");
         uFAE = new Utilizador("FAEnome", "fae", new char[]{'a', 'A', '1', '.'}, "a@b.c", "4eyword");
         o = new Organizador(u);
-        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u);
-        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(uFAE);
+        ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(u);
+        ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(uFAE);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         e.getRegistoOrganizadores().addOrganizador(o);
 

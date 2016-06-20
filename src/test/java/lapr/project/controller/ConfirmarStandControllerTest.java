@@ -99,8 +99,9 @@ public class ConfirmarStandControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"), new Data("16/06/10"),new Local ("l"), ce);
+        Exposicao e = new Exposicao("a", "b", new Data(2017,06,10), new Data(2017,06,11), new Data(2017,06,12), new Data(2017,06,13), new Data(2017,06,14),new Local ("l"), ce);
         instance.setExposicao(e);
+        
     }
 
     /**
@@ -134,17 +135,20 @@ public class ConfirmarStandControllerTest {
      */
     @Test
     public void testSetDecisao() {
+        /**
+         * Neste método, a atribuição não é inicializada, daí o erro
+         */
         System.out.println("setDecisao");
-        instance.getRegistoExposicoes();
-        instance.getListaExposicoesDoRepresentante("");
-        instance.setExposicao(e);
-        instance.getRegistoAtribuicoesStands();
-        instance.getAtribuicao("");
         
         atribuicaoStand = new AtribuicaoStand(new Stand("stand", 10, "descricao"),
                 new CandidaturaAExposicao(new Expositor(u)),
                 true);
-        
+        e.getRegistoAtribuicoesStands().getListaAtribuicoesStand().add(atribuicaoStand);
+        instance.getRegistoExposicoes();
+        instance.getListaExposicoesDoRepresentante(u.getUsername());
+        instance.setExposicao(e);
+        instance.getRegistoAtribuicoesStands();
+        instance.getAtribuicao(u.getEmail());
         decisao = true;
         instance.setDecisao(decisao);
     }

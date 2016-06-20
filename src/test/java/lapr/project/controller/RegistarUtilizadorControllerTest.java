@@ -76,11 +76,13 @@ public class RegistarUtilizadorControllerTest {
         boolean expResult = true;
         instance.getRegistoUtilizadores();
         Utilizador u1 = instance.novoUtilizador();
-        boolean result = u1.getEmail() == null
-                && u1.getKeyword() == null
-                && u1.getNome() == null
-                && u1.getUsername() == null
-                && u1.getPwd() == null;
+        boolean result = u.getnAvaliacoesDesdeSempre() == 0
+                && !u1.isGestor()
+                && u1.getUsername().equals("")
+                && u1.getEmail().equals("")
+                && u1.getPwd().length == 0
+                && u1.getNome().equals("")
+                && u1.getKeyword().equals("");
         assertEquals(expResult, result);
     }
 

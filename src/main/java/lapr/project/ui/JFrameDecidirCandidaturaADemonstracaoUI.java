@@ -9,12 +9,12 @@ package lapr.project.ui;
  *
  * @author guima
  */
-public class JFrameDecidirCandidaturaADemonstracao extends javax.swing.JFrame {
+public class JFrameDecidirCandidaturaADemonstracaoUI extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameDecidirCandidaturaADemonstracao
      */
-    public JFrameDecidirCandidaturaADemonstracao() {
+    public JFrameDecidirCandidaturaADemonstracaoUI() {
         initComponents();
     }
 
