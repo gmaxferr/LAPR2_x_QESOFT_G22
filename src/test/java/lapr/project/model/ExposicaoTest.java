@@ -869,7 +869,7 @@ public class ExposicaoTest {
         Node node = instance.exportContentToXMLNode();
         Exposicao expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         boolean result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -877,7 +877,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -885,7 +885,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -893,7 +893,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -901,7 +901,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -909,7 +909,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -917,7 +917,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -925,7 +925,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -933,7 +933,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -941,7 +941,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -949,7 +949,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -957,7 +957,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -965,7 +965,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -973,7 +973,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -981,7 +981,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -989,7 +989,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -997,7 +997,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
     }
@@ -1014,7 +1014,7 @@ public class ExposicaoTest {
         Node node = instance.exportContentToXMLNode();
         Exposicao expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         boolean result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1031,7 +1031,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1039,7 +1039,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1047,7 +1047,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1055,7 +1055,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1063,7 +1063,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1071,7 +1071,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1079,7 +1079,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1087,7 +1087,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1095,7 +1095,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1103,7 +1103,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1111,7 +1111,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1119,7 +1119,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1127,7 +1127,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1135,7 +1135,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1143,7 +1143,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
 
@@ -1151,7 +1151,7 @@ public class ExposicaoTest {
         node = instance.exportContentToXMLNode();
         expResult = new Exposicao(ce);
         expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadores());
+        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
         result = instance.equals(expResult);
         assertEquals(true, result);
     }

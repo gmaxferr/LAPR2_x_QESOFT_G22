@@ -22,9 +22,14 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     private RegistoExposicoes m_registoExposicoes;
 
     /**
-     * Registo de Utilizadores
+     * Registo de Utilizadores (pendentes)
      */
-    private RegistoUtilizadores m_registoUtilizadores;
+    private RegistoUtilizadores m_registoUtilizadoresPendentes;
+    
+    /**
+     * registo de Utilizadores (confirmados)
+     */
+    private RegistoUtilizadores m_registoUtilizadoresConfirmados;
 
     /**
      * Registo de Mecanismos
@@ -61,7 +66,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      */
     public CentroExposicoes() {
         this.m_registoExposicoes = new RegistoExposicoes(this);
-        this.m_registoUtilizadores = new RegistoUtilizadores();
+        this.m_registoUtilizadoresPendentes = new RegistoUtilizadores();
+        this.m_registoUtilizadoresConfirmados = new RegistoUtilizadores();
 
         this.m_registoMecanismos = new RegistoMecanismos();
         this.m_registoMecanismos.addMecanismo(new MecanismoPredefinidoA());
@@ -96,12 +102,21 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     /**
      * Devolve o registo de utilizadores deste centro de exposições
      *
-     * @return registo de utilizadores
+     * @return registo de utilizadores pendentes
      */
-    public RegistoUtilizadores getRegistoUtilizadores() {
-        return m_registoUtilizadores;
+    public RegistoUtilizadores getRegistoUtilizadoresPendentes() {
+        return m_registoUtilizadoresPendentes;
     }
 
+    /**
+     * Devolve o registo de utilizadores deste centro de exposições
+     *
+     * @return registo de utilizadores confirmados
+     */
+    public RegistoUtilizadores getRegistoUtilizadoresConfirmados() {
+        return m_registoUtilizadoresConfirmados;
+    }
+    
     /**
      * Devolve o registo de mecanismos deste centro de exposições
      *
@@ -128,6 +143,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public RegistoTipoConflitos getRegistoTiposConflitos() {
         return m_registoTipoConflitos;
     }
+    
     
     public RegistoTiposConflitoDemonstracao getRegistoTiposConflitosDemonstracao() {
         return m_registoTipoConflitosDemonstracao;
@@ -175,6 +191,18 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
+     * Confirma o registo de todos os utilizadores registados no centro de
+     * exposições atual. Este método é usado apenas na primeira execução do
+     * programa.
+     */
+    public void confirmarRegistoTodosUtilizadores() {
+        for (Utilizador utilizador : this.m_registoUtilizadoresPendentes.getListaUtilizadores()) {
+            this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(utilizador);
+            this.m_registoUtilizadoresConfirmados.getListaUtilizadores().add(utilizador);
+        }
+    }
+
+    /**
      *
      * @param node
      * @return
@@ -189,18 +217,18 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_registoUtilizadores.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
-
+                this.m_registoUtilizadoresPendentes.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
+                
                 this.m_rStands.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
-                this.m_registoExpositores.fix(this.m_registoUtilizadores);
+                this.m_registoExpositores.fix(this.m_registoUtilizadoresPendentes);
 
                 this.m_registoTipoConflitos.importContentFromXMLNode(elem.getElementsByTagName(RegistoTipoConflitos.ROOT_ELEMENT_NAME).item(0));
                 this.m_registoRecursos.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_registoExposicoes.importContentFromXMLNode(elem.getElementsByTagName(RegistoExposicoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadores);
+                this.m_registoExposicoes.fix(this.m_registoRecursos, this.m_registoTipoConflitos, this.m_registoUtilizadoresPendentes);
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,7 +254,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             elementExpo.appendChild(document.importNode(this.m_registoExposicoes.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
-            elementExpo.appendChild(document.importNode(this.m_registoUtilizadores.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoUtilizadoresPendentes.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rStands.exportContentToXMLNode(), true));
 
             node = elementExpo;
@@ -249,8 +277,8 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      *      * PARA TESTES APENAS
      * @param m_registoUtilizadores the m_registoUtilizadores to set
      */
-    public void setRegistoUtilizadores(RegistoUtilizadores m_registoUtilizadores) {
-        this.m_registoUtilizadores = m_registoUtilizadores;
+    public void setRegistoUtilizadoresPendentes(RegistoUtilizadores m_registoUtilizadores) {
+        this.m_registoUtilizadoresPendentes = m_registoUtilizadores;
     }
 
     /**

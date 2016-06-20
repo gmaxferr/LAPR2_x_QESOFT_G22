@@ -41,7 +41,7 @@ public class AlterarPerfilDeUtilizadorControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        ru = ce.getRegistoUtilizadores();
+        ru = ce.getRegistoUtilizadoresPendentes();
         u = new Utilizador();
         u.setNome(nome);
         u.setUsername(username);
