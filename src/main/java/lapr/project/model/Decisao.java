@@ -75,7 +75,7 @@ public class Decisao implements Importable<Decisao>, Exportable {
         Node node = null;
 
         try {
-            Document document = XMLParser.createDocument(node, true);
+            Document document = XMLParser.createDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 

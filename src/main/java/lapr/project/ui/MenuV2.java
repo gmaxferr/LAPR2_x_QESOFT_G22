@@ -868,7 +868,7 @@ public class MenuV2 extends javax.swing.JFrame {
         ExportarXMLController CTRL = new ExportarXMLController();
 
         File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
-        boolean successfulExport = true;
+        boolean successfulExport = false;
 
         try {
             Scanner in = new Scanner(properties);
@@ -884,9 +884,9 @@ public class MenuV2 extends javax.swing.JFrame {
                         }
                         if (CTRL.export(filePath[0], centroExposicoes)) {
                             JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            successfulExport = true;
                         } else {
                             JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
-                            successfulExport = false;
                         }
                     }
                 }
@@ -894,7 +894,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
             in.close();
         } catch (FileNotFoundException ex) {
-            successfulExport = false;
+            Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (!successfulExport) {

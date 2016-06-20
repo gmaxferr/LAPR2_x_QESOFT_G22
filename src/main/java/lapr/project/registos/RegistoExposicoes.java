@@ -375,10 +375,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     @Override
     public RegistoExposicoes importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+            Document doc = XMLParser.createDocument(node, true);
 
             Node n = doc.getChildNodes().item(0);
 

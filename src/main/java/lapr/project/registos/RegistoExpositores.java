@@ -70,6 +70,9 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     @Override
     public RegistoExpositores importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

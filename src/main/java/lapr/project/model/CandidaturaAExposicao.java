@@ -35,7 +35,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      */
     private EstadoCandidaturaAExposicao m_estado;
 
-    public final Exposicao e;
+    private Exposicao e;
 
     /**
      * Atributo numero de telemovel de CandidaturaAExposicao.
@@ -107,6 +107,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         this.m_keywords = new ArrayList<>();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
         this.e = e;
+        this.m_decisao = new Decisao(false);
     }
 
     public CandidaturaAExposicao(Expositor expositor) {
@@ -116,6 +117,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         this.m_keywords = new ArrayList<>();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
         this.e = null;
+        this.m_decisao = new Decisao(false);
     }
 
     /**
@@ -370,6 +372,20 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         this.m_expositor = expositor;
     }
 
+    /**
+     * @return the e
+     */
+    public Exposicao getExposicao() {
+        return e;
+    }
+
+    /**
+     * @param e the e to set
+     */
+    public void setExposicao(Exposicao e) {
+        this.e = e;
+    }
+
     @Override
     public String toString() {
         return m_StrNomeEmpresa;
@@ -455,7 +471,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
         for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
-            if (this.m_expositor.getUtilizador().getUsername().equals(u.getUsername())) {
+            if (this.m_expositor != null && this.m_expositor.getUtilizador().getUsername().equals(u.getUsername())) {
                 this.m_expositor.setUtilizador(u);
                 break;
             }
@@ -487,38 +503,40 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                 this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
                 this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
                 Node n2 = elem.getElementsByTagName(AVALIACOES_ELEMENT_NAME).item(0);
-                NodeList avaliacoesList = ((Element) n2).getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < avaliacoesList.getLength(); i++) {
+                if (n2 != null) {
+                    NodeList avaliacoesList = ((Element) n2).getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME);
+                    for (int i = 0; i < avaliacoesList.getLength(); i++) {
 
-                    Avaliacao aval = new Avaliacao();
-                    Node n3 = avaliacoesList.item(0);
-                    aval.importContentFromXMLNode(n3);
+                        Avaliacao aval = new Avaliacao();
+                        Node n3 = avaliacoesList.item(0);
+                        aval.importContentFromXMLNode(n3);
 
-                    FAE fae = new FAE();
-                    Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
-                    fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+                        FAE fae = new FAE();
+                        Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
+                        fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
 
-                    RegistoAtribuicoes ra = e.getRegistoAtribuicoes();
-                    List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoesDoFAE(fae.getUsernameFae());
-                    AtribuicaoCandidatura atr = null;
-                    for (AtribuicaoCandidatura atrCand : listAtr) {
-                        if (atrCand.getCandidaturaAssociada().equals(this)) {
-                            atr = atrCand;
+                        RegistoAtribuicoes ra = e.getRegistoAtribuicoes();
+                        List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoes();
+                        AtribuicaoCandidatura atr = null;
+                        for (AtribuicaoCandidatura atrCand : listAtr) {
+                            if (atrCand.getCandidaturaAssociada().equals(this) && atrCand.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae()) != null) {
+                                atr = atrCand;
+                            }
                         }
-                    }
 
-                    if (atr == null) {
-                        atr = new AtribuicaoCandidatura(this);
-                        listAtr.add(atr);
-                    }
+                        if (atr == null) {
+                            atr = new AtribuicaoCandidatura(this);
+                            listAtr.add(atr);
+                        }
 
-                    FaeAvaliacao fAval = atr.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae());
-                    if (fAval == null) {
-                        fAval = new FaeAvaliacao(fae);
-                        atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
-                    }
+                        FaeAvaliacao fAval = atr.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae());
+                        if (fAval == null) {
+                            fAval = new FaeAvaliacao(fae);
+                            atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
+                        }
 
-                    fAval.setAvaliacao(aval);
+                        fAval.setAvaliacao(aval);
+                    }
                 }
 
                 NodeList tempList = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME);

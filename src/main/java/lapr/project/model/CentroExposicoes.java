@@ -172,12 +172,16 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     public boolean isExpositor(Utilizador utilizador) {
-        for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
-            for (CandidaturaAExposicao cand : e.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
-                if (cand.getExpositor().getUsername().equals(utilizador.getUsername())) {
-                    return true;
+        try {
+            for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
+                for (CandidaturaAExposicao cand : e.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
+                    if (cand.getExpositor().getUsername().equals(utilizador.getUsername())) {
+                        return true;
+                    }
                 }
             }
+        }catch(NullPointerException ex){
+            return false;
         }
         return false;
     }
@@ -261,8 +265,9 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             elementExpo.appendChild(document.importNode(this.m_registoExposicoes.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoRecursos.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_registoTipoConflitos.exportContentToXMLNode(), true));
-            elementExpo.appendChild(document.importNode(this.m_registoUtilizadoresPendentes.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rStands.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoUtilizadoresPendentes.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_registoUtilizadoresConfirmados.exportContentToXMLNode(), true));
 
             node = elementExpo;
 

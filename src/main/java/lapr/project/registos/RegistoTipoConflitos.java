@@ -88,6 +88,9 @@ public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, E
 
     @Override
     public RegistoTipoConflitos importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

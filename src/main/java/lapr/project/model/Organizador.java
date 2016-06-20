@@ -100,7 +100,7 @@ public class Organizador implements Importable<Organizador>, Exportable {
             Utilizador savedUser = new Utilizador("", m_Utilizador.getUsername(), "".toCharArray(), m_Utilizador.getEmail(), "");
             savedUser.setShifts(0);
 
-            elementBase.appendChild(savedUser.exportContentToXMLNode());
+            elementBase.appendChild(document.importNode(savedUser.exportContentToXMLNode(), true));
 
             node = elementBase;
 

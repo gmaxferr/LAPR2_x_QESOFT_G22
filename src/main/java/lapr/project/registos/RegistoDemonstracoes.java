@@ -255,6 +255,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     @Override
     public RegistoDemonstracoes importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
