@@ -10,8 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -45,6 +43,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     private int m_contadorDemos;
 
+    /**
+     * Exposicção
+     */
     private Exposicao m_expo;
 
     /**
@@ -237,6 +238,13 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoOrganizador;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoRecursos registo de recursos
+     * @param rCand registo candidatura
+     */
     public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
             for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {

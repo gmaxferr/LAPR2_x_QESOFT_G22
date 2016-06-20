@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;
@@ -23,8 +24,9 @@ import static org.junit.Assert.*;
 public class ConfirmarRegistoControllerTest {
 
     private ConfirmarRegistoController instance;
-    private RegistoUtilizadores ru;
-    private ArrayList<Utilizador> listaUtilizadores;
+    private RegistoUtilizadores rup;
+    private RegistoUtilizadores ruc;
+    private List<Utilizador> listaUtilizadores;
     private CentroExposicoes ce;
 
     public ConfirmarRegistoControllerTest() {
@@ -41,8 +43,10 @@ public class ConfirmarRegistoControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        ru = ce.getRegistoUtilizadores();
-        listaUtilizadores = ru.getListaNovosRegistos();
+        rup = ce.getRegistoUtilizadoresPendentes();
+        ruc = ce.getRegistoUtilizadoresConfirmados();
+        
+        listaUtilizadores = rup.getListaUtilizadores();
         instance = new ConfirmarRegistoController(ce);
     }
 
@@ -68,8 +72,8 @@ public class ConfirmarRegistoControllerTest {
     public void testGetListaNovosRegistos() {
         System.out.println("getListaNovosRegistos");
         instance.getRegistoUtilizadores();
-        ArrayList<Utilizador> expResult = listaUtilizadores;
-        ArrayList<Utilizador> result = instance.getListaNovosRegistos();
+        List<Utilizador> expResult = listaUtilizadores;
+        List<Utilizador> result = instance.getListaNovosRegistos();
         assertEquals(expResult, result);
     }
 

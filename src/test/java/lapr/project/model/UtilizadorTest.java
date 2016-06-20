@@ -41,17 +41,6 @@ public class UtilizadorTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getConfirmacaoRegisto method, of class Utilizador.
-     */
-    @Test
-    public void testGetConfirmacaoRegisto() {
-        System.out.println("getConfirmacaoRegisto");
-        Utilizador instance = new Utilizador();
-        boolean expResult = false;
-        boolean result = instance.getConfirmacaoRegisto();
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of getNome method, of class Utilizador.
@@ -129,17 +118,6 @@ public class UtilizadorTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of confirmarRegistoDoUtilizador method, of class Utilizador.
-     */
-    @Test
-    public void testConfirmarRegistoDoUtilizador() {
-        System.out.println("confirmarRegistoDoUtilizador");
-        Utilizador instance = new Utilizador();
-        assertEquals(false, instance.getConfirmacaoRegisto());
-        instance.confirmarRegistoDoUtilizador();
-        assertEquals(true, instance.getConfirmacaoRegisto());
-    }
 
     /**
      * Test of setNome method, of class Utilizador.
@@ -187,18 +165,6 @@ public class UtilizadorTest {
         Utilizador instance = new Utilizador();
         instance.setPwd(strPwd);
         Assert.assertArrayEquals(instance.getPwd(), CaesarsCypher.encrypt(strPwd, instance.getShifts(), Utilizador.PARCIAL_ALFABET));
-    }
-
-    /**
-     * Test of setUtilizadorRegistado method, of class Utilizador.
-     */
-    @Test
-    public void testSetUtilizadorRegistado() {
-        System.out.println("setUtilizadorRegistado");
-        Utilizador instance = new Utilizador();
-        assertEquals(false, instance.getConfirmacaoRegisto());
-        instance.setUtilizadorRegistado();
-        assertEquals(true, instance.getConfirmacaoRegisto());
     }
 
     /**
@@ -556,7 +522,7 @@ public class UtilizadorTest {
         String username = "username";
         char[] passe = "secret".toCharArray();
 
-        for (int i = 0; i < Math.pow(2, 8); i++) {
+        for (int i = 0; i < Math.pow(2, 7); i++) {
             instance.setIsGestor((i & 0x01) > 0);
             instance.setKeyword((i & 0x02) > 0 ? keyword : null);
             instance.setEmail((i & 0x04) > 0 ? mail : null);
@@ -564,11 +530,8 @@ public class UtilizadorTest {
             instance.setUsername((i & 0x10) > 0 ? username : null);
             instance.setPwd((i & 0x20) > 0 ? passe : null);
             instance.setnAvaliacoesDesdeSempre((i & 0x40) > 0 ? 1 : 0);
-            if ((i & 0x80) > 0) {
-                instance.confirmarRegistoDoUtilizador();
-            }
             obj = new Utilizador();
-            for (int j = 0; j < Math.pow(2, 8); j++) {
+            for (int j = 0; j < Math.pow(2, 7); j++) {
                 obj.setIsGestor((j & 0x01) > 0);
                 obj.setKeyword((j & 0x02) > 0 ? keyword : null);
                 obj.setEmail((j & 0x04) > 0 ? mail : null);
@@ -576,9 +539,6 @@ public class UtilizadorTest {
                 obj.setUsername((j & 0x10) > 0 ? username : null);
                 obj.setPwd((j & 0x20) > 0 ? passe : null);
                 obj.setnAvaliacoesDesdeSempre((j & 0x40) > 0 ? 1 : 0);
-                if ((j & 0x80) > 0) {
-                    obj.confirmarRegistoDoUtilizador();
-                }
 
                 expResult = i == j;
                 result = instance.equals(obj);
@@ -600,9 +560,7 @@ public class UtilizadorTest {
         int result = instance.hashCode();
         assertEquals(expResult, result);
 
-        obj.confirmarRegistoDoUtilizador();
         obj.setIsGestor(true);
-        instance.confirmarRegistoDoUtilizador();
         instance.setIsGestor(true);
         expResult = obj.hashCode();
         result = instance.hashCode();

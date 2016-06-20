@@ -141,7 +141,7 @@ public class ConfirmarStandControllerTest {
         instance.getRegistoAtribuicoesStands();
         instance.getAtribuicao("");
         
-        atribuicaoStand = new AtribuicaoStand(new Stand("stand", 10),
+        atribuicaoStand = new AtribuicaoStand(new Stand("stand", 10, "descricao"),
                 new CandidaturaAExposicao(new Expositor(u)),
                 true);
         

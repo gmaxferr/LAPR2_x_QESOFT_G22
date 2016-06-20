@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 import lapr.project.controller.RegistarCandidaturaADemonstracaoController;
 import lapr.project.model.*;
 import lapr.project.ui.model.AbstractListModelDemonstracoes;
@@ -33,17 +34,23 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     /**
      * Cria interface de Registar Candidatura a uma Demonstracao
      * 
+     * @param janelaMae - Menu principal
      * @param ce - Centro de Exposções
      * @param usernameRep - username do representante
      */
     public JFrameRegistarCandidaturaADemonstracaoUI(JFrame janelaMae, CentroExposicoes ce, String usernameRep) {
         CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
         jFrameMenuPrincipal = janelaMae;
+        listaExposicoes = CTRL.getListaDeExposicoes();
+        
         initComponents();
         alterarComportamentoFecharJFrame();
         setVisible(true);
     }
 
+    /**
+     * altera o comportamento da janela ao fechar
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
@@ -314,7 +321,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                         .addComponent(boataoCancelar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(botaoContinuar)
                         .addGap(26, 26, 26))))
         );
@@ -352,8 +359,18 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         });
 
         jButton8.setText("Cancel");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Voltar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Dados de Candidatura:");
 
@@ -424,6 +441,9 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Ainda não escreveu nenhum dado do formulário!", "Atenção!", ERROR_MESSAGE);
         } else if (CTRL.setFormularioDados(textAreaCard3.getText().trim())) {
             CTRL.RegistaCandADemo();
+            JOptionPane.showMessageDialog(null, "Candidatura Registada!", "Sucesso", PLAIN_MESSAGE);
+            jFrameMenuPrincipal.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -445,7 +465,6 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_botaoSelecionaExpoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-
         jFrameMenuPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
@@ -460,6 +479,15 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
             CTRL.setExpo(e);
         }
     }//GEN-LAST:event_comboBoxCard1EscolherExposicaoActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        jFrameMenuPrincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        passaParaPanel2();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boataoCancelar2;
@@ -516,5 +544,4 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         cardLayout.show(getContentPane(), "card3");
         setSize(this.getSize());
     }
-
 }

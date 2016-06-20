@@ -2,6 +2,10 @@ package lapr.project.ui;
 
 import java.awt.event.*;
 import java.io.*;
+import java.util.Formatter;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
@@ -186,6 +190,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItemCarregarDados = new javax.swing.JMenuItem();
         jMenuItemGuardarDados = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemTerminarSessao = new javax.swing.JMenuItem();
         jMenuEstiloDaJanela = new javax.swing.JMenu();
@@ -381,7 +386,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton26)
                     .addComponent(jButton31)
                     .addComponent(jButton28))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Expositor", jPanel3);
@@ -695,7 +700,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel8)
@@ -717,7 +722,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu1.setText("Ficheiros");
 
-        jMenuItemCarregarDados.setText("Importar de XML");
+        jMenuItemCarregarDados.setText("Abrir");
         jMenuItemCarregarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCarregarDadosActionPerformed(evt);
@@ -725,13 +730,21 @@ public class MenuV2 extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemCarregarDados);
 
-        jMenuItemGuardarDados.setText("Exportar para XML");
+        jMenuItemGuardarDados.setText("Guardar");
         jMenuItemGuardarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemGuardarDadosActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItemGuardarDados);
+
+        jMenuItem1.setText("Guardar como");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -852,22 +865,55 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
         JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showSaveDialog(thisJFrame);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File f = fc.getSelectedFile();
-            String fileName = f.getAbsolutePath();
-            ExportarXMLController CTRL = new ExportarXMLController();
-            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
-                JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+        ExportarXMLController CTRL = new ExportarXMLController();
+
+        File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+        boolean successfulExport = true;
+
+        try {
+            Scanner in = new Scanner(properties);
+
+            while (in.hasNext()) {
+                String[] input = in.nextLine().split("=");
+                if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
+                    String[] filePath = input[1].split("\".*\"");
+                    if (filePath.length > 0) {
+                        File file = new File(filePath[0]);
+                        if (!file.exists()) {
+                            break;
+                        }
+                        if (CTRL.export(filePath[0], centroExposicoes)) {
+                            JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                            successfulExport = false;
+                        }
+                    }
+                }
+            }
+
+            in.close();
+        } catch (FileNotFoundException ex) {
+            successfulExport = false;
+        }
+
+        if (!successfulExport) {
+            int returnVal = fc.showSaveDialog(thisJFrame);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File f = fc.getSelectedFile();
+                String fileName = f.getAbsolutePath();
+                if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
+                    JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_jMenuItemGuardarDadosActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername(), this);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
@@ -933,8 +979,8 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-       this.setVisible(false);
-       new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+        this.setVisible(false);
+        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -954,7 +1000,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-         new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
+        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -965,7 +1011,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-         new JFrameDefinirRecursos(centroExposicoes);
+        new JFrameDefinirRecursos(centroExposicoes);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1000,6 +1046,21 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(thisJFrame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String fileName = f.getAbsolutePath();
+            ExportarXMLController CTRL = new ExportarXMLController();
+            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
+                JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void terminaSessao() {
         JFrame frame = new LoginV2(centroExposicoes);
@@ -1097,6 +1158,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEstiloDaJanela;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCarregarDados;
     private javax.swing.JMenuItem jMenuItemEstiloDaJanela;
     private javax.swing.JMenuItem jMenuItemGuardarDados;

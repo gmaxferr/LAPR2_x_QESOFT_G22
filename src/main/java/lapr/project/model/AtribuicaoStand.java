@@ -82,7 +82,7 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
                 this.m_cand = new CandidaturaAExposicao(null);
                 this.m_cand.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0));
 
-                this.m_stand = new Stand("", 0);
+                this.m_stand = new Stand("", 0, "");
                 this.m_stand.importContentFromXMLNode(elem.getElementsByTagName(Stand.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_decisao = Boolean.valueOf(elem.getAttribute(DECISAO_ATTR_NAME));

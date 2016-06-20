@@ -358,6 +358,14 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return result;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoRecursos registo de recursos
+     * @param m_registoTipoConflitos registo tipo de conflitos
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
         for (Exposicao e : m_listaExposicoes) {
             e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);

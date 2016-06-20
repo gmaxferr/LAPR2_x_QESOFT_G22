@@ -34,12 +34,14 @@ public class StandTest {
     private Stand instance;
     private String ID;
     private int area;
+    private String descricao;
     
     @Before
     public void setUp() {
         ID = "id";
         area = 10;
-        instance = new Stand(ID, area);
+        descricao = "descricao";
+        instance = new Stand(ID, area, descricao);
     }
 
     @After
@@ -88,7 +90,7 @@ public class StandTest {
         System.out.println("setM_area");
         int area = 15;
 
-        instance.setM_area(area);
+        instance.setArea(area);
     }
 
     /**
@@ -97,14 +99,14 @@ public class StandTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Stand s = new Stand(ID, area);
+        Stand s = new Stand(ID, area, descricao);
         Object obj = s;
 
         boolean expResult = true;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
                 
-        s = new Stand(ID, (area-1));
+        s = new Stand(ID, (area-1), descricao);
         expResult = false;
         obj = s;
         result = instance.equals(obj);

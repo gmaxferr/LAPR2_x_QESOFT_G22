@@ -210,7 +210,7 @@ public class DefinirFAEController {
      * Devolve o registo de utilizadores existentes no centro de exposições
      */
     public void getRegistoUtilizadores() {
-        this.m_ru = this.m_centroExposicoes.getRegistoUtilizadores();
+        this.m_ru = this.m_centroExposicoes.getRegistoUtilizadoresPendentes();
     }
 
     /**

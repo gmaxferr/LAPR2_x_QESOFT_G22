@@ -20,7 +20,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     /**
      * Lista de utilizadores
      */
-    private final ArrayList<Utilizador> m_listaUtilizadores;
+    private final List<Utilizador> m_listaUtilizadores;
 
     /**
      * Construtor de objectos do tipo RegistoUtilizadores sem parametros
@@ -128,17 +128,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * Confirma o registo de todos os utilizadores registados no centro de
-     * exposições atual. Este método é usado apenas na primeira execução do
-     * programa.
-     */
-    public void confirmarRegistoTodosUtilizadores() {
-        for (Utilizador utilizador : m_listaUtilizadores) {
-            utilizador.confirmarRegistoDoUtilizador();
-        }
-    }
-
-    /**
      * Valida (globalmente) e em caso de sucesso adiciona o Utilizador
      *
      * @param u Utilizador a adicionar
@@ -161,20 +150,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         m_listaUtilizadores.add(u);
     }
 
-    /**
-     * Devolve uma lista com os novos registos (registos ainda nao confirmados)
-     *
-     * @return lista de novos registos
-     */
-    public ArrayList<Utilizador> getListaNovosRegistos() {
-        ArrayList<Utilizador> list = new ArrayList<>();
-        for (Utilizador u : m_listaUtilizadores) {
-            if (u.getConfirmacaoRegisto() == false) {
-                list.add(u);
-            }
-        }
-        return list;
-    }
+    
 
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {

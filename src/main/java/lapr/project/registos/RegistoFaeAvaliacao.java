@@ -127,6 +127,12 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return somaMediaRatingsDeCadaFAE / cont;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
         for (FaeAvaliacao f : m_listaFaeAvaliacao) {
             f.fix(m_registoUtilizadores);

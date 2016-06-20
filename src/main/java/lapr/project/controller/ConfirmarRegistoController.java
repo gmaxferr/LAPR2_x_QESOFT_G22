@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;
@@ -13,14 +14,19 @@ import lapr.project.registos.RegistoUtilizadores;
 public class ConfirmarRegistoController {
 
     /**
-     * Registo de utilizadores
+     * Registo de utilizadores (pendentes)
      */
-    private RegistoUtilizadores m_ru;
+    private RegistoUtilizadores m_rup;
+    
+    /**
+     * Regsito Utilizadores (confirmados)
+     */
+    private RegistoUtilizadores m_ruc;
     
     /**
      * Lista de utilizadores nao registados
      */
-    private ArrayList<Utilizador> m_listaUtlNaoRegistados;
+    private List<Utilizador> m_listaUtlNaoRegistados;
 
     /**
      * Centro de exposições
@@ -36,13 +42,16 @@ public class ConfirmarRegistoController {
     public ConfirmarRegistoController(CentroExposicoes centroExposicoes) {
         this.m_listaUtlNaoRegistados = new ArrayList<>();
         this.m_centroExpo = centroExposicoes;
+        this.m_ruc = new RegistoUtilizadores();
+        this.m_rup = new RegistoUtilizadores();
     }
     
     /**
      * Guarda o registo de utiliadores
      */
     public void getRegistoUtilizadores() {
-        m_ru = m_centroExpo.getRegistoUtilizadores();
+        m_rup = m_centroExpo.getRegistoUtilizadoresPendentes();
+        m_ruc = m_centroExpo.getRegistoUtilizadoresConfirmados();
     }
 
     /**
@@ -50,19 +59,20 @@ public class ConfirmarRegistoController {
      *
      * @return lista de Utilizadores cujo registo não foi confirmado
      */
-    public ArrayList<Utilizador> getListaNovosRegistos() {
-        m_listaUtlNaoRegistados = m_ru.getListaNovosRegistos();
+    public List<Utilizador> getListaNovosRegistos() {
+        m_listaUtlNaoRegistados = m_rup.getListaUtilizadores();
         return m_listaUtlNaoRegistados;
     }
 
     /**
-     * Define o Utilizador definido pelo utilizador a interagir com o
-     * sistema
+     * Confirma o registo de um utilizador e adiciona-o ao registo de 
+     * utilizadores (confirmado) 
      *
      * @param u Utilizador escolhido
      */
     public void setUtilizadorRegistado(Utilizador u) {
-        u.setUtilizadorRegistado();
+        m_rup.getListaUtilizadores().remove(u);
+        m_ruc.getListaUtilizadores().add(u);
     }
 
     
