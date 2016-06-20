@@ -12,7 +12,6 @@ import lapr.project.model.CentroExposicoes;
  * @author guilherme
  */
 public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
-
     private transient AlterarPerfilDeUtilizadorController CTRL;
     private transient String m_username;
     private transient JFrame mainMenu;
