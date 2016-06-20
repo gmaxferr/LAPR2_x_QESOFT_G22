@@ -4,7 +4,6 @@ import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;
-import lapr.project.utils.CaesarsCypher;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,13 +40,12 @@ public class AlterarPerfilDeUtilizadorControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        ru = ce.getRegistoUtilizadoresPendentes();
         u = new Utilizador();
         u.setNome(nome);
         u.setUsername(username);
         u.setPwd(password);
         u.setEmail(email);
-        ru.addUtilizador(u);
+        ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(u);
         instance = new AlterarPerfilDeUtilizadorController(ce);
     }
 
@@ -85,7 +83,6 @@ public class AlterarPerfilDeUtilizadorControllerTest {
     public void testGetNomeUtilizador() {
         System.out.println("getNomeUtilizador");
         instance.carregaRegistoUtilizadores();
-        ru.addUtilizador(u);
         instance.identificaUtilizador("username");
         String expResult = "nome";
         String result = instance.getNomeUtilizador();
@@ -121,7 +118,7 @@ public class AlterarPerfilDeUtilizadorControllerTest {
     }
 
     /**
-     * Test of changeNome method, of class AlterarPerfilDeUtilizadorController.
+     * Test of validaNome method, of class AlterarPerfilDeUtilizadorController.
      */
     @Test
     public void testChangeNome() {
@@ -130,55 +127,57 @@ public class AlterarPerfilDeUtilizadorControllerTest {
         instance.identificaUtilizador("username");
         String nome = "nome1";
         boolean expResult = true;
-        boolean result = instance.changeNome(nome);
+        boolean result = instance.validaNome(nome);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of changeUsername method, of class
+     * Test of validaUsername method, of class
      * AlterarPerfilDeUtilizadorController.
      */
     @Test
-    public void testChangeUsername() {
+    public void testValidaUsername() {
         System.out.println("changeUsername");
         instance.carregaRegistoUtilizadores();
         instance.identificaUtilizador("username");
         String username = "novoUsername";
         boolean expResult = true;
-        boolean result = instance.changeUsername(username);
+        boolean result = instance.validaUsername(username);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of changeEmail method, of class AlterarPerfilDeUtilizadorController.
+     * Test of validaEmail method, of class AlterarPerfilDeUtilizadorController.
      */
     @Test
-    public void testChangeEmail() {
+    public void testValidaEmail() {
         System.out.println("changeEmail");
         instance.carregaRegistoUtilizadores();
         instance.identificaUtilizador("username");
         String email = "aaa222sd@dss.com";
         boolean expResult = true;
-        boolean result = instance.changeEmail(email);
+        boolean result = instance.validaEmail(email);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of changePassword method, of class
+     * Test of validaPassword method, of class
      * AlterarPerfilDeUtilizadorController.
      */
     @Test
-    public void testChangePassword() {
+    public void testValidaPassword() {
         System.out.println("changePassword");
         instance.carregaRegistoUtilizadores();
         instance.identificaUtilizador("username");
+        boolean expResult = false;
+        boolean result;
+
         char[] badPassword = {'a', 'b', 'c', 'd', 'e'};
-        try {
-            boolean result = instance.changePassword(badPassword);
-        } catch (InvalidPasswordException ipe) {
+        result = instance.validaPassword(badPassword);
+        if (!result) {
             char[] goodPassword = {'a', 'B', '.', '1', 'r', 'l'};
-            boolean expResult = true;
-            boolean result = instance.changePassword(goodPassword);
+            expResult = true;
+            result = instance.validaPassword(goodPassword);
             assertEquals(expResult, result);
         }
     }
@@ -194,12 +193,85 @@ public class AlterarPerfilDeUtilizadorControllerTest {
         instance.carregaRegistoUtilizadores();
         instance.identificaUtilizador("username");
 
-        instance.changeEmail("1150@snc.cx");
-        instance.changeNome("sss");
-        instance.changeUsername("userN");
+        instance.setEmail("1150@snc.cx");
+        instance.setNome("sss");
+        instance.setUsername("user");
         char[] pass = {'a', 'B', '.', '1', 'r', 'Q'};
-        instance.changePassword(pass);
-        instance.confirmaAlteracoes();
+        instance.setPassword(pass);
+        String resultString = instance.confirmaAlteracoes();
+        int result = resultString.length();
+        String expResultString = "Alterações Efetuadas:\nNome: alterado.\nEmail: alterado.\nUsername: alterado.\nPassword: alterada.";
+        int expResult = expResultString.length();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of validaNome method, of class AlterarPerfilDeUtilizadorController.
+     */
+    @Test
+    public void testValidaNome() {
+        instance.carregaRegistoUtilizadores();
+        System.out.println("validaNome");
+        String nome = "nomeTestar";
+        boolean expResult = true;
+        boolean result = instance.validaNome(nome);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setUsername method, of class AlterarPerfilDeUtilizadorController.
+     */
+    @Test
+    public void testSetUsername() {
+
+        instance.carregaRegistoUtilizadores();
+        instance.identificaUtilizador("username");
+
+        System.out.println("setUsername");
+        String username = "usernameTestar";
+        instance.setUsername(username);
+    }
+
+    /**
+     * Test of setPassword method, of class AlterarPerfilDeUtilizadorController.
+     */
+    @Test
+    public void testSetPassword() {
+
+        instance.carregaRegistoUtilizadores();
+        instance.identificaUtilizador("username");
+
+        System.out.println("setPassword");
+        char[] password = {'A', 'a', '.', '1'};
+        instance.setPassword(password);
+    }
+
+    /**
+     * Test of setEmail method, of class AlterarPerfilDeUtilizadorController.
+     */
+    @Test
+    public void testSetEmail() {
+
+        instance.carregaRegistoUtilizadores();
+        instance.identificaUtilizador("username");
+
+        System.out.println("setEmail");
+        String email = "email@email.email";
+        instance.setEmail(email);
+    }
+
+    /**
+     * Test of setNome method, of class AlterarPerfilDeUtilizadorController.
+     */
+    @Test
+    public void testSetNome() {
+
+        instance.carregaRegistoUtilizadores();
+        instance.identificaUtilizador("username");
+
+        System.out.println("setNome");
+        String nome = "nome";
+        instance.setNome(nome);
     }
 
 }

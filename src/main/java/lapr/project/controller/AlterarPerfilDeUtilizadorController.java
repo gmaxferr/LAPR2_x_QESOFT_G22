@@ -35,7 +35,7 @@ public class AlterarPerfilDeUtilizadorController {
      * inicializa registo de utilizadores
      */
     public void carregaRegistoUtilizadores() {
-        m_ru = m_ce.getRegistoUtilizadoresPendentes();
+        m_ru = m_ce.getRegistoUtilizadoresConfirmados();
     }
 
     /**
@@ -46,7 +46,6 @@ public class AlterarPerfilDeUtilizadorController {
      */
     public void identificaUtilizador(String username) {
         //devolve null se não encontrar
-        setUsername(username);
         m_u = m_ru.identificarUtilizadorPeloUsername(username);
     }
 
@@ -87,7 +86,7 @@ public class AlterarPerfilDeUtilizadorController {
      * @return true se for válido; false caso contrário.
      */
     public boolean validaNome(String nome) {
-        return m_ru.validaNome(nome)  && !nome.isEmpty();
+        return m_ru.validaNome(nome);
     }
 
     /**
