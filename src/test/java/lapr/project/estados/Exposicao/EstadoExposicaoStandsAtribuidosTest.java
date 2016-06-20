@@ -42,15 +42,12 @@ public class EstadoExposicaoStandsAtribuidosTest {
         ce = new CentroExposicoes();
         e = new Exposicao(ce);
         e.setTitulo("Titulo");
-        
-        
-        e.setDataInicioCandDemo(new Data("2016/06/19"));
-        e.setDataFimCandDemo(new Data("2016/06/21"));
-        e.setDataAberturaSubCand(new Data("2016/07/10"));
-        e.setDataEncerramentoSubCand(new Data("2016/08/18"));
+        e.setDataInicioCandDemo(new Data(2016, 06, 19));
+        e.setDataAberturaSubCand(new Data(2016, 06, 20));
+        e.setDataEncerramentoSubCand(new Data(2016, 8, 18));
         e.setDescricao("descrição");
-        e.setPeriodo(new Data("2016/09/15"), new Data("2016/09/28"));
-        e.setDataFimDetecaoConflitos(new Data("2016/06/21"));
+        e.setPeriodo(new Data(2016, 9, 15), new Data(2016, 9, 28));
+        e.setDataFimDetecaoConflitos(new Data(2016, 6, 21));
         e.setLocal(new Local("local"));
         instance = new EstadoExposicaoStandsAtribuidos(e);
     }
