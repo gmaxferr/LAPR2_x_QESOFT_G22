@@ -867,7 +867,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameAlterarPerfilDeUtilizador(centroExposicoes, this.utilizador.getUsername(), this);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
