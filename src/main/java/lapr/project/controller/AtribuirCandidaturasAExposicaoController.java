@@ -21,16 +21,6 @@ public class AtribuirCandidaturasAExposicaoController {
     private List<Exposicao> m_listaExpo;
 
     /**
-     *
-     */
-    private RegistoExposicoes m_re;
-
-    /**
-     * Candidatura escolhida pelo organizador na UI
-     */
-    private CandidaturaAExposicao m_cand;
-
-    /**
      * Exposição escolhida pelo organizador na UI
      */
     private Exposicao m_exposicaoEscolhida;
@@ -46,11 +36,6 @@ public class AtribuirCandidaturasAExposicaoController {
     private RegistoMecanismos m_rm;
 
     /**
-     * Registo das candidaturas à exposição escolhida pelo organizador na UI
-     */
-    private RegistoCandidaturasAExposicao m_rc;
-
-    /**
      * Estado da exposição escolhida pelo organizador na UI
      */
     private EstadoExposicao m_estadoExposicao;
@@ -64,6 +49,10 @@ public class AtribuirCandidaturasAExposicaoController {
      * Username do organizador a executar este UC
      */
     private final String m_usernameOrganizador;
+
+    /**
+     * Lista de atribuições geradas com o mecanismo selecionado
+     */
     private List<AtribuicaoCandidatura> m_listaAtribuicoesGeradas;
 
     /**
@@ -76,33 +65,6 @@ public class AtribuirCandidaturasAExposicaoController {
         this.m_listaExpo = new ArrayList<>();
         this.m_centroExposicoes = centroExposicoes;
         this.m_usernameOrganizador = usernameOrganizador;
-    }
-
-    /**
-     * Busca e guarda o registo de exposições associado ao centro de exposições
-     * atual
-     */
-    public void getRegistoExposicoes() {
-        this.m_re = m_centroExposicoes.getRegistoExposicoes();
-    }
-
-    /**
-     * Devolve a lista de Exposições do Organizador
-     *
-     * @return lista de exposições o organizador
-     */
-    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoConflitosAlterados() {
-        m_listaExpo = m_centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(this.m_usernameOrganizador);
-        return m_listaExpo;
-    }
-
-    /**
-     * Guarda a exposição escolhida pelo utilizador na UI
-     *
-     * @param exposicao exposição escolhida
-     */
-    public void setExposicao(Exposicao exposicao) {
-        this.m_exposicaoEscolhida = exposicao;
     }
 
     /**
@@ -124,10 +86,13 @@ public class AtribuirCandidaturasAExposicaoController {
     }
 
     /**
-     * Busca e guarda o registo de candidaturas à exposição escolhida
+     * Devolve a lista de Exposições do Organizador
+     *
+     * @return lista de exposições o organizador
      */
-    public void getRegistoCandidaturas() {
-        this.m_rc = this.m_exposicaoEscolhida.getRegistoCandidaturasAExposicao();
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoConflitosAlterados() {
+        m_listaExpo = m_centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(this.m_usernameOrganizador);
+        return m_listaExpo;
     }
 
     /**
@@ -135,6 +100,41 @@ public class AtribuirCandidaturasAExposicaoController {
      */
     public void getRegistoAtribuicoes() {
         this.m_exposicaoEscolhida.getRegistoAtribuicoes();
+    }
+
+    /**
+     * Define uma nova lista de atribuições substituindo a já existente no
+     * registo de atribuições pela recebida como parametro neste método
+     *
+     * @param listaAtribuicao nova lista de atribuições
+     */
+    public void registaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
+        this.m_exposicaoEscolhida.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
+    }
+
+    /**
+     * Guarda a exposição escolhida pelo utilizador na UI
+     *
+     * @param exposicao exposição escolhida
+     */
+    public void setExposicao(Exposicao exposicao) {
+        this.m_exposicaoEscolhida = exposicao;
+    }
+
+    /**
+     * Atualiza o estado das candidaturas sobre as quais foram geradas
+     * atribuições e da exposição atualmente selecionada pelo organizador na UI
+     * para os estados CandidaturasAtribuidas
+     */
+    public void setEstadoCandidaturaAtribuida() {
+        this.m_estadoExposicao = this.m_exposicaoEscolhida.getEstado();
+        m_estadoExposicao.setEstadoCandidaturasAtribuidas();
+
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas) {
+            this.m_estadoCandidatura = atribuicao.getCandidaturaAssociada().getEstado();
+            m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+        }
+
     }
 
     /**
@@ -166,29 +166,4 @@ public class AtribuirCandidaturasAExposicaoController {
         return listaAtribuicoesGeradas;
     }
 
-    /**
-     * Define uma nova lista de atribuições substituindo a já existente no
-     * registo de atribuições pela recebida como parametro neste método
-     *
-     * @param listaAtribuicao nova lista de atribuições
-     */
-    public void registaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
-        this.m_exposicaoEscolhida.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
-    }
-
-    /**
-     * Atualiza o estado das candidaturas sobre as quais foram geradas
-     * atribuições e da exposição atualmente selecionada pelo organizador na UI
-     * para os estados CandidaturasAtribuidas
-     */
-    public void setEstadoCandidaturaAtribuida() {
-        this.m_estadoExposicao = this.m_exposicaoEscolhida.getEstado();
-        m_estadoExposicao.setEstadoCandidaturasAtribuidas();
-
-        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas) {
-            this.m_estadoCandidatura = atribuicao.getCandidaturaAssociada().getEstado();
-            m_estadoCandidatura.setEstadoCandidaturaAtribuida();
-        }
-
-    }
 }

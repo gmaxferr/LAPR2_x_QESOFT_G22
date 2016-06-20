@@ -36,18 +36,18 @@ public class DefinirTipoConflitoController {
     }
 
     /**
+     * Define os dados necessários para o novo tipo de conflito.
+     */
+    public void setDadosTipoConflito(String tipoConflito) {
+        m_TipoConflito.setDadosTipoConflito(tipoConflito);
+    }
+
+    /**
      * Cria um novo tipo de conflito.
      */
     public void novoTipoConflito() {
         m_RegistoTiposConflito = m_CentroExposicoes.getRegistoTiposConflitos();
         m_TipoConflito = m_RegistoTiposConflito.novoTipoConflito();
-    }
-
-    /**
-     * Define os dados necessários para o novo tipo de conflito.
-     */
-    public void setDadosTipoConflito(String tipoConflito) {
-        m_TipoConflito.setDadosTipoConflito(tipoConflito);
     }
 
     /**

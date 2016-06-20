@@ -12,11 +12,34 @@ import lapr.project.registos.*;
  */
 public class RemoverCandidaturaExpoController {
 
+    /**
+     * Exposição selecionada na UI
+     */
     private Exposicao m_exposicaoSelecionada;
+
+    /**
+     * Username do FAE a executar este caso de uso
+     */
     private String m_usernameFAE;
+
+    /**
+     * Centro de exposições atual
+     */
     private CentroExposicoes m_ce;
+
+    /**
+     * Registo de candidaturas à exposição selecionada
+     */
     private RegistoCandidaturasAExposicao m_rc;
+
+    /**
+     * Candidatura selecionada na UI para ser removidaa
+     */
     private CandidaturaAExposicao m_candidaturaARemover;
+
+    /**
+     * Registo de atribuições da exposição selecionada
+     */
     private RegistoAtribuicoes m_ra;
 
     /**
@@ -45,15 +68,6 @@ public class RemoverCandidaturaExpoController {
     }
 
     /**
-     * Seleciona a exposição a remover
-     *
-     * @param e - exposição a remover
-     */
-    public void setExposicao(Exposicao e) {
-        m_exposicaoSelecionada = e;
-    }
-
-    /**
      * Obtém a lista de exposições em que o representante logado possui
      * candidaturas
      *
@@ -79,6 +93,15 @@ public class RemoverCandidaturaExpoController {
         m_rc = m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
         candidaturasLst = m_rc.getCandidaturasRepresentante(username);
         return candidaturasLst;
+    }
+
+    /**
+     * Seleciona a exposição a remover
+     *
+     * @param e - exposição a remover
+     */
+    public void setExposicao(Exposicao e) {
+        m_exposicaoSelecionada = e;
     }
 
     public void setCandidaturaARemover(CandidaturaAExposicao c) {

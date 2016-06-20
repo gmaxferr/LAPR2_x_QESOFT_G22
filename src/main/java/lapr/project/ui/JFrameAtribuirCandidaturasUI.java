@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelMecanismos;
-import lapr.project.ui.model.ModeloJTableUtilizadores;
-import lapr.project.ui.model.ComboBoxModelAtribuicoesMostraCandidatura;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.ui.model.*;
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,7 +11,7 @@ import lapr.project.model.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
 
@@ -133,7 +124,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 

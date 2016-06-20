@@ -11,7 +11,14 @@ import lapr.project.registos.RegistoRecursos;
  */
 public class DefinirRecursoController {
 
+    /**
+     * Centro de exposições sobre o qual se estáa trabalhar
+     */
     private CentroExposicoes m_ce;
+
+    /**
+     * Registo de recursos do centro de exposições atual
+     */
     private RegistoRecursos m_rr;
 
     public DefinirRecursoController(CentroExposicoes ce) {

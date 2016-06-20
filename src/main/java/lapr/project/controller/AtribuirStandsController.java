@@ -11,45 +11,88 @@ import lapr.project.registos.*;
  */
 public class AtribuirStandsController {
 
+    /**
+     *
+     */
     private final CentroExposicoes m_centroDeExposicoes;
 
+    /**
+     *
+     */
     private Exposicao expo;
+
+    /**
+     *
+     */
     private RegistoCandidaturasAExposicao rc;
+
+    /*
+    
+     */
     private RegistoStands rs;
+
+    /**
+     *
+     */
     private RegistoAtribuicoesStands ras;
+
+    /**
+     *
+     */
     List<CandidaturaAExposicao> listCand;
 
+    /**
+     *
+     */
     private List<AtribuicaoStand> listAtr;
 
+    /**
+     *
+     * @param centroDeExposicoes
+     */
     public AtribuirStandsController(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Exposicao> getListaExposicoes() {
         RegistoExposicoes re = m_centroDeExposicoes.getRegistoExposicoes();
         return re.getListaExposicoesEstadoCandidaturasDecididas();
     }
 
-    public void select(Exposicao expo) {
-        expo = expo;
-        rc = expo.getRegistoCandidaturasAExposicao();
-    }
-
+    /**
+     *
+     * @return
+     */
     public List<CandidaturaAExposicao> getListaCand() {
         this.listCand = rc.getListaCandidaturasAceites();
         return listCand;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Stand> getListaStands() {
         rs = m_centroDeExposicoes.getRegistoStands();
         return rs.getListaStands();
     }
 
+    /**
+     *
+     * @param listAtr
+     */
     public void setAtribuicoes(List<AtribuicaoStand> listAtr) {
         this.listAtr.clear();
         this.listAtr.addAll(listAtr);
     }
 
+    /**
+     *
+     */
     public void confirm() {
         ras = expo.getRegistoAtribuicoesStands();
         ras.addAll(listAtr);
@@ -58,4 +101,14 @@ public class AtribuirStandsController {
             state.setEstadoCandidaturaStandsAtribuidos();
         }
     }
+
+    /**
+     *
+     * @param expo
+     */
+    public void select(Exposicao expo) {
+        expo = expo;
+        rc = expo.getRegistoCandidaturasAExposicao();
+    }
+
 }

@@ -73,7 +73,4 @@ public class ConfirmarRegistoController {
         m_rup.getListaUtilizadores().remove(u);
         m_ruc.getListaUtilizadores().add(u);
     }
-
-    
-
 }

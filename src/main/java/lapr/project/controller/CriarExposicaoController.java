@@ -67,7 +67,6 @@ public class CriarExposicaoController {
      * @param dataEncerramentoSubCand
      * @param dataFimDetecaoConflitos
      * @param strLocal Local de realização da exposição
-     * @param lstUtz Lista de utilizadores associados à exposição
      * @return o objecto Exposição criado com estes parametros ou null se não
      * foi possivel criar com esses parametros
      */
@@ -101,7 +100,8 @@ public class CriarExposicaoController {
     /**
      * Adiciona novo organizador à exposição
      *
-     * @param id - identificação do organizador
+     * @param utilizador utilizador a ser designado como organizador da
+     * exposição caso seja válido
      * @return true se o organizador é valido e foi adicionado ou false caso
      * contrário
      */
@@ -123,6 +123,8 @@ public class CriarExposicaoController {
 
     /**
      * Remove organizador pendente
+     *
+     * @param o organizador pendente
      */
     public void removerOrganizador(Organizador o) {
         m_organizadoresSelecionados.remove(o);
@@ -136,14 +138,26 @@ public class CriarExposicaoController {
         m_estadoExposicao.setEstadoCriada();
     }
 
+    /**
+     * Regista como organizadores para a exposição todos os utilizadores
+     * (válidos) de uma lista de utilizadores recebida por parametro
+     *
+     * @param listaDeUtilizadoresAdicionados
+     */
     public void registarOrganizadores(List<Utilizador> listaDeUtilizadoresAdicionados) {
         for (Utilizador utilizador : listaDeUtilizadoresAdicionados) {
             this.m_exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
         }
     }
 
+    /**
+     * Devolve o utilizador do qual apenas é passado, por parametro, o username
+     *
+     * @param username username do utilizador a procurar
+     * @return o Utilizador com o username passado por parametro ou então null,
+     * caso não seja encontrado nenhum utilizador com esse username
+     */
     public Utilizador identificarUtilizadorPeloUsername(String username) {
         return this.m_ru.identificarUtilizadorPeloUsername(username);
     }
-
 }

@@ -1,20 +1,34 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoDemonstracoes;
 
 /**
+ * Representação do controller do UC Remover candidatura à demonstração
  *
  * @author G29
  */
 public class RemoverCandidaturaADemonstracaoController {
 
+    /**
+     * Exposição selecionada
+     */
     private Exposicao m_e;
+
+    /**
+     * Email do expositor
+     */
     private String m_emailExpositor;
+
+    /**
+     * Demonstração selecionada na UI. Sobre a qual serão removidas candidaturas
+     */
     private Demonstracao m_demo;
+
+    /**
+     * Candidatura selecionada na UI para ser removida
+     */
     private CandidaturaADemonstracao m_candARemover;
 
     /**

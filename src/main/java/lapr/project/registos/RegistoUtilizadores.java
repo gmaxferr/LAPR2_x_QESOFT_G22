@@ -10,7 +10,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação um registo de utilizadores
- * 
+ *
  * @author G29
  */
 public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exportable {
@@ -150,8 +150,11 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         m_listaUtilizadores.add(u);
     }
 
-    
-
+    /**
+     *
+     * @param node
+     * @return
+     */
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {
         try {
@@ -182,6 +185,10 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
