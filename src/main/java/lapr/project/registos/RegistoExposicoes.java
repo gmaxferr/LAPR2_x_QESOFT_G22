@@ -319,10 +319,10 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) 
-                        && (exposicao.getEstado().isEstadoCriada() 
-                                    || exposicao.getEstado().isEstadoFAEDefinidosSemDemos())
-                                    || exposicao.getEstado().isEstadoCompleta()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
+                        && (exposicao.getEstado().isEstadoCriada()
+                        || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
+                        || exposicao.getEstado().isEstadoCompleta())) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }

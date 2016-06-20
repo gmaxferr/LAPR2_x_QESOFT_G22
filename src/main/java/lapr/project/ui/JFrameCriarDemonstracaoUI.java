@@ -69,20 +69,27 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     public JFrameCriarDemonstracaoUI(String usernameOrg, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
         controller = new CriarDemonstracaoController(usernameOrg, ce);
         controller.pullRegistosCE(); //getRegistoExposicoes e getRegistoRecursos
-        m_listaRecursos = controller.getListaDeRecursos();
         m_listaExposicoes = controller.getListaExposicoesDoOrganizador();
-        modeloListaRecursosAdicionados = new AbstractListModelRecursos(m_listaRecursos);
-        this.jFrameMenu = jFrameMenuPrincipal;
-
         this.m_usernameOrg = usernameOrg;
         this.m_ce = ce;
+        this.jFrameMenu = jFrameMenuPrincipal;
+        if (!m_listaExposicoes.isEmpty()) {
 
-        initComponents();
-        alterarComportamentoFecharJFrame();
+            modeloListaRecursosAdicionados = new AbstractListModelRecursos(m_listaRecursos);
 
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setSize(LARGURA_JANELA_1, ALTURA_JANELA_1);
+            m_listaRecursos = controller.getListaDeRecursos();
+            initComponents();
+            alterarComportamentoFecharJFrame();
+
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setSize(LARGURA_JANELA_1, ALTURA_JANELA_1);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Não existem exposições para que seja possível a criação de demosntrações.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            jFrameMenu.setVisible(true);
+            this.dispose();
+        }
     }
 
     private void alterarComportamentoFecharJFrame() {
@@ -547,7 +554,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Nenhum recurso selecionado!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         //numa unica JOptionPane mostra todos os recursos que já se encontravam registados
         if (!alreadyInList.isEmpty()) {
             String aux = "O(s) recurso(s) selecionado(s) já se encontra(m) na lista\n";
@@ -568,7 +575,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             controller.mudaEstado();
             String[] opcoes2 = {"Sim", "Não"};
             int resposta = JOptionPane.showOptionDialog(rootPane, "Demonstração criada!\nDeseja criar outra?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
-            if (resposta == 0) {                
+            if (resposta == 0) {
                 criarOutraDemonstracao();
             } else {
                 terminarUC();
