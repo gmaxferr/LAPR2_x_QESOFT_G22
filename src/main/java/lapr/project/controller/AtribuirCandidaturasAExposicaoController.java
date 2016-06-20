@@ -54,6 +54,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * Lista de atribuições geradas com o mecanismo selecionado
      */
     private List<AtribuicaoCandidatura> m_listaAtribuicoesGeradas;
+    private RegistoExposicoes m_registoExposicoes;
 
     /**
      * Construtor do controller do UC - atribuir candidaturas
@@ -91,7 +92,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * @return lista de exposições o organizador
      */
     public List<Exposicao> getListaExposicoesDoOrganizadorEstadoConflitosAlterados() {
-        m_listaExpo = m_centroExposicoes.getRegistoExposicoes().getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(this.m_usernameOrganizador);
+        m_listaExpo = this.m_registoExposicoes.getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(this.m_usernameOrganizador);
         return m_listaExpo;
     }
 
@@ -102,6 +103,10 @@ public class AtribuirCandidaturasAExposicaoController {
         this.m_exposicaoEscolhida.getRegistoAtribuicoes();
     }
 
+    public void getRegistoExposicoes(){
+        this.m_registoExposicoes=this.m_centroExposicoes.getRegistoExposicoes();
+    }
+    
     /**
      * Define uma nova lista de atribuições substituindo a já existente no
      * registo de atribuições pela recebida como parametro neste método
