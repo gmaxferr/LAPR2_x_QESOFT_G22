@@ -1,10 +1,15 @@
 package lapr.project.model;
 
-import java.util.logging.*;
-import javax.xml.parsers.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.*;
 import lapr.project.utils.*;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um Centro de Exposições
@@ -100,7 +105,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores deste centro de exposições
+     * Devolve o registo de utilizadores pendentes deste centro de exposições
      *
      * @return registo de utilizadores pendentes
      */
@@ -109,7 +114,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores deste centro de exposições
+     * Devolve o registo de utilizadores confirmados deste centro de exposições
      *
      * @return registo de utilizadores confirmados
      */
@@ -199,6 +204,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(utilizador);
             this.m_registoUtilizadoresConfirmados.getListaUtilizadores().add(utilizador);
         }
+        this.m_registoUtilizadoresPendentes.getListaUtilizadores().clear();
     }
 
     /**

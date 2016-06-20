@@ -11,7 +11,7 @@ import lapr.project.registos.*;
  * Representação do Controller do caso de uso - atribuir candidaturas a
  * demonstração
  *
- * @author Ana Leite
+ * @author G29
  */
 public class AtribuirCandidaturasADemonstracaoController {
 
@@ -98,8 +98,9 @@ public class AtribuirCandidaturasADemonstracaoController {
      */
     public List<Demonstracao> getListaDemonstracoesEestadoCandidaturasFechadas(String usernameOrganizador) {
         for (Organizador o : m_exposicao.getListaOrganizadores()) {
-            if (o.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador))
+            if (o.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
                 return m_rd.getListaDemonstracoesEstadoCandidaturasFechadas();
+            }
         }
         return new ArrayList<>();
     }

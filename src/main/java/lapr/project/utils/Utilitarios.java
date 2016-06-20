@@ -23,7 +23,7 @@ public class Utilitarios {
      * utilizador no sistema com essa informação
      */
     public static Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
-        List<Utilizador> userList = centroExposicoes.getRegistoUtilizadoresPendentes().getListaUtilizadores();
+        List<Utilizador> userList = centroExposicoes.getRegistoUtilizadoresConfirmados().getListaUtilizadores();
         Utilizador utilizador = null;
         for (Utilizador user : userList) {
             if (user.getUsername().equals(username)) {
@@ -45,7 +45,7 @@ public class Utilitarios {
      * @param password - char array a verificar
      * @return true se sim, false se não
      */
-    public static  boolean hasNumber(char[] password) {
+    public static boolean hasNumber(char[] password) {
         for (int i = 0; i < password.length; i++) {
             if (password[i] >= '0' && password[i] <= '9') {
                 return true;
@@ -111,17 +111,17 @@ public class Utilitarios {
      * @param c - char a verificar
      * @return true se sim, false se não
      */
-    private static boolean isSinalPontuacao(char c){
-        return c == '.' || c == ';'|| c == '-'|| c == ':'|| c == ',';
+    private static boolean isSinalPontuacao(char c) {
+        return c == '.' || c == ';' || c == '-' || c == ':' || c == ',';
     }
-    
+
     /**
      * verifica se um char array tem um char que seja um sinal de pontuação
      *
      * @param password - char array a verificar
      * @return true se sim, false se não
      */
-    public static boolean hasSinalPontuacao(char[] password){
+    public static boolean hasSinalPontuacao(char[] password) {
         for (int i = 0; i < password.length; i++) {
             if (isSinalPontuacao(password[i])) {
                 return true;
@@ -129,5 +129,5 @@ public class Utilitarios {
         }
         return false;
     }
-    
+
 }

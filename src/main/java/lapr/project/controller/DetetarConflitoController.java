@@ -2,15 +2,12 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.Exposicao.EstadoExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.MecanismoDetecaoConflito;
-import lapr.project.model.TipoConflito;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class DetetarConflitoController {
 

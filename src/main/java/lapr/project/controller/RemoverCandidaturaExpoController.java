@@ -4,21 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class RemoverCandidaturaExpoController {
 
+    /**
+     * Exposição selecionada na UI
+     */
     private Exposicao m_exposicaoSelecionada;
+
+    /**
+     * Username do FAE a executar este caso de uso
+     */
     private String m_usernameFAE;
+
+    /**
+     * Centro de exposições atual
+     */
     private CentroExposicoes m_ce;
+
+    /**
+     * Registo de candidaturas à exposição selecionada
+     */
     private RegistoCandidaturasAExposicao m_rc;
+
+    /**
+     * Candidatura selecionada na UI para ser removidaa
+     */
     private CandidaturaAExposicao m_candidaturaARemover;
+
+    /**
+     * Registo de atribuições da exposição selecionada
+     */
     private RegistoAtribuicoes m_ra;
 
     /**
@@ -35,23 +56,15 @@ public class RemoverCandidaturaExpoController {
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesComOFAE() {
         return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
-    
+
     /**
      * Devolve o registo de atribuicoes da exposição selecionada
+     *
      * @return registo de atribuicoes da exposição selecionada
      */
-    public RegistoAtribuicoes getRegistoAtribuicoes(){
+    public RegistoAtribuicoes getRegistoAtribuicoes() {
         m_ra = m_exposicaoSelecionada.getRegistoAtribuicoes();
         return m_ra;
-    }
-    
-    /**
-     * Seleciona a exposição a remover
-     *
-     * @param e - exposição a remover
-     */
-    public void setExposicao(Exposicao e) {
-        m_exposicaoSelecionada = e;
     }
 
     /**
@@ -82,8 +95,17 @@ public class RemoverCandidaturaExpoController {
         return candidaturasLst;
     }
 
+    /**
+     * Seleciona a exposição a remover
+     *
+     * @param e - exposição a remover
+     */
+    public void setExposicao(Exposicao e) {
+        m_exposicaoSelecionada = e;
+    }
+
     public void setCandidaturaARemover(CandidaturaAExposicao c) {
-         m_candidaturaARemover = c;
+        m_candidaturaARemover = c;
     }
 
     public void removerCandidatura() {

@@ -1,15 +1,13 @@
 package lapr.project.controller;
 
-import javax.swing.JOptionPane;
 import lapr.project.exceptions.InvalidPasswordException;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação do Controller do caso de uso - alterar perfil de utilizador
  *
- * @author Ana Leite e Ricardo Osório
+ * @author G29
  */
 public class AlterarPerfilDeUtilizadorController {
 

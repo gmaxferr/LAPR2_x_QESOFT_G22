@@ -1,13 +1,12 @@
 package lapr.project.controller;
 
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.TipoConflito;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoTipoConflitos;
 
 /**
  * Representação do Controller do caso de uso - definir tipo de conflito
  *
- * @author Ricardo Catalão
+ * @author G29
  */
 public class DefinirTipoConflitoController {
 
@@ -37,18 +36,18 @@ public class DefinirTipoConflitoController {
     }
 
     /**
+     * Define os dados necessários para o novo tipo de conflito.
+     */
+    public void setDadosTipoConflito(String tipoConflito) {
+        m_TipoConflito.setDadosTipoConflito(tipoConflito);
+    }
+
+    /**
      * Cria um novo tipo de conflito.
      */
     public void novoTipoConflito() {
         m_RegistoTiposConflito = m_CentroExposicoes.getRegistoTiposConflitos();
         m_TipoConflito = m_RegistoTiposConflito.novoTipoConflito();
-    }
-
-    /**
-     * Define os dados necessários para o novo tipo de conflito.
-     */
-    public void setDadosTipoConflito(String tipoConflito) {
-        m_TipoConflito.setDadosTipoConflito(tipoConflito);
     }
 
     /**

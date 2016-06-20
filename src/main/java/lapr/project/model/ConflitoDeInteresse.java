@@ -6,16 +6,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
- * @author osori
+ * @author G29
  */
 public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exportable {
 

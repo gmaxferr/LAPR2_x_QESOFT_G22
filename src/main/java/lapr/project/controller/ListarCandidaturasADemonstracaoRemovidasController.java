@@ -2,19 +2,14 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Organizador;
-import lapr.project.registos.RegistoCandidaturasADemonstracaoRemovidas;
-import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  * Representação do Controller do caso de uso - listar candidaturas a
  * demonstracao removidas
  *
- * @author Ana Leite
+ * @author G29
  */
 public class ListarCandidaturasADemonstracaoRemovidasController {
 

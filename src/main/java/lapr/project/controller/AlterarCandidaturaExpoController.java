@@ -2,16 +2,13 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.exceptions.KeywordsErradasException;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Produto;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 
 /**
  * Representação do Controller do caso de uso - alterar candidaturas
  *
- * @author Ana Leite
+ * @author G29
  */
 public class AlterarCandidaturaExpoController {
 

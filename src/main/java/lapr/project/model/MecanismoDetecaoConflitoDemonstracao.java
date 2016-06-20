@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
 import java.util.List;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoConflitosDemonstracao;
-import lapr.project.registos.RegistoFAE;
+import lapr.project.registos.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class MecanismoDetecaoConflitoDemonstracao {
     
@@ -26,7 +19,7 @@ public class MecanismoDetecaoConflitoDemonstracao {
      * Deteta conflitos entre Candidaturas e FAEs e regista-os no registo de
      * Conflitos da exposição correspondente.
      *
-     * @param e Exposição onde serão detetados os conflitos
+     * @param d demonstração a detetar conflitos
      */
     public void detetaConflitos(Demonstracao d) {
         RegistoConflitosDemonstracao rcf = d.getRegistoConflitosDemonstracao();

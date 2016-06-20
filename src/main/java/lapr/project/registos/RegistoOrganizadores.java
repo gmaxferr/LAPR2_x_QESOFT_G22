@@ -1,25 +1,17 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.Organizador;
-import lapr.project.model.Utilizador;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um registo de organizadores
  * 
- * @author Ana Leite Ricardo Osório
+ * @author G29
  */
 public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, Exportable {
 

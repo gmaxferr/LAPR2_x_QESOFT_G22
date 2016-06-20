@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoDemonstracoes;
+import java.util.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class AlterarCandidaturaDemonstracaoController {
 
@@ -35,24 +26,23 @@ public class AlterarCandidaturaDemonstracaoController {
         m_e = e;
         m_emailExpositor = email;
     }
-    
+
     /**
-     * 
-     * @return - novos dados temporários 
+     *
+     * @return - novos dados temporários
      */
-    public String getNovosDados(){
+    public String getNovosDados() {
         return m_novosDados;
     }
-    
+
     /**
-     * 
+     *
      * @return - candidatura a demonstracao alterada
      */
-    public CandidaturaADemonstracao getCandidaturaDemonstracao(){
+    public CandidaturaADemonstracao getCandidaturaDemonstracao() {
         return m_cd;
     }
-    
-    
+
     /**
      * Permite selecionar temporariamente a candidatura a alterar
      *

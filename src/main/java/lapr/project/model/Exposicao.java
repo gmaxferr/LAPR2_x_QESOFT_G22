@@ -13,7 +13,7 @@ import org.w3c.dom.*;
 /**
  * Representação de uma Exposição
  *
- * @author Ana Leite Ricardo Osório
+ * @author G29
  */
 public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 

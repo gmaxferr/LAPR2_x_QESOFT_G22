@@ -2,14 +2,13 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
 
 /**
  * Representação do Controller do caso de uso - confirmar registo de utilizador
  *
- * @author Ana Leite
+ * @author G29
  */
 public class ConfirmarRegistoController {
 
@@ -74,7 +73,4 @@ public class ConfirmarRegistoController {
         m_rup.getListaUtilizadores().remove(u);
         m_ruc.getListaUtilizadores().add(u);
     }
-
-    
-
 }

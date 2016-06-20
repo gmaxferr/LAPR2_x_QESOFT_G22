@@ -2,14 +2,12 @@ package lapr.project.controller;
 
 import java.io.File;
 import java.util.List;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.KeywordRanking;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoExposicoes;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class ExportarRankingController {
 

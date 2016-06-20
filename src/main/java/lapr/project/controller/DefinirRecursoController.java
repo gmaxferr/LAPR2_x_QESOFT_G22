@@ -1,18 +1,24 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Recurso;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoRecursos;
 
 /**
  * Representação do Controller do caso de uso - definir recurso
  *
- * @author guilherme
+ * @author G29
  */
 public class DefinirRecursoController {
 
+    /**
+     * Centro de exposições sobre o qual se estáa trabalhar
+     */
     private CentroExposicoes m_ce;
+
+    /**
+     * Registo de recursos do centro de exposições atual
+     */
     private RegistoRecursos m_rr;
 
     public DefinirRecursoController(CentroExposicoes ce) {
@@ -21,6 +27,7 @@ public class DefinirRecursoController {
 
     /**
      * Inicializa o registo de recursos e busca a lista de recursos do mesmo.
+     *
      * @return lista de recursos;
      */
     public List<Recurso> getListaRecursos() {

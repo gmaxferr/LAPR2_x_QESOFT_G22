@@ -10,7 +10,7 @@ import org.w3c.dom.*;
 /**
  * Keyword com score.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, Importable<ScoredKeyword>, Exportable {
 

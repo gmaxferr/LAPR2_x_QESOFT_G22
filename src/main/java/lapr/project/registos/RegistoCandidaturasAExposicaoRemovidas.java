@@ -1,12 +1,9 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 import lapr.project.utils.Exportable;
@@ -19,7 +16,7 @@ import org.w3c.dom.NodeList;
 /**
  * Representação de um RegistoCandidaturasAExposicaoRemovidas
  * 
- * @author Ana Leite
+ * @author G29
  */
 public class RegistoCandidaturasAExposicaoRemovidas implements Importable<RegistoCandidaturasAExposicaoRemovidas>,  Exportable {
     

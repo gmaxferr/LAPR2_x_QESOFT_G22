@@ -3,16 +3,9 @@ package lapr.project.model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoFaeAvaliacao;
-import lapr.project.registos.RegistoUtilizadores;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import lapr.project.utils.XMLParser;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.registos.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
@@ -25,11 +18,11 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
     public static final String KEYWORDS_ELEMENT_NAME = "Keywords";
 
     private CandidaturaAExposicao m_candidatura;
-    private RegistoFaeAvaliacao m_rFaeDecisao;
+    private RegistoFaeAvaliacao m_rFaeAvaliacao;
 
     public AtribuicaoCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         this.m_candidatura = candidaturaAExposicao;
-        this.m_rFaeDecisao = new RegistoFaeAvaliacao();
+        this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
     }
 
     public CandidaturaAExposicao getCandidaturaAssociada() {
@@ -42,11 +35,11 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
      * @return registo de FAEAvaliação
      */
     public RegistoFaeAvaliacao getRegistoFaeAvaliacao() {
-        return this.m_rFaeDecisao;
+        return this.m_rFaeAvaliacao;
     }
 
     public void addFaeAvaliacao(FAE fae) {
-        this.m_rFaeDecisao.addFaeAvaliacao(fae);
+        this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
     public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
@@ -56,7 +49,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
                 break;
             }
         }
-        this.m_rFaeDecisao.fix(m_registoUtilizadores);
+        this.m_rFaeAvaliacao.fix(m_registoUtilizadores);
     }
 
     @Override
@@ -80,8 +73,8 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
                     this.m_candidatura.getListKeyword().add(key);
                 }
 
-                this.m_rFaeDecisao = new RegistoFaeAvaliacao();
-                this.m_rFaeDecisao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
+                this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
+                this.m_rFaeAvaliacao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoCandidatura.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,7 +96,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
             for (Keyword k : this.m_candidatura.getListKeyword()) {
                 elemBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
-            elemBase.appendChild(document.importNode(this.m_rFaeDecisao.exportContentToXMLNode(), true));
+            elemBase.appendChild(document.importNode(this.m_rFaeAvaliacao.exportContentToXMLNode(), true));
             
             node = elemBase;
         } catch (ParserConfigurationException ex) {

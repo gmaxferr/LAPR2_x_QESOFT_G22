@@ -1,21 +1,12 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ConflitoDeInteresse;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.TipoConflito;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoConflitos;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoFAE;
-import lapr.project.registos.RegistoTipoConflitos;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
- * @author Guilherme
+ * @author G29
  */
 public class AtualizarConflitosDeInteresseController {
 

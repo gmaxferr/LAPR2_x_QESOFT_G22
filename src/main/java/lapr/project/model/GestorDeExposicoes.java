@@ -2,7 +2,7 @@ package lapr.project.model;
 
 
 /**
- * @author Ricardo Catalao
+ * @author G29
  */
 public class GestorDeExposicoes {
 

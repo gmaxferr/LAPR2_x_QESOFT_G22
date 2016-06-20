@@ -77,15 +77,6 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     /**
-     * Guarda a escolha da exposição feito pelo gestor na UI
-     *
-     * @param exposicao exposição selecionada pelo gestor na UI
-     */
-    public void setExposicao(Exposicao exposicao) {
-        this.m_exposicaoSelecionada = exposicao;
-    }
-
-    /**
      * Busca e guarda o registo de candidaturas associadas à exposição
      * selecionada
      */
@@ -111,30 +102,12 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     /**
-     * Guarda a escolha da candidatura feita pelo gestor na UI
-     *
-     * @param cand candidatura escolhida pelo gestor na UI
-     */
-    public void setCandidatura(CandidaturaAExposicao cand) {
-        this.m_candidaturaSelecionada = cand;
-    }
-
-    /**
      * Devolve o nome da empresa associado à candidatura escolhida
      *
      * @return nome da empresa associado à candidatura escolhida
      */
     public String getNomeEmpresa() {
         return this.m_candidaturaSelecionada.getNomeEmpresa();
-    }
-
-    /**
-     * Devolve a morada da empresa associada à candidatura escolhida
-     *
-     * @return morada da empresa associada à candidatura escolhida
-     */
-    public String getMoradaEmpresa() {
-        return this.m_candidaturaSelecionada.getMoradaEmpresa();
     }
 
     /**
@@ -176,6 +149,15 @@ public class DecidirCandidaturasAExposicaoController {
     }
 
     /**
+     * Devolve a morada da empresa associada à candidatura escolhida
+     *
+     * @return morada da empresa associada à candidatura escolhida
+     */
+    public String getMoradaEmpresa() {
+        return this.m_candidaturaSelecionada.getMoradaEmpresa();
+    }
+
+    /**
      * Guarda a decisão do gestor sobre a candidatura escolhida, chama o
      * respectivo método para atualizar estado da candidatura caso tiver sido
      * aceite ou rejeitada e atualiza o ranking das keywords
@@ -197,6 +179,24 @@ public class DecidirCandidaturasAExposicaoController {
                 this.m_exposicaoSelecionada.getKeywordRanking().addKeyword(keyword, false);
             }
         }
+    }
+
+    /**
+     * Guarda a escolha da exposição feito pelo gestor na UI
+     *
+     * @param exposicao exposição selecionada pelo gestor na UI
+     */
+    public void setExposicao(Exposicao exposicao) {
+        this.m_exposicaoSelecionada = exposicao;
+    }
+
+    /**
+     * Guarda a escolha da candidatura feita pelo gestor na UI
+     *
+     * @param cand candidatura escolhida pelo gestor na UI
+     */
+    public void setCandidatura(CandidaturaAExposicao cand) {
+        this.m_candidaturaSelecionada = cand;
     }
 
     /**

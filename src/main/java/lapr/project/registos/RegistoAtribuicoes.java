@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.modelmbean.XMLParseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,8 +19,8 @@ import org.w3c.dom.NodeList;
 
 /**
  * Representação de um RegistoAtribuicoes
- * 
- * @author Ricardo Osório Ana Leite
+ *
+ * @author G29
  */
 public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
 
@@ -40,50 +39,8 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     }
 
     /**
-     * Devolve a lista de atribuicaoCandidatura
-     * 
-     * @return lista de atribuicaoCandidatura
-     */
-    public List<AtribuicaoCandidatura> getListaAtribuicoes() {
-        return this.m_listaAtribuicao;
-    }
-
-    /**
-     * Valida a candidatura
-     * 
-     * @param c candidatura
-     * @return true se a candidatura for validada. Caso contrário retorna false
-     */
-    public boolean validarCandidatura(CandidaturaAExposicao c) {
-        return c.validaCandidatura();
-    }
-
-    /**
-     * Define nova decisao
-     *
-     * @param candidaturaAExposicao candidatura
-     * @param decisao nova decisao
-     */
-    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
-        candidaturaAExposicao.setDecisao(decisao);
-    }
-
-    /**
-     * Valida a decisao da candidatura
-     *
-     * @return true
-     */
-    public boolean validaDecidirCandidatura() {
-        return true;
-    }
-
-    public void setListaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
-        this.m_listaAtribuicao = listaAtribuicao;
-    }
-
-    /**
      * Devolve as candidaturas atribuídas a um fae
-     * 
+     *
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
@@ -96,10 +53,11 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         }
         return listaAtrib;
     }
-    
+
     /**
-     * Devolve as candidaturas atribuídas a um fae que se encontrem no estado atribuidas
-     * 
+     * Devolve as candidaturas atribuídas a um fae que se encontrem no estado
+     * atribuidas
+     *
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
@@ -133,18 +91,65 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     }
 
     /**
+     * Devolve a lista de atribuicaoCandidatura
+     *
+     * @return lista de atribuicaoCandidatura
+     */
+    public List<AtribuicaoCandidatura> getListaAtribuicoes() {
+        return this.m_listaAtribuicao;
+    }
+
+    public void setListaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
+        this.m_listaAtribuicao = listaAtribuicao;
+    }
+
+    /**
+     * Define nova decisao
+     *
+     * @param candidaturaAExposicao candidatura
+     * @param decisao nova decisao
+     */
+    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
+    }
+
+    /**
+     * Valida a candidatura
+     *
+     * @param c candidatura
+     * @return true se a candidatura for validada. Caso contrário retorna false
+     */
+    public boolean validarCandidatura(CandidaturaAExposicao c) {
+        return c.validaCandidatura();
+    }
+
+    /**
+     * Valida a decisao da candidatura
+     *
+     * @return true
+     */
+    public boolean validaDecidirCandidatura() {
+        return true;
+    }
+
+    /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     *  
+     *
      * @param m_rce registo candidaturas a exposição
      * @param m_registoUtilizadores registo de utilizadores
      */
     public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
-        for(AtribuicaoCandidatura atr : m_listaAtribuicao){
+        for (AtribuicaoCandidatura atr : m_listaAtribuicao) {
             atr.fix(m_rce, m_registoUtilizadores);
         }
     }
 
+    /**
+     *
+     * @param node
+     * @return
+     */
     @Override
     public RegistoAtribuicoes importContentFromXMLNode(Node node) {
         try {
@@ -172,6 +177,10 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;

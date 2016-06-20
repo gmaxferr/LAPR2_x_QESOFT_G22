@@ -78,6 +78,57 @@ public class DefinirFAEController {
     }
 
     /**
+     * Devolve o registo de exposições existentes
+     */
+    public void getRegistoExposicoes() {
+        this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
+    }
+
+    /**
+     * Devolve uma lista de utilizadores que estão registados como FAE na
+     * exposição em causa
+     *
+     * @return lista de utilizadores que estão registados como FAE na exposição
+     * em causa
+     */
+    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
+        return this.m_rfae.getListaUtilizadoresCorrespondentesAosFae();
+    }
+
+    /**
+     * Devolve o registo de utilizadores existentes no centro de exposições
+     */
+    public void getRegistoUtilizadores() {
+        this.m_ru = this.m_centroExposicoes.getRegistoUtilizadoresConfirmados();
+    }
+
+    /**
+     * Devolve o registo de fae associado à exposição selecionda na UI
+     */
+    public void getRegistoFAE() {
+        this.m_rfae = m_exposicaoSelecionada.getRegistoFAE();
+    }
+
+    /**
+     * Devolve o estado atual da exposição selecionada na UI
+     *
+     * @return estado da exposição selecionada
+     */
+    public EstadoExposicao getEstadoExposicao() {
+        return this.m_exposicaoSelecionada.getEstado();
+    }
+
+    /**
+     * Devolve a lista de utilizadores na totalidade existentes no centro de
+     * exposições
+     *
+     * @return lista de utilizadores totais que existe no centro de exposições
+     */
+    public List<Utilizador> getListaUtilizadores() {
+        return this.m_ru.getListaUtilizadores();
+    }
+
+    /**
      * Devolve o registo dos organizadores da exposição selecionada na UI
      */
     public void getRegistoOrganizadores() {
@@ -94,39 +145,36 @@ public class DefinirFAEController {
     }
 
     /**
-     * Adiciona um FAE recebendo por parametro o username do Utilizador que se
-     * deseja promover ao cargo. O Utilizador é identificado e tentado adicionar
-     * à lista de FAE existente. É validado se já existe um FAE com este
-     * username ou um organizador.
-     *
-     * @param usernameUtilizador username do Utilizador a ser promovido a FAE
-     * @return true se for adicionado com sucesso, false se não passar as
-     * validações
+     * Atualiza o estado atual da exposição selecionada. Caso esta se
+     * encontrasse no estado Criada passará a estar ao estado
+     * FAEDefninidosSemDemos. Senão, se estiver no estado DemosDefinidasSemFAE
+     * então passará a estar no estado Completa
      */
-    public boolean criarEAdicionarFaePeloUsername(String usernameUtilizador) {
-        Utilizador u = this.identificarUtilizadorPeloUsername(usernameUtilizador);
-        return this.adicionarFaeListaTemp(u);
+    public void setEstado() {
+        EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
+        if (estado.isEstadoCriada()) {
+            estado.setEstadoFAEDefinidosSemDemos();
+        } else if (estado.isEstadoDemosDefinidasSemFAE()) {
+            estado.setEstadoCompleta();
+        }
     }
 
     /**
-     * Identifica o utilizador passando por parametro apenas o seu username
+     * Confirma a adição dos FAE definitivamente. Até aqui a lista de FAE éra
+     * uma lista temporária
      *
-     * @param usernameUtilizador username do utilizador
-     * @return utilizador identificado. Se não encontrar devolve null
      */
-    public Utilizador identificarUtilizadorPeloUsername(String usernameUtilizador) {
-        return this.m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
+    public void confirmaAddFAE() {
+        m_rfae.confirmaAddFAE(this.listaFaeTemp);
     }
 
-    public boolean adicionarFaeListaTemp(Utilizador u) {
-        boolean faeValida = validaUtilizadorParaAdicionarComoFAE(u);
-        if (faeValida) {
-            FAE novoFAE = new FAE(u);
-            this.listaFaeTemp.add(novoFAE);
-            return true;
-        } else {
-            return false;
-        }
+    /**
+     * Permite limpar a lista de FAE já adicionados até ao momento sem
+     * confirmação. Usado quando na UI, o utilizador volta ao passo anterior
+     * para escolher outra exposição.
+     */
+    public void limparFAEJaAdicionados() {
+        this.listaFaeTemp.clear();
     }
 
     /**
@@ -157,6 +205,25 @@ public class DefinirFAEController {
     }
 
     /**
+     * Adiciona um utilizador escolhido na UI para ser adicionado como FAE
+     * (apenas à lista temporária ainda) para mais tarde, caso a lista
+     * temporária seja confirmada este é adicionado como FAE
+     *
+     * @param u Utilizador a ser adicionado como FAE
+     * @return true se o utilizador for adicionado, falso caso contrário
+     */
+    public boolean adicionarFaeListaTemp(Utilizador u) {
+        boolean faeValida = validaUtilizadorParaAdicionarComoFAE(u);
+        if (faeValida) {
+            FAE novoFAE = new FAE(u);
+            this.listaFaeTemp.add(novoFAE);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Informa se foram introduzidos novos FAE na UI. Método usado para permitir
      * uma interação com o utilizador mais simpática
      *
@@ -170,87 +237,28 @@ public class DefinirFAEController {
     }
 
     /**
-     * Devolve a lista de utilizadores na totalidade existentes no centro de
-     * exposições
+     * Adiciona um FAE recebendo por parametro o username do Utilizador que se
+     * deseja promover ao cargo. O Utilizador é identificado e tentado adicionar
+     * à lista de FAE existente. É validado se já existe um FAE com este
+     * username ou um organizador.
      *
-     * @return lista de utilizadores totais que existe no centro de exposições
+     * @param usernameUtilizador username do Utilizador a ser promovido a FAE
+     * @return true se for adicionado com sucesso, false se não passar as
+     * validações
      */
-    public List<Utilizador> getListaUtilizadores() {
-        return this.m_ru.getListaUtilizadores();
+    public boolean criarEAdicionarFaePeloUsername(String usernameUtilizador) {
+        Utilizador u = this.identificarUtilizadorPeloUsername(usernameUtilizador);
+        return this.adicionarFaeListaTemp(u);
     }
 
     /**
-     * Devolve uma lista de utilizadores que estão registados como FAE na
-     * exposição em causa
+     * Identifica o utilizador passando por parametro apenas o seu username
      *
-     * @return lista de utilizadores que estão registados como FAE na exposição
-     * em causa
+     * @param usernameUtilizador username do utilizador
+     * @return utilizador identificado. Se não encontrar devolve null
      */
-    public List<Utilizador> getListaUtilizadoresCorrespondentesAosFae() {
-        return this.m_rfae.getListaUtilizadoresCorrespondentesAosFae();
-    }
-
-    /**
-     * Confirma a adição dos FAE definitivamente. Até aqui a lista de FAE éra
-     * uma lista temporária
-     *
-     */
-    public void confirmaAddFAE() {
-        m_rfae.confirmaAddFAE(this.listaFaeTemp);
-    }
-
-    /**
-     * Devolve o registo de exposições existentes
-     */
-    public void getRegistoExposicoes() {
-        this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
-    }
-
-    /**
-     * Devolve o registo de utilizadores existentes no centro de exposições
-     */
-    public void getRegistoUtilizadores() {
-        this.m_ru = this.m_centroExposicoes.getRegistoUtilizadoresPendentes();
-    }
-
-    /**
-     * Devolve o registo de fae associado à exposição selecionda na UI
-     */
-    public void getRegistoFAE() {
-        this.m_rfae = m_exposicaoSelecionada.getRegistoFAE();
-    }
-
-    /**
-     * Devolve o estado atual da exposição selecionada na UI
-     *
-     * @return estado da exposição selecionada
-     */
-    public EstadoExposicao getEstadoExposicao() {
-        return this.m_exposicaoSelecionada.getEstado();
-    }
-
-    /**
-     * Atualiza o estado atual da exposição selecionada. Caso esta se
-     * encontrasse no estado Criada passará a estar ao estado
-     * FAEDefninidosSemDemos. Senão, se estiver no estado DemosDefinidasSemFAE
-     * então passará a estar no estado Completa
-     */
-    public void setEstado() {
-        EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
-        if (estado.isEstadoCriada()) {
-            estado.setEstadoFAEDefinidosSemDemos();
-        } else if (estado.isEstadoDemosDefinidasSemFAE()) {
-            estado.setEstadoCompleta();
-        }
-    }
-
-    /**
-     * Permite limpar a lista de FAE já adicionados até ao momento sem
-     * confirmação. Usado quando na UI, o utilizador volta ao passo anterior
-     * para escolher outra exposição.
-     */
-    public void limparFAEJaAdicionados() {
-        this.listaFaeTemp.clear();
+    public Utilizador identificarUtilizadorPeloUsername(String usernameUtilizador) {
+        return this.m_ru.identificarUtilizadorPeloUsername(usernameUtilizador);
     }
 
 }
