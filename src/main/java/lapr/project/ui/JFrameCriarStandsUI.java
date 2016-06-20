@@ -1,5 +1,7 @@
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import lapr.project.ui.model.ModeloListaStands;
 import java.util.List;
 import javax.swing.*;
@@ -17,12 +19,12 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
     /**
      * Largura da janela
      */
-    private static final int LARGURA_JANELA = 510;
+    private static final int LARGURA_JANELA = 480;
 
     /**
      * Altura da janela
      */
-    private static final int ALTURA_JANELA = 410;
+    private static final int ALTURA_JANELA = 490;
 
     /**
      * Referência à JFrame do menu
@@ -38,7 +40,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
      * Controller deste Caso de Uso - CriarStandsController
      */
     private transient final CriarStandsController controller;
-    
+
     /**
      * Lista de stands existentes no centro de exposições atual
      */
@@ -59,10 +61,20 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         this.listaStands = controller.getListaStands();
 
         initComponents();
+        alterarComportamentoFecharJFrame();
 
         setLocationRelativeTo(null);
         setVisible(true);
         setSize(LARGURA_JANELA, ALTURA_JANELA);
+    }
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                jFrameMenuPrincipal.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -87,8 +99,11 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListStandsExistentes = new javax.swing.JList<>();
         jButtonTerminar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDescricaoStand = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -104,6 +119,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
 
         jLabel8.setText("m²");
 
+        jButtonCriarStand.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonCriarStand.setText("Criar stand");
         jButtonCriarStand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +140,14 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Descrição:");
+
+        jTextAreaDescricaoStand.setColumns(20);
+        jTextAreaDescricaoStand.setLineWrap(true);
+        jTextAreaDescricaoStand.setRows(5);
+        jTextAreaDescricaoStand.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(jTextAreaDescricaoStand);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -134,37 +158,45 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldIDStand)))
-                        .addGap(35, 35, 35)
-                        .addComponent(jButtonCriarStand)
-                        .addGap(25, 25, 25))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelCard1Titulo)
-                .addGap(185, 185, 185))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonTerminar)
-                .addGap(197, 197, 197))
+                        .addGap(481, 481, 481))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jLabel3)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel5))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel8))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jTextFieldIDStand, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(203, 203, 203)
+                .addComponent(jButtonCriarStand, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabelCard1Titulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jButtonTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,24 +206,27 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldIDStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
-                    .addComponent(jButtonCriarStand, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldIDStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCriarStand)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTerminar)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         getContentPane().add(jPanel1, "card1");
@@ -208,13 +243,16 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         boolean standCriado;
         if (verificarCamposVazios() == false) {
             try {
-                standCriado = controller.criarStand(jTextFieldIDStand.getText(), jTextFieldAreaStand.getText());
+                standCriado = controller.criarStand(jTextFieldIDStand.getText(), jTextFieldAreaStand.getText(), jTextAreaDescricaoStand.getText());
                 if (standCriado == false) {
                     JOptionPane.showMessageDialog(rootPane, "O ID do stand introduzido já existe. Este parametro deve de ser único!",
                             "Informação inválida",
                             JOptionPane.WARNING_MESSAGE);
                 } else {
                     jListStandsExistentes.setModel(new ModeloListaStands(this.listaStands));
+                    jTextFieldIDStand.setText("");
+                    jTextFieldAreaStand.setText("");
+                    jTextAreaDescricaoStand.setText("");
                     JOptionPane.showMessageDialog(rootPane, "Stand criado.",
                             "Sucesso",
                             JOptionPane.INFORMATION_MESSAGE);
@@ -232,11 +270,10 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCriarStandActionPerformed
 
     private boolean verificarCamposVazios() {
-        if (jTextFieldIDStand.getText().isEmpty() || jTextFieldAreaStand.getText().isEmpty()) {
+        if (jTextFieldIDStand.getText().isEmpty() || jTextFieldAreaStand.getText().isEmpty() || jTextAreaDescricaoStand.getText().isEmpty()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -246,11 +283,14 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelCard1Titulo;
     private javax.swing.JList<String> jListStandsExistentes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaDescricaoStand;
     private javax.swing.JTextField jTextFieldAreaStand;
     private javax.swing.JTextField jTextFieldIDStand;
     // End of variables declaration//GEN-END:variables
