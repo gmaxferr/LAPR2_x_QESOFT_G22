@@ -36,7 +36,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
         this.ce = ce;
         ctrl.novaExposicao();
         this.listaUtilizadores = new ArrayList<>();
-        this.listaUtilizadores = ce.getRegistoUtilizadores().getListaUtilizadores();
+        this.listaUtilizadores = ce.getRegistoUtilizadoresPendentes().getListaUtilizadores();
         modeloComboBox = new ComboBoxModelUtilizadores(this.listaUtilizadores);
         this.menuPrincipal = menuPrincipal;
         this.modeloJList = new ModeloJListUtilizadores();

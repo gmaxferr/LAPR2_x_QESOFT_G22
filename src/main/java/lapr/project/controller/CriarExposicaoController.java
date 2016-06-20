@@ -29,7 +29,7 @@ public class CriarExposicaoController {
     public CriarExposicaoController(CentroExposicoes centro_exposicoes) {
         m_centro_exposicoes = centro_exposicoes;
         m_re = centro_exposicoes.getRegistoExposicoes();
-        m_ru = centro_exposicoes.getRegistoUtilizadores();
+        m_ru = centro_exposicoes.getRegistoUtilizadoresPendentes();
     }
 
     public void getRegistoExposicao() {
@@ -37,7 +37,7 @@ public class CriarExposicaoController {
     }
 
     public void getRegistoUtilizadores() {
-        m_centro_exposicoes.getRegistoUtilizadores();
+        m_centro_exposicoes.getRegistoUtilizadoresPendentes();
     }
 
     /**

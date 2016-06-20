@@ -34,7 +34,7 @@ public class AlterarPerfilDeUtilizadorController {
      * inicializa registo de utilizadores
      */
     public void carregaRegistoUtilizadores() {
-        m_ru = m_ce.getRegistoUtilizadores();
+        m_ru = m_ce.getRegistoUtilizadoresPendentes();
     }
 
     /**

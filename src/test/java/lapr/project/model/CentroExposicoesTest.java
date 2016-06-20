@@ -87,8 +87,8 @@ public class CentroExposicoesTest {
         System.out.println("getRegistoUtilizadores");
 
         RegistoUtilizadores expResult = new RegistoUtilizadores();
-        ce.setRegistoUtilizadores(expResult);
-        RegistoUtilizadores result = ce.getRegistoUtilizadores();
+        ce.setRegistoUtilizadoresPendentes(expResult);
+        RegistoUtilizadores result = ce.getRegistoUtilizadoresPendentes();
         assertEquals(expResult, result);
 
     }
@@ -241,7 +241,7 @@ public class CentroExposicoesTest {
         System.out.println("setRegistoUtilizadores");
         RegistoUtilizadores m_registoUtilizadores = null;
         CentroExposicoes instance = new CentroExposicoes();
-        instance.setRegistoUtilizadores(m_registoUtilizadores);
+        instance.setRegistoUtilizadoresPendentes(m_registoUtilizadores);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -49,7 +49,7 @@ public class RegistarUtilizadorControllerTest {
         u.setEmail(email);
         u.setPwd(password);
         u.setKeyword(keyword);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u);
         instance = new RegistarUtilizadorController(ce);
     }
 
