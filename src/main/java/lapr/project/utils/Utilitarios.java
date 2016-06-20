@@ -23,7 +23,7 @@ public class Utilitarios {
      * utilizador no sistema com essa informação
      */
     public static Utilizador autenticacao(String username, char[] password, CentroExposicoes centroExposicoes) {
-        List<Utilizador> userList = centroExposicoes.getRegistoUtilizadores().getListaUtilizadores();
+        List<Utilizador> userList = centroExposicoes.getRegistoUtilizadoresPendentes().getListaUtilizadores();
         Utilizador utilizador = null;
         for (Utilizador user : userList) {
             if (user.getUsername().equals(username)) {

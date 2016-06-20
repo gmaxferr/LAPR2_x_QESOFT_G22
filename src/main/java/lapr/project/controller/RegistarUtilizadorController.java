@@ -43,7 +43,7 @@ public class RegistarUtilizadorController {
      * Guarda o registo de utilizadores
      */
     public void getRegistoUtilizadores() {
-        this.m_ru = m_centroExpo.getRegistoUtilizadores();
+        this.m_ru = m_centroExpo.getRegistoUtilizadoresPendentes();
     }
     
     /**

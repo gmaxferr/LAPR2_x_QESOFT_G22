@@ -22,7 +22,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     public static final String SHIFTS_ATTR_NAME = "shifts";
     public static final String KEYWORD_ATTR_NAME = "keyword";
-    public static final String CONFIRM_REGISTO_ATTR_NAME = "registoConfirmado";
     public static final String IS_GESTOR_ATTR_NAME = "gestor";
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
@@ -67,12 +66,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     private String m_strUsername;
 
     /**
-     * Atributo associado ao Utilizador que regista se o registo desse
-     * Utilizador já foi confirmado.
-     */
-    private boolean m_boolConfirmaRegisto;
-
-    /**
      * Numero de avaliações que este utilizador já realizou.
      */
     private int nAvaliacoesDesdeSempre;
@@ -111,16 +104,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.keyword = keyword;
     }
 
-    /**
-     * Devolve o valor da variavel boolean que regista se o registo desse
-     * Utilizador já foi confirmado ou não
-     *
-     * @return boolean que representa se o registo desse Utilizador já foi
-     * confirmado ou não
-     */
-    public boolean getConfirmacaoRegisto() {
-        return this.m_boolConfirmaRegisto;
-    }
+  
 
     /**
      * Devolve o atributo nome do utilizador
@@ -167,13 +151,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return m_strUsername;
     }
 
-    /**
-     * Confirma o registo do utilizador. Processo necessário para que o
-     * Utilizador possa ser atribuido a cargos dentro do centro de exposições
-     */
-    public void confirmarRegistoDoUtilizador() {
-        this.m_boolConfirmaRegisto = true;
-    }
 
     /**
      * Define um novo nome de utilizador
@@ -229,13 +206,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             this.randomCaesarShift = r.nextInt(PARCIAL_ALFABET.length() - 1) + 1; //Para mudar de cada vez que a password é atualizada
             m_strPwd = CaesarsCypher.encrypt(strPwd, this.randomCaesarShift, PARCIAL_ALFABET);
         }
-    }
-
-    /**
-     * Altera a variável boolean da confirmação de registo do utilizador
-     */
-    public void setUtilizadorRegistado() {
-        this.m_boolConfirmaRegisto = true;
     }
 
     /**
@@ -404,7 +374,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
                 && obj instanceof Utilizador) {
             Utilizador o = (Utilizador) obj;
             if (this.isGestor == o.isGestor
-                    && this.m_boolConfirmaRegisto == o.m_boolConfirmaRegisto
                     && (this.keyword == null ? o.keyword == null : this.keyword.equals(o.keyword))
                     && this.nAvaliacoesDesdeSempre == o.nAvaliacoesDesdeSempre
                     && (this.m_strEmail == null ? o.m_strEmail == null : this.m_strEmail.equals(o.m_strEmail))
@@ -426,7 +395,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         hash = 37 * hash + Objects.hashCode(this.keyword);
         hash = 37 * hash + Objects.hashCode(this.m_strEmail);
         hash = 37 * hash + Objects.hashCode(this.m_strUsername);
-        hash = 37 * hash + (this.m_boolConfirmaRegisto ? 1 : 0);
         hash = 37 * hash + this.nAvaliacoesDesdeSempre;
         hash = 37 * hash + (this.isGestor ? 1 : 0);
         return hash;
@@ -443,7 +411,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
                 this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                this.m_boolConfirmaRegisto = Boolean.parseBoolean(elem.getAttribute(CONFIRM_REGISTO_ATTR_NAME));
                 this.isGestor = Boolean.parseBoolean(elem.getAttribute(IS_GESTOR_ATTR_NAME));
 
                 this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
@@ -478,7 +445,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
-            elementKeyword.setAttribute(CONFIRM_REGISTO_ATTR_NAME, String.valueOf(this.m_boolConfirmaRegisto));
             elementKeyword.setAttribute(N_AVALIACOES_ATTR_NAME, String.valueOf(this.nAvaliacoesDesdeSempre));
             elementKeyword.setAttribute(SHIFTS_ATTR_NAME, String.valueOf(this.randomCaesarShift ^ SHIFTS_MASK));
             elementKeyword.setAttribute(KEYWORD_ATTR_NAME, String.valueOf(CaesarsCypher.encrypt(this.keyword.toCharArray(), randomCaesarShift, COMPLETE_ALFABET)));
