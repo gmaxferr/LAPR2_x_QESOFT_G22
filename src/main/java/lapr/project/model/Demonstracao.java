@@ -221,6 +221,22 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public Data getDataFimCand() {
         return m_dataFimSubCand;
     }
+    
+    /**
+     * Define a data de início de submissão de candidaturas
+     * @param dataInicio 
+     */
+    public void setDataInicioCand(Data dataInicio){
+        this.m_dataInicioSubCand = dataInicio;
+    }
+    
+    /**
+     * Define a data de fim de submissão de candidaturas
+     * @param dataFim 
+     */
+    public void setDataFimCand(Data dataFim){
+        this.m_dataFimSubCand = dataFim;
+    }
 
     /**
      * Permite alterar o código de identificação da demonstração
