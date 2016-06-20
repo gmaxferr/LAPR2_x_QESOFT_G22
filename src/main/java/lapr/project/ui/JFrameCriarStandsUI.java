@@ -208,7 +208,7 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         boolean standCriado;
         if (verificarCamposVazios() == false) {
             try {
-                standCriado = controller.criarStand(jTextFieldIDStand.getText(), jTextFieldAreaStand.getText());
+                standCriado = controller.criarStand(jTextFieldIDStand.getText(), jTextFieldAreaStand.getText(), "");
                 if (standCriado == false) {
                     JOptionPane.showMessageDialog(rootPane, "O ID do stand introduzido já existe. Este parametro deve de ser único!",
                             "Informação inválida",

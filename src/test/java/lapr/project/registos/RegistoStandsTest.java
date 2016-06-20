@@ -41,7 +41,7 @@ public class RegistoStandsTest {
         System.out.println("criarStandComAreaInvalida");
         RegistoStands rStands = new RegistoStands();
         try {
-            rStands.criarStand("ID1", "-15"); //invalido - manda exceção se detetar area invalida
+            rStands.criarStand("ID1", "-15", "descricao"); //invalido - manda exceção se detetar area invalida
             fail("A area errada passou na verificação");
         } catch (AreaErradaException ex) {
             assertEquals(true, true);
@@ -56,8 +56,8 @@ public class RegistoStandsTest {
     public void testCriarStandIDRepetido() {
         System.out.println("criarStandComIDRepetido");
         RegistoStands rStands = new RegistoStands();
-        rStands.criarStand("ID1", "15"); //valido
-        boolean valida = rStands.criarStand("ID1", "16"); //id repetido
+        rStands.criarStand("ID1", "15", "descricao"); //valido
+        boolean valida = rStands.criarStand("ID1", "16", "descricao"); //id repetido
         assertEquals(false, valida);
     }
 
@@ -69,8 +69,8 @@ public class RegistoStandsTest {
     public void testCriarStand() {
         System.out.println("criarStand");
         RegistoStands rStands = new RegistoStands();
-        rStands.criarStand("ID1", "15"); //valido
-        boolean valida = rStands.criarStand("ID2", "16"); //id repetido
+        rStands.criarStand("ID1", "15", "descricao"); //valido
+        boolean valida = rStands.criarStand("ID2", "16", "descricao"); //id repetido
         assertEquals(true, valida);
     }
 }
