@@ -55,9 +55,9 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private transient String m_usernameOrg;
     private transient CentroExposicoes m_ce;
 
+    private Exposicao m_e;
     private AbstractListModelRecursos modeloListaRecursosAdicionados;
 
-    private transient Exposicao m_e;
     private final JFrame jFrameMenu;
 
     /**
@@ -75,9 +75,8 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         this.jFrameMenu = jFrameMenuPrincipal;
         if (!m_listaExposicoes.isEmpty()) {
 
-            modeloListaRecursosAdicionados = new AbstractListModelRecursos(m_listaRecursos);
-
             m_listaRecursos = controller.getListaDeRecursos();
+            modeloListaRecursosAdicionados = new AbstractListModelRecursos(m_listaRecursos);
             initComponents();
             alterarComportamentoFecharJFrame();
 
@@ -516,11 +515,12 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            Exposicao e = (Exposicao) jComboBoxEscolherExposicao.getSelectedItem();
-            jTextAreaCard1DescricaoExposicao.setText(e.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
-            jLabelCard1DataFim.setText(e.getDataFim().toAnoMesDiaString());
+            int e = jComboBoxEscolherExposicao.getSelectedIndex();
+            m_e = m_listaExposicoes.get(e);
+            jTextAreaCard1DescricaoExposicao.setText(m_e.getDescricao());
+            jTextAreaCard1LocalExposicao.setText(m_e.getLocal().getMorada());
+            jLabelCard1DataInicio.setText(m_e.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim.setText(m_e.getDataFim().toAnoMesDiaString());
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
