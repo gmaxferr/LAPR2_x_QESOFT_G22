@@ -314,12 +314,15 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      * @return lista de exposições no estado criada ou fae definidos sem demos
      * de um organizador
      */
-    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos(String usernameOrg) {
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemosOuCompleta(String usernameOrg) {
         List<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
 
         for (Exposicao exposicao : m_listaExposicoes) {
             for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg) && (exposicao.getEstado().isEstadoCriada() || exposicao.getEstado().isEstadoFAEDefinidosSemDemos())) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
+                        && (exposicao.getEstado().isEstadoCriada()
+                        || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
+                        || exposicao.getEstado().isEstadoCompleta())) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }
@@ -355,6 +358,14 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return result;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoRecursos registo de recursos
+     * @param m_registoTipoConflitos registo tipo de conflitos
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
         for (Exposicao e : m_listaExposicoes) {
             e.fix(m_registoRecursos, m_registoTipoConflitos, m_registoUtilizadores);

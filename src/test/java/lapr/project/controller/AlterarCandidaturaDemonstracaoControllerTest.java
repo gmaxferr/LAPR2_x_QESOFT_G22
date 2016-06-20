@@ -53,7 +53,7 @@ public class AlterarCandidaturaDemonstracaoControllerTest {
         d.setEstado(new EstadoDemonstracaoCandidaturasAbertas(d));
         e.getRegistoDemonstracoes().getDemonstracoesAbertas().add(d);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u);
         cand = new CandidaturaADemonstracao("daods", email);
         d.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().add(cand);
         instance = new AlterarCandidaturaDemonstracaoController(email, e);

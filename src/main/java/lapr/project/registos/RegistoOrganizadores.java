@@ -90,6 +90,12 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
         }
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_ro registo organizadores
+     */
     public void fix(RegistoOrganizadores m_ro) {
         List<Organizador> toBeAdded = new ArrayList<>();
         for (Organizador o : m_listaOrganizadores) {

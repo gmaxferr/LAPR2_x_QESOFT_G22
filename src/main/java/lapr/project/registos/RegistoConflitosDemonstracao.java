@@ -101,6 +101,12 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
         m_listaConflitos.add(c);
     }
     
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param rc registo de candidaturas a exposição
+     */
     public void fix(RegistoCandidaturasAExposicao rc){
         for(ConflitoDeInteresseDemonstracao conf : m_listaConflitos){
             conf.fix(rc);

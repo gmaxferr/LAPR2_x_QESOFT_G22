@@ -11,24 +11,27 @@ import lapr.project.model.Produto;
  */
 public class ModeloListaProdutos extends AbstractListModel {
 
-    private transient ListaProdutos listaProdutos;
+    private transient ListaProdutos m_listaProdutos;
 
     public ModeloListaProdutos() {
-        this.listaProdutos = new ListaProdutos();
+        this.m_listaProdutos = new ListaProdutos();
+    }
+    public ModeloListaProdutos(List<Produto> m_listaProdutos) {
+        this.m_listaProdutos = this.m_listaProdutos;
     }
 
     @Override
     public int getSize() {
-        return this.listaProdutos.getSize();
+        return this.m_listaProdutos.getSize();
     }
 
     @Override
     public Object getElementAt(int index) {
-        return this.listaProdutos.getProdutoAt(index).getNome();
+        return this.m_listaProdutos.getProdutoAt(index).getNome();
     }
 
     public boolean addProduto(String nome) {
-        boolean b = this.listaProdutos.addProduto(nome);
+        boolean b = this.m_listaProdutos.addProduto(nome);
         if (b) {
             fireIntervalAdded(this, getSize() - 1, getSize() - 1);
         }
@@ -36,12 +39,12 @@ public class ModeloListaProdutos extends AbstractListModel {
     }
 
     public void removeProduto(String nome) {
-        int index = this.listaProdutos.removeProduto(nome);
+        int index = this.m_listaProdutos.removeProduto(nome);
         fireIntervalRemoved(this, index, index);
     }
 
     public List<Produto> getListaProdutos() {
-        return this.listaProdutos.getListaProdutos();
+        return this.m_listaProdutos.getListaProdutos();
     }
 
 }

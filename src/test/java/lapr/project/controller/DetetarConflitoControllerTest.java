@@ -57,11 +57,11 @@ public class DetetarConflitoControllerTest {
         TipoConflito tc2 = new TipoConflito("tipo2");
         TipoConflito tc3 = new TipoConflito("tipo3");
         ce.getRegistoExposicoes().getListaExposicoes().add(expo);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u1);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u2);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u3);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u4);
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u5);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u1);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u2);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u3);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u4);
+        ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u5);
         ce.getRegistoTiposConflitos().getListaTipoConflitos().add(tc1);
         ce.getRegistoTiposConflitos().getListaTipoConflitos().add(tc2);
         ce.getRegistoTiposConflitos().getListaTipoConflitos().add(tc3);
