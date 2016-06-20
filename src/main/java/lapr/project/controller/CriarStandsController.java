@@ -55,8 +55,8 @@ public class CriarStandsController {
      * @return true se o stand for adicionado com sucesso e false caso contrário
      * @throws AreaErradaException exceção lançada se a área não for válida
      */
-    public boolean criarStand(String ID, String area) throws AreaErradaException {
-        return this.rStands.criarStand(ID, area);
+    public boolean criarStand(String ID, String area, String descricao) throws AreaErradaException {
+        return this.rStands.criarStand(ID, area, descricao);
     }
 
 }

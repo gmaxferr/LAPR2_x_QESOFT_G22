@@ -12,17 +12,20 @@ import org.w3c.dom.*;
  */
 public class Stand implements Importable<Stand>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "Stand";
+    public static final String ROOT_ELEMENT_NAME = "stand";
 
-    public static final String ID_ELEMENT_NAME = "Id";
-    public static final String AREA_ELEMENT_NAME = "Area";
+    public static final String ID_ATTR_NAME = "id";
+    public static final String AREA_ATTR_NAME = "area";
+    public static final String DESCR_ELEMENT_NAME = "descricao";
 
     private String m_ID;
     private int m_area;
+    private String m_descricao;
 
-    public Stand(String m_ID, int m_area) {
+    public Stand(String m_ID, int m_area, String descricao) {
         this.m_ID = m_ID;
         this.m_area = m_area;
+        this.m_descricao = descricao;
     }
 
     /**
@@ -49,8 +52,24 @@ public class Stand implements Importable<Stand>, Exportable {
     /**
      * @param area the area to set
      */
-    public void setM_area(int area) {
+    public void setArea(int area) {
         this.m_area = area;
+    }
+
+    /**
+     * @return Devolve a descrição deste stand
+     */
+    public String getDescricao() {
+        return m_descricao;
+    }
+
+    /**
+     * Define uma descrição para este Stand
+     *
+     * @param descricao nova descricao do stand
+     */
+    public void setDescricao(String descricao) {
+        this.m_descricao = descricao;
     }
 
     @Override
@@ -87,8 +106,12 @@ public class Stand implements Importable<Stand>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_ID = elem.getElementsByTagName(ID_ELEMENT_NAME).item(0).getTextContent();
-                this.m_area = Integer.parseInt(elem.getElementsByTagName(ID_ELEMENT_NAME).item(0).getTextContent());
+                this.m_ID = elem.getAttribute(ID_ATTR_NAME);
+                String input = elem.getAttribute(AREA_ATTR_NAME);
+                if (!input.isEmpty()) {
+                    this.m_area = Integer.parseInt(input);
+                }
+                this.m_descricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Stand.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,12 +129,11 @@ public class Stand implements Importable<Stand>, Exportable {
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
 
-            Element elemChild = document.createElement(ID_ELEMENT_NAME);
-            elemChild.setTextContent(this.m_ID);
-            elementBase.appendChild(elemChild);
+            elementBase.setAttribute(ID_ATTR_NAME, m_ID);
+            elementBase.setAttribute(AREA_ATTR_NAME, String.valueOf(m_area));
 
-            elemChild = document.createElement(AREA_ELEMENT_NAME);
-            elemChild.setTextContent(String.valueOf(this.m_area));
+            Element elemChild = document.createElement(DESCR_ELEMENT_NAME);
+            elemChild.setTextContent(m_descricao);
             elementBase.appendChild(elemChild);
 
             node = elementBase;
