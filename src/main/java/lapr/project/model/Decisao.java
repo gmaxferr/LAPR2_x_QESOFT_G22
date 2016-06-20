@@ -8,7 +8,7 @@ import org.w3c.dom.*;
 /**
  * Representação de uma Decisão
  *
- * @author Ana Leite Ricardo Osório
+ * @author G29
  */
 public class Decisao implements Importable<Decisao>, Exportable {
 

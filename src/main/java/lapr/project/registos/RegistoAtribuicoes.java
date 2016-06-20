@@ -4,22 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.AtribuicaoCandidatura;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoAtribuicoes
  * 
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
 

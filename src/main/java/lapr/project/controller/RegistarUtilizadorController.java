@@ -1,16 +1,14 @@
 package lapr.project.controller;
 
-import lapr.project.exceptions.InvalidEmailException;
-import lapr.project.exceptions.InvalidPasswordException;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.exceptions.*;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
 
 
 /**
  * Representação do Controller do caso de uso - registar utilizador novo
  *
- * @author Ana Leite 
+ * @author G29
 */
 public class RegistarUtilizadorController {
 

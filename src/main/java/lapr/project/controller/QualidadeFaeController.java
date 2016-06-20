@@ -1,19 +1,13 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoFAE;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 import lapr.project.utils.QualidadeFaeCalculo;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class QualidadeFaeController {
 

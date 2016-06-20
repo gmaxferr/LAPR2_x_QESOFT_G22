@@ -7,7 +7,7 @@ import lapr.project.model.Mecanismo;
 /**
  * Representação de um registo de mecanismos
  * 
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class RegistoMecanismos {
 

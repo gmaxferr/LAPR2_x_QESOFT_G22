@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.List;
@@ -15,7 +10,7 @@ import lapr.project.registos.RegistoTiposConflitoDemonstracao;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class DetetarConflitosDemonstracaoController {
 
@@ -29,7 +24,7 @@ public class DetetarConflitosDemonstracaoController {
      * Deteta os conflitos existentes para uma exposição e regista-os no
      * RegistoConflitos da Exposição.
      *
-     * @param e Exposição onde se pretende detetar os conflitos
+     * @param d demonstração onde serão procurados conflitos
      */
     public void detetaConflitos(Demonstracao d) {
         RegistoTiposConflitoDemonstracao rtcd = m_ce.getRegistoTiposConflitosDemonstracao();

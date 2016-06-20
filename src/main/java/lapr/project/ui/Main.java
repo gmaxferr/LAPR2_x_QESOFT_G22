@@ -102,7 +102,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
         }
-        JFrame frame = new LoginV2(centroExposicoes);
+        new LoginV2(centroExposicoes);
     }
 
     private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
@@ -134,6 +134,7 @@ public class Main {
         ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "careful"));
         ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt", "blue"));
         centroExposicoes.confirmarRegistoTodosUtilizadores();
+        ru=centroExposicoes.getRegistoUtilizadoresConfirmados();
 
         //GestorExposições
         Utilizador utilizador;

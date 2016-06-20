@@ -1,8 +1,6 @@
 package lapr.project.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +8,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
 /**
  *

@@ -177,8 +177,9 @@ public class AtribuirCandidaturasAExposicaoController {
     }
 
     /**
-     * Atualiza o estado das candidaturas sobre as quais foram geradas atribuições e da exposição atualmente selecionada
-     * pelo organizador na UI para os estados CandidaturasAtribuidas
+     * Atualiza o estado das candidaturas sobre as quais foram geradas
+     * atribuições e da exposição atualmente selecionada pelo organizador na UI
+     * para os estados CandidaturasAtribuidas
      */
     public void setEstadoCandidaturaAtribuida() {
         this.m_estadoExposicao = this.m_exposicaoEscolhida.getEstado();

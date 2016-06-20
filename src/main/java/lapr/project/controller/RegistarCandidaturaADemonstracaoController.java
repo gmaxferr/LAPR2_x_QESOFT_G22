@@ -7,7 +7,7 @@ import lapr.project.registos.*;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class RegistarCandidaturaADemonstracaoController {
 

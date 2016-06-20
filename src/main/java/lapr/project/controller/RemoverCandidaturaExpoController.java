@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoAtribuicoes;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.registos.*;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class RemoverCandidaturaExpoController {
 
@@ -35,16 +33,17 @@ public class RemoverCandidaturaExpoController {
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesComOFAE() {
         return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
-    
+
     /**
      * Devolve o registo de atribuicoes da exposição selecionada
+     *
      * @return registo de atribuicoes da exposição selecionada
      */
-    public RegistoAtribuicoes getRegistoAtribuicoes(){
+    public RegistoAtribuicoes getRegistoAtribuicoes() {
         m_ra = m_exposicaoSelecionada.getRegistoAtribuicoes();
         return m_ra;
     }
-    
+
     /**
      * Seleciona a exposição a remover
      *
@@ -83,7 +82,7 @@ public class RemoverCandidaturaExpoController {
     }
 
     public void setCandidaturaARemover(CandidaturaAExposicao c) {
-         m_candidaturaARemover = c;
+        m_candidaturaARemover = c;
     }
 
     public void removerCandidatura() {

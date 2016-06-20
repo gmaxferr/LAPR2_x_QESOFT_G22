@@ -8,7 +8,7 @@ import org.w3c.dom.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class Stand implements Importable<Stand>, Exportable {
 

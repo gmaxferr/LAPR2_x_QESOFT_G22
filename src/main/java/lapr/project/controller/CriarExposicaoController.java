@@ -10,7 +10,7 @@ import lapr.project.utils.Data;
 /**
  * Representação do Controller do caso de uso - criar exposição
  *
- * @author Ana Leite e Ricardo Osório
+ * @author G29
  */
 public class CriarExposicaoController {
 
@@ -29,7 +29,7 @@ public class CriarExposicaoController {
     public CriarExposicaoController(CentroExposicoes centro_exposicoes) {
         m_centro_exposicoes = centro_exposicoes;
         m_re = centro_exposicoes.getRegistoExposicoes();
-        m_ru = centro_exposicoes.getRegistoUtilizadoresPendentes();
+        m_ru = centro_exposicoes.getRegistoUtilizadoresConfirmados();
     }
 
     public void getRegistoExposicao() {
@@ -37,7 +37,7 @@ public class CriarExposicaoController {
     }
 
     public void getRegistoUtilizadores() {
-        m_centro_exposicoes.getRegistoUtilizadoresPendentes();
+        m_centro_exposicoes.getRegistoUtilizadoresConfirmados();
     }
 
     /**

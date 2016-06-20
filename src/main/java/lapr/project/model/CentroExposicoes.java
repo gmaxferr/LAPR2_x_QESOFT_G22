@@ -25,7 +25,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      * Registo de Utilizadores (pendentes)
      */
     private RegistoUtilizadores m_registoUtilizadoresPendentes;
-    
+
     /**
      * registo de Utilizadores (confirmados)
      */
@@ -45,7 +45,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      * Registo de Tipos de Conflito
      */
     private RegistoTipoConflitos m_registoTipoConflitos;
-    
+
     /**
      * Registo de tipos de conflito da demonstração
      */
@@ -100,7 +100,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores deste centro de exposições
+     * Devolve o registo de utilizadores pendentes deste centro de exposições
      *
      * @return registo de utilizadores pendentes
      */
@@ -109,14 +109,14 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     }
 
     /**
-     * Devolve o registo de utilizadores deste centro de exposições
+     * Devolve o registo de utilizadores confirmados deste centro de exposições
      *
      * @return registo de utilizadores confirmados
      */
     public RegistoUtilizadores getRegistoUtilizadoresConfirmados() {
         return m_registoUtilizadoresConfirmados;
     }
-    
+
     /**
      * Devolve o registo de mecanismos deste centro de exposições
      *
@@ -143,8 +143,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public RegistoTipoConflitos getRegistoTiposConflitos() {
         return m_registoTipoConflitos;
     }
-    
-    
+
     public RegistoTiposConflitoDemonstracao getRegistoTiposConflitosDemonstracao() {
         return m_registoTipoConflitosDemonstracao;
     }
@@ -157,7 +156,6 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
     public RegistoStands getRegistoStands() {
         return this.m_rStands;
     }
-
 
     public boolean isFae(Utilizador utilizador) {
         for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
@@ -197,9 +195,9 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      */
     public void confirmarRegistoTodosUtilizadores() {
         for (Utilizador utilizador : this.m_registoUtilizadoresPendentes.getListaUtilizadores()) {
-            this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(utilizador);
             this.m_registoUtilizadoresConfirmados.getListaUtilizadores().add(utilizador);
         }
+        this.m_registoUtilizadoresPendentes.getListaUtilizadores().clear();
     }
 
     /**
@@ -218,7 +216,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
                 Element elem = (Element) n;
 
                 this.m_registoUtilizadoresPendentes.importContentFromXMLNode(elem.getElementsByTagName(RegistoUtilizadores.ROOT_ELEMENT_NAME).item(0));
-                
+
                 this.m_rStands.importContentFromXMLNode(elem.getElementsByTagName(RegistoStands.ROOT_ELEMENT_NAME).item(0));
 
                 this.m_registoExpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
@@ -267,6 +265,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoExposicoes the m_registoExposicoes to set
      */
     public void setRegistoExposicoes(RegistoExposicoes m_registoExposicoes) {
@@ -275,6 +274,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoUtilizadores the m_registoUtilizadores to set
      */
     public void setRegistoUtilizadoresPendentes(RegistoUtilizadores m_registoUtilizadores) {
@@ -283,6 +283,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoMecanismos the m_registoMecanismos to set
      */
     public void setRegistoMecanismos(RegistoMecanismos m_registoMecanismos) {
@@ -291,6 +292,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoRecursos the m_registoRecursos to set
      */
     public void setRegistoRecursos(RegistoRecursos m_registoRecursos) {
@@ -299,6 +301,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoTipoConflitos the m_registoTipoConflitos to set
      */
     public void setRegistoTipoConflitos(RegistoTipoConflitos m_registoTipoConflitos) {
@@ -307,6 +310,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      *      * PARA TESTES APENAS
+     *
      * @param m_registoExpositores the m_registoExpositores to set
      */
     public void setRegistoExpositores(RegistoExpositores m_registoExpositores) {
@@ -315,11 +319,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
 
     /**
      * PARA TESTES APENAS
+     *
      * @param m_rStands the m_rStands to set
      */
     public void setRegistoStands(RegistoStands m_rStands) {
         this.m_rStands = m_rStands;
     }
 
-    
 }

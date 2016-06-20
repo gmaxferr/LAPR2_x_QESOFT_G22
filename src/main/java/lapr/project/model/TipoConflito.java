@@ -7,7 +7,7 @@ import org.w3c.dom.*;
 
 /**
  *
- * @author Ricardo Catalão
+ * @author G29
  */
 public class TipoConflito implements Importable<TipoConflito>, Exportable {
 

@@ -11,7 +11,7 @@ import lapr.project.registos.*;
  * Representação do Controller do caso de uso - avaliar candidatura a
  * demonstração
  *
- * @author Ana Leite
+ * @author G29
  */
 public class AvaliarCandidaturaADemonstracaoController {
 
@@ -95,8 +95,9 @@ public class AvaliarCandidaturaADemonstracaoController {
      */
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasAtribuidas(String usernameFAE) {
         for (FAE fae : m_exposicao.getRegistoFAE().getListaFAE()) {
-            if (fae.getUsernameFae().equalsIgnoreCase(usernameFAE))
+            if (fae.getUsernameFae().equalsIgnoreCase(usernameFAE)) {
                 return m_rd.getListaDemonstracoesEstadoCandidaturasAtribuidas();
+            }
         }
         return new ArrayList<>();
     }
