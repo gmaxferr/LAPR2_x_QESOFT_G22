@@ -1,10 +1,15 @@
 package lapr.project.model;
 
-import java.util.logging.*;
-import javax.xml.parsers.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.*;
 import lapr.project.utils.*;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um Centro de Exposições
@@ -196,8 +201,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
      * programa.
      */
     public void confirmarRegistoTodosUtilizadores() {
-        for (Utilizador utilizador : this.m_registoUtilizadoresPendentes.getListaUtilizadores()) {
-            this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(utilizador);
+        List<Utilizador>utilizadoresPendentes = this.m_registoUtilizadoresPendentes.getListaUtilizadores();
+        Utilizador utilizador = new Utilizador();
+        for(int i=0; i<utilizadoresPendentes.size();){
+            utilizador = this.m_registoUtilizadoresPendentes.getListaUtilizadores().get(0);
+            this.m_registoUtilizadoresPendentes.getListaUtilizadores().remove(0);
             this.m_registoUtilizadoresConfirmados.getListaUtilizadores().add(utilizador);
         }
     }
