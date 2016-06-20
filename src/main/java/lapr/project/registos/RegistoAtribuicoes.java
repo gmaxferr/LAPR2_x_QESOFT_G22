@@ -130,6 +130,13 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
         return vec;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     *  
+     * @param m_rce registo candidaturas a exposição
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
         for(AtribuicaoCandidatura atr : m_listaAtribuicao){
             atr.fix(m_rce, m_registoUtilizadores);

@@ -124,6 +124,13 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
         return listaUtilizadores;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     *
+     * @param m_registoUtilizadores registo de utilizadores
+     * @param m_ro registo de organizadores
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
         for (FAE fae : m_listaFAE) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {

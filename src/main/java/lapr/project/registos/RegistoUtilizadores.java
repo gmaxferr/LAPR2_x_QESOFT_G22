@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoUtilizadoresConfirmados";
+    public static final String ROOT_ELEMENT_NAME = "RegistoUtilizadores";
 
     /**
      * Lista de utilizadores

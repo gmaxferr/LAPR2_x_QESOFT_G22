@@ -18,10 +18,13 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasAExposicao";
 
     /**
-     * Lista de candidaturas
+     * Lista de candidaturas a exposição
      */
     private List<CandidaturaAExposicao> m_listaCandidaturas;
 
+    /**
+     * Construtor de objetos do tipo RegistoCandidaturaAExposicao sem parâmetros
+     */
     public RegistoCandidaturasAExposicao() {
         this.m_listaCandidaturas = new ArrayList<>();
     }
@@ -142,6 +145,13 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         }
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoUtilizadores registo de utilizadores
+     * @param m_rd registo de demonstrações
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
         for (CandidaturaAExposicao c : m_listaCandidaturas) {
             c.fix(m_registoUtilizadores, m_rd);

@@ -29,16 +29,32 @@ public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<Reg
 
     public static final String ROOT_ELEMENT_NAME = "RegistoCandidaturasADemonstracaoRemovidas";
 
+    /**
+     * Lista de candidaturas a demonstração
+     */
     private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
     
+    /**
+     * Construtor de objetos do tipo RegistoCandidaturasADemonstracao sem 
+     * parâmetros
+     */
     public RegistoCandidaturasADemonstracaoRemovidas(){
         this.m_listaCandidaturasRemovidas = new ArrayList<>();
     }
     
+    /**
+     * Adiciona uma candidatura a demonstracao à lista de candidaturas removidas
+     * 
+     * @param c candidatura a ser adicionada
+     */
     public void adicionarCandidatura(CandidaturaADemonstracao c){
         m_listaCandidaturasRemovidas.add(c);
     }
     
+    /**
+     * Devolve a lista de candidaturas a demonstracao removidas
+     * @return 
+     */
     public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRemovidas(){
         return this.m_listaCandidaturasRemovidas;
     }
