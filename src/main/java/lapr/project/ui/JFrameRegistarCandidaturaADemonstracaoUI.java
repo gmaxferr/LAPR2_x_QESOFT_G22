@@ -38,7 +38,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
      */
     public JFrameRegistarCandidaturaADemonstracaoUI(JFrame janelaMae, CentroExposicoes ce, String usernameRep) {
         CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
-        
+        jFrameMenuPrincipal = janelaMae;
         initComponents();
         alterarComportamentoFecharJFrame();
         setVisible(true);
@@ -56,7 +56,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -432,6 +432,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void boataoCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boataoCancelar2ActionPerformed
+        jFrameMenuPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_boataoCancelar2ActionPerformed
 
@@ -444,6 +445,8 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_botaoSelecionaExpoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+
+        jFrameMenuPrincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
@@ -500,6 +503,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         setSize(this.getSize());
 
     }
+
     private void passaParaPanel2() {
         listaDemos = CTRL.getListaDemos();
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
