@@ -1101,14 +1101,19 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         controller.adicionarProduto(p);
                     }
                     dispose();
-                    controller.alterarCandidatura();
-                    jFrameMenuPrincipal.setVisible(true);
-                    JOptionPane.showMessageDialog(rootPane, "Alterações efetuadas com sucesso", "Concluído", JOptionPane.PLAIN_MESSAGE);
-                }
-            } catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException | KeywordsErradasException exception) {
+                    try {
+                        controller.alterarCandidatura();
+                    } catch (NumeroConvitesErradoException|TelemovelEmpresaErradoException|AreaErradaException|KeywordsErradasException e)
+                        {
+                            
+                        }
+                        jFrameMenuPrincipal.setVisible(true);
+                        JOptionPane.showMessageDialog(rootPane, "Alterações efetuadas com sucesso", "Concluído", JOptionPane.PLAIN_MESSAGE);
+                    }
+                }catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException | KeywordsErradasException exception) {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
+            }else {
             JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_terminarAlteracaoBtnActionPerformed

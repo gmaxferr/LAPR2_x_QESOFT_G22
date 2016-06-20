@@ -65,8 +65,8 @@ public class ConfirmarRegistoController {
     }
 
     /**
-     * Define o Utilizador definido pelo utilizador a interagir com o
-     * sistema
+     * Confirma o registo de um utilizador e adiciona-o ao registo de 
+     * utilizadores (confirmado) 
      *
      * @param u Utilizador escolhido
      */
