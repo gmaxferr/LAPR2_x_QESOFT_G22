@@ -453,6 +453,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

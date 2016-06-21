@@ -428,6 +428,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

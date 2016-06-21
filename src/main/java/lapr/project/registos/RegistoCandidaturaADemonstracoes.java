@@ -121,6 +121,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoCandidaturaADemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

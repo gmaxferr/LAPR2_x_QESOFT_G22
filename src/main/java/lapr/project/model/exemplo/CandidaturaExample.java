@@ -117,6 +117,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 
 		} catch (ParserConfigurationException ex) {
             Logger.getLogger(CandidaturaExample.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
 		return rootNode;
 	}

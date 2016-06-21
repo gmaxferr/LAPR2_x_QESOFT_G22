@@ -71,6 +71,7 @@ public class Local implements Importable<Local>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Local.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -91,6 +91,7 @@ public class Produto implements Importable<Produto>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

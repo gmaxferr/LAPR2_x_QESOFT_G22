@@ -90,6 +90,7 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(ConflitoDeInteresse.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

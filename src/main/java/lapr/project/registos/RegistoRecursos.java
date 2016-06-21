@@ -108,6 +108,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoRecursos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

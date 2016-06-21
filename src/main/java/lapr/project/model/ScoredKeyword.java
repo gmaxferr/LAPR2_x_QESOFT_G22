@@ -140,6 +140,7 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

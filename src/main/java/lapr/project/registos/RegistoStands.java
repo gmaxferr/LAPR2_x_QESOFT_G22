@@ -118,6 +118,7 @@ public class RegistoStands implements Importable<RegistoStands>, Exportable {
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoStands.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

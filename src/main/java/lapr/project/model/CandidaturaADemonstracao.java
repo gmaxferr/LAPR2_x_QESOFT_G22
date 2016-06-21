@@ -132,6 +132,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CandidaturaADemonstracao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

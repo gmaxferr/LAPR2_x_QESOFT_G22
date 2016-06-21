@@ -72,6 +72,7 @@ public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<Reg
 
         } catch (ParserConfigurationException ex){
            Logger.getLogger(RegistoCandidaturasADemonstracaoRemovidas.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

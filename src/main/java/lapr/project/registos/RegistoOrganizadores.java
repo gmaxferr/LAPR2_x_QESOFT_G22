@@ -128,6 +128,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoOrganizadores.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }
