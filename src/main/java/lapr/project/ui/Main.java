@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.ImportarXMLController;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
 import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
@@ -53,7 +54,7 @@ public class Main {
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                                 }
-                            } catch (FileNotFoundException ex) {
+                            } catch (FileNotFoundException | ParserConfigurationException ex) {
                                 JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
