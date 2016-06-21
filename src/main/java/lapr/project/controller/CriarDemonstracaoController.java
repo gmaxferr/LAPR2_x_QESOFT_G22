@@ -44,7 +44,7 @@ public class CriarDemonstracaoController {
      * definidas
      */
     public List<Exposicao> getListaExposicoesDoOrganizador() {
-        return m_re.getListaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemosOuCompleta(m_usernameOrg);
+        return m_re.getListaExposicoesDoOrganizadorAteEstadoAbertoACandidaturas(m_usernameOrg);
     }
 
     /**
