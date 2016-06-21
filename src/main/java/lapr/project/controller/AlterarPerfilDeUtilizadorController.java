@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
 
@@ -82,47 +81,6 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * Valida e altera o nome caso este seja validado corretamente.
-     *
-     * @param nome - novo nome
-     * @return true se for válido; false caso contrário.
-     */
-    public boolean validaNome(String nome) {
-        return m_ru.validaNome(nome);
-    }
-
-    /**
-     * Valida e altera o username caso este seja validado corretamente.
-     *
-     * @param username - novo username
-     * @return true se for válido; false caso contrário.
-     */
-    public boolean validaUsername(String username) {
-        return m_ru.validaUsername(username)  && !username.isEmpty();
-    }
-
-    /**
-     * Valida e altera o email caso este seja validado corretamente.
-     *
-     * @param email - novo email
-     * @return true se for válido; false caso contrário.
-     */
-    public boolean validaEmail(String email) {
-        return m_ru.validaEmail(email);
-
-    }
-
-    /**
-     * Valida e altera a password caso esta seja validada corretamente.
-     *
-     * @param password - nova password
-     * @return true se for válida; false caso contrário.
-     */
-    public boolean validaPassword(char[] password) throws InvalidPasswordException {
-        return m_u.validaPassword(password);
-    }
-
-    /**
      * Armazena o username do utilizador no controller
      *
      * @param username - parametro a armazenar
@@ -164,25 +122,25 @@ public class AlterarPerfilDeUtilizadorController {
      */
     public String confirmaAlteracoes() {
         String aux = "Alterações Efetuadas:";
-        if (validaNome(m_nome)) {
+        if (m_ru.validaNome(m_nome)) {
             m_u.setNome(m_nome);
             aux += "\nNome: alterado.";
         } else {
             aux += "\nNome: não alterado.";
         }
-        if (validaEmail(m_email)) {
+        if (m_ru.validaEmail(m_email)) {
             m_u.setEmail(m_email);
             aux += "\nEmail: alterado.";
         } else {
             aux += "\nEmail: não alterado.";
         }
-        if (validaUsername(m_username)) {
+        if (m_ru.validaUsername(m_username)) {
             m_u.setUsername(m_username);
             aux += "\nUsername: alterado.";
         } else {
             aux += "\nUsername: não alterado.";
         }
-        if (validaPassword(m_password)) {
+        if (m_u.validaPassword(m_password)) {
             m_u.setPwd(m_password);
             aux += "\nPassword: alterada.";
         } else {
