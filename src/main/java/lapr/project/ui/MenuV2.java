@@ -826,10 +826,11 @@ public class MenuV2 extends javax.swing.JFrame {
             ImportarXMLController CTRL = new ImportarXMLController();
             CentroExposicoes ce;
             try {
-                ce = CTRL.Import(file.getAbsolutePath());
+                ce = new CentroExposicoes();
+                ce.importContentFromXMLNode(CTRL.Import(file.getAbsolutePath()));
                 this.centroExposicoes = ce;
                 JOptionPane.showMessageDialog(thisJFrame, "Informação carregada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(thisJFrame, "Erro no carregamento da informação.", "ERRO", JOptionPane.INFORMATION_MESSAGE);
             }
         }

@@ -5,6 +5,8 @@ import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
@@ -23,21 +25,15 @@ public class ImportarXMLController {
      * ficheiro
      * @throws FileNotFoundException
      */
-    public CentroExposicoes Import(String filename) throws FileNotFoundException {
-        CentroExposicoes ce = null;
-
+    public Node Import(String filename) throws FileNotFoundException {
+        Node node = null;
         try {
             XMLParser parser = new XMLParser();
-            Node node = parser.readXMLElementFromFile(filename);
-            if (node != null) {
-                ce = new CentroExposicoes();
-                ce.importContentFromXMLNode(node);
-            }
+            node = parser.readXMLElementFromFile(filename);
         } catch (ParserConfigurationException | IOException ex) {
             Logger.getLogger(ImportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return ce;
+        return node;
     }
 
     /**
@@ -50,7 +46,9 @@ public class ImportarXMLController {
      * @throws FileNotFoundException
      */
     public CentroExposicoes importAndUpdateProperties(String filename) throws FileNotFoundException {
-        CentroExposicoes ce = Import(filename);
+        CentroExposicoes ce = new CentroExposicoes();
+        ce.importContentFromXMLNode(Import(filename));
+
         if (ce != null) {
             File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
             try {
