@@ -121,6 +121,8 @@ public class MenuV2 extends javax.swing.JFrame {
                                 if (CTRL.export(filePath[0], centroExposicoes)) {
                                     JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                                     successfulExport = true;
+                                    dispose();
+                                    System.exit(0);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
                                 }
@@ -140,6 +142,8 @@ public class MenuV2 extends javax.swing.JFrame {
                         String fileName = f.getAbsolutePath();
                         if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
                             JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            dispose();
+                            System.exit(0);
                         } else {
                             JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                         }
@@ -423,7 +427,7 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setText("Atualizar conflitos de interesse");
+        jButton29.setText("Atualizar conflitos de interesse de candidaturas a Exposição");
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton29ActionPerformed(evt);
@@ -448,7 +452,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jButton29)
                 .addGap(10, 10, 10)
                 .addComponent(jButton30)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -874,22 +878,51 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jMenuItemTerminarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTerminarSessaoActionPerformed
         int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
         if (op == JOptionPane.YES_OPTION) {
+
             JFileChooser fc = new JFileChooser();
-            int returnVal = fc.showSaveDialog(thisJFrame);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                ExportarXMLController CTRL = new ExportarXMLController();
-                if (CTRL.exportAndUpdateProperties(file.getAbsolutePath(), centroExposicoes)) {
-                    JOptionPane.showMessageDialog(thisJFrame, "Informação gravada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                    terminaSessao();
-                } else {
-                    returnVal = JOptionPane.showConfirmDialog(thisJFrame, "Erro na gravação de ficheiro. Deseja prosseguir com o término de sessão?", "ERRO", JOptionPane.YES_NO_OPTION);
-                    if (returnVal == JOptionPane.YES_OPTION) {
-                        terminaSessao();
+            ExportarXMLController CTRL = new ExportarXMLController();
+
+            File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+            boolean successfulExport = false;
+
+            try {
+                Scanner in = new Scanner(properties);
+
+                while (in.hasNext()) {
+                    String[] input = in.nextLine().split("=");
+                    if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
+                        String[] filePath = input[1].split("\".*\"");
+                        if (filePath.length > 0) {
+                            File file = new File(filePath[0]);
+                            if (!file.exists()) {
+                                break;
+                            }
+                            if (CTRL.export(filePath[0], centroExposicoes)) {
+                                JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                successfulExport = true;
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                }
+                in.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (!successfulExport) {
+                int returnVal = fc.showSaveDialog(thisJFrame);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File f = fc.getSelectedFile();
+                    String fileName = f.getAbsolutePath();
+                    if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
+                        JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
-        } else if (op == JOptionPane.NO_OPTION) {
             terminaSessao();
         }
     }//GEN-LAST:event_jMenuItemTerminarSessaoActionPerformed
@@ -929,8 +962,10 @@ public class MenuV2 extends javax.swing.JFrame {
             }
 
             in.close();
+
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuV2.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         if (!successfulExport) {
@@ -977,7 +1012,8 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
+        JFrame frame = new JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(utilizador.getUsername(), this.centroExposicoes, this);
+        setVisible(false);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed

@@ -264,7 +264,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     public List<Exposicao> getFaeExpos(String usernameFae) {
         List<Exposicao> exposFAE = new ArrayList<>();
         for (Exposicao ex : this.m_listaExposicoes) {
-            if (ex.getRegistoFAE().isFAE(usernameFae)) {
+            if (ex.getRegistoFAE().isFAE(usernameFae) && !ex.getRegistoConflitos().getListaConflitos().isEmpty()) {
                 exposFAE.add(ex);
             }
         }
