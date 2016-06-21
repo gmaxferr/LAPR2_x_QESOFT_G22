@@ -11,6 +11,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Expositor;
+import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoDemonstracoes;
 import org.w3c.dom.Node;
@@ -41,9 +43,10 @@ public class CriarCandidaturaExposicaoXMLController {
     /**
      * Adiciona a candidatura ao registo de candidaturas da demonstração
      */
-    public void registarCandidatura() {
+    public void registarCandidatura(Utilizador u) {
         m_c.fix(m_ce.getRegistoUtilizadoresConfirmados(), new RegistoDemonstracoes());
         RegistoCandidaturasAExposicao rce = m_e.getRegistoCandidaturasAExposicao();
+        m_c.setExpositor(new Expositor(u));
         rce.getListaCandidaturas().add(m_c);
     }
 

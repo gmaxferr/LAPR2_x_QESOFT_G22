@@ -372,7 +372,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return m_decisao.getDecisao();
     }
 
-    void setExpositor(Expositor expositor) {
+    public void setExpositor(Expositor expositor) {
         this.m_expositor = expositor;
     }
 

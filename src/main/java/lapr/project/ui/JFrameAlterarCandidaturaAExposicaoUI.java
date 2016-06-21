@@ -24,7 +24,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private transient JFrame jFrameMenuPrincipal;
     private transient CentroExposicoes m_ce;
     private transient Exposicao m_expo;
-    private transient String username;
+    private transient String m_email;
     private transient AlterarCandidaturaExpoController controller;
     private transient List<CandidaturaAExposicao> m_listaCandidaturas;
     private transient CandidaturaAExposicao m_candidaturaSelecionada;
@@ -43,11 +43,11 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     /**
      * Creates new form JFrameAlterarCandidaturaAExposicao
      */
-    public JFrameAlterarCandidaturaAExposicaoUI(String username, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
+    public JFrameAlterarCandidaturaAExposicaoUI(String email, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
         super("Alterar candidatura a exposição");
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(username);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(email);
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.username = username;
+        this.m_email = email;
         this.numProdutos = 0;
         initComponents();
         alterarComportamentoFecharJFrame();
@@ -935,8 +935,8 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     m_expo = e;
                 }
             }
-            if (!m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(username).isEmpty()) {
-                this.controller = new AlterarCandidaturaExpoController(username);
+            if (!m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(m_email).isEmpty()) {
+                this.controller = new AlterarCandidaturaExpoController(m_email);
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
