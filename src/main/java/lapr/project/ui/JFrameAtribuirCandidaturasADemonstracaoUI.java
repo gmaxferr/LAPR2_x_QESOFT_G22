@@ -13,7 +13,7 @@ import lapr.project.ui.model.*;
  *
  * @author G29
  */
-public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFrame {
+public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFrame {
 
     private transient JFrame jFrameMenuPrincipal;
     private transient final String usernameOrganizador;
@@ -51,8 +51,8 @@ public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFram
     /**
      * Creates new form AAA
      */
-    public JFrameAtribuitCandidaturasADemonstracaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
-         super("Atribuir candidaturas a exposição");
+    public JFrameAtribuirCandidaturasADemonstracaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
+         super("Atribuir candidaturas a demonstração");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameOrganizador = usernameOrganizador;
@@ -375,7 +375,7 @@ public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +474,7 @@ public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(jComboBoxCard3EscolherMecanismo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 156, Short.MAX_VALUE))
+                .addGap(0, 158, Short.MAX_VALUE))
             .addGroup(card3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -551,7 +551,7 @@ public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFram
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                 .addContainerGap())
         );
         card4Layout.setVerticalGroup(
