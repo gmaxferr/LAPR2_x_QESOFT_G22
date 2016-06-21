@@ -54,6 +54,10 @@ public class AtribuirCandidaturasAExposicaoController {
      * Lista de atribuições geradas com o mecanismo selecionado
      */
     private List<AtribuicaoCandidatura> m_listaAtribuicoesGeradas;
+
+    /**
+     * Guarda o registo de exposições do centro de exposições no controller
+     */
     private RegistoExposicoes m_registoExposicoes;
 
     /**
@@ -103,10 +107,10 @@ public class AtribuirCandidaturasAExposicaoController {
         this.m_exposicaoEscolhida.getRegistoAtribuicoes();
     }
 
-    public void getRegistoExposicoes(){
-        this.m_registoExposicoes=this.m_centroExposicoes.getRegistoExposicoes();
+    public void getRegistoExposicoes() {
+        this.m_registoExposicoes = this.m_centroExposicoes.getRegistoExposicoes();
     }
-    
+
     /**
      * Define uma nova lista de atribuições substituindo a já existente no
      * registo de atribuições pela recebida como parametro neste método
