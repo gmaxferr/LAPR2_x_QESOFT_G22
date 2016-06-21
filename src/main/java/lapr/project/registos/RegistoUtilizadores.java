@@ -108,7 +108,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
                 valido = false;
             }
         }
-        return valido;
+        return valido && username.length() > 0;
     }
 
     /**
