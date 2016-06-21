@@ -91,7 +91,39 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable 
     }
 
     @Override
-    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida, String numeroLido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida, String numeroLido) {
+        int numeroFAE = Integer.parseInt(numeroLido);
+        if (numeroFAE < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        List<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();
+        List<CandidaturaADemonstracao> listaCand = demonstracaoEscolhida.getRegistoCandidaturasADemonstracao().getListaCandidaturasEstadoCriada();
+        List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
+
+        if (listaFAE.isEmpty() || listaCand.isEmpty()) {
+            return listaAtrib;
+        } else {
+            int posInicio = 0, posFim = 0;
+
+            if (numeroFAE != 0) {
+                for (int i = 0; i < listaCand.size(); i++) {
+                    if (i != 0) {
+                        posInicio += numeroFAE;
+                    }
+                    posFim += numeroFAE;
+                    if (posFim > listaFAE.size()) {
+                        posFim = listaFAE.size();
+                    }
+                    AtribuicaoCandidaturaDemonstracao atribuicao = new AtribuicaoCandidaturaDemonstracao(listaCand.get(i));
+                    for (int j = posInicio; j < posFim; j++) {
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
+                    }
+                    listaAtrib.add(atribuicao);
+                }
+            }
+        }
+        return listaAtrib;
     }
+
 }

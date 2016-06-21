@@ -116,9 +116,10 @@ public class AtribuicaoStandTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        AtribuicaoStand expResult = null;
-        AtribuicaoStand result = instance.importContentFromXMLNode(node);
+        AtribuicaoStand expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        AtribuicaoStand result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
 
@@ -128,8 +129,10 @@ public class AtribuicaoStandTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        AtribuicaoStand expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        AtribuicaoStand result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
     

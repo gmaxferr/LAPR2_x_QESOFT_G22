@@ -45,12 +45,15 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel {
      * candidaturas.
      */
     private List<AtribuicaoCandidatura> resultadoAtribuicoes = new ArrayList<>();
+    
+    private List<AtribuicaoCandidaturaDemonstracao> resultadoAtribuicoesDemonstracao = new ArrayList<>();
 
     /**
      * Contrutor do mecanismo
      */
     public MecanismoPredefinidoC() {
         resultadoAtribuicoes = new ArrayList<AtribuicaoCandidatura>();
+        resultadoAtribuicoesDemonstracao = new ArrayList<AtribuicaoCandidaturaDemonstracao>();
     }
 
     @Override
@@ -229,8 +232,69 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel {
     }
 
     @Override
-    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida, String numeroLido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida, String numeroLido) {
+        
+        //Obtem lista de Candidaturas, lista de FAEs e quantidade dos mesmos
+        List<CandidaturaADemonstracao> cands = demonstracaoEscolhida.getRegistoCandidaturasADemonstracao().getListaCandidaturasEstadoCriada();
+        int nCand = cands.size();
+        List<FAE> faes = exposicaoEscolhida.getRegistoFAE().getListaFAE();
+        int nFae = faes.size();
+
+        //Se nao houver FAE, retorna null e acaba o mecanismo
+        if (nFae == 0) {
+            return null;
+        }
+        
+        //Aqui decidimos quantos faes vamos atribuir a cada candidatura
+        int resultFaePerCand = getResultFaePerCand(nFae);
+
+        //Aqui é criada a máscara para aceder às candidaturas
+        int[] maskCand = createMaskCand(resultFaePerCand, nCand);
+
+        //Aqui é criada uma lista dos FAEs que vão ser usados de facto
+        List<FAE> toBeUsed = new ArrayList<FAE>();
+        double contribution = getFaesToBeUsed(nFae, faes, toBeUsed);
+
+        //Numero de FAEs que temos disponiveis apos a filtragem
+        int size = toBeUsed.size();
+
+        //Percentagem de FAEs relativamente ao número de candidaturas
+        double percentFaePerCand = (double) 1 / resultFaePerCand;
+
+        //Array de percentagens dos FAEs
+        double[] arrPercent = getArrayPercentages(size, contribution, resultFaePerCand, toBeUsed, percentFaePerCand);
+
+        //Atribui as candidaturas já com toda a informação necessária
+        atribuiCandidaturasDemonstracao(nCand, percentFaePerCand, maskCand, arrPercent, cands, toBeUsed);
+
+        return resultadoAtribuicoesDemonstracao;
+    }
+    
+    /**
+     * Faz a atribuição das Candidaturas já com toda a informação necessária.
+     *
+     * @param nCand Número de candidaturas
+     * @param percentFaePerCand Percentagem de FAEs por Candidatura
+     * @param maskCand Máscara de Candidaturas
+     * @param arrPercent Array de doubles com os valores dos intervalos de
+     * percentagem de cada FAE
+     * @param cands Lista de Candidaturas a atribuir
+     * @param toBeUsed Lista de FAEs que vão ser usados
+     */
+    private void atribuiCandidaturasDemonstracao(int nCand, double percentFaePerCand, int[] maskCand, double arrPercent[], List<CandidaturaADemonstracao> cands, List<FAE> toBeUsed) {
+        resultadoAtribuicoesDemonstracao.clear();
+        for (int i = 0; i < cands.size(); i++) {
+            resultadoAtribuicoesDemonstracao.add(new AtribuicaoCandidaturaDemonstracao(cands.get(i)));
+        }
+        //  O Indice do FAE Atual
+        int indexFAE = 0;
+        //  Percorre todas as candidaturas e vai atribuindo-as aos FAEs.
+        for (int i = 0; i < maskCand.length; i++) {
+            while (arrPercent[indexFAE] < (double) i * percentFaePerCand / nCand) {
+                indexFAE++;
+            }
+            resultadoAtribuicoesDemonstracao.get(maskCand[i]).addFaeAvaliacao(toBeUsed.get(indexFAE));
+        }
     }
 
 }

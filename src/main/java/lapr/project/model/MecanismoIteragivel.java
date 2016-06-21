@@ -25,11 +25,12 @@ public interface MecanismoIteragivel extends Mecanismo {
     /**
      * Distribui os FAE pelas candidaturas
      * ~
+     * @param exposicaoEscolhida exposição escolhida
      * @param demonstracaoEscolhida demonstração sobre a qual está a ser executada a
      * distribuição
      * @param numeroLido valor introduzido pelo utilizador, pode representar o
      * número de FAE por candidatura ou os anos de experiência
      * @return distribuição gerado pelo mecanismo
      */
-    List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida, String numeroLido);
+    List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida, String numeroLido);
 }

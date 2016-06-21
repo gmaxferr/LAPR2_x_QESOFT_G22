@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -8,7 +7,7 @@ import org.w3c.dom.*;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author G29
  */
 public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
@@ -27,31 +26,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     private int m_ratingAdequacaoAsDemos;
     private int m_ratingAdequacaoNumConvites;
     private int m_ratingRecomendacaoGlobal;
-    private String m_justificacao;
 
     public Avaliacao() {
-        this.m_justificacao = "";
-    }
-
-    /**
-     * Verifica se a avalição já foi tomada
-     *
-     * @return true se a avaliação foi tomada. Caso contrário retorna false.
-     */
-    public boolean verificaAvaliacaoJaTomada() {
-        if (!this.m_justificacao.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Devolve a justificação
-     *
-     * @return justificação
-     */
-    public String getJustificacao() {
-        return this.m_justificacao;
     }
 
     /**
@@ -117,7 +93,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * Define os parametros da avaliação. Usado no momento de tomada da
      * avaliação
      *
-     * @param justificacao justificação da avaliação dada e/ou ratings
      * @param ratingConhecimentoSobreTema de 0 a 5 sendo 0 o número que
      * representa menor conhecimento sobre o tema
      * @param ratingAdequacaoAExposicao de 0 a 5 sendo 0 o número que representa
@@ -129,8 +104,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
      * menor recomendação global
      */
-    public void setAvalicao(String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.m_justificacao = justificacao;
+    public void setAvalicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
         this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
         this.m_ratingAdequacaoAExposicao = ratingAdequacaoAExposicao;
         this.m_ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
@@ -141,10 +115,11 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     /**
      * Modifica a avaliação e a justificação
      *
-     * @param avaliacao nova avaliação
      * @param justificacao nova justificação
      */
     public void setAvalicaoParaDemonstracao(String justificacao) {
+        //Não mexer, para a Ana ver
+        this.m_avaliacao = avaliacao;
         this.m_justificacao = justificacao;
 
     }
@@ -154,8 +129,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         if (obj != null
                 && obj instanceof Avaliacao) {
             Avaliacao o = (Avaliacao) obj;
-            return this.m_justificacao.equals(o.m_justificacao)
-                    && this.m_ratingAdequacaoAExposicao == o.m_ratingAdequacaoAExposicao
+            return this.m_ratingAdequacaoAExposicao == o.m_ratingAdequacaoAExposicao
                     && this.m_ratingAdequacaoAsDemos == o.m_ratingAdequacaoAsDemos
                     && this.m_ratingAdequacaoNumConvites == o.m_ratingAdequacaoNumConvites
                     && this.m_ratingConhecimentoSobreOTema == o.m_ratingConhecimentoSobreOTema
@@ -173,7 +147,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         hash = 89 * hash + this.m_ratingAdequacaoAsDemos;
         hash = 89 * hash + this.m_ratingAdequacaoNumConvites;
         hash = 89 * hash + this.m_ratingRecomendacaoGlobal;
-        hash = 89 * hash + Objects.hashCode(this.m_justificacao);
         return hash;
     }
 
@@ -188,7 +161,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_justificacao = elem.getElementsByTagName(JUSTIFICACAO_ELEMENT_NAME).item(0).getTextContent();
                 this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ATTR_NAME).item(0).getTextContent());
                 this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ATTR_NAME).item(0).getTextContent());
                 this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ATTR_NAME).item(0).getTextContent());
@@ -212,11 +184,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
 
-            Element elemChild = document.createElement(JUSTIFICACAO_ELEMENT_NAME);
-            elemChild.setTextContent(this.m_justificacao);
-            elementBase.appendChild(elemChild);
-
-            elemChild = document.createElement(RATING_ADEQ_DEMOS_ATTR_NAME);
+            Element elemChild = document.createElement(RATING_ADEQ_DEMOS_ATTR_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAsDemos));
             elementBase.appendChild(elemChild);
 
