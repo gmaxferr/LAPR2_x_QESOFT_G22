@@ -104,16 +104,6 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     }
 
     /**
-     * Define nova decisao
-     *
-     * @param candidaturaAExposicao candidatura
-     * @param decisao nova decisao
-     */
-    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
-        candidaturaAExposicao.setDecisao(decisao);
-    }
-
-    /**
      * Valida a candidatura
      *
      * @param c candidatura
