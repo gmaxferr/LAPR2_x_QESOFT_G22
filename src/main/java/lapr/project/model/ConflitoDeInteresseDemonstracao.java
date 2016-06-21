@@ -82,6 +82,7 @@ public class ConflitoDeInteresseDemonstracao implements Importable<ConflitoDeInt
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(ConflitoDeInteresseDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

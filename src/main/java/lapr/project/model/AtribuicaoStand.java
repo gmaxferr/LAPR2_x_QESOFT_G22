@@ -88,6 +88,7 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoStand.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -780,6 +780,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

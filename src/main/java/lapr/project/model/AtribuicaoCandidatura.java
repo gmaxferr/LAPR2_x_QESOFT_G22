@@ -24,7 +24,6 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         this.m_candidatura = candidaturaAExposicao;
         this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
     }
-    
 
     public CandidaturaAExposicao getCandidaturaAssociada() {
         return this.m_candidatura;
@@ -79,6 +78,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoCandidatura.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }
@@ -98,7 +98,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
                 elemBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
             elemBase.appendChild(document.importNode(this.m_rFaeAvaliacao.exportContentToXMLNode(), true));
-            
+
             node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoCandidatura.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,6 +109,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
     /**
      * TESTE USE ONLY
+     *
      * @param m_rFaeAvaliacao the m_rFaeAvaliacao to set
      */
     public void setRegistoFaeAvaliacao(RegistoFaeAvaliacao m_rFaeAvaliacao) {

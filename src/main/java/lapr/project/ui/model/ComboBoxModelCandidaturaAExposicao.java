@@ -19,7 +19,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
     /**
      * Objeto (Candidaturas) selecionado.
      */
-    Object selection;
+    private transient Object selection;
 
     /**
      * Construtor de objetos do tipo ComboBoxModelCandidaturaAExposicao com o

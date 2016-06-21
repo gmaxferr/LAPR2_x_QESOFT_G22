@@ -69,6 +69,7 @@ public class TipoConflitoDemonstracao implements Importable<TipoConflitoDemonstr
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(TipoConflitoDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

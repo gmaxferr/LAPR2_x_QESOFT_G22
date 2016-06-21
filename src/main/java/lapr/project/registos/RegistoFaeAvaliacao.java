@@ -155,6 +155,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoFaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

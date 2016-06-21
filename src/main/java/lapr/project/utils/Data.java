@@ -412,6 +412,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

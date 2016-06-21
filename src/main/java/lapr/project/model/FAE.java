@@ -87,6 +87,7 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(FAE.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

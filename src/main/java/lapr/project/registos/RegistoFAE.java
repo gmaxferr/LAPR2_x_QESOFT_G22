@@ -166,6 +166,7 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoFAE.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }
