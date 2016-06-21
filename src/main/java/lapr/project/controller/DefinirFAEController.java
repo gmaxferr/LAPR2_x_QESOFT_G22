@@ -51,7 +51,7 @@ public class DefinirFAEController {
     /**
      * Lista temporária dos FAE adicionados na UI até serem confirmados
      */
-    private List<FAE> listaFaeTemp;
+    private final List<FAE> listaFaeTemp;
 
     /**
      * Construtor do controller do UC02
@@ -154,7 +154,7 @@ public class DefinirFAEController {
      */
     public boolean setEstado() {
         EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
-        if (this.listaFaeTemp.size() >= 2) {
+        if (this.m_rfae.getListaFAE().size()>=2) {
             if (estado.isEstadoCriada()) {
                 estado.setEstadoFAEDefinidosSemDemos();
                 return true;
