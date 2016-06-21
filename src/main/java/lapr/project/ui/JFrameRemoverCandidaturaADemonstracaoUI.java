@@ -1,19 +1,12 @@
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.RemoverCandidaturaADemonstracaoController;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.ui.model.ComboBoxModelCandidaturaADemonstracao;
-import lapr.project.ui.model.ComboBoxModelDemonstracoes;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.model.*;
+import lapr.project.ui.model.*;
 
 /**
  *
@@ -27,8 +20,8 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private transient Exposicao m_expo;
     private transient final List<Exposicao> m_listaExposicoes;
 
-    private List<Demonstracao> m_listaDemonstracoes;
-    private List<CandidaturaADemonstracao> m_listaCandidaturas;
+    private transient List<Demonstracao> m_listaDemonstracoes;
+    private transient List<CandidaturaADemonstracao> m_listaCandidaturas;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";

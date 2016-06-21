@@ -2,8 +2,6 @@ package lapr.project.ui;
 
 import lapr.project.ui.model.*;
 import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.*;
@@ -55,7 +53,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
     private transient String m_usernameOrg;
     private transient CentroExposicoes m_ce;
 
-    private Exposicao m_e;
+    private transient Exposicao m_e;
     private AbstractListModelRecursos modeloListaRecursosAdicionados;
 
     private final JFrame jFrameMenu;
