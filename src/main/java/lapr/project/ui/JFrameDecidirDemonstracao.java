@@ -31,7 +31,6 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private transient Data dataFimSubCand;
     private transient Data dataFimDetecaoConflitos;
 
-    private boolean[] m_decisoes;
     private List<JCheckBox> listaCheckBoxes = new ArrayList();
 
     private JFrame thisFrame;
@@ -836,7 +835,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private void avancarParaCard2() {
         expoSelecionada = listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex());
         m_listaDemonstracoes = ctrl.setExposicao(expoSelecionada);
-        m_decisoes = ctrl.getDecisoesTemp();
+        decisoes = ctrl.getDecisoesTemp();
         inicializarCard2();
         cardLayout.show(getContentPane(), "card2");
     }
