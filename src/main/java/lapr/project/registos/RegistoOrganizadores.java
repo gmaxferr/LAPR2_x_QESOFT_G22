@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoOrganizadores";
+    public static final String ROOT_ELEMENT_NAME = "registoOrganizadores";
 
     /**
      * Lista de organizadores

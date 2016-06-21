@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoExpositores implements Importable<RegistoExpositores>, Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoExpositores";
+    public static final String ROOT_ELEMENT_NAME = "registoExpositores";
 
     /**
      * Lista de expositores
@@ -70,6 +70,9 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     @Override
     public RegistoExpositores importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

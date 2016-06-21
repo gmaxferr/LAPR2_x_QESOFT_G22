@@ -302,7 +302,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

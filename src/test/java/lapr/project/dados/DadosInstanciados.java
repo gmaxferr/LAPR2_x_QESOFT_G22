@@ -18,11 +18,11 @@ public class DadosInstanciados {
     private Utilizador user1;
     private List<CandidaturaADemonstracao> candidaturasAbertasRepresentante1 = new ArrayList();
     private char[] pass = {'p', 'a', 's', 's'};
-    
+
     public DadosInstanciados() {
         email1 = "a@iol.com";
         ce = new CentroExposicoes();
-        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 30), new Data(2016, 6, 13), new Data(2016, 6, 18), new Data(2016, 6, 19), new Local("local"), getCentroExposicoes());
+        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 21), new Data(2016, 6,22), new Data(2016, 6, 23), new Data(2016, 6, 24), new Local("local"), ce);
         user1 = new Utilizador("user1name", "user1", getPass(), getEmail1());
         representante1 = new Expositor(getUser1());
     }
@@ -53,21 +53,22 @@ public class DadosInstanciados {
 
     /**
      * Cria um novo utilizador de testes
+     *
      * @return novo utilizador de testes
      */
-    public Utilizador inicializarUtilizador(String nome, String username, char[]password,String email){
+    public Utilizador inicializarUtilizador(String nome, String username, char[] password, String email) {
         Utilizador user = new Utilizador(nome, username, password, email);
         return user;
     }
-    
+
     /**
-     * 
-     * @return candidaturas a demonstração do representante 1 
+     *
+     * @return candidaturas a demonstração do representante 1
      */
-    public List<CandidaturaADemonstracao>getCandsAbertasRepresentante1(){
+    public List<CandidaturaADemonstracao> getCandsAbertasRepresentante1() {
         return getCandidaturasAbertasRepresentante1();
     }
-    
+
     /**
      * @return the ce
      */
@@ -117,5 +118,4 @@ public class DadosInstanciados {
         return pass;
     }
 
-    
 }

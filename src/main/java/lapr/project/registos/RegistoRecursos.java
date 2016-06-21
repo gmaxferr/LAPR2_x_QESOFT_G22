@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoRecursos";
+    public static final String ROOT_ELEMENT_NAME = "registoRecursos";
 
     /**
      * Lista de recursos necessários
@@ -81,6 +81,9 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
 
     @Override
     public RegistoRecursos importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

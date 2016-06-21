@@ -18,22 +18,28 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class KeywordTest {
-    
+
     public KeywordTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private Keyword instance;
+    private String strKey;
+
     @Before
     public void setUp() {
+
+        strKey = "key";
+        instance = new Keyword(strKey);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,12 +50,9 @@ public class KeywordTest {
     @Test
     public void testGetValue() {
         System.out.println("getValue");
-        Keyword instance = new Keyword();
-        String expResult = "";
+        String expResult = strKey;
         String result = instance.getValue();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +61,8 @@ public class KeywordTest {
     @Test
     public void testSetValue() {
         System.out.println("setValue");
-        String keyword = "";
-        Keyword instance = new Keyword();
+        String keyword = "something";
         instance.setValue(keyword);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,13 +71,13 @@ public class KeywordTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object o = null;
-        Keyword instance = new Keyword();
+        Keyword instance2 = new Keyword("something");
         boolean expResult = false;
-        boolean result = instance.equals(o);
+        boolean result = instance.equals(instance2);
+        Keyword instance3 = new Keyword(strKey);
+        expResult = true;
+        result = instance.equals(instance3);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -86,12 +86,9 @@ public class KeywordTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        Keyword instance = new Keyword();
-        int expResult = 0;
+        int expResult = new Keyword(strKey).hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -122,5 +119,5 @@ public class KeywordTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

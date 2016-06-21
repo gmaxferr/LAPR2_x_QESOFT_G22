@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.*;
-import lapr.project.model.*;
-import lapr.project.utils.*;
-import org.w3c.dom.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.AtribuicaoCandidatura;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import lapr.project.utils.XMLParser;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Representação de um RegistoAtribuicoes
@@ -16,7 +24,7 @@ import org.w3c.dom.*;
  */
 public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoes";
+    public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
     /**
      * Lista de atribuicaoCandidatura
@@ -145,10 +153,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     @Override
     public RegistoAtribuicoes importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+            Document doc = XMLParser.createDocument(node, true);
 
             Node n = doc.getChildNodes().item(0);
 

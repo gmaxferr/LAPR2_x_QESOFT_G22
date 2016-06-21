@@ -37,7 +37,7 @@ public class AvaliacaoTest {
         System.out.println("verificaAvaliacaoJaTomada");
         Avaliacao instance = new Avaliacao();
         assertEquals(false, instance.verificaAvaliacaoJaTomada());
-        instance.setAvalicao(true, "fgfg", 0, 0, 0, 0, 0);
+        instance.setAvalicao("fgfg", 0, 0, 0, 0, 0);
         assertEquals(true, instance.verificaAvaliacaoJaTomada());
     }
 
@@ -48,10 +48,9 @@ public class AvaliacaoTest {
     public void testSetAvalicao() {
         System.out.println("setAvalicao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 1, 2, 3, 4);
+        instance.setAvalicao("just", 0, 1, 2, 3, 4);
 
-        assertEquals(true, instance.getAvaliacao() == true
-                && instance.getJustificacao().equalsIgnoreCase("just")
+        assertEquals(true, instance.getJustificacao().equalsIgnoreCase("just")
                 && instance.getRatingConhecimentoSobreOTema() == 0
                 && instance.getRatingAdequacaoAExposicao() == 1
                 && instance.getRatingAdequacaoAsDemos() == 2
@@ -66,19 +65,8 @@ public class AvaliacaoTest {
     public void testSetAvalicaoParaDemonstracao() {
         System.out.println("setAvalicaoParaDemonstracao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicaoParaDemonstracao(true, "just");
-        assertEquals(true, instance.getAvaliacao() == true && instance.getJustificacao().equalsIgnoreCase("just"));
-    }
-
-    /**
-     * Test of getAvaliacao method, of class Avaliacao.
-     */
-    @Test
-    public void testGetAvaliacao() {
-        System.out.println("getAvaliacao");
-        Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 0, 0, 0, 0);
-        assertEquals(true, instance.getAvaliacao());
+        instance.setAvalicaoParaDemonstracao("just");
+        assertEquals(true, instance.getJustificacao().equalsIgnoreCase("just"));
     }
 
     /**
@@ -88,7 +76,7 @@ public class AvaliacaoTest {
     public void testGetJustificacao() {
         System.out.println("getJustificacao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 0, 0, 0, 0);
+        instance.setAvalicao("just", 0, 0, 0, 0, 0);
         assertEquals("just", instance.getJustificacao());
     }
 
@@ -99,7 +87,7 @@ public class AvaliacaoTest {
     public void testGetRatingConhecimentoSobreOTema() {
         System.out.println("getRatingConhecimentoSobreOTema");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 1, 0, 0, 0, 0);
+        instance.setAvalicao("just", 1, 0, 0, 0, 0);
         assertEquals(1, instance.getRatingConhecimentoSobreOTema());
     }
 
@@ -110,7 +98,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoAExposicao() {
         System.out.println("getRatingAdequacaoAExposicao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 1, 0, 0, 0);
+        instance.setAvalicao("just", 0, 1, 0, 0, 0);
         assertEquals(1, instance.getRatingAdequacaoAExposicao());
     }
 
@@ -121,7 +109,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoAsDemos() {
         System.out.println("getRatingAdequacaoAsDemos");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 0, 1, 0, 0);
+        instance.setAvalicao("just", 0, 0, 1, 0, 0);
         assertEquals(1, instance.getRatingAdequacaoAsDemos());
     }
 
@@ -132,7 +120,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoNumConvites() {
         System.out.println("getRatingAdequacaoNumConvites");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 0, 0, 1, 0);
+        instance.setAvalicao("just", 0, 0, 0, 1, 0);
         assertEquals(1, instance.getRatingAdequacaoNumConvites());
     }
 
@@ -143,7 +131,7 @@ public class AvaliacaoTest {
     public void testGetRatingRecomendacaoGlobal() {
         System.out.println("getRatingRecomendacaoGlobal");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 0, 0, 0, 0, 1);
+        instance.setAvalicao("just", 0, 0, 0, 0, 1);
         assertEquals(1, instance.getRatingRecomendacaoGlobal());
     }
 
@@ -154,7 +142,7 @@ public class AvaliacaoTest {
     public void testGetMediaRatings() {
         System.out.println("getMediaRatings");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao(true, "just", 1, 2, 3, 4, 5);
+        instance.setAvalicao("just", 1, 2, 3, 4, 5);
         assertEquals(3f, instance.getMediaRatings(), 0.1f);
     }
 

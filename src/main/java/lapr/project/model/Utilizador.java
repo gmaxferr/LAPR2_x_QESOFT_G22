@@ -18,7 +18,7 @@ import lapr.project.utils.Utilitarios;
  */
 public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "Utilizador";
+    public static final String ROOT_ELEMENT_NAME = "utilizador";
 
     public static final String SHIFTS_ATTR_NAME = "shifts";
     public static final String KEYWORD_ATTR_NAME = "keyword";
@@ -26,11 +26,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final String N_AVALIACOES_ATTR_NAME = "nAvaliacoes";
 
     public static final String NOME_ELEMENT_NAME = "nome";
-    public static final String PASSE_ELEMENT_NAME = "passwd";
+    public static final String PASSE_ELEMENT_NAME = "password";
     public static final String USERNAME_ELEMENT_NAME = "username";
     public static final String EMAIL_ELEMENT_NAME = "email";
 
+    // Alfabeto usado no processo de encriptação das palavras-passe
     public static final String PARCIAL_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-";
+    // Alfabeto usado no processo de encriptação do resto da informação pessoal do utilizador
     public static final String COMPLETE_ALFABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;-_+*!|\\\"@#£$§%€&/{([)]=}?'»«<>";
 
     public static final int SHIFTS_MASK = 0x35;
@@ -104,15 +106,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.keyword = keyword;
     }
 
-  
-
     /**
      * Devolve o atributo nome do utilizador
      *
      * @return nome do utilizador
      */
     public String getNome() {
-        return this.m_strNome;
+        return this.m_strNome != null ? this.m_strNome : "";
     }
 
     /**
@@ -150,7 +150,6 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public String getUsername() {
         return m_strUsername;
     }
-
 
     /**
      * Define um novo nome de utilizador
@@ -410,11 +409,33 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
             Node n = elementsKeyword.item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
-                this.nAvaliacoesDesdeSempre = Integer.parseInt(elem.getAttribute(N_AVALIACOES_ATTR_NAME));
-                this.isGestor = Boolean.parseBoolean(elem.getAttribute(IS_GESTOR_ATTR_NAME));
+                String input;
+                input = elem.getAttribute(N_AVALIACOES_ATTR_NAME);
+                if (!input.isEmpty()) {
+                    this.nAvaliacoesDesdeSempre = Integer.parseInt(input);
+                } else {
+                    this.nAvaliacoesDesdeSempre = 0;
+                }
+                input = elem.getAttribute(IS_GESTOR_ATTR_NAME);
+                if (!input.isEmpty()) {
+                    this.isGestor = Boolean.parseBoolean(input);
+                } else {
+                    this.isGestor = false;
+                }
 
-                this.randomCaesarShift = Integer.parseInt(elem.getAttribute(SHIFTS_ATTR_NAME)) ^ SHIFTS_MASK;
-                this.keyword = String.valueOf(CaesarsCypher.decrypt(elem.getAttribute(KEYWORD_ATTR_NAME).toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+                input = elem.getAttribute(SHIFTS_ATTR_NAME);
+                if (!input.isEmpty()) {
+                    this.randomCaesarShift = Integer.parseInt(input) ^ SHIFTS_MASK;
+                } else {
+                    this.randomCaesarShift = 0;
+                }
+
+                input = elem.getAttribute(KEYWORD_ATTR_NAME);
+                if (!input.isEmpty()) {
+                    this.keyword = String.valueOf(CaesarsCypher.decrypt(input.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+                }else{
+                    this.keyword = "";
+                }
 
                 String value = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
                 value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));

@@ -14,9 +14,7 @@ import org.w3c.dom.*;
  */
 public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoFAE";
-
-    public static final String LISTA_FAE_ELEMENT_NAME = "ListaFAE";
+    public static final String ROOT_ELEMENT_NAME = "registoFAEs";
 
     /**
      * Lista de fae
@@ -156,20 +154,13 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_listaFAE.clear();
-                NodeList nList = elem.getElementsByTagName(LISTA_FAE_ELEMENT_NAME);
-                Node n2 = nList.item(0);
+                NodeList nList = elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < nList.getLength(); i++) {
+                    Node n2 = nList.item(i);
 
-                if (n2.getNodeType() == Node.ELEMENT_NODE) {
-                    Element elem2 = (Element) n2;
-
-                    NodeList nList2 = elem2.getElementsByTagName(FAE.ROOT_ELEMENT_NAME);
-                    for (int i = 0; i < nList2.getLength(); i++) {
-                        Node n3 = nList2.item(i);
-
-                        FAE fae = new FAE();
-                        fae.importContentFromXMLNode(n3);
-                        this.m_listaFAE.add(fae);
-                    }
+                    FAE fae = new FAE();
+                    fae.importContentFromXMLNode(n2);
+                    this.m_listaFAE.add(fae);
                 }
             }
 
@@ -191,11 +182,9 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
 
-            Element elemChild = document.createElement(LISTA_FAE_ELEMENT_NAME);
             for (FAE fae : m_listaFAE) {
-                elemChild.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
+                elementBase.appendChild(document.importNode(fae.exportContentToXMLNode(), true));
             }
-            elementBase.appendChild(elemChild);
 
             node = elementBase;
 

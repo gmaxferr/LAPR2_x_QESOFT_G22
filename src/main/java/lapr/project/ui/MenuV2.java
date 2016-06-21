@@ -171,6 +171,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton23 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jButton32 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -371,7 +372,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton27)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,7 +424,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jButton29)
                 .addGap(10, 10, 10)
                 .addComponent(jButton30)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +474,7 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
-        jButton21.setText("Listar candidaturas retiradas");
+        jButton21.setText("Listar candidaturas a exposição removidas");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);
@@ -508,6 +509,13 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
+        jButton32.setText("Listar candidaturas a demonstração removidas");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -522,11 +530,11 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton25))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton22))
+                        .addComponent(jButton22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton32))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -534,8 +542,10 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton19)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addComponent(jButton19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton20)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,18 +555,19 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton16)
                     .addComponent(jButton17)
                     .addComponent(jButton18)
-                    .addComponent(jButton19))
+                    .addComponent(jButton19)
+                    .addComponent(jButton20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton20)
                     .addComponent(jButton21)
-                    .addComponent(jButton22))
+                    .addComponent(jButton22)
+                    .addComponent(jButton32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton23)
                     .addComponent(jButton24)
                     .addComponent(jButton25))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Organizador", jPanel5);
@@ -651,7 +662,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton14)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -688,7 +699,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
+                .addContainerGap(274, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -868,7 +879,7 @@ public class MenuV2 extends javax.swing.JFrame {
         ExportarXMLController CTRL = new ExportarXMLController();
 
         File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
-        boolean successfulExport = true;
+        boolean successfulExport = false;
 
         try {
             Scanner in = new Scanner(properties);
@@ -884,9 +895,9 @@ public class MenuV2 extends javax.swing.JFrame {
                         }
                         if (CTRL.export(filePath[0], centroExposicoes)) {
                             JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            successfulExport = true;
                         } else {
                             JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
-                            successfulExport = false;
                         }
                     }
                 }
@@ -894,7 +905,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
             in.close();
         } catch (FileNotFoundException ex) {
-            successfulExport = false;
+            Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (!successfulExport) {
@@ -1062,6 +1073,11 @@ public class MenuV2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        this.setVisible(false);
+        new JFrameListarCandidaturasADemonstracaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+    }//GEN-LAST:event_jButton32ActionPerformed
+
     private void terminaSessao() {
         JFrame frame = new LoginV2(centroExposicoes);
         dispose();
@@ -1135,6 +1151,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

@@ -16,7 +16,7 @@ import org.w3c.dom.*;
  */
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoDemosntracoes";
+    public static final String ROOT_ELEMENT_NAME = "registoDemosntracoes";
     public static final String CONTADOR_ATTR_NAME = "contador";
 
     /**
@@ -255,6 +255,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     @Override
     public RegistoDemonstracoes importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoTipoConflitos";
+    public static final String ROOT_ELEMENT_NAME = "registoTipoConflitos";
     public static final String NUM_CONFLITOS_ATTR_NAME = "numConflitos";
     
     /**
@@ -88,6 +88,9 @@ public class RegistoTipoConflitos implements Importable<RegistoTipoConflitos>, E
 
     @Override
     public RegistoTipoConflitos importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

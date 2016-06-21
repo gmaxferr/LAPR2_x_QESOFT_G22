@@ -12,9 +12,7 @@ import org.w3c.dom.*;
  */
 public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "FAE";
-    public static final String USERNAME_ELEMENT_NAME = "Username";
-    public static final String EMAIL_ELEMENT_NAME = "Email";
+    public static final String ROOT_ELEMENT_NAME = "fae";
 
     /**
      * Atributo do FAE que representa o utilizador associado a este
@@ -85,8 +83,7 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
                 Element elem = (Element) n;
 
                 this.m_Utilizador = new Utilizador();
-                this.m_Utilizador.setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
-                this.m_Utilizador.setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
+                this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(FAE.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,13 +101,9 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
 
-            Element elemChild = document.createElement(USERNAME_ELEMENT_NAME);
-            elemChild.setTextContent(this.m_Utilizador.getUsername());
-            elementBase.appendChild(elemChild);
-
-            elemChild = document.createElement(EMAIL_ELEMENT_NAME);
-            elemChild.setTextContent(this.m_Utilizador.getEmail());
-            elementBase.appendChild(elemChild);
+            Utilizador savedUser = new Utilizador("", m_Utilizador.getUsername(), "".toCharArray(), m_Utilizador.getEmail(), "");
+            savedUser.setShifts(0);
+            elementBase.appendChild(document.importNode(savedUser.exportContentToXMLNode(), true));
             
             node = elementBase;
         } catch (ParserConfigurationException ex) {

@@ -15,12 +15,7 @@ public class Local implements Importable<Local>, Exportable {
     /**
      *
      */
-    public static final String ROOT_ELEMENT_NAME = "Local";
-
-    /**
-     *
-     */
-    public static final String MORADA_ELEMENT_NAME = "Morada";
+    public static final String ROOT_ELEMENT_NAME = "local";
 
     /**
      * Morada do local
@@ -72,7 +67,7 @@ public class Local implements Importable<Local>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_StrMorada = elem.getElementsByTagName(MORADA_ELEMENT_NAME).item(0).getTextContent();
+                this.m_StrMorada = elem.getTextContent();
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Local.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,11 +82,8 @@ public class Local implements Importable<Local>, Exportable {
             Document document = XMLParser.createDocument();
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
+            elementBase.setTextContent(m_StrMorada);
             document.appendChild(elementBase);
-
-            Element elemChild = document.createElement(MORADA_ELEMENT_NAME);
-            elemChild.setTextContent(this.m_StrMorada);
-            elementBase.appendChild(elemChild);
 
             node = elementBase;
         } catch (ParserConfigurationException ex) {

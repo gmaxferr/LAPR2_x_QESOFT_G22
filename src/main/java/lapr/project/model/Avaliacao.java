@@ -13,23 +13,20 @@ import org.w3c.dom.*;
 public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
     //Elements
-    public static final String ROOT_ELEMENT_NAME = "Avaliacao";
-    public static final String JUSTIFICACAO_ELEMENT_NAME = "Justificacao";
+    public static final String ROOT_ELEMENT_NAME = "avaliacao";
 
-    //Attributes
-    public static final String AVALIACAO_ATTR_NAME = "avaliacao";
-    public static final String RATING_CONHECIMENTO_TEMA_ATTR_NAME = "conhecimentoTema";
-    public static final String RATING_ADEQ_EXPOSICAO_ATTR_NAME = "adequacaoExpo";
-    public static final String RATING_ADEQ_DEMOS_ATTR_NAME = "adequacaoDemos";
-    public static final String RATING_ADEQ_NUM_CONVITES_ATTR_NAME = "adequacaoNumConvites";
-    public static final String RATING_REC_GLOBAL_ATTR_NAME = "recomendacaoGlobal";
+    public static final String JUSTIFICACAO_ELEMENT_NAME = "texto";
+    public static final String RATING_CONHECIMENTO_TEMA_ATTR_NAME = "conhecimentoFAE";
+    public static final String RATING_ADEQ_EXPOSICAO_ATTR_NAME = "adequacaoExposicao";
+    public static final String RATING_ADEQ_DEMOS_ATTR_NAME = "adequacaoDemonstracoes";
+    public static final String RATING_ADEQ_NUM_CONVITES_ATTR_NAME = "adequacaoConvites";
+    public static final String RATING_REC_GLOBAL_ATTR_NAME = "recomendacao";
 
     private int m_ratingConhecimentoSobreOTema;
     private int m_ratingAdequacaoAExposicao;
     private int m_ratingAdequacaoAsDemos;
     private int m_ratingAdequacaoNumConvites;
     private int m_ratingRecomendacaoGlobal;
-    private boolean m_avaliacao;
     private String m_justificacao;
 
     public Avaliacao() {
@@ -46,15 +43,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Devolve a avaliação
-     *
-     * @return avaliação
-     */
-    public boolean getAvaliacao() {
-        return this.m_avaliacao;
     }
 
     /**
@@ -129,8 +117,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * Define os parametros da avaliação. Usado no momento de tomada da
      * avaliação
      *
-     * @param avaliacao true para validar positivamente ou false para o
-     * contrário
      * @param justificacao justificação da avaliação dada e/ou ratings
      * @param ratingConhecimentoSobreTema de 0 a 5 sendo 0 o número que
      * representa menor conhecimento sobre o tema
@@ -143,8 +129,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
      * menor recomendação global
      */
-    public void setAvalicao(boolean avaliacao, String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.m_avaliacao = avaliacao;
+    public void setAvalicao(String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
         this.m_justificacao = justificacao;
         this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
         this.m_ratingAdequacaoAExposicao = ratingAdequacaoAExposicao;
@@ -159,8 +144,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @param avaliacao nova avaliação
      * @param justificacao nova justificação
      */
-    public void setAvalicaoParaDemonstracao(boolean avaliacao, String justificacao) {
-        this.m_avaliacao = avaliacao;
+    public void setAvalicaoParaDemonstracao(String justificacao) {
         this.m_justificacao = justificacao;
 
     }
@@ -171,7 +155,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
                 && obj instanceof Avaliacao) {
             Avaliacao o = (Avaliacao) obj;
             return this.m_justificacao.equals(o.m_justificacao)
-                    && this.m_avaliacao == o.m_avaliacao
                     && this.m_ratingAdequacaoAExposicao == o.m_ratingAdequacaoAExposicao
                     && this.m_ratingAdequacaoAsDemos == o.m_ratingAdequacaoAsDemos
                     && this.m_ratingAdequacaoNumConvites == o.m_ratingAdequacaoNumConvites
@@ -190,7 +173,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         hash = 89 * hash + this.m_ratingAdequacaoAsDemos;
         hash = 89 * hash + this.m_ratingAdequacaoNumConvites;
         hash = 89 * hash + this.m_ratingRecomendacaoGlobal;
-        hash = 89 * hash + (this.m_avaliacao ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.m_justificacao);
         return hash;
     }
@@ -206,13 +188,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.m_avaliacao = Boolean.valueOf(elem.getAttribute(AVALIACAO_ATTR_NAME));
-                this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getAttribute(RATING_ADEQ_EXPOSICAO_ATTR_NAME));
-                this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getAttribute(RATING_ADEQ_DEMOS_ATTR_NAME));
-                this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getAttribute(RATING_ADEQ_NUM_CONVITES_ATTR_NAME));
-                this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getAttribute(RATING_CONHECIMENTO_TEMA_ATTR_NAME));
-                this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getAttribute(RATING_REC_GLOBAL_ATTR_NAME));
                 this.m_justificacao = elem.getElementsByTagName(JUSTIFICACAO_ELEMENT_NAME).item(0).getTextContent();
+                this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ATTR_NAME).item(0).getTextContent());
+                this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ATTR_NAME).item(0).getTextContent());
+                this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ATTR_NAME).item(0).getTextContent());
+                this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ATTR_NAME).item(0).getTextContent());
+                this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ATTR_NAME).item(0).getTextContent());
             }
 
         } catch (ParserConfigurationException ex) {
@@ -235,12 +216,25 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             elemChild.setTextContent(this.m_justificacao);
             elementBase.appendChild(elemChild);
 
-            elementBase.setAttribute(AVALIACAO_ATTR_NAME, String.valueOf(this.m_avaliacao));
-            elementBase.setAttribute(RATING_ADEQ_DEMOS_ATTR_NAME, String.valueOf(this.m_ratingAdequacaoAsDemos));
-            elementBase.setAttribute(RATING_ADEQ_EXPOSICAO_ATTR_NAME, String.valueOf(this.m_ratingAdequacaoAExposicao));
-            elementBase.setAttribute(RATING_ADEQ_NUM_CONVITES_ATTR_NAME, String.valueOf(this.m_ratingAdequacaoNumConvites));
-            elementBase.setAttribute(RATING_CONHECIMENTO_TEMA_ATTR_NAME, String.valueOf(this.m_ratingConhecimentoSobreOTema));
-            elementBase.setAttribute(RATING_REC_GLOBAL_ATTR_NAME, String.valueOf(this.m_ratingRecomendacaoGlobal));
+            elemChild = document.createElement(RATING_ADEQ_DEMOS_ATTR_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAsDemos));
+            elementBase.appendChild(elemChild);
+
+            elemChild = document.createElement(RATING_ADEQ_EXPOSICAO_ATTR_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAExposicao));
+            elementBase.appendChild(elemChild);
+
+            elemChild = document.createElement(RATING_ADEQ_NUM_CONVITES_ATTR_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoNumConvites));
+            elementBase.appendChild(elemChild);
+
+            elemChild = document.createElement(RATING_CONHECIMENTO_TEMA_ATTR_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingConhecimentoSobreOTema));
+            elementBase.appendChild(elemChild);
+
+            elemChild = document.createElement(RATING_REC_GLOBAL_ATTR_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingRecomendacaoGlobal));
+            elementBase.appendChild(elemChild);
 
             node = elementBase;
 
