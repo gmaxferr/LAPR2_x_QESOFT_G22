@@ -705,7 +705,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
-        if (!jTextAreaCard3Justificacao.getText().isEmpty()) {
             guardarDecisao();
             String[] opcoes2 = {"Sim", "Não"};
             int resposta = JOptionPane.showOptionDialog(rootPane, "Avaliação guardada!\nDeseja avaliar outra candidatura?", "Avaliação", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
@@ -714,13 +713,10 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             } else {
                 terminarUC();
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode continuar sem justificar a sua avaliação!", "Erro", JOptionPane.WARNING_MESSAGE);
-        }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void guardarDecisao() {
-        this.avaliacaoDoFae.setAvalicao(jRadioButtonCard3Sim.isSelected(), jTextAreaCard3Justificacao.getText(), jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
+        this.avaliacaoDoFae.setAvalicao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
     }
 
     private void voltarASelecionarExposicao() {

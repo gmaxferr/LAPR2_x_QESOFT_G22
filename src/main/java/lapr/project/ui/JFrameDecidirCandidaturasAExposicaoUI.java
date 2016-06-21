@@ -488,7 +488,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Avaliação"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Decisão"));
 
         jRadioButtonCard3Nao.setSelected(true);
         jRadioButtonCard3Nao.setText("Rejeitar");
