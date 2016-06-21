@@ -32,9 +32,10 @@ public class CriarCandidaturaDemonstracaoXMLController {
     /**
      * Adiciona a candidatura ao registo de candidaturas da demonstração
      */
-    public void registarCandidatura() {
+    public void registarCandidatura(String email) {
         RegistoCandidaturaADemonstracoes rcd = m_d.getRegistoCandidaturasADemonstracao();
         m_c.fix();
+        m_c.setEmailExpositor(email);
         rcd.adiciona(m_c);
     }
 }

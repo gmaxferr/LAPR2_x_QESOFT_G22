@@ -166,4 +166,8 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
         return node;
     }
 
+    public void setEmailExpositor(String email) {
+        this.m_emailExpositor = email;
+    }
+
 }
