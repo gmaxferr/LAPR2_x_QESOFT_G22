@@ -173,8 +173,8 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public String getUsernameExpositor() {
         return m_expositor.getUsername();
     }
-    
-    public String getEmailExpositor(){
+
+    public String getEmailExpositor() {
         return m_expositor.getEmail();
     }
 
@@ -374,20 +374,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     void setExpositor(Expositor expositor) {
         this.m_expositor = expositor;
-    }
-
-    /**
-     * @return the e
-     */
-    public Exposicao getExposicao() {
-        return e;
-    }
-
-    /**
-     * @param e the e to set
-     */
-    public void setExposicao(Exposicao e) {
-        this.e = e;
     }
 
     @Override
