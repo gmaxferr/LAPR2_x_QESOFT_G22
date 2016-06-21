@@ -105,13 +105,8 @@ public class CriarExposicaoController {
      * @return true se o organizador é valido e foi adicionado ou false caso
      * contrário
      */
-    public boolean addOrganizador(Organizador utilizador) {
-        if (m_exposicao.validaOrganizador(utilizador)) {
-            m_organizadoresSelecionados.add(utilizador);
-            return true;
-        } else {
-            return false;
-        }
+    public void addOrganizador(Organizador utilizador) {
+        m_organizadoresSelecionados.add(utilizador);
     }
 
     /**
