@@ -17,12 +17,40 @@ import lapr.project.model.*;
  */
 public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do menu principal. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameMenuPrincipal;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoesAtual;
+    
+    /**
+     * Email do representante
+     */
     private transient String emailRepresentante;
+    
+    /**
+     * Lista de exposições utilizadas para a execução deste UC
+     */
     private transient List<Exposicao> listaExposicoes;
+    
+    /**
+     * Lista de candidatura a exposição para a execução deste UC
+     */
     private transient List<CandidaturaAExposicao> listaCandidaturas;
+    
+    /**
+     * Atribuição Stand
+     */
     private transient AtribuicaoStand atribuicaoStand;
+    
+    /**
+     * Controller deste UC
+     */
     private transient ConfirmarStandController controller;
 
     private static final int LARGURA_JANELA_PASSO1 = 682;
@@ -34,9 +62,24 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO3 = 386;
     private static final int ALTURA_JANELA_PASSO3 = 352;
 
+    /**
+     * Descrição da exposição por omissao
+     */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    
+    /**
+     * Local da exposição por omissao
+     */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
+    
+    /**
+     * Data de inicio e de fim da exposição por omissao
+     */
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+    
+    /**
+     * Lista de  por omissão
+     */
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
     /**
@@ -62,6 +105,9 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {

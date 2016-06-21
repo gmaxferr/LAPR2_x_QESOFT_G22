@@ -15,17 +15,60 @@ import lapr.project.ui.model.*;
  */
 public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do menu principal. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameMenuPrincipal;
+    
+    /**
+     * Username do organizador
+     */
     private transient final String usernameOrganizador;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoes;
+    
+    /**
+     * Controller deste UC
+     */
     private transient AtribuirCandidaturasADemonstracaoController controller;
-    private transient List<Exposicao> listaExposicoesDoOrganizador;
+    
+    /**
+     * Lista de exposições utilizadas para a execução deste UC
+     */
+    transient List<Exposicao> listaExposicoesDoOrganizador;
+    
+    /**
+     * Lista de demonstrações utilizadas para a execução deste UC
+     */
     private transient List<Demonstracao> listaDemonstracoesDoOrganizador;
+    
+    /**
+     * Lista de mecanismos
+     */
     private transient List<Mecanismo> listaMecanismos;
     
+    /**
+     * Vetor com a lista de mecanismos
+     */
     private transient String[] listaNomeMecanismos;
+    
+    /**
+     * Mecanismo selecionado
+     */
     private transient Mecanismo mecanismoEscolhido;
+    
+    /**
+     * Lista de atribuicoes candidatura a demonstração
+     */
     private transient List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoes;
+    
+    /**
+     * JTable 
+     */
     private transient ModeloJTableUtilizadores modeloJTableFAEPorCandidatura;
 
     private static final int LARGURA_JANELA_PASSO1 = 705;
@@ -40,16 +83,39 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
     private static final int LARGURA_JANELA_PASSO4 = 800;
     private static final int ALTURA_JANELA_PASSO4 = 400;
 
+    /**
+     * Vetor com as opções sim ou não
+     */
     private static final String[] OPCOES_SIM_NAO_DIALOG = {"Sim", "Não"};
+    
+    /**
+     * Descrição da exposição por omissão
+     */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    
+    /**
+     * Local da exposição por omissão
+     */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
+    
+    /**
+     * Data de inicio e de fim da exposição por omissão
+     */
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+    
+    /**
+     * Descrição do mecanismo por omissão
+     */
     private static final String DESCRICAO_MECANISMO_POR_OMISSAO = "A apresentar uma breve discrição sobre como o mecanismo funciona e este distribui os FAE's pelas candidaturas existentes.";
+    
+    /**
+     * Descrição da demonstração por omissao
+     */
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
     
     /**
-     * Creates new form AAA
+     * Creates new form JFrameAtribuirCandidaturasADemonstracaoUI
      */
     public JFrameAtribuirCandidaturasADemonstracaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
          super("Atribuir candidaturas a demonstração");
@@ -70,6 +136,9 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
        
     }
     
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
