@@ -2,35 +2,70 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class DecidirCandidaturaADemonstracaoController {
 
+    /**
+     * Exposição selecionada na UI
+     */
     private Exposicao m_e;
+
+    /**
+     * Registo das demonstrações
+     */
     private RegistoDemonstracoes m_rd;
+
+    /**
+     * Candidatura selecionada na UI
+     */
     private CandidaturaAExposicao m_candidaturaSelecionada;
+
+    /**
+     * Registo de candidaturas à demonstração em causa
+     */
     private RegistoCandidaturaADemonstracoes m_rc;
+
+    /**
+     * Registo de exposições do centro de exposições
+     */
     private RegistoExposicoes m_re;
+
+    /**
+     * Centro de exposições atual
+     */
     private CentroExposicoes m_ce;
-    private String username;
+
+    /**
+     * Username do Organizador a executar este UC no momento
+     */
+    private String usernameDoOrganizador;
+
+    /**
+     * Keywords associadas à demonstração em causa
+     */
     private String[] keywords;
 
-    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce, String username) {
+    /**
+     * Único construtor. Recebe por parametro o centro de exposições atual e o
+     * username do organizador a executar este UC no momento
+     *
+     * @param ce centro de exposições
+     * @param usernameDoOrganizador username do organizador
+     */
+    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameDoOrganizador) {
         this.m_ce = ce;
-        this.username = username;
+        this.usernameDoOrganizador = usernameDoOrganizador;
     }
 
+    /**
+     * Guarda o registo de exposições do centro de exposições atual
+     */
     public void getRegistoExposicoes() {
         this.m_re = m_ce.getRegistoExposicoes();
     }
@@ -41,7 +76,7 @@ public class DecidirCandidaturaADemonstracaoController {
      * EstadoCandidaturasADemonstracoesAvaliadas.
      */
     public List<Exposicao> getListaExposicoes() {
-        return this.m_re.getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(username);
+        return this.m_re.getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(usernameDoOrganizador);
     }
 
     /**
@@ -64,8 +99,8 @@ public class DecidirCandidaturaADemonstracaoController {
     }
 
     /**
-     * 
-     * @return lista de candidaturas a demonstração do Registo das mesmas 
+     *
+     * @return lista de candidaturas a demonstração do Registo das mesmas
      */
     public List<CandidaturaADemonstracao> getListaCandidaturas() {
         return this.m_rc.getListaCandidaturasADemonstracao();
@@ -76,18 +111,26 @@ public class DecidirCandidaturaADemonstracaoController {
     }
 
     /**
-     * Guarda a candidatura selecionada pelo utilizador
-     * @param cand 
+     * Guarda a candidatura selecionada pelo utilizador na UI
+     *
+     * @param cand candidatura selecionada na UI
      */
     public void setCandidatura(CandidaturaAExposicao cand) {
         this.m_candidaturaSelecionada = cand;
     }
 
-    
+    /**
+     * Guarda as keywords associadas à demonstração
+     */
     public void getKeywords() {
         this.keywords = this.m_candidaturaSelecionada.getKeywords();
     }
 
+    /**
+     * Define uma decisão sobre a demonstração em causa no momento
+     *
+     * @param decisao true se aceite, false caso contrário.
+     */
     public void setDecisao(boolean decisao) {
         this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
@@ -104,6 +147,9 @@ public class DecidirCandidaturaADemonstracaoController {
         }
     }
 
+    /**
+     * Altera o estado da c
+     */
     private void setEstadoCandidaturaAceite() {
         EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
         estado.setEstadoCandidaturaAceite();

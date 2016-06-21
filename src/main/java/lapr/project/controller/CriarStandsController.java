@@ -2,8 +2,7 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.exceptions.AreaErradaException;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Stand;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoStands;
 
 /**
@@ -58,5 +57,4 @@ public class CriarStandsController {
     public boolean criarStand(String ID, String area, String descricao) throws AreaErradaException {
         return this.rStands.criarStand(ID, area, descricao);
     }
-
 }
