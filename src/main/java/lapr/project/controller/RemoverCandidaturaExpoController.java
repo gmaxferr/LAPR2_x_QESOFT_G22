@@ -109,9 +109,9 @@ public class RemoverCandidaturaExpoController {
     }
 
     public void removerCandidatura() {
-        m_rc.removeCandidatura(m_candidaturaARemover);
         RegistoCandidaturasAExposicaoRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasAExposicaoRemovidas();
         rcr.adicionarCandidatura(m_candidaturaARemover);
+        m_rc.removeCandidatura(m_candidaturaARemover);
     }
 
 }

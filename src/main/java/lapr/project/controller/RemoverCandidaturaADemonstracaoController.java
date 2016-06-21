@@ -51,7 +51,7 @@ public class RemoverCandidaturaADemonstracaoController {
      */
     public List<Demonstracao> getListaDemonstracoesExpositor() {
         RegistoDemonstracoes m_rd = m_e.getRegistoDemonstracoes();
-        return m_rd.getDemonstracoesAbertas();
+        return m_rd.getListaDemonstracoesEstadoCandidaturasAbertas();
     }
 
     /**

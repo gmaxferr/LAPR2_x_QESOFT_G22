@@ -138,23 +138,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Devolve a lista das demonstrações dentro do periodo de submissão de
-     * candidaturas
-     *
-     * @return lista das demonstrações dentro do periodo de submissão de
-     * candidaturas
-     */
-    public List<Demonstracao> getDemonstracoesAbertas() {
-        List<Demonstracao> demosAbertas = new ArrayList<>();
-        for (Demonstracao d : m_listaDemonstracoes) {
-            if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAbertas()) {
-                demosAbertas.add(d);
-            }
-        }
-        return demosAbertas;
-    }
-
-    /**
      * Valida uma demonstração
      *
      * @param m_demoCriada - nova demonstração a validar
@@ -216,6 +199,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoFAE;
     }
 
+    /**
+     * Devolve a lista de demonstrações no estado candidaturas fechadas
+     * @return lista de demonstrações no estado candidaturas fechadas
+     */
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasFechadas() {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
@@ -229,6 +216,27 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoOrganizador;
     }
 
+    /**
+     * Devolve a lista das demonstrações dentro do periodo de submissão de
+     * candidaturas
+     *
+     * @return lista das demonstrações dentro do periodo de submissão de
+     * candidaturas
+     */
+   
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasAbertas() {
+        List<Demonstracao> listaDemonstracoes = new ArrayList<>();
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoCandidaturasAbertas()) {
+                listaDemonstracoes.add(demonstracao);
+            }
+        }
+        return listaDemonstracoes;
+    }
+    
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.

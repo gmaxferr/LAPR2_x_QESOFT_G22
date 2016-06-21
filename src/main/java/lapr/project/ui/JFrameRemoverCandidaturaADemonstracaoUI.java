@@ -22,7 +22,9 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private transient List<Demonstracao> m_listaDemonstracoes;
     private transient List<CandidaturaADemonstracao> m_listaCandidaturas;
-
+    
+    private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
+    
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
@@ -462,6 +464,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         int d = jComboBoxEscolherDemonstracao.getSelectedIndex();
         Demonstracao m_Demonstracao = m_listaDemonstracoes.get(d);
         m_listaCandidaturas = m_Demonstracao.getCandidaturasDemoExpositor(emailExpositor);
+        m_listaCandidaturasRemovidas = m_Demonstracao.getRegistoCandidaturasADemonstracaoRemovidas().getListaCandidaturasADemonstracaoRemovidas();
         jComboBoxCandidaturas.setModel(new ComboBoxModelCandidaturaADemonstracao(m_listaCandidaturas));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
@@ -494,11 +497,12 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         if (jComboBoxCandidaturas.getSelectedItem() != null) {
             int op = JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende remover a candidatura à demonstração selecionada?", "Confirma a remoção?", JOptionPane.YES_NO_OPTION);
-            if(op==1){
-            CandidaturaADemonstracao cand = m_listaCandidaturas.get(jComboBoxCandidaturas.getSelectedIndex());
-            m_listaCandidaturas.remove(cand);
+            if (op == 1) {
+                CandidaturaADemonstracao cand = m_listaCandidaturas.get(jComboBoxCandidaturas.getSelectedIndex());
+                m_listaCandidaturasRemovidas.add(cand);
+                m_listaCandidaturas.remove(cand);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Não selecionou nenhuma candidatura!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_removeBtnActionPerformed
