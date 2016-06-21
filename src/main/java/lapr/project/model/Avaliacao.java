@@ -112,18 +112,6 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
-    /**
-     * Modifica a avaliação e a justificação
-     *
-     * @param justificacao nova justificação
-     */
-    public void setAvalicaoParaDemonstracao(String justificacao) {
-        //Não mexer, para a Ana ver
-        this.m_avaliacao = avaliacao;
-        this.m_justificacao = justificacao;
-
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null

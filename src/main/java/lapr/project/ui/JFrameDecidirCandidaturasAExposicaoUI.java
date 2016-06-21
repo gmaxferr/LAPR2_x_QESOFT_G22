@@ -25,8 +25,8 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO2 = 480;
     private static final int ALTURA_JANELA_PASSO2 = 450;
 
-    private static final int LARGURA_JANELA_PASSO3 = 515;
-    private static final int ALTURA_JANELA_PASSO3 = 220;
+    private static final int LARGURA_JANELA_PASSO3 = 441;
+    private static final int ALTURA_JANELA_PASSO3 = 188;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     private final CardLayout cardLayout;
@@ -285,6 +285,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
         getContentPane().add(card1, "card1");
 
+        jLabel4.setFont(jLabelCard1Titulo.getFont());
         jLabel4.setText("Escolha a candidatura pretendida");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -462,7 +463,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
                 .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard2Avancar)
                     .addComponent(jButtonCard2Recuar))
@@ -521,33 +522,30 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jButtonCard3Recuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCard3Terminar)
-                .addGap(88, 88, 88))
-            .addGroup(card3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
+                        .addGap(129, 129, 129)
                         .addComponent(jLabel3))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addComponent(jButtonCard3Recuar)
+                        .addGap(181, 181, 181)
+                        .addComponent(jButtonCard3Terminar)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Recuar)
                     .addComponent(jButtonCard3Terminar))
-                .addGap(192, 192, 192))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(card3, "card3");

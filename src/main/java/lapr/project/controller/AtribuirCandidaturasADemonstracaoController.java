@@ -16,6 +16,12 @@ import lapr.project.registos.*;
 public class AtribuirCandidaturasADemonstracaoController {
 
     /**
+     * Lista de exposições - a ser preechida pelas exposições do organizador a
+     * executar o UC
+     */
+    private List<Exposicao> m_listaExpo;
+    
+    /**
      * Centro de Exposições
      */
     private CentroExposicoes m_centroExposicoes;
@@ -39,6 +45,11 @@ public class AtribuirCandidaturasADemonstracaoController {
      * Registo de atribuições
      */
     private RegistoAtribuicoesDemonstracao m_rad;
+    
+    /**
+     * Registo de exposições
+     */
+    private RegistoExposicoes m_re;
 
     /**
      * Lista de demonstrações
@@ -87,6 +98,32 @@ public class AtribuirCandidaturasADemonstracaoController {
     }
 
     /**
+     * Guarda o registo de exposições
+     */
+    public void getRegistoExposicoes() {
+        this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
+    }
+     
+    /**
+     * Devolve a lista de Exposições do Organizador
+     *
+     * @return lista de exposições o organizador
+     */
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoConflitosAlterados(String usernameOrganizador) {
+        m_listaExpo = this.m_re.getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(usernameOrganizador);
+        return m_listaExpo;
+    }
+    
+    /**
+     * Guarda a exposição escolhida pelo utilizador na UI
+     *
+     * @param exposicao exposição escolhida
+     */
+    public void setExposicao(Exposicao exposicao) {
+        this.m_exposicao = exposicao;
+    }
+    
+    /**
      * Guarda o registo de demonstrações
      */
     public void getRegistoDemonstracoes() {
@@ -99,7 +136,7 @@ public class AtribuirCandidaturasADemonstracaoController {
      * @param usernameOrganizador username do organizador
      * @return lista de demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesEestadoCandidaturasFechadas(String usernameOrganizador) {
+    public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasFechadas(String usernameOrganizador) {
         for (Organizador o : m_exposicao.getListaOrganizadores()) {
             if (o.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
                 return m_rd.getListaDemonstracoesEstadoCandidaturasFechadas();

@@ -1,38 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.BorderLayout;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import lapr.project.controller.DecidirDemonstracaoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.model.*;
 import lapr.project.ui.model.ModelComboBoxDias;
 import lapr.project.utils.Data;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
