@@ -105,4 +105,12 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
         return node;
     }
+
+    /**
+     * TESTE USE ONLY
+     * @param m_rFaeAvaliacao the m_rFaeAvaliacao to set
+     */
+    public void setRegistoFaeAvaliacao(RegistoFaeAvaliacao m_rFaeAvaliacao) {
+        this.m_rFaeAvaliacao = m_rFaeAvaliacao;
+    }
 }

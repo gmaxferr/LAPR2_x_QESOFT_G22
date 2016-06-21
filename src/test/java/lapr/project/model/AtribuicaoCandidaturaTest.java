@@ -21,22 +21,38 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class AtribuicaoCandidaturaTest {
-    
+
     public AtribuicaoCandidaturaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private AtribuicaoCandidatura instance;
+    private FAE fae;
+    private Utilizador u;
+    private CandidaturaAExposicao cand;
+    private CentroExposicoes ce;
+    private Exposicao e;
+    private RegistoFaeAvaliacao reg;
+
     @Before
     public void setUp() {
+        ce = new CentroExposicoes();
+        reg = new RegistoFaeAvaliacao();
+        u = new Utilizador("nome", "username", new char[]{'A', 'a', '.', '1'}, "a@b.c");
+        fae = new FAE(u);
+        e = new Exposicao(ce);
+        cand = new CandidaturaAExposicao(e, new Expositor(u));
+        instance = new AtribuicaoCandidatura(cand);
+        instance.setRegistoFaeAvaliacao(reg);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,12 +63,9 @@ public class AtribuicaoCandidaturaTest {
     @Test
     public void testGetCandidaturaAssociada() {
         System.out.println("getCandidaturaAssociada");
-        AtribuicaoCandidatura instance = null;
-        CandidaturaAExposicao expResult = null;
+        CandidaturaAExposicao expResult = cand;
         CandidaturaAExposicao result = instance.getCandidaturaAssociada();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,12 +74,9 @@ public class AtribuicaoCandidaturaTest {
     @Test
     public void testGetRegistoFaeAvaliacao() {
         System.out.println("getRegistoFaeAvaliacao");
-        AtribuicaoCandidatura instance = null;
-        RegistoFaeAvaliacao expResult = null;
+        RegistoFaeAvaliacao expResult = reg;
         RegistoFaeAvaliacao result = instance.getRegistoFaeAvaliacao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,11 +85,7 @@ public class AtribuicaoCandidaturaTest {
     @Test
     public void testAddFaeAvaliacao() {
         System.out.println("addFaeAvaliacao");
-        FAE fae = null;
-        AtribuicaoCandidatura instance = null;
         instance.addFaeAvaliacao(fae);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,12 +94,9 @@ public class AtribuicaoCandidaturaTest {
     @Test
     public void testFix() {
         System.out.println("fix");
-        RegistoCandidaturasAExposicao m_rce = null;
-        RegistoUtilizadores m_registoUtilizadores = null;
-        AtribuicaoCandidatura instance = null;
+        RegistoCandidaturasAExposicao m_rce = new RegistoCandidaturasAExposicao(e);
+        RegistoUtilizadores m_registoUtilizadores = new RegistoUtilizadores("reg");
         instance.fix(m_rce, m_registoUtilizadores);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -103,12 +106,9 @@ public class AtribuicaoCandidaturaTest {
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        AtribuicaoCandidatura instance = null;
         AtribuicaoCandidatura expResult = null;
         AtribuicaoCandidatura result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -117,12 +117,9 @@ public class AtribuicaoCandidaturaTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        AtribuicaoCandidatura instance = null;
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

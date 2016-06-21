@@ -85,13 +85,9 @@ public class ExposicaoTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
-        e.setDataFimCandDemo(data6);
-        e.setDataInicioCandDemo(data7);
-        e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
+        desc = "desc";
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         titulo = "titulo";
-        desc = "desc";
         local = new Local("rua");
         c = new CandidaturaAExposicao(e, new Expositor(u));
         c.criarProduto("p");
@@ -112,11 +108,15 @@ public class ExposicaoTest {
         data5 = new Data("2016-10-09T00:00:00Z");
         data6 = new Data("2016-10-10T00:00:00Z");
         data7 = new Data("2016-10-11T00:00:00Z");
+        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        e.setDataFimCandDemo(data6);
+        e.setDataInicioCandDemo(data7);
         demo = new Demonstracao("descr");
         demo.setEstado(new EstadoDemonstracaoConfirmada(demo));
         demo.setDataInicioCandidaturas(data4);
         demo.setDataFimDetecaoConflitos(data4);
         demo.setDataFimCandidaturas(data4);
+        e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
     }
 
     @After
@@ -167,7 +167,6 @@ public class ExposicaoTest {
     @Test
     public void testGetDescricao() {
         System.out.println("getDescricao");
-
         String expResult = desc;
         String result = e.getDescricao();
         assertEquals(expResult, result);
@@ -683,11 +682,6 @@ public class ExposicaoTest {
     public void testRecriarTimersDemo() {
         System.out.println("recriarTimersDemo");
         e.setEstado(new EstadoExposicaoCandidaturasDecididas(e));
-        Demonstracao d = new Demonstracao("d");
-        d.setDataInicioCandidaturas(new Data(2018, 2, 15));
-        d.setDataFimDetecaoConflitos(new Data(2018, 2, 15));
-        d.setDataFimCandidaturas(new Data(2018, 2, 15));
-        e.getRegistoDemonstracoes().getListaDemonstracoes().add(d);
         e.recriarTimersDemo();
     }
 
