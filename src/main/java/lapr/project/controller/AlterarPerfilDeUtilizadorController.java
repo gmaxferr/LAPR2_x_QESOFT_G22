@@ -68,13 +68,17 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * inicializa e retorna password de utilizador
+     * retorna password de utilizador, transformanso-a numa String
      *
      * @return password de utilizador
      */
-    public char[] getPasswordUtilizador() {
+    public String getPasswordUtilizador() {
         m_password = m_u.getPwd();
-        return m_password;
+        String aux = "";
+        for(char c: m_password){
+            aux += c;
+        }
+        return aux;
     }
 
     /**
@@ -104,7 +108,7 @@ public class AlterarPerfilDeUtilizadorController {
      * @return true se for válido; false caso contrário.
      */
     public boolean validaEmail(String email) {
-        return m_ru.validaEmail(email) && !email.isEmpty();
+        return m_ru.validaEmail(email);
 
     }
 
