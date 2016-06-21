@@ -165,43 +165,6 @@ public class AvaliarCandidaturaADemonstracaoController {
     }
 
     /**
-     * Verifica se a avalição já foi tomada
-     *
-     * @return true se a avaliação foi tomada. Caso contrário retorna false.
-     */
-    public boolean verificaAvalicaoJaTomada() {
-        return this.m_avaliacaoDoFae.verificaAvaliacaoJaTomada();
-    }
-
-    /**
-     * Devolve a avaliação do fae
-     *
-     * @return avaliação do fae
-     */
-    public boolean getAvaliacao() {
-        return this.m_avaliacaoDoFae.getAvaliacao();
-    }
-
-    /**
-     * Devolve a justificação do fae
-     *
-     * @return justificação do fae
-     */
-    public String getJustificacao() {
-        return this.m_avaliacaoDoFae.getJustificacao();
-    }
-
-    /**
-     * Modifica a avaliação e a justificação
-     *
-     * @param avaliacao avaliação
-     * @param justificacao justificação
-     */
-    public void setAvalicaoParaDemonstracao(boolean avaliacao, String justificacao) {
-        this.m_avaliacaoDoFae.setAvalicaoParaDemonstracao(avaliacao, justificacao);
-    }
-
-    /**
      * Atualiza o estado da candidatura e da demonstração atualmente
      * selecionadas pelo FAE na UI para os estados CandidaturasAvaliadas
      */
