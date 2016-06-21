@@ -168,9 +168,10 @@ public class KeywordRankingTest {
         System.out.println("setReady");
         KeywordRanking instance = new KeywordRanking();
         instance.setReady();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        boolean expResult = true;
+        boolean result = instance.isReady();
+        assertEquals(expResult, result); 
+   }
 
     /**
      * Test of isReady method, of class KeywordRanking.
@@ -182,8 +183,6 @@ public class KeywordRankingTest {
         boolean expResult = false;
         boolean result = instance.isReady();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
