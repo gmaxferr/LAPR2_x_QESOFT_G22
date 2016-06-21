@@ -44,8 +44,6 @@ public class MecanismoSimplesTest {
         List<AtribuicaoCandidatura> expResult = null;
         List<AtribuicaoCandidatura> result = instance.atribui(exposicaoEscolhida);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -54,24 +52,19 @@ public class MecanismoSimplesTest {
     @Test
     public void testAtribui_Demonstracao() {
         System.out.println("atribui");
+        Exposicao exposicaoEscolhida = null;
         Demonstracao demonstracaoEscolhida = null;
         MecanismoSimples instance = new MecanismoSimplesImpl();
-        List<AtribuicaoCandidatura> expResult = null;
-        List<AtribuicaoCandidatura> result = instance.atribui(demonstracaoEscolhida);
+        List<AtribuicaoCandidaturaDemonstracao> expResult = null;
+        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(exposicaoEscolhida, demonstracaoEscolhida);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     public class MecanismoSimplesImpl implements MecanismoSimples {
 
         public List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida) {
             return null;
-        }
-
-        public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida) {
-            return null;
-        }
+        } 
 
         @Override
         public String getNome() {
@@ -82,17 +75,12 @@ public class MecanismoSimplesTest {
         public String getDescricao() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
+
+        @Override
+        public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida) {
+            return null;
+        }
     }
 
-    public class MecanismoSimplesImpl implements MecanismoSimples {
-
-        public List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida) {
-            return null;
-        }
-
-        public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida) {
-            return null;
-        }
     }
     
-}

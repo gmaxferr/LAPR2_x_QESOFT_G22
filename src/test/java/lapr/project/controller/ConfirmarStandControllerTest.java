@@ -39,7 +39,7 @@ public class ConfirmarStandControllerTest {
     private AtribuicaoStand atribuicaoStand;
     private Exposicao e;   
     private Utilizador u;
-    private List<AtribuicaoStand> listAtrib;
+    private Expositor expositor;
     
     public ConfirmarStandControllerTest() {
     }
@@ -54,14 +54,15 @@ public class ConfirmarStandControllerTest {
     
     @Before
     public void setUp() {
-        listAtrib = new ArrayList<AtribuicaoStand>();
         ce = new CentroExposicoes();
         e = new Exposicao(ce);
         re = ce.getRegistoExposicoes();
         ras = e.getRegistoAtribuicoesStands();
         instance = new ConfirmarStandController(ce);
         u = new Utilizador();
+        expositor = new Expositor(u);
         decisao = true;
+        atribuicaoStand = new AtribuicaoStand(new Stand("a", 2, "descricao"),new CandidaturaAExposicao(expositor),decisao);
     }
     
     @After
@@ -125,8 +126,8 @@ public class ConfirmarStandControllerTest {
         String email = "";
         instance.setExposicao(e);
         instance.getRegistoAtribuicoesStands();
-        List<AtribuicaoStand> expResult = new ArrayList<>();
-        List<AtribuicaoStand> result = instance.getAtribuicao(email);
+        AtribuicaoStand expResult = atribuicaoStand;
+        AtribuicaoStand result = instance.getAtribuicao(email, new CandidaturaAExposicao(new Expositor(u)));
         assertEquals(expResult, result);
     }
     
@@ -148,9 +149,49 @@ public class ConfirmarStandControllerTest {
         instance.getListaExposicoesDoRepresentante(u.getUsername());
         instance.setExposicao(e);
         instance.getRegistoAtribuicoesStands();
-        instance.getAtribuicao(u.getEmail());
+        instance.getAtribuicao(u.getEmail(), new CandidaturaAExposicao(new Expositor(u)));
         decisao = true;
         instance.setDecisao(decisao);
+    }
+
+    /**
+     * Test of getRegistoCandidaturasAExposicao method, of class ConfirmarStandController.
+     */
+    @Test
+    public void testGetRegistoCandidaturasAExposicao() {
+        System.out.println("getRegistoCandidaturasAExposicao");
+        ConfirmarStandController instance = null;
+        instance.getRegistoCandidaturasAExposicao();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getListaCandidaturasDoRepresentante method, of class ConfirmarStandController.
+     */
+    @Test
+    public void testGetListaCandidaturasDoRepresentante() {
+        System.out.println("getListaCandidaturasDoRepresentante");
+        String email = "";
+        ConfirmarStandController instance = null;
+        List<CandidaturaAExposicao> expResult = null;
+        List<CandidaturaAExposicao> result = instance.getListaCandidaturasDoRepresentante(email);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setCandidaturaAExposicao method, of class ConfirmarStandController.
+     */
+    @Test
+    public void testSetCandidaturaAExposicao() {
+        System.out.println("setCandidaturaAExposicao");
+        CandidaturaAExposicao candidatura = null;
+        ConfirmarStandController instance = null;
+        instance.setCandidaturaAExposicao(candidatura);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     

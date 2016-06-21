@@ -13,22 +13,22 @@ import static org.junit.Assert.*;
  * @author G29
  */
 public class MecanismoPredefinidoCTest {
-    
+
     public MecanismoPredefinidoCTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -83,14 +83,15 @@ public class MecanismoPredefinidoCTest {
     @Test
     public void testAtribui_Demonstracao_String() {
         System.out.println("atribui");
+        Exposicao e = null;
         Demonstracao demonstracaoEscolhida = null;
         String numeroLido = "";
         MecanismoPredefinidoC instance = new MecanismoPredefinidoC();
-        List<AtribuicaoCandidatura> expResult = null;
-        List<AtribuicaoCandidatura> result = instance.atribui(demonstracaoEscolhida, numeroLido);
+        List<AtribuicaoCandidaturaDemonstracao> expResult = null;
+        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(e, demonstracaoEscolhida, numeroLido);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
