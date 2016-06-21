@@ -49,7 +49,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
      * @param centroExposicoes
      */
     public JFrameAtribuirCandidaturasUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
-        super("Atribuir candidaturas");
+        super("Atribuir candidaturas a exposição");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.usernameOrganizador = usernameOrganizador;

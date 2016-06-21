@@ -8,7 +8,7 @@ import lapr.project.model.Exposicao;
 /**
  * Representação de uma ComboBoxModel de exposições.
  *
- * @author Ana Leite e Ricardo Osório
+ * @author G29
  */
 public class ComboBoxModelExposicoes extends AbstractListModel implements ComboBoxModel {
 

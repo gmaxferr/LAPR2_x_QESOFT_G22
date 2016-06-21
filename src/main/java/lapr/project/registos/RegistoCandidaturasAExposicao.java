@@ -18,7 +18,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     public static final String ROOT_ELEMENT_NAME = "registoCandidaturas";
 
     public final Exposicao e;
-    
+
     /**
      * Lista de candidaturas a exposição
      */
@@ -128,15 +128,18 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
-     * Devolve a percentagem de candidaturas à exposição aceites.
+     * Devolve a percentagem de candidaturas à exposição aceite do representente
+     * cujo username é passado por parametro.
      *
-     * @return percentagem de candidaturas à exposição acites. Se não houveram
-     * candidaturas então devolve 0;
+     * @param usernameExpositor username do Expositor
+     * @return percentagem de candidaturas do representante à exposição aceites.
+     * Se não houveram candidaturas então devolve 0
      */
-    public float getPercentagemCandidaturasAceites() {
-        int cont = this.m_listaCandidaturas.size();
+    public float getPercentagemCandidaturasAceites(String usernameExpositor) {
+        List<CandidaturaAExposicao> listaCandidaturasDoExpositor = getCandidaturasRepresentante(usernameExpositor);
+        int cont = listaCandidaturasDoExpositor.size();
         float candAceites = 0;
-        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+        for (CandidaturaAExposicao candidatura : listaCandidaturasDoExpositor) {
             if (candidatura.getEstado().isEstadoCandidaturaAceite()) {
                 candAceites++;
             }
@@ -151,7 +154,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param m_registoUtilizadores registo de utilizadores
      * @param m_rd registo de demonstrações
      */
