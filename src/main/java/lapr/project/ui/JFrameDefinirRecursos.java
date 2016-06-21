@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.ui.model.AbstractListModelRecursos;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -18,11 +19,15 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
     private transient DefinirRecursoController CTRL;
     private transient List<Recurso> listaRecursos;
     private transient AbstractListModelRecursos AbstListRecursos;
+    private transient JFrame mainMenu;
+    private transient CentroExposicoes ce;
 
     /**
      * Cria novo JForm (JFrameDefinirRecursos)
      */
-    public JFrameDefinirRecursos(CentroExposicoes ce) {
+    public JFrameDefinirRecursos(CentroExposicoes ce, JFrame mainMenu) {
+        this.ce = ce;
+        this.mainMenu = mainMenu;
         CTRL = new DefinirRecursoController(ce);
         listaRecursos = CTRL.getListaRecursos();
         AbstListRecursos = new AbstractListModelRecursos(listaRecursos);
@@ -61,6 +66,8 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
         jLabel3.setText("Lista de recursos existentes:");
 
         jList1.setModel(AbstListRecursos);
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setToolTipText("lista de Recursos do centro de exposições");
         jScrollPane1.setViewportView(jList1);
 
         jButton2.setText("Adicionar Recurso");
@@ -132,16 +139,19 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nomeRecurso;
         nomeRecurso = JOptionPane.showInputDialog(null, "Qual o nome do recurso a adicionar?");
-        if(CTRL.criarRecurso(nomeRecurso)){
+        if (CTRL.criarRecurso(nomeRecurso)) {
+            this.listaRecursos = CTRL.getListaRecursos();
+            AbstListRecursos =  new AbstractListModelRecursos(listaRecursos);
             jList1.setModel(AbstListRecursos);
             JOptionPane.showMessageDialog(null, "Recurso adicionado com sucesso.", "Sucesso!", INFORMATION_MESSAGE);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Nome de recurso inválido ou recurso já existente.", "ERRO", ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
+        mainMenu.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
