@@ -12,6 +12,7 @@ import lapr.project.exceptions.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -44,8 +45,10 @@ public class Main {
 
                         if (resultVal == JOptionPane.YES_OPTION) {
                             try {
-                                centroExposicoes = CTRL.Import(filePath[0]);
-                                if (centroExposicoes != null) {
+                                Node node = CTRL.Import(filePath[0]);
+                                if (node != null) {
+                                    centroExposicoes = new CentroExposicoes();
+                                    centroExposicoes.importContentFromXMLNode(node);
                                     JOptionPane.showMessageDialog(null, "Informação carregada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Erro no carregamento da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);

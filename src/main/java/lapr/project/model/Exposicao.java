@@ -554,20 +554,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
-    /**
-     * Verifica se o utilizadoré FAE desta exposição
-     *
-     * @param utilizador - utilizador a verificar
-     * @return true se o utilizador nao é FAEou false caso contrário
-     */
-    public boolean validaOrganizador(Organizador utilizador) {
-        for (FAE f : m_rfae.getListaFAE()) {
-            if (utilizador.getUsernameOrganizador().equals(f.getUsernameFae())) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * @return the m_ce

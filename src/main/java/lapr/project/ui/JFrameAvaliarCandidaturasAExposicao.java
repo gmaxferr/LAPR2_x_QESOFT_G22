@@ -728,23 +728,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         dispose();
         jFrameMenuPrincipal.setVisible(true);
     }
-
-//    private void guardarDecisao() {
-//        if (jRadioButtonSim.isSelected()) {
-//            avaliacaoDaCandidatura.setDecisao(true);
-//        } else {
-//            avaliacaoDaCandidatura.setDecisao(false);
-//        }
-//        avaliacaoDaCandidatura.setJustificacao(jTextAreaJustificacao.getText());
-//    }
-//    private void terminarUC() {
-//        setVisible(false);
-//        jFrameMenuPrincipal.setVisible(true);
-//    }
-//    private void voltarASelecionarExposicao() {
-//        cardLayout.show(getContentPane(), "card1");
-//        setSize(CARD1_LARGURA_MINIMA, CARD1_ALTURA_MINIMA);
-//    }
+    
     private void jComboBoxEscolherExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherExposicaoActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             Exposicao expo = listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex());

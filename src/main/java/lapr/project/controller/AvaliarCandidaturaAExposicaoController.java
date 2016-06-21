@@ -156,25 +156,6 @@ public class AvaliarCandidaturaAExposicaoController {
     }
 
     /**
-     * Devolve a avaliação já feito pelo FAE
-     *
-     * @return true ou false caso o FAE tenha anteriormente aceitado ou
-     * rejeitado a candidatura
-     */
-    public boolean getAvaliacao() {
-        return this.m_avaliacaoDoFae.getAvaliacao();
-    }
-
-    /**
-     * Devolve a justificação já dada pelo FAE
-     *
-     * @return justifição dada anteriormente pelo FAE
-     */
-    public String getJustificacao() {
-        return this.m_avaliacaoDoFae.getJustificacao();
-    }
-
-    /**
      * Devolve o rating dado pelo FAE relativo ao conhecimento pelo tema da
      * candidatura
      *
@@ -236,8 +217,6 @@ public class AvaliarCandidaturaAExposicaoController {
      * Define novos parametros a serem guardados no objecto Avaliação deste FAE
      * sobre a candidatura escolhida (Avaliação, justificaçao e ratings)
      *
-     * @param avaliacao true ou false caso aceite ou rejeite a candidatura
-     * @param justificacao justificação da sua avaliação
      * @param ratingConhecimentoSobreTema inteiro de 0-5 que representa o
      * conhecimento do FAE sobre o tema da candidatura/exposição
      * @param ratingAdequacaoAExposicao inteiro de 0-5 que representa a opinião
@@ -249,8 +228,8 @@ public class AvaliarCandidaturaAExposicaoController {
      * @param ratingRecomendacaoGlobal inteiro de 0-5 que representa a
      * recomendação do FAE para a candidatura
      */
-    public void setAvalicao(boolean avaliacao, String justificacao, int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.m_avaliacaoDoFae.setAvalicao(avaliacao, justificacao, ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
+    public void setAvalicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
+        this.m_avaliacaoDoFae.setAvalicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
     }
  /**
      * Define uma exposição como a selecionada pelo FAE na UI
@@ -259,16 +238,6 @@ public class AvaliarCandidaturaAExposicaoController {
      */
     public void setExposicao(Exposicao exposicao) {
         this.m_exposicaoSelecionada = exposicao;
-    }
-
-    /**
-     * Verifica se o FAE já avaliou a candidatura selecionada
-     *
-     * @return true se já avaliou antes, false se ainda não tinha avaliada a
-     * candidatura selecionada
-     */
-    public boolean verificaAvalicaoJaTomada() {
-        return this.m_avaliacaoDoFae.verificaAvaliacaoJaTomada();
     }
 
 }
