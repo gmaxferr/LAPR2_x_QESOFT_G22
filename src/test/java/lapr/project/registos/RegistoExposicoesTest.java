@@ -22,6 +22,7 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Expositor;
 import lapr.project.model.KeywordRanking;
 import lapr.project.model.Local;
 import lapr.project.model.Recurso;
@@ -32,7 +33,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.w3c.dom.Node;
 
 /**
  *
@@ -44,15 +44,15 @@ public class RegistoExposicoesTest {
     RegistoExposicoes re;
     Exposicao expo1, expo2, expo3, expo4, expo5, expo6, expo7, expo8, expo9, expo10, expo11;
     KeywordRanking rank = new KeywordRanking();
-
+    CandidaturaAExposicao cand;
     public RegistoExposicoesTest() {
         ce = new CentroExposicoes();
-
         re = ce.getRegistoExposicoes();
 
         Utilizador user1 = new Utilizador("Joaquim", "user1", "Secret-1".toCharArray(), "mail@mail.com");
         Utilizador user2 = new Utilizador("Joaquim", "user2", "Secret-1".toCharArray(), "mail@mail.com");
         Utilizador user3 = new Utilizador("Joaquim", "user3", "Secret-1".toCharArray(), "mail@mail.com");
+        cand = new CandidaturaAExposicao(expo1, new Expositor(user1));
 
         Data data1 = new Data(2016, 1, 2);
 
@@ -230,10 +230,10 @@ public class RegistoExposicoesTest {
     @Test
     public void testGetListaExposicoesComCanditaturasAceitesDoRepresentante() {
         System.out.println("getListaExposicoesComCanditaturasAceitesDoRepresentante");
-        String username = "user3";
+        String email = "mail@mail.com";
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo9);
-        List<Exposicao> result = re.getListaExposicoesComCanditaturasAceitesDoRepresentante(username);
+        List<Exposicao> result = re.getListaExposicoesComCanditaturasAceitesDoRepresentante(email);
         assertEquals(expResult, result);
     }
 
@@ -243,10 +243,10 @@ public class RegistoExposicoesTest {
     @Test
     public void testGetExposicoesDoRepresentante() {
         System.out.println("getExposicoesDoRepresentante");
-        String username = "user3";
+        String email = "mail@mail.com";
         List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo9);
-        List<Exposicao> result = re.getExposicoesDoRepresentanteCandidaturasAbertas(username);
+        expResult.add(expo1);
+        List<Exposicao> result = re.getExposicoesDoRepresentanteCandidaturasAbertas(email);
         assertEquals(expResult, result);
     }
 
