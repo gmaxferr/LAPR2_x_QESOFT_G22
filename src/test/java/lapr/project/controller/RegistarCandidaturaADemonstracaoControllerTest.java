@@ -1,27 +1,15 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import lapr.project.model.*;
+import lapr.project.registos.*;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class RegistarCandidaturaADemonstracaoControllerTest {
 

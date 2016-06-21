@@ -82,11 +82,13 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     public float[] getMediaRatingsTodasCandidaturas() {
         int cont = this.m_listaAtribuicao.size();
         float[] vec = new float[cont];
-        for (int i = 0; i < cont; i++) {
-            for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-                vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
-            }
+        int i = 0;
+        
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            i++;
         }
+
         return vec;
     }
 

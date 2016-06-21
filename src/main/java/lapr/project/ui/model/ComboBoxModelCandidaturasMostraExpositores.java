@@ -51,7 +51,7 @@ public class ComboBoxModelCandidaturasMostraExpositores extends AbstractListMode
      */
     @Override
     public Object getElementAt(int index) {
-        return this.m_listaCandidaturas.get(index).getUsernameExpositor();
+        return this.m_listaCandidaturas.get(index).getEmailExpositor();
     }
 
     /**

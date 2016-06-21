@@ -40,8 +40,8 @@ public class PercentagemCandAceitesMediaRatingsController {
         return this.rc.getListaCandidaturas();
     }
 
-    public float getPercentagemCandidaturasAceitesDoExpositor(String usernameExpositor) {
-        return this.rc.getPercentagemCandidaturasAceites(usernameExpositor);
+    public float getPercentagemCandidaturasAceitesDoExpositor(String emailExpositor) {
+        return this.rc.getPercentagemCandidaturasAceites(emailExpositor);
     }
 
     public void getRegistoAtribuicoes() {
