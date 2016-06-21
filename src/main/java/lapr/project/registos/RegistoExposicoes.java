@@ -15,12 +15,12 @@ import org.w3c.dom.*;
  */
 public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoExposicoes";
+    public static final String ROOT_ELEMENT_NAME = "registoExposicoes";
 
     /**
      * Lista de exposições existentes
      */
-    private final ArrayList<Exposicao> m_listaExposicoes;
+    private final List<Exposicao> m_listaExposicoes;
 
     /**
      * Centro de exposições
@@ -376,10 +376,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     @Override
     public RegistoExposicoes importContentFromXMLNode(Node node) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+            Document doc = XMLParser.createDocument(node, true);
 
             Node n = doc.getChildNodes().item(0);
 

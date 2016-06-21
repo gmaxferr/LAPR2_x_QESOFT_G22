@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoConflitos implements Importable<RegistoConflitos>, Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoConflitos";
+    public static final String ROOT_ELEMENT_NAME = "registoConflitos";
 
     /**
      * Lista de conflitos de interesse
@@ -87,6 +87,9 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
 
     @Override
     public RegistoConflitos importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

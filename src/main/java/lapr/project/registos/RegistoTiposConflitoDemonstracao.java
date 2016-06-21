@@ -14,7 +14,7 @@ import org.w3c.dom.*;
  */
 public class RegistoTiposConflitoDemonstracao implements Importable<RegistoTiposConflitoDemonstracao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoTipoConflitosDemonstracao";
+    public static final String ROOT_ELEMENT_NAME = "registoTipoConflitosDemonstracao";
     public static final String NUM_CONFLITOS_ATTR_NAME = "numConflitos";
 
     /**

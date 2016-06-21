@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.exceptions.DiaInvalidoException;
 import lapr.project.exceptions.MesInvalidoException;
+import lapr.project.exceptions.TempoInvalidoException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,11 +19,7 @@ import org.w3c.dom.Node;
  */
 public class Data implements Comparable<Data>, Importable<Data>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "Data";
-
-    public static final String ANO_ELEMENT_NAME = "Ano";
-    public static final String MES_ELEMENT_NAME = "Mes";
-    public static final String DIA_ELEMENT_NAME = "Dia";
+    public static final String ROOT_ELEMENT_NAME = "data";
 
     /**
      * O ano da data.
@@ -40,19 +37,19 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     private int dia;
 
     /**
-     * O ano por omissão.
+     * A hora.
      */
-    private static final int ANO_POR_OMISSAO = 1;
+    private int hora;
 
     /**
-     * O mês por omissão.
+     * O minuto.
      */
-    private static final int MES_POR_OMISSAO = 1;
+    private int minuto;
 
     /**
-     * O dia por omissão.
+     * O segundo.
      */
-    private static final int DIA_POR_OMISSAO = 1;
+    private int segundo;
 
     /**
      * Nomes dos dias da semana.
@@ -79,9 +76,23 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      * @param ano o ano da data.
      * @param mes o mês da data.
      * @param dia o dia da data.
+     * @param hora a hora
+     * @param minuto o minuto
+     * @param segundo o segundo
+     */
+    public Data(int ano, int mes, int dia, int hora, int minuto, int segundo) {
+        setData(ano, mes, dia, hora, minuto, segundo);
+    }
+
+    /**
+     * Constrói uma instância de Data recebendo o ano, o mês e o dia.
+     *
+     * @param ano o ano da data.
+     * @param mes o mês da data.
+     * @param dia o dia da data.
      */
     public Data(int ano, int mes, int dia) {
-        setData(ano, mes, dia);
+        setData(ano, mes, dia, 0, 0, 0);
     }
 
     /**
@@ -106,15 +117,8 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
         dia = outraData.dia;
     }
 
-    /**
-     *
-     * @param data com padrão: dd/mm/aaaa
-     */
     public Data(String data) {
-        String d[] = data.split("/");
-        this.ano = Integer.parseInt(d[0]);
-        this.mes = Integer.parseInt(d[1]);
-        this.dia = Integer.parseInt(d[2]);
+        loadFromCompactString(data);
     }
 
     /**
@@ -143,7 +147,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     public int getDia() {
         return dia;
     }
-
+    
     /**
      * Modifica o ano, o mês e o dia da data.
      *
@@ -152,6 +156,20 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      * @param dia o novo dia da data.
      */
     public final void setData(int ano, int mes, int dia) {
+        setData(ano, mes, dia, 0, 0, 0);
+    }
+    
+    /**
+     * Modifica o ano, o mês, o dia e a hora da data.
+     *
+     * @param ano o novo ano da data.
+     * @param mes o novo mês da data.
+     * @param dia o novo dia da data.
+     * @param hora a hora
+     * @param minuto o minuto
+     * @param segundo o segundo
+     */
+    public final void setData(int ano, int mes, int dia, int hora, int minuto, int segundo) {
         if (mes < 1 || mes > 12) {
             throw new MesInvalidoException("Mês " + mes + " é inválido!!");
         }
@@ -161,9 +179,34 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             throw new DiaInvalidoException("Dia " + ano + "/" + mes + "/" + dia
                     + " é inválido!!");
         }
+        if (hora < 0 || hora > 23
+                || minuto < 0 || minuto > 59
+                || segundo < 0 || segundo > 59
+                || (hora == 24 && minuto == 00 && segundo == 0)) {
+            throw new TempoInvalidoException("Hora: " + hora + ":" + minuto + ":" + segundo + " é inválida.");
+        }
         this.ano = ano;
         this.mes = mes;
         this.dia = dia;
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = segundo;
+    }
+
+    public void loadFromCompactString(String compactStringData) {
+        String d[] = compactStringData.split("T");
+        String date[] = d[0].split("-");
+        String time[] = d[1].split(":");
+        this.ano = Integer.parseInt(date[0]);
+        this.mes = Integer.parseInt(date[1]);
+        this.dia = Integer.parseInt(date[2]);
+        this.hora = Integer.parseInt(time[0]);
+        this.minuto = Integer.parseInt(time[0]);
+        this.segundo = Integer.parseInt(time[0].split("Z")[0]);
+    }
+
+    public String toCompactString() {
+        return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ", ano, mes, dia, hora, minuto, segundo);
     }
 
     /**
@@ -287,7 +330,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      */
     public int diferenca(int ano, int mes, int dia) {
         int totalDias = contaDias();
-        Data outraData = new Data(ano, mes, dia);
+        Data outraData = new Data(ano, mes, dia, 0, 0, 0);
         int totalDias1 = outraData.contaDias();
 
         return Math.abs(totalDias - totalDias1);
@@ -315,7 +358,10 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
         int ano = hoje.get(Calendar.YEAR);
         int mes = hoje.get(Calendar.MONTH) + 1;    // janeiro é representado por 0
         int dia = hoje.get(Calendar.DAY_OF_MONTH);
-        return new Data(ano, mes, dia);
+        int hora = hoje.get(Calendar.HOUR_OF_DAY);
+        int minuto = hoje.get(Calendar.MINUTE);
+        int segundo = hoje.get(Calendar.SECOND);
+        return new Data(ano, mes, dia, hora, minuto, segundo);
     }
 
     /**
@@ -357,14 +403,12 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             Document document = builder.newDocument();
 
             document.appendChild(document.importNode(node, true));
-            
+
             Node n = document.getChildNodes().item(0);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) n;
 
-                this.ano = Integer.parseInt(elem.getAttribute(ANO_ELEMENT_NAME));
-                this.mes = Integer.parseInt(elem.getAttribute(MES_ELEMENT_NAME));
-                this.dia = Integer.parseInt(elem.getAttribute(DIA_ELEMENT_NAME));
+                loadFromCompactString(elem.getTextContent());
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
@@ -379,14 +423,11 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
-            
+
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
+            elemBase.setTextContent(toCompactString());
             document.appendChild(elemBase);
-            
-            elemBase.setAttribute(ANO_ELEMENT_NAME, String.valueOf(this.ano));
-            elemBase.setAttribute(MES_ELEMENT_NAME, String.valueOf(this.mes));
-            elemBase.setAttribute(DIA_ELEMENT_NAME, String.valueOf(this.dia));
-            
+
             node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);

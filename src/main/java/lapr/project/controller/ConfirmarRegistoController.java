@@ -41,8 +41,8 @@ public class ConfirmarRegistoController {
     public ConfirmarRegistoController(CentroExposicoes centroExposicoes) {
         this.m_listaUtlNaoRegistados = new ArrayList<>();
         this.m_centroExpo = centroExposicoes;
-        this.m_ruc = new RegistoUtilizadores();
-        this.m_rup = new RegistoUtilizadores();
+        this.m_ruc = new RegistoUtilizadores("");
+        this.m_rup = new RegistoUtilizadores("");
     }
     
     /**

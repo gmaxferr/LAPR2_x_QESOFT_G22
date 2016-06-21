@@ -63,8 +63,8 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
                 Expositor expositor = new Expositor(null);
                 expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
-                this.m_candidatura = new CandidaturaAExposicao(expositor);
 
+                this.m_candidatura = new CandidaturaAExposicao(expositor);
                 NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node n2 = nList.item(i);
@@ -104,5 +104,13 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         }
 
         return node;
+    }
+
+    /**
+     * TESTE USE ONLY
+     * @param m_rFaeAvaliacao the m_rFaeAvaliacao to set
+     */
+    public void setRegistoFaeAvaliacao(RegistoFaeAvaliacao m_rFaeAvaliacao) {
+        this.m_rFaeAvaliacao = m_rFaeAvaliacao;
     }
 }

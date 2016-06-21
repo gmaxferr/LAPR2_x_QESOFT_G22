@@ -46,7 +46,7 @@ public class QualidadeFaeCalculoTest {
 
     @Before
     public void setUp() {
-        cand = new CandidaturaAExposicao(null);
+        cand = new CandidaturaAExposicao(null, null);
         cand.setEstado(new EstadoCandidaturaAExposicaoAtribuida(cand));
         ra = new RegistoAtribuicoes();
         u1 = new Utilizador("nome", "username", "SecretCode-123".toCharArray(), "mail@mail.com", "INDIGO");
@@ -57,7 +57,7 @@ public class QualidadeFaeCalculoTest {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae1);
             int v = i < 10 ? 1 : 3;
-            fAval.setAvalicao(true, "just", v, v, v, v, v);
+            fAval.setAvalicao("just", v, v, v, v, v);
             atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
             ra.getListaAtribuicoes().add(atr);
         }
@@ -65,7 +65,7 @@ public class QualidadeFaeCalculoTest {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae2);
             int v = 5;
-            fAval.setAvalicao(true, "just", v, v, v, v, v);
+            fAval.setAvalicao("just", v, v, v, v, v);
             atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
             ra.getListaAtribuicoes().add(atr);
         }

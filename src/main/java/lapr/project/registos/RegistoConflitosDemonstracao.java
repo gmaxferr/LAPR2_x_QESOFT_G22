@@ -14,7 +14,7 @@ import org.w3c.dom.*;
  */
 public class RegistoConflitosDemonstracao implements Importable<RegistoConflitosDemonstracao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "RegistoConflitosDemonstracao";
+    public static final String ROOT_ELEMENT_NAME = "registoConflitosDemonstracao";
 
     /**
      * Lista de conflitos de interesse

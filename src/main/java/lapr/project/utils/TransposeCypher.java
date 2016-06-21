@@ -20,23 +20,27 @@ public class TransposeCypher {
      * que deve estar, aquando da sua leitura
      */
     public static int[] getOrder(char[] charArray) {
-        int[] result = new int[charArray.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = -1;
-        }
-        for (int i = 0; i < charArray.length; i++) {
-            int index = 0;
-            for (int j = 0; j <= i; j++) {
-                if (j == i) {
-                    result[i] = index;
-                } else if (charArray[i] < charArray[j]) {
-                    result[j]++;
-                } else {
-                    index++;
+        if (charArray.length > 0) {
+            int[] result = new int[charArray.length];
+            for (int i = 0; i < result.length; i++) {
+                result[i] = -1;
+            }
+            for (int i = 0; i < charArray.length; i++) {
+                int index = 0;
+                for (int j = 0; j <= i; j++) {
+                    if (j == i) {
+                        result[i] = index;
+                    } else if (charArray[i] < charArray[j]) {
+                        result[j]++;
+                    } else {
+                        index++;
+                    }
                 }
             }
+            return result;
+        } else {
+            return new int[]{0};
         }
-        return result;
     }
 
     /**
@@ -77,12 +81,12 @@ public class TransposeCypher {
      */
     public static char[] encrypt(char[] message, char[] password) {
         char[] pwd;
-        if(password.length == 0){
+        if (password.length == 0) {
             pwd = "a".toCharArray();
-        }else{
+        } else {
             pwd = password;
         }
-        
+
         int tableCol = pwd.length;
         int tableLines = message.length / pwd.length + 1;
         char[][] table = new char[tableLines][tableCol];
@@ -127,12 +131,12 @@ public class TransposeCypher {
      */
     public static char[] decrypt(char[] message, char[] password) {
         char[] pwd;
-        if(password.length == 0){
+        if (password.length == 0) {
             pwd = "a".toCharArray();
-        }else{
+        } else {
             pwd = password;
         }
-        
+
         if (message.length % pwd.length != 0) {
             return null;
         }

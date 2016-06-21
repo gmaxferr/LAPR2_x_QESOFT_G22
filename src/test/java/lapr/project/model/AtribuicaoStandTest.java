@@ -30,8 +30,17 @@ public class AtribuicaoStandTest {
     public static void tearDownClass() {
     }
     
+    private AtribuicaoStand instance;
+    private Stand stand;
+    private boolean decisao;
+    private CandidaturaAExposicao cand;
+    
     @Before
     public void setUp() {
+        stand = new Stand("id", 10, "descricao");
+        cand = new CandidaturaAExposicao(new Expositor(new Utilizador()));
+        decisao = true;
+        instance = new AtribuicaoStand(stand, cand, decisao);
     }
     
     @After
@@ -44,12 +53,9 @@ public class AtribuicaoStandTest {
     @Test
     public void testGetStand() {
         System.out.println("getStand");
-        AtribuicaoStand instance = null;
-        Stand expResult = null;
+        Stand expResult = stand;
         Stand result = instance.getStand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +64,8 @@ public class AtribuicaoStandTest {
     @Test
     public void testSetStand() {
         System.out.println("setStand");
-        Stand stand = null;
-        AtribuicaoStand instance = null;
+        Stand stand = this.stand;
         instance.setStand(stand);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +74,9 @@ public class AtribuicaoStandTest {
     @Test
     public void testGetCand() {
         System.out.println("getCand");
-        AtribuicaoStand instance = null;
-        CandidaturaAExposicao expResult = null;
+        CandidaturaAExposicao expResult = cand;
         CandidaturaAExposicao result = instance.getCand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,11 +85,8 @@ public class AtribuicaoStandTest {
     @Test
     public void testSetCand() {
         System.out.println("setCand");
-        CandidaturaAExposicao cand = null;
-        AtribuicaoStand instance = null;
+        CandidaturaAExposicao cand = this.cand;
         instance.setCand(cand);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,12 +95,9 @@ public class AtribuicaoStandTest {
     @Test
     public void testGetDecisao() {
         System.out.println("getDecisao");
-        AtribuicaoStand instance = null;
-        boolean expResult = false;
+        boolean expResult = decisao;
         boolean result = instance.getDecisao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,10 +107,7 @@ public class AtribuicaoStandTest {
     public void testSetDecisao() {
         System.out.println("setDecisao");
         boolean decisao = false;
-        AtribuicaoStand instance = null;
         instance.setDecisao(decisao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -126,12 +117,9 @@ public class AtribuicaoStandTest {
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        AtribuicaoStand instance = null;
         AtribuicaoStand expResult = null;
         AtribuicaoStand result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -140,12 +128,9 @@ public class AtribuicaoStandTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        AtribuicaoStand instance = null;
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

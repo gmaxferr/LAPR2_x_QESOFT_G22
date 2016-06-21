@@ -134,7 +134,7 @@ public class Main {
         ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "careful"));
         ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt", "blue"));
         centroExposicoes.confirmarRegistoTodosUtilizadores();
-        ru=centroExposicoes.getRegistoUtilizadoresConfirmados();
+        ru = centroExposicoes.getRegistoUtilizadoresConfirmados();
 
         //GestorExposições
         Utilizador utilizador;

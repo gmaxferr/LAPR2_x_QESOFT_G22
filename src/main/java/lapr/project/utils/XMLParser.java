@@ -106,7 +106,7 @@ public class XMLParser {
                 Document document;
                 document = builder.parse(fileStream);
                 return document.getDocumentElement();
-            } catch (SAXException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(XMLParser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

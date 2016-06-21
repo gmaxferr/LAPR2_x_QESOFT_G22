@@ -15,7 +15,7 @@ import org.w3c.dom.*;
  */
 public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesStands>, Exportable {
     
-    public static final String ROOT_ELEMENT_NAME = "RegistoAtribuicoesStands";
+    public static final String ROOT_ELEMENT_NAME = "registoAtribuicoesStands";
 
     /**
      * Lista de atribuições stand
@@ -75,11 +75,11 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
 
     @Override
     public RegistoAtribuicoesStands importContentFromXMLNode(Node node) {
+        if(node == null){
+            return this;
+        }
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+            Document doc = XMLParser.createDocument(node, true);
 
             Node n = doc.getChildNodes().item(0);
 
