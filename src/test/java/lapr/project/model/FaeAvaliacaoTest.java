@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
 import lapr.project.registos.RegistoUtilizadores;
@@ -16,7 +11,7 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class FaeAvaliacaoTest {
 
@@ -49,8 +44,7 @@ public class FaeAvaliacaoTest {
         fae = new FAE(u);
         instance = new FaeAvaliacao(fae);
         a = new Avaliacao();
-        justificacao = "justificacao";
-        a.setAvalicao(justificacao, rat1, rat2, rat3, rat4, rat5);
+        a.setAvalicao(rat1, rat2, rat3, rat4, rat5);
         instance.setAvaliacao(a);
     }
 

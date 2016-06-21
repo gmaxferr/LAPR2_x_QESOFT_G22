@@ -1,9 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCancelada;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAtribuidas;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasFechadas;
+import lapr.project.estados.Demonstracao.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
 import org.junit.*;

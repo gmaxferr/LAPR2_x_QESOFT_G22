@@ -30,28 +30,15 @@ public class AvaliacaoTest {
     }
 
     /**
-     * Test of verificaAvaliacaoJaTomada method, of class Avaliacao.
-     */
-    @Test
-    public void testVerificaAvaliacaoJaTomada() {
-        System.out.println("verificaAvaliacaoJaTomada");
-        Avaliacao instance = new Avaliacao();
-        assertEquals(false, instance.verificaAvaliacaoJaTomada());
-        instance.setAvalicao("fgfg", 0, 0, 0, 0, 0);
-        assertEquals(true, instance.verificaAvaliacaoJaTomada());
-    }
-
-    /**
      * Test of setAvalicao method, of class Avaliacao.
      */
     @Test
     public void testSetAvalicao() {
         System.out.println("setAvalicao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 1, 2, 3, 4);
+        instance.setAvalicao(0, 1, 2, 3, 4);
 
-        assertEquals(true, instance.getJustificacao().equalsIgnoreCase("just")
-                && instance.getRatingConhecimentoSobreOTema() == 0
+        assertEquals(true, instance.getRatingConhecimentoSobreOTema() == 0
                 && instance.getRatingAdequacaoAExposicao() == 1
                 && instance.getRatingAdequacaoAsDemos() == 2
                 && instance.getRatingAdequacaoNumConvites() == 3
@@ -70,24 +57,13 @@ public class AvaliacaoTest {
     }
 
     /**
-     * Test of getJustificacao method, of class Avaliacao.
-     */
-    @Test
-    public void testGetJustificacao() {
-        System.out.println("getJustificacao");
-        Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 0, 0, 0, 0);
-        assertEquals("just", instance.getJustificacao());
-    }
-
-    /**
      * Test of getRatingConhecimentoSobreOTema method, of class Avaliacao.
      */
     @Test
     public void testGetRatingConhecimentoSobreOTema() {
         System.out.println("getRatingConhecimentoSobreOTema");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 1, 0, 0, 0, 0);
+        instance.setAvalicao(1, 0, 0, 0, 0);
         assertEquals(1, instance.getRatingConhecimentoSobreOTema());
     }
 
@@ -98,7 +74,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoAExposicao() {
         System.out.println("getRatingAdequacaoAExposicao");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 1, 0, 0, 0);
+        instance.setAvalicao(0, 1, 0, 0, 0);
         assertEquals(1, instance.getRatingAdequacaoAExposicao());
     }
 
@@ -109,7 +85,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoAsDemos() {
         System.out.println("getRatingAdequacaoAsDemos");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 0, 1, 0, 0);
+        instance.setAvalicao(0, 0, 1, 0, 0);
         assertEquals(1, instance.getRatingAdequacaoAsDemos());
     }
 
@@ -120,7 +96,7 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoNumConvites() {
         System.out.println("getRatingAdequacaoNumConvites");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 0, 0, 1, 0);
+        instance.setAvalicao(0, 0, 0, 1, 0);
         assertEquals(1, instance.getRatingAdequacaoNumConvites());
     }
 
@@ -131,7 +107,7 @@ public class AvaliacaoTest {
     public void testGetRatingRecomendacaoGlobal() {
         System.out.println("getRatingRecomendacaoGlobal");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 0, 0, 0, 0, 1);
+        instance.setAvalicao(0, 0, 0, 0, 1);
         assertEquals(1, instance.getRatingRecomendacaoGlobal());
     }
 
@@ -142,7 +118,7 @@ public class AvaliacaoTest {
     public void testGetMediaRatings() {
         System.out.println("getMediaRatings");
         Avaliacao instance = new Avaliacao();
-        instance.setAvalicao("just", 1, 2, 3, 4, 5);
+        instance.setAvalicao(1, 2, 3, 4, 5);
         assertEquals(3f, instance.getMediaRatings(), 0.1f);
     }
 
