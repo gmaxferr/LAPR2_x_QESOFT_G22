@@ -17,7 +17,7 @@ public class RegistarCandidaturaADemonstracaoController {
     private CandidaturaADemonstracao m_cand; //nova candidatura a uma demonstração
 
     private CentroExposicoes m_ce;
-    private String m_usernameRep; //username do representante
+    private String m_emailRep; //username do representante
 
     private RegistoExposicoes m_re;
     private RegistoDemonstracoes m_rd;
@@ -28,9 +28,9 @@ public class RegistarCandidaturaADemonstracaoController {
 
     private EstadoCandidaturaADemonstracao m_estado;
 
-    public RegistarCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameRep) {
+    public RegistarCandidaturaADemonstracaoController(CentroExposicoes ce, String email) {
         this.m_ce = ce;
-        this.m_usernameRep = usernameRep;
+        this.m_emailRep = email;
     }
 
     /**
@@ -39,7 +39,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public List<Exposicao> getListaDeExposicoes() {
         m_re = m_ce.getRegistoExposicoes();
-        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesDoRepresentante(m_usernameRep);
+        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesDoRepresentante(m_emailRep);
         return m_listExpos;
     }
 
@@ -107,7 +107,7 @@ public class RegistarCandidaturaADemonstracaoController {
      * @return true se a adição foi efetuada com sucesso; false caso contrário
      */
     public boolean RegistaCandADemo() {
-        m_cand = new CandidaturaADemonstracao(m_dados, m_usernameRep);
+        m_cand = new CandidaturaADemonstracao(m_dados, m_emailRep);
         return m_rcd.adiciona(m_cand);
     }
 

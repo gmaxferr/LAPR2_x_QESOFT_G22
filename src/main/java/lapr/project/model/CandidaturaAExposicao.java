@@ -173,6 +173,10 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public String getUsernameExpositor() {
         return m_expositor.getUsername();
     }
+    
+    public String getEmailExpositor(){
+        return m_expositor.getEmail();
+    }
 
     /**
      * Devolve o Registo (lista) dos produtos introduzidos pelo expositor no
