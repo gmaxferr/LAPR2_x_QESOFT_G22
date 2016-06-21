@@ -22,6 +22,11 @@ public class ConfirmarStandController {
     private RegistoExposicoes m_RegistoExposicoes;
 
     /**
+     * Registo candidaturas a exposição
+     */
+    private RegistoCandidaturasAExposicao m_rce;
+
+    /**
      * Registo de atribuições de stands
      */
     private RegistoAtribuicoesStands m_RegistoAtribuicoesStand;
@@ -40,6 +45,11 @@ public class ConfirmarStandController {
      * Exposicao escolhida
      */
     private Exposicao m_exposicaoEscolhida;
+
+    /**
+     * Candidatura escolhida
+     */
+    private CandidaturaAExposicao m_candEscolhida;
 
     /**
      * Constrói uma instância de ConfirmarStandsController recendo como
@@ -61,12 +71,12 @@ public class ConfirmarStandController {
     /**
      * Devolve a lista das exposições de um representante
      *
-     * @param username username do representante
+     * @param email email do representante
      *
      * @return lista das exposições de um representante
      */
-    public List<Exposicao> getListaExposicoesDoRepresentante(String username) {
-        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesDoRepresentante(username);
+    public List<Exposicao> getListaExposicoesDoRepresentante(String email) {
+        return m_RegistoExposicoes.getListaExposicoesComCanditaturasAceitesDoRepresentante(email);
     }
 
     /**
@@ -78,8 +88,32 @@ public class ConfirmarStandController {
         this.m_exposicaoEscolhida = e;
     }
 
-    // candidaturas
-    
+    /**
+     * Guarda o registo de candidatura a exposição
+     */
+    public void getRegistoCandidaturasAExposicao() {
+        this.m_rce = m_exposicaoEscolhida.getRegistoCandidaturasAExposicao();
+    }
+
+    /**
+     * Devolve a lista de candidaturas de um representante
+     *
+     * @param email email do representante
+     * @return lista de candidaturas de um representante
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasDoRepresentante(String email) {
+        return m_rce.getCandidaturasRepresentante(email);
+    }
+
+    /**
+     * Modifica a candidatura
+     *
+     * @param candidatura nova candidatura
+     */
+    public void setCandidaturaAExposicao(CandidaturaAExposicao candidatura) {
+        this.m_candEscolhida = candidatura;
+    }
+
     /**
      * Guarda o registo de atribuições de stand
      */
@@ -103,7 +137,7 @@ public class ConfirmarStandController {
         this.m_atribuicaoStand = new AtribuicaoStand(null, cand, false);
         m_RegistoAtribuicoesStand.getListaAtribuicoesStand().add(this.m_atribuicaoStand);
         return this.m_atribuicaoStand;
-    
+
     }
 
     /**
