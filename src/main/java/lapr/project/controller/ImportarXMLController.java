@@ -5,8 +5,6 @@ import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
