@@ -106,11 +106,11 @@ public class Expositor implements Importable<Expositor>, Exportable {
             document.appendChild(elementBase);
 
             Element elem = document.createElement(USERNAME_ELEMENT_NAME);
-            elem.setTextContent(this.getUtilizador().getUsername());
+            elem.setTextContent(this.m_utilizador.getUsername());
             elementBase.appendChild(elem);
 
             elem = document.createElement(EMAIL_ELEMENT_NAME);
-            elem.setTextContent(this.getUtilizador().getEmail());
+            elem.setTextContent(this.m_utilizador.getEmail());
             elementBase.appendChild(elem);
 
             node = elementBase;
