@@ -1,31 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.AtribuirCandidaturasADemonstracaoController;
-import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ComboBoxModelAtribuicoesMostraCandidatura;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Mecanismo;
-import lapr.project.model.Utilizador;
-import lapr.project.ui.model.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ComboBoxModelMecanismos;
+import lapr.project.model.*;
+import lapr.project.ui.model.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFrame {
 
