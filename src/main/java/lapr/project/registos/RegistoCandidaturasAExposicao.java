@@ -38,7 +38,8 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @return lista de candidatuas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.m_listaCandidaturas;
+        correctList();
+        return m_listaCandidaturas;
     }
 
     /**
@@ -61,7 +62,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     public boolean registaCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         boolean b = validaCandidatura(candidaturaAExposicao);
         if (b) {
-            this.m_listaCandidaturas.add(candidaturaAExposicao);
+            this.getListaCandidaturas().add(candidaturaAExposicao);
         }
         return b;
     }
@@ -77,7 +78,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * registo de candidaturas, caso contrário false
      */
     private boolean validaCandidatura(CandidaturaAExposicao candidaturaNova) {
-        for (CandidaturaAExposicao candidatura : m_listaCandidaturas) {
+        for (CandidaturaAExposicao candidatura : getListaCandidaturas()) {
             if (candidatura.equals(candidaturaNova)) {
                 return false;
             }
@@ -92,7 +93,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @param c - candidatura a remover
      */
     public void removeCandidatura(CandidaturaAExposicao c) {
-        m_listaCandidaturas.remove(c);
+        getListaCandidaturas().remove(c);
     }
 
     /**
@@ -103,7 +104,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      */
     public List<CandidaturaAExposicao> getCandidaturasRepresentante(String email) {
         List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
-        for (CandidaturaAExposicao c : m_listaCandidaturas) {
+        for (CandidaturaAExposicao c : getListaCandidaturas()) {
             if (c.getEmailExpositor().equals(email)) {
                 candidaturasRepLst.add(c);
             }
@@ -118,7 +119,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAceites() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
-        for (CandidaturaAExposicao cand : m_listaCandidaturas) {
+        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
             EstadoCandidaturaAExposicao state = cand.getEstado();
             if (state.isEstadoCandidaturaAceite()) {
                 listCand.add(cand);
@@ -152,6 +153,16 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     /**
+     * Verifica se existem candidaturas sem referência à exposição dentro da
+     * lista de candidaturas e, se não tiver, define essa variável.
+     */
+    public void correctList() {
+        for (CandidaturaAExposicao cand : this.m_listaCandidaturas) {
+            cand.setExposicao(e);   //Caso não tenham exposição ou a variável tenha sido inicializada a null
+        }
+    }
+
+    /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
      *
@@ -159,7 +170,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * @param m_rd registo de demonstrações
      */
     public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoDemonstracoes m_rd) {
-        for (CandidaturaAExposicao c : m_listaCandidaturas) {
+        for (CandidaturaAExposicao c : getListaCandidaturas()) {
             c.fix(m_registoUtilizadores, m_rd);
         }
     }
@@ -173,14 +184,14 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
 
-            this.m_listaCandidaturas.clear();
+            this.getListaCandidaturas().clear();
 
             NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
                 CandidaturaAExposicao cand = new CandidaturaAExposicao(this.e, null);
                 cand.importContentFromXMLNode(n2);
-                m_listaCandidaturas.add(cand);
+                getListaCandidaturas().add(cand);
             }
         }
 
@@ -198,7 +209,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
 
-            for (CandidaturaAExposicao cand : m_listaCandidaturas) {
+            for (CandidaturaAExposicao cand : getListaCandidaturas()) {
                 Node n = cand.exportContentToXMLNode();
                 elementBase.appendChild(document.importNode(n, true));
             }
@@ -215,7 +226,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
 
     public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
-        for (CandidaturaAExposicao cand : m_listaCandidaturas) {
+        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
             EstadoCandidaturaAExposicao state = cand.getEstado();
             if (state.isEstadoCandidaturaProntaAtribuicoes()) {
                 listCand.add(cand);

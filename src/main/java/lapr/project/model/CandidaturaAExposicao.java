@@ -448,6 +448,20 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return m_keywords;
     }
 
+    /**
+     * @return the e
+     */
+    public Exposicao getExposicao() {
+        return e;
+    }
+
+    /**
+     * @param e the e to set
+     */
+    public void setExposicao(Exposicao e) {
+        this.e = e;
+    }
+
     public boolean validaCandidatura() {
         return !this.m_StrMoradaEmpresa.trim().equals("")
                 && !this.m_StrNomeEmpresa.trim().equals("")
