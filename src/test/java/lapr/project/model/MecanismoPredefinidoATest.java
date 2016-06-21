@@ -72,8 +72,6 @@ public class MecanismoPredefinidoATest {
         List<AtribuicaoCandidatura> expResult = null;
         List<AtribuicaoCandidatura> result = instance.atribui(exposicaoEscolhida);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -82,13 +80,12 @@ public class MecanismoPredefinidoATest {
     @Test
     public void testAtribui_Demonstracao() {
         System.out.println("atribui");
+        Exposicao exposicaoEscolhida = null;
         Demonstracao demonstracaoEscolhida = null;
         MecanismoPredefinidoA instance = new MecanismoPredefinidoA();
-        List<AtribuicaoCandidatura> expResult = null;
-        List<AtribuicaoCandidatura> result = instance.atribui(demonstracaoEscolhida);
+        List<AtribuicaoCandidaturaDemonstracao> expResult = null;
+        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(exposicaoEscolhida, demonstracaoEscolhida);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
