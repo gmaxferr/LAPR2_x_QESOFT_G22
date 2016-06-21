@@ -440,7 +440,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBoxCandidaturasActionPerformed
 
     private void jComboBoxExpositoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxExpositoresActionPerformed
-        jLabelPercentagemCandidaturasAceites.setText(Float.toString(controller.getPercentagemCandidaturasAceites((String)jComboBoxExpositores.getSelectedItem())));
+        jLabelPercentagemCandidaturasAceites.setText(Float.toString(controller.getPercentagemCandidaturasAceitesDoExpositor((String)jComboBoxExpositores.getSelectedItem())));
     }//GEN-LAST:event_jComboBoxExpositoresActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

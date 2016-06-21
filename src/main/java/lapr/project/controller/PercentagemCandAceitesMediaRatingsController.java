@@ -40,7 +40,7 @@ public class PercentagemCandAceitesMediaRatingsController {
         return this.rc.getListaCandidaturas();
     }
 
-    public float getPercentagemCandidaturasAceites(String usernameExpositor) {
+    public float getPercentagemCandidaturasAceitesDoExpositor(String usernameExpositor) {
         return this.rc.getPercentagemCandidaturasAceites(usernameExpositor);
     }
 
