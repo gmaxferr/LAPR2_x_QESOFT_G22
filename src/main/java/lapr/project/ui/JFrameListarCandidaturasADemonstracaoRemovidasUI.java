@@ -11,15 +11,39 @@ import lapr.project.model.*;
 
 /**
  *
- * @author Ana Leite
+ * @author G29
  */
 public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do menu principal. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameMenuPrincipal;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoesAtual;
+    
+    /**
+     * Username do organizador
+     */
     private transient String usernameOrganizador;
+    
+    /**
+     * Lista de exposições do organizador utilizadas para a execução deste UC
+     */
     private transient List<Exposicao> listaExposicoesDoOrganizador;
+    
+    /**
+     * Controller deste UC
+     */
     private transient ListarCandidaturasADemonstracaoRemovidasController controller;
+    
+    /**
+     * Lista de demonstrações utilizadas para a execução deste UC
+     */
     private transient List<Demonstracao> listaDemonstracoes;
 
     private static final int LARGURA_JANELA_PASSO1 = 682;
@@ -31,9 +55,24 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     private static final int LARGURA_JANELA_PASSO3 = 400;
     private static final int ALTURA_JANELA_PASSO3 = 610;
 
+    /**
+     * Descrição da demonstração por omissão
+     */
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
+    
+    /**
+     * Descrição da exposição por omissão
+     */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    
+    /**
+     * Local da exposição por omissão
+     */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
+   
+    /**
+     * Data de inicio e de fim da exposição por omissão
+     */
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
     /**
@@ -55,6 +94,9 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         setVisible(true);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
@@ -446,7 +488,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         jListCard3ListaCandidaturas.setListData(vetorCandidaturasRemovidas);
         cardLayout.show(getContentPane(), "card2");
-        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+        setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
 
     private String[] criarVetorListaCandidaturasADemonstracaoRemovidas(List<CandidaturaADemonstracao> listaCandidaturas) {

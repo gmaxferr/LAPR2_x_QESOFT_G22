@@ -16,9 +16,25 @@ import lapr.project.model.*;
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do login. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameLogin;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoesAtual;
+    
+    /**
+     * Controller deste UC
+     */
     private transient RegistarUtilizadorController controller;
+    
+    /**
+     * Utilizador a ser registado
+     */
     private transient Utilizador u;
 
 
@@ -40,6 +56,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {

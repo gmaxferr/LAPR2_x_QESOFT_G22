@@ -16,14 +16,45 @@ import lapr.project.model.*;
  */
 public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do menu principal. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameMenuPrincipal;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoesAtual;
+    
+    /**
+     * Username do organizador 
+     */
     private transient String usernameOrganizador;
+    
+    /**
+     * Controller deste UC
+     */
     private transient ListarCandidaturasAExposicaoRemovidasController controller;
+    
+    /**
+     * Lista de exposições utilizadas para a execução deste UC
+     */
     private transient List<Exposicao> listaExposicoes;
 
+    /**
+     * Descrição da exposição por omisão
+     */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
+    
+    /**
+     * Local da exposição por omissão
+     */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
+    
+    /**
+     * Data de inicio e de fim da exposição por omissão
+     */
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
     /**
@@ -44,6 +75,9 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         setVisible(true);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {

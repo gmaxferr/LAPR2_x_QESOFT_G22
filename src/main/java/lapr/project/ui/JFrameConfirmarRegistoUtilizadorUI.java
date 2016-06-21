@@ -15,17 +15,49 @@ import lapr.project.model.*;
  */
 public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
+    /**
+     * JFrame do Login. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameLogin;
+    
+    /**
+     * Centro de exposições
+     */
     private transient CentroExposicoes centroExposicoesAtual;
+    
+    /**
+     * Controller deste UC
+     */
     private transient ConfirmarRegistoController controller;
+    
+    /**
+     * Lista de Utilizadores
+     */
     private transient List<Utilizador> listaUtilizadores;
+    
+    /**
+     * CardLayout usado na UI que permite a troca entre JPanels e simplificação
+     * da UI para o utilizador
+     */
     private final CardLayout cardLayout;
 
     private static final int LARGURA_JANELA_PASSO1 = 485;
     private static final int ALTURA_JANELA_PASSO1 = 330;
 
+    /**
+     * Nome do utilizador por omissão
+     */
     private static final String NOME_POR_OMISSAO = "Nome do utilizador";
+    
+    /**
+     * Email do utilizador por omissão
+     */
     private static final String EMAIL_POR_OMISSAO = "Email do utilizador";
+    
+    /**
+     * Username do utilizador por omissão
+     */
     private static final String USERNAME_POR_OMISSAO = "Username do utilizador";
 
     /**
@@ -46,6 +78,9 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
