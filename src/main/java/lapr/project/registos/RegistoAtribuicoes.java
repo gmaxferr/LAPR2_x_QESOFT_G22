@@ -163,6 +163,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoAtribuicoes.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -26,10 +26,10 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private transient final JFrame janelaMae;
     private transient CardLayout cardLayout;
 
-    private List<Demonstracao> m_listaDemonstracoes = new ArrayList();
-    private Data dataInicioSubCand;
-    private Data dataFimSubCand;
-    private Data dataFimDetecaoConflitos;
+    private transient List<Demonstracao> m_listaDemonstracoes = new ArrayList();
+    private transient Data dataInicioSubCand;
+    private transient Data dataFimSubCand;
+    private transient Data dataFimDetecaoConflitos;
 
     private boolean[] m_decisoes;
     private List<JCheckBox> listaCheckBoxes = new ArrayList();

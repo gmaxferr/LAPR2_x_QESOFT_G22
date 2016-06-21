@@ -91,6 +91,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

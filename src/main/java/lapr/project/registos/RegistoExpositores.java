@@ -97,6 +97,7 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoExpositores.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

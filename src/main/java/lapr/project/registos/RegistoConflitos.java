@@ -114,6 +114,7 @@ public class RegistoConflitos implements Importable<RegistoConflitos>, Exportabl
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoConflitos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

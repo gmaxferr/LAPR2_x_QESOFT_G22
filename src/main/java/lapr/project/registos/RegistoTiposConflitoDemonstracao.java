@@ -110,6 +110,7 @@ public class RegistoTiposConflitoDemonstracao implements Importable<RegistoTipos
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoTiposConflitoDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

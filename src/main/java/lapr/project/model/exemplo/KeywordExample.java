@@ -84,6 +84,7 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 
 		} catch (ParserConfigurationException ex) {
             Logger.getLogger(KeywordExample.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
 		return node;
 	}

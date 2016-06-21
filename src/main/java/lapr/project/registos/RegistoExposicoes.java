@@ -402,6 +402,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

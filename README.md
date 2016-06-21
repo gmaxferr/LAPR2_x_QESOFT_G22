@@ -31,6 +31,8 @@ Este ficheiro README serve para explicitar as responsabilidades de cada membro r
 * UC 26
 * UC 29
 * UC 33
+* UC 36
+* UC 37
 
 ### Guilherme Ferreira ###
 

@@ -629,6 +629,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CandidaturaAExposicao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

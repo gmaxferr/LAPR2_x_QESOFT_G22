@@ -83,6 +83,7 @@ public class Organizador implements Importable<Organizador>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Organizador.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }
