@@ -149,14 +149,21 @@ public class DefinirFAEController {
      * encontrasse no estado Criada passará a estar ao estado
      * FAEDefninidosSemDemos. Senão, se estiver no estado DemosDefinidasSemFAE
      * então passará a estar no estado Completa
+     *
+     * @return true se for alterado o estado, falso caso contrário.
      */
-    public void setEstado() {
+    public boolean setEstado() {
         EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
-        if (estado.isEstadoCriada()) {
-            estado.setEstadoFAEDefinidosSemDemos();
-        } else if (estado.isEstadoDemosDefinidasSemFAE()) {
-            estado.setEstadoCompleta();
+        if (this.listaFaeTemp.size() >= 2) {
+            if (estado.isEstadoCriada()) {
+                estado.setEstadoFAEDefinidosSemDemos();
+                return true;
+            } else if (estado.isEstadoDemosDefinidasSemFAE()) {
+                estado.setEstadoCompleta();
+                return true;
+            }
         }
+        return false;
     }
 
     /**

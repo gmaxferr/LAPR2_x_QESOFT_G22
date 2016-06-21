@@ -146,6 +146,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         jTableUtilizadores = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableFAE = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -364,6 +365,8 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
         jScrollPane4.setViewportView(jTableFAE);
 
+        jLabel7.setText("(Mínimo de 2 FAE para fins estatisticos)");
+
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
@@ -377,17 +380,23 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addComponent(jButtonCard2Recuar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonCard2Terminar)
-                                    .addGap(15, 15, 15))
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jButtonCard2Recuar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCard2Terminar)
+                                .addGap(15, 15, 15))
+                            .addGroup(card2Layout.createSequentialGroup()
+                                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 10, Short.MAX_VALUE))
+                            .addGroup(card2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(30, 30, 30))))
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jLabel5)
@@ -412,14 +421,16 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
                     .addComponent(jTextFieldCard2IntroduzirUsernameUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCard2AdicionarFAE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard2Recuar)
                     .addComponent(jButtonCard2Terminar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         getContentPane().add(card2, "card2");
@@ -495,7 +506,9 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     private void jButtonCard2TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2TerminarActionPerformed
         if (controller.foramAdicionadosFAE()) {
             controller.confirmaAddFAE();
-            controller.setEstado();
+            if (!controller.setEstado()) {
+                JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE suficientes! Para fins estatísticos é necessário definir pelo menos 2 FAE.", "Fae insuficientes", JOptionPane.WARNING_MESSAGE);
+            }
             finalizarUC();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE! Se não pretender adicionar nenhum FAE a esta exposição retorne ao passo anterior e selecione a exposição certa.", "Nenhum FAE adicionado", JOptionPane.WARNING_MESSAGE);
@@ -525,6 +538,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
