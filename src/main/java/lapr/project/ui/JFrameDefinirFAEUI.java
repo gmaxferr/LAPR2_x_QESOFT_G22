@@ -15,18 +15,57 @@ import lapr.project.model.*;
  */
 public class JFrameDefinirFAEUI extends javax.swing.JFrame {
 
+    /**
+     * Lista de exposições utilizadas para a execução deste UC
+     */
     private transient List<Exposicao> listaExposicoes;
+
+    /**
+     * JFrame do menu principal. Usada para a voltar a tornar visivél no fim
+     * deste UC
+     */
     private transient JFrame jFrameMenuPrincipal;
+
+    /**
+     * Controller deste UC
+     */
     private transient final DefinirFAEController controller;
 
+    /**
+     * Largura da janela no passo 1
+     */
     private static final int LARGURA_JANELA_PASSO1 = 710;
+
+    /**
+     * Altura da janela no passo 1
+     */
     private static final int ALTURA_JANELA_PASSO1 = 370;
 
+    /**
+     * Largura da janela no passo 2
+     */
     private static final int LARGURA_JANELA_PASSO2 = 722;
+
+    /**
+     * Altura da janela no passo 2
+     */
     private static final int ALTURA_JANELA_PASSO2 = 500;
 
+    /**
+     * CardLayout usado na UI que permite a troca entre JPanels e simplificação
+     * da UI para o utilizador
+     */
     private transient final CardLayout cardLayout;
+
+    /**
+     * Lista de utilizadores do centro de exposições atual
+     */
     private transient List<Utilizador> listaUtilizadores;
+
+    /**
+     * Lista dos Utilizadores que têm papel de FAE na exposição selecionada na
+     * UI
+     */
     private transient List<Utilizador> listaUtilizadoresCorrespondentesAosFae;
 
     /**
@@ -53,6 +92,9 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {

@@ -46,16 +46,45 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
      */
     private static final int ALTURA_JANELA_3 = 310;
 
+    /**
+     * Controller deste UC
+     */
     private transient CriarDemonstracaoController controller;
+
+    /**
+     * Lista de exposições utilizadas neste UC
+     */
     private transient List<Exposicao> m_listaExposicoes;
+
+    /**
+     * Lista de recursos do centro de exposições
+     */
     private transient List<Recurso> m_listaRecursos;
 
+    /**
+     * Username do organizador a executar este UC no momento
+     */
     private transient String m_usernameOrg;
+
+    /**
+     * Centro de exposições atual
+     */
     private transient CentroExposicoes m_ce;
 
+    /**
+     * Exposição selecionada na UI pelo organizador
+     */
     private transient Exposicao m_e;
+
+    /**
+     * Modelo personalizado a ser usado por uma JList na UI deste UC
+     */
     private AbstractListModelRecursos modeloListaRecursosAdicionados;
 
+    /**
+     * JFrame do menu principal, usada para poder torná-la visivel no fim da
+     * execução deste UC
+     */
     private final JFrame jFrameMenu;
 
     /**
@@ -89,6 +118,9 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {

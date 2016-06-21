@@ -6,18 +6,50 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
+ * Controller do UC-Criar demonstração
  *
  * @author G29
  */
 public class CriarDemonstracaoController {
 
+    /**
+     * Registo de exposições
+     */
     private RegistoExposicoes m_re;
+
+    /**
+     * Registo de recursos do centro de exposições atual
+     */
     private RegistoRecursos m_rr;
+
+    /**
+     * Registo de demonstrações
+     */
     private RegistoDemonstracoes m_registoDemonstracoes;
+
+    /**
+     * Centro de exposições atual
+     */
     private CentroExposicoes m_ce;
+
+    /**
+     * Exposição selecionada na UI pelo organizador
+     */
     private Exposicao m_e;
+
+    /**
+     * Demonstração nova criada
+     */
     private Demonstracao m_demostracao;
+
+    /**
+     * Estado da exposição selecionada na UI
+     */
     private EstadoExposicao m_estado;
+
+    /**
+     * Username do organizador a executar este UC no momento
+     */
     private String m_usernameOrg;
 
     /**
@@ -25,17 +57,23 @@ public class CriarDemonstracaoController {
      */
     private List<Recurso> m_listaRecursosParaDemonstracao;
 
+    /**
+     * Contrutor que recebe por parametro o username do organizador a executar
+     * este UC no momento e o centro de exposições atual
+     *
+     * @param usernameOrg username do organizador
+     * @param ce centro de exposições atual
+     */
     public CriarDemonstracaoController(String usernameOrg, CentroExposicoes ce) {
         m_usernameOrg = usernameOrg;
         m_ce = ce;
     }
 
     /**
-     * Guarda os registos de exposições e de recursos neste Controller
+     * @return lista de recursos do Registo de Recursos do Centro de Exposições
      */
-    public void pullRegistosCE() {
-        m_re = m_ce.getRegistoExposicoes();
-        m_rr = m_ce.getRegistoRecursos();
+    public List<Recurso> getListaDeRecursos() {
+        return m_rr.getListaDeRecursos();
     }
 
     /**
@@ -57,11 +95,27 @@ public class CriarDemonstracaoController {
     }
 
     /**
+     * Atribui a lista de recursos à demonstração
+     */
+    public void setRecursos() {
+        RegistoRecursos rr = m_demostracao.getRegistoRecursosNecessarios();
+        rr.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
+    }
+
+    /**
      * Busca o registo de demonstrações da exposição selecionada, para este
      * controller.
      */
     public void pullRegistoDemonstracaoDaExposicao() {
         this.m_registoDemonstracoes = m_e.getRegistoDemonstracoes();
+    }
+
+    /**
+     * Guarda os registos de exposições e de recursos neste Controller
+     */
+    public void pullRegistosCE() {
+        m_re = m_ce.getRegistoExposicoes();
+        m_rr = m_ce.getRegistoRecursos();
     }
 
     /**
@@ -73,13 +127,6 @@ public class CriarDemonstracaoController {
     public void novaDemonstracao(String descricaoIntroduzidaPeloUtilizador) {
         this.m_demostracao = m_registoDemonstracoes.novaDemonstracao(descricaoIntroduzidaPeloUtilizador);
         this.m_listaRecursosParaDemonstracao = m_demostracao.getRegistoRecursosNecessarios().getListaDeRecursos();
-    }
-
-    /**
-     * @return lista de recursos do Registo de Recursos do Centro de Exposições
-     */
-    public List<Recurso> getListaDeRecursos() {
-        return m_rr.getListaDeRecursos();
     }
 
     /**
@@ -122,14 +169,6 @@ public class CriarDemonstracaoController {
      */
     public boolean exists(Recurso r) {
         return m_listaRecursosParaDemonstracao.contains(r);
-    }
-
-    /**
-     * Atribui a lista de recursos à demonstração
-     */
-    public void setRecursos() {
-        RegistoRecursos rr = m_demostracao.getRegistoRecursosNecessarios();
-        rr.setListaRecursosNecessarios(m_listaRecursosParaDemonstracao);
     }
 
     public void registaDemo() {

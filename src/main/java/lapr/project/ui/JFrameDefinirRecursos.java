@@ -1,18 +1,18 @@
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import lapr.project.ui.model.AbstractListModelRecursos;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.DefinirRecursoController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Recurso;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class JFrameDefinirRecursos extends javax.swing.JFrame {
 
@@ -31,7 +31,20 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
         CTRL = new DefinirRecursoController(ce);
         listaRecursos = CTRL.getListaRecursos();
         AbstListRecursos = new AbstractListModelRecursos(listaRecursos);
+
         initComponents();
+
+        alterarComportamentoFecharJFrame();
+        setLocationRelativeTo(null);
+    }
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                mainMenu.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -55,7 +68,7 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("  Definir Recursos  ");
@@ -141,11 +154,11 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
         nomeRecurso = JOptionPane.showInputDialog(null, "Qual o nome do recurso a adicionar?");
         if (CTRL.criarRecurso(nomeRecurso)) {
             this.listaRecursos = CTRL.getListaRecursos();
-            AbstListRecursos =  new AbstractListModelRecursos(listaRecursos);
+            AbstListRecursos = new AbstractListModelRecursos(listaRecursos);
             jList1.setModel(AbstListRecursos);
-            JOptionPane.showMessageDialog(null, "Recurso adicionado com sucesso.", "Sucesso!", INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Recurso adicionado com sucesso.", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Nome de recurso inválido ou recurso já existente.", "ERRO", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nome de recurso inválido ou recurso já existente.", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

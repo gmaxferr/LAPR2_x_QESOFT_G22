@@ -68,6 +68,9 @@ public class JFrameCriarStandsUI extends javax.swing.JFrame {
         setSize(LARGURA_JANELA, ALTURA_JANELA);
     }
 
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
