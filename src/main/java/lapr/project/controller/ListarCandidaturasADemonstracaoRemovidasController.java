@@ -22,6 +22,11 @@ public class ListarCandidaturasADemonstracaoRemovidasController {
      * Registo demonstrações
      */
     private RegistoDemonstracoes m_rd;
+    
+    /**
+     * Registo de exposições
+     */
+    private RegistoExposicoes m_re;
 
     /**
      * Demonstração escolhida
@@ -48,6 +53,30 @@ public class ListarCandidaturasADemonstracaoRemovidasController {
         this.m_centroExposicoes = centroExposicoes;
     }
 
+    public void getRegistoExposicoes(){
+        this.m_re = m_centroExposicoes.getRegistoExposicoes();
+    }
+    
+    /**
+     * Devolve a lista das exposições de um organizador
+     *
+     * @param username username do organizador
+     *
+     * @return lista das exposições de um organizador
+     */
+    public List<Exposicao> getListaExposicoesDoOrganizador(String username) {
+        return m_re.getListaExposicoesDoOrganizadorAteEstadoAbertoACandidaturas(username);
+    }
+
+    /**
+     * Modifica a exposição.
+     *
+     * @param e nova exposição.
+     */
+    public void setExposicao(Exposicao e) {
+        this.m_Exposicao = e;
+    }
+    
     /**
      * Guarda o registo de demonstrações
      */
