@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,22 +19,32 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class ListaProdutosTest {
-    
+
     public ListaProdutosTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private ListaProdutos instance;
+    private String prod1;
+    private String prod2;
+    private final int size = 2;
+
     @Before
     public void setUp() {
+        prod1 = "prod1";
+        prod2 = "prod2";
+        instance = new ListaProdutos();
+        instance.addProduto(prod1);
+        instance.addProduto(prod2);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,12 +55,11 @@ public class ListaProdutosTest {
     @Test
     public void testGetListaProdutos() {
         System.out.println("getListaProdutos");
-        ListaProdutos instance = new ListaProdutos();
-        List<Produto> expResult = null;
+        List<Produto> expResult = new ArrayList<Produto>();
+        expResult.add(new Produto(prod1));
+        expResult.add(new Produto(prod2));
         List<Produto> result = instance.getListaProdutos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +68,9 @@ public class ListaProdutosTest {
     @Test
     public void testGetSize() {
         System.out.println("getSize");
-        ListaProdutos instance = new ListaProdutos();
-        int expResult = 0;
+        int expResult = 2;
         int result = instance.getSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,12 +80,9 @@ public class ListaProdutosTest {
     public void testGetProdutoAt() {
         System.out.println("getProdutoAt");
         int index = 0;
-        ListaProdutos instance = new ListaProdutos();
-        Produto expResult = null;
+        Produto expResult = new Produto(prod1);
         Produto result = instance.getProdutoAt(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,13 +91,14 @@ public class ListaProdutosTest {
     @Test
     public void testAddProduto() {
         System.out.println("addProduto");
-        String nome = "";
-        ListaProdutos instance = new ListaProdutos();
-        boolean expResult = false;
+        String nome = "prod3";
+        boolean expResult = true;
         boolean result = instance.addProduto(nome);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String nome2 = "prod1";
+        boolean expResult2 = false;
+        boolean result2 = instance.addProduto(nome2);
+        assertEquals(expResult2, result2);
     }
 
     /**
@@ -102,13 +107,10 @@ public class ListaProdutosTest {
     @Test
     public void testRemoveProduto() {
         System.out.println("removeProduto");
-        String nome = "";
-        ListaProdutos instance = new ListaProdutos();
+        String nome = prod1;
         int expResult = 0;
         int result = instance.removeProduto(nome);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

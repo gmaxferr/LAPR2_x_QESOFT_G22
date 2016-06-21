@@ -88,9 +88,10 @@ public class ConflitoDeInteresseTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        ConflitoDeInteresse expResult = null;
-        ConflitoDeInteresse result = instance.importContentFromXMLNode(node);
+        ConflitoDeInteresse expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        ConflitoDeInteresse result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
 
@@ -100,8 +101,10 @@ public class ConflitoDeInteresseTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        ConflitoDeInteresse expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        ConflitoDeInteresse result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
 
