@@ -558,7 +558,6 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
             controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
             controller.getRegistoCandidaturas();
             this.listaCandidaturasDaExposicaoSelecionada = controller.getListaCandidaturas();
-            controller.getRegistoProdutos();
             if (!listaCandidaturasDaExposicaoSelecionada.isEmpty()) {
                 avancarParaCard2();
             } else {

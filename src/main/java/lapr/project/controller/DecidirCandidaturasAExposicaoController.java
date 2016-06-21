@@ -39,11 +39,6 @@ public class DecidirCandidaturasAExposicaoController {
     private CentroExposicoes m_ce;
 
     /**
-     * Registo de produtos da candidatura selecionada pelo gestor na UI
-     */
-    private RegistoProdutos m_rp;
-
-    /**
      * Keywords associadas à candidatura selecionada pelo gestor na UI
      */
     private String[] keywords;
@@ -81,14 +76,6 @@ public class DecidirCandidaturasAExposicaoController {
      */
     public void getRegistoCandidaturas() {
         this.m_rc = this.m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
-    }
-
-    /**
-     * Busca e guarda o registo de produtos associadao à candidatura selecionada
-     * pelo gestor na UI
-     */
-    public void getRegistoProdutos() {
-        this.m_rp = this.m_candidaturaSelecionada.getRegistoProdutos();
     }
 
     /**
