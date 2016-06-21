@@ -61,29 +61,24 @@ public class ConflitoDeInteresseDemonstracao implements Importable<ConflitoDeInt
     }
 
     @Override
-    public ConflitoDeInteresseDemonstracao importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public ConflitoDeInteresseDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_fae = new FAE();
-                this.m_fae.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
-                this.m_tipoConflito = new TipoConflitoDemonstracao("");
-                this.m_tipoConflito.importContentFromXMLNode(elem.getElementsByTagName(TipoConflitoDemonstracao.ROOT_ELEMENT_NAME).item(0));
-                Expositor expositor = new Expositor(null);
-                expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
-                this.m_candidatura = new CandidaturaADemonstracao(null, null);
-                this.m_candidatura.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME).item(0));
-            }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(ConflitoDeInteresseDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_fae = new FAE();
+            this.m_fae.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+            this.m_tipoConflito = new TipoConflitoDemonstracao("");
+            this.m_tipoConflito.importContentFromXMLNode(elem.getElementsByTagName(TipoConflitoDemonstracao.ROOT_ELEMENT_NAME).item(0));
+            Expositor expositor = new Expositor(null);
+            expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
+            this.m_candidatura = new CandidaturaADemonstracao(null, null);
+            this.m_candidatura.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME).item(0));
         }
+
         return this;
     }
 

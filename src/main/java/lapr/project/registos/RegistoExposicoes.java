@@ -317,7 +317,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     public List<Exposicao> getListaExposicoesDoOrganizadorAteEstadoAbertoACandidaturas(String usernameOrg) {
         List<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
         List<Organizador> listOrg;
-        
+
         for (Exposicao exposicao : m_listaExposicoes) {
             listOrg = exposicao.getListaOrganizadores();
             for (Organizador organizador : listOrg) {
@@ -330,14 +330,14 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
-    private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao){
+    private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao) {
         return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
-                        && (exposicao.getEstado().isEstadoCriada()
-                        || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
-                        || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
-                        || exposicao.getEstado().isEstadoCompleta());
+                && (exposicao.getEstado().isEstadoCriada()
+                || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
+                || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
+                || exposicao.getEstado().isEstadoCompleta());
     }
-    
+
     /**
      * Devolve uma lista de exposições no estado de CandidaturasAvaliadas ou
      * mais avançado.
@@ -380,30 +380,25 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     @Override
-    public RegistoExposicoes importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoExposicoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaExposicoes.clear();
+            this.m_listaExposicoes.clear();
 
-                NodeList nList = elem.getElementsByTagName(Exposicao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Exposicao expo = novaExposicao();
-                    expo.importContentFromXMLNode(n2);
-                    this.m_listaExposicoes.add(expo);
-                }
+            NodeList nList = elem.getElementsByTagName(Exposicao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Exposicao expo = novaExposicao();
+                expo.importContentFromXMLNode(n2);
+                this.m_listaExposicoes.add(expo);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoExposicoes.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

@@ -10,7 +10,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um registo de organizadores
- * 
+ *
  * @author G29
  */
 public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, Exportable {
@@ -28,7 +28,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
     public RegistoOrganizadores() {
         this.m_listaOrganizadores = new ArrayList<>();
     }
-    
+
     /**
      * Valida a exposição
      *
@@ -64,7 +64,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
 
     /**
      * Devolve a lista de organizadores
-     * 
+     *
      * @return lista de organizadores
      */
     public List<Organizador> getListaOrganizadores() {
@@ -85,7 +85,7 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param m_ro registo organizadores
      */
     public void fix(RegistoOrganizadores m_ro) {
@@ -103,33 +103,28 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
     }
 
     @Override
-    public RegistoOrganizadores importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public RegistoOrganizadores importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaOrganizadores.clear();
+            this.m_listaOrganizadores.clear();
 
-                NodeList nList = elem.getElementsByTagName(Organizador.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Organizador org = new Organizador();
-                    org.importContentFromXMLNode(n2);
-                    m_listaOrganizadores.add(org);
-                }
+            NodeList nList = elem.getElementsByTagName(Organizador.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Organizador org = new Organizador();
+                org.importContentFromXMLNode(n2);
+                m_listaOrganizadores.add(org);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoOrganizadores.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

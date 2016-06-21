@@ -554,7 +554,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
-
     /**
      * @return the m_ce
      */
@@ -653,134 +652,129 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     @Override
-    public Exposicao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Exposicao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        NodeList elementsKeyword = document.getChildNodes();
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_strTitulo = elem.getElementsByTagName(TITUTLO_ELEMENT_NAME).item(0).getTextContent();
-                this.m_strDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
+            this.m_strTitulo = elem.getElementsByTagName(TITUTLO_ELEMENT_NAME).item(0).getTextContent();
+            this.m_strDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
 
-                Data invalidData = new Data(1, 1, 1);
+            Data invalidData = new Data(1, 1, 1);
 
-                Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
-                this.m_dataAberturaCandidatura = new Data(1, 1, 1);
-                this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2);
-                if (this.m_dataAberturaCandidatura.equals(invalidData)) {
-                    this.m_dataAberturaCandidatura = null;
-                }
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
-                this.m_dataEncerramentoCandidatura = new Data(1, 1, 1);
-                this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2);
-                if (this.m_dataEncerramentoCandidatura.equals(invalidData)) {
-                    this.m_dataEncerramentoCandidatura = null;
-                }
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
-                this.m_dataFim = new Data(1, 1, 1);
-                this.m_dataFim.importContentFromXMLNode(elem2);
-                if (this.m_dataFim.equals(invalidData)) {
-                    this.m_dataFim = null;
-                }
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
-                this.m_dataFimDetecaoConflitos = new Data(1, 1, 1);
-                this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2);
-                if (this.m_dataFimDetecaoConflitos.equals(invalidData)) {
-                    this.m_dataFimDetecaoConflitos = null;
-                }
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
-                this.m_dataInicio = new Data(1, 1, 1);
-                this.m_dataInicio.importContentFromXMLNode(elem2);
-                if (this.m_dataInicio.equals(invalidData)) {
-                    this.m_dataInicio = null;
-                }
-
-                this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
-                this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
-                this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
-                if (this.m_ra.getListaAtribuicoes().size() == 0) {
-                    this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
-                }
-                this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
-                this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
-                this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_rd.setExposicao(this);
-                this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
-                this.local = new Local("");
-                this.local.importContentFromXMLNode(elem.getElementsByTagName(Local.ROOT_ELEMENT_NAME).item(0));
-
-                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
-                switch (estado) {
-                    case "inicial":
-                        this.m_estado = new EstadoExposicaoInicial(this, m_ce);
-                        break;
-                    case "criada":
-                        this.m_estado = new EstadoExposicaoCriada(this);
-                        recriarTimersExpo();
-                        break;
-                    case "demosSemFAE":
-                        this.m_estado = new EstadoExposicaoDemosDefinidasSemFAE(this);
-                        recriarTimersExpo();
-                        break;
-                    case "FAESemDemos":
-                        this.m_estado = new EstadoExposicaoFAEDefinidosSemDemos(this);
-                        recriarTimersExpo();
-                        break;
-                    case "completa":
-                        this.m_estado = new EstadoExposicaoCompleta(this);
-                        recriarTimersExpo();
-                        break;
-                    case "candsAbertas":
-                        this.m_estado = new EstadoExposicaoCandidaturasAbertas(this);
-                        recriarTimersExpo();
-                        break;
-                    case "candsFechadas":
-                        this.m_estado = new EstadoExposicaoCandidaturasFechadas(this);
-                        break;
-                    case "conflitosDetetados":
-                        this.m_estado = new EstadoExposicaoConflitosDetetados(this);
-                        break;
-                    case "conflitosAlterados":
-                        this.m_estado = new EstadoExposicaoConflitosAlterados(this);
-                        break;
-                    case "candsAtribuidas":
-                        this.m_estado = new EstadoExposicaoCandidaturasAtribuidas(this);
-                        break;
-                    case "candsAvaliadas":
-                        this.m_estado = new EstadoExposicaoCandidaturasAvaliadas(this);
-                        break;
-                    case "candsDecididas":
-                        this.m_estado = new EstadoExposicaoCandidaturasDecididas(this);
-                        break;
-                    case "standsAtribuidos":
-                        this.m_estado = new EstadoExposicaoStandsAtribuidos(this);
-                        break;
-                    case "demosDecididas":
-                        this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
-                        recriarTimersDemo();
-                        break;
-                    case "candDemosAbertas":
-                        this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoAbertas(this);
-                        recriarTimersDemo();
-                        break;
-                    case "candDemosFechadas":
-                        this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoFechadas(this);
-                        break;
-                    default:
-                        break;
-                }
+            Element elem2 = (Element) elem.getElementsByTagName(DATA_ABERTURA_CAND_ELEMENT_NAME).item(0);
+            this.m_dataAberturaCandidatura = new Data(1, 1, 1);
+            this.m_dataAberturaCandidatura.importContentFromXMLNode(elem2);
+            if (this.m_dataAberturaCandidatura.equals(invalidData)) {
+                this.m_dataAberturaCandidatura = null;
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Exposicao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_ENCERRAMENTO_CAND_ELEMENT_NAME).item(0);
+            this.m_dataEncerramentoCandidatura = new Data(1, 1, 1);
+            this.m_dataEncerramentoCandidatura.importContentFromXMLNode(elem2);
+            if (this.m_dataEncerramentoCandidatura.equals(invalidData)) {
+                this.m_dataEncerramentoCandidatura = null;
+            }
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_FIM_ELEMENT_NAME).item(0);
+            this.m_dataFim = new Data(1, 1, 1);
+            this.m_dataFim.importContentFromXMLNode(elem2);
+            if (this.m_dataFim.equals(invalidData)) {
+                this.m_dataFim = null;
+            }
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_FIM_CONFLITOS_ELEMENT_NAME).item(0);
+            this.m_dataFimDetecaoConflitos = new Data(1, 1, 1);
+            this.m_dataFimDetecaoConflitos.importContentFromXMLNode(elem2);
+            if (this.m_dataFimDetecaoConflitos.equals(invalidData)) {
+                this.m_dataFimDetecaoConflitos = null;
+            }
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0);
+            this.m_dataInicio = new Data(1, 1, 1);
+            this.m_dataInicio.importContentFromXMLNode(elem2);
+            if (this.m_dataInicio.equals(invalidData)) {
+                this.m_dataInicio = null;
+            }
+
+            this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
+            this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
+            this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
+            if (this.m_ra.getListaAtribuicoes().size() == 0) {
+                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
+            }
+            this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
+            this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
+            this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
+            this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+            this.m_rd.setExposicao(this);
+            this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
+            this.local = new Local("");
+            this.local.importContentFromXMLNode(elem.getElementsByTagName(Local.ROOT_ELEMENT_NAME).item(0));
+
+            String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+            switch (estado) {
+                case "inicial":
+                    this.m_estado = new EstadoExposicaoInicial(this, m_ce);
+                    break;
+                case "criada":
+                    this.m_estado = new EstadoExposicaoCriada(this);
+                    recriarTimersExpo();
+                    break;
+                case "demosSemFAE":
+                    this.m_estado = new EstadoExposicaoDemosDefinidasSemFAE(this);
+                    recriarTimersExpo();
+                    break;
+                case "FAESemDemos":
+                    this.m_estado = new EstadoExposicaoFAEDefinidosSemDemos(this);
+                    recriarTimersExpo();
+                    break;
+                case "completa":
+                    this.m_estado = new EstadoExposicaoCompleta(this);
+                    recriarTimersExpo();
+                    break;
+                case "candsAbertas":
+                    this.m_estado = new EstadoExposicaoCandidaturasAbertas(this);
+                    recriarTimersExpo();
+                    break;
+                case "candsFechadas":
+                    this.m_estado = new EstadoExposicaoCandidaturasFechadas(this);
+                    break;
+                case "conflitosDetetados":
+                    this.m_estado = new EstadoExposicaoConflitosDetetados(this);
+                    break;
+                case "conflitosAlterados":
+                    this.m_estado = new EstadoExposicaoConflitosAlterados(this);
+                    break;
+                case "candsAtribuidas":
+                    this.m_estado = new EstadoExposicaoCandidaturasAtribuidas(this);
+                    break;
+                case "candsAvaliadas":
+                    this.m_estado = new EstadoExposicaoCandidaturasAvaliadas(this);
+                    break;
+                case "candsDecididas":
+                    this.m_estado = new EstadoExposicaoCandidaturasDecididas(this);
+                    break;
+                case "standsAtribuidos":
+                    this.m_estado = new EstadoExposicaoStandsAtribuidos(this);
+                    break;
+                case "demosDecididas":
+                    this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
+                    recriarTimersDemo();
+                    break;
+                case "candDemosAbertas":
+                    this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoAbertas(this);
+                    recriarTimersDemo();
+                    break;
+                case "candDemosFechadas":
+                    this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoFechadas(this);
+                    break;
+                default:
+                    break;
+            }
         }
         return this;
     }

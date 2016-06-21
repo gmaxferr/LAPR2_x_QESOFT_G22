@@ -477,146 +477,142 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     @Override
-    public CandidaturaAExposicao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public CandidaturaAExposicao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_decisao = new Decisao();
-                this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
-                this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
-                this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
-                this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
-                Node n2 = elem.getElementsByTagName(AVALIACOES_ELEMENT_NAME).item(0);
-                if (n2 != null) {
-                    NodeList avaliacoesList = ((Element) n2).getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME);
-                    for (int i = 0; i < avaliacoesList.getLength(); i++) {
+            this.m_decisao = new Decisao();
+            this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
+            this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
+            this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
+            this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
+            Node n2 = elem.getElementsByTagName(AVALIACOES_ELEMENT_NAME).item(0);
+            if (n2 != null) {
+                NodeList avaliacoesList = ((Element) n2).getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME);
+                for (int i = 0; i < avaliacoesList.getLength(); i++) {
 
-                        Avaliacao aval = new Avaliacao();
-                        Node n3 = avaliacoesList.item(0);
-                        aval.importContentFromXMLNode(n3);
+                    Avaliacao aval = new Avaliacao();
+                    Node n3 = avaliacoesList.item(0);
+                    aval.importContentFromXMLNode(n3);
 
-                        FAE fae = new FAE();
-                        Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
-                        fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+                    FAE fae = new FAE();
+                    Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
+                    fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
 
-                        RegistoAtribuicoes ra = e.getRegistoAtribuicoes();
-                        List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoes();
-                        AtribuicaoCandidatura atr = null;
-                        for (AtribuicaoCandidatura atrCand : listAtr) {
-                            if (atrCand.getCandidaturaAssociada().equals(this) && atrCand.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae()) != null) {
-                                atr = atrCand;
-                            }
-                        }
-
-                        if (atr == null) {
-                            atr = new AtribuicaoCandidatura(this);
-                            listAtr.add(atr);
-                        }
-
-                        FaeAvaliacao fAval = atr.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae());
-                        if (fAval == null) {
-                            fAval = new FaeAvaliacao(fae);
-                            atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
-                        }
-
-                        fAval.setAvaliacao(aval);
-                    }
-                }
-
-                NodeList tempList = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_StrMoradaEmpresa = tempList.item(0).getTextContent();
-                }
-                tempList = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_StrNomeEmpresa = tempList.item(0).getTextContent();
-                }
-                tempList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_expositor = new Expositor(null);
-                    this.m_expositor.importContentFromXMLNode(tempList.item(0));
-                }
-                tempList = elem.getElementsByTagName(TLM_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_intTelemovel = Integer.parseInt(tempList.item(0).getTextContent());
-                }
-                tempList = elem.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    Node m = tempList.item(0);
-                    if (m.getNodeType() == Node.ELEMENT_NODE) {
-                        Element m2 = (Element) m;
-                        NodeList keywords = m2.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
-                        this.m_keywords.clear();
-                        for (int i = 0; i < keywords.getLength(); i++) {
-                            Keyword key = new Keyword();
-                            key.importContentFromXMLNode(keywords.item(i));
-                            this.m_keywords.add(key);
+                    RegistoAtribuicoes ra = e.getRegistoAtribuicoes();
+                    List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoes();
+                    AtribuicaoCandidatura atr = null;
+                    for (AtribuicaoCandidatura atrCand : listAtr) {
+                        if (atrCand.getCandidaturaAssociada().equals(this) && atrCand.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae()) != null) {
+                            atr = atrCand;
                         }
                     }
-                }
-                tempList = elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_rd = new RegistoDemonstracoes();
-                    this.m_rd.importContentFromXMLNode(tempList.item(0));
-                }
-                tempList = elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME);
-                if (tempList.getLength() > 0) {
-                    this.m_rp = new RegistoProdutos();
-                    this.m_rp.importContentFromXMLNode(tempList.item(0));
-                }
 
-                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
-                switch (estado) {
-                    case "inicial":
-                        this.m_estado = new EstadoCandidaturaAExposicaoInicial(this);
-                        break;
-                    case "criada":
-                        this.m_estado = new EstadoCandidaturaAExposicaoCriada(this);
-                        break;
-                    case "prontaAtribuicoes":
-                        this.m_estado = new EstadoCandidaturaAExposicaoProntaAtribuicoes(this);
-                        break;
-                    case "atribuida":
-                        this.m_estado = new EstadoCandidaturaAExposicaoAtribuida(this);
-                        break;
-                    case "naoAvaliada":
-                        this.m_estado = new EstadoCandidaturaAExposicaoNaoAvaliada(this);
-                        break;
-                    case "avaliada":
-                        this.m_estado = new EstadoCandidaturaAExposicaoAvaliada(this);
-                        break;
-                    case "rejeitada":
-                        this.m_estado = new EstadoCandidaturaAExposicaoRejeitada(this);
-                        break;
-                    case "aceite":
-                        this.m_estado = new EstadoCandidaturaAExposicaoAceite(this);
-                        break;
-                    case "abertaAtualizacaoConflitos":
-                        this.m_estado = new EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(this);
-                        break;
-                    case "standsAtribuidos":
-                        this.m_estado = new EstadoCandidaturaAExposicaoStandsAtribuidos(this);
-                        break;
-                    case "standRecusado":
-                        this.m_estado = new EstadoCandidaturaAExposicaoStandRecusado(this);
-                        break;
-                    case "standAceite":
-                        this.m_estado = new EstadoCandidaturaAExposicaoStandAceite(this);
-                        break;
-                    default:
-                        break;
+                    if (atr == null) {
+                        atr = new AtribuicaoCandidatura(this);
+                        listAtr.add(atr);
+                    }
+
+                    FaeAvaliacao fAval = atr.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(fae.getUsernameFae());
+                    if (fAval == null) {
+                        fAval = new FaeAvaliacao(fae);
+                        atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
+                    }
+
+                    fAval.setAvaliacao(aval);
                 }
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(CandidaturaAExposicao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+
+            NodeList tempList = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_StrMoradaEmpresa = tempList.item(0).getTextContent();
+            }
+            tempList = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_StrNomeEmpresa = tempList.item(0).getTextContent();
+            }
+            tempList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_expositor = new Expositor(null);
+                this.m_expositor.importContentFromXMLNode(tempList.item(0));
+            }
+            tempList = elem.getElementsByTagName(TLM_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_intTelemovel = Integer.parseInt(tempList.item(0).getTextContent());
+            }
+            tempList = elem.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                Node m = tempList.item(0);
+                if (m.getNodeType() == Node.ELEMENT_NODE) {
+                    Element m2 = (Element) m;
+                    NodeList keywords = m2.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
+                    this.m_keywords.clear();
+                    for (int i = 0; i < keywords.getLength(); i++) {
+                        Keyword key = new Keyword();
+                        key.importContentFromXMLNode(keywords.item(i));
+                        this.m_keywords.add(key);
+                    }
+                }
+            }
+            tempList = elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_rd = new RegistoDemonstracoes();
+                this.m_rd.importContentFromXMLNode(tempList.item(0));
+            }
+            tempList = elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME);
+            if (tempList.getLength() > 0) {
+                this.m_rp = new RegistoProdutos();
+                this.m_rp.importContentFromXMLNode(tempList.item(0));
+            }
+
+            String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+            switch (estado) {
+                case "inicial":
+                    this.m_estado = new EstadoCandidaturaAExposicaoInicial(this);
+                    break;
+                case "criada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoCriada(this);
+                    break;
+                case "prontaAtribuicoes":
+                    this.m_estado = new EstadoCandidaturaAExposicaoProntaAtribuicoes(this);
+                    break;
+                case "atribuida":
+                    this.m_estado = new EstadoCandidaturaAExposicaoAtribuida(this);
+                    break;
+                case "naoAvaliada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoNaoAvaliada(this);
+                    break;
+                case "avaliada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoAvaliada(this);
+                    break;
+                case "rejeitada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoRejeitada(this);
+                    break;
+                case "aceite":
+                    this.m_estado = new EstadoCandidaturaAExposicaoAceite(this);
+                    break;
+                case "abertaAtualizacaoConflitos":
+                    this.m_estado = new EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(this);
+                    break;
+                case "standsAtribuidos":
+                    this.m_estado = new EstadoCandidaturaAExposicaoStandsAtribuidos(this);
+                    break;
+                case "standRecusado":
+                    this.m_estado = new EstadoCandidaturaAExposicaoStandRecusado(this);
+                    break;
+                case "standAceite":
+                    this.m_estado = new EstadoCandidaturaAExposicaoStandAceite(this);
+                    break;
+                default:
+                    break;
+            }
         }
+
         return this;
     }
 

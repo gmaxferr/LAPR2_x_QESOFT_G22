@@ -11,7 +11,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoCandidaturasADemonstracoes
- * 
+ *
  * @author G29
  */
 public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandidaturaADemonstracoes>, Exportable {
@@ -24,7 +24,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
     List<CandidaturaADemonstracao> m_listaCandidaturasADemonstracao;
 
     /**
-     * Construtor de objetos do tipo RegistoCandidaturasADemonstracoes sem 
+     * Construtor de objetos do tipo RegistoCandidaturasADemonstracoes sem
      * parâmetros
      */
     public RegistoCandidaturaADemonstracoes() {
@@ -32,9 +32,9 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
     }
 
     /**
-     * Devolve a lista de candidaturas a demonstração  
-     * 
-     * @return lista de candidaturas a demonstração  
+     * Devolve a lista de candidaturas a demonstração
+     *
+     * @return lista de candidaturas a demonstração
      */
     public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracao() {
         return m_listaCandidaturasADemonstracao;
@@ -42,7 +42,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
 
     /**
      * Devolve a lista de candidaturas a demonstração de um representante
-     * 
+     *
      * @param email - email do representante
      * @return lista de candidaturas a demonstracao do representante
      */
@@ -83,7 +83,6 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
         return !m_listaCandidaturasADemonstracao.contains(cand);
     }
 
-    
     public List<CandidaturaADemonstracao> getListaCandidaturasEstadoCriada() {
         List<CandidaturaADemonstracao> listCand = new ArrayList<>();
         for (CandidaturaADemonstracao cand : m_listaCandidaturasADemonstracao) {
@@ -94,35 +93,30 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
         }
         return listCand;
     }
-    
+
     @Override
-    public RegistoCandidaturaADemonstracoes importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public RegistoCandidaturaADemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_listaCandidaturasADemonstracao.clear();
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    CandidaturaADemonstracao cand = new CandidaturaADemonstracao("", "");
-                    cand.importContentFromXMLNode(n2);
-                    m_listaCandidaturasADemonstracao.add(cand);
-                }
+            this.m_listaCandidaturasADemonstracao.clear();
+
+            NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                CandidaturaADemonstracao cand = new CandidaturaADemonstracao("", "");
+                cand.importContentFromXMLNode(n2);
+                m_listaCandidaturasADemonstracao.add(cand);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturaADemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

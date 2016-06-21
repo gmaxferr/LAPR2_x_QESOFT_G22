@@ -83,44 +83,39 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
     public void adiciona(ConflitoDeInteresseDemonstracao c) {
         m_listaConflitos.add(c);
     }
-    
+
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param rc registo de candidaturas a exposição
      */
-    public void fix(RegistoCandidaturasAExposicao rc){
-        for(ConflitoDeInteresseDemonstracao conf : m_listaConflitos){
+    public void fix(RegistoCandidaturasAExposicao rc) {
+        for (ConflitoDeInteresseDemonstracao conf : m_listaConflitos) {
             conf.fix(rc);
         }
     }
 
     @Override
-    public RegistoConflitosDemonstracao importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoConflitosDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
-            
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_listaConflitos.clear();
-                
-                NodeList nList = elem.getElementsByTagName(ConflitoDeInteresse.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    ConflitoDeInteresseDemonstracao conflito = new ConflitoDeInteresseDemonstracao(null, null, null);
-                    conflito.importContentFromXMLNode(n2);
-                    m_listaConflitos.add(conflito);
-                }
+        Node n = doc.getChildNodes().item(0);
+
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+
+            this.m_listaConflitos.clear();
+
+            NodeList nList = elem.getElementsByTagName(ConflitoDeInteresse.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                ConflitoDeInteresseDemonstracao conflito = new ConflitoDeInteresseDemonstracao(null, null, null);
+                conflito.importContentFromXMLNode(n2);
+                m_listaConflitos.add(conflito);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoConflitosDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

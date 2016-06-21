@@ -124,23 +124,18 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
     }
 
     @Override
-    public ScoredKeyword importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public ScoredKeyword importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
+        Node n = elementsKeyword.item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
-                this.m_score = Integer.parseInt(elem.getAttribute(SCORE_ATTR_NAME));
-                this.m_frequency = Integer.parseInt(elem.getAttribute(FREQ_ATTR_NAME));
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(ScoredKeyword.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
+            this.m_score = Integer.parseInt(elem.getAttribute(SCORE_ATTR_NAME));
+            this.m_frequency = Integer.parseInt(elem.getAttribute(FREQ_ATTR_NAME));
         }
         return this;
     }

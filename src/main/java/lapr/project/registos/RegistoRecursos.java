@@ -10,7 +10,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoRecursos
- * 
+ *
  * @author G29
  */
 public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable {
@@ -63,7 +63,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
 
     /**
      * Devolve a lista de recursos necessários
-     * 
+     *
      * @return lista de recursos necessários
      */
     public List<Recurso> getListaDeRecursos() {
@@ -72,7 +72,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
 
     /**
      * Adiciona a lista de recursos necessários
-     * 
+     *
      * @param listaRecursosNecessarios lista de recursos necessários
      */
     public void setListaRecursosNecessarios(List<Recurso> listaRecursosNecessarios) {
@@ -80,36 +80,31 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     }
 
     @Override
-    public RegistoRecursos importContentFromXMLNode(Node node) {
-        if(node == null){
+    public RegistoRecursos importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        if (node == null) {
             return this;
         }
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaRecursosNecessarios.clear();
+            this.m_listaRecursosNecessarios.clear();
 
-                NodeList nList = elem.getElementsByTagName(Recurso.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Recurso rec = new Recurso("");
-                    rec.importContentFromXMLNode(n2);
-                    m_listaRecursosNecessarios.add(rec);
-                }
+            NodeList nList = elem.getElementsByTagName(Recurso.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Recurso rec = new Recurso("");
+                rec.importContentFromXMLNode(n2);
+                m_listaRecursosNecessarios.add(rec);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoRecursos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 
@@ -140,6 +135,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
 
     /**
      * Adiciona um recurso à lista dos mesmos
+     *
      * @param rec - recurso a adicionar
      */
     private void adiciona(Recurso rec) {

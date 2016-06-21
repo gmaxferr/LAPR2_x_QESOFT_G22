@@ -71,24 +71,19 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
     }
 
     @Override
-    public AtribuicaoStand importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public AtribuicaoStand importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_cand.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0));
+            this.m_cand.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0));
 
-                this.m_stand = new Stand("", 0, "");
-                this.m_stand.importContentFromXMLNode(elem.getElementsByTagName(Stand.ROOT_ELEMENT_NAME).item(0));
+            this.m_stand = new Stand("", 0, "");
+            this.m_stand.importContentFromXMLNode(elem.getElementsByTagName(Stand.ROOT_ELEMENT_NAME).item(0));
 
-                this.m_decisao = Boolean.valueOf(elem.getAttribute(DECISAO_ATTR_NAME));
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(AtribuicaoStand.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_decisao = Boolean.valueOf(elem.getAttribute(DECISAO_ATTR_NAME));
         }
         return this;
     }

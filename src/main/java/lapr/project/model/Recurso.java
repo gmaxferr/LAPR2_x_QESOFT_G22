@@ -39,11 +39,10 @@ public class Recurso implements Importable<Recurso>, Exportable {
         this.m_nomeRecurso = nomeRecurso;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
-        if(obj != null){
-            if(obj instanceof Recurso){
+        if (obj != null) {
+            if (obj instanceof Recurso) {
                 Recurso o = (Recurso) obj;
                 return this.m_nomeRecurso.equals(o.m_nomeRecurso);
             }
@@ -59,20 +58,15 @@ public class Recurso implements Importable<Recurso>, Exportable {
     }
 
     @Override
-    public Recurso importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Recurso importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_nomeRecurso = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Recurso.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_nomeRecurso = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
         }
         return this;
     }
@@ -86,7 +80,7 @@ public class Recurso implements Importable<Recurso>, Exportable {
 
             Element elementRecurso = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementRecurso);
-            
+
             Element elementNome = document.createElement(NOME_ELEMENT_NAME);
             elementNome.setTextContent(this.m_nomeRecurso);
             elementRecurso.appendChild(elementNome);

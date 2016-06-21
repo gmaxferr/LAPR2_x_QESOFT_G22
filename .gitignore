@@ -147,3 +147,6 @@ fabric.properties
 *.iml
 /nbproject/
 lapr2.g29.user.properties
+.sonar/.sonar_lock
+.sonar/report-task.txt
+sonar-project.properties

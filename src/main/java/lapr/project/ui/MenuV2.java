@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 
@@ -100,54 +101,59 @@ public class MenuV2 extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                JFileChooser fc = new JFileChooser();
-                ExportarXMLController CTRL = new ExportarXMLController();
+                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+                if (op == JOptionPane.YES_OPTION) {
+                    JFileChooser fc = new JFileChooser();
+                    ExportarXMLController CTRL = new ExportarXMLController();
 
-                File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
-                boolean successfulExport = false;
+                    File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+                    boolean successfulExport = false;
 
-                try {
-                    Scanner in = new Scanner(properties);
+                    try {
+                        Scanner in = new Scanner(properties);
 
-                    while (in.hasNext()) {
-                        String[] input = in.nextLine().split("=");
-                        if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
-                            String[] filePath = input[1].split("\".*\"");
-                            if (filePath.length > 0) {
-                                File file = new File(filePath[0]);
-                                if (!file.exists()) {
-                                    break;
-                                }
-                                if (CTRL.export(filePath[0], centroExposicoes)) {
-                                    JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                                    successfulExport = true;
-                                    dispose();
-                                    System.exit(0);
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                        while (in.hasNext()) {
+                            String[] input = in.nextLine().split("=");
+                            if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
+                                String[] filePath = input[1].split("\".*\"");
+                                if (filePath.length > 0) {
+                                    File file = new File(filePath[0]);
+                                    if (!file.exists()) {
+                                        break;
+                                    }
+                                    if (CTRL.export(filePath[0], centroExposicoes)) {
+                                        JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                        successfulExport = true;
+                                        dispose();
+                                        System.exit(0);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                    }
                                 }
                             }
                         }
+
+                        in.close();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    in.close();
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                if (!successfulExport) {
-                    int returnVal = fc.showSaveDialog(thisJFrame);
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                        File f = fc.getSelectedFile();
-                        String fileName = f.getAbsolutePath();
-                        if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
-                            JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-                            dispose();
-                            System.exit(0);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    if (!successfulExport) {
+                        int returnVal = fc.showSaveDialog(thisJFrame);
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            File f = fc.getSelectedFile();
+                            String fileName = f.getAbsolutePath();
+                            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
+                                JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                dispose();
+                                System.exit(0);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
+                } else if (op == JOptionPane.NO_OPTION) {
+                    System.exit(0);
                 }
             }
         });
@@ -869,7 +875,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 ce.importContentFromXMLNode(CTRL.Import(file.getAbsolutePath()));
                 this.centroExposicoes = ce;
                 JOptionPane.showMessageDialog(thisJFrame, "Informação carregada com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } catch (FileNotFoundException | NullPointerException ex) {
+            } catch (FileNotFoundException | NullPointerException | ParserConfigurationException ex) {
                 JOptionPane.showMessageDialog(thisJFrame, "Erro no carregamento da informação.", "ERRO", JOptionPane.INFORMATION_MESSAGE);
             }
         }

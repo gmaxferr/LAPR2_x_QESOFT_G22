@@ -93,7 +93,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private RegistoCandidaturaADemonstracoes m_rcd;
 
     private RegistoAtribuicoesDemonstracao m_rad;
-    
+
     /**
      *
      */
@@ -123,7 +123,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_expo = null;
         this.m_StrDescricao = descricao;
     }
-    
+
     /**
      *
      * @param descricao
@@ -180,10 +180,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return this.rc;
     }
 
-    public RegistoAtribuicoesDemonstracao getRegistoAtribuicoesDemonstracao(){
+    public RegistoAtribuicoesDemonstracao getRegistoAtribuicoesDemonstracao() {
         return this.m_rad;
     }
-            
+
     /**
      * Devolve o registo de conflitos da demonstração
      *
@@ -228,20 +228,22 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public Data getDataFimCand() {
         return m_dataFimSubCand;
     }
-    
+
     /**
      * Define a data de início de submissão de candidaturas
-     * @param dataInicio 
+     *
+     * @param dataInicio
      */
-    public void setDataInicioCand(Data dataInicio){
+    public void setDataInicioCand(Data dataInicio) {
         this.m_dataInicioSubCand = dataInicio;
     }
-    
+
     /**
      * Define a data de fim de submissão de candidaturas
-     * @param dataFim 
+     *
+     * @param dataFim
      */
-    public void setDataFimCand(Data dataFim){
+    public void setDataFimCand(Data dataFim) {
         this.m_dataFimSubCand = dataFim;
     }
 
@@ -358,77 +360,72 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     @Override
-    public Demonstracao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Demonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_StrCodigoIdentificacao = elem.getAttribute(ID_ATTR_NAME);
-                this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
-                this.rc = new RegistoRecursos();
-                this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcd = new RegistoCandidaturaADemonstracoes();
-                this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
-                this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
-                this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
-                this.m_rconfDemo = new RegistoConflitosDemonstracao();
-                this.m_rconfDemo.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitosDemonstracao.ROOT_ELEMENT_NAME).item(0));
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_StrCodigoIdentificacao = elem.getAttribute(ID_ATTR_NAME);
+            this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
+            this.rc = new RegistoRecursos();
+            this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
+            this.m_rcd = new RegistoCandidaturaADemonstracoes();
+            this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
+            this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
+            this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
+            this.m_rconfDemo = new RegistoConflitosDemonstracao();
+            this.m_rconfDemo.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitosDemonstracao.ROOT_ELEMENT_NAME).item(0));
 
-                Data invalidData = new Data(1, 1, 1);
+            Data invalidData = new Data(1, 1, 1);
 
-                Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
-                this.m_dataInicioSubCand = new Data(1, 1, 1);
-                this.m_dataInicioSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if (this.m_dataInicioSubCand.equals(invalidData)) {
-                    this.m_dataInicioSubCand = null;
-                }
-
-                elem2 = (Element) elem.getElementsByTagName(DATA_FIM_SUB_CAND_ELEMENT_NAME).item(0);
-                this.m_dataFimSubCand = new Data(1, 1, 1);
-                this.m_dataFimSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
-                if (this.m_dataFimSubCand.equals(invalidData)) {
-                    this.m_dataFimSubCand = null;
-                }
-
-                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
-
-                switch (estado) {
-                    case "pendente":
-                        this.m_estado = new EstadoDemonstracaoPendente(this);
-                        break;
-                    case "cancelada":
-                        this.m_estado = new EstadoDemonstracaoCancelada(this);
-                        break;
-                    case "confirmada":
-                        this.m_estado = new EstadoDemonstracaoConfirmada(this);
-                        break;
-                    case "candidaturasAbertas":
-                        this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
-                        break;
-                    case "candidaturasFechadas":
-                        this.m_estado = new EstadoDemonstracaoCandidaturasFechadas(this);
-                        break;
-                    case "candidaturasAtribuidas":
-                        this.m_estado = new EstadoDemonstracaoCandidaturasAtribuidas(this);
-                        break;
-                    case "candidaturasAvaliadas":
-                        this.m_estado = new EstadoDemonstracaoCandidaturasAvaliadas(this);
-                        break;
-                    case "candidaturasDecididas":
-                        this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
-                        break;
-                    default:
-                        break;
-                }
-
+            Element elem2 = (Element) elem.getElementsByTagName(DATA_INICIO_SUB_CAND_ELEMENT_NAME).item(0);
+            this.m_dataInicioSubCand = new Data(1, 1, 1);
+            this.m_dataInicioSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+            if (this.m_dataInicioSubCand.equals(invalidData)) {
+                this.m_dataInicioSubCand = null;
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Demonstracao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_FIM_SUB_CAND_ELEMENT_NAME).item(0);
+            this.m_dataFimSubCand = new Data(1, 1, 1);
+            this.m_dataFimSubCand.importContentFromXMLNode(elem2.getElementsByTagName(Data.ROOT_ELEMENT_NAME).item(0));
+            if (this.m_dataFimSubCand.equals(invalidData)) {
+                this.m_dataFimSubCand = null;
+            }
+
+            String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+
+            switch (estado) {
+                case "pendente":
+                    this.m_estado = new EstadoDemonstracaoPendente(this);
+                    break;
+                case "cancelada":
+                    this.m_estado = new EstadoDemonstracaoCancelada(this);
+                    break;
+                case "confirmada":
+                    this.m_estado = new EstadoDemonstracaoConfirmada(this);
+                    break;
+                case "candidaturasAbertas":
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
+                    break;
+                case "candidaturasFechadas":
+                    this.m_estado = new EstadoDemonstracaoCandidaturasFechadas(this);
+                    break;
+                case "candidaturasAtribuidas":
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAtribuidas(this);
+                    break;
+                case "candidaturasAvaliadas":
+                    this.m_estado = new EstadoDemonstracaoCandidaturasAvaliadas(this);
+                    break;
+                case "candidaturasDecididas":
+                    this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
+                    break;
+                default:
+                    break;
+            }
+
         }
         return this;
     }

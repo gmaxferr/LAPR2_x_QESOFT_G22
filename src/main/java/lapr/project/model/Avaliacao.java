@@ -139,27 +139,22 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     }
 
     @Override
-    public Avaliacao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Avaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList nList = document.getChildNodes();
+        NodeList nList = document.getChildNodes();
 
-            Node n = nList.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = nList.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ATTR_NAME).item(0).getTextContent());
-                this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ATTR_NAME).item(0).getTextContent());
-                this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ATTR_NAME).item(0).getTextContent());
-                this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ATTR_NAME).item(0).getTextContent());
-                this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ATTR_NAME).item(0).getTextContent());
-            }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ATTR_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ATTR_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ATTR_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ATTR_NAME).item(0).getTextContent());
+            this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ATTR_NAME).item(0).getTextContent());
         }
+
         return this;
     }
 

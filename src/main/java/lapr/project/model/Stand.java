@@ -96,26 +96,21 @@ public class Stand implements Importable<Stand>, Exportable {
     }
 
     @Override
-    public Stand importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Stand importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_ID = elem.getAttribute(ID_ATTR_NAME);
-                String input = elem.getAttribute(AREA_ATTR_NAME);
-                if (!input.isEmpty()) {
-                    this.m_area = Integer.parseInt(input);
-                }
-                this.m_descricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
+            this.m_ID = elem.getAttribute(ID_ATTR_NAME);
+            String input = elem.getAttribute(AREA_ATTR_NAME);
+            if (!input.isEmpty()) {
+                this.m_area = Integer.parseInt(input);
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Stand.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_descricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
         }
         return this;
     }

@@ -53,32 +53,27 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
     }
 
     @Override
-    public AtribuicaoCandidatura importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public AtribuicaoCandidatura importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                Expositor expositor = new Expositor(null);
-                expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
+            Expositor expositor = new Expositor(null);
+            expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
 
-                this.m_candidatura = new CandidaturaAExposicao(expositor);
-                NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Keyword key = new Keyword();
-                    key.importContentFromXMLNode(n2);
-                    this.m_candidatura.getListKeyword().add(key);
-                }
-
-                this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
-                this.m_rFaeAvaliacao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
+            this.m_candidatura = new CandidaturaAExposicao(expositor);
+            NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Keyword key = new Keyword();
+                key.importContentFromXMLNode(n2);
+                this.m_candidatura.getListKeyword().add(key);
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(AtribuicaoCandidatura.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+
+            this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
+            this.m_rFaeAvaliacao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
         }
         return this;
     }
