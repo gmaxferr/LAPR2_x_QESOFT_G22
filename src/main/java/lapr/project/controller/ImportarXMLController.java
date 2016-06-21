@@ -46,10 +46,11 @@ public class ImportarXMLController {
      * @throws FileNotFoundException
      */
     public CentroExposicoes importAndUpdateProperties(String filename) throws FileNotFoundException {
-        CentroExposicoes ce = new CentroExposicoes();
-        ce.importContentFromXMLNode(Import(filename));
+        Node node = Import(filename);
+        if (node != null) {
+            CentroExposicoes ce = new CentroExposicoes();
+            ce.importContentFromXMLNode(node);
 
-        if (ce != null) {
             File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
             try {
                 Formatter out = new Formatter(properties);
@@ -58,7 +59,9 @@ public class ImportarXMLController {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ExportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            return ce;
+
         }
-        return ce;
+        return null;
     }
 }
