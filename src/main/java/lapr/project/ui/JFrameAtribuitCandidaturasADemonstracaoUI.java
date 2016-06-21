@@ -1,32 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirCandidaturasADemonstracaoController;
-import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Mecanismo;
-import lapr.project.model.Utilizador;
-import lapr.project.ui.model.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ComboBoxModelMecanismos;
+import lapr.project.model.*;
+import lapr.project.ui.model.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
-public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFrame {
+public class JFrameAtribuitCandidaturasADemonstracaoUI extends javax.swing.JFrame {
 
     private transient JFrame jFrameMenuPrincipal;
     private transient final String usernameOrganizador;
@@ -60,10 +47,11 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
     private static final String DESCRICAO_MECANISMO_POR_OMISSAO = "A apresentar uma breve discrição sobre como o mecanismo funciona e este distribui os FAE's pelas candidaturas existentes.";
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
 
+    
     /**
-     * Creates new form JFrameAtribuirCandidaturasADemonstracaoUi
+     * Creates new form AAA
      */
-    public JFrameAtribuirCandidaturasADemonstracaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
+    public JFrameAtribuitCandidaturasADemonstracaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
          super("Atribuir candidaturas a exposição");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
@@ -81,7 +69,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
         setVisible(true);
        
     }
-
+    
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
@@ -94,7 +82,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -387,7 +375,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +393,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Escolha o mecanismo pretendido");
@@ -475,7 +463,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jButtonCard3Recuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCard3Avancar)
                 .addGap(42, 42, 42))
             .addGroup(card3Layout.createSequentialGroup()
@@ -486,7 +474,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(jComboBoxCard3EscolherMecanismo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 156, Short.MAX_VALUE))
             .addGroup(card3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -509,8 +497,9 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addComponent(jButtonCard3Avancar)))
         );
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Distribuição gerada por candidatura");
 
         this.modeloJTableFAEPorCandidatura = new ModeloJTableUtilizadores();
@@ -559,10 +548,10 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                     .addGroup(card4Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(jLabel5)))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
                 .addContainerGap())
         );
         card4Layout.setVerticalGroup(
@@ -583,7 +572,7 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
                 .addGap(22, 22, 22))
         );
 
-        getContentPane().add(card4, "card3");
+        getContentPane().add(card4, "card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -627,6 +616,37 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
+    private void jComboBoxCard4EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard4EscolherCandidaturaActionPerformed
+        List<Utilizador> listaUtilizadoresAssociadosAosFAE = listaAtribuicoes.get(jComboBoxCard4EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaUtilizadoresAssociadoAosFAE();
+        modeloJTableFAEPorCandidatura.setLista(listaUtilizadoresAssociadosAosFAE);
+        modeloJTableFAEPorCandidatura.fireTableDataChanged();
+    }//GEN-LAST:event_jComboBoxCard4EscolherCandidaturaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card3");
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (!listaAtribuicoes.isEmpty()) {
+            finalizarDistribuicao();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma atribuição gerada para a respectiva exposição com este mecanismo.", "Sem atribuições", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void finalizarDistribuicao() {
+        int resposta = JOptionPane.showOptionDialog(rootPane, "Tem a certeza que pretende esta distribuição?", "Terminar", 0, JOptionPane.QUESTION_MESSAGE, null, OPCOES_SIM_NAO_DIALOG, OPCOES_SIM_NAO_DIALOG[1]);
+        if (resposta == 0) {
+            controller.registaAtribuicao(listaAtribuicoes);
+            controller.setEstadoCandidaturaAtribuida();
+            setVisible(false);
+            JOptionPane.showMessageDialog(rootPane, "Distribuição registada!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            jFrameMenuPrincipal.setVisible(true);
+        }
+    }
+    
     private void jComboBoxCard3EscolherMecanismoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard3EscolherMecanismoActionPerformed
         if (jComboBoxCard3EscolherMecanismo.getSelectedItem() != null) {
             switch (jComboBoxCard3EscolherMecanismo.getSelectedIndex()) {
@@ -695,37 +715,6 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
         setSize(LARGURA_JANELA_PASSO4, ALTURA_JANELA_PASSO4);
     }
     
-    private void jComboBoxCard4EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard4EscolherCandidaturaActionPerformed
-        List<Utilizador> listaUtilizadoresAssociadosAosFAE = listaAtribuicoes.get(jComboBoxCard4EscolherCandidatura.getSelectedIndex()).getRegistoFaeAvaliacao().getListaUtilizadoresAssociadoAosFAE();
-        modeloJTableFAEPorCandidatura.setLista(listaUtilizadoresAssociadosAosFAE);
-        modeloJTableFAEPorCandidatura.fireTableDataChanged();
-    }//GEN-LAST:event_jComboBoxCard4EscolherCandidaturaActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "card3");
-        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (!listaAtribuicoes.isEmpty()) {
-            finalizarDistribuicao();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Nenhuma atribuição gerada para a respectiva exposição com este mecanismo.", "Sem atribuições", JOptionPane.OK_OPTION);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void finalizarDistribuicao() {
-        int resposta = JOptionPane.showOptionDialog(rootPane, "Tem a certeza que pretende esta distribuição?", "Terminar", 0, JOptionPane.QUESTION_MESSAGE, null, OPCOES_SIM_NAO_DIALOG, OPCOES_SIM_NAO_DIALOG[1]);
-        if (resposta == 0) {
-            controller.registaAtribuicao(listaAtribuicoes);
-            controller.setEstadoCandidaturaAtribuida();
-            setVisible(false);
-            JOptionPane.showMessageDialog(rootPane, "Distribuição registada!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            jFrameMenuPrincipal.setVisible(true);
-        }
-    }
-    
     private void jButtonCard1Avancar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1Avancar1ActionPerformed
         if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
             avancarParaCard3();
@@ -766,7 +755,6 @@ public class JFrameAtribuirCandidaturasADemonstracaoUI extends javax.swing.JFram
             jTextAreaCard1DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherDemonstracaoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;

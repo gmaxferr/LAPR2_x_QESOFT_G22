@@ -98,13 +98,13 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     /**
      * Devolve a lista de candidaturas de um representante
      *
-     * @param username username do representante
+     * @param email email do representante
      * @return lista de candidaturas de um representante
      */
-    public List<CandidaturaAExposicao> getCandidaturasRepresentante(String username) {
+    public List<CandidaturaAExposicao> getCandidaturasRepresentante(String email) {
         List<CandidaturaAExposicao> candidaturasRepLst = new ArrayList<>();
         for (CandidaturaAExposicao c : m_listaCandidaturas) {
-            if (c.getUsernameExpositor().equals(username)) {
+            if (c.getEmailExpositor().equals(email)) {
                 candidaturasRepLst.add(c);
             }
         }
