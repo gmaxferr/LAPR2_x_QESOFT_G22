@@ -21,9 +21,10 @@ public interface MecanismoSimples extends Mecanismo {
     /**
      * Distribui os FAE pelas candidaturas
      * 
+     * @param exposicaoEscolhida exposicao escolhida 
      * @param demonstracaoEscolhida demonstração sobre a qual está a ser executada a
      * distribuição
      * @return distribuição gerada pelo mecanismo
      */
-    List<AtribuicaoCandidatura> atribui (Demonstracao demonstracaoEscolhida);
+    List<AtribuicaoCandidaturaDemonstracao> atribui (Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida);
 }

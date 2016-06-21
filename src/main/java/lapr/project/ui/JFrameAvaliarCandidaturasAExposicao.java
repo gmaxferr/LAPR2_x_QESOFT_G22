@@ -28,7 +28,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private static final int CARD1_LARGURA = 710;
 
     private static final int CARD2_LARGURA = 480;
-    private static final int CARD2_ALTURA = 450;
+    private static final int CARD2_ALTURA = 480;
     private final CardLayout cardLayout;
 
     /**
@@ -111,6 +111,8 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListCard2ListaProdutos = new javax.swing.JList<>(LISTA_PRODUTOS_POR_OMISSAO);
+        jLabel7 = new javax.swing.JLabel();
+        jLabelKeywordsDescricaoProdutos = new javax.swing.JLabel();
         jComboBoxCard2EscolherCandidatura = new javax.swing.JComboBox<>();
         jButtonCard2Avancar = new javax.swing.JButton();
         jButtonCard2Recuar = new javax.swing.JButton();
@@ -128,12 +130,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabelAdequacaoAsDemonstracoes = new javax.swing.JLabel();
         jLabelAdequacaoDoNumeroDeConvites = new javax.swing.JLabel();
         jLabelRecomendacaoGlobal = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jRadioButtonCard3Nao = new javax.swing.JRadioButton();
-        jRadioButtonCard3Sim = new javax.swing.JRadioButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextAreaCard3Justificacao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -315,7 +311,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabel3.setFont(jLabelCard1Titulo.getFont());
         jLabel3.setText("Escolha a candidatura pretendida");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel4.setText("Nome:");
 
@@ -353,40 +349,54 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(jListCard2ListaProdutos);
 
+        jLabel7.setText("Keywords:");
+
+        jLabelKeywordsDescricaoProdutos.setForeground(new java.awt.Color(102, 102, 102));
+        jLabelKeywordsDescricaoProdutos.setText("A apresentar as keywords de descrição dos produtos");
+        jLabelKeywordsDescricaoProdutos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCard2DadosEmpresaMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCard2DadosCandidaturaNumeroConvites, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCard2DadosEmpresaTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCard2DadosEmpresaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCard2DadosCandidaturaArea, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14))
-                    .addComponent(jLabel15))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane3)
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelKeywordsDescricaoProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelCard2DadosEmpresaMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelCard2DadosCandidaturaNumeroConvites, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelCard2DadosEmpresaTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelCard2DadosEmpresaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelCard2DadosCandidaturaArea, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel14))
+                                    .addComponent(jLabel15))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -417,6 +427,10 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabelKeywordsDescricaoProdutos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -471,9 +485,9 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard2Avancar)
                     .addComponent(jButtonCard2Recuar))
@@ -485,7 +499,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabel16.setFont(jLabelCard1Titulo.getFont());
         jLabel16.setText("Tome a sua decisão");
 
-        jButtonCard3Terminar.setText("Registar decisão");
+        jButtonCard3Terminar.setText("Registar avaliação");
         jButtonCard3Terminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCard3TerminarActionPerformed(evt);
@@ -554,154 +568,73 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
         jLabelRecomendacaoGlobal.setText("Recomendação global");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Avaliação"));
-
-        buttonGroupAvaliacaoDaCandidatura.add(jRadioButtonCard3Nao);
-        jRadioButtonCard3Nao.setSelected(true);
-        jRadioButtonCard3Nao.setText("Rejeitar");
-
-        buttonGroupAvaliacaoDaCandidatura.add(jRadioButtonCard3Sim);
-        jRadioButtonCard3Sim.setText("Aceitar");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(jRadioButtonCard3Sim)
-                .addGap(66, 66, 66)
-                .addComponent(jRadioButtonCard3Nao)
-                .addGap(79, 79, 79))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonCard3Sim)
-                    .addComponent(jRadioButtonCard3Nao))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Justificação"));
-
-        jTextAreaCard3Justificacao.setColumns(20);
-        jTextAreaCard3Justificacao.setLineWrap(true);
-        jTextAreaCard3Justificacao.setRows(5);
-        jTextAreaCard3Justificacao.setText("Introduza aqui a justifcação para a sua avaliação");
-        jTextAreaCard3Justificacao.setWrapStyleWord(true);
-        jScrollPane4.setViewportView(jTextAreaCard3Justificacao);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
         card3.setLayout(card3Layout);
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+            .addGroup(card3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addComponent(jButtonCard3Recuar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCard3Terminar)
+                        .addGap(26, 26, 26))
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(card3Layout.createSequentialGroup()
                                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabelAdequacaoAExposicao))
-                                .addGap(0, 140, Short.MAX_VALUE))
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                    .addComponent(jLabelAdequacaoAExposicao)
+                                    .addComponent(jLabelAdequacaoAsDemonstracoes)
+                                    .addComponent(jLabelAdequacaoDoNumeroDeConvites)
+                                    .addComponent(jLabelRecomendacaoGlobal))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                                .addGap(0, 43, Short.MAX_VALUE)
                                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                                    .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(26, 26, 26))
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addComponent(jLabelAdequacaoAsDemonstracoes)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addComponent(jLabelAdequacaoDoNumeroDeConvites)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addComponent(jLabelRecomendacaoGlobal)
-                                .addGap(0, 166, Short.MAX_VALUE))
-                            .addGroup(card3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                    .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(100, 100, 100))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jButtonCard3Recuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCard3Terminar)
-                .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addContainerGap(302, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(190, 190, 190))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(190, 190, 190))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100))))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelAdequacaoAExposicao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelAdequacaoAsDemonstracoes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelAdequacaoDoNumeroDeConvites)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelRecomendacaoGlobal)
-                        .addGap(10, 10, 10)
-                        .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderConhecimentoDoTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelAdequacaoAExposicao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderAdequacaoAExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelAdequacaoAsDemonstracoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderAdequacaoAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelAdequacaoDoNumeroDeConvites)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderAdequacaoDoNumeroDeConvites, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelRecomendacaoGlobal)
+                .addGap(10, 10, 10)
+                .addComponent(jSliderRecomendacaoGlobal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Terminar)
                     .addComponent(jButtonCard3Recuar))
@@ -772,28 +705,18 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
-        if (!jTextAreaCard3Justificacao.getText().isEmpty()) {
             guardarDecisao();
             String[] opcoes2 = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja avaliar outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+            int resposta = JOptionPane.showOptionDialog(rootPane, "Avaliação guardada!\nDeseja avaliar outra candidatura?", "Avaliação", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
             if (resposta == 0) {
                 voltarASelecionarExposicao();
             } else {
                 terminarUC();
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode continuar sem justificar a sua decisão!", "Erro", JOptionPane.WARNING_MESSAGE);
-        }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void guardarDecisao() {
-        boolean avaliacao;
-        if (jRadioButtonCard3Sim.isSelected()) {
-            avaliacao = true;
-        } else {
-            avaliacao = false;
-        }
-        this.avaliacaoDoFae.setAvalicao(avaliacao, jTextAreaCard3Justificacao.getText(), jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
+        this.avaliacaoDoFae.setAvalicao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
     }
 
     private void voltarASelecionarExposicao() {
@@ -849,6 +772,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         jLabelCard2DadosCandidaturaArea.setText(area);
         String[] vetorProdutosCandSelecionada = card2CriarVetorListaProdutosCandidaturaSelecionada(cand.getRegistoProdutos().getListaProdutosAExpor());
         jListCard2ListaProdutos.setListData(vetorProdutosCandSelecionada);
+        jLabelKeywordsDescricaoProdutos.setText(card2CriarStringKeywords(cand.getKeywords()));
     }
 
     private String[] card2CriarVetorListaProdutosCandidaturaSelecionada(List<Produto> listaProdutos) {
@@ -858,6 +782,17 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         }
         return vetorProdutos;
     }
+    
+    private String card2CriarStringKeywords(String[]keywords){
+        String result="";
+        for (int i = 0; i < keywords.length; i++) {
+            if(keywords[i]!=null){
+                result+="; "+keywords[i];
+            }
+        }
+        return result;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupAvaliacaoDaCandidatura;
     private javax.swing.JPanel card1;
@@ -882,6 +817,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelAdequacaoAExposicao;
     private javax.swing.JLabel jLabelAdequacaoAsDemonstracoes;
@@ -894,20 +830,16 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCard2DadosEmpresaMorada;
     private javax.swing.JLabel jLabelCard2DadosEmpresaNome;
     private javax.swing.JLabel jLabelCard2DadosEmpresaTelemovel;
+    private javax.swing.JLabel jLabelKeywordsDescricaoProdutos;
     private javax.swing.JLabel jLabelRecomendacaoGlobal;
     private javax.swing.JList<String> jListCard2ListaProdutos;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
-    private javax.swing.JRadioButton jRadioButtonCard3Nao;
-    private javax.swing.JRadioButton jRadioButtonCard3Sim;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSlider jSliderAdequacaoAExposicao;
     private javax.swing.JSlider jSliderAdequacaoAsDemonstracoes;
     private javax.swing.JSlider jSliderAdequacaoDoNumeroDeConvites;
@@ -915,6 +847,5 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private javax.swing.JSlider jSliderRecomendacaoGlobal;
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
-    private javax.swing.JTextArea jTextAreaCard3Justificacao;
     // End of variables declaration//GEN-END:variables
 }

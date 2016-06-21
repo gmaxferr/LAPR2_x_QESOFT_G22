@@ -88,5 +88,16 @@ public class MecanismoSimplesTest {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
+
+    public class MecanismoSimplesImpl implements MecanismoSimples {
+
+        public List<AtribuicaoCandidatura> atribui(Exposicao exposicaoEscolhida) {
+            return null;
+        }
+
+        public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida) {
+            return null;
+        }
+    }
     
 }
