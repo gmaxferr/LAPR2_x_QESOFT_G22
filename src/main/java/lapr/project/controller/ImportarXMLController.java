@@ -30,6 +30,7 @@ public class ImportarXMLController {
             node = parser.readXMLElementFromFile(filename);
         } catch (ParserConfigurationException | IOException ex) {
             Logger.getLogger(ImportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return node;
     }
@@ -56,6 +57,7 @@ public class ImportarXMLController {
                 out.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ExportarXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
             return ce;
 

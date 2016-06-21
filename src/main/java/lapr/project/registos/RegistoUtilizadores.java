@@ -180,6 +180,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoUtilizadores.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

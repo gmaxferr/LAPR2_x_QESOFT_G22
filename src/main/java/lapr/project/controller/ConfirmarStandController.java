@@ -78,6 +78,8 @@ public class ConfirmarStandController {
         this.m_exposicaoEscolhida = e;
     }
 
+    // candidaturas
+    
     /**
      * Guarda o registo de atribuições de stand
      */
@@ -86,13 +88,22 @@ public class ConfirmarStandController {
     }
 
     /**
-     * Devolve a lista de atribuições do stand de um representante
+     * Devolve a atribuição do stand de um representante
      *
      * @param email email do representante
+     * @param cand candidatura selecionada
      * @return lista de atribuições do stand de um representante
      */
-    public List<AtribuicaoStand> getAtribuicao(String email) {
-        return m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(email);
+    public AtribuicaoStand getAtribuicao(String email, CandidaturaAExposicao cand) {
+        for (AtribuicaoStand as : m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(email)) {
+            if (as.getCand().equals(cand)) {
+                return as;
+            }
+        }
+        this.m_atribuicaoStand = new AtribuicaoStand(null, cand, false);
+        m_RegistoAtribuicoesStand.getListaAtribuicoesStand().add(this.m_atribuicaoStand);
+        return this.m_atribuicaoStand;
+    
     }
 
     /**

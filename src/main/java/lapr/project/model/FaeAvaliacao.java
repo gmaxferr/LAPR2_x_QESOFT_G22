@@ -69,6 +69,7 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(FaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -99,6 +99,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoAtribuicoesStands.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -284,6 +284,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoDemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -115,6 +115,7 @@ public class Stand implements Importable<Stand>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Stand.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -99,6 +99,7 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

@@ -158,6 +158,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

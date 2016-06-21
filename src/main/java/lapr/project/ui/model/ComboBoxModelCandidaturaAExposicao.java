@@ -19,7 +19,7 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
     /**
      * Objeto (Candidaturas) selecionado.
      */
-    Object selection;
+    private transient Object selection;
 
     /**
      * Construtor de objetos do tipo ComboBoxModelCandidaturaAExposicao com o
@@ -37,8 +37,9 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      *
      * @return tamanho da lista das candidaturas.
      */
+    @Override
     public int getSize() {
-        return this.m_listaCands.size();
+        return m_listaCands.size();
     }
 
     /**

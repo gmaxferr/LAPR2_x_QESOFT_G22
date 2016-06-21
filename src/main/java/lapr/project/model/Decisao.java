@@ -66,6 +66,7 @@ public class Decisao implements Importable<Decisao>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Decisao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

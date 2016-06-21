@@ -175,6 +175,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

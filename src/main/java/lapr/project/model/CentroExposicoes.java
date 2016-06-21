@@ -243,6 +243,7 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CentroExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }

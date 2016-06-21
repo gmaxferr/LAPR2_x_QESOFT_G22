@@ -72,6 +72,7 @@ public class Recurso implements Importable<Recurso>, Exportable {
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Recurso.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return this;
     }
