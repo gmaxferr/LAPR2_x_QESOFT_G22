@@ -53,20 +53,15 @@ public class Decisao implements Importable<Decisao>, Exportable {
     }
 
     @Override
-    public Decisao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Decisao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_decisao = Boolean.valueOf(elem.getTextContent());
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Decisao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_decisao = Boolean.valueOf(elem.getTextContent());
         }
         return this;
     }

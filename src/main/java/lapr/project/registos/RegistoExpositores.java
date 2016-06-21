@@ -10,11 +10,11 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoExpositores
- * 
+ *
  * @author G29
  */
 public class RegistoExpositores implements Importable<RegistoExpositores>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "registoExpositores";
 
     /**
@@ -31,7 +31,7 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     /**
      * Adiciona um utilizador/expositor à lista de expositores
-     * 
+     *
      * @param utilizador utilizador/expositor a ser adicionado
      * @return true se for adicionado. Caso contrário retorna false.
      */
@@ -45,7 +45,7 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     /**
      * Valida o expositor, verificando se já existe na lista de expositores
-     * 
+     *
      * @param utilizador expositor a ser validado
      * @return true se o expositor não existir na lista de expositores. Caso
      * contrário retorna false
@@ -61,7 +61,7 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
 
     /**
      * Devolve a lista de expositores
-     * 
+     *
      * @return lista de expositores
      */
     public List<Expositor> getListaExpositores() {
@@ -69,36 +69,31 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
     }
 
     @Override
-    public RegistoExpositores importContentFromXMLNode(Node node) {
-        if(node == null){
+    public RegistoExpositores importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        if (node == null) {
             return this;
         }
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
-            
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_listaExpositores.clear();
-                
-                NodeList nList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Expositor expositor = new Expositor(null);
-                    expositor.importContentFromXMLNode(n2);
-                    m_listaExpositores.add(expositor);
-                }
+        Node n = doc.getChildNodes().item(0);
+
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+
+            this.m_listaExpositores.clear();
+
+            NodeList nList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Expositor expositor = new Expositor(null);
+                expositor.importContentFromXMLNode(n2);
+                m_listaExpositores.add(expositor);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoExpositores.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 
@@ -129,9 +124,9 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
-        for(Expositor repr : m_listaExpositores){
-            for(Utilizador u : m_registoUtilizadores.getListaUtilizadores()){
-                if(repr.getUsername().equals(u.getUsername())){
+        for (Expositor repr : m_listaExpositores) {
+            for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+                if (repr.getUsername().equals(u.getUsername())) {
                     repr.setUtilizador(u);
                     break;
                 }

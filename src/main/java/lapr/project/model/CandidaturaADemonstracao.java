@@ -100,40 +100,35 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     }
 
     @Override
-    public CandidaturaADemonstracao importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+    public CandidaturaADemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
 
-            doc.appendChild(doc.importNode(node, true));
+        doc.appendChild(doc.importNode(node, true));
 
-            NodeList nodeList = doc.getChildNodes();
+        NodeList nodeList = doc.getChildNodes();
 
-            Node n = nodeList.item(0);
+        Node n = nodeList.item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_dados = elem.getElementsByTagName(DADOS_ELEMENT_NAME).item(0).getTextContent();
-                this.m_emailExpositor = elem.getElementsByTagName(USERNAME_EXPOSITOR_ELEMENT_NAME).item(0).getTextContent();
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_dados = elem.getElementsByTagName(DADOS_ELEMENT_NAME).item(0).getTextContent();
+            this.m_emailExpositor = elem.getElementsByTagName(USERNAME_EXPOSITOR_ELEMENT_NAME).item(0).getTextContent();
 
-                String estado = elem.getAttribute(ESTADO_ATTR_NAME);
-                switch (estado) {
-                    case "instanciada":
-                        this.m_estado = new EstadoCandidaturaADemonstracaoInstanciada(this);
-                        break;
-                    case "criada":
-                        this.m_estado = new EstadoCandidaturaADemonstracaoCriada(this);
-                        break;
-                    default:
-                        break;
-                }
+            String estado = elem.getAttribute(ESTADO_ATTR_NAME);
+            switch (estado) {
+                case "instanciada":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoInstanciada(this);
+                    break;
+                case "criada":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoCriada(this);
+                    break;
+                default:
+                    break;
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(CandidaturaADemonstracao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

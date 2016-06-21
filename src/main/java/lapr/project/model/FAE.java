@@ -72,22 +72,17 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
     }
 
     @Override
-    public FAE importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public FAE importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList nList = document.getChildNodes();
+        NodeList nList = document.getChildNodes();
 
-            Node n = nList.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = nList.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_Utilizador = new Utilizador();
-                this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(FAE.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_Utilizador = new Utilizador();
+            this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
         }
         return this;
     }
@@ -105,7 +100,7 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
             Utilizador savedUser = new Utilizador("", m_Utilizador.getUsername(), "".toCharArray(), m_Utilizador.getEmail(), "");
             savedUser.setShifts(0);
             elementBase.appendChild(document.importNode(savedUser.exportContentToXMLNode(), true));
-            
+
             node = elementBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(FAE.class.getName()).log(Level.SEVERE, null, ex);

@@ -400,60 +400,55 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     @Override
-    public Utilizador importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Utilizador importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                String input;
-                input = elem.getAttribute(N_AVALIACOES_ATTR_NAME);
-                if (!input.isEmpty()) {
-                    this.nAvaliacoesDesdeSempre = Integer.parseInt(input);
-                } else {
-                    this.nAvaliacoesDesdeSempre = 0;
-                }
-                input = elem.getAttribute(IS_GESTOR_ATTR_NAME);
-                if (!input.isEmpty()) {
-                    this.isGestor = Boolean.parseBoolean(input);
-                } else {
-                    this.isGestor = false;
-                }
-
-                input = elem.getAttribute(SHIFTS_ATTR_NAME);
-                if (!input.isEmpty()) {
-                    this.randomCaesarShift = Integer.parseInt(input) ^ SHIFTS_MASK;
-                } else {
-                    this.randomCaesarShift = 0;
-                }
-
-                input = elem.getAttribute(KEYWORD_ATTR_NAME);
-                if (!input.isEmpty()) {
-                    this.keyword = String.valueOf(CaesarsCypher.decrypt(input.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
-                }else{
-                    this.keyword = "";
-                }
-
-                String value = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
-                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
-                this.m_strNome = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
-
-                value = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
-                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
-                this.m_strEmail = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
-
-                value = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
-                value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
-                this.m_strUsername = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
-
-                this.m_strPwd = elem.getElementsByTagName(PASSE_ELEMENT_NAME).item(0).getTextContent().toCharArray();
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            String input;
+            input = elem.getAttribute(N_AVALIACOES_ATTR_NAME);
+            if (!input.isEmpty()) {
+                this.nAvaliacoesDesdeSempre = Integer.parseInt(input);
+            } else {
+                this.nAvaliacoesDesdeSempre = 0;
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            input = elem.getAttribute(IS_GESTOR_ATTR_NAME);
+            if (!input.isEmpty()) {
+                this.isGestor = Boolean.parseBoolean(input);
+            } else {
+                this.isGestor = false;
+            }
+
+            input = elem.getAttribute(SHIFTS_ATTR_NAME);
+            if (!input.isEmpty()) {
+                this.randomCaesarShift = Integer.parseInt(input) ^ SHIFTS_MASK;
+            } else {
+                this.randomCaesarShift = 0;
+            }
+
+            input = elem.getAttribute(KEYWORD_ATTR_NAME);
+            if (!input.isEmpty()) {
+                this.keyword = String.valueOf(CaesarsCypher.decrypt(input.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+            } else {
+                this.keyword = "";
+            }
+
+            String value = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+            value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+            this.m_strNome = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+            value = elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent();
+            value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+            this.m_strEmail = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+            value = elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent();
+            value = String.valueOf(TransposeCypher.decrypt(value.toCharArray(), this.keyword.toCharArray()));
+            this.m_strUsername = String.valueOf(CaesarsCypher.decrypt(value.toCharArray(), randomCaesarShift, COMPLETE_ALFABET));
+
+            this.m_strPwd = elem.getElementsByTagName(PASSE_ELEMENT_NAME).item(0).getTextContent().toCharArray();
         }
         return this;
     }

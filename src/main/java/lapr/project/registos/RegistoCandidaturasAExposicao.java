@@ -165,30 +165,25 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
     }
 
     @Override
-    public RegistoCandidaturasAExposicao importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoCandidaturasAExposicao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaCandidaturas.clear();
+            this.m_listaCandidaturas.clear();
 
-                NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    CandidaturaAExposicao cand = new CandidaturaAExposicao(this.e, null);
-                    cand.importContentFromXMLNode(n2);
-                    m_listaCandidaturas.add(cand);
-                }
+            NodeList nList = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                CandidaturaAExposicao cand = new CandidaturaAExposicao(this.e, null);
+                cand.importContentFromXMLNode(n2);
+                m_listaCandidaturas.add(cand);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturasAExposicao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

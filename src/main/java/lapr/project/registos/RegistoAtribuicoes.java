@@ -141,30 +141,25 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      * @return
      */
     @Override
-    public RegistoAtribuicoes importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoAtribuicoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaAtribuicao.clear();
+            this.m_listaAtribuicao.clear();
 
-                NodeList nList = elem.getElementsByTagName(AtribuicaoCandidatura.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    AtribuicaoCandidatura atrCand = new AtribuicaoCandidatura(null);
-                    atrCand.importContentFromXMLNode(n2);
-                    this.m_listaAtribuicao.add(atrCand);
-                }
+            NodeList nList = elem.getElementsByTagName(AtribuicaoCandidatura.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                AtribuicaoCandidatura atrCand = new AtribuicaoCandidatura(null);
+                atrCand.importContentFromXMLNode(n2);
+                this.m_listaAtribuicao.add(atrCand);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoAtribuicoes.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

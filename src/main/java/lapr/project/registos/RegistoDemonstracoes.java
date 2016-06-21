@@ -232,7 +232,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param m_registoRecursos registo de recursos
      * @param rCand registo candidatura
      */
@@ -254,38 +254,33 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     @Override
-    public RegistoDemonstracoes importContentFromXMLNode(Node node) {
-        if(node == null){
+    public RegistoDemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        if (node == null) {
             return this;
         }
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaDemonstracoes.clear();
+            this.m_listaDemonstracoes.clear();
 
-                NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Demonstracao demo = new Demonstracao("", m_expo);
-                    demo.importContentFromXMLNode(n2);
-                    m_listaDemonstracoes.add(demo);
-                }
-
-                this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
+            NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Demonstracao demo = new Demonstracao("", m_expo);
+                demo.importContentFromXMLNode(n2);
+                m_listaDemonstracoes.add(demo);
             }
 
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoDemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
         }
+
         return this;
     }
 

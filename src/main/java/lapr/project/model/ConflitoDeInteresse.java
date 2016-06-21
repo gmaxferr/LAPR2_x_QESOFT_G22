@@ -48,10 +48,10 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
     public TipoConflito getTipo() {
         return this.m_tipoConflito;
     }
-    
-    public void fix(RegistoCandidaturasAExposicao rc){
-        for(CandidaturaAExposicao cand : rc.getListaCandidaturas()){
-            if(this.m_candidatura.equals(cand)){
+
+    public void fix(RegistoCandidaturasAExposicao rc) {
+        for (CandidaturaAExposicao cand : rc.getListaCandidaturas()) {
+            if (this.m_candidatura.equals(cand)) {
                 this.m_candidatura = cand;
                 break;
             }
@@ -59,39 +59,34 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
     }
 
     @Override
-    public ConflitoDeInteresse importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public ConflitoDeInteresse importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_fae = new FAE();
-                this.m_fae.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
-                this.m_tipoConflito = new TipoConflito("");
-                this.m_tipoConflito.importContentFromXMLNode(elem.getElementsByTagName(TipoConflito.ROOT_ELEMENT_NAME).item(0));
-                Expositor expositor = new Expositor(null);
-                expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
-                
-                this.m_candidatura.setExpositor(expositor);
-                NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
-                for(int i=0; i<nList.getLength(); i++){
-                    Node n2 = nList.item(i);
-                    Keyword key = new Keyword();
-                    key.importContentFromXMLNode(n2);
-                    this.m_candidatura.getListKeyword().add(key);
-                }
+            this.m_fae = new FAE();
+            this.m_fae.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+            this.m_tipoConflito = new TipoConflito("");
+            this.m_tipoConflito.importContentFromXMLNode(elem.getElementsByTagName(TipoConflito.ROOT_ELEMENT_NAME).item(0));
+            Expositor expositor = new Expositor(null);
+            expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
+
+            this.m_candidatura.setExpositor(expositor);
+            NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Keyword key = new Keyword();
+                key.importContentFromXMLNode(n2);
+                this.m_candidatura.getListKeyword().add(key);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(ConflitoDeInteresse.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 
@@ -108,10 +103,10 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
 
             elementBase.appendChild(document.importNode(this.m_fae.exportContentToXMLNode(), true));
             elementBase.appendChild(document.importNode(this.m_tipoConflito.exportContentToXMLNode(), true));
-            
+
             elementBase.appendChild(document.importNode(this.m_candidatura.getExpositor().exportContentToXMLNode(), true));
-            
-            for(Keyword k : this.m_candidatura.getListKeyword()){
+
+            for (Keyword k : this.m_candidatura.getListKeyword()) {
                 elementBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
 

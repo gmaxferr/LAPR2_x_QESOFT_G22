@@ -78,20 +78,15 @@ public class Expositor implements Importable<Expositor>, Exportable {
     }
 
     @Override
-    public Expositor importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Expositor importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.setUtilizador(new Utilizador());
-                this.getUtilizador().setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
-                this.getUtilizador().setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Expositor.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.setUtilizador(new Utilizador());
+            this.getUtilizador().setUsername(elem.getElementsByTagName(USERNAME_ELEMENT_NAME).item(0).getTextContent());
+            this.getUtilizador().setEmail(elem.getElementsByTagName(EMAIL_ELEMENT_NAME).item(0).getTextContent());
         }
         return this;
     }

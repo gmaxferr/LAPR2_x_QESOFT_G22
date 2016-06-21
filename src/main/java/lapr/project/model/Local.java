@@ -59,19 +59,14 @@ public class Local implements Importable<Local>, Exportable {
     }
 
     @Override
-    public Local importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Local importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_StrMorada = elem.getTextContent();
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Local.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_StrMorada = elem.getTextContent();
         }
         return this;
     }

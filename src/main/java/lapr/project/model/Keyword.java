@@ -86,20 +86,15 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     }
 
     @Override
-    public Keyword importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Keyword importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
         }
         return this;
     }

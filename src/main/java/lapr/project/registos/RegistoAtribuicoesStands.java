@@ -10,11 +10,11 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoAtribuicoesStands
- * 
+ *
  * @author G29
  */
 public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesStands>, Exportable {
-    
+
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoesStands";
 
     /**
@@ -31,7 +31,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
 
     /**
      * Devolve a lista de atribuições stand
-     * 
+     *
      * @return listaAtribuicoesStand
      */
     public List<AtribuicaoStand> getListaAtribuicoesStand() {
@@ -40,17 +40,17 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
 
     /**
      * Modidica a lista de atribuicoes stand
-     * 
-     * @param listaAtribuicoesStand  nova listaAtribuicoesStand 
+     *
+     * @param listaAtribuicoesStand nova listaAtribuicoesStand
      */
     public void setListaAtribuicoesStand(List<AtribuicaoStand> listaAtribuicoesStand) {
         this.m_listaAtribuicoesStand = listaAtribuicoesStand;
     }
 
     /**
-     * Adiciona todas as atribuições passadas como argumento à lista de 
+     * Adiciona todas as atribuições passadas como argumento à lista de
      * atribuicoes de stands
-     * 
+     *
      * @param listAtr atribuicoes a ser adicionadas
      */
     public void addAll(List<AtribuicaoStand> listAtr) {
@@ -59,7 +59,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
 
     /**
      * Devolve a lista de atribuições do stand de um representante
-     * 
+     *
      * @param email email de um representante
      * @return lista de atribuições do stand de um representante
      */
@@ -74,33 +74,28 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
     }
 
     @Override
-    public RegistoAtribuicoesStands importContentFromXMLNode(Node node) {
-        if(node == null){
+    public RegistoAtribuicoesStands importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        if (node == null) {
             return this;
         }
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaAtribuicoesStand.clear();
+            this.m_listaAtribuicoesStand.clear();
 
-                NodeList nList = elem.getElementsByTagName(AtribuicaoStand.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    AtribuicaoStand atrStand = new AtribuicaoStand(null, null, false);
-                    atrStand.importContentFromXMLNode(n2);
-                    this.m_listaAtribuicoesStand.add(atrStand);
-                }
+            NodeList nList = elem.getElementsByTagName(AtribuicaoStand.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                AtribuicaoStand atrStand = new AtribuicaoStand(null, null, false);
+                atrStand.importContentFromXMLNode(n2);
+                this.m_listaAtribuicoesStand.add(atrStand);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoAtribuicoesStands.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

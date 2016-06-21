@@ -78,20 +78,15 @@ public class Produto implements Importable<Produto>, Exportable {
     }
 
     @Override
-    public Produto importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Produto importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_nome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_nome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
         }
         return this;
     }

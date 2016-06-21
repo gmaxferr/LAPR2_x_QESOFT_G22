@@ -144,34 +144,29 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
     }
 
     @Override
-    public KeywordRanking importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public KeywordRanking importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
-            
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_keywords.clear();
-                
-                NodeList nList = elem.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    ScoredKeyword key = new ScoredKeyword("", 0);
-                    key.importContentFromXMLNode(n2);
-                    m_keywords.add(key);
-                }
-                this.m_ready = Boolean.valueOf(elem.getAttribute(READY_ATTR_NAME));
+        Node n = doc.getChildNodes().item(0);
+
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+
+            this.m_keywords.clear();
+
+            NodeList nList = elem.getElementsByTagName(ScoredKeyword.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                ScoredKeyword key = new ScoredKeyword("", 0);
+                key.importContentFromXMLNode(n2);
+                m_keywords.add(key);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_ready = Boolean.valueOf(elem.getAttribute(READY_ATTR_NAME));
         }
+
         return this;
     }
 

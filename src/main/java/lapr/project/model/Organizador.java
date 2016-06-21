@@ -71,19 +71,14 @@ public class Organizador implements Importable<Organizador>, Exportable {
     }
 
     @Override
-    public Organizador importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public Organizador importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                this.m_Utilizador = new Utilizador();
-                this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Organizador.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+            this.m_Utilizador = new Utilizador();
+            this.m_Utilizador.importContentFromXMLNode(elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME).item(0));
         }
         return this;
     }
@@ -97,7 +92,7 @@ public class Organizador implements Importable<Organizador>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
-            
+
             Utilizador savedUser = new Utilizador("", m_Utilizador.getUsername(), "".toCharArray(), m_Utilizador.getEmail(), "");
             savedUser.setShifts(0);
 

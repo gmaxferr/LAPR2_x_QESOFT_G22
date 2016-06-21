@@ -158,30 +158,25 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * @return
      */
     @Override
-    public RegistoUtilizadores importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoUtilizadores importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaUtilizadores.clear();
+            this.m_listaUtilizadores.clear();
 
-                NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Utilizador u = new Utilizador();
-                    u.importContentFromXMLNode(n2);
-                    m_listaUtilizadores.add(u);
-                }
+            NodeList nList = elem.getElementsByTagName(Utilizador.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Utilizador u = new Utilizador();
+                u.importContentFromXMLNode(n2);
+                m_listaUtilizadores.add(u);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoUtilizadores.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

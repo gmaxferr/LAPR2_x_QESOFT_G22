@@ -86,32 +86,27 @@ public class RegistoTiposConflitoDemonstracao implements Importable<RegistoTipos
     }
 
     @Override
-    public RegistoTiposConflitoDemonstracao importContentFromXMLNode(Node node) {
-        try {
-            Document doc = XMLParser.createDocument(node, true);
+    public RegistoTiposConflitoDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document doc = XMLParser.createDocument(node, true);
 
-            Node n = doc.getChildNodes().item(0);
-            
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_listaTipoConflitos.clear();
-                
-                NodeList nList = elem.getElementsByTagName(TipoConflitoDemonstracao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    TipoConflitoDemonstracao tc = new TipoConflitoDemonstracao("");
-                    tc.importContentFromXMLNode(n2);
-                    this.m_listaTipoConflitos.add(tc);
-                }
-                
-                this.numConflitos = Integer.parseInt(elem.getAttribute(NUM_CONFLITOS_ATTR_NAME));
+        Node n = doc.getChildNodes().item(0);
+
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+
+            this.m_listaTipoConflitos.clear();
+
+            NodeList nList = elem.getElementsByTagName(TipoConflitoDemonstracao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                TipoConflitoDemonstracao tc = new TipoConflitoDemonstracao("");
+                tc.importContentFromXMLNode(n2);
+                this.m_listaTipoConflitos.add(tc);
             }
 
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoTiposConflitoDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.numConflitos = Integer.parseInt(elem.getAttribute(NUM_CONFLITOS_ATTR_NAME));
         }
+
         return this;
     }
 
@@ -128,7 +123,7 @@ public class RegistoTiposConflitoDemonstracao implements Importable<RegistoTipos
                 Node n = tc.exportContentToXMLNode();
                 elementBase.appendChild(document.importNode(n, true));
             }
-            
+
             elementBase.setAttribute(NUM_CONFLITOS_ATTR_NAME, String.valueOf(numConflitos));
 
             document.appendChild(elementBase);

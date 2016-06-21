@@ -10,7 +10,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de um registo de produtos
- * 
+ *
  * @author G29
  */
 public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable {
@@ -18,7 +18,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     public static final String ROOT_ELEMENT_NAME = "registoProdutos";
 
     /**
-     * Lista de produtos 
+     * Lista de produtos
      */
     private List<Produto> m_ProdutosExpor;
 
@@ -31,7 +31,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
 
     /**
      * Devolve a lista de organizadores
-     * 
+     *
      * @return lista de organizadores
      */
     public List<Produto> getListaProdutosAExpor() {
@@ -40,7 +40,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
 
     /**
      * Devolve as caraterísticas dos produtos do registo de produtos.
-     * 
+     *
      * @return caraterísticas dos produtos do registo de produtos
      */
     @Override
@@ -115,7 +115,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
 
     /**
      * Modifica a lista de produtos
-     * 
+     *
      * @param listaProdutos nova lista de produtos
      */
     public void setListaProdutos(List<Produto> listaProdutos) {
@@ -123,13 +123,13 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     /**
-     * Compara o RegistoProdutos a outro objecto passado por parametro. A comparação
-     * entre dois RegistoProdutos é feita com atenção a alguns todos os atributos
-     * desta.
+     * Compara o RegistoProdutos a outro objecto passado por parametro. A
+     * comparação entre dois RegistoProdutos é feita com atenção a alguns todos
+     * os atributos desta.
      *
      * @param obj objecto a comparar com o RegistoProdutos
-     * @return true se o objeto recebido representar um RegistoProdutos equivalente
-     * ao RegistoProdutos. Caso contrário, retorna false.
+     * @return true se o objeto recebido representar um RegistoProdutos
+     * equivalente ao RegistoProdutos. Caso contrário, retorna false.
      */
     @Override
     public boolean equals(Object obj) {
@@ -150,33 +150,28 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     }
 
     @Override
-    public RegistoProdutos importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public RegistoProdutos importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_ProdutosExpor.clear();
+            this.m_ProdutosExpor.clear();
 
-                NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    Produto prod = new Produto();
-                    prod.importContentFromXMLNode(n2);
-                    m_ProdutosExpor.add(prod);
-                }
+            NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                Produto prod = new Produto();
+                prod.importContentFromXMLNode(n2);
+                m_ProdutosExpor.add(prod);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoProdutos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

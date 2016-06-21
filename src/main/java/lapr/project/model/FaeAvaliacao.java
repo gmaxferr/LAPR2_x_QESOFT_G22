@@ -34,10 +34,10 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
         return this.m_avaliacao;
     }
 
-    public void setAvaliacao(Avaliacao aval){
+    public void setAvaliacao(Avaliacao aval) {
         this.m_avaliacao = aval;
     }
-    
+
     public void setAvalicao(int i, int i0, int i1, int i2, int i3) {
         this.m_avaliacao.setAvalicao(i, i0, i1, i2, i3);
     }
@@ -52,24 +52,19 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     }
 
     @Override
-    public FaeAvaliacao importContentFromXMLNode(Node node) {
-        try {
-            Document document = XMLParser.createDocument(node, true);
+    public FaeAvaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        Document document = XMLParser.createDocument(node, true);
 
-            NodeList elementsKeyword = document.getChildNodes();
+        NodeList elementsKeyword = document.getChildNodes();
 
-            Node n = elementsKeyword.item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = elementsKeyword.item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_FaeAssociado = new FAE();
-                this.m_FaeAssociado.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
-                this.m_avaliacao = new Avaliacao();
-                this.m_avaliacao.importContentFromXMLNode(elem.getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME).item(0));
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(FaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            this.m_FaeAssociado = new FAE();
+            this.m_FaeAssociado.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
+            this.m_avaliacao = new Avaliacao();
+            this.m_avaliacao.importContentFromXMLNode(elem.getElementsByTagName(Avaliacao.ROOT_ELEMENT_NAME).item(0));
         }
         return this;
     }

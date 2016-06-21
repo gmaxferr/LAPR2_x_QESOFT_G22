@@ -147,7 +147,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     public int getDia() {
         return dia;
     }
-    
+
     /**
      * Modifica o ano, o mês e o dia da data.
      *
@@ -158,7 +158,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     public final void setData(int ano, int mes, int dia) {
         setData(ano, mes, dia, 0, 0, 0);
     }
-    
+
     /**
      * Modifica o ano, o mês, o dia e a hora da data.
      *
@@ -396,23 +396,18 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     }
 
     @Override
-    public Data importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+    public Data importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
 
-            document.appendChild(document.importNode(node, true));
+        document.appendChild(document.importNode(node, true));
 
-            Node n = document.getChildNodes().item(0);
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        Node n = document.getChildNodes().item(0);
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                loadFromCompactString(elem.getTextContent());
-            }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            loadFromCompactString(elem.getTextContent());
         }
         return this;
     }

@@ -120,7 +120,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param m_registoUtilizadores registo de utilizadores
      */
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
@@ -130,33 +130,28 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     @Override
-    public RegistoFaeAvaliacao importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public RegistoFaeAvaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
+        Node n = doc.getChildNodes().item(0);
 
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
 
-                this.m_listaFaeAvaliacao.clear();
+            this.m_listaFaeAvaliacao.clear();
 
-                NodeList nList = elem.getElementsByTagName(FaeAvaliacao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    FaeAvaliacao faeAvaliacao = new FaeAvaliacao();
-                    faeAvaliacao.importContentFromXMLNode(n2);
-                    this.m_listaFaeAvaliacao.add(faeAvaliacao);
-                }
+            NodeList nList = elem.getElementsByTagName(FaeAvaliacao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                FaeAvaliacao faeAvaliacao = new FaeAvaliacao();
+                faeAvaliacao.importContentFromXMLNode(n2);
+                this.m_listaFaeAvaliacao.add(faeAvaliacao);
             }
-
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoFaeAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 

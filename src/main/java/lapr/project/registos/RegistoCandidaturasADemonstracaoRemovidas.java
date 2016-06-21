@@ -12,7 +12,7 @@ import org.w3c.dom.*;
  *
  * @author G29
  */
-public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<RegistoCandidaturasADemonstracaoRemovidas>,  Exportable{
+public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<RegistoCandidaturasADemonstracaoRemovidas>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoCandidaturasADemonstracaoRemovidas";
 
@@ -20,60 +20,56 @@ public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<Reg
      * Lista de candidaturas a demonstração
      */
     private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
-    
+
     /**
-     * Construtor de objetos do tipo RegistoCandidaturasADemonstracao sem 
+     * Construtor de objetos do tipo RegistoCandidaturasADemonstracao sem
      * parâmetros
      */
-    public RegistoCandidaturasADemonstracaoRemovidas(){
+    public RegistoCandidaturasADemonstracaoRemovidas() {
         this.m_listaCandidaturasRemovidas = new ArrayList<>();
     }
-    
+
     /**
      * Adiciona uma candidatura a demonstracao à lista de candidaturas removidas
-     * 
+     *
      * @param c candidatura a ser adicionada
      */
-    public void adicionarCandidatura(CandidaturaADemonstracao c){
+    public void adicionarCandidatura(CandidaturaADemonstracao c) {
         m_listaCandidaturasRemovidas.add(c);
     }
-    
+
     /**
      * Devolve a lista de candidaturas a demonstracao removidas
-     * @return 
+     *
+     * @return
      */
-    public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRemovidas(){
+    public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRemovidas() {
         return this.m_listaCandidaturasRemovidas;
     }
 
     @Override
-    public RegistoCandidaturasADemonstracaoRemovidas importContentFromXMLNode(Node node) {
-     try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
-            doc.appendChild(doc.importNode(node, true));
+    public RegistoCandidaturasADemonstracaoRemovidas importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+        doc.appendChild(doc.importNode(node, true));
 
-            Node n = doc.getChildNodes().item(0);
-            
-            if (n.getNodeType() == Node.ELEMENT_NODE) {
-                Element elem = (Element) n;
-                
-                this.m_listaCandidaturasRemovidas.clear();
-                
-                NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
-                for (int i = 0; i < nList.getLength(); i++) {
-                    Node n2 = nList.item(i);
-                    CandidaturaADemonstracao cand = new CandidaturaADemonstracao(null, null);
-                    cand.importContentFromXMLNode(n2);
-                    this.m_listaCandidaturasRemovidas.add(cand);
-                }
+        Node n = doc.getChildNodes().item(0);
+
+        if (n.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) n;
+
+            this.m_listaCandidaturasRemovidas.clear();
+
+            NodeList nList = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME);
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node n2 = nList.item(i);
+                CandidaturaADemonstracao cand = new CandidaturaADemonstracao(null, null);
+                cand.importContentFromXMLNode(n2);
+                this.m_listaCandidaturasRemovidas.add(cand);
             }
-
-        } catch (ParserConfigurationException ex){
-           Logger.getLogger(RegistoCandidaturasADemonstracaoRemovidas.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
+
         return this;
     }
 
@@ -102,5 +98,5 @@ public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<Reg
         }
         return node;
     }
-    
+
 }
