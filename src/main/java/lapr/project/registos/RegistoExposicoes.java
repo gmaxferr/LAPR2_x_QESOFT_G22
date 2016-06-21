@@ -316,14 +316,12 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      */
     public List<Exposicao> getListaExposicoesDoOrganizadorAteEstadoAbertoACandidaturas(String usernameOrg) {
         List<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
-
+        List<Organizador> listOrg;
+        
         for (Exposicao exposicao : m_listaExposicoes) {
-            for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
-                        && (exposicao.getEstado().isEstadoCriada()
-                        || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
-                        || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
-                        || exposicao.getEstado().isEstadoCompleta())) {
+            listOrg = exposicao.getListaOrganizadores();
+            for (Organizador organizador : listOrg) {
+                if (validaOrgEExpo(usernameOrg, organizador, exposicao)) {
                     listaExposicoesDoOrganizador.add(exposicao);
                 }
             }
@@ -332,6 +330,14 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
+    private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao){
+        return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
+                        && (exposicao.getEstado().isEstadoCriada()
+                        || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
+                        || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
+                        || exposicao.getEstado().isEstadoCompleta());
+    }
+    
     /**
      * Devolve uma lista de exposições no estado de CandidaturasAvaliadas ou
      * mais avançado.
@@ -362,7 +368,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
-     * 
+     *
      * @param m_registoRecursos registo de recursos
      * @param m_registoTipoConflitos registo tipo de conflitos
      * @param m_registoUtilizadores registo de utilizadores

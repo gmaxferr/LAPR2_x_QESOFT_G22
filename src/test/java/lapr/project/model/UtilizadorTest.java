@@ -481,11 +481,10 @@ public class UtilizadorTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Utilizador instance = new Utilizador();
-        Node node = instance.exportContentToXMLNode();
         Utilizador expResult = new Utilizador();
-        expResult.importContentFromXMLNode(node);
-        Utilizador result = instance;
+        Node node = expResult.exportContentToXMLNode();
+        Utilizador result = new Utilizador();
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
 
@@ -495,11 +494,10 @@ public class UtilizadorTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Utilizador instance = new Utilizador();
-        Node node = instance.exportContentToXMLNode();
         Utilizador expResult = new Utilizador();
-        expResult.importContentFromXMLNode(node);
-        Utilizador result = instance;
+        Node node = expResult.exportContentToXMLNode();
+        Utilizador result = new Utilizador();
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
     }
 

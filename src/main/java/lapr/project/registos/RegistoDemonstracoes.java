@@ -236,7 +236,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @param m_registoRecursos registo de recursos
      * @param rCand registo candidatura
      */
-    public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand) {
+    public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand, RegistoUtilizadores ru) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
             for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {
                 for (Recurso r2 : m_registoRecursos.getListaDeRecursos()) {
@@ -249,7 +249,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
 
         for (Demonstracao d : m_listaDemonstracoes) {
-            d.fix(rCand, m_expo);
+            d.fix(rCand, m_expo, ru);
         }
     }
 

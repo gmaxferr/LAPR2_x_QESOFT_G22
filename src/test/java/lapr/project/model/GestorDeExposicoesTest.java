@@ -29,8 +29,13 @@ public class GestorDeExposicoesTest {
     public static void tearDownClass() {
     }
     
+    private Utilizador u;
+    private GestorDeExposicoes instance;
+    
     @Before
     public void setUp() {
+        u = new Utilizador();
+        instance = new GestorDeExposicoes(u);
     }
     
     @After
@@ -43,12 +48,9 @@ public class GestorDeExposicoesTest {
     @Test
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
-        GestorDeExposicoes instance = null;
-        Utilizador expResult = null;
+        Utilizador expResult = u;
         Utilizador result = instance.getUtilizador();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

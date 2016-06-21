@@ -18,22 +18,30 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class FAETest {
-    
+
     public FAETest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private final String email = "a@b.c";
+    private final String nome = "nome";
+    private final String username = "username";
+    private Utilizador u;
+    private FAE instance;
+
     @Before
     public void setUp() {
+        u = new Utilizador(nome, username, "Aa.1".toCharArray(), email);
+        instance = new FAE(u);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,12 +52,9 @@ public class FAETest {
     @Test
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
-        FAE instance = new FAE();
-        Utilizador expResult = null;
+        Utilizador expResult = u;
         Utilizador result = instance.getUtilizador();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +63,9 @@ public class FAETest {
     @Test
     public void testGetUsernameFae() {
         System.out.println("getUsernameFae");
-        FAE instance = new FAE();
-        String expResult = "";
+        String expResult = username;
         String result = instance.getUsernameFae();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +74,8 @@ public class FAETest {
     @Test
     public void testSetUtilizador() {
         System.out.println("setUtilizador");
-        Utilizador u = null;
-        FAE instance = new FAE();
+        Utilizador u = new Utilizador();
         instance.setUtilizador(u);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +84,9 @@ public class FAETest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        FAE instance = new FAE();
-        String expResult = "";
+        String expResult = "FAE:\n" + "\tUser: " + nome + "\n";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -100,12 +96,9 @@ public class FAETest {
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = null;
-        FAE instance = new FAE();
         FAE expResult = null;
         FAE result = instance.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -114,12 +107,9 @@ public class FAETest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        FAE instance = new FAE();
         Node expResult = null;
         Node result = instance.exportContentToXMLNode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

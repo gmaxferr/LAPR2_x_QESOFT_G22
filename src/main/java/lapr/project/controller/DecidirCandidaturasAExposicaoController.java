@@ -52,7 +52,6 @@ public class DecidirCandidaturasAExposicaoController {
      * Construtor do controller do UC17 - Decidir candidaturas a exposição
      *
      * @param ce centro de exposições atual
-     * @param usernameGestor username do gestor de exposições a executar este UC
      */
     public DecidirCandidaturasAExposicaoController(CentroExposicoes ce) {
         this.m_ce = ce;

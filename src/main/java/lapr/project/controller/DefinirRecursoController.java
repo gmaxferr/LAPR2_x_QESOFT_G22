@@ -38,10 +38,10 @@ public class DefinirRecursoController {
     /**
      * Cria um recurso a partir do seu nome
      *
-     * @param nome - nome do recurso a adicionar
+     * @param nomeRecurso - nome do recurso a adicionar
      * @return true se for adicionado com sucesso; false caso contrário.
      */
-    public boolean criarRecurso(String nome) {
-        return m_rr.criarRecurso(nome);
+    public boolean criarRecurso(String nomeRecurso) {
+        return m_rr.criarRecurso(nomeRecurso);
     }
 }

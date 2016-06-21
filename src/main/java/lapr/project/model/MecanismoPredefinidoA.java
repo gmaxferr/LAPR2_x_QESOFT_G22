@@ -85,7 +85,35 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
     }
 
     @Override
-    public List<AtribuicaoCandidatura> atribui(Demonstracao demonstracaoEscolhida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida) {
+        List<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();
+        List<CandidaturaADemonstracao> listaCand = demonstracaoEscolhida.getRegistoCandidaturasADemonstracao().getListaCandidaturasEstadoCriada();
+        List<FAE> listaFAE = exposicaoEscolhida.getRegistoFAE().getListaFAE();
+
+        if (listaFAE.isEmpty() || listaCand.isEmpty()) {
+            return listaAtrib;
+        } else {
+            int numFAEPorCand = listaFAE.size() / listaCand.size();
+            int posInicio = 0, posFim = 0;
+
+            if (numFAEPorCand != 0) {
+                for (int i = 0; i < listaCand.size(); i++) {
+                    if (i != 0) {
+                        posInicio += numFAEPorCand;
+                    }
+                    posFim += numFAEPorCand;
+                    if (posFim > listaFAE.size()) {
+                        posFim = listaFAE.size();
+                    }
+                    AtribuicaoCandidaturaDemonstracao atribuicao = new AtribuicaoCandidaturaDemonstracao(listaCand.get(i));
+                    for (int j = posInicio; j < posFim; j++) {
+                        atribuicao.addFaeAvaliacao(listaFAE.get(j));
+                    }
+                    listaAtrib.add(atribuicao);
+                }
+            }
+            return listaAtrib;
+        }
+
     }
 }

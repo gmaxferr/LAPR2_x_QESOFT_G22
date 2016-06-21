@@ -627,7 +627,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rexpositores.fix(m_registoUtilizadores);
         this.m_rce.fix(m_registoUtilizadores, this.m_rd);
         this.m_rd.setExposicao(this);
-        this.m_rd.fix(m_registoRecursos, m_rce);
+        this.m_rd.fix(m_registoRecursos, m_rce, m_registoUtilizadores);
         this.m_ra.fix(this.m_rce, m_registoUtilizadores);
     }
 

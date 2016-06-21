@@ -24,6 +24,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         this.m_candidatura = candidaturaAExposicao;
         this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
     }
+    
 
     public CandidaturaAExposicao getCandidaturaAssociada() {
         return this.m_candidatura;

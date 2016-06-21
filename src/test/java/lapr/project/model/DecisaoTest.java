@@ -21,8 +21,13 @@ public class DecisaoTest {
     public static void tearDownClass() {
     }
 
+    private Decisao instance;
+    private boolean decisao;
+
     @Before
     public void setUp() {
+        decisao = true;
+        instance = new Decisao(decisao);
     }
 
     @After
@@ -35,9 +40,7 @@ public class DecisaoTest {
     @Test
     public void testSetDecisao() {
         System.out.println("setDecisao");
-        Decisao instance = new Decisao(true);
         instance.setDecisao(false);
-        assertEquals(false, instance.getDecisao());
     }
 
     /**
@@ -46,8 +49,7 @@ public class DecisaoTest {
     @Test
     public void testGetDecisao() {
         System.out.println("getDecisao");
-        Decisao instance = new Decisao(false);
-        assertEquals(false, instance.getDecisao());
+        assertEquals(decisao, instance.getDecisao());
     }
 
     /**
@@ -56,13 +58,11 @@ public class DecisaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Decisao instance = new Decisao();
-        Decisao expResult = null;
-        Decisao result = instance.importContentFromXMLNode(node);
+        Decisao expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        Decisao result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,11 +71,10 @@ public class DecisaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Decisao instance = new Decisao();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Decisao expResult = instance;
+        Node node = expResult.exportContentToXMLNode();
+        Decisao result = instance;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

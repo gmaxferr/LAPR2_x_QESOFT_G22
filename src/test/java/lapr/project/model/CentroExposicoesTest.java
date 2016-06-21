@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import java.util.List;
 import lapr.project.registos.RegistoExposicoes;
 import lapr.project.registos.RegistoExpositores;
 import lapr.project.registos.RegistoMecanismos;
@@ -199,9 +198,10 @@ public class CentroExposicoesTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        CentroExposicoes expResult = null;
-        CentroExposicoes result = ce.importContentFromXMLNode(node);
+        CentroExposicoes expResult = ce;
+        Node node = expResult.exportContentToXMLNode();
+        CentroExposicoes result = ce;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
 
     }
@@ -212,10 +212,11 @@ public class CentroExposicoesTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Node expResult = null;
-        Node result = ce.exportContentToXMLNode();
+        CentroExposicoes expResult = ce;
+        Node node = expResult.exportContentToXMLNode();
+        CentroExposicoes result = ce;
+        result.importContentFromXMLNode(node);
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -225,8 +226,7 @@ public class CentroExposicoesTest {
     public void testSetRegistoExposicoes() {
         System.out.println("setRegistoExposicoes");
         RegistoExposicoes m_registoExposicoes = new RegistoExposicoes(ce);
-        CentroExposicoes instance = new CentroExposicoes();
-        instance.setRegistoExposicoes(m_registoExposicoes);
+        ce.setRegistoExposicoes(m_registoExposicoes);
     }
 
     /**

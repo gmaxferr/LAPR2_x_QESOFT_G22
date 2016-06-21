@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.*;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
@@ -82,6 +83,18 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
         return !m_listaCandidaturasADemonstracao.contains(cand);
     }
 
+    
+    public List<CandidaturaADemonstracao> getListaCandidaturasEstadoCriada() {
+        List<CandidaturaADemonstracao> listCand = new ArrayList<>();
+        for (CandidaturaADemonstracao cand : m_listaCandidaturasADemonstracao) {
+            EstadoCandidaturaADemonstracao state = cand.getEstado();
+            if (state.isEstadoCandidaturaADemonstracaoCriada()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
+    
     @Override
     public RegistoCandidaturaADemonstracoes importContentFromXMLNode(Node node) {
         try {
