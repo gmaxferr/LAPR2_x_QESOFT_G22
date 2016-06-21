@@ -7,7 +7,7 @@ import lapr.project.model.CandidaturaAExposicao;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implements ComboBoxModel {
 
