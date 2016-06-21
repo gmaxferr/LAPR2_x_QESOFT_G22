@@ -22,7 +22,7 @@ public class DadosInstanciados {
     public DadosInstanciados() {
         email1 = "a@iol.com";
         ce = new CentroExposicoes();
-        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 21), new Data(2016, 6,22), new Data(2016, 6, 23), new Data(2016, 6, 24), new Local("local"), ce);
+        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 21), new Data(2016, 6, 22), new Data(2016, 6, 23), new Data(2016, 6, 24), new Local("local"), ce);
         user1 = new Utilizador("user1name", "user1", getPass(), getEmail1());
         representante1 = new Expositor(getUser1());
     }
@@ -54,6 +54,10 @@ public class DadosInstanciados {
     /**
      * Cria um novo utilizador de testes
      *
+     * @param nome nome do utilizador
+     * @param username username do utilizador
+     * @param password password do utilizador
+     * @param email email do utilizador
      * @return novo utilizador de testes
      */
     public Utilizador inicializarUtilizador(String nome, String username, char[] password, String email) {

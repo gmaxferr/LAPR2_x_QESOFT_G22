@@ -132,12 +132,12 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
      * Devolve a percentagem de candidaturas à exposição aceite do representente
      * cujo username é passado por parametro.
      *
-     * @param usernameExpositor username do Expositor
+     * @param emailExpositor username do Expositor
      * @return percentagem de candidaturas do representante à exposição aceites.
      * Se não houveram candidaturas então devolve 0
      */
-    public float getPercentagemCandidaturasAceites(String usernameExpositor) {
-        List<CandidaturaAExposicao> listaCandidaturasDoExpositor = getCandidaturasRepresentante(usernameExpositor);
+    public float getPercentagemCandidaturasAceites(String emailExpositor) {
+        List<CandidaturaAExposicao> listaCandidaturasDoExpositor = getCandidaturasRepresentante(emailExpositor);
         int cont = listaCandidaturasDoExpositor.size();
         float candAceites = 0;
         for (CandidaturaAExposicao candidatura : listaCandidaturasDoExpositor) {
@@ -146,7 +146,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
             }
         }
         if (cont != 0) {
-            return candAceites / cont;
+            return (candAceites / cont) * 100;
         } else {
             return 0;
         }
