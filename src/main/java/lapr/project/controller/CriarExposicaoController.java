@@ -14,28 +14,57 @@ import lapr.project.utils.Data;
  */
 public class CriarExposicaoController {
 
+    /**
+     * Centro de exposições atual
+     */
     private final CentroExposicoes m_centro_exposicoes;
 
+    /**
+     * Registo de exposições existentes no centro de exposições atual
+     */
     private final RegistoExposicoes m_re;
 
+    /**
+     * Registo de utilizadores existentes no centro de exposições
+     */
     private final RegistoUtilizadores m_ru;
 
+    /**
+     * Lista de organizadores selecionados pela UI
+     */
     private List<Organizador> m_organizadoresSelecionados = new ArrayList<>();
 
+    /**
+     * Exposição a ser criada durante este UC
+     */
     private Exposicao m_exposicao;
 
+    /**
+     * Estado da exposição alvo deste UC (a que está a ser criada)
+     */
     private EstadoExposicao m_estadoExposicao;
 
+    /**
+     * Construtor do controller
+     *
+     * @param centro_exposicoes centro de exposições atual
+     */
     public CriarExposicaoController(CentroExposicoes centro_exposicoes) {
         m_centro_exposicoes = centro_exposicoes;
         m_re = centro_exposicoes.getRegistoExposicoes();
         m_ru = centro_exposicoes.getRegistoUtilizadoresConfirmados();
     }
 
+    /**
+     * Guarda o registo de exposições existentes no centro de exposições
+     */
     public void getRegistoExposicao() {
         m_centro_exposicoes.getRegistoExposicoes();
     }
 
+    /**
+     * Guarda o registo de utilizadores existentes no centro de exposições
+     */
     public void getRegistoUtilizadores() {
         m_centro_exposicoes.getRegistoUtilizadoresConfirmados();
     }
@@ -102,8 +131,6 @@ public class CriarExposicaoController {
      *
      * @param utilizador utilizador a ser designado como organizador da
      * exposição caso seja válido
-     * @return true se o organizador é valido e foi adicionado ou false caso
-     * contrário
      */
     public void addOrganizador(Organizador utilizador) {
         m_organizadoresSelecionados.add(utilizador);

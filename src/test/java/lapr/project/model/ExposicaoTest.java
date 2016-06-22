@@ -8,6 +8,9 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
 import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
@@ -657,25 +660,6 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of validaOrganizador method, of class Exposicao.
-     */
-    @Test
-    public void testValidaOrganizador() {
-        System.out.println("validaOrganizador");
-        Organizador organizador = new Organizador(u);
-
-        boolean expResult = true;
-        boolean result = e.validaOrganizador(organizador);
-        assertEquals(expResult, result);
-
-        e.getRegistoFAE().adicionaFAE(u);
-
-        expResult = false;
-        result = e.validaOrganizador(organizador);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of recriarTimersDemo method, of class Exposicao.
      */
     @Test
@@ -826,147 +810,151 @@ public class ExposicaoTest {
      */
     @Test
     public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
+        try {
+            System.out.println("importContentFromXMLNode");
 
-        Exposicao instance = new Exposicao(ce);
-        instance.setDataAberturaSubCand(data1);
-        instance.setDataEncerramentoSubCand(data2);
-        instance.setDataFimDetecaoConflitos(data3);
+            Exposicao instance = new Exposicao(ce);
+            instance.setDataAberturaSubCand(data1);
+            instance.setDataEncerramentoSubCand(data2);
+            instance.setDataFimDetecaoConflitos(data3);
 
-        Node node = instance.exportContentToXMLNode();
-        Exposicao expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        boolean result = instance.equals(expResult);
-        assertEquals(true, result);
+            Node node = instance.exportContentToXMLNode();
+            Exposicao expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            boolean result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAbertas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAbertas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDecididas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDecididas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoFechadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoFechadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasFechadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasFechadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCompleta(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCompleta(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoConflitosAlterados(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoConflitosAlterados(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoConflitosDetetados(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoConflitosDetetados(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCriada(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCriada(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoDemonstracoesDecididas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoDemonstracoesDecididas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoInicial(expResult, ce));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoInicial(expResult, ce));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoStandsAtribuidos(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoStandsAtribuidos(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
+        } catch (ParserConfigurationException ex) {
+            fail("Foi lançada uma exceção no teste que não permitiu a correta execuçãod o mesmo.");
+        }
     }
 
     /**
@@ -974,153 +962,157 @@ public class ExposicaoTest {
      */
     @Test
     public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
+        try {
+            System.out.println("exportContentToXMLNode");
 
-        Exposicao instance = new Exposicao(ce);
+            Exposicao instance = new Exposicao(ce);
 
-        Node node = instance.exportContentToXMLNode();
-        Exposicao expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        boolean result = instance.equals(expResult);
-        assertEquals(true, result);
+            Node node = instance.exportContentToXMLNode();
+            Exposicao expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            boolean result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setDataFim(data1);
-        instance.setDataFimCandDemo(data1);
-        instance.setDataAberturaSubCand(data1);
-        instance.setDataEncerramentoSubCand(data2);
-        instance.setDataFimDetecaoConflitos(data3);
-        instance.setDataFimDetecaoConflitosDemo(data1);
-        instance.setDataInicio(data1);
-        instance.setDataInicioCandDemo(data1);
+            instance.setDataFim(data1);
+            instance.setDataFimCandDemo(data1);
+            instance.setDataAberturaSubCand(data1);
+            instance.setDataEncerramentoSubCand(data2);
+            instance.setDataFimDetecaoConflitos(data3);
+            instance.setDataFimDetecaoConflitosDemo(data1);
+            instance.setDataInicio(data1);
+            instance.setDataInicioCandDemo(data1);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAbertas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAbertas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAtribuidas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDecididas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDecididas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoAbertas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoFechadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasDemonstracaoFechadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCandidaturasFechadas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCandidaturasFechadas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCompleta(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCompleta(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoConflitosAlterados(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoConflitosAlterados(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoConflitosDetetados(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoConflitosDetetados(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoCriada(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoCriada(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoDemonstracoesDecididas(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoDemonstracoesDecididas(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoInicial(expResult, ce));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoInicial(expResult, ce));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
 
-        instance.setEstado(new EstadoExposicaoStandsAtribuidos(expResult));
-        node = instance.exportContentToXMLNode();
-        expResult = new Exposicao(ce);
-        expResult.importContentFromXMLNode(node);
-        expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
-        result = instance.equals(expResult);
-        assertEquals(true, result);
+            instance.setEstado(new EstadoExposicaoStandsAtribuidos(expResult));
+            node = instance.exportContentToXMLNode();
+            expResult = new Exposicao(ce);
+            expResult.importContentFromXMLNode(node);
+            expResult.fix(ce.getRegistoRecursos(), ce.getRegistoTiposConflitos(), ce.getRegistoUtilizadoresPendentes());
+            result = instance.equals(expResult);
+            assertEquals(true, result);
+        } catch (ParserConfigurationException ex) {
+            fail("Foi lançada uma exceção no teste que não permitiu a correta execuçãod o mesmo.");
+        }
     }
 
     /**

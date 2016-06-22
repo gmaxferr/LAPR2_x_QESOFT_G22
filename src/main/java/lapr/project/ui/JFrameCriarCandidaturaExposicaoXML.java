@@ -16,6 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.CriarCandidaturaExposicaoXMLController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Utilizador;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 
 /**
@@ -29,6 +30,7 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
     private Exposicao m_expo;
     private CentroExposicoes m_ce;
     private CriarCandidaturaExposicaoXMLController controller;
+    private Utilizador m_user;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
@@ -37,10 +39,11 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
     /**
      * Creates new form JFrameCriarCandidaturaExposicaoXML
      */
-    public JFrameCriarCandidaturaExposicaoXML(CentroExposicoes ce, JFrame janelaMae, String username) {
+    public JFrameCriarCandidaturaExposicaoXML(CentroExposicoes ce, JFrame janelaMae, Utilizador user) {
         m_ce = ce;
         m_listaExposicoes = ce.getRegistoExposicoes().getListaExposicoes();
         jFrameMenuPrincipal = janelaMae;
+        this.m_user = user;
         initComponents();
     }
 
@@ -243,7 +246,7 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
             if(filename!=null){
             try {
                 controller = new CriarCandidaturaExposicaoXMLController(m_ce, m_expo, filename);
-                controller.registarCandidatura();
+                controller.registarCandidatura(m_user);
                 
             } catch (ParserConfigurationException ex) {
                 Logger.getLogger(JFrameCriarCandidaturaExposicaoXML.class.getName()).log(Level.SEVERE, null, ex);

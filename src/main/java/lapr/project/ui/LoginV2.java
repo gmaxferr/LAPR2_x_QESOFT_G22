@@ -1,7 +1,15 @@
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import lapr.project.controller.ExportarXMLController;
 import lapr.project.model.*;
 import lapr.project.utils.Utilitarios;
 
@@ -14,6 +22,7 @@ public class LoginV2 extends javax.swing.JFrame {
     private static final String FRAME_TITLE = "Login";
     private transient final CentroExposicoes centroExposicoes;
     private transient Utilizador utilizador;
+    private JFrame thisJFrame;
 
     /**
      * Creates new form JFrameV2
@@ -26,11 +35,75 @@ public class LoginV2 extends javax.swing.JFrame {
 
         this.centroExposicoes = centroExposicoes;
         jButtonLogin.setMnemonic(10);
+        thisJFrame = this;
+        modificarFecharJanela();
 
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    private void modificarFecharJanela() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                int op = JOptionPane.showConfirmDialog(null, "Deseja salvar todas as alterações feitas?");
+                if (op == JOptionPane.YES_OPTION) {
+                    JFileChooser fc = new JFileChooser();
+                    ExportarXMLController CTRL = new ExportarXMLController();
+
+                    File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);
+                    boolean successfulExport = false;
+
+                    try {
+                        Scanner in = new Scanner(properties);
+
+                        while (in.hasNext()) {
+                            String[] input = in.nextLine().split("=");
+                            if (input[0].trim().equalsIgnoreCase("saveFileLocation")) {
+                                String[] filePath = input[1].split("\".*\"");
+                                if (filePath.length > 0) {
+                                    File file = new File(filePath[0]);
+                                    if (!file.exists()) {
+                                        break;
+                                    }
+                                    if (CTRL.export(filePath[0], centroExposicoes)) {
+                                        JOptionPane.showMessageDialog(null, "Informação gravada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                        successfulExport = true;
+                                        dispose();
+                                        System.exit(0);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }
+                            }
+                        }
+
+                        in.close();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (!successfulExport) {
+                        int returnVal = fc.showSaveDialog(thisJFrame);
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            File f = fc.getSelectedFile();
+                            String fileName = f.getAbsolutePath();
+                            if (CTRL.exportAndUpdateProperties(fileName, centroExposicoes)) {
+                                JOptionPane.showMessageDialog(null, "Informação guardada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                                dispose();
+                                System.exit(0);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro na gravação da informação.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                } else if (op == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

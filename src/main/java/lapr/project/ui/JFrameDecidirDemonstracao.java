@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import java.awt.BorderLayout;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 import java.awt.*;
 import java.awt.event.*;
@@ -34,8 +33,6 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private List<JCheckBox> listaCheckBoxes = new ArrayList();
 
     private JFrame thisFrame;
-
-    private int numeroDemonstracao = 0;
 
     /**
      * Creates new form JFrameDecidirCandidatura
@@ -96,9 +93,11 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         jComboBoxCard1EscolherExposicao = new javax.swing.JComboBox<>();
         card2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPaneDecisoes = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPaneDecisoes = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        painelDecisoes = new javax.swing.JPanel();
         card3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -299,6 +298,11 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         jLabel10.setText("Selecione as demonstrações que se irão realizar:");
 
         jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Confirmar Decisões");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -307,35 +311,70 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout painelDecisoesLayout = new javax.swing.GroupLayout(painelDecisoes);
+        painelDecisoes.setLayout(painelDecisoesLayout);
+        painelDecisoesLayout.setHorizontalGroup(
+            painelDecisoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 636, Short.MAX_VALUE)
+        );
+        painelDecisoesLayout.setVerticalGroup(
+            painelDecisoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 278, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelDecisoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelDecisoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jScrollPaneDecisoes.setViewportView(jPanel2);
+
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card2Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(131, 131, 131))
-            .addGroup(card2Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10)
-                    .addComponent(jScrollPaneDecisoes, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(card2Layout.createSequentialGroup()
+                                .addGap(177, 177, 177)
+                                .addComponent(jButton1)
+                                .addGap(149, 149, 149)
+                                .addComponent(jButton2))
+                            .addGroup(card2Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel10)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPaneDecisoes)))
+                .addContainerGap())
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPaneDecisoes, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneDecisoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         getContentPane().add(card2, "card2");
@@ -433,14 +472,12 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         card3.setLayout(card3Layout);
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
+            .addGroup(card3Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(cancelBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmarDatas)
+                .addGap(73, 73, 73))
             .addGroup(card3Layout.createSequentialGroup()
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card3Layout.createSequentialGroup()
@@ -448,43 +485,43 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                         .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(card3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(256, 256, 256)
-                                .addComponent(jLabel4))
-                            .addGroup(card3Layout.createSequentialGroup()
                                 .addGap(148, 148, 148)
                                 .addComponent(jLabel9))
-                            .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                                        .addGap(201, 201, 201)
-                                        .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(110, 110, 110))
-                                    .addGroup(card3Layout.createSequentialGroup()
-                                        .addGap(149, 149, 149)
-                                        .addComponent(jLabel7)))
+                            .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(card3Layout.createSequentialGroup()
+                                    .addGap(203, 203, 203)
+                                    .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(110, 110, 110))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
                                     .addGap(118, 118, 118)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel8)))
+                            .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7)
                                 .addGroup(card3Layout.createSequentialGroup()
-                                    .addGap(108, 108, 108)
-                                    .addComponent(cancelBtn)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(confirmarDatas)))))
+                                    .addComponent(jLabel5)
+                                    .addGap(256, 256, 256)
+                                    .addComponent(jLabel4)))))
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
+                        .addGap(224, 224, 224)
+                        .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jLabel6))
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
                         .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jLabel6)))
+                        .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
@@ -498,34 +535,36 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(card3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelBtn)
-                    .addComponent(confirmarDatas))
-                .addGap(35, 35, 35))
+                    .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anoInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card3Layout.createSequentialGroup()
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(anoFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(anoFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mesFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(diaFimDetConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelBtn)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(confirmarDatas)
+                        .addContainerGap())))
         );
 
         getContentPane().add(card3, "card3");
@@ -550,46 +589,15 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
             listaCheckBoxes.add(new JCheckBox());
         }
-        jScrollPaneDecisoes.setLayout(new GridLayout(m_listaDemonstracoes.size(), 1));
+        painelDecisoes.setLayout(new GridLayout(m_listaDemonstracoes.size(), 1));
         int i = 0;
         for (Demonstracao d : m_listaDemonstracoes) {
-            JPanel jp = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+            JPanel jp = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
             jp.add(new JLabel(d.getDescricao()));
             jp.add(listaCheckBoxes.get(i));
-            jScrollPaneDecisoes.add(jp);
+            painelDecisoes.add(jp);
             i++;
         }
-        
-        inicializarBotoes();
-    }
-
-    private void inicializarBotoes() {
-        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        JButton confirmBtn = new JButton("Confirmar Decisoes");
-        confirmBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        JButton voltarCard1Btn = new JButton("Voltar");
-        voltarCard1Btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                voltarParaCard1();
-            }
-        });
-        JButton escolherDatasBtn = new JButton();
-        escolherDatasBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                avancarParaCard3();
-            }
-        });
-        painelBotoes.add(confirmBtn);
-        painelBotoes.add(voltarCard1Btn);
-        painelBotoes.add(escolherDatasBtn);
-        card2.add(painelBotoes, BorderLayout.SOUTH);
     }
 
     private void avancarParaCard3() {
@@ -710,20 +718,20 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     }//GEN-LAST:event_diaFimCandActionPerformed
 
     private void confirmarDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDatasActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == 1) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
                 getDatas();
                 if (dataFimSubCand.isMaior(dataInicioSubCand)) {
                     if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
                         ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR);
+                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR);
+                JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmarDatasActionPerformed
@@ -746,7 +754,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende cancelar o processo? Todas as alterações serão perdidas", "Aviso", JOptionPane.YES_NO_OPTION) == 1) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende cancelar o processo? Todas as alterações serão perdidas", "Aviso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             thisFrame.dispose();
             janelaMae.setVisible(true);
         }
@@ -765,24 +773,27 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     }//GEN-LAST:event_diaFimDetConfActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende confirmar apenas as demonstrações selecionadas e cancelar as restantes? As decisões serão irreversíveis!", "Confirma?", JOptionPane.YES_NO_OPTION) == 1) {
-                    for (int i = 0; i < listaCheckBoxes.size(); i++) {
-                        if (listaCheckBoxes.get(i).isSelected()) {
-                            decisoes[i] = true;
-                        }
-                    }
-                    for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
-                        if (decisoes[i] == true) {
-                            m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
-                        } else {
-                            m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
-                        }
-                    }
-                    JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
-                    thisFrame.dispose();
-                    janelaMae.setVisible(true);
+        if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende confirmar apenas as demonstrações selecionadas e cancelar as restantes? As decisões serão irreversíveis!", "Confirma?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < listaCheckBoxes.size(); i++) {
+                if (listaCheckBoxes.get(i).isSelected()) {
+                    decisoes[i] = true;
                 }
+            }
+            for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
+                if (decisoes[i] == true) {
+                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
+                } else {
+                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
+                }
+            }
+            JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+            avancarParaCard3();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        voltarParaCard1();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> anoFimCand;
@@ -819,6 +830,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao;
     private javax.swing.JPanel jPanelCard1Duracao;
     private javax.swing.JPanel jPanelCard1Local;
@@ -830,6 +842,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mesFimCand;
     private javax.swing.JComboBox<String> mesFimDetConf;
     private javax.swing.JComboBox<String> mesInicioCand;
+    private javax.swing.JPanel painelDecisoes;
     // End of variables declaration//GEN-END:variables
 
     private void avancarParaCard2() {

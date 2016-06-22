@@ -78,9 +78,8 @@ public class AvaliarCandidaturaAExposicaoController {
         return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(this.m_usernameFAE);
     }
 
-   
     /**
-     *
+     * Guarda o registo de atribuições da exposição selecionada
      */
     public void getRegistoAtribuicoes() {
         this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
@@ -96,7 +95,6 @@ public class AvaliarCandidaturaAExposicaoController {
         return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(this.m_usernameFAE);
     }
 
-   
     /**
      * Devolve o nome da empresa guardado na candidatura selecionada na UI pelo
      * FAE
@@ -204,7 +202,8 @@ public class AvaliarCandidaturaAExposicaoController {
     public int getRatingRecomendacaoGlobal() {
         return this.m_avaliacaoDoFae.getRatingRecomendacaoGlobal();
     }
- /**
+
+    /**
      * Define uma atribuição como a escolhida pelo FAE na UI
      *
      * @param atribuicao atribuição escolhida pelo FAE
@@ -231,7 +230,8 @@ public class AvaliarCandidaturaAExposicaoController {
     public void setAvalicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
         this.m_avaliacaoDoFae.setAvalicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
     }
- /**
+
+    /**
      * Define uma exposição como a selecionada pelo FAE na UI
      *
      * @param exposicao exposição selecionada pelo FAE

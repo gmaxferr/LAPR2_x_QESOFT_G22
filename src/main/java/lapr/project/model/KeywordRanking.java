@@ -145,10 +145,10 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
 
     @Override
     public KeywordRanking importContentFromXMLNode(Node node) throws ParserConfigurationException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.newDocument();
-        doc.appendChild(doc.importNode(node, true));
+        if (node == null) {
+            return null;
+        }
+        Document doc = XMLParser.createDocument(node, true);
 
         Node n = doc.getChildNodes().item(0);
 

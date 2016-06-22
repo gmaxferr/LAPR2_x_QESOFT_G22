@@ -50,7 +50,7 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
     /**
      * Creates new form JFrameCriarCandidaturaDemonstracaoXML
      */
-    public JFrameCriarCandidaturaDemonstracaoXML(CentroExposicoes ce, JFrame janelaMae) {
+    public JFrameCriarCandidaturaDemonstracaoXML(CentroExposicoes ce, JFrame janelaMae, String emailExpositor) {
         this.m_ce = ce;
         this.emailExpositor = emailExpositor;
         this.jFrameMenuPrincipal = janelaMae;
@@ -411,7 +411,7 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
                 } catch (ParserConfigurationException ex) {
                     Logger.getLogger(JFrameCriarCandidaturaDemonstracaoXML.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                controller.registarCandidatura();
+                controller.registarCandidatura(emailExpositor);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "O ficheiro selecionado é inválido!", "Ficheiro inválido", JOptionPane.ERROR_MESSAGE);
             }

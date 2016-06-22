@@ -171,6 +171,10 @@ public class CriarDemonstracaoController {
         return m_listaRecursosParaDemonstracao.contains(r);
     }
 
+    /**
+     * Regista definitivamente a demonstração criada. O método segue a
+     * confirmação dada pelo utilizador na UI
+     */
     public void registaDemo() {
         m_registoDemonstracoes.addDemo(m_demostracao);
     }

@@ -124,6 +124,24 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
                 case "criada":
                     this.m_estado = new EstadoCandidaturaADemonstracaoCriada(this);
                     break;
+                case "prontaAtribuicao":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoProntaAAtribuicao(this);
+                    break;
+                case "atribuida":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoAtribuida(this);
+                    break;
+                case "avaliada":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoAvaliada(this);
+                    break;
+                case "aceite":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoAceite(this);
+                    break;
+                case "recusada":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoRecusada(this);
+                    break;
+                case "removida":
+                    this.m_estado = new EstadoCandidaturaADemonstracaoRemovida(this);
+                    break;
                 default:
                     break;
             }
@@ -156,6 +174,18 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
                 elementRoot.setAttribute(ESTADO_ATTR_NAME, "instanciada");
             } else if (this.m_estado.isEstadoCandidaturaADemonstracaoCriada()) {
                 elementRoot.setAttribute(ESTADO_ATTR_NAME, "criada");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoProntaAAtribuicao()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "prontaAtribuicao");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoAtribuida()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "atribuida");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoAvaliada()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "avaliada");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoAceite()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "aceite");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoRecusada()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "recusada");
+            } else if (this.m_estado.isEstadoCandidaturaADemonstracaoRemovida()) {
+                elementRoot.setAttribute(ESTADO_ATTR_NAME, "removida");
             }
 
             node = elementRoot;
@@ -164,6 +194,10 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
         }
 
         return node;
+    }
+
+    public void setEmailExpositor(String email) {
+        this.m_emailExpositor = email;
     }
 
 }
