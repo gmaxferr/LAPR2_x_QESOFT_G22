@@ -100,10 +100,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoConflitosDemonstracao m_rconfDemo;
 
-    /**
-     *registo de atribuições da demonstração
-     */
-    private RegistoAtribuicoesDemonstracao m_rad;
 
     /**
      * Registo de candidaturas a demonstracao removidas
@@ -117,7 +113,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
-        this.m_rad = new RegistoAtribuicoesDemonstracao();
         this.m_rf = new RegistoFAE();
     }
 
