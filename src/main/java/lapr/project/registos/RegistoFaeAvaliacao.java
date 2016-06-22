@@ -132,6 +132,12 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
             matriz[pos][3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
             matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
         }
+        int cont = m_listaFaeAvaliacao.size();
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
+                matriz[linha][coluna] = matriz[linha][coluna] / cont;
+            }
+        }
     }
 
     /**

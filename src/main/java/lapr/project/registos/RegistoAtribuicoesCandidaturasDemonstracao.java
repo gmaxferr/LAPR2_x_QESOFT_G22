@@ -123,13 +123,9 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
 
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
             atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
+            pos++;
         }
 
-        for (int linha = 0; linha < matriz.length; linha++) {
-            for (int coluna = 0; coluna < 5; coluna++) {
-                matriz[linha][coluna] = matriz[linha][coluna] / cont;
-            }
-        }
         return matriz;
     }
 
