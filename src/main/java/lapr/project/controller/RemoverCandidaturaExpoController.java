@@ -20,7 +20,7 @@ public class RemoverCandidaturaExpoController {
     /**
      * Username do FAE a executar este caso de uso
      */
-    private String m_usernameFAE;
+    private String m_emailFAE;
 
     /**
      * Centro de exposições atual
@@ -48,13 +48,13 @@ public class RemoverCandidaturaExpoController {
      * @param username - username do utilizador logado
      * @param ce - centro de exposições
      */
-    public RemoverCandidaturaExpoController(String username, CentroExposicoes ce) {
-        this.m_usernameFAE = username;
+    public RemoverCandidaturaExpoController(String email, CentroExposicoes ce) {
+        this.m_emailFAE = email;
         this.m_ce = ce;
     }
 
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesComOFAE() {
-        return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
+        return this.m_ra.getListaAtribuicoesDoFAE(this.m_emailFAE);
     }
 
     /**
@@ -75,10 +75,10 @@ public class RemoverCandidaturaExpoController {
      * @return - lista de exposições em que o representante logado possui
      * candidaturas
      */
-    public List<Exposicao> getExposRepresentante(String username) {
+    public List<Exposicao> getExposRepresentante(String email) {
         List<Exposicao> exposicoesLst = new ArrayList();
         RegistoExposicoes re = m_ce.getRegistoExposicoes();
-        exposicoesLst = re.getExposicoesDoRepresentanteCandidaturasAbertas(username);
+        exposicoesLst = re.getExposicoesDoRepresentanteCandidaturasAbertas(email);
         return exposicoesLst;
     }
 
@@ -88,10 +88,10 @@ public class RemoverCandidaturaExpoController {
      * @param username - username do representante
      * @return - lista de candidaturas do representante
      */
-    public List<CandidaturaAExposicao> getListaCandidaturas(String username) {
+    public List<CandidaturaAExposicao> getListaCandidaturas(String email) {
         List<CandidaturaAExposicao> candidaturasLst = new ArrayList();
         m_rc = m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
-        candidaturasLst = m_rc.getCandidaturasRepresentante(username);
+        candidaturasLst = m_rc.getCandidaturasRepresentante(email);
         return candidaturasLst;
     }
 
