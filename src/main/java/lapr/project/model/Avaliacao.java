@@ -20,12 +20,14 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public static final String RATING_ADEQ_DEMOS_ATTR_NAME = "adequacaoDemonstracoes";
     public static final String RATING_ADEQ_NUM_CONVITES_ATTR_NAME = "adequacaoConvites";
     public static final String RATING_REC_GLOBAL_ATTR_NAME = "recomendacao";
+    public static final String RATING_ADEQ_DADOS_CANDIDATURA = "adequacaoDadosCandidatura";
 
     private int m_ratingConhecimentoSobreOTema;
     private int m_ratingAdequacaoAExposicao;
     private int m_ratingAdequacaoAsDemos;
     private int m_ratingAdequacaoNumConvites;
     private int m_ratingRecomendacaoGlobal;
+    private int m_ratingAdequacaoDadosCandidatura;
 
     public Avaliacao() {
     }
@@ -74,7 +76,16 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public int getRatingRecomendacaoGlobal() {
         return m_ratingRecomendacaoGlobal;
     }
-
+    
+    /**
+     * Devolve o rating Adequação dos dados da candidatura
+     * 
+     * @return rating Adequação dos dados da candidatura
+     */
+    public int getRatingAdequacaoDadosCandidatura(){
+        return m_ratingAdequacaoDadosCandidatura;
+    }
+        
     /**
      * Calcula e devolve a média dos ratings associados a esta avaliação
      *
@@ -91,7 +102,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
     /**
      * Define os parametros da avaliação. Usado no momento de tomada da
-     * avaliação
+     * avaliação (candidaturas a exposição)
      *
      * @param ratingConhecimentoSobreTema de 0 a 5 sendo 0 o número que
      * representa menor conhecimento sobre o tema
@@ -112,6 +123,23 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
+    /**
+     * Define os parametros da avaliação. Usado no momento de tomada da
+     * avaliação (candidaturas a demonstracao)
+     * 
+     * @param ratingConhecimentoSobreTema de 0 a 5 sendo 0 o número que
+     * representa menor conhecimento sobre o tema
+     * @param ratingAdequacaoDadosCandidatura de o a 5 sendo 0 o número que
+     * representa menor adequação dos dados da candidatura 
+     * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
+     * menor recomendação global
+     */
+    public void setAvaliacaoParaDemonstracao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura,int ratingRecomendacaoGlobal){
+        this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
+        this.m_ratingAdequacaoDadosCandidatura = ratingAdequacaoDadosCandidatura;
+        this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (obj != null
