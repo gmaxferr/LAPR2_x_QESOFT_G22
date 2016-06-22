@@ -1,15 +1,11 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import lapr.project.dados.DadosInstanciados;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoAceite;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoFaeAvaliacao;
+import lapr.project.registos.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -126,27 +122,6 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
 
         float[] mediaRatings = {5.0f, 2.0f};
         assertEquals(mediaRatings[0], instance.getMediaRatingsTodasCandidaturasAExposicao()[0], 0.0f);
-    }
-
-    /**
-     * Test of getListaExposicoesEstadoDecididas method, of class
-     * PercentagemCandAceitesMediaRatingsController.
-     */
-    @Test
-    public void testGetListaExposicoesEstadoDecididas() {
-        System.out.println("getListaExposicoesEstadoDecididas");
-
-        Exposicao expo = new Exposicao(ce);
-        ce.getRegistoExposicoes().registaExposicao(expo);
-        expo = new Exposicao(ce);
-        ce.getRegistoExposicoes().registaExposicao(expo);
-
-        PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoDecididas();
-
-        assertEquals(expResult, result);
     }
 
     /**
@@ -323,32 +298,15 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
     }
 
     /**
-     * Test of getListaCandidaturasAExposicaoEstadoAvaliadas method, of class
-     * PercentagemCandAceitesMediaRatingsController.
-     */
-    @Test
-    public void testGetListaCandidaturasAExposicaoEstadoAvaliadas() {
-        System.out.println("getListaCandidaturasAExposicaoEstadoAvaliadas");
-        PercentagemCandAceitesMediaRatingsController instance = null;
-        List<CandidaturaAExposicao> expResult = null;
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicaoEstadoAvaliadas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getListaExposicoesEstadoAvaliadas method, of class
      * PercentagemCandAceitesMediaRatingsController.
      */
     @Test
     public void testGetListaExposicoesEstadoAvaliadas() {
         System.out.println("getListaExposicoesEstadoAvaliadas");
-        PercentagemCandAceitesMediaRatingsController instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoAvaliadas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
+
+        assertEquals(expResult, instance.getListaExposicoesEstadoAvaliadas());
     }
 }

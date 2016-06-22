@@ -92,19 +92,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * lista de candidaturas a demonstração alida demonstração de
-     * CandidaturaAExposicao recebendo-a como parametro
-     *
-     * @param demonstracao demonstração a ser validads
-     */
-    public void validaDemonstracao(Demonstracao demonstracao) {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-    }
-
-    /**
      * Valida os dados repetidos pu invalidos de CandidaturaAExposicao
      *
      * @return boolean com a confirmação da validação
@@ -322,7 +309,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
             NodeList nList;
             if (isOriginal) {
                 nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
-            }else{
+            } else {
                 nList = elem.getElementsByTagName(ID_DEMONSTRACAO_ELEMENT_NAME);
             }
             for (int i = 0; i < nList.getLength(); i++) {
