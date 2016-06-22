@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ConfirmarRegistoController;
 import lapr.project.model.*;
+import lapr.project.ui.model.ComboBoxModelUtilizadores;
 
 /**
  *
@@ -16,26 +17,25 @@ import lapr.project.model.*;
 public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     /**
-     * JFrame do Login. Usada para a voltar a tornar visivél no fim
-     * deste UC
+     * JFrame do Login. Usada para a voltar a tornar visivél no fim deste UC
      */
     private transient JFrame jFrameLogin;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
      * Controller deste UC
      */
     private transient ConfirmarRegistoController controller;
-    
+
     /**
      * Lista de Utilizadores
      */
     private transient List<Utilizador> listaUtilizadores;
-    
+
     /**
      * CardLayout usado na UI que permite a troca entre JPanels e simplificação
      * da UI para o utilizador
@@ -43,18 +43,18 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
     private final CardLayout cardLayout;
 
     private static final int LARGURA_JANELA_PASSO1 = 485;
-    private static final int ALTURA_JANELA_PASSO1 = 330;
+    private static final int ALTURA_JANELA_PASSO1 = 400;
 
     /**
      * Nome do utilizador por omissão
      */
     private static final String NOME_POR_OMISSAO = "Nome do utilizador";
-    
+
     /**
      * Email do utilizador por omissão
      */
     private static final String EMAIL_POR_OMISSAO = "Email do utilizador";
-    
+
     /**
      * Username do utilizador por omissão
      */
@@ -65,15 +65,17 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
      */
     public JFrameConfirmarRegistoUtilizadorUI(JFrame jFrameLogin, CentroExposicoes centroExposicoes) {
         super("Confirmar Registo de Utilizador");
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
         this.jFrameLogin = jFrameLogin;
         this.centroExposicoesAtual = centroExposicoes;
         this.controller = new ConfirmarRegistoController(centroExposicoes);
         controller.getRegistoUtilizadores();
+        listaUtilizadores = controller.getListaNovosRegistos();
         initComponents();
 
         alterarComportamentoFecharJFrame();
 
+        this.JComboBoxEscolherUtilizador.setSelectedIndex(0);
+        this.cardLayout = (CardLayout) getContentPane().getLayout();
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
@@ -122,7 +124,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         jLabelCard1Titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha o utilizador pretendido");
 
-        JComboBoxEscolherUtilizador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboBoxEscolherUtilizador.setModel(new ComboBoxModelUtilizadores(this.listaUtilizadores));
         JComboBoxEscolherUtilizador.setSelectedIndex(-1);
         JComboBoxEscolherUtilizador.setToolTipText("");
         JComboBoxEscolherUtilizador.addActionListener(new java.awt.event.ActionListener() {
@@ -247,17 +249,25 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setUtilizadorRegistado(listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex()));
-        String[] opcoes2 = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja avaliar outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
-            if (resposta == 0) {
+        JOptionPane.showMessageDialog(rootPane, "Registo confirmado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.listaUtilizadores = controller.getListaNovosRegistos();
+        if (listaUtilizadores.size() > 0) {
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja confirmar outro utilizador?", "Confirmação de novo registo", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
                 voltarASelecionarUtilizador();
             } else {
                 terminarUC();
             }
+        } else {
+            terminarUC();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-     private void voltarASelecionarUtilizador() {
+    private void voltarASelecionarUtilizador() {
         cardLayout.show(getContentPane(), "card1");
+        this.JComboBoxEscolherUtilizador.setSelectedIndex(0);
+        this.JComboBoxEscolherUtilizador.revalidate();
+        this.JComboBoxEscolherUtilizador.repaint();
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
@@ -265,9 +275,8 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         dispose();
         jFrameLogin.setVisible(true);
     }
-    
+
     private void JComboBoxEscolherUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxEscolherUtilizadorActionPerformed
-        listaUtilizadores = controller.getListaNovosRegistos();
         if (JComboBoxEscolherUtilizador.getSelectedItem() != null) {
             Utilizador utilizador = listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex());
             jLabel11.setText(utilizador.getNome());

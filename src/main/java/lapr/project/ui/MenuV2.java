@@ -68,7 +68,7 @@ public class MenuV2 extends javax.swing.JFrame {
         boolean temPapeis = false;
         if (utilizador.isGestor()) {
             this.jCheckBoxGestor.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(3, true);
+            jTabbedPaneCargos.setEnabledAt(2, true);
             temPapeis = true;
         }
         if (centroExposicoes.isFae(utilizador)) {
@@ -83,11 +83,11 @@ public class MenuV2 extends javax.swing.JFrame {
         }
         if (centroExposicoes.isOrganizador(utilizador)) {
             this.jCheckBoxOrganizador.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(2, true);
+            jTabbedPaneCargos.setEnabledAt(4, true);
             temPapeis = true;
         }
         if (!temPapeis) {
-            jTabbedPaneCargos.setEnabledAt(4, true);
+            jTabbedPaneCargos.setEnabledAt(3, true);
         }
         for (int i = 0; i < 5; i++) {
             if (jTabbedPaneCargos.isEnabledAt(i)) {
@@ -943,9 +943,12 @@ public class MenuV2 extends javax.swing.JFrame {
                         }
                     }
                 }
+
                 in.close();
+
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MenuV2.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
             if (!successfulExport) {
@@ -960,6 +963,8 @@ public class MenuV2 extends javax.swing.JFrame {
                     }
                 }
             }
+            terminaSessao();
+        } else if (op == JOptionPane.NO_OPTION) {
             terminaSessao();
         }
     }//GEN-LAST:event_jMenuItemTerminarSessaoActionPerformed
@@ -1030,7 +1035,6 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        this.setVisible(false);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1054,7 +1058,6 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        this.setVisible(false);
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -1073,8 +1076,6 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        this.setVisible(false);
-        //atribuir stands UI
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -1093,18 +1094,12 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        this.setVisible(false);
-        //qualidade dos fae ui
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        this.setVisible(false);
-        //atribuir cand a demos ui
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        this.setVisible(false);
-        //decidir cand as demos ui
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1113,9 +1108,13 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.setVisible(false);
-        JFrame frame = new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
-        frame.setVisible(true);
+        if (this.centroExposicoes.getRegistoUtilizadoresPendentes().getListaUtilizadores().size() > 0) {
+            this.setVisible(false);
+            JFrame frame = new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
+            frame.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(thisJFrame, "Não existem registos de utilizadores pendentes.", "ERRO", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1125,22 +1124,21 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        this.setVisible(false);
-        //definir tipo de conflito UI
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        this.setVisible(false);
-        //alterar cand as demos UI
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        this.setVisible(false);
-        //exportar ranking keywords para CSV ui
+        Exposicao[] listExpo = this.centroExposicoes.getRegistoExposicoes().getListaExposicoesRankingPronto().toArray(new Exposicao[0]);
+        if (listExpo.length > 0) {
+            JOptionPane.showInputDialog(this, "Escolha o nome da exposição sobre a qual pretende exportar o ranking de keywords.", "Exportar Ranking para CSV", JOptionPane.OK_CANCEL_OPTION, null, listExpo, listExpo[0]);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não existeme exposições sobre as quais exportar o ranking de keywords para CSV se encontra possível.", "ERRO", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jMenuItemEstiloDaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstiloDaJanelaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemEstiloDaJanelaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1154,7 +1152,6 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoAceite;
 import org.junit.After;
@@ -135,7 +138,11 @@ public class CandidaturaADemonstracaoTest {
         instance = new CandidaturaADemonstracao(dados, email);
         Node node = instance.exportContentToXMLNode();
         CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         CandidaturaADemonstracao result = instance;
         assertEquals(expResult, result);
     }
@@ -149,7 +156,11 @@ public class CandidaturaADemonstracaoTest {
         instance = new CandidaturaADemonstracao(dados, email);
         Node node = instance.exportContentToXMLNode();
         CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         CandidaturaADemonstracao result = instance;
         assertEquals(expResult, result);
     }

@@ -57,7 +57,7 @@ public class QualidadeFaeCalculoTest {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae1);
             int v = i < 10 ? 1 : 3;
-            fAval.setAvalicao("just", v, v, v, v, v);
+            fAval.setAvalicao(v, v, v, v, v);
             atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
             ra.getListaAtribuicoes().add(atr);
         }
@@ -65,7 +65,7 @@ public class QualidadeFaeCalculoTest {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae2);
             int v = 5;
-            fAval.setAvalicao("just", v, v, v, v, v);
+            fAval.setAvalicao(v, v, v, v, v);
             atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
             ra.getListaAtribuicoes().add(atr);
         }

@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
@@ -309,7 +312,7 @@ public class DemonstracaoTest {
         RegistoUtilizadores ru = new RegistoUtilizadores("tag");
         Exposicao e = new Exposicao(ce);
         RegistoCandidaturasAExposicao rCand = new RegistoCandidaturasAExposicao(e);
-        instance.fix(rCand, e);
+        instance.fix(rCand, e, ru);
     }
 
     /**
@@ -321,7 +324,11 @@ public class DemonstracaoTest {
         Demonstracao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         Demonstracao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 
@@ -334,7 +341,11 @@ public class DemonstracaoTest {
         Demonstracao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         Demonstracao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 }
