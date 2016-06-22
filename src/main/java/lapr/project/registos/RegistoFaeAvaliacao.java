@@ -118,6 +118,22 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
+     * Recebe por parametro um vetor ao qual vai ser somado os ratings dados
+     * pelos FAE guardados em cada Avaliação. Cada rating em cada posição.
+     *
+     * @param vec vetor no qual vão ser guardados os valores dos ratings
+     */
+    public void somarRatingsAoVetor(float[] vec) {
+        for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
+            vec[0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
+            vec[1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
+            vec[2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
+            vec[3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
+            vec[4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+        }
+    }
+
+    /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
      *
@@ -180,4 +196,5 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
         return node;
     }
+
 }

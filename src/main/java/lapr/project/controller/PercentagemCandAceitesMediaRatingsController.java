@@ -181,7 +181,19 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return vetor com média dos ratings por cada posição
      */
-    public float[] getMediaRatingsPorCriterioDasCandidaturas() {
+    public float[] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
         return this.m_rAtribExpos.getMediaRatingsPorCriterioDasCandidaturas();
+    }
+
+    /**
+     * Devolve um vetor em que, em cada posição, contém as médias dos ratings
+     * pela mesma ordem que são mostrados aos FAE. Isto é, na posição 0
+     * (primeira posição) estará a média dos ratings sobre o conhecimento do
+     * tema.
+     *
+     * @return vetor com média dos ratings por cada posição
+     */
+    public float[] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
+        return this.m_rAtribDemos.getMediaRatingsPorCriterioDasCandidaturas();
     }
 }

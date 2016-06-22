@@ -23,7 +23,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Ana Leite
  */
-public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable{
+public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
@@ -130,7 +130,8 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
     }
 
     /**
-     * Através das atribuções feitas, procura e cria uma lista de candidaturas de um FAE.
+     * Através das atribuções feitas, procura e cria uma lista de candidaturas
+     * de um FAE.
      *
      * @param username - do FAE a procuarar candidaturas
      * @return lista de candidaturas do FAE
@@ -194,5 +195,19 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
             Logger.getLogger(RegistoAtribuicoesCandidaturasDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
+    }
+
+    public float[] getMediaRatingsPorCriterioDasCandidaturas() {
+        float[] vec = new float[5];
+        int cont = this.m_listaAtribuicao.size();
+
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
+            atribuicao.getRegistoFaeAvaliacao().somarRatingsAoVetor(vec);
+        }
+
+        for (int i = 0; i < vec.length; i++) {
+            vec[i] = vec[i] / cont;
+        }
+        return vec;
     }
 }
