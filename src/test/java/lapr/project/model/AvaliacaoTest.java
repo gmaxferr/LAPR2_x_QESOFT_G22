@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -43,17 +46,6 @@ public class AvaliacaoTest {
                 && instance.getRatingAdequacaoAsDemos() == 2
                 && instance.getRatingAdequacaoNumConvites() == 3
                 && instance.getRatingRecomendacaoGlobal() == 4);
-    }
-
-    /**
-     * Test of setAvalicaoParaDemonstracao method, of class Avaliacao.
-     */
-    @Test
-    public void testSetAvalicaoParaDemonstracao() {
-        System.out.println("setAvalicaoParaDemonstracao");
-        Avaliacao instance = new Avaliacao();
-        instance.setAvalicaoParaDemonstracao("just");
-        assertEquals(true, instance.getJustificacao().equalsIgnoreCase("just"));
     }
 
     /**
@@ -131,7 +123,11 @@ public class AvaliacaoTest {
         Avaliacao instance = new Avaliacao();
         Node node = instance.exportContentToXMLNode();
         Avaliacao expResult = new Avaliacao();
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         Avaliacao result = instance;
         assertEquals(expResult, result);
     }
@@ -145,7 +141,11 @@ public class AvaliacaoTest {
         Avaliacao instance = new Avaliacao();
         Node node = instance.exportContentToXMLNode();
         Avaliacao expResult = new Avaliacao();
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         Avaliacao result = instance;
         assertEquals(expResult, result);
     }

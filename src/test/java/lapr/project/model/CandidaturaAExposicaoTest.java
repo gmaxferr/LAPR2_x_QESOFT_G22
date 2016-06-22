@@ -7,6 +7,9 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
 import lapr.project.registos.RegistoDemonstracoes;
@@ -421,7 +424,11 @@ public class CandidaturaAExposicaoTest {
         Node node = instance.exportContentToXMLNode();
 
         CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, null);
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
 
         boolean result = instance.equals(expResult);
         assertEquals(false, result);
@@ -441,7 +448,11 @@ public class CandidaturaAExposicaoTest {
         instance = new CandidaturaAExposicao(e, expositor);
         Node node = instance.exportContentToXMLNode();
         CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, expositor);
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         expResult.fix(ru, rd);
         CandidaturaAExposicao result = instance;
         assertEquals(expResult, result);
@@ -456,7 +467,11 @@ public class CandidaturaAExposicaoTest {
         instance = new CandidaturaAExposicao(e, expositor);
         Node node = instance.exportContentToXMLNode();
         CandidaturaAExposicao expResult = new CandidaturaAExposicao(e, expositor);
-        expResult.importContentFromXMLNode(node);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         expResult.fix(ru, rd);
         CandidaturaAExposicao result = instance;
         assertEquals(expResult, result);

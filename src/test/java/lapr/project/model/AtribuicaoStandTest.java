@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,23 +21,23 @@ import org.w3c.dom.Node;
  * @author guima
  */
 public class AtribuicaoStandTest {
-    
+
     public AtribuicaoStandTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     private AtribuicaoStand instance;
     private Stand stand;
     private boolean decisao;
     private CandidaturaAExposicao cand;
-    
+
     @Before
     public void setUp() {
         stand = new Stand("id", 10, "descricao");
@@ -42,7 +45,7 @@ public class AtribuicaoStandTest {
         decisao = true;
         instance = new AtribuicaoStand(stand, cand, decisao);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -119,7 +122,11 @@ public class AtribuicaoStandTest {
         AtribuicaoStand expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         AtribuicaoStand result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         assertEquals(expResult, result);
     }
 
@@ -132,8 +139,12 @@ public class AtribuicaoStandTest {
         AtribuicaoStand expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         AtribuicaoStand result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
         assertEquals(expResult, result);
     }
-    
+
 }
