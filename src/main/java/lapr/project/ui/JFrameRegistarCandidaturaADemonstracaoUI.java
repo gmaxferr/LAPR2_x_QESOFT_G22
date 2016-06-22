@@ -249,7 +249,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(botaoSelecionaExpo))
                             .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +268,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botaoCancelar)
                             .addComponent(botaoSelecionaExpo))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -319,7 +319,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(272, Short.MAX_VALUE))
+                        .addContainerGap(239, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(boataoCancelar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -342,7 +342,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                     .addComponent(boataoCancelar2)
                     .addComponent(botaoVoltar)
                     .addComponent(botaoContinuar))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, "card2");
@@ -403,7 +403,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                         .addComponent(jButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,7 +421,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                     .addComponent(jButton9)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, "card4");
