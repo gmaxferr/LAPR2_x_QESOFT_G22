@@ -42,10 +42,13 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
         jFrameMenuPrincipal = janelaMae;
         listaExposicoes = CTRL.getListaDeExposicoes();
-        
-        initComponents();
-        alterarComportamentoFecharJFrame();
-        setVisible(true);
+        if (listaExposicoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não existem exposições com demonstrações com candidaturas avaliadas.", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else {
+            initComponents();
+            alterarComportamentoFecharJFrame();
+            setVisible(true);
+        }
     }
 
     /**

@@ -1,7 +1,8 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
@@ -12,27 +13,33 @@ import lapr.project.registos.*;
 public class DecidirCandidaturaADemonstracaoController {
 
     /**
-     * Exposição selecionada na UI
+     * Exposição selecionada pelo gestor na UI
      */
-    private Exposicao m_e;
+    private Exposicao m_exposicaoSelecionada;
 
     /**
-     * Registo das demonstrações
+     * Registo de demonstrações
      */
-    private RegistoDemonstracoes m_rd;
+    private RegistoDemonstracoes rd;
+    
+    /**
+     * Demonstração selecionada pelo gestor na UI
+     */
+    private Demonstracao m_demonstracaoSelecionada;
 
     /**
-     * Candidatura selecionada na UI
+     * Candidatura selecionada pelo gestor na UI
      */
-    private CandidaturaAExposicao m_candidaturaSelecionada;
+    private CandidaturaADemonstracao m_candidaturaSelecionada;
 
     /**
-     * Registo de candidaturas à demonstração em causa
+     * Registo de candidaturas feito à demonstração selecionada
      */
     private RegistoCandidaturasADemonstracoes m_rc;
 
     /**
-     * Registo de exposições do centro de exposições
+     * Registo de exposições onde vão ser guardadas as exposições a serem
+     * apresentadas ao gestor
      */
     private RegistoExposicoes m_re;
 
@@ -42,122 +49,146 @@ public class DecidirCandidaturaADemonstracaoController {
     private CentroExposicoes m_ce;
 
     /**
-     * Username do Organizador a executar este UC no momento
-     */
-    private String usernameDoOrganizador;
-
-    /**
-     * Keywords associadas à demonstração em causa
+     * Keywords associadas à candidatura selecionada pelo gestor na UI
      */
     private String[] keywords;
 
     /**
-     * Único construtor. Recebe por parametro o centro de exposições atual e o
-     * username do organizador a executar este UC no momento
+     * Construtor do controller do UC17 - Decidir candidaturas a exposição
      *
-     * @param ce centro de exposições
-     * @param usernameDoOrganizador username do organizador
+     * @param ce centro de exposições atual
      */
-    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce, String usernameDoOrganizador) {
+    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce) {
         this.m_ce = ce;
-        this.usernameDoOrganizador = usernameDoOrganizador;
     }
 
     /**
-     * Guarda o registo de exposições do centro de exposições atual
+     * Busca e guarda registo de exposições guardado no centro de exposições
+     * atual
      */
     public void getRegistoExposicoes() {
         this.m_re = m_ce.getRegistoExposicoes();
     }
 
     /**
+     * Devolve uma lista das exposições do registo de exposições que se
+     * encontrem no estado Avaliadas
      *
-     * @return Lista de Exposicoes Do Organizador que se encontram em
-     * EstadoCandidaturasADemonstracoesAvaliadas.
+     * @return lista de exposições no estado Avaliadas
      */
-    public List<Exposicao> getListaExposicoes() {
-        return this.m_re.getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(usernameDoOrganizador);
+    public ArrayList<Exposicao> getListaExposicoes() {
+        return this.m_re.getListaExposicoesEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas();
     }
 
     /**
-     * Guarda a seleção do utilizador (exposição selecionada)
-     *
-     * @param e - Exposição selecionada
+     * Busca e guarda o registo de candidaturas associadas à exposição
+     * selecionada
      */
-    public void setExposicao(Exposicao e) {
-        this.m_e = e;
+    public void getRegistoCandidaturas() {
+        this.m_rc = this.m_demonstracaoSelecionada.getRegistoCandidaturasADemonstracao();
     }
 
     /**
+     * Guarda a decisão do gestor sobre a candidatura escolhida, chama o
+     * respectivo método para atualizar estado da candidatura caso tiver sido
+     * aceite ou rejeitada e atualiza o ranking das keywords
      *
-     * @return lista de demosntrações da exposição selecionada, que já têm as
-     * candidaturas avaliadas.
-     */
-    public List<Demonstracao> getListaDemonstracoes() {
-        this.m_rd = this.m_e.getRegistoDemonstracoes();
-        return m_rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
-    }
-
-    /**
-     *
-     * @return lista de candidaturas a demonstração do Registo das mesmas
-     */
-    public List<CandidaturaADemonstracao> getListaCandidaturas() {
-        return this.m_rc.getListaCandidaturasADemonstracao();
-    }
-
-    public void getDadosEstatisticosGerais() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Guarda a candidatura selecionada pelo utilizador na UI
-     *
-     * @param cand candidatura selecionada na UI
-     */
-    public void setCandidatura(CandidaturaAExposicao cand) {
-        this.m_candidaturaSelecionada = cand;
-    }
-
-    /**
-     * Guarda as keywords associadas à demonstração
-     */
-    public void getKeywords() {
-        this.keywords = this.m_candidaturaSelecionada.getKeywords();
-    }
-
-    /**
-     * Define uma decisão sobre a demonstração em causa no momento
-     *
-     * @param decisao true se aceite, false caso contrário.
+     * @param decisao Decisão do gestor sobre a candidatura. True se aceitou ou
+     * falso caso contrário
      */
     public void setDecisao(boolean decisao) {
         this.m_candidaturaSelecionada.setDecisao(decisao);
         if (decisao) {
             setEstadoCandidaturaAceite();
-            for (String keyword : keywords) {
-                this.m_e.getKeywordRanking().addKeyword(keyword, true);
-            }
-
         } else {
-            setEstadoCandidaturaRejeitada();
-            for (String keyword : keywords) {
-                this.m_e.getKeywordRanking().addKeyword(keyword, false);
-            }
+            setEstadoCandidaturaRecusada();
         }
     }
 
     /**
-     * Altera o estado da c
+     * Guarda a escolha da exposição feito pelo gestor na UI
+     *
+     * @param exposicao exposição selecionada pelo gestor na UI
+     */
+    public void setExposicao(Exposicao exposicao) {
+        this.m_exposicaoSelecionada = exposicao;
+    }
+
+    /**
+     * Guarda a escolha da candidatura feita pelo gestor na UI
+     *
+     * @param cand candidatura escolhida pelo gestor na UI
+     */
+    public void setCandidatura(CandidaturaADemonstracao cand) {
+        this.m_candidaturaSelecionada = cand;
+    }
+
+    /**
+     * Atualiza o estado da candidatura escolhida para Aceite
      */
     private void setEstadoCandidaturaAceite() {
-        EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
-        estado.setEstadoCandidaturaAceite();
+        EstadoCandidaturaADemonstracao estado = this.m_candidaturaSelecionada.getEstado();
+        estado.setEstadoCandidaturaADemonstracaoAceite();
     }
 
-    private void setEstadoCandidaturaRejeitada() {
-        EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
-        estado.setEstadoCandidaturaRejeitada();
+    /**
+     * Atualiza o estado da candidatura escolhida para Recusada
+     */
+    private void setEstadoCandidaturaRecusada() {
+        EstadoCandidaturaADemonstracao estado = this.m_candidaturaSelecionada.getEstado();
+        estado.setEstadoCandidaturaADemonstracaoRecusada();
     }
 
+    /**
+     *
+     * @return descrição de uma candidatura
+     */
+    public String getDadosCandidatura() {
+        return this.m_candidaturaSelecionada.getDadosCandidatura();
+    }
+    
+    /**
+     *
+     * @return descrição de uma candidatura
+     */
+    public String getEmailRep() {
+        return this.m_candidaturaSelecionada.getEmailExpositor();
+    }
+    /**
+     * 
+     * @return lista de demonstrações em estado avaliadas 
+     */
+    public ArrayList<Demonstracao> getListaDemonstracoes() {
+        rd = m_exposicaoSelecionada.getRegistoDemonstracoes();
+        return rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
+    }
+
+    /**
+     * Guarda a demonstração selecionada
+     * @param d - demonstração selecionada
+     */
+    public void setDemonstracao(Demonstracao d) {
+        this.m_demonstracaoSelecionada = d;
+    }
+
+    /**
+     * 
+     * @return descrição da demonstração selecioada 
+     */
+    public String getDescricaoDemo() {
+        return this.m_demonstracaoSelecionada.getDescricao();
+    }
+   
+    /**
+     * 
+     * @return codigo de identificação da demonstração selecioada 
+     */
+    public String getCodigoIDDemo() {
+        return this.m_demonstracaoSelecionada.getCodigoIdentificacao();
+    }
+
+    public List<CandidaturaADemonstracao> getCandidaturas() {
+        return m_rc.getListaCandidaturasEstadoAvaliada();
+    }
+    
 }

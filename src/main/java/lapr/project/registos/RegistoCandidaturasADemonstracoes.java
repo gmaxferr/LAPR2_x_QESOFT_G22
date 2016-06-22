@@ -145,4 +145,19 @@ public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCand
         }
         return node;
     }
+
+    /**
+     *
+     * @return lista de candidaturas em estado Avaliada
+     */
+    public List<CandidaturaADemonstracao> getListaCandidaturasEstadoAvaliada() {
+        List<CandidaturaADemonstracao> listCand = new ArrayList<>();
+        for (CandidaturaADemonstracao cand : m_listaCandidaturasADemonstracao) {
+            EstadoCandidaturaADemonstracao estado = cand.getEstado();
+            if (estado.isEstadoCandidaturaADemonstracaoAvaliada()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
 }
