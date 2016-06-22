@@ -544,14 +544,14 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of getRegistoAtribuicoes method, of class Exposicao.
+     * Test of getRegistoAtribuicoesExposicao method, of class Exposicao.
      */
     @Test
     public void testGetRegistoAtribuicoes() {
         System.out.println("getRegistoAtribuicoes");
         RegistoAtribuicoesCandidaturasExposicao expResult = new RegistoAtribuicoesCandidaturasExposicao();
         e.setRegistoAtribuicoes(expResult);
-        RegistoAtribuicoesCandidaturasExposicao result = e.getRegistoAtribuicoes();
+        RegistoAtribuicoesCandidaturasExposicao result = e.getRegistoAtribuicoesExposicao();
         assertEquals(expResult, result);
 
     }

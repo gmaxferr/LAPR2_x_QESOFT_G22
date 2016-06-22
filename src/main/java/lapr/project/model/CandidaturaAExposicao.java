@@ -518,7 +518,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                     Node n4 = ((Element) n3).getElementsByTagName("atribuicao").item(0);
                     fae.importContentFromXMLNode(((Element) n4).getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
 
-                    RegistoAtribuicoesCandidaturasExposicao ra = e.getRegistoAtribuicoes();
+                    RegistoAtribuicoesCandidaturasExposicao ra = e.getRegistoAtribuicoesExposicao();
                     List<AtribuicaoCandidatura> listAtr = ra.getListaAtribuicoes();
                     AtribuicaoCandidatura atr = null;
                     for (AtribuicaoCandidatura atrCand : listAtr) {

@@ -44,7 +44,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.controller = new PercentagemCandAceitesMediaRatingsController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesEstadoDecididas();
+        this.listaExposicoes = controller.getListaExposicoesEstadoAvaliadas();
         this.listaAtribDemos = controller.getListaAtribuicoesDemonstracoes();
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
@@ -576,8 +576,9 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
             controller.getRegistoCandidaturasAExposicao();
             this.listaCandidaturas = controller.getListaCandidaturasAExposicao();
             listaCandidaturasEstadoAvaliadas = controller.getListaCandidaturasAExposicaoEstadoAvaliadas();
-            controller.getRegistoAtribuicoes();
+            controller.getRegistoAtribuicoesExposicao();
             controller.getRegistoAtribuicoesDemonstracoes();
+            controller.getRegistoDemonstracoes();
             if (!listaCandidaturas.isEmpty()) {
                 this.listaMediaRatingsPorCandidaturaAExposicao = controller.getMediaRatingsTodasCandidaturasAExposicao();
                 this.listaMediaRatingsPorCandidaturaAsDemos = controller.getMediaRatingsTodasCandidaturasAsDemonstracoes();

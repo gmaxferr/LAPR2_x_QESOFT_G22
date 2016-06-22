@@ -131,8 +131,8 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Guarda o registo de atribuições da exposição selecionada
      */
-    public void getRegistoAtribuicoes() {
-        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
+    public void getRegistoAtribuicoesExposicao() {
+        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoesExposicao();
     }
 
     /**
@@ -206,5 +206,9 @@ public class PercentagemCandAceitesMediaRatingsController {
      */
     public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
         return this.rce.getListaCandidaturasEstadoAvaliadas();
+    }
+
+    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
+        return this.re.getListaExposicoesEstadoAvaliadas();
     }
 }
