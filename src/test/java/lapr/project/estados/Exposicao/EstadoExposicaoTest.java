@@ -170,52 +170,6 @@ public class EstadoExposicaoTest {
     }
 
     /**
-     * Test of setEstadoStandsAtribuidos method, of class EstadoExposicao.
-     */
-    @Test
-    public void testSetEstadoStandsAtribuidos() {
-        System.out.println("setEstadoStandsAtribuidos");
-        boolean expResult = false;
-        boolean result = instance.setEstadoStandsAtribuidos();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setEstadoDemonstracoesDecididas method, of class EstadoExposicao.
-     */
-    @Test
-    public void testSetEstadoDemonstracoesDecididas() {
-        System.out.println("setEstadoDemonstracoesDecididas");
-        boolean expResult = false;
-        boolean result = instance.setEstadoDemonstracoesDecididas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setEstadoCandidaturasDemonstracaoAbertas method, of class
-     * EstadoExposicao.
-     */
-    @Test
-    public void testSetEstadoCandidaturasDemonstracaoAbertas() {
-        System.out.println("setEstadoCandidaturasDemonstracaoAbertas");
-        boolean expResult = false;
-        boolean result = instance.setEstadoCandidaturasDemonstracaoAbertas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setEstadoCandidaturasDemonstracaoFechadas method, of class
-     * EstadoExposicao.
-     */
-    @Test
-    public void testSetEstadoCandidaturasDemonstracaoFechadas() {
-        System.out.println("setEstadoCandidaturasDemonstracaoFechadas");
-        boolean expResult = false;
-        boolean result = instance.setEstadoCandidaturasDemonstracaoFechadas();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isEstadoInicial method, of class EstadoExposicao.
      */
     @Test
@@ -344,52 +298,6 @@ public class EstadoExposicaoTest {
         System.out.println("isEstadoCandidaturasDecididas");
         boolean expResult = false;
         boolean result = instance.isEstadoCandidaturasDecididas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isEstadoStandsAtribuidos method, of class EstadoExposicao.
-     */
-    @Test
-    public void testIsEstadoStandsAtribuidos() {
-        System.out.println("isEstadoStandsAtribuidos");
-        boolean expResult = false;
-        boolean result = instance.isEstadoStandsAtribuidos();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isEstadoDemonstracoesDecididas method, of class EstadoExposicao.
-     */
-    @Test
-    public void testIsEstadoDemonstracoesDecididas() {
-        System.out.println("isEstadoDemonstracoesDecididas");
-        boolean expResult = false;
-        boolean result = instance.isEstadoDemonstracoesDecididas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isEstadoCandidaturasDemonstracaoAbertas method, of class
-     * EstadoExposicao.
-     */
-    @Test
-    public void testIsEstadoCandidaturasDemonstracaoAbertas() {
-        System.out.println("isEstadoCandidaturasDemonstracaoAbertas");
-        boolean expResult = false;
-        boolean result = instance.isEstadoCandidaturasDemonstracaoAbertas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isEstadoCandidaturasDemonstracaoFechadas method, of class
-     * EstadoExposicao.
-     */
-    @Test
-    public void testIsEstadoCandidaturasDemonstracaoFechadas() {
-        System.out.println("isEstadoCandidaturasDemonstracaoFechadas");
-        boolean expResult = false;
-        boolean result = instance.isEstadoCandidaturasDemonstracaoFechadas();
         assertEquals(expResult, result);
     }
 

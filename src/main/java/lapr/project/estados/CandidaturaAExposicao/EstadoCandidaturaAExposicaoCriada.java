@@ -28,6 +28,21 @@ public class EstadoCandidaturaAExposicaoCriada extends EstadoCandidaturaAExposic
     }
 
     @Override
+    public boolean setEstadoCandidaturaRemovida() {
+        if (valida1()) {
+            this.m_cand.setEstado(new EstadoCandidaturaAExposicaoRemovida(this.m_cand));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean valida1() {
+        //valida se tem as coisas todas necessárias para passar ao próximo estado (verificação de atributos)
+        return true;
+    }
+    
+    @Override
     public boolean isEstadoCandidaturaCriada() {
         return true;
     }

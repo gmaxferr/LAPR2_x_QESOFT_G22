@@ -59,22 +59,6 @@ public abstract class EstadoExposicao implements Estado {
         return false;
     }
 
-    public boolean setEstadoStandsAtribuidos() {
-        return false;
-    }
-
-    public boolean setEstadoDemonstracoesDecididas() {
-        return false;
-    }
-
-    public boolean setEstadoCandidaturasDemonstracaoAbertas() {
-        return false;
-    }
-
-    public boolean setEstadoCandidaturasDemonstracaoFechadas() {
-        return false;
-    }
-
     public boolean isEstadoInicial() {
         return false;
     }
@@ -122,21 +106,4 @@ public abstract class EstadoExposicao implements Estado {
     public boolean isEstadoCandidaturasDecididas() {
         return false;
     }
-
-    public boolean isEstadoStandsAtribuidos() {
-        return false;
-    }
-
-    public boolean isEstadoDemonstracoesDecididas() {
-        return false;
-    }
-
-    public boolean isEstadoCandidaturasDemonstracaoAbertas() {
-        return false;
-    }
-
-    public boolean isEstadoCandidaturasDemonstracaoFechadas() {
-        return false;
-    }
-
 }

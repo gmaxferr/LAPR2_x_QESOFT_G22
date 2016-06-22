@@ -208,7 +208,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      *
      * @return lista de exposições
      */
-    public ArrayList<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas(String username) {
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizadorComDemonstracoesEmEstadoAvaliadas(String username) {
         ArrayList<Exposicao> listaExpos = new ArrayList<>();
         for (Exposicao e : this.m_listaExposicoes) {
             List<Organizador> listaOrg = e.getListaOrganizadores();
@@ -219,12 +219,10 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
                 }
             }
             if (isOrg) {
-                if (e.getEstado().isEstadoCandidaturasDemonstracaoFechadas()) {
-                    RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
-                    List<Demonstracao> listaDemos = rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
-                    if (!listaDemos.isEmpty()) {
-                        listaExpos.add(e);
-                    }
+                RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
+                List<Demonstracao> listaDemos = rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
+                if (!listaDemos.isEmpty()) {
+                    listaExpos.add(e);
                 }
             }
         }
@@ -512,6 +510,5 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
     }
-
 
 }
