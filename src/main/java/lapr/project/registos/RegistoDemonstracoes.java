@@ -16,7 +16,7 @@ import org.w3c.dom.*;
  */
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "registoDemosntracoes";
+    public static final String ROOT_ELEMENT_NAME = "registoDemonstracoes";
     public static final String CONTADOR_ATTR_NAME = "contador";
 
     /**
@@ -70,6 +70,22 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     public List<Demonstracao> getListaDemonstracoes() {
         return this.m_listaDemonstracoes;
+    }
+
+    /**
+     * Devolve a lista de candidaturas às demonstrações de um expositor. O
+     * expositor éidentificado passando o seu email por parametro
+     *
+     * @param emailExpositor email do expositor
+     *
+     * @return lista de candidaturas às demos do expositor
+     */
+    public List<CandidaturaADemonstracao> getListaCandidaturasAsDemonstracoesDoExpositor(String emailExpositor) {
+        List<CandidaturaADemonstracao> listaCandidaturasAsDemosDoExpositor = new ArrayList<>();
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            listaCandidaturasAsDemosDoExpositor.addAll(demonstracao.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracaoRep(emailExpositor));
+        }
+        return listaCandidaturasAsDemosDoExpositor;
     }
 
     /**
@@ -201,6 +217,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Devolve a lista de demonstrações no estado candidaturas fechadas
+     *
      * @return lista de demonstrações no estado candidaturas fechadas
      */
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasFechadas() {
@@ -223,7 +240,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @return lista das demonstrações dentro do periodo de submissão de
      * candidaturas
      */
-   
     public List<Demonstracao> getListaDemonstracoesEstadoCandidaturasAbertas() {
         List<Demonstracao> listaDemonstracoes = new ArrayList<>();
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
@@ -236,7 +252,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return listaDemonstracoes;
     }
-    
+
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
@@ -325,8 +341,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      *
      * @return lista formada
      */
-    public List<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
-        List<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
+    public ArrayList<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
+        ArrayList<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
         EstadoDemonstracao estado;
         for (Demonstracao d : this.m_listaDemonstracoes) {
             estado = d.getEstadoDemo();
@@ -335,6 +351,29 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
             }
         }
         return listaDemosAvaliadas;
+    }
+
+    /**
+     * Devolve a percentagem de candidaturas de um expositor às demonstrações
+     * aceites.
+     *
+     * @param emailExpositor email do expositor
+     * @return percentagem de candidaturas às demonstrações aceites
+     */
+    public float getPercentagemCandidaturasAceites(String emailExpositor) {
+        List<CandidaturaADemonstracao> listaCandidaturasDoExpositor = getListaCandidaturasAsDemonstracoesDoExpositor(emailExpositor);
+        int cont = listaCandidaturasDoExpositor.size();
+        float candAceites = 0;
+        for (CandidaturaADemonstracao candidatura : listaCandidaturasDoExpositor) {
+            if (candidatura.getEstado().isEstadoCandidaturaADemonstracaoAceite()) {
+                candAceites++;
+            }
+        }
+        if (cont != 0) {
+            return (candAceites / cont) * 100;
+        } else {
+            return 0;
+        }
     }
 
 }

@@ -29,6 +29,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
     private String m_dados;
     private String m_emailExpositor;
     private Demonstracao m_demo;
+    private boolean decisao;
 
     private EstadoCandidaturaADemonstracao m_estado;
 
@@ -207,6 +208,20 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
     public void setEmailExpositor(String email) {
         this.m_emailExpositor = email;
+    }
+
+    /**
+     * @return the decisao
+     */
+    public boolean getDecisao() {
+        return decisao;
+    }
+
+    /**
+     * @param decisao the decisao to set
+     */
+    public void setDecisao(boolean decisao) {
+        this.decisao = decisao;
     }
 
 }

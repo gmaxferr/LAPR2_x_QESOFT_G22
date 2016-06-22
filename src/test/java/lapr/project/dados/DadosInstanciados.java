@@ -35,7 +35,7 @@ public class DadosInstanciados {
         rr.criarRecurso("recurso1");
         rr.criarRecurso("recurso2");
         rd.addDemo(d);
-        RegistoCandidaturaADemonstracoes rcd = d.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracoes rcd = d.getRegistoCandidaturasADemonstracao();
         CandidaturaADemonstracao cd1Aberta = new CandidaturaADemonstracao("dados1", getEmail1());
         getCandidaturasAbertasRepresentante1().add(cd1Aberta);
         CandidaturaADemonstracao cd2Fechada = new CandidaturaADemonstracao("dados2", getEmail1());
