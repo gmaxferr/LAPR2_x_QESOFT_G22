@@ -185,7 +185,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     public String getDadosCandidatura() {
         return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getDadosCandidatura();
     }
-
+    
     /**
      * Devolve a avaliação de um fae
      *
@@ -197,6 +197,17 @@ public class AvaliarCandidaturaADemonstracaoController {
         return this.m_avaliacaoDoFae;
     }
 
+    /**
+     * Define novos parametros a serem guardados no objecto Avaliação deste FAE
+     * sobre a candidatura escolhida 
+     * 
+     * @param ratingConhecimentoSobreTema inteiro de 0-5 que representa o
+     * conhecimento do FAE sobre o tema da candidatura/demonstração
+     * @param ratingAdequacaoDadosCandidatura inteiro de 0-5 que representa a 
+     * adequação dos dados da candidatura
+     * @param ratingRecomendacaoGlobal inteiro de 0-5 que representa a
+     * recomendação do FAE para a candidatura
+     */
     public void setAvaliacao(int ratingConhecimentoSobreTema,int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal ){
         this.m_avaliacaoDoFae.setAvaliacaoParaDemonstracao(ratingConhecimentoSobreTema, ratingAdequacaoDadosCandidatura, ratingRecomendacaoGlobal);
     }

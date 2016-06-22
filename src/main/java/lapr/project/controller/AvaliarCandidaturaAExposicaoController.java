@@ -214,7 +214,7 @@ public class AvaliarCandidaturaAExposicaoController {
 
     /**
      * Define novos parametros a serem guardados no objecto Avaliação deste FAE
-     * sobre a candidatura escolhida (Avaliação, justificaçao e ratings)
+     * sobre a candidatura escolhida
      *
      * @param ratingConhecimentoSobreTema inteiro de 0-5 que representa o
      * conhecimento do FAE sobre o tema da candidatura/exposição
