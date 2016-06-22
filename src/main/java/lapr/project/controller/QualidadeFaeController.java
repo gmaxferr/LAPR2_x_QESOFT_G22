@@ -26,7 +26,7 @@ public class QualidadeFaeController {
         List<Exposicao> listExpo = re.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
         for (Exposicao expo : listExpo) {
             RegistoCandidaturasAExposicao rc = expo.getRegistoCandidaturasAExposicao();
-            RegistoAtribuicoesCandidaturasExposicao ra = expo.getRegistoAtribuicoes();
+            RegistoAtribuicoesCandidaturasExposicao ra = expo.getRegistoAtribuicoesExposicao();
             List<CandidaturaAExposicao> listCand = rc.getListaCandidaturas();
             for (CandidaturaAExposicao cand : listCand) {
                 qualFaeCalc.calcMedia(cand, ra);

@@ -511,4 +511,21 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
     }
 
+    /**
+     * Devolve uma lista com todas as exposições no estado avaliadas
+     *
+     * @return lista das exposições no estado avaliadas
+     */
+    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
+        List<Exposicao> listaExposicoesEstadoAvaliadas = new ArrayList<>();
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAvaliadas()) {
+                listaExposicoesEstadoAvaliadas.add(exposicao);
+            }
+        }
+
+        return listaExposicoesEstadoAvaliadas;
+    }
+
 }

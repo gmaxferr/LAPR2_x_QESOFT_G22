@@ -49,7 +49,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
@@ -99,6 +99,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         removeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N

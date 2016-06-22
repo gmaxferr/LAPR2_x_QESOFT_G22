@@ -104,7 +104,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * Busca e guarda o registo de atribuições associado à exposição escolhida
      */
     public void getRegistoAtribuicoes() {
-        this.m_exposicaoEscolhida.getRegistoAtribuicoes();
+        this.m_exposicaoEscolhida.getRegistoAtribuicoesExposicao();
     }
 
     public void getRegistoExposicoes() {
@@ -118,7 +118,7 @@ public class AtribuirCandidaturasAExposicaoController {
      * @param listaAtribuicao nova lista de atribuições
      */
     public void registaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
-        this.m_exposicaoEscolhida.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
+        this.m_exposicaoEscolhida.getRegistoAtribuicoesExposicao().setListaAtribuicao(listaAtribuicao);
     }
 
     /**

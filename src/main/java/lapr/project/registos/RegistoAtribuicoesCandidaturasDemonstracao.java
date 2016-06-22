@@ -23,7 +23,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Ana Leite
  */
-public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable{
+public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
@@ -86,7 +86,7 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         int i = 0;
 
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
-            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
             i++;
         }
 
@@ -116,6 +116,23 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         candidaturaAExposicao.setDecisao(decisao);
     }
 
+    public float[][] getMediaRatingsPorCriterioDasCandidaturas() {
+        float[][] matriz = new float[this.m_listaAtribuicao.size()][5];
+        int cont = this.m_listaAtribuicao.size();
+        int pos = 0;
+
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
+            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
+        }
+
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
+                matriz[linha][coluna] = matriz[linha][coluna] / cont;
+            }
+        }
+        return matriz;
+    }
+
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
@@ -130,7 +147,8 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
     }
 
     /**
-     * Através das atribuções feitas, procura e cria uma lista de candidaturas de um FAE.
+     * Através das atribuções feitas, procura e cria uma lista de candidaturas
+     * de um FAE.
      *
      * @param username - do FAE a procuarar candidaturas
      * @return lista de candidaturas do FAE
@@ -195,4 +213,5 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         }
         return node;
     }
+
 }

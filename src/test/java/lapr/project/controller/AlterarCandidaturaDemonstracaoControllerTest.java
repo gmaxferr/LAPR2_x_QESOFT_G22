@@ -51,7 +51,7 @@ public class AlterarCandidaturaDemonstracaoControllerTest {
         u = new Utilizador(nome, username, password, email);
         d = new Demonstracao("descricao");
         d.setEstado(new EstadoDemonstracaoCandidaturasAbertas(d));
-        e.getRegistoDemonstracoes().getDemonstracoesAbertas().add(d);
+        e.getRegistoDemonstracoes().getListaDemonstracoesEmEstadoCandidaturasAvaliadas().add(d);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u);
         cand = new CandidaturaADemonstracao("daods", email);

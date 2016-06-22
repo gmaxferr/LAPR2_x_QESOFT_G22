@@ -100,7 +100,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
     public void getMediaRatingsTodasCandidaturasAExposicao() {
         System.out.println("getMediaRatingsTodasCandidaturasAExposicao");
 
-        RegistoAtribuicoesCandidaturasExposicao registoAtribuicoes = e.getRegistoAtribuicoes();
+        RegistoAtribuicoesCandidaturasExposicao registoAtribuicoes = e.getRegistoAtribuicoesExposicao();
 
         List<AtribuicaoCandidatura> listaAtribuicoes = new ArrayList<>();
 
@@ -122,7 +122,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
 
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
         instance.setExposicaoSelecionada(e);
-        instance.getRegistoAtribuicoes();
+        instance.getRegistoAtribuicoesExposicao();
 
         float[] mediaRatings = {5.0f, 2.0f};
         assertEquals(mediaRatings[0], instance.getMediaRatingsTodasCandidaturasAExposicao()[0], 0.0f);
@@ -183,7 +183,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
 
         instance.setExposicaoSelecionada(e);
         instance.getRegistoCandidaturasAExposicao();
-        instance.getRegistoAtribuicoes();
+        instance.getRegistoAtribuicoesExposicao();
         instance.getRegistoDemonstracoes();
 
         assertEquals(100.0f, instance.getPercentagemCandidaturasAsDemonstracoesAceitesDoExpositor("email"), 0.0f);

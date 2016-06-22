@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.exceptions.InvalidPasswordException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoUtilizadores;

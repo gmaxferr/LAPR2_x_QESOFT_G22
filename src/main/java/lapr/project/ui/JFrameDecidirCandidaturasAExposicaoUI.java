@@ -59,7 +59,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
@@ -123,6 +123,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         jRadioButtonCard3Sim = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -278,7 +279,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar))
-                        .addGap(0, 75, Short.MAX_VALUE))
+                        .addGap(0, 113, Short.MAX_VALUE))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -647,7 +648,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         controller.setDecisao(jRadioButtonCard3Sim.isSelected());
         String[] opcoes2 = {"Sim", "Não"};
-        int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!%nDeseja decidir outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+        int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja decidir outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
         if (resposta == 0) {
             voltarASelecionarExposicao();
         } else {

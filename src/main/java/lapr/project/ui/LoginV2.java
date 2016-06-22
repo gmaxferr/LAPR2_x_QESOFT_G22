@@ -253,7 +253,7 @@ public class LoginV2 extends javax.swing.JFrame {
 
         if (user.length() == 0 || pass.length == 0) {
             JOptionPane.showMessageDialog(null, "Login nao efetuado."
-                    + "%nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    + "\nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             utilizador = Utilitarios.autenticacao(user, pass, centroExposicoes);
             if (utilizador != null) {

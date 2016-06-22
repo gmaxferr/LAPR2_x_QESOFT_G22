@@ -101,7 +101,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
     public Data() {
         Calendar dataAtual = Calendar.getInstance();
         ano = dataAtual.get(Calendar.YEAR);
-        mes = dataAtual.get(Calendar.MONTH);
+        mes = dataAtual.get(Calendar.MONTH)+1;
         dia = dataAtual.get(Calendar.DATE);
     }
 
@@ -227,7 +227,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      * @return caraterísticas da data.
      */
     public String toAnoMesDiaString() {
-        return String.format("%04d/%02d/%02d", ano, mes, dia);
+        return String.format("%04d/%02d/%02d", ano, mes+1, dia);
     }
 
     /**

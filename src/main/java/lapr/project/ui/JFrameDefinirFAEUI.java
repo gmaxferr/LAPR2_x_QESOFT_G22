@@ -100,7 +100,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
@@ -487,7 +487,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
                     this.jTableFAE.setModel(new ModeloJTableUtilizadores(this.listaUtilizadoresCorrespondentesAosFae));
                     JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. %nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "O utilizador introduzido não pode ser definido como FAE para esta exposição. Verifique se introduziu o username corretamente. \nO mesmo utilizador não pode ser FAE e Organizador da mesma exposição. O utilizador pode já ter sido adicionado!", "Erro", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi encontrado nenhum utilizador com o username inserido!", "Erro", JOptionPane.WARNING_MESSAGE);

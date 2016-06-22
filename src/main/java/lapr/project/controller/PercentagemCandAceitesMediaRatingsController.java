@@ -41,6 +41,10 @@ public class PercentagemCandAceitesMediaRatingsController {
      * Registo de demonstrações da exposição selecionada
      */
     private RegistoDemonstracoes rd;
+
+    /**
+     * Registo de atribuições das demonstrações pelo FAE
+     */
     private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
@@ -127,8 +131,8 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Guarda o registo de atribuições da exposição selecionada
      */
-    public void getRegistoAtribuicoes() {
-        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
+    public void getRegistoAtribuicoesExposicao() {
+        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoesExposicao();
     }
 
     /**
@@ -167,5 +171,44 @@ public class PercentagemCandAceitesMediaRatingsController {
      */
     public List<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDemonstracoes() {
         return this.m_rAtribDemos.getListaAtribuicoes();
+    }
+
+    /**
+     * Devolve um vetor em que, em cada posição, contém as médias dos ratings
+     * pela mesma ordem que são mostrados aos FAE. Isto é, na posição 0
+     * (primeira posição) estará a média dos ratings sobre o conhecimento do
+     * tema.
+     *
+     * @return vetor com média dos ratings por cada posição
+     */
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
+        return this.m_rAtribExpos.getMediaRatingsPorCriterioDasCandidaturas();
+    }
+
+    /**
+     * Devolve um vetor em que, em cada posição, contém as médias dos ratings
+     * pela mesma ordem que são mostrados aos FAE. Isto é, na posição 0
+     * (primeira posição) estará a média dos ratings sobre o conhecimento do
+     * tema.
+     *
+     * @return vetor com média dos ratings por cada posição
+     */
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
+        return this.m_rAtribDemos.getMediaRatingsPorCriterioDasCandidaturas();
+    }
+
+    /**
+     * Devolve uma lista com as candidaturas à exposição selecionada no estado
+     * avaliadas de forma a que seja possível calcular-se as médias dos ratings
+     *
+     * @return lista das candidaturas da exposição selecionada no estado
+     * Avaliadas
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
+        return this.rce.getListaCandidaturasEstadoAvaliadas();
+    }
+
+    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
+        return this.re.getListaExposicoesEstadoAvaliadas();
     }
 }

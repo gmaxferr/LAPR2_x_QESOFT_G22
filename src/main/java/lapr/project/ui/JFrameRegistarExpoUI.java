@@ -56,7 +56,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                 menuPrincipal.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
             }
@@ -515,34 +515,39 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                     && diaFimCand.getSelectedItem() != null
                     && diaFimDetecaoConflitos.getSelectedItem() != null) {
                 inicializarDatas();
-                if (!dataInicio.isMaior(dataFim)) {
-                    if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
-                        if (!dataFimSubCand.isMaior(dataInicio)) {
-                            if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
-                                ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
-                                ctrl.setDados(tituloTxt1.getText(),
-                                        textoDescritivoTxt1.getText(),
-                                        dataInicio,
-                                        dataFim,
-                                        dataInicioSubCand,
-                                        dataFimSubCand,
-                                        dataFimDetecaoConflitos,
-                                        new Local(localTxt1.getText()));
-                                ctrl.registaExposicao();
-                                menuPrincipal.setVisible(true);
-                                JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
-                                dispose();
+                Data dataAtual = new Data();
+                if (dataFimDetecaoConflitos.isMaior(dataAtual) && dataFimSubCand.isMaior(dataAtual) && dataInicioSubCand.isMaior(dataAtual) && dataFim.isMaior(dataAtual) && dataInicio.isMaior(dataAtual)) {
+                    if (!dataInicio.isMaior(dataFim)) {
+                        if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
+                            if (!dataFimSubCand.isMaior(dataInicio)) {
+                                if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
+                                    ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
+                                    ctrl.setDados(tituloTxt1.getText(),
+                                            textoDescritivoTxt1.getText(),
+                                            dataInicio,
+                                            dataFim,
+                                            dataInicioSubCand,
+                                            dataFimSubCand,
+                                            dataFimDetecaoConflitos,
+                                            new Local(localTxt1.getText()));
+                                    ctrl.registaExposicao();
+                                    JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                                    dispose();
+                                    menuPrincipal.setVisible(true);
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(rootPane, "A data de fim submissão de candidaturas à exposição tem de ser anterior à data de inicio da exposição", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(rootPane, "A data de fim submissão de candidaturas à exposição tem de ser anterior à data de inicio da exposição", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "A data de início submissão de candidaturas à exposição não pode ser posterior à data de fim de submissão", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "A data de início submissão de candidaturas à exposição não pode ser posterior à data de fim de submissão", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "A data de início de exposição não pode ser posterior à data de fim", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "A data de início de exposição não pode ser posterior à data de fim", "Data Inválida", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia " + dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Todos os campos são de preenchimento obrigatório", "Dados Insuficientes", JOptionPane.ERROR_MESSAGE);

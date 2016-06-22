@@ -53,7 +53,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 janelaMae.setVisible(true);
@@ -132,6 +132,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -721,6 +722,8 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
                 getDatas();
+                Data dataAtual = new Data();
+                if(!dataFimDetecaoConflitos.isMaior(dataAtual)&&!dataFimSubCand.isMaior(dataAtual)&&!dataInicioSubCand.isMaior(dataAtual)){
                 if (dataFimSubCand.isMaior(dataInicioSubCand)) {
                     if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
                         ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
@@ -730,6 +733,9 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
                 }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia "+dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
+            }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR_MESSAGE);
             }

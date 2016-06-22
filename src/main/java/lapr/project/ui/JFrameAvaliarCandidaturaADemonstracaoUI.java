@@ -153,6 +153,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         jSliderConhecimentoDoTema2 = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+<<<<<<< HEAD
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -343,6 +344,9 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         jTextAreaCard1DescricaoDemonstracao.setText("A apresentar a descrição da demonstração selecionada");
         jTextAreaCard1DescricaoDemonstracao.setWrapStyleWord(true);
         jScrollPaneCard1.setViewportView(jTextAreaCard1DescricaoDemonstracao);
+=======
+        setResizable(false);
+>>>>>>> 42b2c7d0f889bc7e213f6d1aab758d57a12a8fb7
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -60,7 +60,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                 jFrameMenuPrincipal.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "%nOs dados escolhidos até ao momento não foram guardados.",
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
             }
@@ -113,6 +113,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar Candidatura A Demonstração");
         setAlwaysOnTop(true);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
