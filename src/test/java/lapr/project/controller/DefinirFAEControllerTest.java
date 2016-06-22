@@ -1,18 +1,10 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.estados.Exposicao.EstadoExposicao;
-import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Organizador;
-import lapr.project.model.Utilizador;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.*;
+import lapr.project.estados.Exposicao.*;
+import lapr.project.model.*;
+import lapr.project.registos.RegistoFAE;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
@@ -78,16 +70,6 @@ public class DefinirFAEControllerTest {
         expResult.add(e);
         ArrayList<Exposicao> result = instance.getlistaExposicoesDoOrganizadorEstadoCriadaOuDemosDefinidasSemFAE();
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getRegistoOrganizadores method, of class DefinirFAEController.
-     */
-    @Test
-    public void testGetRegistoOrganizadores() {
-        System.out.println("getRegistoOrganizadores");
-        instance.setExposicao(e);
-        instance.getRegistoOrganizadores();
     }
 
     /**
@@ -174,9 +156,11 @@ public class DefinirFAEControllerTest {
     @Test
     public void testForamAdicionadosFAE() {
         System.out.println("foramAdicionadosFAE");
-        boolean expResult = false;
-        boolean result = instance.foramAdicionadosFAE();
-        assertEquals(expResult, result);
+        instance.setExposicao(e);
+        instance.getRegistoFAE();
+        instance.getRegistoOrganizadores();
+        instance.adicionarFaeListaTemp(new Utilizador("nome", "username", "password".toCharArray(), "email"));
+        assertEquals(true, instance.foramAdicionadosFAE());
     }
 
     /**
@@ -185,12 +169,9 @@ public class DefinirFAEControllerTest {
     @Test
     public void testGetListaUtilizadores() {
         System.out.println("getListaUtilizadores");
+        ce.getRegistoUtilizadoresConfirmados().addUtilizador(new Utilizador("nome", "username", "password".toCharArray(), "email"));
         instance.getRegistoUtilizadores();
-        List<Utilizador> expResult = new ArrayList<>();
-        expResult.add(u);
-        expResult.add(uFAE);
-        List<Utilizador> result = instance.getListaUtilizadores();
-        assertEquals(expResult, result);
+        assertEquals(ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores(), instance.getListaUtilizadores());
     }
 
     /**
@@ -200,17 +181,18 @@ public class DefinirFAEControllerTest {
     @Test
     public void testGetListaUtilizadoresCorrespondentesAosFae() {
         System.out.println("getListaUtilizadoresCorrespondentesAosFae");
+        RegistoFAE registoFAE = e.getRegistoFAE();
+        Utilizador u = new Utilizador("nome", "username", "password".toCharArray(), "email");
+        registoFAE.adicionaFAE(u);
+        List<Utilizador> listaUtilizadores = new ArrayList<>();
+        listaUtilizadores.add(u);
+
         instance.getRegistoUtilizadores();
-        instance.getRegistoExposicoes();
         instance.setExposicao(e);
         instance.getRegistoFAE();
-        instance.getRegistoOrganizadores();
-        instance.criarEAdicionarFaePeloUsername(uFAE.getUsername());
         instance.confirmaAddFAE();
-        List<Utilizador> expResult = new ArrayList<>();
-        expResult.add(uFAE);
-        List<Utilizador> result = instance.getListaUtilizadoresCorrespondentesAosFae();
-        assertEquals(expResult, result);
+
+        assertEquals(listaUtilizadores, instance.getListaUtilizadoresCorrespondentesAosFae());
     }
 
     /**
@@ -219,40 +201,20 @@ public class DefinirFAEControllerTest {
     @Test
     public void testConfirmaAddFAE() {
         System.out.println("confirmaAddFAE");
-        instance.getRegistoUtilizadores();
-        instance.getRegistoExposicoes();
+
         instance.setExposicao(e);
         instance.getRegistoFAE();
         instance.getRegistoOrganizadores();
+        Utilizador u = new Utilizador("nome", "username", "password".toCharArray(), "email");
+        instance.adicionarFaeListaTemp(u);
         instance.confirmaAddFAE();
-    }
 
-    /**
-     * Test of getRegistoExposicoes method, of class DefinirFAEController.
-     */
-    @Test
-    public void testGetRegistoExposicoes() {
-        System.out.println("getRegistoExposicoes");
-        instance.getRegistoExposicoes();
-    }
+        //Não conseguia com lista de FAE e assim confirma na mesma o método
+        List<Utilizador> listaUtilizadoresComPapelDeFAE = e.getRegistoFAE().getListaUtilizadoresCorrespondentesAosFae();
+        List<Utilizador> listaUtilizadoresComPapelDeFAEEsperada = new ArrayList<>();
+        listaUtilizadoresComPapelDeFAEEsperada.add(u);
 
-    /**
-     * Test of getRegistoUtilizadores method, of class DefinirFAEController.
-     */
-    @Test
-    public void testGetRegistoUtilizadores() {
-        System.out.println("getRegistoUtilizadores");
-        instance.getRegistoUtilizadores();
-    }
-
-    /**
-     * Test of getRegistoFAE method, of class DefinirFAEController.
-     */
-    @Test
-    public void testGetRegistoFAE() {
-        System.out.println("getRegistoFAE");
-        instance.setExposicao(e);
-        instance.getRegistoFAE();
+        assertEquals(listaUtilizadoresComPapelDeFAEEsperada, listaUtilizadoresComPapelDeFAE);
     }
 
     /**
@@ -261,9 +223,14 @@ public class DefinirFAEControllerTest {
     @Test
     public void testGetEstadoExposicao() {
         System.out.println("getEstadoExposicao");
+
+        e.getEstado().setEstadoDemosDefinidasSemFAE();
+
         instance.setExposicao(e);
+
         EstadoExposicao expResult = e.getEstado();
         EstadoExposicao result = instance.getEstadoExposicao();
+
         assertEquals(expResult, result);
     }
 
@@ -273,8 +240,17 @@ public class DefinirFAEControllerTest {
     @Test
     public void testSetEstado() {
         System.out.println("setEstado");
+
+        e.getRegistoFAE().adicionaFAE(new Utilizador("nome1", "username1", "password".toCharArray(), "email1"));
+        e.getRegistoFAE().adicionaFAE(new Utilizador("nome2", "username2", "password".toCharArray(), "email2"));
+
+        e.setEstado(new EstadoExposicaoCriada(e));
+
         instance.setExposicao(e);
+        instance.getRegistoFAE();
         instance.setEstado();
+
+        assertEquals(true, e.getEstado().isEstadoFAEDefinidosSemDemos());
     }
 
     /**
@@ -283,7 +259,19 @@ public class DefinirFAEControllerTest {
     @Test
     public void testLimparFAEJaAdicionados() {
         System.out.println("limparFAEJaAdicionados");
+
+        RegistoFAE registoFAE = e.getRegistoFAE();
+        List<FAE> listaFAEEsperada = registoFAE.getListaFAE();
+
+        instance.setExposicao(e);
+        instance.getRegistoFAE();
+        instance.getRegistoOrganizadores();
+        instance.adicionarFaeListaTemp(new Utilizador("nome", "username", "password".toCharArray(), "email"));
         instance.limparFAEJaAdicionados();
+
+        instance.confirmaAddFAE();
+
+        assertEquals(listaFAEEsperada, registoFAE.getListaFAE());
     }
 
 }
