@@ -195,28 +195,29 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return listaDemonstracoesDoOrganizador;
     }
+
     /**
      * Devolve a lista de demonstrações de um organizador
-     * 
+     *
      * @return lista de demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesVariosEstados(){
+    public List<Demonstracao> getListaDemonstracoesVariosEstados() {
         List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
             if (m_expo != null) {
                 demonstracao.setExpo(m_expo);
             }
-         if ( !demonstracao.getEstadoDemo().isEstadoDemonstracaoPendente()
-                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada() 
-                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoCancelada()
-                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoDatasDefinidas() ) {
+            if (!demonstracao.getEstadoDemo().isEstadoDemonstracaoPendente()
+                    || !demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada()
+                    || !demonstracao.getEstadoDemo().isEstadoDemonstracaoCancelada()
+                    || !demonstracao.getEstadoDemo().isEstadoDemonstracaoDatasDefinidas()) {
                 listaDemonstracoesDoOrganizador.add(demonstracao);
             }
         }
         return listaDemonstracoesDoOrganizador;
     }
-    
+
     /**
      * Devolve a lista de demonstrações do fae
      *
@@ -395,6 +396,23 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         } else {
             return 0;
         }
+    }
+
+    /**
+     * Verifica se o FAE é realmente FAE de uma demonstração
+     *
+     * @param username - username do FAE
+     * @return true se for; false caso contrário.
+     */
+    boolean isFaeDeDemo(String username) {
+        boolean isFae = false;
+        for (Demonstracao d : this.m_listaDemonstracoes) {
+            RegistoFAE rf = d.getRegistoFAE();
+            if (rf.isFAE(username)) {
+                isFae = true;
+            }
+        }
+        return isFae;
     }
 
 }

@@ -21,7 +21,7 @@ public class RegistarCandidaturaADemonstracaoController {
 
     private RegistoExposicoes m_re;
     private RegistoDemonstracoes m_rd;
-    private RegistoCandidaturasADemonstracoes m_rcd;
+    private RegistoCandidaturasADemonstracao m_rcd;
 
     private List<Demonstracao> m_listDemos; //lista de demonstrações da exposição selecionada
     private List<Exposicao> m_listExpos; //lista de exposicoes em que o representante entra

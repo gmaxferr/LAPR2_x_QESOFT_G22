@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import static lapr.project.model.AtribuicaoCandidatura.ROOT_ELEMENT_NAME;
-import lapr.project.registos.RegistoCandidaturasADemonstracoes;
+import lapr.project.registos.RegistoCandidaturasADemonstracao;
 import lapr.project.registos.RegistoFaeAvaliacao;
 import lapr.project.registos.RegistoUtilizadores;
 import lapr.project.utils.Exportable;
@@ -49,7 +49,7 @@ public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoC
         this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
-    public void fix(RegistoCandidaturasADemonstracoes m_rce, RegistoUtilizadores m_registoUtilizadores) {
+    public void fix(RegistoCandidaturasADemonstracao m_rce, RegistoUtilizadores m_registoUtilizadores) {
         for (CandidaturaADemonstracao cand : m_rce.getListaCandidaturasADemonstracao()) {
             if (cand.equals(m_candidatura)) {
                 m_candidatura = cand;

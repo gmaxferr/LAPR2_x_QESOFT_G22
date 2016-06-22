@@ -208,14 +208,23 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      *
      * @return lista de exposições
      */
-    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas() {
+    public ArrayList<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas(String username) {
         ArrayList<Exposicao> listaExpos = new ArrayList<>();
         for (Exposicao e : this.m_listaExposicoes) {
-            if (e.getEstado().isEstadoCandidaturasDemonstracaoFechadas()) {
-                RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
-                List<Demonstracao> listaDemos = rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
-                if (!listaDemos.isEmpty()) {
-                    listaExpos.add(e);
+            List<Organizador> listaOrg = e.getListaOrganizadores();
+            boolean isOrg = false;
+            for (Organizador o : listaOrg) {
+                if (o.getUsernameOrganizador().equals(username)) {
+                    isOrg = true;
+                }
+            }
+            if (isOrg) {
+                if (e.getEstado().isEstadoCandidaturasDemonstracaoFechadas()) {
+                    RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
+                    List<Demonstracao> listaDemos = rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
+                    if (!listaDemos.isEmpty()) {
+                        listaExpos.add(e);
+                    }
                 }
             }
         }
@@ -288,6 +297,25 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         for (Exposicao ex : this.m_listaExposicoes) {
             if (ex.getRegistoFAE().isFAE(usernameFae) && !ex.getRegistoConflitos().getListaConflitos().isEmpty()) {
                 exposFAE.add(ex);
+            }
+        }
+        return exposFAE;
+    }
+
+    /**
+     * Devolve uma lista de exposições de um fae
+     *
+     * @param username - username do fae
+     * @return lista de exposições do fae
+     */
+    public List<Exposicao> getFaeDasDemosExpos(String username) {
+        List<Exposicao> exposFAE = new ArrayList<>();
+        for (Exposicao e : this.m_listaExposicoes) {
+            RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
+            if (rd.isFaeDeDemo(username)) {
+                if (e.getRegistoFAE().isFAE(username) && !e.getRegistoConflitos().getListaConflitos().isEmpty()) {
+                    exposFAE.add(e);
+                }
             }
         }
         return exposFAE;
@@ -445,7 +473,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
             node = elementBase;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoExposicoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoExposicoes.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
@@ -483,5 +512,6 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
 
         return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
     }
+
 
 }

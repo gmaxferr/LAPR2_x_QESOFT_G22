@@ -6,15 +6,17 @@ import java.util.logging.Logger;
 import javax.xml.parsers.*;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- * Representação de um RegistoCandidaturasADemonstracoes
+ * Representação de um RegistoCandidaturasADemonstracao
  *
  * @author G29
  */
-public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCandidaturasADemonstracoes>, Exportable {
+public class RegistoCandidaturasADemonstracao implements Importable<RegistoCandidaturasADemonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoCandidaturaADemonstracoes";
 
@@ -27,7 +29,7 @@ public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCand
      * Construtor de objetos do tipo RegistoCandidaturasADemonstracoes sem
      * parâmetros
      */
-    public RegistoCandidaturasADemonstracoes() {
+    public RegistoCandidaturasADemonstracao() {
         m_listaCandidaturasADemonstracao = new ArrayList<>();
     }
 
@@ -95,7 +97,7 @@ public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCand
     }
 
     @Override
-    public RegistoCandidaturasADemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+    public RegistoCandidaturasADemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.newDocument();
@@ -141,7 +143,7 @@ public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCand
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturasADemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoCandidaturasADemonstracao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
@@ -160,4 +162,5 @@ public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCand
         }
         return listCand;
     }
+
 }

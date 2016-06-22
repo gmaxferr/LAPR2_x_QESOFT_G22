@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.AtribuicaoCandidatura;
+import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -18,23 +19,22 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Representação de um RegistoAtribuicoes
  *
- * @author G29
+ * @author Ana Leite
  */
-public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
+public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable{
 
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
     /**
      * Lista de atribuicaoCandidatura
      */
-    private List<AtribuicaoCandidatura> m_listaAtribuicao;
+    private List<AtribuicaoCandidaturaDemonstracao> m_listaAtribuicao;
 
     /**
      * Construtor de objetos do tipo RegistoAtribuicoes sem parâmetros
      */
-    public RegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasDemonstracao() {
         this.m_listaAtribuicao = new ArrayList<>();
     }
 
@@ -44,9 +44,9 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
-    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE(String usernameFAE) {
-        ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
-        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAE(String usernameFAE) {
+        ArrayList<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
             if (atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
                 listaAtrib.add(atribuicao);
             }
@@ -61,10 +61,10 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
-    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE) {
-        ArrayList<AtribuicaoCandidatura> listaAtrib = new ArrayList<>();
-        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaAtribuida()
+    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE) {
+        ArrayList<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
+            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaADemonstracaoAtribuida()
                     && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
                 listaAtrib.add(atribuicao);
             }
@@ -79,12 +79,12 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      *
      * @return vetor com médias dos ratings de cada candidatura
      */
-    public float[] getMediaRatingsTodasCandidaturas() {
+    public float[] getMediaRatingsTodasCandidaturasAsDemonstracoes() {
         int cont = this.m_listaAtribuicao.size();
         float[] vec = new float[cont];
         int i = 0;
-        
-        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
             vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
             i++;
         }
@@ -97,43 +97,34 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      *
      * @return lista de atribuicaoCandidatura
      */
-    public List<AtribuicaoCandidatura> getListaAtribuicoes() {
+    public List<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoes() {
         return this.m_listaAtribuicao;
     }
 
-    public void setListaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
+    public void setListaAtribuicao(List<AtribuicaoCandidaturaDemonstracao> listaAtribuicao) {
         this.m_listaAtribuicao = listaAtribuicao;
     }
 
     /**
-     * Valida a candidatura
+     * Define nova decisao
      *
-     * @param c candidatura
-     * @return true se a candidatura for validada. Caso contrário retorna false
+     * @param candidaturaAExposicao candidatura
+     * @param decisao nova decisao
      */
-    public boolean validarCandidatura(CandidaturaAExposicao c) {
-        return c.validaCandidatura();
-    }
-
-    /**
-     * Valida a decisao da candidatura
-     *
-     * @return true
-     */
-    public boolean validaDecidirCandidatura() {
-        return true;
+    public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
+        candidaturaAExposicao.setDecisao(decisao);
     }
 
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
      *
-     * @param m_rce registo candidaturas a exposição
+     * @param m_rcd
      * @param m_registoUtilizadores registo de utilizadores
      */
-    public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
-        for (AtribuicaoCandidatura atr : m_listaAtribuicao) {
-            atr.fix(m_rce, m_registoUtilizadores);
+    public void fix(RegistoCandidaturasADemonstracao m_rcd, RegistoUtilizadores m_registoUtilizadores) {
+        for (AtribuicaoCandidaturaDemonstracao atr : m_listaAtribuicao) {
+            atr.fix(m_rcd, m_registoUtilizadores);
         }
     }
 
@@ -143,7 +134,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      * @return
      */
     @Override
-    public RegistoAtribuicoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+    public RegistoAtribuicoesCandidaturasDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document doc = XMLParser.createDocument(node, true);
 
         Node n = doc.getChildNodes().item(0);
@@ -156,7 +147,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
             NodeList nList = elem.getElementsByTagName(AtribuicaoCandidatura.ROOT_ELEMENT_NAME);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
-                AtribuicaoCandidatura atrCand = new AtribuicaoCandidatura(null);
+                AtribuicaoCandidaturaDemonstracao atrCand = new AtribuicaoCandidaturaDemonstracao(null);
                 atrCand.importContentFromXMLNode(n2);
                 this.m_listaAtribuicao.add(atrCand);
             }
@@ -180,7 +171,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
-            for (AtribuicaoCandidatura atrCand : this.m_listaAtribuicao) {
+            for (AtribuicaoCandidaturaDemonstracao atrCand : this.m_listaAtribuicao) {
                 Node n = atrCand.exportContentToXMLNode();
                 elementKeyword.appendChild(document.importNode(n, true));
             }
@@ -190,7 +181,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoAtribuicoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoAtribuicoesCandidaturasDemonstracao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }
