@@ -8,8 +8,8 @@ import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.TipoConflitoDemonstracao;
-import lapr.project.registos.RegistoAtribuicoesDemonstracao;
-import lapr.project.registos.RegistoCandidaturasADemonstracoes;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
+import lapr.project.registos.RegistoCandidaturasADemonstracao;
 import lapr.project.registos.RegistoConflitosDemonstracao;
 import lapr.project.registos.RegistoDemonstracoes;
 import lapr.project.registos.RegistoExposicoes;
@@ -23,10 +23,10 @@ import lapr.project.registos.RegistoTiposConflitoDemonstracao;
 public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
 
     private RegistoConflitosDemonstracao m_rc;
-    private RegistoCandidaturasADemonstracoes m_rcand;
+    private RegistoCandidaturasADemonstracao m_rcand;
     private RegistoFAE m_rf;
     private RegistoDemonstracoes m_rd;
-    private RegistoAtribuicoesDemonstracao m_rad;
+    private RegistoAtribuicoesCandidaturasDemonstracao m_rad;
     private RegistoTiposConflitoDemonstracao m_rtc;
     private RegistoExposicoes m_re;
 
