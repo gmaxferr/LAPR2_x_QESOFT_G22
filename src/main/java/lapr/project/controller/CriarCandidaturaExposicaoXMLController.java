@@ -15,7 +15,9 @@ import lapr.project.model.Expositor;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoDemonstracoes;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -32,8 +34,12 @@ public class CriarCandidaturaExposicaoXMLController {
         try {
             ImportarXMLController impCtrl = new ImportarXMLController();
             Node node = impCtrl.Import(filename);
-            if (node != null) {
-                m_c.importContentFromXMLNode(node);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element elem = (Element) node;
+
+                Node n2 = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0);
+                CandidaturaAExposicao m_c = new CandidaturaAExposicao(this.m_e, null);
+                m_c.importContentFromXMLNode(n2);
             }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Ficheiro não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);

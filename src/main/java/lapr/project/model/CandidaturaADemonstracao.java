@@ -16,7 +16,7 @@ import org.w3c.dom.*;
  */
 public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstracao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "dandidaturaADemonstracao";
+    public static final String ROOT_ELEMENT_NAME = "candidaturaADemonstracao";
     public static final String DADOS_ELEMENT_NAME = "dados";
     public static final String USERNAME_EXPOSITOR_ELEMENT_NAME = "usernameExpositor";
     public static final String ESTADO_ATTR_NAME = "estado";
