@@ -90,10 +90,10 @@ public class ListarCandidaturasADemonstracaoRemovidasController {
      * @param usernameOrganizador username do organizador
      * @return lista das demonstrações de um organizador
      */
-    public List<Demonstracao> getListaDemonstracoesDoOrganizadorEstadoConfirmada(String usernameOrganizador) {
+    public List<Demonstracao> getListaDemonstracoesDoOrganizadorVariosEstados(String usernameOrganizador) {
         for (Organizador o : m_Exposicao.getListaOrganizadores()) {
             if (o.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
-                return m_rd.getListaDemonstracoesEstadoConfirmada();
+                return m_rd.getListaDemonstracoesVariosEstados();
             }
         }
         return new ArrayList<>();

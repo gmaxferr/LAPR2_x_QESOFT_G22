@@ -181,7 +181,7 @@ public class AtribuirCandidaturasADemonstracaoController {
      * Guarda o registo de atribuicoes
      */
     public void getRegistoAtribuicoes() {
-        this.m_rad = m_demonstracao.getRegistoAtribuicoesDemonstracao();
+        this.m_rad = m_exposicao.getRegistoAtribuicoesDemonstracao();
     }
 
     /**

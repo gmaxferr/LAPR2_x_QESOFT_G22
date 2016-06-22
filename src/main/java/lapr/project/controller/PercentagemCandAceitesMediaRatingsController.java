@@ -35,12 +35,13 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Registo das atribuições geradas da candidatura selecionada
      */
-    private RegistoAtribuicoes rAtrib;
+    private RegistoAtribuicoes m_rAtribExpos;
 
     /**
      * Registo de demonstrações da exposição selecionada
      */
     private RegistoDemonstracoes rd;
+    private RegistoAtribuicoesDemonstracao m_rAtribDemos;
 
     /**
      * Construtor recebendo como parametro apenas o centro de exposições atual
@@ -127,17 +128,44 @@ public class PercentagemCandAceitesMediaRatingsController {
      * Guarda o registo de atribuições da exposição selecionada
      */
     public void getRegistoAtribuicoes() {
-        this.rAtrib = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
+        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
     /**
      * Devolve um vetor com, em cada posição, a média dos ratings da candidatura
-     * na mesma posição no registo de candidaturas dados por todos os FAE
-     * designados para avaliarem-na
+     * à exposição na mesma posição no registo de candidaturas à exposição dados
+     * por todos os FAE designados para avaliarem-na
      *
      * @return vetor com a média dos ratings dos FAE
      */
-    public float[] getMediaRatingsTodasCandidaturas() {
-        return this.rAtrib.getMediaRatingsTodasCandidaturas();
+    public float[] getMediaRatingsTodasCandidaturasAExposicao() {
+        return this.m_rAtribExpos.getMediaRatingsTodasCandidaturasAExposicao();
+    }
+
+    /**
+     * Devolve um vetor com, em cada posição, a média dos ratings da candidatura
+     * à demonstração na mesma posição no registo de demonstrações dados por
+     * todos os FAE designados para avaliarem-na
+     *
+     * @return vetor com a média dos ratings dos FAE
+     */
+    public float[] getMediaRatingsTodasCandidaturasAsDemonstracoes() {
+        return this.m_rAtribDemos.getMediaRatingsTodasCandidaturasAsDemonstracoes();
+    }
+
+    /**
+     * Guarda o registo de atribuições da
+     */
+    public void getRegistoAtribuicoesDemonstracoes() {
+        this.m_rAtribDemos = this.m_exposicaoSelecionada.getRegistoAtribuicoesDemonstracao();
+    }
+
+    /**
+     * Devolve a lista de atribuições das demonstrações da exposição selecionada
+     *
+     * @return lista de atribuições das demonstrações
+     */
+    public List<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDemonstracoes() {
+        return this.m_rAtribDemos.getListaAtribuicoes();
     }
 }

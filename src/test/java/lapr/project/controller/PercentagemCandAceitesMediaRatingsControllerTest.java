@@ -87,8 +87,8 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
     }
 
     /**
-     * Test of getMediaRatingsTodasCandidaturas method, of class
-     * PercentagemCandAceitesMediaRatingsController.
+     * Test of getMediaRatingsTodasCandidaturasAExposicao method, of class
+ PercentagemCandAceitesMediaRatingsController.
      */
     @Test
     public void testGetMediaRatingsTodasCandidaturas() {
@@ -119,7 +119,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         instance.getRegistoAtribuicoes();
 
         float[] mediaRatings = {5.0f, 2.0f};
-        assertEquals(mediaRatings[0], instance.getMediaRatingsTodasCandidaturas()[0], 0.0f);
+        assertEquals(mediaRatings[0], instance.getMediaRatingsTodasCandidaturasAExposicao()[0], 0.0f);
     }
 
 }

@@ -535,7 +535,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
 
     private void avancarParaCard2() {
         controller.getRegistoDemonstracoes();;
-        this.listaDemonstracoes = controller.getListaDemonstracoesDoOrganizadorEstadoConfirmada(usernameOrganizador);
+        this.listaDemonstracoes = controller.getListaDemonstracoesDoOrganizadorVariosEstados(usernameOrganizador);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);

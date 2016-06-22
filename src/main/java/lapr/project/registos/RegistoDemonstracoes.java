@@ -195,7 +195,28 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return listaDemonstracoesDoOrganizador;
     }
+    /**
+     * Devolve a lista de demonstrações de um organizador
+     * 
+     * @return lista de demonstrações de um organizador
+     */
+    public List<Demonstracao> getListaDemonstracoesVariosEstados(){
+        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
 
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            if (m_expo != null) {
+                demonstracao.setExpo(m_expo);
+            }
+         if ( !demonstracao.getEstadoDemo().isEstadoDemonstracaoPendente()
+                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoConfirmada() 
+                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoCancelada()
+                 || !demonstracao.getEstadoDemo().isEstadoDemonstracaoDatasDefinidas() ) {
+                listaDemonstracoesDoOrganizador.add(demonstracao);
+            }
+        }
+        return listaDemonstracoesDoOrganizador;
+    }
+    
     /**
      * Devolve a lista de demonstrações do fae
      *

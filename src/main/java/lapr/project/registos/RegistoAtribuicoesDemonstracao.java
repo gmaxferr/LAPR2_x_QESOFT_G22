@@ -58,7 +58,27 @@ public class RegistoAtribuicoesDemonstracao {
         }
         return listaAtrib;
     }
-    
+
+    /**
+     * Devolve um vetor em que cada posição contem a média dos Ratings da
+     * candidatura na mesma posição guardada no RegistoCandidaturas. Para aceder
+     * à média dos ratings da terceira candidatura usar o vec[2].
+     *
+     * @return vetor com médias dos ratings de cada candidatura
+     */
+    public float[] getMediaRatingsTodasCandidaturasAsDemonstracoes() {
+        int cont = this.m_listaAtribuicao.size();
+        float[] vec = new float[cont];
+        int i = 0;
+
+        for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            i++;
+        }
+
+        return vec;
+    }
+
     /**
      * Devolve a lista de atribuicaoCandidatura
      *
@@ -81,8 +101,8 @@ public class RegistoAtribuicoesDemonstracao {
     public void setAvaliacao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
         candidaturaAExposicao.setDecisao(decisao);
     }
-    
-     /**
+
+    /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
      *
@@ -94,5 +114,5 @@ public class RegistoAtribuicoesDemonstracao {
             atr.fix(m_rcd, m_registoUtilizadores);
         }
     }
-}
 
+}
