@@ -5,19 +5,23 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.model.AbstractListModelConflitosDeInteresseCandidaturaADemonstracao;
+import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import lapr.project.controller.AtualizarConflitosDeInteresseCandidaturaAExposicaoController;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.ConflitoDeInteresse;
+import lapr.project.controller.AtualizarConflitoDeInteresseCandidaturaADemonstracaoController;
+import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.ConflitoDeInteresseDemonstracao;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.TipoConflito;
-import lapr.project.ui.model.AbstractListModelConflitosDeInteresse;
-import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.model.TipoConflitoDemonstracao;
+import lapr.project.ui.model.ComboBoxModelCandidaturaADemonstracao;
+import lapr.project.ui.model.ComboBoxModelDemonstracoes;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
+import lapr.project.ui.model.ComboBoxModelTipoDeConflitoDemonstracao;
 
 /**
  *
@@ -25,29 +29,63 @@ import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
  */
 public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends javax.swing.JFrame {
 
-    
-    private transient AtualizarConflitosDeInteresseCandidaturaAExposicaoController CTRL;
+    private transient AtualizarConflitoDeInteresseCandidaturaADemonstracaoController CTRL;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
     private transient List<Exposicao> listaExposicoes;
-    private transient List<CandidaturaAExposicao> listaCandidaturas;
-    private transient List<ConflitoDeInteresse> listaConflitos;
-    private transient List<TipoConflito> listaTiposConflito;
+    private transient List<Demonstracao> listaDemonstracoes;
+    private transient List<CandidaturaADemonstracao> listaCandidaturas;
+    private transient List<ConflitoDeInteresseDemonstracao> listaConflitos;
+    private transient List<TipoConflitoDemonstracao> listaTiposConflito;
 
     private JFrame mainMenu;
-    
-    
+
     /**
      * Creates new form
      * JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao
+     *
+     * @param mainMenu - Menu principal de onde esta insterface é chamada
+     * @param username - username do FAE que iniciou a UC
+     * @param ce - centro de Exposições
      */
-    public JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao(JFrame mainMenu, String username) {
+    public JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao(JFrame mainMenu, String username, CentroExposicoes ce) {
         this.mainMenu = mainMenu;
-        CTRL = new AtualizarConflitosDeInteresseControllerCandidaturaADemonstracao(username, ce);
-        initComponents();
+        CTRL = new AtualizarConflitoDeInteresseCandidaturaADemonstracaoController(username, ce);
+        listaExposicoes = CTRL.getFaeExpos();
+        if (listaExposicoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não existem Exposições para as quais é FAE de uma demonstração.");
+            mainMenu.setVisible(true);
+        } else {
+            initComponents();
+        }
+    }
+
+    private void passaParaPanel1() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card1");
+        setSize(this.getSize());
+
+    }
+
+    private void passaParaPanel2() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card2");
+        setSize(this.getSize());
+    }
+
+    private void passaParaPanel3() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card3");
+        setSize(this.getSize());
+    }
+
+    private void passaParaPanel4() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+        cardLayout.show(getContentPane(), "card4");
+        setSize(this.getSize());
     }
 
     /**
@@ -76,6 +114,14 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         jTextAreaCard1LocalExposicao1 = new javax.swing.JTextArea();
         comboBoxCard1EscolherExposicao1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDescricaoDemonstracao = new javax.swing.JTextArea();
+        jComboBoxEscolherDemonstracao = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
@@ -83,7 +129,8 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         comboBoxSelectCandidatura = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -93,6 +140,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         comboBoxSelectTipoConflito = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabelCard1Titulo1.setText("Escolha a exposição pretendida");
@@ -247,13 +295,90 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botaoCancelar1)
                             .addComponent(botaoSelecionaExpo1))
-                        .addGap(0, 23, Short.MAX_VALUE))
+                        .addGap(0, 134, Short.MAX_VALUE))
                     .addComponent(jPanelCard1DescricaoExposicao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos)
+        getContentPane().add(jPanel1, "card1");
+        jPanel1.getAccessibleContext().setAccessibleName("card1");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel13.setText("Selecione uma demonstração");
+
+        jButton9.setText("Voltar atrás");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Continuar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jTextAreaDescricaoDemonstracao.setColumns(20);
+        jTextAreaDescricaoDemonstracao.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDescricaoDemonstracao);
+
+        jComboBoxEscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(listaDemonstracoes));
+        jComboBoxEscolherDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEscolherDemonstracaoActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Descrição:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jButton9)
+                        .addGap(201, 201, 201)
+                        .addComponent(jButton10))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel2, "card2");
+        jPanel2.getAccessibleContext().setAccessibleName("card2");
+
+        jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaADemonstracao(listaConflitos));
         jScrollPane1.setViewportView(jList1);
 
         jButton3.setText("Voltar");
@@ -283,49 +408,62 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
 
         jLabel6.setText("Conflitos Existentes:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jButton4.setText("Sair");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel6))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton3)
+                        .addGap(9, 9, 9)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel3, "card3");
+        jPanel3.getAccessibleContext().setAccessibleName("card3");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("  Adicionar Conflito de Interesse  ");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        comboBoxSelectCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturas));
+        comboBoxSelectCandidatura.setModel(new ComboBoxModelCandidaturaADemonstracao(listaCandidaturas));
         comboBoxSelectCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxSelectCandidaturaActionPerformed(evt);
@@ -352,107 +490,68 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Selecione um tipo de conflito.");
 
-        comboBoxSelectTipoConflito.setModel(new ComboBoxModelTipoDeConflito(listaTiposConflito));
+        comboBoxSelectTipoConflito.setModel(new ComboBoxModelTipoDeConflitoDemonstracao(listaTiposConflito));
         comboBoxSelectTipoConflito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxSelectTipoConflitoActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboBoxSelectTipoConflito, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addContainerGap(173, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCriarConflito))
                 .addGap(26, 26, 26))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxSelectCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxSelectTipoConflito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addComponent(botaoCriarConflito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoVoltar)
                 .addGap(28, 28, 28))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel4, "card4");
+        jPanel4.getAccessibleContext().setAccessibleName("card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSelecionaExpo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionaExpo1ActionPerformed
-        Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao.getSelectedItem();
+        Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao1.getSelectedItem();
         if (e != null) {
             CTRL.selectExpo(e);
-            listaCandidaturas = CTRL.getListaCandidaturas();
-            listaConflitos = CTRL.getListaConflitos();
+            listaDemonstracoes = CTRL.getListaDemonstracoes();
             passaParaPanel2();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
@@ -465,23 +564,23 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     }//GEN-LAST:event_botaoCancelar1ActionPerformed
 
     private void comboBoxCard1EscolherExposicao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCard1EscolherExposicao1ActionPerformed
-        if (comboBoxCard1EscolherExposicao.getSelectedItem() != null) {
-            Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao.getSelectedItem();
-            textAreaCard1DescricaoExposicao.setText(e.getDescricao());
-            jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
-            jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
-            jLabelCard1DataFim.setText(e.getDataFim().toString());
+        if (comboBoxCard1EscolherExposicao1.getSelectedItem() != null) {
+            Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao1.getSelectedItem();
+            textAreaCard1DescricaoExposicao1.setText(e.getDescricao());
+            jTextAreaCard1LocalExposicao1.setText(e.getLocal().getMorada());
+            jLabelCard1DataInicio1.setText(e.getDataInicio().toAnoMesDiaString());
+            jLabelCard1DataFim1.setText(e.getDataFim().toString());
             CTRL.selectExpo(e);
         } else {
-            textAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+            textAreaCard1DescricaoExposicao1.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
+            jTextAreaCard1LocalExposicao1.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
+            jLabelCard1DataInicio1.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
+            jLabelCard1DataFim1.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_comboBoxCard1EscolherExposicao1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        passaParaPanel1();
+        passaParaPanel2();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -493,14 +592,15 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
                 CTRL.removeConflito(listaConflitos.get(x));
             }
             listaConflitos = CTRL.getListaConflitos();
-            jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos));
+            jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaADemonstracao(listaConflitos));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CTRL.pullRegistoDeTiposDeConflito();
+        listaCandidaturas = CTRL.getListaCandidaturas();
         listaTiposConflito = CTRL.getListaDeTiposConflito();
-        passaParaPanel3();
+        passaParaPanel4();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void comboBoxSelectCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSelectCandidaturaActionPerformed
@@ -508,61 +608,57 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     }//GEN-LAST:event_comboBoxSelectCandidaturaActionPerformed
 
     private void botaoCriarConflitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConflitoActionPerformed
-        CTRL.setCandidatura((CandidaturaAExposicao) comboBoxSelectCandidatura.getSelectedItem());
-        CTRL.setTipoConflito((TipoConflito) comboBoxSelectTipoConflito.getSelectedItem());
-        if (CTRL.validaConflito()) {
-            CTRL.registaConflito();
-            passaParaPanel2();
-            listaConflitos = CTRL.getListaConflitos();
-            jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos));
+        CandidaturaADemonstracao cand = listaCandidaturas.get(comboBoxSelectCandidatura.getSelectedIndex());
+        TipoConflitoDemonstracao tipo = listaTiposConflito.get(comboBoxSelectTipoConflito.getSelectedIndex());
+        if (cand == null) {
+            JOptionPane.showMessageDialog(null, "Tem que selecionar uma candidatura", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else if (tipo == null) {
+            JOptionPane.showMessageDialog(null, "Tem que selecionar um tipo de conflito", "Erro", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Conflito Repetido.", ERROR_MESSAGE);
+            CTRL.setCandidatura(cand);
+            CTRL.setTipoConflito(tipo);
+            if (CTRL.validaConflito()) {
+                CTRL.registaConflito();
+                listaConflitos = CTRL.getListaConflitos();
+                jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaADemonstracao(listaConflitos));
+                passaParaPanel3();
+            } else {
+                JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Conflito Repetido.", ERROR_MESSAGE);
+            }
         }
-
     }//GEN-LAST:event_botaoCriarConflitoActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        passaParaPanel2();
+        passaParaPanel3();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void comboBoxSelectTipoConflitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSelectTipoConflitoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSelectTipoConflitoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        passaParaPanel1();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao().setVisible(true);
-            }
-        });
-    }
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        CTRL.selectDemo(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
+        listaConflitos = CTRL.getListaConflitos();
+        passaParaPanel3();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jComboBoxEscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherDemonstracaoActionPerformed
+        if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
+            jTextAreaDescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()).getDescricao());
+        } else {
+            jTextAreaDescricaoDemonstracao.setText("Descrição da demonstração selecionada.... Por favor selecione uma demonstração.");
+        }
+    }//GEN-LAST:event_jComboBoxEscolherDemonstracaoActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+        mainMenu.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar1;
@@ -573,10 +669,16 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     private javax.swing.JComboBox<String> comboBoxSelectCandidatura;
     private javax.swing.JComboBox<String> comboBoxSelectTipoConflito;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBoxEscolherDemonstracao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -589,13 +691,16 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelCard1DescricaoExposicao1;
     private javax.swing.JPanel jPanelCard1Duracao1;
     private javax.swing.JPanel jPanelCard1Local1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao1;
+    private javax.swing.JTextArea jTextAreaDescricaoDemonstracao;
     private javax.swing.JTextArea textAreaCard1DescricaoExposicao1;
     // End of variables declaration//GEN-END:variables
 }

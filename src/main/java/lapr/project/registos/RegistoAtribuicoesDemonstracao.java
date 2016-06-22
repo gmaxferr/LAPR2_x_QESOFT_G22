@@ -3,6 +3,7 @@ package lapr.project.registos;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
+import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
@@ -113,6 +114,21 @@ public class RegistoAtribuicoesDemonstracao {
         for (AtribuicaoCandidaturaDemonstracao atr : m_listaAtribuicao) {
             atr.fix(m_rcd, m_registoUtilizadores);
         }
+    }
+
+    /**
+     * Através das atribuções feitas, procura e cria uma lista de candidaturas de um FAE.
+     *
+     * @param username - do FAE a procuarar candidaturas
+     * @return lista de candidaturas do FAE
+     */
+    public List<CandidaturaADemonstracao> getListaCandidaturasDoFAE(String username) {
+        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoes = getListaAtribuicoesDoFAE(username);
+        List<CandidaturaADemonstracao> listCands = new ArrayList<>();
+        for (AtribuicaoCandidaturaDemonstracao a : listaAtribuicoes) {
+            listCands.add(a.getCandidaturaAssociada());
+        }
+        return listCands;
     }
 
 }

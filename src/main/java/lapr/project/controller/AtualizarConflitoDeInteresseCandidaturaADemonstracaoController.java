@@ -2,12 +2,11 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ConflitoDeInteresseDemonstracao;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
-import lapr.project.model.TipoConflito;
 import lapr.project.model.TipoConflitoDemonstracao;
 import lapr.project.registos.RegistoAtribuicoesDemonstracao;
 import lapr.project.registos.RegistoCandidaturasADemonstracoes;
@@ -34,7 +33,8 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
     private CentroExposicoes m_ce;
     private String username;
     private Exposicao e;
-    private FAE faeDaCand;
+    private Demonstracao d;
+    private FAE fae;
     private CandidaturaADemonstracao cand;
     private TipoConflitoDemonstracao tipo;
     
@@ -54,6 +54,7 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      * @return lista de conflitos da exposição pretendida
      */
     public List<ConflitoDeInteresseDemonstracao> getListaConflitos() {
+        m_rc = d.getRegistoConflitosDemonstracao();
         return m_rc.getListaConflitos();
     }
 
@@ -85,13 +86,23 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
         this.e = e;
         m_rd = e.getRegistoDemonstracoes();
     }
+   
+    /**
+     * Guarda a demonstração pretendida no Controller
+     *
+     * @param d - demonstração
+     */
+    public void selectDemo(Demonstracao d) {
+        this.d = d;
+        m_rf = d.getRegistoFAE();
+    }
 
     /**
      * Regista um conflito no registo de conflitos da exposição com o FAE e
      * candidatura selecionados pelo utilizador
      */
     public void registaConflito() {
-        m_rc.criarConflito(faeDaCand, cand, tipo);
+        m_rc.criarConflito(fae, cand, tipo);
     }
 
     /**
@@ -100,6 +111,7 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      */
     public List<CandidaturaADemonstracao> getListaCandidaturas() {
         m_rad = e.getRegistoAtribuicoesDemonstracao();
+        return m_rad.getListaCandidaturasDoFAE(username);
     }
 
     /**
@@ -108,7 +120,7 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      * @return true se for válida; false caso contrário
      */
     public boolean validaConflito() {
-        return m_rc.valida(faeDaCand, cand, tipo);
+        return m_rc.valida(fae, cand, tipo);
     }
 
     /**
@@ -116,13 +128,13 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      *
      * @param cand - Nova Candidatura
      */
-    public void setCandidatura(CandidaturaAExposicao cand) {
+    public void setCandidatura(CandidaturaADemonstracao cand) {
         this.cand = cand;
     }
 
     /**
      *
-     * @return lista de FAE da exposição selecionada
+     * @return lista de FAE da demonstracao selecionada
      */
     public List<FAE> getListaFae() {
         return m_rf.getListaFAE();
@@ -131,23 +143,27 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
     /**
      * Armazena o tipo de conflito selecionado na interface
      *
-     * @param tc - tipo de conflito selecionado
+     * @param tcd - tipo de conflito selecionado
      */
-    public void setTipoConflito(TipoConflito tc) {
-        this.tipo = tc;
+    public void setTipoConflito(TipoConflitoDemonstracao tcd) {
+        this.tipo = tcd;
     }
 
     /**
      * Método criado apenas para inicializar o registo de tipos de conflito.
      */
     public void pullRegistoDeTiposDeConflito() {
-        this.m_rtc = m_ce.getRegistoTiposConflitos();
+        this.m_rtc = m_ce.getRegistoTiposConflitosDemonstracao();
     }
 
     /**
-     * @return lista de tipos de conflito do centro de exposições
+     * @return lista de tipos de conflito (de demonstrações) do centro de exposições
      */
-    public List<TipoConflito> getListaDeTiposConflito() {
+    public List<TipoConflitoDemonstracao> getListaDeTiposConflito() {
         return m_rtc.getListaTipoConflitos();
+    }
+
+    public List<Demonstracao> getListaDemonstracoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
