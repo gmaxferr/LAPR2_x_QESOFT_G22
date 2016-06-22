@@ -15,12 +15,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public static final String ROOT_ELEMENT_NAME = "avaliacao";
 
     public static final String JUSTIFICACAO_ELEMENT_NAME = "texto";
-    public static final String RATING_CONHECIMENTO_TEMA_ATTR_NAME = "conhecimentoFAE";
-    public static final String RATING_ADEQ_EXPOSICAO_ATTR_NAME = "adequacaoExposicao";
-    public static final String RATING_ADEQ_DEMOS_ATTR_NAME = "adequacaoDemonstracoes";
-    public static final String RATING_ADEQ_NUM_CONVITES_ATTR_NAME = "adequacaoConvites";
-    public static final String RATING_REC_GLOBAL_ATTR_NAME = "recomendacao";
-    public static final String RATING_ADEQ_DADOS_CANDIDATURA = "adequacaoDadosCandidatura";
+    public static final String RATING_CONHECIMENTO_TEMA_ELEM_NAME = "conhecimentoFAE";
+    public static final String RATING_ADEQ_EXPOSICAO_ELEMENT_NAME = "adequacaoExposicao";
+    public static final String RATING_ADEQ_DEMOS_ELEMENT_NAME = "adequacaoDemonstracoes";
+    public static final String RATING_ADEQ_NUM_CONVITES_ELEM_NAME = "adequacaoConvites";
+    public static final String RATING_REC_GLOBAL_ELEMENT_NAME = "recomendacao";
+    public static final String RATING_ADEQ_DADOS_CAND_ELEM_NAME = "adequacaoDadosCandidatura";
 
     private int m_ratingConhecimentoSobreOTema;
     private int m_ratingAdequacaoAExposicao;
@@ -76,16 +76,16 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public int getRatingRecomendacaoGlobal() {
         return m_ratingRecomendacaoGlobal;
     }
-    
+
     /**
      * Devolve o rating Adequação dos dados da candidatura
-     * 
+     *
      * @return rating Adequação dos dados da candidatura
      */
-    public int getRatingAdequacaoDadosCandidatura(){
+    public int getRatingAdequacaoDadosCandidatura() {
         return m_ratingAdequacaoDadosCandidatura;
     }
-        
+
     /**
      * Calcula e devolve a média dos ratings associados a esta avaliação
      *
@@ -126,20 +126,20 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     /**
      * Define os parametros da avaliação. Usado no momento de tomada da
      * avaliação (candidaturas a demonstracao)
-     * 
+     *
      * @param ratingConhecimentoSobreTema de 0 a 5 sendo 0 o número que
      * representa menor conhecimento sobre o tema
      * @param ratingAdequacaoDadosCandidatura de o a 5 sendo 0 o número que
-     * representa menor adequação dos dados da candidatura 
+     * representa menor adequação dos dados da candidatura
      * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
      * menor recomendação global
      */
-    public void setAvaliacaoParaDemonstracao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura,int ratingRecomendacaoGlobal){
+    public void setAvaliacaoParaDemonstracao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal) {
         this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
         this.m_ratingAdequacaoDadosCandidatura = ratingAdequacaoDadosCandidatura;
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj != null
@@ -176,11 +176,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
 
-            this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ATTR_NAME).item(0).getTextContent());
-            this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ATTR_NAME).item(0).getTextContent());
-            this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ATTR_NAME).item(0).getTextContent());
-            this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ATTR_NAME).item(0).getTextContent());
-            this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ATTR_NAME).item(0).getTextContent());
+            this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ELEM_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ELEMENT_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ELEMENT_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ELEM_NAME).item(0).getTextContent());
+            this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ELEMENT_NAME).item(0).getTextContent());
+            this.m_ratingAdequacaoDadosCandidatura = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DADOS_CAND_ELEM_NAME).item(0).getTextContent());
         }
 
         return this;
@@ -196,24 +197,28 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
 
-            Element elemChild = document.createElement(RATING_ADEQ_DEMOS_ATTR_NAME);
+            Element elemChild = document.createElement(RATING_ADEQ_DEMOS_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAsDemos));
             elementBase.appendChild(elemChild);
 
-            elemChild = document.createElement(RATING_ADEQ_EXPOSICAO_ATTR_NAME);
+            elemChild = document.createElement(RATING_ADEQ_EXPOSICAO_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAExposicao));
             elementBase.appendChild(elemChild);
 
-            elemChild = document.createElement(RATING_ADEQ_NUM_CONVITES_ATTR_NAME);
+            elemChild = document.createElement(RATING_ADEQ_NUM_CONVITES_ELEM_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoNumConvites));
             elementBase.appendChild(elemChild);
 
-            elemChild = document.createElement(RATING_CONHECIMENTO_TEMA_ATTR_NAME);
+            elemChild = document.createElement(RATING_CONHECIMENTO_TEMA_ELEM_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingConhecimentoSobreOTema));
             elementBase.appendChild(elemChild);
 
-            elemChild = document.createElement(RATING_REC_GLOBAL_ATTR_NAME);
+            elemChild = document.createElement(RATING_REC_GLOBAL_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingRecomendacaoGlobal));
+            elementBase.appendChild(elemChild);
+
+            elemChild = document.createElement(RATING_ADEQ_DADOS_CAND_ELEM_NAME);
+            elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoDadosCandidatura));
             elementBase.appendChild(elemChild);
 
             node = elementBase;
