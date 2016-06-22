@@ -530,6 +530,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                             dataFimSubCand,
                                             dataFimDetecaoConflitos,
                                             new Local(localTxt1.getText()));
+                                    ctrl.setEstadoCriada();
                                     ctrl.registaExposicao();
                                     JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
                                     dispose();

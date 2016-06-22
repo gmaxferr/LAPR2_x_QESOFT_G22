@@ -1,7 +1,6 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 
