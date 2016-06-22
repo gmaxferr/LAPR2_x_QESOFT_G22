@@ -65,8 +65,8 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
      */
     @Override
     public String toString() {
-        String str = "FAE:\n";
-        str += "\tUser: " + this.m_Utilizador.getNome() + "\n";
+        String str = "FAE:%n";
+        str += "\tUser: " + this.m_Utilizador.getNome() + "%n";
 
         return str;
     }

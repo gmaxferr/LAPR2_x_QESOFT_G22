@@ -1,6 +1,7 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 
 /**
@@ -17,7 +18,9 @@ public class AlterarParaCandDemoAberta extends TimerTask {
 
     @Override
     public void run() {
-        m_exposicao.getEstado().setEstadoCandidaturasDemonstracaoAbertas();
+        for(Demonstracao demo : m_exposicao.getRegistoDemonstracoes().getListaDemonstracoes()){
+            demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasAbertas();
+        }
     }
 
 }

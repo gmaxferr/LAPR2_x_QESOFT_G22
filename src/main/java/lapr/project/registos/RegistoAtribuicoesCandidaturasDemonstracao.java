@@ -183,8 +183,7 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
             for (AtribuicaoCandidaturaDemonstracao atrCand : this.m_listaAtribuicao) {
-                Node n = atrCand.exportContentToXMLNode();
-                elementKeyword.appendChild(document.importNode(n, true));
+                elementKeyword.appendChild(document.importNode(atrCand.exportContentToXMLNode(), true));
             }
 
             document.appendChild(elementKeyword);

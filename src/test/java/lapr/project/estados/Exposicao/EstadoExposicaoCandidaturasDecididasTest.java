@@ -67,29 +67,6 @@ public class EstadoExposicaoCandidaturasDecididasTest {
     }
 
     /**
-     * Test of setEstadoStandsAtribuidos method, of class
-     * EstadoExposicaoCandidaturasDecididas.
-     */
-    @Test
-    public void testSetEstadoStandsAtribuidos() {
-        System.out.println("setEstadoStandsAtribuidos");
-        boolean expResult = true;
-        boolean result = instance.setEstadoStandsAtribuidos();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of valida method, of class EstadoExposicaoCandidaturasDecididas.
-     */
-    @Test
-    public void testValida() {
-        System.out.println("valida");
-        boolean expResult = true;
-        boolean result = instance.valida();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isEstadoCandidaturasDecididas method, of class
      * EstadoExposicaoCandidaturasDecididas.
      */

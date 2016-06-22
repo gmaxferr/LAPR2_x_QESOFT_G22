@@ -78,7 +78,7 @@ public class DecidirCandidaturaADemonstracaoController {
      * @return lista de exposições no estado Avaliadas
      */
     public ArrayList<Exposicao> getListaExposicoes() {
-        return this.m_re.getListaExposicoesDoOrganizadorEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas(username);
+        return this.m_re.getListaExposicoesDoOrganizadorComDemonstracoesEmEstadoAvaliadas(username);
     }
 
     /**

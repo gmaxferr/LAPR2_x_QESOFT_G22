@@ -38,12 +38,17 @@ public class AvaliarCandidaturaADemonstracaoController {
     /**
      * Registo de atribuições
      */
-    private RegistoAtribuicoesCandidaturasExposicao m_ra;
+    private RegistoAtribuicoesCandidaturasDemonstracao m_ra;
+    
+    /**
+     * Registo de exposições
+     */
+    private RegistoExposicoes m_re;
 
     /**
      * Atribuição escolhida
      */
-    private AtribuicaoCandidatura m_atribuicaoEscolhida;
+    private AtribuicaoCandidaturaDemonstracao m_atribuicaoEscolhida;
 
     /**
      * Avaliação do fae
@@ -81,6 +86,34 @@ public class AvaliarCandidaturaADemonstracaoController {
     }
 
     /**
+     * Guarda o registo de exposições associado ao centro de exposições atual
+     */
+    public void getRegistoExposicoes(){
+        this.m_re = m_centroExposicoes.getRegistoExposicoes();
+    }
+    
+    /**
+     * Devolve a lista de exposições que estejam no estado
+     * candidaturasAtribuidas e que o utilizador detenha o cargo de FAE sobre
+     * estas
+     *
+     * @return lista de exposições válidas sobre as quais se pode executar este
+     * UC
+     */
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(String usernameFAE) {
+        return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(usernameFAE);
+    }
+    
+     /**
+     * Modifica a exposição
+     *
+     * @param exposicao exposição selecionada
+     */
+    public void setExposicao(Exposicao exposicao) {
+        this.m_exposicao = exposicao;
+    }
+    
+    /**
      * Guarda o registo de demonstrações
      */
     public void getRegistoDemonstracoes() {
@@ -115,7 +148,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * Guarda o registo de atribuições
      */
     public void getRegistoAtribuicoes() {
-        this.m_ra = this.m_exposicao.getRegistoAtribuicoes();
+        this.m_ra = this.m_exposicao.getRegistoAtribuicoesDemonstracao();
     }
 
     /**
@@ -124,7 +157,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
-    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoAE(String usernameFAE) {
+    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoAE(String usernameFAE) {
         return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(usernameFAE);
     }
 
@@ -140,7 +173,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      *
      * @param atribuicao atribuição escolhida
      */
-    public void setAtribuicao(AtribuicaoCandidatura atribuicao) {
+    public void setAtribuicao(AtribuicaoCandidaturaDemonstracao atribuicao) {
         this.m_atribuicaoEscolhida = atribuicao;
     }
 
@@ -150,7 +183,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @return dados da candidatura
      */
     public String getDadosCandidatura() {
-        return m_cand.getDadosCandidatura();
+        return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getDadosCandidatura();
     }
 
     /**
@@ -164,6 +197,10 @@ public class AvaliarCandidaturaADemonstracaoController {
         return this.m_avaliacaoDoFae;
     }
 
+    public void setAvaliacao(int ratingConhecimentoSobreTema,int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal ){
+        this.m_avaliacaoDoFae.setAvaliacaoParaDemonstracao(ratingConhecimentoSobreTema, ratingAdequacaoDadosCandidatura, ratingRecomendacaoGlobal);
+    }
+    
     /**
      * Atualiza o estado da candidatura e da demonstração atualmente
      * selecionadas pelo FAE na UI para os estados CandidaturasAvaliadas

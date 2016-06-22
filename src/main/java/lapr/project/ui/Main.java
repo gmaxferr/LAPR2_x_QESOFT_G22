@@ -110,33 +110,9 @@ public class Main {
     }
 
     private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
-//        //Admin
-//        Utilizador admin = new Utilizador("admin", "admin", "Admin-1".toCharArray(), "admin@admin.admin");
-//        admin.setIsExpositor();
-//        admin.setIsFAE();
-//        admin.setIsGestor();
-//        admin.setIsOrganizador();
-//        centroExposicoes.getRegistoUtilizadores().addUtilizador(admin);
-//
-//        JOptionPane.showMessageDialog(null, "Foi criado um utilizador predefinido para ser possível"
-//                + "\naceder ao sistema com todos os privilégios:"
-//                + "\n\nUtilizador - ADMIN"
-//                + "\n    username: \"admin\""
-//                + "\n    password: \"Admin-1\"", "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
-
-        //recursos
-        RegistoRecursos rr = centroExposicoes.getRegistoRecursos();
-        rr.criarRecurso("agua");
-        rr.criarRecurso("luz");
-        rr.criarRecurso("gás");
-
         //Utilizadores
         RegistoUtilizadores ru = centroExposicoes.getRegistoUtilizadoresPendentes();
         ru.addUtilizador(new Utilizador("Ricardo", "Ricardo", "Abc-1".toCharArray(), "Ricardo@email.pt", "abcd"));
-        ru.addUtilizador(new Utilizador("Ana", "Ana", "Abc-1".toCharArray(), "Ana@email.pt", "cheese"));
-        ru.addUtilizador(new Utilizador("Joao", "Joao", "Abc-1".toCharArray(), "Joao@email.pt", "sport"));
-        ru.addUtilizador(new Utilizador("Osorio", "Osorio", "Abc-1".toCharArray(), "Osorio@email.pt", "careful"));
-        ru.addUtilizador(new Utilizador("Guilherme", "Guilherme", "Abc-1".toCharArray(), "Guilherme@email.pt", "blue"));
         centroExposicoes.confirmarRegistoTodosUtilizadores();
         ru = centroExposicoes.getRegistoUtilizadoresConfirmados();
 
@@ -144,45 +120,6 @@ public class Main {
         Utilizador utilizador;
         utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
         utilizador.setIsGestor(true);
-
-        //Organizador
-        utilizador = ru.identificarUtilizadorPeloUsername("Ana");
-
-        //Exposições
-        RegistoExposicoes re = centroExposicoes.getRegistoExposicoes();
-        Exposicao exposicao;
-        /*1*/
-        exposicao = new Exposicao("Titulo", "Descricao", new Data(2016, 7, 25), new Data(2016, 7, 5), new Data(2016, 7, 5), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local"), centroExposicoes);
-        re.registaExposicao(exposicao);
-        exposicao.getEstado().setEstadoCriada();
-        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
-
-        //FAE
-        RegistoFAE rf = exposicao.getRegistoFAE();
-        rf.adicionaFAE(ru.identificarUtilizadorPeloUsername("Joao"));
-
-        /*2*/
-        exposicao = new Exposicao("Titulo2", "Descricao2", new Data(2016, 7, 25), new Data(2016, 7, 5), new Data(2016, 7, 5), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local2"), centroExposicoes);
-        re.registaExposicao(exposicao);
-        exposicao.setEstado(new EstadoExposicaoCandidaturasAbertas(exposicao));
-        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
-
-        /*3*/
-        exposicao = new Exposicao("Titulo3", "Descricao23", new Data(2016, 7, 28), new Data(2016, 7, 7), new Data(2016, 7, 10), new Data(2016, 7, 10), new Data(2016, 7, 15), new Local("Local3"), centroExposicoes);
-        re.registaExposicao(exposicao);
-        exposicao.setEstado(new EstadoExposicaoConflitosAlterados(exposicao));
-        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
-        utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
-        exposicao.getRegistoOrganizadores().addOrganizador(utilizador);
-        exposicao.getRegistoFAE().adicionaFAE(ru.identificarUtilizadorPeloUsername("Guilherme"));
-        CandidaturaAExposicao cand = new CandidaturaAExposicao(new Expositor(ru.identificarUtilizadorPeloUsername("Joao")));
-        cand.getEstado().setEstadoCandidaturaAtribuida();
-        exposicao.getRegistoCandidaturasAExposicao().registaCandidatura(cand);
-        List<AtribuicaoCandidatura> listaAtribuicao = new ArrayList<>();
-        AtribuicaoCandidatura atribuicao = new AtribuicaoCandidatura(cand);
-        atribuicao.addFaeAvaliacao(new FAE(ru.identificarUtilizadorPeloUsername("Guilherme")));
-        listaAtribuicao.add(atribuicao);
-        exposicao.getRegistoAtribuicoes().setListaAtribuicao(listaAtribuicao);
 
         JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
                 + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"

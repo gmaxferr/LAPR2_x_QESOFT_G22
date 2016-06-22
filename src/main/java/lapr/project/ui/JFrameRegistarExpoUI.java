@@ -636,18 +636,13 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_anoInicioActionPerformed
 
     private void jButtonAdicionarOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarOrganizadorActionPerformed
-        jButtonAdicionarOrganizador.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (jComboBoxAdicionarOrganizador.getSelectedIndex() != -1) {
-                    Utilizador utilizadorRemoverDaComboBox = ctrl.identificarUtilizadorPeloUsername((String) modeloComboBox.getSelectedItem());
-                    modeloComboBox.removerUtilizador(utilizadorRemoverDaComboBox);
-                    modeloJList.adicionarUtilizador(utilizadorRemoverDaComboBox);
-                    jComboBoxAdicionarOrganizador.setSelectedIndex(-1);
-                    jComboBoxAdicionarOrganizador.repaint();
-                }
-            }
-        });
+        if (jComboBoxAdicionarOrganizador.getSelectedIndex() != -1) {
+            Utilizador utilizadorRemoverDaComboBox = ctrl.identificarUtilizadorPeloUsername((String) modeloComboBox.getSelectedItem());
+            modeloComboBox.removerUtilizador(utilizadorRemoverDaComboBox);
+            modeloJList.adicionarUtilizador(utilizadorRemoverDaComboBox);
+            jComboBoxAdicionarOrganizador.setSelectedIndex(-1);
+            jComboBoxAdicionarOrganizador.repaint();
+        }
     }//GEN-LAST:event_jButtonAdicionarOrganizadorActionPerformed
 
     private void anoInicioCandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoInicioCandActionPerformed

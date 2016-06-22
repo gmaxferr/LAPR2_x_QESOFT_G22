@@ -47,7 +47,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
     public String toString() {
         String str = "";
         for (Produto produto : this.m_ProdutosExpor) {
-            str += produto.getNome() + "\n";
+            str += produto.getNome() + "%n";
         }
         return str;
     }

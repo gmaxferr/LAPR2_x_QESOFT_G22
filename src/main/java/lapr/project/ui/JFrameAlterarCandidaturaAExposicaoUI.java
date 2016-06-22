@@ -1122,7 +1122,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
             }
             }else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nnNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_terminarAlteracaoBtnActionPerformed
 

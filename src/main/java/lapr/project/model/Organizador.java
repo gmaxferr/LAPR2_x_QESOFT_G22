@@ -64,8 +64,8 @@ public class Organizador implements Importable<Organizador>, Exportable {
      */
     @Override
     public String toString() {
-        String str = "Organizador:\n";
-        str += "\tUser: " + this.m_Utilizador.getNome() + "\n";
+        String str = "Organizador:%n";
+        str += "\tUser: " + this.m_Utilizador.getNome() + "%n";
 
         return str;
     }

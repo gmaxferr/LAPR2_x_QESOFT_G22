@@ -22,6 +22,10 @@ public abstract class EstadoCandidaturaAExposicao implements Estado {
     public boolean setEstadoCandidaturaCriada() {
         return false;
     }
+    
+    public boolean setEstadoCandidaturaRemovida() {
+        return false;
+    }
 
     public boolean setEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
@@ -71,6 +75,10 @@ public abstract class EstadoCandidaturaAExposicao implements Estado {
         return false;
     }
 
+    public boolean isEstadoCandidaturaRemovida() {
+        return false;
+    }
+    
     public boolean isEstadoCandidaturaAbertaAtualizacaoConflitos() {
         return false;
     }

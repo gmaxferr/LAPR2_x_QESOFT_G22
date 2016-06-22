@@ -2,6 +2,7 @@ package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 
 /**
@@ -18,6 +19,8 @@ public class AlterarParaCandDemoFechada extends TimerTask {
 
     @Override
     public void run() {
-        m_exposicao.getEstado().setEstadoCandidaturasDemonstracaoFechadas();
+        for(Demonstracao demo : m_exposicao.getRegistoDemonstracoes().getListaDemonstracoes()){
+            demo.getEstadoDemo().setEstadoDemonstracaoCandidaturasFechadas();
+        }
     }
 }

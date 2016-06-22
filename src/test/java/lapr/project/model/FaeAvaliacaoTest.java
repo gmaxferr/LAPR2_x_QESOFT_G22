@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoUtilizadores;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -93,7 +96,11 @@ public class FaeAvaliacaoTest {
         FaeAvaliacao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         FaeAvaliacao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 
@@ -106,7 +113,11 @@ public class FaeAvaliacaoTest {
         FaeAvaliacao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         FaeAvaliacao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 

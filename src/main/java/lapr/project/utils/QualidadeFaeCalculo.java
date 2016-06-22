@@ -3,6 +3,7 @@ package lapr.project.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lapr.project.exceptions.InsufficientNumberOfElementsForNormalDistributionException;
 import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaAExposicao;
@@ -69,7 +70,7 @@ public class QualidadeFaeCalculo {
      * @return Retorna uma distribuição normal de média equivalente à média dos
      * desvios calculado e desvio padrão igual ao desvio padrão calculado
      */
-    public NormalDistribution calcMediaAndVariance(FAE fae, RegistoAtribuicoesCandidaturasExposicao ra) {
+    public NormalDistribution calcMediaAndVariance(FAE fae, RegistoAtribuicoesCandidaturasExposicao ra) throws InsufficientNumberOfElementsForNormalDistributionException {
         Media<FAE> res = null;
 
         for (Media<FAE> media : mediaDesviosFaes) {
@@ -99,9 +100,13 @@ public class QualidadeFaeCalculo {
             res.addValor(variance);
         }
 
+        if (res.getN() < 30) {
+            throw new InsufficientNumberOfElementsForNormalDistributionException();
+        }
+
         double mediaDesvios = res.getMediaDesvios();
         double desvioPadrao = Math.sqrt(res.getVarianciaDesvios());
-        return new NormalDistribution(mediaDesvios, Double.compare(desvioPadrao, 0D) == 0 ? Double.MIN_VALUE : desvioPadrao);
+        return new NormalDistribution(res.getMedia(), Double.compare(desvioPadrao, 0D) == 0 ? Double.MIN_VALUE : desvioPadrao);
     }
 
     /**
