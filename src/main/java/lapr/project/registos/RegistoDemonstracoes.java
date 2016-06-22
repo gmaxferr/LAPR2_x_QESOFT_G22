@@ -83,7 +83,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     public List<CandidaturaADemonstracao> getListaCandidaturasAsDemonstracoesDoExpositor(String emailExpositor) {
         List<CandidaturaADemonstracao> listaCandidaturasAsDemosDoExpositor = new ArrayList<>();
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
-            listaCandidaturasAsDemosDoExpositor.addAll(demonstracao.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracaoRep(emailExpositor));
+            listaCandidaturasAsDemosDoExpositor.addAll(demonstracao.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracaoRep(demonstracao, emailExpositor));
         }
         return listaCandidaturasAsDemosDoExpositor;
     }

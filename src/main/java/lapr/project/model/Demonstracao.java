@@ -310,6 +310,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @return lista das candidaturas do expositor à demonstração
      */
     public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
+        RegistoCandidaturasADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
+        return rcd.getListaCandidaturasADemonstracaoRep(this,m_emailExpositor);
         RegistoCandidaturasADemonstracao rcd = this.getRegistoCandidaturasADemonstracao();
         return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
 

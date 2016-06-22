@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.*;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.FAE;
-import lapr.project.model.Utilizador;
+import lapr.project.model.Demonstracao;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
 
@@ -48,10 +47,11 @@ public class RegistoCandidaturasADemonstracao implements Importable<RegistoCandi
      * @param email - email do representante
      * @return lista de candidaturas a demonstracao do representante
      */
-    public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRep(String email) {
+    public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRep(Demonstracao d, String email) {
         List<CandidaturaADemonstracao> lstCandidaturasRep = new ArrayList<>();
         for (CandidaturaADemonstracao cd : m_listaCandidaturasADemonstracao) {
             if (cd.getEmailExpositor().equals(email)) {
+                cd.setDemonstracao(d);
                 lstCandidaturasRep.add(cd);
             }
         }
