@@ -325,8 +325,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      *
      * @return lista formada
      */
-    public List<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
-        List<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
+    public ArrayList<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
+        ArrayList<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
         EstadoDemonstracao estado;
         for (Demonstracao d : this.m_listaDemonstracoes) {
             estado = d.getEstadoDemo();

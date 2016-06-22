@@ -202,6 +202,28 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
+     * Devolve uma lista de exposições que já tenham tido o seu periodo de
+     * submissão de candidaturas às suas demonstrações e que tenham estas
+     * candidaturas já avaliadas.
+     *
+     * @return lista de exposições
+     */
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas() {
+        ArrayList<Exposicao> listaExpos = new ArrayList<>();
+        for (Exposicao e : this.m_listaExposicoes) {
+            if (e.getEstado().isEstadoCandidaturasDemonstracaoFechadas()) {
+                RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
+                List<Demonstracao> listaDemos = rd.getListaDemonstracoesEmEstadoCandidaturasAvaliadas();
+                if (!listaDemos.isEmpty()) {
+                    listaExpos.add(e);
+                }
+            }
+        }
+        return listaExpos;
+
+    }
+
+    /**
      * Devolve uma lista com as exposições no estado candidaturas abertas
      *
      * @return lista com as exposições no estado candidaturas abertas
