@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.exceptions.InvalidEmailException;
 import lapr.project.utils.CaesarsCypher;
 import org.junit.*;
@@ -469,7 +470,7 @@ public class UtilizadorTest {
      * Test of importContentFromXMLNode method, of class Utilizador.
      */
     @Test
-    public void testImportContentFromXMLNode() {
+    public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
         Utilizador expResult = new Utilizador();
         Node node = expResult.exportContentToXMLNode();
@@ -482,7 +483,7 @@ public class UtilizadorTest {
      * Test of exportContentToXMLNode method, of class Utilizador.
      */
     @Test
-    public void testExportContentToXMLNode() {
+    public void testExportContentToXMLNode() throws ParserConfigurationException {
         System.out.println("exportContentToXMLNode");
         Utilizador expResult = new Utilizador();
         Node node = expResult.exportContentToXMLNode();

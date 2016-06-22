@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -89,7 +90,7 @@ public class ProdutoTest {
      * Test of importContentFromXMLNode method, of class Produto.
      */
     @Test
-    public void testImportContentFromXMLNode() {
+    public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
         Node node = null;
         Produto instance = new Produto();
