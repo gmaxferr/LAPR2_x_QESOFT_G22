@@ -28,6 +28,7 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      */
     private String m_dados;
     private String m_emailExpositor;
+    private Demonstracao m_demo;
 
     private EstadoCandidaturaADemonstracao m_estado;
 
@@ -37,6 +38,14 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
         m_emailExpositor = email;
     }
 
+    public void setDemonstracao(Demonstracao d){
+        this.m_demo = d;
+    }
+    
+    public String getCodigoDemo(){
+        return m_demo.getCodigoIdentificacao();
+    }
+    
     /**
      * Devolve os dados da candidatura
      *
