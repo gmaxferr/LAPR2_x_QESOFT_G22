@@ -14,7 +14,7 @@ import org.w3c.dom.*;
  *
  * @author G29
  */
-public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandidaturaADemonstracoes>, Exportable {
+public class RegistoCandidaturasADemonstracoes implements Importable<RegistoCandidaturasADemonstracoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoCandidaturaADemonstracoes";
 
@@ -27,7 +27,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
      * Construtor de objetos do tipo RegistoCandidaturasADemonstracoes sem
      * parâmetros
      */
-    public RegistoCandidaturaADemonstracoes() {
+    public RegistoCandidaturasADemonstracoes() {
         m_listaCandidaturasADemonstracao = new ArrayList<>();
     }
 
@@ -95,7 +95,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
     }
 
     @Override
-    public RegistoCandidaturaADemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+    public RegistoCandidaturasADemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.newDocument();
@@ -141,7 +141,7 @@ public class RegistoCandidaturaADemonstracoes implements Importable<RegistoCandi
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoCandidaturaADemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoCandidaturasADemonstracoes.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

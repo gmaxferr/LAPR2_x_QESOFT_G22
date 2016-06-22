@@ -89,7 +89,7 @@ public class RegistoAtribuicoesDemonstracao {
      * @param m_rcd
      * @param m_registoUtilizadores registo de utilizadores
      */
-    public void fix(RegistoCandidaturaADemonstracoes m_rcd, RegistoUtilizadores m_registoUtilizadores) {
+    public void fix(RegistoCandidaturasADemonstracoes m_rcd, RegistoUtilizadores m_registoUtilizadores) {
         for (AtribuicaoCandidaturaDemonstracao atr : m_listaAtribuicao) {
             atr.fix(m_rcd, m_registoUtilizadores);
         }

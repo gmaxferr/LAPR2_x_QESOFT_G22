@@ -90,7 +90,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     /**
      *
      */
-    private RegistoCandidaturaADemonstracoes m_rcd;
+    private RegistoCandidaturasADemonstracoes m_rcd;
 
     private RegistoAtribuicoesDemonstracao m_rad;
 
@@ -107,7 +107,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public Demonstracao() {
         this.rc = new RegistoRecursos();
         this.m_expo = null;
-        this.m_rcd = new RegistoCandidaturaADemonstracoes();
+        this.m_rcd = new RegistoCandidaturasADemonstracoes();
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
@@ -261,7 +261,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @return registo de candidaturas à demonstração
      */
-    public RegistoCandidaturaADemonstracoes getRegistoCandidaturasADemonstracao() {
+    public RegistoCandidaturasADemonstracoes getRegistoCandidaturasADemonstracao() {
         return m_rcd;
     }
 
@@ -313,7 +313,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @return lista das candidaturas do expositor à demonstração
      */
     public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
-        RegistoCandidaturaADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
         return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
 
     }
@@ -372,8 +372,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
             this.rc = new RegistoRecursos();
             this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-            this.m_rcd = new RegistoCandidaturaADemonstracoes();
-            this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturaADemonstracoes.ROOT_ELEMENT_NAME).item(0));
+            this.m_rcd = new RegistoCandidaturasADemonstracoes();
+            this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracoes.ROOT_ELEMENT_NAME).item(0));
             this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
             this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
             this.m_rconfDemo = new RegistoConflitosDemonstracao();

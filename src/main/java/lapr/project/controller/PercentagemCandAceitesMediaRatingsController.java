@@ -25,17 +25,22 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Exposição selecionada na UI
      */
-    private Exposicao exposicaoSelecionada;
+    private Exposicao m_exposicaoSelecionada;
 
     /**
      * Registo de candidaturas à exposição selecionada na UI
      */
-    private RegistoCandidaturasAExposicao rc;
+    private RegistoCandidaturasAExposicao rce;
 
     /**
      * Registo das atribuições geradas da candidatura selecionada
      */
     private RegistoAtribuicoes rAtrib;
+
+    /**
+     * Registo de demonstrações da exposição selecionada
+     */
+    private RegistoDemonstracoes rd;
 
     /**
      * Construtor recebendo como parametro apenas o centro de exposições atual
@@ -69,15 +74,15 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @param e exposição
      */
-    public void setExposicaoSelecionada(Exposicao e) {
-        this.exposicaoSelecionada = e;
+    public void setM_exposicaoSelecionada(Exposicao e) {
+        this.m_exposicaoSelecionada = e;
     }
 
     /**
      * Guarda o registo das candidaturas da exposição selecionada
      */
     public void getRegistoCandidaturas() {
-        this.rc = this.exposicaoSelecionada.getRegistoCandidaturasAExposicao();
+        this.rce = this.m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
     }
 
     /**
@@ -86,25 +91,43 @@ public class PercentagemCandAceitesMediaRatingsController {
      * @return lista de candidaturas à exposição
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.rc.getListaCandidaturas();
+        return this.rce.getListaCandidaturas();
+    }
+
+    public void getRegistoDemonstrações() {
+        this.rd = this.m_exposicaoSelecionada.getRegistoDemonstracoes();
     }
 
     /**
-     * Devolve a percentagem de candidaturas de um expositor que foram aceites.
-     * O expositor é identificado passando como parametro o seu email
+     * Devolve a percentagem de candidaturas à exposição de um expositor que
+     * foram aceites. O expositor é identificado passando como parametro o seu
+     * email
      *
      * @param emailExpositor email do expositor
      * @return percentagem de candidaturas de um expositor aceites
      */
-    public float getPercentagemCandidaturasAceitesDoExpositor(String emailExpositor) {
-        return this.rc.getPercentagemCandidaturasAceites(emailExpositor);
+    public float getPercentagemCandidaturasAExposicaoAceitesDoExpositor(String emailExpositor) {
+        return this.rce.getPercentagemCandidaturasAceites(emailExpositor);
+
+    }
+
+    /**
+     * Devolve a percentagem de candidaturas às demonstrações de um expositor
+     * que foram aceites. O expositor é identificado passando como parametro o
+     * seu email
+     *
+     * @param emailExpositor email do expositor
+     * @return percentagem de candidaturas de um expositor aceites
+     */
+    public float getPercentagemCandidaturasAsDemonstracoesAceitesDoExpositor(String emailExpositor) {
+        return this.rd.getPercentagemCandidaturasAceites(emailExpositor);
     }
 
     /**
      * Guarda o registo de atribuições da exposição selecionada
      */
     public void getRegistoAtribuicoes() {
-        this.rAtrib = this.exposicaoSelecionada.getRegistoAtribuicoes();
+        this.rAtrib = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
     }
 
     /**

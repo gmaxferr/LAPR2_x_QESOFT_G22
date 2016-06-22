@@ -29,7 +29,7 @@ public class DecidirCandidaturaADemonstracaoController {
     /**
      * Registo de candidaturas à demonstração em causa
      */
-    private RegistoCandidaturaADemonstracoes m_rc;
+    private RegistoCandidaturasADemonstracoes m_rc;
 
     /**
      * Registo de exposições do centro de exposições
