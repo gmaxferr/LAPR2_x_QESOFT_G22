@@ -119,13 +119,13 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha o utilizador pretendido");
 
         JComboBoxEscolherUtilizador.setModel(new ComboBoxModelUtilizadores(this.listaUtilizadores));
-        JComboBoxEscolherUtilizador.setSelectedIndex(-1);
         JComboBoxEscolherUtilizador.setToolTipText("");
         JComboBoxEscolherUtilizador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

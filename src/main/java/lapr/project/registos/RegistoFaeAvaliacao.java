@@ -108,13 +108,29 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
      * @return média dos ratings de todas as avaliações feitas pelos FAE neste
      * registo
      */
-    public float getMediaRatings() {
+    public float getMediaDeTodosOsRatings() {
         int cont = this.m_listaFaeAvaliacao.size();
         float somaMediaRatingsDeCadaFAE = 0;
         for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {
             somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatings();
         }
         return somaMediaRatingsDeCadaFAE / cont;
+    }
+
+    /**
+     * Recebe por parametro um vetor ao qual vai ser somado os ratings dados
+     * pelos FAE guardados em cada Avaliação. Cada rating em cada posição.
+     *
+     * @param vec vetor no qual vão ser guardados os valores dos ratings
+     */
+    public void somarRatingsAoVetor(float[] vec) {
+        for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
+            vec[0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
+            vec[1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
+            vec[2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
+            vec[3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
+            vec[4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+        }
     }
 
     /**
@@ -180,4 +196,5 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
         return node;
     }
+
 }

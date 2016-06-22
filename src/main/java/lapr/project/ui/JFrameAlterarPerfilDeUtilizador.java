@@ -91,6 +91,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         jPasswordField2.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("  Alteração de Perfil de Utilizador ");

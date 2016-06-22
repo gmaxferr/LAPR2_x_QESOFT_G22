@@ -53,7 +53,7 @@ public class QualidadeFaeCalculo {
 
         for (AtribuicaoCandidatura atr : ra.getListaAtribuicoes()) {
             if (atr.getCandidaturaAssociada() == cand) {
-                double media = atr.getRegistoFaeAvaliacao().getMediaRatings();
+                double media = atr.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
                 res.addValor(media);
             }
         }
