@@ -126,7 +126,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        + "%nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenu.setVisible(true);
@@ -524,7 +524,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             controller.novaDemonstracao(jTextAreaCard2DescricaoDemonstracao.getText());
             passaParaPanel3();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode deixar o campo da descrição em branco.\n Por favor preencha com uma pequena descrição acerca da demonstração a criar.",
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar o campo da descrição em branco.%n Por favor preencha com uma pequena descrição acerca da demonstração a criar.",
                     "Descrição em falta",
                     JOptionPane.WARNING_MESSAGE);
         }
@@ -589,12 +589,12 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
 
         //numa unica JOptionPane mostra todos os recursos que já se encontravam registados
         if (!alreadyInList.isEmpty()) {
-            String aux = "O(s) recurso(s) selecionado(s) já se encontra(m) na lista\n";
+            String aux = "O(s) recurso(s) selecionado(s) já se encontra(m) na lista%n";
             if (adicionadosRecursos == true) {
-                aux = "Apenas alguns recursos dos selecionados foram adicionados. Os recursos seguintes estão repetidos e não foram adicionados:\n";
+                aux = "Apenas alguns recursos dos selecionados foram adicionados. Os recursos seguintes estão repetidos e não foram adicionados:%n";
             }
             for (Recurso r : alreadyInList) {
-                aux += "   - " + r.getNomeRecurso() + "\n";
+                aux += "   - " + r.getNomeRecurso() + "%n";
             }
             JOptionPane.showMessageDialog(null, aux, "Atenção!", JOptionPane.WARNING_MESSAGE);
         }
@@ -606,7 +606,7 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
             controller.registaDemo();
             controller.mudaEstado();
             String[] opcoes2 = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(rootPane, "Demonstração criada!\nDeseja criar outra?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+            int resposta = JOptionPane.showOptionDialog(rootPane, "Demonstração criada!%nDeseja criar outra?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
             if (resposta == 0) {
                 criarOutraDemonstracao();
             } else {

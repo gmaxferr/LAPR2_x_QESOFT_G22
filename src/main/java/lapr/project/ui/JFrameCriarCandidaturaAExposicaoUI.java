@@ -77,7 +77,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        + "%nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
@@ -837,7 +837,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!%nNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
     private boolean camposPorPreencher() {

@@ -151,7 +151,7 @@ public class LoginV2 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 172, 86));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButtonLogin.setMnemonic('\n');
+        jButtonLogin.setMnemonic('%n');
         jButtonLogin.setText("Login");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,7 +253,7 @@ public class LoginV2 extends javax.swing.JFrame {
 
         if (user.length() == 0 || pass.length == 0) {
             JOptionPane.showMessageDialog(null, "Login nao efetuado."
-                    + "\nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    + "%nUsername e Password são campos obrigatórios.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             utilizador = Utilitarios.autenticacao(user, pass, centroExposicoes);
             if (utilizador != null) {

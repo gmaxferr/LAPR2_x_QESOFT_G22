@@ -42,7 +42,7 @@ public class Main {
                             break;
                         }
                         int resultVal = JOptionPane.showConfirmDialog(null, "Foi encontrada informação guardada previamente em ficheiro!"
-                                + "\nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
+                                + "%nDeseja carregar esta informação?", "INFO", JOptionPane.YES_NO_OPTION);
 
                         if (resultVal == JOptionPane.YES_OPTION) {
                             try {
@@ -122,9 +122,9 @@ public class Main {
         utilizador.setIsGestor(true);
 
         JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
-                + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
-                + "\n é igual parar todos: \"Abc-1\".\n"
-                + "\n"
+                + "%nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
+                + "%n é igual parar todos: \"Abc-1\".%n"
+                + "%n"
                 + "Exemplo:           Username: \"Ricardo\" e Password: \"Abc-1\".", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 }

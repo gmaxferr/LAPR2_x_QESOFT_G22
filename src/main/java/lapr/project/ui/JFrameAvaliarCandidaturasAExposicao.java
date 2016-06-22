@@ -60,7 +60,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        + "%nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
@@ -707,7 +707,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
             guardarDecisao();
             String[] opcoes2 = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(rootPane, "Avaliação guardada!\nDeseja avaliar outra candidatura?", "Avaliação", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
+            int resposta = JOptionPane.showOptionDialog(rootPane, "Avaliação guardada!%nDeseja avaliar outra candidatura?", "Avaliação", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
             if (resposta == 0) {
                 voltarASelecionarExposicao();
             } else {
