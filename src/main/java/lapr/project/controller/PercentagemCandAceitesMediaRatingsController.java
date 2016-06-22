@@ -181,7 +181,7 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return vetor com média dos ratings por cada posição
      */
-    public float[] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
         return this.m_rAtribExpos.getMediaRatingsPorCriterioDasCandidaturas();
     }
 
@@ -193,7 +193,7 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return vetor com média dos ratings por cada posição
      */
-    public float[] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
         return this.m_rAtribDemos.getMediaRatingsPorCriterioDasCandidaturas();
     }
 

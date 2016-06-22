@@ -29,8 +29,8 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     private static final int CARD2_ALTURA = 516;
     private transient final CardLayout cardLayout;
     private final List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
-    private float[] vetorMediaRatingsPorCriterioDasCandidaturasAExposicao;
-    private float[] vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
+    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
+    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
 
     /**
      * Creates new form JFramePercentagemCandAceitesMediaRatings
@@ -582,8 +582,8 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
             if (!listaCandidaturas.isEmpty()) {
                 this.listaMediaRatingsPorCandidaturaAExposicao = controller.getMediaRatingsTodasCandidaturasAExposicao();
                 this.listaMediaRatingsPorCandidaturaAsDemos = controller.getMediaRatingsTodasCandidaturasAsDemonstracoes();
-                this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao = controller.getMediaRatingsPorCriterioDasCandidaturasAExposicao();
-                this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes = controller.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes();
+                this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao = controller.getMediaRatingsPorCriterioDasCandidaturasAExposicao();
+                this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes = controller.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes();
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não existem candidaturas já decididas para esta exposição. Falta de imformação para os cálculos.", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
@@ -624,11 +624,11 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBoxCandidaturasAExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCandidaturasAExposicaoActionPerformed
-        jLabelCriterioCand1.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao[0]));
-        jLabelCriterioCand2.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao[1]));
-        jLabelCriterioCand3.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao[2]));
-        jLabelCriterioCand4.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao[3]));
-        jLabelCriterioCand5.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAExposicao[4]));
+        jLabelCriterioCand1.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][0]));
+        jLabelCriterioCand2.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][1]));
+        jLabelCriterioCand3.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][2]));
+        jLabelCriterioCand4.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][3]));
+        jLabelCriterioCand5.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][4]));
         jLabelCriterioCand6.setText(Float.toString(listaMediaRatingsPorCandidaturaAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()]));
     }//GEN-LAST:event_jComboBoxCandidaturasAExposicaoActionPerformed
 
@@ -638,11 +638,11 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBoxExpositoresActionPerformed
 
     private void jComboBoxCandidaturasAsDemonstracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCandidaturasAsDemonstracoesActionPerformed
-        jLabelCriterioDemo1.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[0]));
-        jLabelCriterioDemo2.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[1]));
-        jLabelCriterioDemo3.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[2]));
-        jLabelCriterioDemo4.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[3]));
-        jLabelCriterioDemo5.setText(Float.toString(this.vetorMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[4]));
+        jLabelCriterioDemo1.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][0]));
+        jLabelCriterioDemo2.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][1]));
+        jLabelCriterioDemo3.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][2]));
+        jLabelCriterioDemo4.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][3]));
+        jLabelCriterioDemo5.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][4]));
         jLabelCriterioDemo2.setText(Float.toString(listaMediaRatingsPorCandidaturaAsDemos[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()]));
     }//GEN-LAST:event_jComboBoxCandidaturasAsDemonstracoesActionPerformed
 
