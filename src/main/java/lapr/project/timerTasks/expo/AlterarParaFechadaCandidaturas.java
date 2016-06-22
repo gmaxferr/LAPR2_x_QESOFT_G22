@@ -22,7 +22,7 @@ public class AlterarParaFechadaCandidaturas extends TimerTask {
     private final CentroExposicoes m_ce;
 
     /**
-     * 
+     *
      * @param e - exposição
      * @param ce - centro de exposições
      */
@@ -34,11 +34,16 @@ public class AlterarParaFechadaCandidaturas extends TimerTask {
     @Override
     public void run() {
         m_exposicao.getEstado().setEstadoCandidaturasFechadas();
+        boolean change = false;
         for (CandidaturaAExposicao c : m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
-            c.getEstado().setEstadoCandidaturaAbertaAtualizacaoConflitos();
+            if (c.getEstado().setEstadoCandidaturaAbertaAtualizacaoConflitos()) {
+                change = true;
+            }
         }
         DetetarConflitoController ctrl = new DetetarConflitoController(m_ce);
         ctrl.detetaConflitos(m_exposicao);
-        JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição");
+        if (change) {
+            JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição");
+        }
     }
 }

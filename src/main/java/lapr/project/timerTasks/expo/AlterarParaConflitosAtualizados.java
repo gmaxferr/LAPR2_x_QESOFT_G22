@@ -29,9 +29,14 @@ public class AlterarParaConflitosAtualizados extends TimerTask {
     @Override
     public void run() {
         m_exposicao.getEstado().setEstadoConflitosDetetados();
+        boolean change = false;
         for (CandidaturaAExposicao c : m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
-            c.getEstado().setEstadoCandidaturaProntaAtribuicoes();
+            if (c.getEstado().setEstadoCandidaturaProntaAtribuicoes()) {
+                change = true;
+            }
         }
-        JOptionPane.showMessageDialog(null, "Terminou o período de atualização de conflitos de interesse!");
+        if (change) {
+            JOptionPane.showMessageDialog(null, "Terminou o período de atualização de conflitos de interesse!");
+        }
     }
 }
