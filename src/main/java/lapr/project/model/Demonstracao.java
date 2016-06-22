@@ -92,7 +92,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoCandidaturasADemonstracoes m_rcd;
 
-    private RegistoAtribuicoesDemonstracao m_rad;
 
     /**
      *
@@ -111,7 +110,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
-        this.m_rad = new RegistoAtribuicoesDemonstracao();
     }
 
     /**
@@ -178,10 +176,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     public RegistoRecursos getRegistoRecursosNecessarios() {
         return this.rc;
-    }
-
-    public RegistoAtribuicoesDemonstracao getRegistoAtribuicoesDemonstracao() {
-        return this.m_rad;
     }
 
     /**
@@ -356,7 +350,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public void fix(RegistoCandidaturasAExposicao rCand, Exposicao e, RegistoUtilizadores m_registoUtilizadores) {
         this.m_rconfDemo.fix(rCand);
         this.m_expo = e;
-        this.m_rad.fix(m_rcd, m_registoUtilizadores);
     }
 
     @Override
