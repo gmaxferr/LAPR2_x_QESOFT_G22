@@ -1,23 +1,13 @@
 package lapr.project.model;
 
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoExpositores;
-import lapr.project.registos.RegistoMecanismos;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.registos.RegistoStands;
-import lapr.project.registos.RegistoTipoConflitos;
-import lapr.project.registos.RegistoUtilizadores;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import lapr.project.registos.*;
+import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class CentroExposicoesTest {
 

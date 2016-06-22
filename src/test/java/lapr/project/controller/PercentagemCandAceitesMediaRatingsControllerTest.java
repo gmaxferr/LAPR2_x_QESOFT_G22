@@ -51,7 +51,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         System.out.println("setExposicaoSelecionada");
         e.setDescricao("teste");
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-        instance.setExposicaoSelecionada(e);
+        instance.setM_exposicaoSelecionada(e);
         assertEquals("teste", e.getDescricao());
     }
 
@@ -64,14 +64,14 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         System.out.println("getListaCandidaturas");
         rc = e.getRegistoCandidaturasAExposicao();
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-        instance.setExposicaoSelecionada(e);
+        instance.setM_exposicaoSelecionada(e);
         instance.getRegistoCandidaturas();
         assertEquals(rc.getListaCandidaturas(), instance.getListaCandidaturas());
     }
 
     /**
-     * Test of getPercentagemCandidaturasAceitesDoExpositor method, of class
-     * PercentagemCandAceitesMediaRatingsController.
+     * Test of getPercentagemCandidaturasAExposicaoAceitesDoExpositor method, of class
+ PercentagemCandAceitesMediaRatingsController.
      */
     @Test
     public void testGetPercentagemCandidaturasAceitesDoExpositor() {
@@ -81,9 +81,9 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         e.getRegistoCandidaturasAExposicao().registaCandidatura(candidatura);
         candidatura.setEstado(new EstadoCandidaturaAExposicaoAceite(candidatura));
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-        instance.setExposicaoSelecionada(e);
+        instance.setM_exposicaoSelecionada(e);
         instance.getRegistoCandidaturas();
-        assertEquals(100.0f, instance.getPercentagemCandidaturasAceitesDoExpositor("email"), 0.0f);
+        assertEquals(100.0f, instance.getPercentagemCandidaturasAExposicaoAceitesDoExpositor("email"), 0.0f);
     }
 
     /**
@@ -115,7 +115,7 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         registoAtribuicoes.setListaAtribuicao(listaAtribuicoes);
 
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-        instance.setExposicaoSelecionada(e);
+        instance.setM_exposicaoSelecionada(e);
         instance.getRegistoAtribuicoes();
 
         float[] mediaRatings = {5.0f, 2.0f};

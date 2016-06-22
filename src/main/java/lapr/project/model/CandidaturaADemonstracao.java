@@ -16,7 +16,7 @@ import org.w3c.dom.*;
  */
 public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstracao>, Exportable {
 
-    public static final String ROOT_ELEMENT_NAME = "dandidaturaADemonstracao";
+    public static final String ROOT_ELEMENT_NAME = "candidaturaADemonstracao";
     public static final String DADOS_ELEMENT_NAME = "dados";
     public static final String USERNAME_EXPOSITOR_ELEMENT_NAME = "usernameExpositor";
     public static final String ESTADO_ATTR_NAME = "estado";
@@ -28,6 +28,8 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
      */
     private String m_dados;
     private String m_emailExpositor;
+    private Demonstracao m_demo;
+    private boolean decisao;
 
     private EstadoCandidaturaADemonstracao m_estado;
 
@@ -37,6 +39,14 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
         m_emailExpositor = email;
     }
 
+    public void setDemonstracao(Demonstracao d){
+        this.m_demo = d;
+    }
+    
+    public String getCodigoDemo(){
+        return m_demo.getCodigoIdentificacao();
+    }
+    
     /**
      * Devolve os dados da candidatura
      *
@@ -198,6 +208,20 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
     public void setEmailExpositor(String email) {
         this.m_emailExpositor = email;
+    }
+
+    /**
+     * @return the decisao
+     */
+    public boolean getDecisao() {
+        return decisao;
+    }
+
+    /**
+     * @param decisao the decisao to set
+     */
+    public void setDecisao(boolean decisao) {
+        this.decisao = decisao;
     }
 
 }
