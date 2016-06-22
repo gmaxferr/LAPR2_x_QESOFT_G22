@@ -124,27 +124,27 @@ public class AlterarPerfilDeUtilizadorController {
         String aux = "Alterações Efetuadas:";
         if (m_ru.validaNome(m_nome)) {
             m_u.setNome(m_nome);
-            aux += "%nNome: alterado.";
+            aux += "\nNome: alterado.";
         } else {
-            aux += "%nNome: não alterado.";
+            aux += "\nNome: não alterado.";
         }
         if (m_ru.validaEmail(m_email)) {
             m_u.setEmail(m_email);
-            aux += "%nEmail: alterado.";
+            aux += "\nEmail: alterado.";
         } else {
-            aux += "%nEmail: não alterado.";
+            aux += "\nEmail: não alterado.";
         }
         if (m_ru.validaUsername(m_username)) {
             m_u.setUsername(m_username);
-            aux += "%nUsername: alterado.";
+            aux += "\nUsername: alterado.";
         } else {
-            aux += "%nUsername: não alterado.";
+            aux += "\nUsername: não alterado.";
         }
         if (m_u.validaPassword(m_password)) {
             m_u.setPwd(m_password);
-            aux += "%nPassword: alterada.";
+            aux += "\nPassword: alterada.";
         } else {
-            aux += "%nPassword: não alterada.";
+            aux += "\nPassword: não alterada.";
         }
         return aux;
     }

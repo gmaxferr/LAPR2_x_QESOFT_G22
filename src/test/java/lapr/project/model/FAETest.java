@@ -80,7 +80,7 @@ public class FAETest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        String expResult = "FAE:\n" + "\tUser: " + nome + "\n";
+        String expResult = "FAE:%n" + "\tUser: " + nome + "%n";
         String result = instance.toString();
         assertEquals(expResult, result);
     }
