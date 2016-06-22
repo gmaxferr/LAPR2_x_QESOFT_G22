@@ -92,14 +92,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoCandidaturasADemonstracao m_rcd;
 
-
     private RegistoFAE m_rf;
-    
+
     /**
      *
      */
     private RegistoConflitosDemonstracao m_rconfDemo;
-
 
     /**
      * Registo de candidaturas a demonstracao removidas
@@ -310,11 +308,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @return lista das candidaturas do expositor à demonstração
      */
     public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
-        RegistoCandidaturasADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
-        return rcd.getListaCandidaturasADemonstracaoRep(this,m_emailExpositor);
         RegistoCandidaturasADemonstracao rcd = this.getRegistoCandidaturasADemonstracao();
-        return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
-
+        return rcd.getListaCandidaturasADemonstracaoRep(this, m_emailExpositor);
     }
 
     /**
@@ -518,8 +513,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     * 
-     * @return registo de FAE da demonstração 
+     *
+     * @return registo de FAE da demonstração
      */
     public RegistoFAE getRegistoFAE() {
         return this.m_rf;
