@@ -115,7 +115,7 @@ public class ListarCandidaturasADemonstracaoRemovidasControllerTest {
         instance.getRegistoDemonstracoes();
         String usernameOrganizador = "";
         List<Demonstracao> expResult = new ArrayList<Demonstracao>();
-        List<Demonstracao> result = instance.getListaDemonstracoesDoOrganizadorEstadoConfirmada(usernameOrganizador);
+        List<Demonstracao> result = instance.getListaDemonstracoesDoOrganizadorVariosEstados(usernameOrganizador);
         assertEquals(expResult, result);
     }
 

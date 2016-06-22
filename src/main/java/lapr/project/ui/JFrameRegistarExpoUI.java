@@ -514,12 +514,12 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                     && diaInicioCand.getSelectedItem() != null
                     && diaFimCand.getSelectedItem() != null
                     && diaFimDetecaoConflitos.getSelectedItem() != null) {
-                ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
                 inicializarDatas();
                 if (!dataInicio.isMaior(dataFim)) {
                     if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
                         if (!dataFimSubCand.isMaior(dataInicio)) {
                             if (dataFimDetecaoConflitos.isMaior(dataFimSubCand) && !dataFimDetecaoConflitos.isMaior(dataInicio)) {
+                                ctrl.registarOrganizadores(modeloJList.getListaDeUtilizadoresAdicionados());
                                 ctrl.setDados(tituloTxt1.getText(),
                                         textoDescritivoTxt1.getText(),
                                         dataInicio,

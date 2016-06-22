@@ -39,7 +39,7 @@ public class AtribuirCandidaturasADemonstracaoController {
     /**
      * Registo Candidaturas a Demonstrações
      */
-    private RegistoCandidaturaADemonstracoes m_rc;
+    private RegistoCandidaturasADemonstracoes m_rc;
 
     /**
      * Registo de atribuições
