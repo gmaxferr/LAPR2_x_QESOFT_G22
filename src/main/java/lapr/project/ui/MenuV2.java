@@ -68,7 +68,7 @@ public class MenuV2 extends javax.swing.JFrame {
         boolean temPapeis = false;
         if (utilizador.isGestor()) {
             this.jCheckBoxGestor.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(3, true);
+            jTabbedPaneCargos.setEnabledAt(2, true);
             temPapeis = true;
         }
         if (centroExposicoes.isFae(utilizador)) {
@@ -83,11 +83,11 @@ public class MenuV2 extends javax.swing.JFrame {
         }
         if (centroExposicoes.isOrganizador(utilizador)) {
             this.jCheckBoxOrganizador.setSelected(true);
-            jTabbedPaneCargos.setEnabledAt(2, true);
+            jTabbedPaneCargos.setEnabledAt(4, true);
             temPapeis = true;
         }
         if (!temPapeis) {
-            jTabbedPaneCargos.setEnabledAt(4, true);
+            jTabbedPaneCargos.setEnabledAt(3, true);
         }
         for (int i = 0; i < 5; i++) {
             if (jTabbedPaneCargos.isEnabledAt(i)) {
@@ -943,9 +943,12 @@ public class MenuV2 extends javax.swing.JFrame {
                         }
                     }
                 }
+
                 in.close();
+
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(MenuV2.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MenuV2.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
             if (!successfulExport) {
@@ -960,6 +963,8 @@ public class MenuV2 extends javax.swing.JFrame {
                     }
                 }
             }
+            terminaSessao();
+        } else if (op == JOptionPane.NO_OPTION) {
             terminaSessao();
         }
     }//GEN-LAST:event_jMenuItemTerminarSessaoActionPerformed
@@ -1135,8 +1140,12 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        this.setVisible(false);
-        //exportar ranking keywords para CSV ui
+        Exposicao[] listExpo = this.centroExposicoes.getRegistoExposicoes().getListaExposicoesRankingPronto().toArray(new Exposicao[0]);
+        if (listExpo.length > 0) {
+            JOptionPane.showInputDialog(this, "Escolha o nome da exposição sobre a qual pretende exportar o ranking de keywords.", "Exportar Ranking para CSV", JOptionPane.OK_CANCEL_OPTION, null, listExpo, listExpo[0]);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não existeme exposições sobre as quais exportar o ranking de keywords para CSV se encontra possível.", "ERRO", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jMenuItemEstiloDaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstiloDaJanelaActionPerformed
