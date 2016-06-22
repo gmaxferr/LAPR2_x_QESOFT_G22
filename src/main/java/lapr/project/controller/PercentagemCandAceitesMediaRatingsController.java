@@ -196,4 +196,15 @@ public class PercentagemCandAceitesMediaRatingsController {
     public float[] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
         return this.m_rAtribDemos.getMediaRatingsPorCriterioDasCandidaturas();
     }
+
+    /**
+     * Devolve uma lista com as candidaturas à exposição selecionada no estado
+     * avaliadas de forma a que seja possível calcular-se as médias dos ratings
+     *
+     * @return lista das candidaturas da exposição selecionada no estado
+     * Avaliadas
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
+        return this.rce.getListaCandidaturasEstadoAvaliadas();
+    }
 }

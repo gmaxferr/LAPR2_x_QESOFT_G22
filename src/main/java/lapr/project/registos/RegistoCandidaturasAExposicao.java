@@ -112,6 +112,34 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         return candidaturasRepLst;
     }
 
+    public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
+        List<CandidaturaAExposicao> listCand = new ArrayList<>();
+        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
+            EstadoCandidaturaAExposicao state = cand.getEstado();
+            if (state.isEstadoCandidaturaProntaAtribuicoes()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
+
+    /**
+     * Devolve uma lista das candidaturas no estado Avaliadas de forma a poderem
+     * ser cálculadas as médias dos ratings
+     *
+     * @return lista de candidaturas no estado Avaliadas
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasEstadoAvaliadas() {
+        List<CandidaturaAExposicao> listCand = new ArrayList<>();
+        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
+            EstadoCandidaturaAExposicao state = cand.getEstado();
+            if (state.isEstadoCandidaturaAvaliada()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
+
     /**
      * Devolve a lista de candidaturas aceites a uma exposição
      *
@@ -224,14 +252,4 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         return node;
     }
 
-    public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
-        List<CandidaturaAExposicao> listCand = new ArrayList<>();
-        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
-            EstadoCandidaturaAExposicao state = cand.getEstado();
-            if (state.isEstadoCandidaturaProntaAtribuicoes()) {
-                listCand.add(cand);
-            }
-        }
-        return listCand;
-    }
 }
