@@ -79,7 +79,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      *
      * @return vetor com médias dos ratings de cada candidatura
      */
-    public float[] getMediaRatingsTodasCandidaturas() {
+    public float[] getMediaRatingsTodasCandidaturasAExposicao() {
         int cont = this.m_listaAtribuicao.size();
         float[] vec = new float[cont];
         int i = 0;

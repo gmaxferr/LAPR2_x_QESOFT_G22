@@ -3,12 +3,11 @@ package lapr.project.ui.model;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
-import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
-import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.*;
 
 /**
  *
- * @author Ana Leite
+ * @author G29
  */
 public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends AbstractListModel implements ComboBoxModel {
 
@@ -16,13 +15,13 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
      * Lista de atribuições
      */
     private transient List<AtribuicaoCandidaturaDemonstracao> m_listaAtribuicoes;
-    
+
     /**
      * Objeto selecionado
      */
-    String selection;
-    
-     /**
+    private String selection;
+
+    /**
      * Construtor de objetos do tipo ComboBoxModelAtribuicoesMostraCandidatura
      * com o parâmetro lista de atribuições.
      *
@@ -35,7 +34,7 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
 
     /**
      * Devolve o tamanho da lista de atribuições
-     * 
+     *
      * @return tamanho da lista de atribuições
      */
     @Override
@@ -45,8 +44,8 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
 
     /**
      * Devolve uma String com os dados de uma candidatura.
-     * 
-     * @param index  posição da atribuição.
+     *
+     * @param index posição da atribuição.
      * @return String com os dados de uma candidatura.
      */
     @Override
@@ -58,7 +57,7 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
 
     /**
      * Define o item selecionado
-     * 
+     *
      * @param anItem item selecionado
      */
     @Override
@@ -68,7 +67,7 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
 
     /**
      * Devolve o item selecionado
-     * 
+     *
      * @return item selecionado
      */
     @Override
