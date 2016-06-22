@@ -516,7 +516,7 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                     && diaFimDetecaoConflitos.getSelectedItem() != null) {
                 inicializarDatas();
                 Data dataAtual = new Data();
-                if (!dataFimDetecaoConflitos.isMaior(dataAtual) && !dataFimSubCand.isMaior(dataAtual) && !dataInicioSubCand.isMaior(dataAtual) && !dataFim.isMaior(dataAtual) && !dataInicio.isMaior(dataAtual)) {
+                if (dataFimDetecaoConflitos.isMaior(dataAtual) && dataFimSubCand.isMaior(dataAtual) && dataInicioSubCand.isMaior(dataAtual) && dataFim.isMaior(dataAtual) && dataInicio.isMaior(dataAtual)) {
                     if (!dataInicio.isMaior(dataFim)) {
                         if (!dataInicioSubCand.isMaior(dataFimSubCand)) {
                             if (!dataFimSubCand.isMaior(dataInicio)) {
@@ -531,9 +531,9 @@ public class JFrameRegistarExpoUI extends javax.swing.JFrame {
                                             dataFimDetecaoConflitos,
                                             new Local(localTxt1.getText()));
                                     ctrl.registaExposicao();
-                                    menuPrincipal.setVisible(true);
                                     JOptionPane.showMessageDialog(rootPane, "Exposição registada com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
                                     dispose();
+                                    menuPrincipal.setVisible(true);
                                 } else {
                                     JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse para as candidaturas à exposição tem de ser anterior à data de inicio da exposição e posterior à data de fim de submissão de candidaturas", "Data Inválida", JOptionPane.ERROR_MESSAGE);
                                 }
