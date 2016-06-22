@@ -49,7 +49,7 @@ public class CriarCandidaturaExposicaoXMLController {
      * Adiciona a candidatura ao registo de candidaturas da demonstração
      */
     public void registarCandidatura(Utilizador u) {
-        m_c.fix(m_ce.getRegistoUtilizadoresConfirmados(), new RegistoDemonstracoes());
+        m_c.fix(m_ce.getRegistoUtilizadoresConfirmados(), new RegistoDemonstracoes(true));
         RegistoCandidaturasAExposicao rce = m_e.getRegistoCandidaturasAExposicao();
         m_c.setExpositor(new Expositor(u));
         rce.getListaCandidaturas().add(m_c);
