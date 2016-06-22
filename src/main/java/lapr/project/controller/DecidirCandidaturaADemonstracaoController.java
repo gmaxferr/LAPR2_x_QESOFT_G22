@@ -23,7 +23,7 @@ public class DecidirCandidaturaADemonstracaoController {
     private RegistoDemonstracoes rd;
     
     /**
-     * Exposição selecionada pelo gestor na UI
+     * Demonstração selecionada pelo gestor na UI
      */
     private Demonstracao m_demonstracaoSelecionada;
 
@@ -33,7 +33,7 @@ public class DecidirCandidaturaADemonstracaoController {
     private CandidaturaADemonstracao m_candidaturaSelecionada;
 
     /**
-     * Registo de candidaturas feito à exposição selecionada
+     * Registo de candidaturas feito à demonstração selecionada
      */
     private RegistoCandidaturaADemonstracoes m_rc;
 
