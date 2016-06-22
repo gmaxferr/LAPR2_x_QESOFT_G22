@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
+import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -129,10 +130,20 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
     }
 
     /**
+     * Através das atribuções feitas, procura e cria uma lista de candidaturas de um FAE.
      *
-     * @param node
-     * @return
+     * @param username - do FAE a procuarar candidaturas
+     * @return lista de candidaturas do FAE
      */
+    public List<CandidaturaADemonstracao> getListaCandidaturasDoFAE(String username) {
+        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoes = getListaAtribuicoesDoFAE(username);
+        List<CandidaturaADemonstracao> listCands = new ArrayList<>();
+        for (AtribuicaoCandidaturaDemonstracao a : listaAtribuicoes) {
+            listCands.add(a.getCandidaturaAssociada());
+        }
+        return listCands;
+    }
+
     @Override
     public RegistoAtribuicoesCandidaturasDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document doc = XMLParser.createDocument(node, true);

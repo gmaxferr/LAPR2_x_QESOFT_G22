@@ -13,11 +13,11 @@ import lapr.project.model.ConflitoDeInteresse;
  *
  * @author guima
  */
-public class AbstractListModelConflitosDeInteresse extends AbstractListModel {
+public class AbstractListModelConflitosDeInteresseCandidaturaAExposicao extends AbstractListModel {
 
     private transient List<ConflitoDeInteresse> m_listaConflitos;
 
-    public AbstractListModelConflitosDeInteresse(List<ConflitoDeInteresse> listaConflitos) {
+    public AbstractListModelConflitosDeInteresseCandidaturaAExposicao(List<ConflitoDeInteresse> listaConflitos) {
         this.m_listaConflitos = listaConflitos;
     }
 
