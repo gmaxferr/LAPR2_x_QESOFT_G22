@@ -154,7 +154,7 @@ public class DefinirFAEController {
      */
     public boolean setEstado() {
         EstadoExposicao estado = this.m_exposicaoSelecionada.getEstado();
-        if (this.m_rfae.getListaFAE().size()>=2) {
+        if (this.m_rfae.getListaFAE().size() >= 2) {
             if (estado.isEstadoCriada()) {
                 estado.setEstadoFAEDefinidosSemDemos();
                 return true;
