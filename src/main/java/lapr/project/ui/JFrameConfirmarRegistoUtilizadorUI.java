@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ConfirmarRegistoController;
 import lapr.project.model.*;
+import lapr.project.ui.model.ComboBoxModelUtilizadores;
 
 /**
  *
@@ -68,6 +69,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         this.centroExposicoesAtual = centroExposicoes;
         this.controller = new ConfirmarRegistoController(centroExposicoes);
         controller.getRegistoUtilizadores();
+        listaUtilizadores = controller.getListaNovosRegistos();
         initComponents();
 
         alterarComportamentoFecharJFrame();
@@ -121,7 +123,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
         jLabelCard1Titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelCard1Titulo.setText("Escolha o utilizador pretendido");
 
-        JComboBoxEscolherUtilizador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboBoxEscolherUtilizador.setModel(new ComboBoxModelUtilizadores(this.listaUtilizadores));
         JComboBoxEscolherUtilizador.setSelectedIndex(-1);
         JComboBoxEscolherUtilizador.setToolTipText("");
         JComboBoxEscolherUtilizador.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +268,6 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
     }
 
     private void JComboBoxEscolherUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxEscolherUtilizadorActionPerformed
-        listaUtilizadores = controller.getListaNovosRegistos();
         if (JComboBoxEscolherUtilizador.getSelectedItem() != null) {
             Utilizador utilizador = listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex());
             jLabel11.setText(utilizador.getNome());

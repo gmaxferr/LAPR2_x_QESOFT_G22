@@ -25,7 +25,7 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
 
     public ComboBoxModelUtilizadores(List<Utilizador> listaUtilizadores) {
         this.usernameUtilizadorSelecionado = null;
-        this.m_listaUtilizadores = new ArrayList(listaUtilizadores);
+        this.m_listaUtilizadores = listaUtilizadores;
     }
 
     public void adicionarUtilizador(Utilizador utilizadorNovo) {
