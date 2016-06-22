@@ -125,7 +125,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rcr = new RegistoCandidaturasAExposicaoRemovidas(this);
         this.m_rconf = new RegistoConflitos();
         this.m_ra = new RegistoAtribuicoesCandidaturasExposicao();
-        this.m_rd = new RegistoDemonstracoes();
+        this.m_rd = new RegistoDemonstracoes(true);
         this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
         this.m_estado = new EstadoExposicaoInicial(this, ce);
@@ -457,7 +457,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @return registo de atribuições
      */
-    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoesExposicao() {
         return this.m_ra;
     }
 
@@ -770,6 +770,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 default:
                     break;
             }
+            recriarTimersDemo();
         }
         return this;
     }

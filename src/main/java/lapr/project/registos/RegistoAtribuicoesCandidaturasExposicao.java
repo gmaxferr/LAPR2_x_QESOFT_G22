@@ -92,18 +92,16 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         return vec;
     }
 
-    public float[] getMediaRatingsPorCriterioDasCandidaturas() {
-        float[] vec = new float[5];
-        int cont = this.m_listaAtribuicao.size();
+    public float[][] getMediaRatingsPorCriterioDasCandidaturas() {
+        float[][] matriz = new float[this.m_listaAtribuicao.size()][5];
+        int pos = 0;
 
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            atribuicao.getRegistoFaeAvaliacao().somarRatingsAoVetor(vec);
+            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
+            pos++;
         }
-
-        for (int i = 0; i < vec.length; i++) {
-            vec[i] = vec[i] / cont;
-        }
-        return vec;
+        
+        return matriz;
     }
 
     /**

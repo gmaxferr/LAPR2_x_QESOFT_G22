@@ -1,6 +1,9 @@
 package lapr.project.estados.Exposicao;
 
+import java.util.TimerTask;
 import lapr.project.model.Exposicao;
+import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -16,6 +19,11 @@ public class EstadoExposicaoCompleta extends EstadoExposicao {
     public boolean setEstadoCandidaturasAbertas() {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasAbertas(this.m_exposicao));
+            Data currentDate = new Data();
+            if(currentDate.isMaior(this.m_exposicao.getDataInicioSubCand())){
+                TimerTask task = new AlterarParaAbertaCandidaturas(m_exposicao);
+                task.run();
+            }
             return true;
         } else {
             return false;

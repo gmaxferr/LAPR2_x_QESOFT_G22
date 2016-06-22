@@ -118,18 +118,25 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
-     * Recebe por parametro um vetor ao qual vai ser somado os ratings dados
-     * pelos FAE guardados em cada Avaliação. Cada rating em cada posição.
+     * Recebe por parametro uma matriz à qual vai ser somada, numa linha os
+     * ratings dados pelos FAE guardados em cada Avaliação para uma mesma
+     * candidatura. Cada rating em cada posição da linha da matriz.
      *
-     * @param vec vetor no qual vão ser guardados os valores dos ratings
+     * @param matriz metriz no qual vão ser guardados os valores dos ratings
      */
-    public void somarRatingsAoVetor(float[] vec) {
+    public void somarRatingsDaCandidaturaAoVetor(float[][] matriz, int pos) {
         for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
-            vec[0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
-            vec[1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
-            vec[2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
-            vec[3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
-            vec[4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+            matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
+            matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
+            matriz[pos][2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
+            matriz[pos][3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
+            matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+        }
+        int cont = m_listaFaeAvaliacao.size();
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < 5; coluna++) {
+                matriz[linha][coluna] = matriz[linha][coluna] / cont;
+            }
         }
     }
 

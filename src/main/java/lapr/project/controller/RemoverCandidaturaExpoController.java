@@ -63,7 +63,7 @@ public class RemoverCandidaturaExpoController {
      * @return registo de atribuicoes da exposição selecionada
      */
     public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoes() {
-        m_ra = m_exposicaoSelecionada.getRegistoAtribuicoes();
+        m_ra = m_exposicaoSelecionada.getRegistoAtribuicoesExposicao();
         return m_ra;
     }
 

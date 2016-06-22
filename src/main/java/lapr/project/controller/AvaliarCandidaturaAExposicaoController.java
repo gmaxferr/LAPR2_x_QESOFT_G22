@@ -82,7 +82,7 @@ public class AvaliarCandidaturaAExposicaoController {
      * Guarda o registo de atribuições da exposição selecionada
      */
     public void getRegistoAtribuicoes() {
-        this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
+        this.m_ra = this.m_exposicaoSelecionada.getRegistoAtribuicoesExposicao();
     }
 
     /**

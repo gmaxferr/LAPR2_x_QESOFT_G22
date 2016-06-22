@@ -1,6 +1,9 @@
 package lapr.project.estados.Exposicao;
 
+import java.util.TimerTask;
 import lapr.project.model.Exposicao;
+import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -16,6 +19,11 @@ public class EstadoExposicaoConflitosDetetados extends EstadoExposicao {
     public boolean setEstadoConflitosAlterados() {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoConflitosAlterados(this.m_exposicao));
+            Data currentDate = new Data();
+            if (currentDate.isMaior(this.m_exposicao.getDataFimDetecaoConflitos())) {
+                TimerTask task = new AlterarParaConflitosAtualizados(m_exposicao);
+                task.run();
+            }
             return true;
         } else {
             return false;

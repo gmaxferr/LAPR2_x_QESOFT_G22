@@ -534,6 +534,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
     private void avancarParaCard2() {
+        controller.setExposicao(listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex()));
         controller.getRegistoDemonstracoes();;
         this.listaDemonstracoes = controller.getListaDemonstracoesDoOrganizadorVariosEstados(usernameOrganizador);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();

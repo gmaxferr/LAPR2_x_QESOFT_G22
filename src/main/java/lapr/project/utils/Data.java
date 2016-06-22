@@ -390,7 +390,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      */
     public Date toDate() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(ano, mes, dia);
+        calendar.set(ano, mes-1, dia, hora, minuto, segundo);
         Date result = calendar.getTime();
         return result;
     }
