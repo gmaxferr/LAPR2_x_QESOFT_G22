@@ -43,7 +43,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
     private final CardLayout cardLayout;
 
     private static final int LARGURA_JANELA_PASSO1 = 485;
-    private static final int ALTURA_JANELA_PASSO1 = 440;
+    private static final int ALTURA_JANELA_PASSO1 = 400;
 
     /**
      * Nome do utilizador por omissão
@@ -248,9 +248,10 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setUtilizadorRegistado(listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex()));
+        JOptionPane.showMessageDialog(rootPane, "Registo confirmado.", "Sucesso", JOptionPane.OK_OPTION);
         this.listaUtilizadores = controller.getListaNovosRegistos();
         if (listaUtilizadores.size() > 0) {
-            int resposta = JOptionPane.showConfirmDialog(rootPane, "Confirmação registada. Deseja confirmar outro utilizador?", "Confirmação de registo", JOptionPane.YES_NO_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja confirmar outro utilizador?", "Confirmação de novo registo", JOptionPane.YES_NO_OPTION);
             if (resposta == JOptionPane.YES_OPTION) {
                 voltarASelecionarUtilizador();
             } else {
