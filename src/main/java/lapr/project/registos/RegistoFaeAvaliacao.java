@@ -108,11 +108,27 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
      * @return média dos ratings de todas as avaliações feitas pelos FAE neste
      * registo
      */
-    public float getMediaDeTodosOsRatings() {
+    public float getMediaDeTodosOsRatingsCandidaturaAExposicao() {
         int cont = this.m_listaFaeAvaliacao.size();
         float somaMediaRatingsDeCadaFAE = 0;
         for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {
-            somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatings();
+            somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatingsCandidaturaAExposicao();
+        }
+        return somaMediaRatingsDeCadaFAE / cont;
+    }
+
+    /**
+     * Devolve a média dos ratings de todas as avaliações feitas pelos FAE neste
+     * registo.
+     *
+     * @return média dos ratings de todas as avaliações feitas pelos FAE neste
+     * registo
+     */
+    public float getMediaDeTodosOsRatingsCandidaturaADemonstracao() {
+        int cont = this.m_listaFaeAvaliacao.size();
+        float somaMediaRatingsDeCadaFAE = 0;
+        for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {
+            somaMediaRatingsDeCadaFAE += faeAvaliacao.getAvaliacao().getMediaRatingsCandidaturaADemonstracao();
         }
         return somaMediaRatingsDeCadaFAE / cont;
     }
@@ -123,8 +139,9 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
      * candidatura. Cada rating em cada posição da linha da matriz.
      *
      * @param matriz metriz no qual vão ser guardados os valores dos ratings
+     * @param pos linha atual (posição da candidatura nas linhas da matriz)
      */
-    public void somarRatingsDaCandidaturaAoVetor(float[][] matriz, int pos) {
+    public void somarRatingsDaCandidaturaAExposicaoAMatriz(float[][] matriz, int pos) {
         for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
             matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
             matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
@@ -135,6 +152,28 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         int cont = m_listaFaeAvaliacao.size();
         for (int linha = 0; linha < matriz.length; linha++) {
             for (int coluna = 0; coluna < 5; coluna++) {
+                matriz[linha][coluna] = matriz[linha][coluna] / cont;
+            }
+        }
+    }
+
+    /**
+     * Recebe por parametro uma matriz à qual vai ser somada, numa linha os
+     * ratings dados pelos FAE guardados em cada Avaliação para uma mesma
+     * candidatura. Cada rating em cada posição da linha da matriz.
+     *
+     * @param matriz metriz no qual vão ser guardados os valores dos ratings
+     * @param pos linha atual (posição da candidatura nas linhas da matriz)
+     */
+    public void somarRatingsDaCandidaturaADemonstracaoAMatriz(float[][] matriz, int pos) {
+        for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
+            matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
+            matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoDadosCandidatura();
+            matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+        }
+        int cont = m_listaFaeAvaliacao.size();
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < 3; coluna++) {
                 matriz[linha][coluna] = matriz[linha][coluna] / cont;
             }
         }
@@ -153,10 +192,10 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
-     * 
+     *
      * @param node
      * @return
-     * @throws ParserConfigurationException 
+     * @throws ParserConfigurationException
      */
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
@@ -185,8 +224,8 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     @Override
     public Node exportContentToXMLNode() {

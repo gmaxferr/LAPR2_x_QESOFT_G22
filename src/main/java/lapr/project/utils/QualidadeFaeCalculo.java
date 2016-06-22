@@ -53,7 +53,7 @@ public class QualidadeFaeCalculo {
 
         for (AtribuicaoCandidatura atr : ra.getListaAtribuicoes()) {
             if (atr.getCandidaturaAssociada() == cand) {
-                double media = atr.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
+                double media = atr.getRegistoFaeAvaliacao().getMediaDeTodosOsRatingsCandidaturaAExposicao();
                 res.addValor(media);
             }
         }
@@ -87,7 +87,7 @@ public class QualidadeFaeCalculo {
 
         for (AtribuicaoCandidatura atr : ra.getListaAtribuicoesDoFAE(res.obj.getUsernameFae())) {
             Avaliacao fAval = atr.getRegistoFaeAvaliacao().getAvaliacaoDoFae(res.obj.getUsernameFae());
-            double mediaFae = fAval.getMediaRatings();
+            double mediaFae = fAval.getMediaRatingsCandidaturaAExposicao();
 
             double variance = 0D;
             CandidaturaAExposicao cand = atr.getCandidaturaAssociada();

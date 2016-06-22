@@ -99,6 +99,9 @@ public class PercentagemCandAceitesMediaRatingsController {
         return this.rce.getListaCandidaturas();
     }
 
+    /**
+     * Guarda o registo de demonstrações
+     */
     public void getRegistoDemonstracoes() {
         this.rd = this.m_exposicaoSelecionada.getRegistoDemonstracoes();
     }

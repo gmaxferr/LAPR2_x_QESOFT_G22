@@ -76,7 +76,7 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         int i = 0;
 
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatingsCandidaturaAExposicao();
             i++;
         }
 
@@ -98,7 +98,7 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         int pos = 0;
 
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
+            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAExposicaoAMatriz(matriz, pos);
             pos++;
         }
 

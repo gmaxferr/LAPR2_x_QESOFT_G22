@@ -75,7 +75,7 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         int i = 0;
 
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
-            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatingsCandidaturaAExposicao();
             i++;
         }
 
@@ -121,12 +121,11 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
      * @return matriz com as médias dos ratings por critério de cada candidatura
      */
     public float[][] getMediaRatingsPorCriterioDasCandidaturas() {
-        float[][] matriz = new float[this.m_listaAtribuicao.size()][5];
-        int cont = this.m_listaAtribuicao.size();
+        float[][] matriz = new float[this.m_listaAtribuicao.size()][3];
         int pos = 0;
 
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
-            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
+            atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaADemonstracaoAMatriz(matriz, pos);
             pos++;
         }
 

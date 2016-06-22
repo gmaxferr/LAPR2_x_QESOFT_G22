@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
@@ -12,7 +7,7 @@ import lapr.project.model.Exposicao;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class AlterarParaConflitosAtualizados extends TimerTask {
 

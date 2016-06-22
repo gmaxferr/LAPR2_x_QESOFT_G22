@@ -104,14 +104,14 @@ public class AvaliacaoTest {
     }
 
     /**
-     * Test of getMediaRatings method, of class Avaliacao.
+     * Test of getMediaRatingsCandidaturaAExposicao method, of class Avaliacao.
      */
     @Test
     public void testGetMediaRatings() {
         System.out.println("getMediaRatings");
         Avaliacao instance = new Avaliacao();
         instance.setAvalicao(1, 2, 3, 4, 5);
-        assertEquals(3f, instance.getMediaRatings(), 0.1f);
+        assertEquals(3f, instance.getMediaRatingsCandidaturaAExposicao(), 0.1f);
     }
 
     /**

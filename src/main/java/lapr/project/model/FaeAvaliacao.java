@@ -7,29 +7,56 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
+ * Classe que representa a ligação criada entre um FAE e a Candidatura que lhe
+ * for atribuida para este avaliar
  *
- * @author Ricardo Osorio
+ * @author G29
  */
 public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "FaeAvaliacao";
 
+    /**
+     * FAE designado para avaliar
+     */
     private FAE m_FaeAssociado;
+
+    /**
+     * Avaliação do FAE
+     */
     private Avaliacao m_avaliacao;
 
+    /**
+     * Construtor sem parametros
+     */
     public FaeAvaliacao() {
         this.m_avaliacao = new Avaliacao();
     }
 
+    /**
+     * Construtor que recebe por parametro o FAE designado
+     *
+     * @param fae fae designado na atribuição
+     */
     public FaeAvaliacao(FAE fae) {
         this();
         this.m_FaeAssociado = fae;
     }
 
+    /**
+     * Devolve o FAE designado para avaliar esta 
+     *
+     * @return Fae designado
+     */
     public FAE getFaeAssociado() {
         return this.m_FaeAssociado;
     }
 
+    /**
+     * Devolve a avaliação
+     * 
+     * @return 
+     */
     public Avaliacao getAvaliacao() {
         return this.m_avaliacao;
     }
@@ -38,8 +65,8 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
         this.m_avaliacao = aval;
     }
 
-    public void setAvalicao(int i, int i0, int i1, int i2, int i3) {
-        this.m_avaliacao.setAvalicao(i, i0, i1, i2, i3);
+    public void setAvalicao(int rat1, int rat2, int rat3, int rat4, int rat5) {
+        this.m_avaliacao.setAvalicao(rat1, rat2, rat3, rat4, rat5);
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {

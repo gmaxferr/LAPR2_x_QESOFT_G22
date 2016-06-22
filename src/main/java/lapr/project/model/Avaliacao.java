@@ -91,13 +91,25 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      *
      * @return média dos ratings da avaliação
      */
-    public float getMediaRatings() {
+    public float getMediaRatingsCandidaturaAExposicao() {
         float soma = (float) this.m_ratingAdequacaoAExposicao
                 + this.m_ratingAdequacaoAsDemos
                 + this.m_ratingAdequacaoNumConvites
                 + this.m_ratingConhecimentoSobreOTema
                 + this.m_ratingRecomendacaoGlobal;
         return soma / 5;
+    }
+
+    /**
+     * Calcula e devolve a média dos ratings associados a esta avaliação
+     *
+     * @return média dos ratings da avaliação
+     */
+    public float getMediaRatingsCandidaturaADemonstracao() {
+        float soma = (float) this.m_ratingAdequacaoDadosCandidatura
+                + this.m_ratingConhecimentoSobreOTema
+                + this.m_ratingRecomendacaoGlobal;
+        return soma / 3;
     }
 
     /**
@@ -150,7 +162,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
                     && this.m_ratingAdequacaoNumConvites == o.m_ratingAdequacaoNumConvites
                     && this.m_ratingConhecimentoSobreOTema == o.m_ratingConhecimentoSobreOTema
                     && this.m_ratingRecomendacaoGlobal == o.m_ratingRecomendacaoGlobal
-                    && Float.compare(this.getMediaRatings(), o.getMediaRatings()) == 0;
+                    && Float.compare(this.getMediaRatingsCandidaturaAExposicao(), o.getMediaRatingsCandidaturaAExposicao()) == 0;
         }
         return false;
     }

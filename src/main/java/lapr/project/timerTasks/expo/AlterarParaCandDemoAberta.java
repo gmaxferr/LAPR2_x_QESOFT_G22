@@ -1,12 +1,11 @@
 package lapr.project.timerTasks.expo;
 
 import java.util.TimerTask;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class AlterarParaCandDemoAberta extends TimerTask {
 

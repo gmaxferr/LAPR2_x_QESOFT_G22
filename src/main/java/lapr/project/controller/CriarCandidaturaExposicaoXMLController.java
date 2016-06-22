@@ -1,26 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoDemonstracoes;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
  *
- * @author JoãoCardoso aka K4rd050
+ * @author G29
  */
 public class CriarCandidaturaExposicaoXMLController {
 
