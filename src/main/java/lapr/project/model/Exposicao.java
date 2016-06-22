@@ -74,6 +74,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      */
     private RegistoAtribuicoes m_ra;
+    
+    private RegistoAtribuicoesDemonstracao m_rad;
 
     /**
      *
@@ -130,6 +132,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_keywordRanking = new KeywordRanking();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
+        this.m_rad = new RegistoAtribuicoesDemonstracao();
     }
 
     /**
@@ -163,6 +166,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_ro = new RegistoOrganizadores();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
+        this.m_rad = new RegistoAtribuicoesDemonstracao();
     }
 
     /**
@@ -469,6 +473,10 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_ra;
     }
 
+    public RegistoAtribuicoesDemonstracao getRegistoAtribuicoesDemonstracao(){
+        return this.m_rad;
+    }
+    
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
