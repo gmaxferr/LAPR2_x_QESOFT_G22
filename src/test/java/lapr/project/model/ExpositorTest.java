@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -88,7 +91,12 @@ public class ExpositorTest {
         Node node = null;
         Expositor instance = null;
         Expositor expResult = null;
-        Expositor result = instance.importContentFromXMLNode(node);
+        Expositor result;
+        try {
+            result = instance.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
