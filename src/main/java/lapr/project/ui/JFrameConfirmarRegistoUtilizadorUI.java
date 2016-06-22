@@ -248,13 +248,17 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setUtilizadorRegistado(listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex()));
-        String[] opcoes2 = {"Sim", "Não"};
-            int resposta = JOptionPane.showOptionDialog(rootPane, "Confirmação registada", "Confirmação de registo", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
-            if (resposta == 0) {
+        this.listaUtilizadores = controller.getListaNovosRegistos();
+        if (listaUtilizadores.size() > 0) {
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "Confirmação registada. Deseja confirmar outro utilizador?", "Confirmação de registo", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
                 voltarASelecionarUtilizador();
             } else {
                 terminarUC();
             }
+        } else {
+            terminarUC();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void voltarASelecionarUtilizador() {
