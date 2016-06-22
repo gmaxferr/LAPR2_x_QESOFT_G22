@@ -104,7 +104,7 @@ public class CriarExposicaoController {
         m_exposicao.setDescricao(strDescricao);
         m_exposicao.setPeriodo(dataInicio, dataFim);
         m_exposicao.setDataAberturaSubCand(dataAberturaSubCand);
-        m_exposicao.setDataEncerramentoSubCand(dataAberturaSubCand);
+        m_exposicao.setDataEncerramentoSubCand(dataEncerramentoSubCand);
         m_exposicao.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         m_exposicao.setLocal(strLocal);
         if (!m_exposicao.valida()) {

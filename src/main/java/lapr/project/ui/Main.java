@@ -7,12 +7,9 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.ImportarXMLController;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
-import lapr.project.utils.Data;
 import org.w3c.dom.Node;
 
 /**
