@@ -108,7 +108,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
      * @return média dos ratings de todas as avaliações feitas pelos FAE neste
      * registo
      */
-    public float getMediaRatings() {
+    public float getMediaDeTodosOsRatings() {
         int cont = this.m_listaFaeAvaliacao.size();
         float somaMediaRatingsDeCadaFAE = 0;
         for (FaeAvaliacao faeAvaliacao : m_listaFaeAvaliacao) {

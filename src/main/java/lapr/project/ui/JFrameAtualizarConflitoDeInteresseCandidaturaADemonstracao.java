@@ -1,45 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.AtualizarConflitosDeInteresseCandidaturaAExposicaoController;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.ConflitoDeInteresse;
-import lapr.project.model.Exposicao;
-import lapr.project.model.TipoConflito;
-import lapr.project.ui.model.AbstractListModelConflitosDeInteresse;
-import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
+import lapr.project.model.*;
+import lapr.project.ui.model.*;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends javax.swing.JFrame {
 
-    
     private transient AtualizarConflitosDeInteresseCandidaturaAExposicaoController CTRL;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
 
+    /**
+     * Lista de exposições
+     */
     private transient List<Exposicao> listaExposicoes;
+
+    /**
+     * Lista de candidaturas
+     */
     private transient List<CandidaturaAExposicao> listaCandidaturas;
+
+    /**
+     *
+     */
     private transient List<ConflitoDeInteresse> listaConflitos;
+
+    /**
+     *
+     */
     private transient List<TipoConflito> listaTiposConflito;
 
+    /**
+     * JFramedo menu principal. Usado no final deste UC para que o menu volte a
+     * estar visível
+     */
     private JFrame mainMenu;
-    
-    
+
     /**
      * Creates new form
      * JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao
@@ -93,6 +98,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         comboBoxSelectTipoConflito = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabelCard1Titulo1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabelCard1Titulo1.setText("Escolha a exposição pretendida");

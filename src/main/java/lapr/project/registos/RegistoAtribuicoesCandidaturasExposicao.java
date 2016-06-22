@@ -83,13 +83,21 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         int cont = this.m_listaAtribuicao.size();
         float[] vec = new float[cont];
         int i = 0;
-        
+
         for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
-            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
             i++;
         }
 
         return vec;
+    }
+
+    public float[] getMediaRatingsPorCriterioDasCandidaturas() {
+        float[] vec = new float[5];
+
+        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicao) {
+            atribuicao.getRegistoFaeAvaliacao().somarRatings
+        }
     }
 
     /**
@@ -194,4 +202,5 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         }
         return node;
     }
+
 }

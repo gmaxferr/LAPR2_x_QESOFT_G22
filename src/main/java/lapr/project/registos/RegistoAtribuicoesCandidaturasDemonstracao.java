@@ -85,7 +85,7 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         int i = 0;
 
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
-            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaRatings();
+            vec[i] = atribuicao.getRegistoFaeAvaliacao().getMediaDeTodosOsRatings();
             i++;
         }
 
