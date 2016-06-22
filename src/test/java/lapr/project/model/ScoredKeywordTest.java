@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -163,7 +166,12 @@ public class ScoredKeywordTest {
         Node node = null;
         ScoredKeyword instance = null;
         ScoredKeyword expResult = null;
-        ScoredKeyword result = instance.importContentFromXMLNode(node);
+        ScoredKeyword result;
+        try {
+            result = instance.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

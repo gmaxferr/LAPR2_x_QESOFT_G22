@@ -29,16 +29,16 @@ public class CriarCandidaturaExposicaoXMLController {
     private CentroExposicoes m_ce;
 
     public CriarCandidaturaExposicaoXMLController(CentroExposicoes ce, Exposicao e, String filename) throws ParserConfigurationException {
-        m_ce = ce;
+        this.m_ce = ce;
+        this.m_e = e;
         try {
             ImportarXMLController impCtrl = new ImportarXMLController();
             Node node = impCtrl.Import(filename);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) node;
 
-                Node n2 = elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0);
-                CandidaturaAExposicao m_c = new CandidaturaAExposicao(this.m_e, null);
-                m_c.importContentFromXMLNode(n2);
+                this.m_c = new CandidaturaAExposicao(this.m_e, null);
+                m_c.importContentFromXMLNode(elem);
             }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Ficheiro não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -56,3 +56,4 @@ public class CriarCandidaturaExposicaoXMLController {
     }
 
 }
+

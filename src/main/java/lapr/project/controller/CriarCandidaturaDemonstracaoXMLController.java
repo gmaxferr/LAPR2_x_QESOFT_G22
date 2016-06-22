@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.*;
 import lapr.project.registos.RegistoCandidaturasADemonstracoes;
+import lapr.project.registos.RegistoCandidaturasADemonstracao;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -39,6 +40,7 @@ public class CriarCandidaturaDemonstracaoXMLController {
      */
     public void registarCandidatura(String email) {
         RegistoCandidaturasADemonstracoes rcd = m_d.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracao rcd = m_d.getRegistoCandidaturasADemonstracao();
         m_c.setEmailExpositor(email);
         rcd.adiciona(m_c);
     }

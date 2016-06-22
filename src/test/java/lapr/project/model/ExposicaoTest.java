@@ -29,7 +29,7 @@ import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
 import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
 import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
 import lapr.project.estados.Exposicao.EstadoExposicaoStandsAtribuidos;
-import lapr.project.registos.RegistoAtribuicoes;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
@@ -555,9 +555,9 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoAtribuicoes() {
         System.out.println("getRegistoAtribuicoes");
-        RegistoAtribuicoes expResult = new RegistoAtribuicoes();
+        RegistoAtribuicoesCandidaturasExposicao expResult = new RegistoAtribuicoesCandidaturasExposicao();
         e.setRegistoAtribuicoes(expResult);
-        RegistoAtribuicoes result = e.getRegistoAtribuicoes();
+        RegistoAtribuicoesCandidaturasExposicao result = e.getRegistoAtribuicoes();
         assertEquals(expResult, result);
 
     }
@@ -1131,7 +1131,7 @@ public class ExposicaoTest {
     @Test
     public void testSetRegistoAtribuicoes_RegistoAtribuicoes() {
         System.out.println("setRegistoAtribuicoes");
-        RegistoAtribuicoes m_ra = null;
+        RegistoAtribuicoesCandidaturasExposicao m_ra = null;
         e.setRegistoAtribuicoes(m_ra);
     }
 
@@ -1237,7 +1237,7 @@ public class ExposicaoTest {
     @Test
     public void testSetRegistoAtribuicoes() {
         System.out.println("setRegistoAtribuicoes");
-        RegistoAtribuicoes m_ra = new RegistoAtribuicoes();
+        RegistoAtribuicoesCandidaturasExposicao m_ra = new RegistoAtribuicoesCandidaturasExposicao();
         e.setRegistoAtribuicoes(m_ra);
     }
 

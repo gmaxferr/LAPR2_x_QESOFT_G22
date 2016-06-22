@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -191,7 +194,11 @@ public class CentroExposicoesTest {
         CentroExposicoes expResult = ce;
         Node node = expResult.exportContentToXMLNode();
         CentroExposicoes result = ce;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
 
     }
@@ -205,7 +212,11 @@ public class CentroExposicoesTest {
         CentroExposicoes expResult = ce;
         Node node = expResult.exportContentToXMLNode();
         CentroExposicoes result = ce;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 

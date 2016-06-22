@@ -18,11 +18,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Representação de um RegistoAtribuicoes
+ * Representação de um RegistoAtribuicoesCandidaturasExposicao
  *
  * @author G29
  */
-public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Exportable {
+public class RegistoAtribuicoesCandidaturasExposicao implements Importable<RegistoAtribuicoesCandidaturasExposicao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
@@ -34,7 +34,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
     /**
      * Construtor de objetos do tipo RegistoAtribuicoes sem parâmetros
      */
-    public RegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasExposicao() {
         this.m_listaAtribuicao = new ArrayList<>();
     }
 
@@ -79,7 +79,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      *
      * @return vetor com médias dos ratings de cada candidatura
      */
-    public float[] getMediaRatingsTodasCandidaturas() {
+    public float[] getMediaRatingsTodasCandidaturasAExposicao() {
         int cont = this.m_listaAtribuicao.size();
         float[] vec = new float[cont];
         int i = 0;
@@ -143,7 +143,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
      * @return
      */
     @Override
-    public RegistoAtribuicoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
+    public RegistoAtribuicoesCandidaturasExposicao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document doc = XMLParser.createDocument(node, true);
 
         Node n = doc.getChildNodes().item(0);
@@ -190,7 +190,7 @@ public class RegistoAtribuicoes implements Importable<RegistoAtribuicoes>, Expor
             node = elementKeyword;
 
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(RegistoAtribuicoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistoAtribuicoesCandidaturasExposicao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
     }

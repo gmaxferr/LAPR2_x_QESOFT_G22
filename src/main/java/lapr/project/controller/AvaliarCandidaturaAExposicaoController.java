@@ -34,7 +34,7 @@ public class AvaliarCandidaturaAExposicaoController {
     /**
      * Registo de atribuições associado à exposição escolhida pelo FAE na UI
      */
-    private RegistoAtribuicoes m_ra;
+    private RegistoAtribuicoesCandidaturasExposicao m_ra;
 
     /**
      * Atribuição escolhida pelo FAE na UI
