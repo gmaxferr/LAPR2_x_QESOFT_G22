@@ -79,8 +79,7 @@ public class AlterarCandidaturaDemonstracaoController {
         List<CandidaturaADemonstracao> lstCands = new ArrayList<>();
         for (Demonstracao d : lstDemos) {
             RegistoCandidaturasADemonstracao rcd = d.getRegistoCandidaturasADemonstracao();
-            rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
-            lstCands.addAll(rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor));
+            lstCands.addAll(rcd.getListaCandidaturasADemonstracaoRep(d,m_emailExpositor));
         }
         return lstCands;
     }

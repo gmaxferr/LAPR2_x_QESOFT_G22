@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -64,7 +65,7 @@ public class TipoConflitoTest {
      * Test of importContentFromXMLNode method, of class TipoConflito.
      */
     @Test
-    public void testImportContentFromXMLNode() {
+    public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
         Node node = null;
 

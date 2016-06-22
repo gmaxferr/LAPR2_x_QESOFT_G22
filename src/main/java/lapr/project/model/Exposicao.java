@@ -617,7 +617,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void recriarTimersDemo() {
         List<Demonstracao> lstDemos = m_rd.getListaDemonstracoes();
-        if (this.getEstado().isEstadoCandidaturasDecididas() || this.getEstado().isEstadoStandsAtribuidos()) {
+        if (this.getEstado().isEstadoCandidaturasDecididas()) {
             for (Demonstracao d : lstDemos) {
                 d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
                 d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
@@ -755,20 +755,17 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     break;
                 case "candsDecididas":
                     this.m_estado = new EstadoExposicaoCandidaturasDecididas(this);
-                    break;
-                case "standsAtribuidos":
-                    this.m_estado = new EstadoExposicaoStandsAtribuidos(this);
-                    break;
-                case "demosDecididas":
-                    this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
-                    recriarTimersDemo();
-                    break;
-                case "candDemosAbertas":
-                    this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoAbertas(this);
-                    recriarTimersDemo();
-                    break;
-                case "candDemosFechadas":
-                    this.m_estado = new EstadoExposicaoCandidaturasDemonstracaoFechadas(this);
+                    if (!this.m_keywordRanking.isReady()) {
+                        for (CandidaturaAExposicao cand : getListaCandidaturasAExposicao()) {
+                            if (!cand.getEstado().isEstadoCandidaturaRemovida()) {
+                                String[] keywords = cand.getKeywords();
+                                for(String str : keywords){
+                                    this.m_keywordRanking.addKeyword(str, cand.getDecisao());
+                                }
+                            }
+                        }
+                        this.m_keywordRanking.setReady();
+                    }
                     break;
                 default:
                     break;
@@ -811,14 +808,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsAvaliadas");
             } else if (this.m_estado.isEstadoCandidaturasDecididas()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsDecididas");
-            } else if (this.m_estado.isEstadoStandsAtribuidos()) {
-                elementExpo.setAttribute(ESTADO_ATTR_NAME, "standsAtribuidos");
-            } else if (this.m_estado.isEstadoDemonstracoesDecididas()) {
-                elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosDecididas");
-            } else if (this.m_estado.isEstadoCandidaturasDemonstracaoAbertas()) {
-                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candDemosAbertas");
-            } else if (this.m_estado.isEstadoCandidaturasDemonstracaoFechadas()) {
-                elementExpo.setAttribute(ESTADO_ATTR_NAME, "candDemosFechadas");
             }
 
             Element elemChild;

@@ -28,6 +28,7 @@ import lapr.project.ui.model.ComboBoxModelExposicoes;
 public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
 
     private JFrame jFrameMenuPrincipal;
+    private JFrame thisFrame;
     private List<Exposicao> m_listaExposicoes;
     private Exposicao m_expo;
     private CentroExposicoes m_ce;
@@ -46,6 +47,7 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
         m_listaExposicoes = ce.getRegistoExposicoes().getListaExposicoes();
         jFrameMenuPrincipal = janelaMae;
         this.m_user = user;
+        thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
         this.setVisible(true);
@@ -265,7 +267,9 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
             try {
                 controller = new CriarCandidaturaExposicaoXMLController(m_ce, m_expo, filename);
                 controller.registarCandidatura(m_user);
-                
+                JOptionPane.showMessageDialog(rootPane, "Candidatura registada com sucesso", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                thisFrame.dispose();
+                jFrameMenuPrincipal.setVisible(true);
             } catch (ParserConfigurationException ex) {
                 Logger.getLogger(JFrameCriarCandidaturaExposicaoXML.class.getName()).log(Level.SEVERE, null, ex);
             }

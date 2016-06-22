@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -194,7 +195,12 @@ public class KeywordRankingTest {
         Node node = null;
         KeywordRanking instance = new KeywordRanking();
         KeywordRanking expResult = null;
-        KeywordRanking result = instance.importContentFromXMLNode(node);
+        KeywordRanking result;
+        try {
+            result = instance.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

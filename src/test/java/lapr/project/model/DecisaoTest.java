@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -61,7 +64,11 @@ public class DecisaoTest {
         Decisao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         Decisao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 
@@ -74,7 +81,11 @@ public class DecisaoTest {
         Decisao expResult = instance;
         Node node = expResult.exportContentToXMLNode();
         Decisao result = instance;
-        result.importContentFromXMLNode(node);
+        try {
+            result.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            result = null;
+        }
         assertEquals(expResult, result);
     }
 }

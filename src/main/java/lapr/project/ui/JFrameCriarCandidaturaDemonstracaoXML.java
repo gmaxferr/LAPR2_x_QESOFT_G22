@@ -409,10 +409,13 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
             if (filename != null) {
                 try {
                     controller = new CriarCandidaturaDemonstracaoXMLController(m_ce, filename, m_demo);
+                    controller.registarCandidatura(emailExpositor);
+                    JOptionPane.showMessageDialog(rootPane, "Candidatura registada com sucesso", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                    thisFrame.dispose();
+                    jFrameMenuPrincipal.setVisible(true);
                 } catch (ParserConfigurationException ex) {
                     Logger.getLogger(JFrameCriarCandidaturaDemonstracaoXML.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                controller.registarCandidatura(emailExpositor);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "O ficheiro selecionado é inválido!", "Ficheiro inválido", JOptionPane.ERROR_MESSAGE);
             }

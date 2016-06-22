@@ -88,7 +88,10 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
 
-            elemBase.appendChild(document.importNode(this.m_candidatura.getExpositor().exportContentToXMLNode(), true));
+            Expositor expositor = this.m_candidatura.getExpositor();
+            if (expositor != null) {
+                elemBase.appendChild(document.importNode(expositor.exportContentToXMLNode(), true));
+            }
             for (Produto prod : this.m_candidatura.getProdutosExpor()) {
                 elemBase.appendChild(document.importNode(prod.exportContentToXMLNode(), true));
             }

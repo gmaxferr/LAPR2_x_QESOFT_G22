@@ -15,7 +15,6 @@ import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
 import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemonstracoesDecididas;
 import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
 import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
 import lapr.project.model.CandidaturaAExposicao;
@@ -99,7 +98,6 @@ public class RegistoExposicoesTest {
         expo9.getRegistoDemonstracoes().addDemo(demo1);
 
         expo10 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
-        expo10.setEstado(new EstadoExposicaoDemonstracoesDecididas(expo10));
         
         expo11 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo11.getRegistoOrganizadores().addOrganizador(user3);

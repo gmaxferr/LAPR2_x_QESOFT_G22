@@ -2,7 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 import lapr.project.ui.model.ComboBoxModelTipoDeConflito;
-import lapr.project.ui.model.AbstractListModelConflitosDeInteresse;
+import lapr.project.ui.model.AbstractListModelConflitosDeInteresseCandidaturaAExposicao;
 import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
 import java.awt.CardLayout;
 import java.util.List;
@@ -386,7 +386,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
         getContentPane().add(jPanel1, "card1");
         jPanel1.getAccessibleContext().setAccessibleName("card1");
 
-        jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos)
+        jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos)
         );
         jScrollPane1.setViewportView(jList1);
 
@@ -553,7 +553,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
             CTRL.registaConflito();
             passaParaPanel2();
             listaConflitos = CTRL.getListaConflitos();
-            jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos));
+            jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos));
         } else {
             JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Conflito Repetido.", ERROR_MESSAGE);
         }
@@ -578,7 +578,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
                 CTRL.removeConflito(listaConflitos.get(x));
             }
             listaConflitos = CTRL.getListaConflitos();
-            jList1.setModel(new AbstractListModelConflitosDeInteresse(listaConflitos));
+            jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

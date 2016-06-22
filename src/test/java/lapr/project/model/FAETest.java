@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -79,7 +80,7 @@ public class FAETest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        String expResult = "FAE:\n" + "\tUser: " + nome + "\n";
+        String expResult = "FAE:%n" + "\tUser: " + nome + "%n";
         String result = instance.toString();
         assertEquals(expResult, result);
     }
@@ -88,7 +89,7 @@ public class FAETest {
      * Test of importContentFromXMLNode method, of class FAE.
      */
     @Test
-    public void testImportContentFromXMLNode() {
+    public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
         Node node = null;
         FAE expResult = null;

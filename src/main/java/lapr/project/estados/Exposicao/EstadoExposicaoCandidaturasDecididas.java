@@ -14,20 +14,6 @@ public class EstadoExposicaoCandidaturasDecididas extends EstadoExposicao {
     }
 
     @Override
-    public boolean setEstadoStandsAtribuidos() {
-        if (valida()) {
-            this.m_exposicao.setEstado(new EstadoExposicaoStandsAtribuidos(m_exposicao));
-            return true;
-        }
-        return false;
-    }
-
-    public boolean valida() {
-        // TODO
-        return true;
-    }
-
-    @Override
     public boolean isEstadoCandidaturasDecididas() {
         return true;
     }
