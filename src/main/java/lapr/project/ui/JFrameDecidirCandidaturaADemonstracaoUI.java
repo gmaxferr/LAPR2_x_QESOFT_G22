@@ -57,7 +57,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
         this.mainMenu = mainMenu;
         initComponents();
 
-        this.CTRL = new DecidirCandidaturaADemonstracaoController(centroExposicoes);
+        this.CTRL = new DecidirCandidaturaADemonstracaoController(centroExposicoes, username);
         CTRL.getRegistoExposicoes();
         this.listaExposicoes = CTRL.getListaExposicoes();
         this.cardLayout = (CardLayout) getContentPane().getLayout();

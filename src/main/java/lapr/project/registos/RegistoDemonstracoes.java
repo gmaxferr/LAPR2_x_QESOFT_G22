@@ -376,4 +376,21 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
     }
 
+    /**
+     * Verifica se o FAE é realmente FAE de uma demonstração
+     *
+     * @param username - username do FAE
+     * @return true se for; false caso contrário.
+     */
+    boolean isFaeDeDemo(String username) {
+        boolean isFae = false;
+        for (Demonstracao d : this.m_listaDemonstracoes) {
+            RegistoFAE rf = d.getRegistoFAE();
+            if (rf.isFAE(username)) {
+                isFae = true;
+            }
+        }
+        return isFae;
+    }
+
 }
