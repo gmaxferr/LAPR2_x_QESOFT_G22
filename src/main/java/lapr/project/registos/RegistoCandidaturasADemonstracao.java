@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.*;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
+import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 import lapr.project.utils.*;
 import org.w3c.dom.*;
 
@@ -160,4 +162,5 @@ public class RegistoCandidaturasADemonstracao implements Importable<RegistoCandi
         }
         return listCand;
     }
+
 }

@@ -93,10 +93,17 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     private RegistoCandidaturasADemonstracao m_rcd;
 
 
+    private RegistoFAE m_rf;
+    
     /**
      *
      */
     private RegistoConflitosDemonstracao m_rconfDemo;
+
+    /**
+     *registo de atribuições da demonstração
+     */
+    private RegistoAtribuicoesDemonstracao m_rad;
 
     /**
      * Registo de candidaturas a demonstracao removidas
@@ -110,6 +117,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
+        this.m_rad = new RegistoAtribuicoesDemonstracao();
+        this.m_rf = new RegistoFAE();
     }
 
     /**
@@ -118,7 +127,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     public Demonstracao(String descricao) {
         this();
-        this.m_expo = null;
         this.m_StrDescricao = descricao;
     }
 
@@ -510,5 +518,13 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
 
     Data getDataFimDetecaoConflitos() {
         return m_dataFimDetecaoConflitos;
+    }
+
+    /**
+     * 
+     * @return registo de FAE da demonstração 
+     */
+    public RegistoFAE getRegistoFAE() {
+        return this.m_rf;
     }
 }

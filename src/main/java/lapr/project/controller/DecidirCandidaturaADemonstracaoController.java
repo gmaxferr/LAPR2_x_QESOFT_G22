@@ -21,7 +21,7 @@ public class DecidirCandidaturaADemonstracaoController {
      * Registo de demonstrações
      */
     private RegistoDemonstracoes rd;
-    
+
     /**
      * Demonstração selecionada pelo gestor na UI
      */
@@ -49,17 +49,18 @@ public class DecidirCandidaturaADemonstracaoController {
     private CentroExposicoes m_ce;
 
     /**
-     * Keywords associadas à candidatura selecionada pelo gestor na UI
+     * username do organizador que iniciou a UC
      */
-    private String[] keywords;
+    private String username;
 
     /**
      * Construtor do controller do UC17 - Decidir candidaturas a exposição
      *
      * @param ce centro de exposições atual
      */
-    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce) {
+    public DecidirCandidaturaADemonstracaoController(CentroExposicoes ce, String username) {
         this.m_ce = ce;
+        this.username = username;
     }
 
     /**
@@ -77,7 +78,7 @@ public class DecidirCandidaturaADemonstracaoController {
      * @return lista de exposições no estado Avaliadas
      */
     public ArrayList<Exposicao> getListaExposicoes() {
-        return this.m_re.getListaExposicoesEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas();
+        return this.m_re.getListaExposicoesDoOrganizadorEstadoCandidaturasDemonstracaoFechadaComDemonstracoesEmEstadoAvaliadas(username);
     }
 
     /**
@@ -146,7 +147,7 @@ public class DecidirCandidaturaADemonstracaoController {
     public String getDadosCandidatura() {
         return this.m_candidaturaSelecionada.getDadosCandidatura();
     }
-    
+
     /**
      *
      * @return descrição de uma candidatura
@@ -154,9 +155,10 @@ public class DecidirCandidaturaADemonstracaoController {
     public String getEmailRep() {
         return this.m_candidaturaSelecionada.getEmailExpositor();
     }
+
     /**
-     * 
-     * @return lista de demonstrações em estado avaliadas 
+     *
+     * @return lista de demonstrações em estado avaliadas
      */
     public ArrayList<Demonstracao> getListaDemonstracoes() {
         rd = m_exposicaoSelecionada.getRegistoDemonstracoes();
@@ -165,6 +167,7 @@ public class DecidirCandidaturaADemonstracaoController {
 
     /**
      * Guarda a demonstração selecionada
+     *
      * @param d - demonstração selecionada
      */
     public void setDemonstracao(Demonstracao d) {
@@ -172,16 +175,16 @@ public class DecidirCandidaturaADemonstracaoController {
     }
 
     /**
-     * 
-     * @return descrição da demonstração selecioada 
+     *
+     * @return descrição da demonstração selecioada
      */
     public String getDescricaoDemo() {
         return this.m_demonstracaoSelecionada.getDescricao();
     }
-   
+
     /**
-     * 
-     * @return codigo de identificação da demonstração selecioada 
+     *
+     * @return codigo de identificação da demonstração selecioada
      */
     public String getCodigoIDDemo() {
         return this.m_demonstracaoSelecionada.getCodigoIdentificacao();
@@ -190,5 +193,5 @@ public class DecidirCandidaturaADemonstracaoController {
     public List<CandidaturaADemonstracao> getCandidaturas() {
         return m_rc.getListaCandidaturasEstadoAvaliada();
     }
-    
+
 }

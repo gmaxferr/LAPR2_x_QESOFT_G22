@@ -8,7 +8,7 @@ import lapr.project.registos.*;
  *
  * @author G29
  */
-public class AtualizarConflitosDeInteresseController {
+public class AtualizarConflitosDeInteresseCandidaturaAExposicaoController {
 
     private RegistoConflitos rc;
     private RegistoCandidaturasAExposicao rcand;
@@ -29,7 +29,7 @@ public class AtualizarConflitosDeInteresseController {
      * @param usernameFae - username do FAE que iniciou o caso de uso
      * @param ce - Centro de Exposições
      */
-    public AtualizarConflitosDeInteresseController(String usernameFae, CentroExposicoes ce) {
+    public AtualizarConflitosDeInteresseCandidaturaAExposicaoController(String usernameFae, CentroExposicoes ce) {
         this.ce = ce;
         this.usernameFae = usernameFae;
     }
