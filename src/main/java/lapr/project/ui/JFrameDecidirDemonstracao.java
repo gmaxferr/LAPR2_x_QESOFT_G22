@@ -721,6 +721,8 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
                 getDatas();
+                Data dataAtual = new Data();
+                if(!dataFimDetecaoConflitos.isMaior(dataAtual)&&!dataFimSubCand.isMaior(dataAtual)&&!dataInicioSubCand.isMaior(dataAtual)){
                 if (dataFimSubCand.isMaior(dataInicioSubCand)) {
                     if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
                         ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
@@ -730,6 +732,9 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
                 }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia "+dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
+            }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR_MESSAGE);
             }
