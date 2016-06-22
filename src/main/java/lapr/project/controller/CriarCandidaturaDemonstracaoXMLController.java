@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoCandidaturaADemonstracoes;
+import lapr.project.registos.RegistoCandidaturasADemonstracoes;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -38,7 +38,7 @@ public class CriarCandidaturaDemonstracaoXMLController {
      * Adiciona a candidatura ao registo de candidaturas da demonstração
      */
     public void registarCandidatura(String email) {
-        RegistoCandidaturaADemonstracoes rcd = m_d.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracoes rcd = m_d.getRegistoCandidaturasADemonstracao();
         m_c.setEmailExpositor(email);
         rcd.adiciona(m_c);
     }
