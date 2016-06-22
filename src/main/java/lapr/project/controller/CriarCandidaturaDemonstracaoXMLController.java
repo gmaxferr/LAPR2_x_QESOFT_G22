@@ -34,7 +34,6 @@ public class CriarCandidaturaDemonstracaoXMLController {
      */
     public void registarCandidatura(String email) {
         RegistoCandidaturaADemonstracoes rcd = m_d.getRegistoCandidaturasADemonstracao();
-        m_c.fix();
         m_c.setEmailExpositor(email);
         rcd.adiciona(m_c);
     }
