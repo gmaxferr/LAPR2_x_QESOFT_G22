@@ -35,7 +35,7 @@ public class DecidirCandidaturaADemonstracaoController {
     /**
      * Registo de candidaturas feito à demonstração selecionada
      */
-    private RegistoCandidaturasADemonstracoes m_rc;
+    private RegistoCandidaturasADemonstracao m_rc;
 
     /**
      * Registo de exposições onde vão ser guardadas as exposições a serem

@@ -35,13 +35,13 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Registo das atribuições geradas da candidatura selecionada
      */
-    private RegistoAtribuicoes m_rAtribExpos;
+    private RegistoAtribuicoesCandidaturasExposicao m_rAtribExpos;
 
     /**
      * Registo de demonstrações da exposição selecionada
      */
     private RegistoDemonstracoes rd;
-    private RegistoAtribuicoesDemonstracao m_rAtribDemos;
+    private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
      * Construtor recebendo como parametro apenas o centro de exposições atual
@@ -75,14 +75,14 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @param e exposição
      */
-    public void setM_exposicaoSelecionada(Exposicao e) {
+    public void setExposicaoSelecionada(Exposicao e) {
         this.m_exposicaoSelecionada = e;
     }
 
     /**
      * Guarda o registo das candidaturas da exposição selecionada
      */
-    public void getRegistoCandidaturas() {
+    public void getRegistoCandidaturasAExposicao() {
         this.rce = this.m_exposicaoSelecionada.getRegistoCandidaturasAExposicao();
     }
 
@@ -91,11 +91,11 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return lista de candidaturas à exposição
      */
-    public List<CandidaturaAExposicao> getListaCandidaturas() {
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicao() {
         return this.rce.getListaCandidaturas();
     }
 
-    public void getRegistoDemonstrações() {
+    public void getRegistoDemonstracoes() {
         this.rd = this.m_exposicaoSelecionada.getRegistoDemonstracoes();
     }
 

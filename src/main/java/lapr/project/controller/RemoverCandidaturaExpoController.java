@@ -40,7 +40,7 @@ public class RemoverCandidaturaExpoController {
     /**
      * Registo de atribuições da exposição selecionada
      */
-    private RegistoAtribuicoes m_ra;
+    private RegistoAtribuicoesCandidaturasExposicao m_ra;
 
     /**
      * Construtor do controller da UC18 - remover candidatura a uma exposição
@@ -62,7 +62,7 @@ public class RemoverCandidaturaExpoController {
      *
      * @return registo de atribuicoes da exposição selecionada
      */
-    public RegistoAtribuicoes getRegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoes() {
         m_ra = m_exposicaoSelecionada.getRegistoAtribuicoes();
         return m_ra;
     }

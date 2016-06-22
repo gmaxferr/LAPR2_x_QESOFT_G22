@@ -64,12 +64,12 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
             expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
 
             this.m_candidatura = new CandidaturaAExposicao(expositor);
-            NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
+            NodeList nList = elem.getElementsByTagName(Produto.ROOT_ELEMENT_NAME);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
-                Keyword key = new Keyword();
-                key.importContentFromXMLNode(n2);
-                this.m_candidatura.getListKeyword().add(key);
+                Produto prod = new Produto();
+                prod.importContentFromXMLNode(n2);
+                this.m_candidatura.getProdutosExpor().add(prod);
             }
 
             this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
@@ -89,8 +89,8 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
             document.appendChild(elemBase);
 
             elemBase.appendChild(document.importNode(this.m_candidatura.getExpositor().exportContentToXMLNode(), true));
-            for (Keyword k : this.m_candidatura.getListKeyword()) {
-                elemBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
+            for (Produto prod : this.m_candidatura.getProdutosExpor()) {
+                elemBase.appendChild(document.importNode(prod.exportContentToXMLNode(), true));
             }
             elemBase.appendChild(document.importNode(this.m_rFaeAvaliacao.exportContentToXMLNode(), true));
 

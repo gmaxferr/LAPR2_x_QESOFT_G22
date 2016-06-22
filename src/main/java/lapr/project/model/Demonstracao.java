@@ -90,7 +90,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     /**
      *
      */
-    private RegistoCandidaturasADemonstracoes m_rcd;
+    private RegistoCandidaturasADemonstracao m_rcd;
 
 
     private RegistoFAE m_rf;
@@ -100,10 +100,6 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoConflitosDemonstracao m_rconfDemo;
 
-    /**
-     *registo de atribuições da demonstração
-     */
-    private RegistoAtribuicoesDemonstracao m_rad;
 
     /**
      * Registo de candidaturas a demonstracao removidas
@@ -113,11 +109,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     public Demonstracao() {
         this.rc = new RegistoRecursos();
         this.m_expo = null;
-        this.m_rcd = new RegistoCandidaturasADemonstracoes();
+        this.m_rcd = new RegistoCandidaturasADemonstracao();
         this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
         this.m_estado = new EstadoDemonstracaoPendente(this);
         this.m_rconfDemo = new RegistoConflitosDemonstracao();
-        this.m_rad = new RegistoAtribuicoesDemonstracao();
         this.m_rf = new RegistoFAE();
     }
 
@@ -263,7 +258,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @return registo de candidaturas à demonstração
      */
-    public RegistoCandidaturasADemonstracoes getRegistoCandidaturasADemonstracao() {
+    public RegistoCandidaturasADemonstracao getRegistoCandidaturasADemonstracao() {
         return m_rcd;
     }
 
@@ -315,7 +310,7 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      * @return lista das candidaturas do expositor à demonstração
      */
     public List<CandidaturaADemonstracao> getCandidaturasDemoExpositor(String m_emailExpositor) {
-        RegistoCandidaturasADemonstracoes rcd = this.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracao rcd = this.getRegistoCandidaturasADemonstracao();
         return rcd.getListaCandidaturasADemonstracaoRep(m_emailExpositor);
 
     }
@@ -373,8 +368,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
             this.m_StrDescricao = elem.getElementsByTagName(DESCR_ELEMENT_NAME).item(0).getTextContent();
             this.rc = new RegistoRecursos();
             this.rc.importContentFromXMLNode(elem.getElementsByTagName(RegistoRecursos.ROOT_ELEMENT_NAME).item(0));
-            this.m_rcd = new RegistoCandidaturasADemonstracoes();
-            this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracoes.ROOT_ELEMENT_NAME).item(0));
+            this.m_rcd = new RegistoCandidaturasADemonstracao();
+            this.m_rcd.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracao.ROOT_ELEMENT_NAME).item(0));
             this.m_rcdr = new RegistoCandidaturasADemonstracaoRemovidas();
             this.m_rcdr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasADemonstracaoRemovidas.ROOT_ELEMENT_NAME).item(0));
             this.m_rconfDemo = new RegistoConflitosDemonstracao();

@@ -459,8 +459,8 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
-            controller.setM_exposicaoSelecionada(this.listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-            this.listaCandEstadoAceites = controller.getListaCandidaturas();
+            controller.setExposicaoSelecionada(this.listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            this.listaCandEstadoAceites = controller.getListaCandidaturasAExposicao();
             if (!listaCandEstadoAceites.isEmpty()) {
                 this.listaMediaRatingsPorCandidaturaAExposicao = controller.getMediaRatingsTodasCandidaturasAExposicao();
                 this.listaMediaRatingsPorCandidaturaAsDemos = controller.getMediaRatingsTodasCandidaturasAsDemonstracoes();

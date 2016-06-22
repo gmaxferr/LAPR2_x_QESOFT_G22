@@ -13,7 +13,7 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.FaeAvaliacao;
 import lapr.project.model.Utilizador;
-import lapr.project.registos.RegistoAtribuicoes;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 public class QualidadeFaeCalculoTest {
 
     CandidaturaAExposicao cand;
-    RegistoAtribuicoes ra;
+    RegistoAtribuicoesCandidaturasExposicao ra;
     Utilizador u1, u2;
     FAE fae1, fae2;
 
@@ -48,7 +48,7 @@ public class QualidadeFaeCalculoTest {
     public void setUp() {
         cand = new CandidaturaAExposicao(null, null);
         cand.setEstado(new EstadoCandidaturaAExposicaoAtribuida(cand));
-        ra = new RegistoAtribuicoes();
+        ra = new RegistoAtribuicoesCandidaturasExposicao();
         u1 = new Utilizador("nome", "username", "SecretCode-123".toCharArray(), "mail@mail.com", "INDIGO");
         u2 = new Utilizador("nome2", "username2", "SecretCode-1234".toCharArray(), "mail2@mail.com", "BLUE");
         fae1 = new FAE(u1);

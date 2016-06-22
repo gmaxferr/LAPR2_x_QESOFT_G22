@@ -73,9 +73,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     /**
      *
      */
-    private RegistoAtribuicoes m_ra;
-    
-    private RegistoAtribuicoesDemonstracao m_rad;
+    private RegistoAtribuicoesCandidaturasExposicao m_ra;
+
+    private RegistoAtribuicoesCandidaturasDemonstracao m_rad;
 
     /**
      *
@@ -124,7 +124,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_rfae = new RegistoFAE();
         this.m_rcr = new RegistoCandidaturasAExposicaoRemovidas(this);
         this.m_rconf = new RegistoConflitos();
-        this.m_ra = new RegistoAtribuicoes();
+        this.m_ra = new RegistoAtribuicoesCandidaturasExposicao();
         this.m_rd = new RegistoDemonstracoes();
         this.m_rd.setExposicao(this);
         this.m_ro = new RegistoOrganizadores();
@@ -132,7 +132,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_keywordRanking = new KeywordRanking();
         this.m_ras = new RegistoAtribuicoesStands();
         this.m_rexpositores = new RegistoExpositores();
-        this.m_rad = new RegistoAtribuicoesDemonstracao();
+        this.m_rad = new RegistoAtribuicoesCandidaturasDemonstracao();
     }
 
     /**
@@ -155,18 +155,6 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
-
-        this.m_rce = new RegistoCandidaturasAExposicao(this);
-        this.m_rfae = new RegistoFAE();
-        this.m_rcr = new RegistoCandidaturasAExposicaoRemovidas(this);
-        this.m_rconf = new RegistoConflitos();
-        this.m_ra = new RegistoAtribuicoes();
-        this.m_rd = new RegistoDemonstracoes();
-        this.m_rd.setExposicao(this);
-        this.m_ro = new RegistoOrganizadores();
-        this.m_ras = new RegistoAtribuicoesStands();
-        this.m_rexpositores = new RegistoExpositores();
-        this.m_rad = new RegistoAtribuicoesDemonstracao();
     }
 
     /**
@@ -469,14 +457,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @return registo de atribuições
      */
-    public RegistoAtribuicoes getRegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoes() {
         return this.m_ra;
     }
 
-    public RegistoAtribuicoesDemonstracao getRegistoAtribuicoesDemonstracao(){
+    public RegistoAtribuicoesCandidaturasDemonstracao getRegistoAtribuicoesDemonstracao() {
         return this.m_rad;
     }
-    
+
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
@@ -712,8 +700,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
             this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
             if (this.m_ra.getListaAtribuicoes().size() == 0) {
-                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoes.ROOT_ELEMENT_NAME).item(0));
+                this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesCandidaturasExposicao.ROOT_ELEMENT_NAME).item(0));
             }
+            this.m_rad.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesCandidaturasDemonstracao.ROOT_ELEMENT_NAME).item(0));
             this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
             this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
             this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
@@ -883,6 +872,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             elementExpo.appendChild(elemChild);
 
             elementExpo.appendChild(document.importNode(this.m_ra.exportContentToXMLNode(), true));
+            elementExpo.appendChild(document.importNode(this.m_rad.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_ras.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rce.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rconf.exportContentToXMLNode(), true));
@@ -922,7 +912,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @param m_ra the m_ra to set
      */
-    public void setRegistoAtribuicoes(RegistoAtribuicoes m_ra) {
+    public void setRegistoAtribuicoes(RegistoAtribuicoesCandidaturasExposicao m_ra) {
         this.m_ra = m_ra;
     }
 
