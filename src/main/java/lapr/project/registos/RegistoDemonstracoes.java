@@ -17,7 +17,9 @@ import org.w3c.dom.*;
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoDemonstracoes";
-    public static final String CONTADOR_ATTR_NAME = "contador";
+    public static final String ID_DEMONSTRACAO_ELEMENT_NAME = "id";
+
+    private final boolean isOriginal;
 
     /**
      * Lista de demostrações existentes
@@ -42,9 +44,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Construtor de objetos do tipo RegistoDemonstracoes sem paramentros
      */
-    public RegistoDemonstracoes() {
+    public RegistoDemonstracoes(boolean isOriginal) {
         this.m_listaDemonstracoes = new ArrayList<>();
         this.m_expo = null;
+        this.isOriginal = isOriginal;
     }
 
     /**
@@ -133,7 +136,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         for (Demonstracao d : listaDemonstracoes) {
-            d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
+            d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         }
         this.m_listaDemonstracoes = listaDemonstracoes;
     }
@@ -170,8 +173,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @param m_demoCriada - demonstração a adicionar
      */
     public void addDemo(Demonstracao m_demoCriada) {
-        m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
-        m_contadorDemos++;
+        m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         if (valida(m_demoCriada)) {
             this.m_listaDemonstracoes.add(m_demoCriada);
         }
@@ -281,6 +283,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      *
      * @param m_registoRecursos registo de recursos
      * @param rCand registo candidatura
+     * @param ru registoUtilizadores
      */
     public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand, RegistoUtilizadores ru) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
@@ -316,15 +319,25 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             this.m_listaDemonstracoes.clear();
 
-            NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+            NodeList nList;
+            if (isOriginal) {
+                nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+            }else{
+                nList = elem.getElementsByTagName(ID_DEMONSTRACAO_ELEMENT_NAME);
+            }
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
-                Demonstracao demo = new Demonstracao("", m_expo);
-                demo.importContentFromXMLNode(n2);
+                Demonstracao demo;
+                demo = new Demonstracao("", m_expo);
+                if (isOriginal) {
+                    demo.importContentFromXMLNode(n2);
+                } else {
+                    demo.setCodigoIdentificacao(n2.getTextContent());
+                }
                 m_listaDemonstracoes.add(demo);
             }
 
-            this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
+            this.m_contadorDemos = m_listaDemonstracoes.size();
         }
 
         return this;
@@ -341,12 +354,16 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
+            Node n;
             for (Demonstracao demo : m_listaDemonstracoes) {
-                Node n = demo.exportContentToXMLNode();
+                if (isOriginal) {
+                    n = demo.exportContentToXMLNode();
+                } else {
+                    n = document.createElement(ID_DEMONSTRACAO_ELEMENT_NAME);
+                    n.setTextContent(demo.getCodigoIdentificacao());
+                }
                 elementKeyword.appendChild(document.importNode(n, true));
             }
-
-            elementKeyword.setAttribute(CONTADOR_ATTR_NAME, String.valueOf(this.m_contadorDemos));
 
             document.appendChild(elementKeyword);
 

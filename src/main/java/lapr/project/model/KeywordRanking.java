@@ -102,24 +102,17 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
      *
      * @param saveFile ficheiro onde será exportada a informação relativa às
      * keywords
-     * @return Devolve TRUE se a operação foi bem sucedida e FALSE caso
-     * contrário
      */
-    public boolean exportCSV(File saveFile) {
-        try (Formatter out = new Formatter(saveFile)) {
-            Collections.sort(m_keywords);
-            Collections.reverse(m_keywords);
-            out.format("Ranking,Frequency,Keyword%n");
-            for (int i = 0; i < m_keywords.size(); i++) {
-                ScoredKeyword keyword = m_keywords.get(i);
-                out.format("%d,%d,%s%n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
-            }
-            out.close();
-            return true;
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(KeywordRanking.class.getName()).log(Level.SEVERE, null, ex);
+    public void exportCSV(File saveFile) throws FileNotFoundException {
+        Formatter out = new Formatter(saveFile);
+        Collections.sort(m_keywords);
+        Collections.reverse(m_keywords);
+        out.format("Ranking,Frequency,Keyword%n");
+        for (int i = 0; i < m_keywords.size(); i++) {
+            ScoredKeyword keyword = m_keywords.get(i);
+            out.format("%d,%d,%s%n", i + 1, keyword.getFrequency(), convertStringToCSVReadable(keyword.getValue()));
         }
-        return false;
+        out.close();
     }
 
     /**

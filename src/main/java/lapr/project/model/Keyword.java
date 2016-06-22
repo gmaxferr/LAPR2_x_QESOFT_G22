@@ -21,11 +21,6 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     public static final String ROOT_ELEMENT_NAME = "keyword";
 
     /**
-     * Nome do campo value.
-     */
-    public static final String VALUE_ELEMENT_NAME = "value";
-
-    /**
      * Valor da keyword.
      */
     private String m_value;
@@ -87,38 +82,25 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
 
     @Override
     public Keyword importContentFromXMLNode(Node node) throws ParserConfigurationException {
-        Document document = XMLParser.createDocument(node, true);
+        this.m_value = node.getTextContent();
 
-        NodeList elementsKeyword = document.getChildNodes();
-
-        Node n = elementsKeyword.item(0);
-        if (n.getNodeType() == Node.ELEMENT_NODE) {
-            Element elem = (Element) n;
-            this.m_value = elem.getElementsByTagName(VALUE_ELEMENT_NAME).item(0).getTextContent();
-        }
         return this;
     }
 
     @Override
     public Node exportContentToXMLNode() {
-        Node node = null;
-
+        Node result = null;
         try {
             Document document = XMLParser.createDocument();
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
-            Element elementValue = document.createElement(VALUE_ELEMENT_NAME);
-
-            elementValue.setTextContent(getValue());
-            elementKeyword.appendChild(elementValue);
-
+            elementKeyword.setTextContent(m_value);
             document.appendChild(elementKeyword);
 
-            node = elementKeyword;
-
+            result = elementKeyword;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Keyword.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return node;
+        return result;
     }
 }
