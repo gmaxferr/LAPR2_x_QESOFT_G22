@@ -17,7 +17,6 @@ import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoDemonstracoes;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
