@@ -35,13 +35,13 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Registo das atribuições geradas da candidatura selecionada
      */
-    private RegistoAtribuicoes m_rAtribExpos;
+    private RegistoAtribuicoesCandidaturasExposicao m_rAtribExpos;
 
     /**
      * Registo de demonstrações da exposição selecionada
      */
     private RegistoDemonstracoes rd;
-    private RegistoAtribuicoesDemonstracao m_rAtribDemos;
+    private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
      * Construtor recebendo como parametro apenas o centro de exposições atual

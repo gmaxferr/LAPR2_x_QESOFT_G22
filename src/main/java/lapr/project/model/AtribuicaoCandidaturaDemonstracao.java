@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.registos.RegistoCandidaturasADemonstracoes;
+import lapr.project.registos.RegistoCandidaturasADemonstracao;
 import lapr.project.registos.RegistoFaeAvaliacao;
 import lapr.project.registos.RegistoUtilizadores;
 
@@ -38,7 +38,7 @@ public class AtribuicaoCandidaturaDemonstracao {
         this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
-    public void fix(RegistoCandidaturasADemonstracoes m_rce, RegistoUtilizadores m_registoUtilizadores) {
+    public void fix(RegistoCandidaturasADemonstracao m_rce, RegistoUtilizadores m_registoUtilizadores) {
         for (CandidaturaADemonstracao cand : m_rce.getListaCandidaturasADemonstracao()) {
             if (cand.equals(m_candidatura)) {
                 m_candidatura = cand;

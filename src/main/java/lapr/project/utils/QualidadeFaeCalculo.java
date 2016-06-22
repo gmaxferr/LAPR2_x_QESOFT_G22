@@ -7,7 +7,7 @@ import lapr.project.model.AtribuicaoCandidatura;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.FAE;
-import lapr.project.registos.RegistoAtribuicoes;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
@@ -35,7 +35,7 @@ public class QualidadeFaeCalculo {
      * @param ra Registo de Atribuicoes
      * @return Retorna o valor atual da média de avaliações desta Candidatura
      */
-    public double calcMedia(CandidaturaAExposicao cand, RegistoAtribuicoes ra) {
+    public double calcMedia(CandidaturaAExposicao cand, RegistoAtribuicoesCandidaturasExposicao ra) {
         Media<CandidaturaAExposicao> res = null;
 
         for (Media<CandidaturaAExposicao> medias : mediaCands) {
@@ -69,7 +69,7 @@ public class QualidadeFaeCalculo {
      * @return Retorna uma distribuição normal de média equivalente à média dos
      * desvios calculado e desvio padrão igual ao desvio padrão calculado
      */
-    public NormalDistribution calcMediaAndVariance(FAE fae, RegistoAtribuicoes ra) {
+    public NormalDistribution calcMediaAndVariance(FAE fae, RegistoAtribuicoesCandidaturasExposicao ra) {
         Media<FAE> res = null;
 
         for (Media<FAE> media : mediaDesviosFaes) {

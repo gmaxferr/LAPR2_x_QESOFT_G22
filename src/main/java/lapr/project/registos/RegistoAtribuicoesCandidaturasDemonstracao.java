@@ -9,7 +9,7 @@ import lapr.project.model.CandidaturaAExposicao;
  *
  * @author Ana Leite
  */
-public class RegistoAtribuicoesDemonstracao {
+public class RegistoAtribuicoesCandidaturasDemonstracao {
 
     public static final String ROOT_ELEMENT_NAME = "registoAtribuicoes";
 
@@ -21,7 +21,7 @@ public class RegistoAtribuicoesDemonstracao {
     /**
      * Construtor de objetos do tipo RegistoAtribuicoes sem parâmetros
      */
-    public RegistoAtribuicoesDemonstracao() {
+    public RegistoAtribuicoesCandidaturasDemonstracao() {
         this.m_listaAtribuicao = new ArrayList<>();
     }
 
@@ -109,7 +109,7 @@ public class RegistoAtribuicoesDemonstracao {
      * @param m_rcd
      * @param m_registoUtilizadores registo de utilizadores
      */
-    public void fix(RegistoCandidaturasADemonstracoes m_rcd, RegistoUtilizadores m_registoUtilizadores) {
+    public void fix(RegistoCandidaturasADemonstracao m_rcd, RegistoUtilizadores m_registoUtilizadores) {
         for (AtribuicaoCandidaturaDemonstracao atr : m_listaAtribuicao) {
             atr.fix(m_rcd, m_registoUtilizadores);
         }

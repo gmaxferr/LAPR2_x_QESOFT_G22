@@ -38,7 +38,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     /**
      * Registo de atribuições
      */
-    private RegistoAtribuicoes m_ra;
+    private RegistoAtribuicoesCandidaturasExposicao m_ra;
 
     /**
      * Atribuição escolhida

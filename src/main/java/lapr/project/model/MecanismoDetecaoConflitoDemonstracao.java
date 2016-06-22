@@ -25,7 +25,7 @@ public class MecanismoDetecaoConflitoDemonstracao {
         RegistoConflitosDemonstracao rcf = d.getRegistoConflitosDemonstracao();
         RegistoFAE rfae = d.getExpo().getRegistoFAE();
         List<FAE> lfae = rfae.getListaFAE();
-        RegistoCandidaturasADemonstracoes rcd= d.getRegistoCandidaturasADemonstracao();
+        RegistoCandidaturasADemonstracao rcd= d.getRegistoCandidaturasADemonstracao();
         List<CandidaturaADemonstracao> lc = rcd.getListaCandidaturasADemonstracao();
         for (FAE fae : lfae) {
             for (CandidaturaADemonstracao cand : lc) {
