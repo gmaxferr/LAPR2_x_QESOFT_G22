@@ -1,27 +1,16 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.AtribuicaoCandidatura;
-import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
-import lapr.project.model.CandidaturaADemonstracao;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import lapr.project.utils.XMLParser;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  *
- * @author Ana Leite
+ * @author G29
  */
 public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable {
 
@@ -102,6 +91,11 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         return this.m_listaAtribuicao;
     }
 
+    /**
+     * Define uma nova lista de atribuições das candidaturas pelos FAE
+     *
+     * @param listaAtribuicao nova lista de atribuições
+     */
     public void setListaAtribuicao(List<AtribuicaoCandidaturaDemonstracao> listaAtribuicao) {
         this.m_listaAtribuicao = listaAtribuicao;
     }
@@ -116,6 +110,16 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         candidaturaAExposicao.setDecisao(decisao);
     }
 
+    /**
+     * Devolve uma matriz com as médias dos ratings por critério de cada
+     * candidatura. Cada linha da matriz corresponde a uma candidatura e cada
+     * coluna à média de um rating especifico. A ordem das candidaturas é mesma
+     * pela que estão no registo de candidaturas e a ordem das médias dos
+     * ratings é a mesma que é apresentada ao utilizador na UI Avaliar
+     * candidaturas
+     *
+     * @return matriz com as médias dos ratings por critério de cada candidatura
+     */
     public float[][] getMediaRatingsPorCriterioDasCandidaturas() {
         float[][] matriz = new float[this.m_listaAtribuicao.size()][5];
         int cont = this.m_listaAtribuicao.size();

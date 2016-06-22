@@ -152,6 +152,12 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
     }
 
+    /**
+     * 
+     * @param node
+     * @return
+     * @throws ParserConfigurationException 
+     */
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -178,6 +184,10 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return this;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
