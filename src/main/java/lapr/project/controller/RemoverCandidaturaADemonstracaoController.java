@@ -77,8 +77,8 @@ public class RemoverCandidaturaADemonstracaoController {
      * Remove efetivamente a candidatura selecionada para remover
      */
     public void removerCandidatura() {
-        m_demo.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().remove(m_candARemover);
         m_demo.getRegistoCandidaturasADemonstracaoRemovidas().adicionarCandidatura(m_candARemover);
+        m_demo.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().remove(m_candARemover);
     }
 
 }

@@ -24,6 +24,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private transient List<CandidaturaADemonstracao> m_listaCandidaturas;
     
     private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
+    private RemoverCandidaturaADemonstracaoController controller;
     
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
@@ -430,7 +431,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
     private void avancarParaCard2() {
-        RemoverCandidaturaADemonstracaoController controller = new RemoverCandidaturaADemonstracaoController(m_expo, emailExpositor);
+        controller = new RemoverCandidaturaADemonstracaoController(m_expo, emailExpositor);
         m_listaDemonstracoes = controller.getListaDemonstracoesExpositor();
         jComboBoxEscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(m_listaDemonstracoes));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
@@ -464,7 +465,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private void avancarParaCard3() {
         int d = jComboBoxEscolherDemonstracao.getSelectedIndex();
         Demonstracao m_Demonstracao = m_listaDemonstracoes.get(d);
-        m_listaCandidaturas = m_Demonstracao.getCandidaturasDemoExpositor(emailExpositor);
+        m_listaCandidaturas = controller.setDemo(m_Demonstracao);
         m_listaCandidaturasRemovidas = m_Demonstracao.getRegistoCandidaturasADemonstracaoRemovidas().getListaCandidaturasADemonstracaoRemovidas();
         jComboBoxCandidaturas.setModel(new ComboBoxModelCandidaturaADemonstracao(m_listaCandidaturas));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
@@ -500,8 +501,8 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             int op = JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende remover a candidatura à demonstração selecionada?", "Confirma a remoção?", JOptionPane.YES_NO_OPTION);
             if (op == 1) {
                 CandidaturaADemonstracao cand = m_listaCandidaturas.get(jComboBoxCandidaturas.getSelectedIndex());
-                m_listaCandidaturasRemovidas.add(cand);
-                m_listaCandidaturas.remove(cand);
+                controller.setCandidaturaARemover(cand);
+                controller.removerCandidatura();
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não selecionou nenhuma candidatura!", "Erro", JOptionPane.ERROR_MESSAGE);
