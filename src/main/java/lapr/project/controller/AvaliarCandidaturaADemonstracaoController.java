@@ -157,7 +157,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
-    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoAE(String usernameFAE) {
+    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAE(String usernameFAE) {
         return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(usernameFAE);
     }
 
