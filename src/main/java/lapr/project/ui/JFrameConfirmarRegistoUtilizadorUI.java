@@ -74,6 +74,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
         alterarComportamentoFecharJFrame();
 
+        this.JComboBoxEscolherUtilizador.setSelectedIndex(0);
         this.cardLayout = (CardLayout) getContentPane().getLayout();
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
@@ -248,7 +249,7 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setUtilizadorRegistado(listaUtilizadores.get(JComboBoxEscolherUtilizador.getSelectedIndex()));
-        JOptionPane.showMessageDialog(rootPane, "Registo confirmado.", "Sucesso", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(rootPane, "Registo confirmado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         this.listaUtilizadores = controller.getListaNovosRegistos();
         if (listaUtilizadores.size() > 0) {
             int resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja confirmar outro utilizador?", "Confirmação de novo registo", JOptionPane.YES_NO_OPTION);
@@ -264,6 +265,9 @@ public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {
 
     private void voltarASelecionarUtilizador() {
         cardLayout.show(getContentPane(), "card1");
+        this.JComboBoxEscolherUtilizador.setSelectedIndex(0);
+        this.JComboBoxEscolherUtilizador.revalidate();
+        this.JComboBoxEscolherUtilizador.repaint();
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
