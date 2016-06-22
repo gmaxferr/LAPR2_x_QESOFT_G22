@@ -208,6 +208,11 @@ public class PercentagemCandAceitesMediaRatingsController {
         return this.rce.getListaCandidaturasEstadoAvaliadas();
     }
 
+    /**
+     * Devolve uma lista com as exposições que se encontrem no estado avaliadas
+     *
+     * @return lista com as exposições no estado avaliadas
+     */
     public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
         return this.re.getListaExposicoesEstadoAvaliadas();
     }

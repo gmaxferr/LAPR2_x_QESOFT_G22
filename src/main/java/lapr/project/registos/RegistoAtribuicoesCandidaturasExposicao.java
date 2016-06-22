@@ -1,21 +1,12 @@
 package lapr.project.registos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.AtribuicaoCandidatura;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import lapr.project.utils.XMLParser;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoAtribuicoesCandidaturasExposicao
@@ -92,6 +83,16 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         return vec;
     }
 
+    /**
+     * Devolve uma matriz com as médias dos ratings por critério de cada
+     * candidatura. Cada linha da matriz corresponde a uma candidatura e cada
+     * coluna à média de um rating especifico. A ordem das candidaturas é mesma
+     * pela que estão no registo de candidaturas e a ordem das médias dos
+     * ratings é a mesma que é apresentada ao utilizador na UI Avaliar
+     * candidaturas
+     *
+     * @return matriz com as médias dos ratings por critério de cada candidatura
+     */
     public float[][] getMediaRatingsPorCriterioDasCandidaturas() {
         float[][] matriz = new float[this.m_listaAtribuicao.size()][5];
         int pos = 0;
@@ -100,7 +101,7 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
             atribuicao.getRegistoFaeAvaliacao().somarRatingsDaCandidaturaAoVetor(matriz, pos);
             pos++;
         }
-        
+
         return matriz;
     }
 
@@ -113,6 +114,11 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         return this.m_listaAtribuicao;
     }
 
+    /**
+     * Define uma nova lista de atribuições dos FAE pelas candidaturas
+     *
+     * @param listaAtribuicao nova lista de atribuições
+     */
     public void setListaAtribuicao(List<AtribuicaoCandidatura> listaAtribuicao) {
         this.m_listaAtribuicao = listaAtribuicao;
     }
