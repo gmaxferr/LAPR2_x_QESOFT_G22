@@ -99,8 +99,6 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         initComponents();
 
         alterarComportamentoFecharJFrame();
-
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setLocationRelativeTo(null);
         setVisible(true);
     }
