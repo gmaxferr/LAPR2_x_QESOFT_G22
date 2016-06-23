@@ -12,7 +12,7 @@ import org.w3c.dom.*;
  * Classe resposável por guardar o ranking global de keywords e pela exportação
  * dessa informação para um ficheiro com o formato CSV.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class KeywordRanking implements Serializable, Importable<KeywordRanking>, Exportable {
 
@@ -31,7 +31,7 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
     private boolean m_ready;
 
     /**
-     * Construtor sem parametros.
+     * Construtor de objetos do tipo keywordRanking sem parametros.
      */
     public KeywordRanking() {
         m_keywords = new ArrayList<>();
@@ -47,7 +47,10 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
     }
 
     /**
-     * @return Retorna se este ranking está ou não pronto para ser exportado
+     * Retorna se este ranking está ou não pronto para ser exportado
+     * 
+     * @return true se o ranking estiver pronto para ser exportado. Caso contrário
+     * retorna false
      */
     public boolean isReady() {
         return m_ready;
@@ -90,7 +93,8 @@ public class KeywordRanking implements Serializable, Importable<KeywordRanking>,
     }
 
     /**
-     * @return Devolve a lista de ScoredKeywords guardadas por este objeto
+     * Devolve a lista de ScoredKeywords guardadas por este objeto
+     * @return lista de ScoredKeywords guardadas por este objeto
      */
     public List<ScoredKeyword> getScoredKeywords() {
         return m_keywords;

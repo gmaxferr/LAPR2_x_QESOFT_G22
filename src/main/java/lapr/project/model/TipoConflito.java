@@ -6,7 +6,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um tipo de conflito
+ * 
  * @author G29
  */
 public class TipoConflito implements Importable<TipoConflito>, Exportable {
@@ -14,6 +15,9 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     public static final String ROOT_ELEMENT_NAME = "TipoConflito";
     public static final String ID_ATTR_NAME = "ID";
 
+    /**
+     * ID do tipo de conflito
+     */
     private String ID;
 
     /**
@@ -22,7 +26,9 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     private MecanismoDetecaoConflito m_mec;
 
     /**
-     * Contrutor por definição.
+     * Contrutor de objetos do tipo TipoConflito com o parametro ID
+     * 
+     * @param ID ID do tipo de conflito
      */
     public TipoConflito(String ID) {
         m_mec = new MecanismoDetecaoConflito(this);
@@ -30,18 +36,32 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     }
 
     /**
-     * Define os dados para este tipo de conflitos.
+     * Define os dados para este tipo de conflito
+     * 
+     * @param tipoConflito ID do tipo de conflito
      */
     public void setDadosTipoConflito(String tipoConflito) {
         this.ID = tipoConflito;
     }
 
     /**
-     * @return Retorna o mecanismo de detação deste tipos de conflito
+     * Retorna o mecanismo de detação deste tipos de conflito
+     * 
+     * @return mecanismo de detação deste tipos de conflito
      */
     public MecanismoDetecaoConflito getMecanismoDetecaoConflito() {
         return m_mec;
     }
+
+    /**
+     * Compara o tipoConflito a outro objecto passado por parametro. A comparação
+     * entre dois tipoConflito é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o tipoConflito
+     * @return true se o objeto recebido representar um tipoConflito equivalente
+     * ao tipoConflito. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object obj) {
@@ -87,7 +107,9 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     }
 
     /**
-     * @param m_mec the m_mec to set
+     * Modifica o mecanismo de deteção de conflitos
+     * 
+     * @param m_mec novo mecanismo de deteção de conflitos
      */
     public void setMecanismo(MecanismoDetecaoConflito m_mec) {
         this.m_mec = m_mec;

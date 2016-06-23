@@ -46,16 +46,28 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel {
      */
     private List<AtribuicaoCandidatura> resultadoAtribuicoes = new ArrayList<>();
     
+    /**
+     * Lista de atribuições de candidatura a demonstração
+     */
     private List<AtribuicaoCandidaturaDemonstracao> resultadoAtribuicoesDemonstracao = new ArrayList<>();
 
     /**
-     * Contrutor do mecanismo
+     * Contrutor de objetos do tipo MecanismoPredefinidoC sem parametros
      */
     public MecanismoPredefinidoC() {
         resultadoAtribuicoes = new ArrayList<AtribuicaoCandidatura>();
         resultadoAtribuicoesDemonstracao = new ArrayList<AtribuicaoCandidaturaDemonstracao>();
     }
 
+    /**
+     * Distribuí os FAE pelas candidaturas.
+     * 
+     * @param e exposição selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param numeroLido String inserida pelo utilziador na UI correspondente
+     * ao número de FAE que pretende por cada candidatura
+     * @return atribuição gerada.
+     */
     @Override
     public List<AtribuicaoCandidatura> atribui(Exposicao e, String numeroLido) {
 
@@ -221,16 +233,37 @@ public class MecanismoPredefinidoC implements MecanismoIteragivel {
         }
     }
 
+    /**
+     * Devolve o nome do mecanismo
+     * 
+     * @return nome do mecanismo
+     */
     @Override
     public String getNome() {
         return NOME_MECANISMO;
     }
 
+    /**
+     * Devolve a descrição do mecanismo
+     * 
+     * @return descrição do mecanismo
+     */
     @Override
     public String getDescricao() {
         return DESCRICAO_MECANISMO;
     }
 
+    /**
+     * Distribuí os FAE pelas candidaturas.
+     * 
+     * @param exposicaoEscolhida exposição selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param demonstracaoEscolhida demonstração selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param numeroLido String inserida pelo utilziador na UI correspondente
+     * ao número de FAE que pretende por cada candidatura
+     * @return atribuição gerada.
+     */
     @Override
     public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida, String numeroLido) {
         

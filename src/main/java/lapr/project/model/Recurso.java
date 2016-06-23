@@ -7,15 +7,24 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um recurso
+ * 
  * @author G29
  */
 public class Recurso implements Importable<Recurso>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Recurso";
 
+    /**
+     * Nome do recurso
+     */
     private String m_nomeRecurso;
 
+    /**
+     * Construtor de objetos do tipo Recurso com o parametro nome do recurso
+     * 
+     * @param nomeRecurso nome do recurso
+     */
     public Recurso(String nomeRecurso) {
         this.m_nomeRecurso = nomeRecurso;
     }
@@ -37,6 +46,16 @@ public class Recurso implements Importable<Recurso>, Exportable {
     public void setNomeRecurso(String nomeRecurso) {
         this.m_nomeRecurso = nomeRecurso;
     }
+
+    /**
+     * Compara o recurso a outro objecto passado por parametro. A comparação
+     * entre dois recursos é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o produto
+     * @return true se o objeto recebido representar um produto equivalente
+     * ao produto. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object obj) {

@@ -26,14 +26,14 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     private String m_value;
 
     /**
-     * Construtor por defeito.
+     * Construtor de objetos do tipo Kyword sem parâmetros.
      */
     public Keyword() {
         m_value = "";
     }
 
     /**
-     * Construtor com parâmetros.
+     * Construtor de objetos do tipo keyword com o parâmetro keyword.
      *
      * @param keyword - valor da keyword
      */
@@ -42,7 +42,9 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     }
 
     /**
-     * @return Devolve o valor desta keyword
+     * Devolve o valor desta keyword
+     * 
+     * @return valor desta keyword
      */
     public String getValue() {
         return m_value;
@@ -51,11 +53,21 @@ public class Keyword implements Serializable, Importable<Keyword>, Exportable {
     /**
      * Modifica o valor desta keyword.
      *
-     * @param keyword keyword a atribuir
+     * @param keyword novo valor da keyword a atribuir
      */
     public void setValue(String keyword) {
         this.m_value = keyword;
     }
+
+    /**
+     * Compara a keyword a outro objecto passado por parametro. A comparação
+     * entre duas keyword é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param o objecto a comparar com a keyword
+     * @return true se o objeto recebido representar uma keyword equivalente
+     * à keyword. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object o) {

@@ -52,6 +52,11 @@ public class Organizador implements Importable<Organizador>, Exportable {
         this.m_Utilizador = u;
     }
 
+    /**
+     * Devolve o username do organizador
+     * 
+     * @return username do organizador
+     */
     public String getUsernameOrganizador() {
         return this.m_Utilizador.getUsername();
     }

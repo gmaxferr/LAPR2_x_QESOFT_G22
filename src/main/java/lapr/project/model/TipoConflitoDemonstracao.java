@@ -7,7 +7,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um TipoConflitoDemonstracao
+ * 
  * @author G29
  */
 public class TipoConflitoDemonstracao implements Importable<TipoConflitoDemonstracao>, Exportable {
@@ -15,15 +16,19 @@ public class TipoConflitoDemonstracao implements Importable<TipoConflitoDemonstr
     public static final String ROOT_ELEMENT_NAME = "TipoConflitoDemonstracao";
     public static final String ID_ATTR_NAME = "ID";
 
+    /**
+     * ID do tipo de conflito da demonstraação
+     */
     private String ID;
 
     /**
-     * Mecanismo de deteção de conflitos.
+     * Mecanismo de deteção de conflitos da demonstração
      */
     private MecanismoDetecaoConflitoDemonstracao m_mec;
 
     /**
-     * Contrutor por definição.
+     * Contrutor de objetos do tipo TipoConflitoDemonstracao com o parametro
+     * ID
      *
      * @param ID ID deste novo tipo de conflito
      */
@@ -35,21 +40,25 @@ public class TipoConflitoDemonstracao implements Importable<TipoConflitoDemonstr
     /**
      * Define os dados para este tipo de conflitos.
      *
-     * @param tipoConflito
+     * @param tipoConflito ID do tipo de conflito
      */
     public void setDadosTipoConflito(String tipoConflito) {
         this.ID = tipoConflito;
     }
 
     /**
-     * @return Retorna o mecanismo de detação deste tipos de conflito
+     * Retorna o mecanismo de detação deste tipos de conflito
+     * 
+     * @return mecanismo de detação deste tipos de conflito
      */
     public MecanismoDetecaoConflitoDemonstracao getMecanismoDetecaoConflito() {
         return m_mec;
     }
 
     /**
-     * @param m_mec the m_mec to set
+     * Modifica o mecanismo deteção de conflitos da demonstração
+     * 
+     * @param m_mec novo mecanismo deteção de conflitos da demonstração
      */
     public void setMecanismo(MecanismoDetecaoConflitoDemonstracao m_mec) {
         this.m_mec = m_mec;

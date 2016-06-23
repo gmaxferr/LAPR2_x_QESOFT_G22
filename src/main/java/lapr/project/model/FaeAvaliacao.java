@@ -27,14 +27,15 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     private Avaliacao m_avaliacao;
 
     /**
-     * Construtor sem parametros
+     * Construtor de objetos do tipo FaeAvaliacao sem parametros
      */
     public FaeAvaliacao() {
         this.m_avaliacao = new Avaliacao();
     }
 
     /**
-     * Construtor que recebe por parametro o FAE designado
+     * Construtor de objetos do tipo FaeAvaliacao que recebe por parametro 
+     * o FAE designado
      *
      * @param fae fae designado na atribuição
      */
@@ -55,20 +56,40 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     /**
      * Devolve a avaliação
      * 
-     * @return 
+     * @return avaliação
      */
     public Avaliacao getAvaliacao() {
         return this.m_avaliacao;
     }
 
+    /**
+     * Modifica a avaliação
+     * 
+     * @param aval nova avaliação
+     */
     public void setAvaliacao(Avaliacao aval) {
         this.m_avaliacao = aval;
     }
 
+    /**
+     * Modifica a avaliação
+     * 
+     * @param rat1 ratingConhecimentoSobreTema
+     * @param rat2 ratingAdequacaoAExposicao
+     * @param rat3 ratingAdequacaoAsDemos
+     * @param rat4 ratingAdequacaoNumConvites
+     * @param rat5 ratingRecomendacaoGlobal
+     */
     public void setAvalicao(int rat1, int rat2, int rat3, int rat4, int rat5) {
         this.m_avaliacao.setAvaliacaoCandidaturaAExposicao(rat1, rat2, rat3, rat4, rat5);
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
         for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
             if (m_FaeAssociado.getUtilizador().getUsername().equals(u.getUsername())) {

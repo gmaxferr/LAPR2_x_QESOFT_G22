@@ -71,11 +71,6 @@ public class AvaliarCandidaturaADemonstracaoController {
     private EstadoCandidaturaADemonstracao m_estadoCandidatura;
 
     /**
-     * Estado Demonstração
-     */
-    private EstadoDemonstracao m_estadoDemonstracao;
-
-    /**
      * Constrói uma instância de AvaliarCandidaturaADemonstracaoController
      * recebendo como parâmetro o centro de exposições
      *
@@ -97,6 +92,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * candidaturasAtribuidas e que o utilizador detenha o cargo de FAE sobre
      * estas
      *
+     * @param usernameFAE username do fae
      * @return lista de exposições válidas sobre as quais se pode executar este
      * UC
      */

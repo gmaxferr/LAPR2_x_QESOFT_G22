@@ -9,8 +9,17 @@ import lapr.project.registos.*;
  */
 public class MecanismoDetecaoConflitoDemonstracao {
     
+    /**
+     * Tipo de conflito da demonstração
+     */
     private final TipoConflitoDemonstracao tcd;
 
+    /**
+     * Construtor de objetos do tipo MecanismoDetecaoConflitosDemonstracao 
+     * com o parâmetro tipo de conflito da demonstração
+     * 
+     * @param tcd tipo conflito de demonstração
+     */
     public MecanismoDetecaoConflitoDemonstracao(TipoConflitoDemonstracao tcd) {
         this.tcd = tcd;
     }

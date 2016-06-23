@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- *
+ * Representação de um mecanismo predefinido A
+ * 
  * @author G29
  */
 public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
@@ -84,6 +85,15 @@ public class MecanismoPredefinidoA implements MecanismoSimples, Serializable {
         }
     }
 
+    /**
+     * Distribuí os FAE pelas candidaturas.
+     * 
+     * @param exposicaoEscolhida exposição selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param demonstracaoEscolhida demonstração selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @return atribuição gerada.
+     */
     @Override
     public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida) {
         List<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();

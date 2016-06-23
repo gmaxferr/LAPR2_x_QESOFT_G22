@@ -4,13 +4,22 @@ import java.util.List;
 import lapr.project.registos.*;
 
 /**
- *
- * @author Ricardo Catalao
+ * Representação de um mecanismo deteção de conflitos
+ * 
+ * @author G29
  */
 public class MecanismoDetecaoConflito {
 
+    /**
+     * Tipo de conflito
+     */
     private final TipoConflito tc;
 
+    /**
+     * Construtor de objetos do tipo MecanismoDetecaoConflitos
+     * 
+     * @param tc tipo de conflito
+     */
     public MecanismoDetecaoConflito(TipoConflito tc) {
         this.tc = tc;
     }

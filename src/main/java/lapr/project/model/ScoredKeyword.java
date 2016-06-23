@@ -35,7 +35,8 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
     private String m_value;
 
     /**
-     * Construtor da classe ScoredKeyword
+     * Construtor da objetos do tipo ScoredKeyword com os parametros keyword e
+     * score
      *
      * @param keyword keyword a atribuir
      * @param score score a atribuir
@@ -47,46 +48,67 @@ public class ScoredKeyword implements Comparable<ScoredKeyword>, Serializable, I
     }
 
     /**
-     * @return o score
+     * Devolve o score
+     * 
+     * @return score
      */
     public int getScore() {
         return m_score;
     }
 
     /**
-     * @param score o score a atribuir
+     * Modifica o score
+     * 
+     * @param score novo score a atribuir
      */
     public void setScore(int score) {
         this.m_score = score;
     }
 
     /**
-     * @return the frequency
+     * Devolve a frequencia
+     * 
+     * @return frequencia
      */
     public int getFrequency() {
         return m_frequency;
     }
 
     /**
-     * @param frequency the frequency to set
+     * Modifica a frequencia
+     * 
+     * @param frequency nova frequencia
      */
     public void setFrequency(int frequency) {
         this.m_frequency = frequency;
     }
 
     /**
-     * @return the value
+     * Devolve o valor
+     * @return valor
      */
     public String getValue() {
         return m_value;
     }
 
     /**
-     * @param value the value to set
+     * Modifica o valor
+     * 
+     * @param value novo valor
      */
     public void setValue(String value) {
         this.m_value = value;
     }
+
+    /**
+     * Compara o scoredKeyword a outro objecto passado por parametro. A comparação
+     * entre dois scoredKeyword é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param o objecto a comparar com o scoredKeyword
+     * @return true se o objeto recebido representar um scoredKeyword equivalente
+     * ao scoredKeyword. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object o) {

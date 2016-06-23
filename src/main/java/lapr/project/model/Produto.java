@@ -17,14 +17,14 @@ public class Produto implements Importable<Produto>, Exportable {
     public static final String NOME_ELEMENT_NAME = "Nome";
 
     /**
-     * Atributo m_nome do produto
+     * Nome do produto
      */
     private String m_nome;
 
     /**
-     * Construtor de objectos do tipo Produto com parametro m_nome
+     * Construtor de objectos do tipo Produto com o parametro nome
      *
-     * @param nome m_nome do produto
+     * @param nome nome do produto
      */
     public Produto(String nome) {
         this.m_nome = nome;
@@ -54,6 +54,16 @@ public class Produto implements Importable<Produto>, Exportable {
     public void setNome(String nome) {
         this.m_nome = nome;
     }
+
+    /**
+     * Compara o produto a outro objecto passado por parametro. A comparação
+     * entre dois produtos é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o produto
+     * @return true se o objeto recebido representar um produto equivalente
+     * ao produto. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object obj) {

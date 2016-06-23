@@ -12,19 +12,8 @@ import org.w3c.dom.*;
  */
 public class Expositor implements Importable<Expositor>, Exportable {
 
-    /**
-     *
-     */
     public static final String ROOT_ELEMENT_NAME = "Expositor";
-
-    /**
-     *
-     */
     public static final String USERNAME_ELEMENT_NAME = "Username";
-
-    /**
-     *
-     */
     public static final String EMAIL_ELEMENT_NAME = "Email";
 
     /**
@@ -33,7 +22,7 @@ public class Expositor implements Importable<Expositor>, Exportable {
     private Utilizador m_utilizador;
 
     /**
-     * Construtor de objectos do tipo Expositor sem parametros
+     * Construtor de objectos do tipo Expositor com o parametro utilizador
      *
      * @param utilizador Utilizador que faz este papel
      */

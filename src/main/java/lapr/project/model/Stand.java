@@ -18,10 +18,28 @@ public class Stand implements Importable<Stand>, Exportable {
     public static final String AREA_ATTR_NAME = "area";
     public static final String DESCR_ELEMENT_NAME = "descricao";
 
+    /**
+     * ID do stand
+     */
     private String m_ID;
+    
+    /**
+     * Area do stand
+     */
     private int m_area;
+    
+    /**
+     * Descrição do stand
+     */
     private String m_descricao;
 
+    /**
+     * Construtor de objetos do tipo Stand com os parametros ID, area e descrição
+     * 
+     * @param m_ID ID do stand
+     * @param m_area area do Stand
+     * @param descricao descricao do Stand
+     */
     public Stand(String m_ID, int m_area, String descricao) {
         this.m_ID = m_ID;
         this.m_area = m_area;
@@ -29,6 +47,7 @@ public class Stand implements Importable<Stand>, Exportable {
     }
 
     /**
+     * Devolve o ID do stand
      * @return the ID
      */
     public String getID() {
@@ -36,35 +55,41 @@ public class Stand implements Importable<Stand>, Exportable {
     }
 
     /**
-     * @param ID the ID to set
+     * Modifica o ID do stand
+     * @param ID novo ID do stand
      */
     public void setID(String ID) {
         this.m_ID = ID;
     }
 
     /**
-     * @return the area
+     * Devolve a area do stand
+     * @return area do stand
      */
     public int getArea() {
         return m_area;
     }
 
     /**
-     * @param area the area to set
+     * Modifica a area do stand
+     * 
+     * @param area nova area do stand
      */
     public void setArea(int area) {
         this.m_area = area;
     }
 
     /**
-     * @return Devolve a descrição deste stand
+     * Devolve a descrição deste stand
+     * 
+     * @return descrição deste stand
      */
     public String getDescricao() {
         return m_descricao;
     }
 
     /**
-     * Define uma descrição para este Stand
+     * Modifica a descrição para este Stand
      *
      * @param descricao nova descricao do stand
      */
@@ -72,10 +97,25 @@ public class Stand implements Importable<Stand>, Exportable {
         this.m_descricao = descricao;
     }
 
+    /**
+     * Devolve as carateristicas do stand (ID)
+     * 
+     * @return carateristicas do stand (ID)
+     */
     @Override
     public String toString() {
         return this.m_ID;
     }
+
+    /**
+     * Compara o stand a outro objecto passado por parametro. A comparação
+     * entre dois stands é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o stand
+     * @return true se o objeto recebido representar um stand equivalente
+     * ao stand. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object obj) {

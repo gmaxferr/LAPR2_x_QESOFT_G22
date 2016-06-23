@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- *
+ * Representação de um mecanismo predefinido B
+ * 
  * @author G29
  */
 public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable {
@@ -90,6 +91,17 @@ public class MecanismoPredefinidoB implements MecanismoIteragivel, Serializable 
         return listaAtrib;
     }
 
+    /**
+     * Distribuí os FAE pelas candidaturas.
+     * 
+     * @param exposicaoEscolhida exposição selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param demonstracaoEscolhida demonstração selecionada onde será feita
+     * distribuição dos seus FAE pelas suas candidaturas.
+     * @param numeroLido String inserida pelo utilziador na UI correspondente
+     * ao número de FAE que pretende por cada candidatura
+     * @return atribuição gerada.
+     */
     @Override
     public List<AtribuicaoCandidaturaDemonstracao> atribui(Exposicao exposicaoEscolhida, Demonstracao demonstracaoEscolhida, String numeroLido) {
         int numeroFAE = Integer.parseInt(numeroLido);

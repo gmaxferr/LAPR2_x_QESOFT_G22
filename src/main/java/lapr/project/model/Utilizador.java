@@ -38,12 +38,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     public static final int SHIFTS_MASK = 0x35;
 
     /**
-     * Atributo nome de um Utilizador.
+     * Nome de um Utilizador.
      */
     private String m_strNome;
 
     /**
-     * Atributo password de um Utilizador.
+     * Password de um Utilizador.
      */
     private char[] m_strPwd;
 
@@ -58,12 +58,12 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     private String keyword;
 
     /**
-     * Atributo email de um Utilizador.
+     * Email de um Utilizador.
      */
     private String m_strEmail;
 
     /**
-     * Atributo username de um utilizador.
+     * Username de um utilizador.
      */
     private String m_strUsername;
 
@@ -72,6 +72,9 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     private int nAvaliacoesDesdeSempre;
 
+    /**
+     * Boolean do gestor
+     */
     private boolean isGestor;
 
     /**
@@ -87,6 +90,14 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.keyword = "";
     }
 
+    /**
+     * Construtor de objectos do tipo Utilizador com parametros
+     * 
+     * @param nome nome do utilizador
+     * @param username username do utilizador
+     * @param password password do utilizador
+     * @param email  email do utilizador
+     */
     public Utilizador(String nome, String username, char[] password, String email) {
         this();
         this.m_strUsername = username;
@@ -96,6 +107,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         this.isGestor = false;
     }
 
+    /**
+     * Construtor de objectos do tipo Utilizador com parametros
+     * 
+     * @param nome nome do utilizador
+     * @param username username do utilizador
+     * @param password password do utilizador
+     * @param email email do utilizador
+     * @param keyword keyword do utilizador
+     */
     public Utilizador(String nome, String username, char[] password, String email, String keyword) {
         this();
         this.m_strUsername = username;
@@ -134,10 +154,20 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         return this.m_strEmail;
     }
 
+    /**
+     * Modifica o boolean do gestor
+     * 
+     * @param b novo boolean do gestor
+     */
     public void setIsGestor(boolean b) {
         this.isGestor = b;
     }
 
+    /**
+     * Devolve o boolean do gestor
+     * 
+     * @return boolena do gestor
+     */
     public boolean isGestor() {
         return this.isGestor;
     }
@@ -179,14 +209,17 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * @return the randomCaesarShift
+     * Devolve o randomCaesarShift
+     * @return randomCaesarShift
      */
     public int getShifts() {
         return randomCaesarShift;
     }
 
     /**
-     * @param shifts the randomCaesarShift to set
+     * Modifica o randomCaesarShift
+     * 
+     * @param shifts novo randomCaesarShift
      */
     public void setShifts(int shifts) {
         this.randomCaesarShift = shifts;
@@ -331,33 +364,45 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * @return the nAvaliacoesDesdeSempre
+     * Devolve o numero de avaliações que este utilizador já realizou
+     * 
+     * @return numero de avaliações que este utilizador já realizou
      */
     public int getnAvaliacoesDesdeSempre() {
         return nAvaliacoesDesdeSempre;
     }
 
     /**
-     * @param nAvaliacoesDesdeSempre the nAvaliacoesDesdeSempre to set
+     * Modifica o numero de avaliações que este utilizador já realizou
+     * 
+     * @param nAvaliacoesDesdeSempre novo numero de avaliações que este utilizador já realizou
      */
     public void setnAvaliacoesDesdeSempre(int nAvaliacoesDesdeSempre) {
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
     }
 
     /**
-     * @return the keyword
+     * Devolve a keyword
+     * 
+     * @return keyword
      */
     public String getKeyword() {
         return keyword;
     }
 
     /**
-     * @param keyword the keyword to set
+     * Modifica a keyword 
+     * @param keyword nova keyword 
      */
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Valida a keyword
+     * 
+     * @return true se a keywor for válida. Caso contrário retorna false
+     */
     public boolean validaKeyword() {
         if (keyword != null) {
             int keyLen = keyword.length();
@@ -368,9 +413,24 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         }
     }
 
+    /**
+     * Valida a password e a keyword
+     * 
+     * @return true se forem válidas. Caso contrário retorna false.
+     */
     public boolean isValid() {
         return validaPassword() && validaKeyword();
     }
+
+    /**
+     * Compara o utilizadore a outro objecto passado por parametro. A comparação
+     * entre dois utilizadores é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com o utilizador
+     * @return true se o objeto recebido representar um utilizador equivalente
+     * ao utilizador. Caso contrário, retorna false.
+     */
 
     @Override
     public boolean equals(Object obj) {

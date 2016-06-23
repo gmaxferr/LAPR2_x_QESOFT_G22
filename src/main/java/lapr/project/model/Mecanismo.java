@@ -3,7 +3,7 @@ package lapr.project.model;
 /**
  * Representação de um mecanismo.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public interface Mecanismo {
 

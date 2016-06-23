@@ -44,6 +44,11 @@ public class FAE implements ApresentavelNaJTable, Importable<FAE>, Exportable {
         return m_Utilizador;
     }
 
+    /**
+     * Devolve o username do fae
+     * 
+     * @return username do fae
+     */
     public String getUsernameFae() {
         return this.m_Utilizador.getUsername();
     }

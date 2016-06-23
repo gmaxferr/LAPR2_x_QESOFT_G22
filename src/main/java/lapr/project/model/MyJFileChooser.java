@@ -5,13 +5,14 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 /**
+ * Representação de um MyJFileChooser
  * 
  * @author G29
  */
 public class MyJFileChooser extends JFileChooser {
 
     /**
-     * Construtor de objectos do tipo MyFileChooser
+     * Construtor de objectos do tipo MyFileChooser sem parametros
      */
     public MyJFileChooser() {
         super();
