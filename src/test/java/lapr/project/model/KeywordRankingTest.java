@@ -192,18 +192,16 @@ public class KeywordRankingTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
         KeywordRanking instance = new KeywordRanking();
-        KeywordRanking expResult = null;
-        KeywordRanking result;
+        Node node = instance.exportContentToXMLNode();
+        KeywordRanking expResult = new KeywordRanking();
         try {
-            result = instance.importContentFromXMLNode(node);
+            expResult.importContentFromXMLNode(node);
         } catch (ParserConfigurationException ex) {
-            result = null;
+            expResult = null;
         }
+        KeywordRanking result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -213,10 +211,14 @@ public class KeywordRankingTest {
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
         KeywordRanking instance = new KeywordRanking();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        KeywordRanking expResult = new KeywordRanking();
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        KeywordRanking result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

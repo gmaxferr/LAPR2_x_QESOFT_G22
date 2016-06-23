@@ -111,8 +111,8 @@ public class StandTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-
-        int expResult = 0;
+        Stand newStand = new Stand(ID, area, descricao);
+        int expResult = newStand.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
     }
@@ -123,10 +123,14 @@ public class StandTest {
     @Test
     public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-
-        Stand expResult = null;
-        Stand result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        Stand expResult = instance;
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Stand result = instance;
         assertEquals(expResult, result);
     }
 
@@ -136,10 +140,45 @@ public class StandTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Stand expResult = instance;
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Stand result = instance;
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of setArea method, of class Stand.
+     */
+    @Test
+    public void testSetArea() {
+        System.out.println("setArea");
+        int area = 0;
+        instance.setArea(area);
+    }
+
+    /**
+     * Test of getDescricao method, of class Stand.
+     */
+    @Test
+    public void testGetDescricao() {
+        System.out.println("getDescricao");
+        String expResult = "descricao";
+        String result = instance.getDescricao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setDescricao method, of class Stand.
+     */
+    @Test
+    public void testSetDescricao() {
+        System.out.println("setDescricao");
+        String descricao = "";
+        instance.setDescricao(descricao);
+    }
 }

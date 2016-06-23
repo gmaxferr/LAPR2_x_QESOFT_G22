@@ -7,8 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
@@ -475,6 +473,101 @@ public class CandidaturaAExposicaoTest {
         expResult.fix(ru, rd);
         CandidaturaAExposicao result = instance;
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getEmailExpositor method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testGetEmailExpositor() {
+        System.out.println("getEmailExpositor");
+        CandidaturaAExposicao instance = null;
+        String expResult = "";
+        String result = instance.getEmailExpositor();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getDescricao method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testGetDescricao() {
+        System.out.println("getDescricao");
+        CandidaturaAExposicao instance = null;
+        String expResult = "";
+        String result = instance.getDescricao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDescricao method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testSetDescricao() {
+        System.out.println("setDescricao");
+        String m_descricao = "";
+        CandidaturaAExposicao instance = null;
+        instance.setDescricao(m_descricao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setExpositor method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testSetExpositor() {
+        System.out.println("setExpositor");
+        Expositor expositor = null;
+        CandidaturaAExposicao instance = null;
+        instance.setExpositor(expositor);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toString method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        CandidaturaAExposicao instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getExposicao method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testGetExposicao() {
+        System.out.println("getExposicao");
+        CandidaturaAExposicao instance = null;
+        Exposicao expResult = null;
+        Exposicao result = instance.getExposicao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setExposicao method, of class CandidaturaAExposicao.
+     */
+    @Test
+    public void testSetExposicao() {
+        System.out.println("setExposicao");
+        Exposicao e = null;
+        CandidaturaAExposicao instance = null;
+        instance.setExposicao(e);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

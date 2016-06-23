@@ -13,7 +13,7 @@ import lapr.project.model.*;
  *
  * @author G29
  */
-public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
+public class JFrameAtribuirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
     private transient JFrame jFrameMenuPrincipal;
     private transient final String usernameOrganizador;
@@ -48,7 +48,7 @@ public class JFrameAtribuirCandidaturasUI extends javax.swing.JFrame {
      * @param usernameOrganizador
      * @param centroExposicoes
      */
-    public JFrameAtribuirCandidaturasUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
+    public JFrameAtribuirCandidaturasAExposicaoUI(JFrame jFrameMenuPrincipal, String usernameOrganizador, CentroExposicoes centroExposicoes) {
         super("Atribuir candidaturas a exposição");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;

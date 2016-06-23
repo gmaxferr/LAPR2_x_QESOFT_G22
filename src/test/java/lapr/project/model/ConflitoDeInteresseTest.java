@@ -5,9 +5,8 @@
  */
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.registos.RegistoCandidaturasAExposicao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -117,6 +116,19 @@ public class ConflitoDeInteresseTest {
             result = null;
         }
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of fix method, of class ConflitoDeInteresse.
+     */
+    @Test
+    public void testFix() {
+        System.out.println("fix");
+        RegistoCandidaturasAExposicao rc = null;
+        ConflitoDeInteresse instance = null;
+        instance.fix(rc);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }
