@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ListarCandidaturasADemonstracaoRemovidasController;
 import lapr.project.model.*;
+import lapr.project.ui.model.ComboBoxModelDemonstracoes;
 import lapr.project.ui.model.ComboBoxModelExposicoes;
 
 /**
@@ -383,10 +384,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         });
 
         jComboBoxEscolherDemonstracao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxEscolherDemonstracao.setSelectedIndex(-1);
-        jComboBoxEscolherDemonstracao.setToolTipText("");
-        jComboBoxEscolherDemonstracao.setMinimumSize(new java.awt.Dimension(30, 21));
-        jComboBoxEscolherDemonstracao.setPreferredSize(new java.awt.Dimension(30, 21));
+        jComboBoxEscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(this.listaDemonstracoes));
         jComboBoxEscolherDemonstracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEscolherDemonstracaoActionPerformed(evt);
@@ -410,7 +408,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                         .addGap(81, 81, 81)
                         .addComponent(jButtonCard2Avancar))
                     .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
+                        .addGap(188, 188, 188)
                         .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(188, Short.MAX_VALUE))
         );
@@ -419,9 +417,9 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
             .addGroup(card2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1Card2Titulo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -437,11 +435,6 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Lista de Candidaturas Removidas");
 
-        jListCard3ListaCandidaturas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPaneCard3.setViewportView(jListCard3ListaCandidaturas);
 
         jButtonCard3Recuar.setText("Recuar");
@@ -539,14 +532,6 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         jFrameMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButtonCard3FecharActionPerformed
 
-    private void jComboBoxEscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherDemonstracaoActionPerformed
-        if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
-            jTextAreaCard1DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()).getDescricao());
-        } else {
-            jTextAreaCard1DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
-        }
-    }//GEN-LAST:event_jComboBoxEscolherDemonstracaoActionPerformed
-
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             avancarParaCard2();
@@ -583,6 +568,14 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
             jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
+
+    private void jComboBoxEscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherDemonstracaoActionPerformed
+      if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
+            jTextAreaCard1DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()).getDescricao());
+        } else {
+            jTextAreaCard1DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
+        }
+    }//GEN-LAST:event_jComboBoxEscolherDemonstracaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
