@@ -21,33 +21,33 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
      * Username do organizador
      */
     private transient String usernameOrganizador;
-    
+
     /**
      * Lista de exposições do organizador utilizadas para a execução deste UC
      */
     private transient List<Exposicao> listaExposicoesDoOrganizador;
-    
+
     /**
      * Controller deste UC
      */
     private transient ListarCandidaturasADemonstracaoRemovidasController controller;
-    
+
     /**
      * Lista de demonstrações utilizadas para a execução deste UC
      */
     private transient List<Demonstracao> listaDemonstracoes;
 
-        /**
+    /**
      * Largura da janela no passo 1
      */
     private static final int LARGURA_JANELA_PASSO1 = 720;
@@ -60,31 +60,38 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     /**
      * Largura da janela no passo 2
      */
-    private static final int LARGURA_JANELA_PASSO2 = 455;
+    private static final int LARGURA_JANELA_PASSO2 = 585;
 
     /**
      * Altura da janela no passo 2
      */
-    private static final int ALTURA_JANELA_PASSO2 = 345;
+    private static final int ALTURA_JANELA_PASSO2 = 390;
 
-    private static final int LARGURA_JANELA_PASSO3 = 400;
-    private static final int ALTURA_JANELA_PASSO3 = 610;
+    /**
+     * Largura da janela no passo 3
+     */
+    private static final int LARGURA_JANELA_PASSO3 = 720;
+    
+    /**
+     * Altura da janela no passo 3
+     */
+    private static final int ALTURA_JANELA_PASSO3 = 380;
 
     /**
      * Descrição da demonstração por omissão
      */
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-    
+
     /**
      * Descrição da exposição por omissão
      */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-    
+
     /**
      * Local da exposição por omissão
      */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-   
+
     /**
      * Data de inicio e de fim da exposição por omissão
      */
@@ -376,7 +383,6 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         });
 
         jComboBoxEscolherDemonstracao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxEscolherDemonstracao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEscolherDemonstracao.setSelectedIndex(-1);
         jComboBoxEscolherDemonstracao.setToolTipText("");
         jComboBoxEscolherDemonstracao.setMinimumSize(new java.awt.Dimension(30, 21));
@@ -424,7 +430,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         card3.setPreferredSize(new java.awt.Dimension(200, 308));
 
@@ -485,7 +491,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
