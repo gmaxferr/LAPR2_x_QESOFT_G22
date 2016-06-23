@@ -201,6 +201,11 @@ public class UtilizadorTest {
         password = "secretcode-123".toCharArray();
         result = instance.validaPassword(password);
         assertEquals(expResult, result);
+        
+        expResult = true;
+        password = "Secretcode-123".toCharArray();
+        result = instance.validaPassword(password);
+        assertEquals(expResult, result);
     }
 
     /**
