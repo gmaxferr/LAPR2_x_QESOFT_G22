@@ -45,11 +45,12 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         this.controller = new DecidirCandidaturasAExposicaoController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAvaliadas();
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
 
         initComponents();
-        alterarComportamentoFecharJFrame();
+        this.cardLayout = (CardLayout) getContentPane().getLayout();
 
+        alterarComportamentoFecharJFrame();
+        setLocationRelativeTo(null);
         setVisible(true);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }

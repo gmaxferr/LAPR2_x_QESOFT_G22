@@ -5,8 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import lapr.project.registos.RegistoFaeAvaliacao;
@@ -134,6 +132,19 @@ public class AtribuicaoCandidaturaTest {
             expResult = null;
         }
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRegistoFaeAvaliacao method, of class AtribuicaoCandidatura.
+     */
+    @Test
+    public void testSetRegistoFaeAvaliacao() {
+        System.out.println("setRegistoFaeAvaliacao");
+        RegistoFaeAvaliacao m_rFaeAvaliacao = null;
+        AtribuicaoCandidatura instance = null;
+        instance.setRegistoFaeAvaliacao(m_rFaeAvaliacao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

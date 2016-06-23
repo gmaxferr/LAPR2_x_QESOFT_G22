@@ -23,6 +23,7 @@ import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
 import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
 import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
 import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
 import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import lapr.project.registos.RegistoAtribuicoesStands;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
@@ -1179,6 +1180,74 @@ public class ExposicaoTest {
         System.out.println("setRegistoAtribuicoesStands");
         RegistoAtribuicoesStands m_ras = new RegistoAtribuicoesStands();
         e.setRegistoAtribuicoesStands(m_ras);
+    }
+
+    /**
+     * Test of setDataInicio method, of class Exposicao.
+     */
+    @Test
+    public void testSetDataInicio() {
+        System.out.println("setDataInicio");
+        Data dataInicio = null;
+        Exposicao instance = null;
+        instance.setDataInicio(dataInicio);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataFim method, of class Exposicao.
+     */
+    @Test
+    public void testSetDataFim() {
+        System.out.println("setDataFim");
+        Data dataFim = null;
+        Exposicao instance = null;
+        instance.setDataFim(dataFim);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getListaFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaFAE() {
+        System.out.println("getListaFAE");
+        Exposicao instance = null;
+        List<FAE> expResult = null;
+        List<FAE> result = instance.getListaFAE();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRegistoAtribuicoesExposicao method, of class Exposicao.
+     */
+    @Test
+    public void testGetRegistoAtribuicoesExposicao() {
+        System.out.println("getRegistoAtribuicoesExposicao");
+        Exposicao instance = null;
+        RegistoAtribuicoesCandidaturasExposicao expResult = null;
+        RegistoAtribuicoesCandidaturasExposicao result = instance.getRegistoAtribuicoesExposicao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRegistoAtribuicoesDemonstracao method, of class Exposicao.
+     */
+    @Test
+    public void testGetRegistoAtribuicoesDemonstracao() {
+        System.out.println("getRegistoAtribuicoesDemonstracao");
+        Exposicao instance = null;
+        RegistoAtribuicoesCandidaturasDemonstracao expResult = null;
+        RegistoAtribuicoesCandidaturasDemonstracao result = instance.getRegistoAtribuicoesDemonstracao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

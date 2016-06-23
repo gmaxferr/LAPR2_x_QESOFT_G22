@@ -1,10 +1,8 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.w3c.dom.Node;
 
 /**
@@ -12,22 +10,30 @@ import org.w3c.dom.Node;
  * @author G29
  */
 public class ScoredKeywordTest {
-    
+
+    private ScoredKeyword instance;
+    private String keyword;
+    private int score;
+
     public ScoredKeywordTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+        keyword = "keyword";
+        score = 3;
+        instance = new ScoredKeyword(keyword, score);
+
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -38,12 +44,9 @@ public class ScoredKeywordTest {
     @Test
     public void testGetScore() {
         System.out.println("getScore");
-        ScoredKeyword instance = null;
-        int expResult = 0;
+        int expResult = 3;
         int result = instance.getScore();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -53,10 +56,7 @@ public class ScoredKeywordTest {
     public void testSetScore() {
         System.out.println("setScore");
         int score = 0;
-        ScoredKeyword instance = null;
         instance.setScore(score);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,12 +65,9 @@ public class ScoredKeywordTest {
     @Test
     public void testGetFrequency() {
         System.out.println("getFrequency");
-        ScoredKeyword instance = null;
-        int expResult = 0;
+        int expResult = 1;
         int result = instance.getFrequency();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -80,10 +77,7 @@ public class ScoredKeywordTest {
     public void testSetFrequency() {
         System.out.println("setFrequency");
         int frequency = 0;
-        ScoredKeyword instance = null;
         instance.setFrequency(frequency);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,12 +86,9 @@ public class ScoredKeywordTest {
     @Test
     public void testGetValue() {
         System.out.println("getValue");
-        ScoredKeyword instance = null;
-        String expResult = "";
+        String expResult = keyword;
         String result = instance.getValue();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -107,10 +98,7 @@ public class ScoredKeywordTest {
     public void testSetValue() {
         System.out.println("setValue");
         String value = "";
-        ScoredKeyword instance = null;
         instance.setValue(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -119,13 +107,10 @@ public class ScoredKeywordTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object o = null;
-        ScoredKeyword instance = null;
-        boolean expResult = false;
+        Object o = new ScoredKeyword(keyword, score);
+        boolean expResult = true;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,12 +119,10 @@ public class ScoredKeywordTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        ScoredKeyword instance = null;
-        int expResult = 0;
+        ScoredKeyword newScore = new ScoredKeyword(keyword, score);
+        int expResult = newScore.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -148,13 +131,10 @@ public class ScoredKeywordTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        ScoredKeyword o = null;
-        ScoredKeyword instance = null;
-        int expResult = 0;
+        ScoredKeyword o = new ScoredKeyword(keyword, 5);
+        int expResult = -1;
         int result = instance.compareTo(o);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -162,19 +142,16 @@ public class ScoredKeywordTest {
      */
     @Test
     public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        ScoredKeyword instance = null;
-        ScoredKeyword expResult = null;
-        ScoredKeyword result;
+         System.out.println("importContentFromXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        ScoredKeyword expResult = new ScoredKeyword(keyword, score);
         try {
-            result = instance.importContentFromXMLNode(node);
+            expResult.importContentFromXMLNode(node);
         } catch (ParserConfigurationException ex) {
-            result = null;
+            expResult = null;
         }
+        ScoredKeyword result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -183,12 +160,15 @@ public class ScoredKeywordTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        ScoredKeyword instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        ScoredKeyword expResult = instance;
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        ScoredKeyword result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
-}
+
+    }

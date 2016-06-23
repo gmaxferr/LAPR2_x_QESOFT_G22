@@ -21,56 +21,77 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
      * Username do organizador
      */
     private transient String usernameOrganizador;
-    
+
     /**
      * Lista de exposições do organizador utilizadas para a execução deste UC
      */
     private transient List<Exposicao> listaExposicoesDoOrganizador;
-    
+
     /**
      * Controller deste UC
      */
     private transient ListarCandidaturasADemonstracaoRemovidasController controller;
-    
+
     /**
      * Lista de demonstrações utilizadas para a execução deste UC
      */
     private transient List<Demonstracao> listaDemonstracoes;
 
-    private static final int LARGURA_JANELA_PASSO1 = 682;
-    private static final int ALTURA_JANELA_PASSO1 = 308;
+    /**
+     * Largura da janela no passo 1
+     */
+    private static final int LARGURA_JANELA_PASSO1 = 720;
 
-    private static final int LARGURA_JANELA_PASSO2 = 589;
-    private static final int ALTURA_JANELA_PASSO2 = 335;
+    /**
+     * Altura da janela no passo 1
+     */
+    private static final int ALTURA_JANELA_PASSO1 = 380;
 
-    private static final int LARGURA_JANELA_PASSO3 = 400;
-    private static final int ALTURA_JANELA_PASSO3 = 610;
+    /**
+     * Largura da janela no passo 2
+     */
+    private static final int LARGURA_JANELA_PASSO2 = 585;
+
+    /**
+     * Altura da janela no passo 2
+     */
+    private static final int ALTURA_JANELA_PASSO2 = 390;
+
+    /**
+     * Largura da janela no passo 3
+     */
+    private static final int LARGURA_JANELA_PASSO3 = 720;
+    
+    /**
+     * Altura da janela no passo 3
+     */
+    private static final int ALTURA_JANELA_PASSO3 = 380;
 
     /**
      * Descrição da demonstração por omissão
      */
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-    
+
     /**
      * Descrição da exposição por omissão
      */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-    
+
     /**
      * Local da exposição por omissão
      */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-   
+
     /**
      * Data de inicio e de fim da exposição por omissão
      */
@@ -91,6 +112,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
 
         alterarComportamentoFecharJFrame();
 
+        setLocationRelativeTo(null);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
@@ -151,7 +173,8 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         jButtonCard3Recuar = new javax.swing.JButton();
         jButtonCard3Fechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -360,7 +383,6 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         });
 
         jComboBoxEscolherDemonstracao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBoxEscolherDemonstracao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEscolherDemonstracao.setSelectedIndex(-1);
         jComboBoxEscolherDemonstracao.setToolTipText("");
         jComboBoxEscolherDemonstracao.setMinimumSize(new java.awt.Dimension(30, 21));
@@ -390,7 +412,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jComboBoxEscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,7 +430,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         card3.setPreferredSize(new java.awt.Dimension(200, 308));
 
@@ -453,7 +475,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jScrollPaneCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,10 +488,10 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Recuar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCard3Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

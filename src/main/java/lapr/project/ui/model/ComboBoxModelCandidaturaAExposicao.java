@@ -39,7 +39,9 @@ public class ComboBoxModelCandidaturaAExposicao extends AbstractListModel implem
      */
     @Override
     public int getSize() {
-        return m_listaCands.size();
+        if (this.m_listaCands != null) {
+            return m_listaCands.size();
+        }return 0;
     }
 
     /**

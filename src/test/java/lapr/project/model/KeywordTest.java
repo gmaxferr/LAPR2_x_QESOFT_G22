@@ -89,13 +89,16 @@ public class KeywordTest {
     @Test
     public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Keyword instance = new Keyword();
-        Keyword expResult = null;
-        Keyword result = instance.importContentFromXMLNode(node);
+        instance = new Keyword("keyword");
+        Node node = instance.exportContentToXMLNode();
+        Keyword expResult = new Keyword("keyword");
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Keyword result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -104,12 +107,16 @@ public class KeywordTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Keyword instance = new Keyword();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        instance = new Keyword("keyword");
+        Node node = instance.exportContentToXMLNode();
+        Keyword expResult = new Keyword("keyword");
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Keyword result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
