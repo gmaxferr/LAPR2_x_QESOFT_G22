@@ -124,12 +124,12 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameMenuPrincipal.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
             }
         });
     }
@@ -503,7 +503,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         String[] vetorCandidaturasRemovidas = criarVetorListaCandidaturasADemonstracaoRemovidas(controller.getListaCandidaturasADemonstracaoRemovidas());
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         jListCard3ListaCandidaturas.setListData(vetorCandidaturasRemovidas);
-        cardLayout.show(getContentPane(), "card2");
+        cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
 
@@ -542,7 +542,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
 
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoDemonstracoes();;
+        controller.getRegistoDemonstracoes();
         this.listaDemonstracoes = controller.getListaDemonstracoesDoOrganizadorVariosEstados(usernameOrganizador);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");

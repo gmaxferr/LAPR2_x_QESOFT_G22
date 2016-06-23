@@ -741,13 +741,13 @@ public class MenuV2 extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(jButton19)
-                                    .addGap(74, 74, 74)
-                                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(64, 64, 64)
+                                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(44, 44, 44)
                                     .addComponent(jButton17))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 116, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,7 +763,7 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton18)
                     .addComponent(jButton17)
                     .addComponent(jButton16))
-                .addGap(0, 47, Short.MAX_VALUE)
+                .addGap(0, 55, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton23)
                     .addComponent(jButton22)
@@ -1094,19 +1094,20 @@ public class MenuV2 extends javax.swing.JFrame {
 
         AtribuirStandsController CTRL = new AtribuirStandsController(centroExposicoes);
         this.setVisible(false);
-        JFrame frame = new JFrameAtribuirStandsUI(CTRL, this);
         Exposicao[] listExpo = CTRL.getListaExposicoes().toArray(new Exposicao[0]);
-        if (listExpo.length > 0) {
+        if (listExpo.length > 0 && centroExposicoes.getRegistoStands().getListaStands().size() > 0) {
             Exposicao selectedExpo = (Exposicao) JOptionPane.showInputDialog(this, "A qual exposição pretende atribuir os stands?", "", JOptionPane.QUESTION_MESSAGE, null, listExpo, listExpo[0]);
             if (selectedExpo != null) {
                 CTRL.select(selectedExpo);
                 this.setVisible(false);
-                frame = new JFrameAtribuirStandsUI(CTRL, this);
+                JFrame frame = new JFrameAtribuirStandsUI(CTRL, this);
             } else {
                 JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do utilizador.", "ERRO", JOptionPane.OK_OPTION);
             }
-        } else {
+        } else if(listExpo.length == 0 ){
             JOptionPane.showMessageDialog(this, "Não existem exposições num estado disponível para que possa ser possível atribuir stands.", "ERRO", JOptionPane.OK_OPTION);
+        }else{
+            JOptionPane.showMessageDialog(this, "Não existem stands no centro de exposições.", "ERRO", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 

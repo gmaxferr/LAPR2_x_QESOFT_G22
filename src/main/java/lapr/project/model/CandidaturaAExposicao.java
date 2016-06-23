@@ -436,7 +436,8 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         } else if (obj instanceof CandidaturaAExposicao) {
             CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
             if (this.getRegistoProdutos().equals(cand.getRegistoProdutos())
-                    && this.getExpositor().getUtilizador().equals(cand.getExpositor().getUtilizador())) {
+                    && this.getExpositor().getUtilizador().equals(cand.getExpositor().getUtilizador())
+                    && this.getNomeEmpresa().equals(cand.getNomeEmpresa())) {
                 return true;
             } else {
                 return false;

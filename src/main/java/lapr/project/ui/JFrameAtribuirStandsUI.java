@@ -12,10 +12,14 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirStandsController;
+import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Exposicao;
 import lapr.project.model.Expositor;
+import lapr.project.model.Stand;
 import lapr.project.model.Utilizador;
-import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.ui.model.ComboBoxModelStandart;
+import lapr.project.ui.model.ModelJTableAtribuicaoStands;
 
 /**
  *
@@ -25,7 +29,15 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
 
     private final transient AtribuirStandsController CTRL;
     private final JFrame JFrameMenuPrincipal;
-    private List<CandidaturaAExposicao> testListCand = new ArrayList<>();
+
+    private final transient ComboBoxModelStandart<CandidaturaAExposicao> modelCands;
+    private final transient ComboBoxModelStandart<Stand> modelStands;
+
+    private final transient ModelJTableAtribuicaoStands modelTableAtr;
+
+    private final transient List<CandidaturaAExposicao> listCand;
+    private final transient List<Stand> listStands;
+    private final transient List<AtribuicaoStand> listAtrStands;
 
     /**
      * Creates new form JFrameAtribuirStandsUI
@@ -36,29 +48,13 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
         this.JFrameMenuPrincipal = janelaMae;
         this.CTRL = CTRL;
 
-        CandidaturaAExposicao testCand = new CandidaturaAExposicao(new Expositor(new Utilizador()));
-        testCand.setNomeEmpresa("Empresa1");
-        testCand.setDescricao("Descricao1");
-        testCand.setArea("1");
-        testListCand.add(testCand);
+        listCand = new ArrayList();     //CTRL.getListaCand());
+        listStands = new ArrayList();   //CTRL.getListaStands());
+        listAtrStands = new ArrayList<>();
 
-        testCand = new CandidaturaAExposicao(new Expositor(new Utilizador()));
-        testCand.setNomeEmpresa("Empresa2");
-        testCand.setDescricao("Descricao2");
-        testCand.setArea("2");
-        testListCand.add(testCand);
-
-        testCand = new CandidaturaAExposicao(new Expositor(new Utilizador()));
-        testCand.setNomeEmpresa("Empresa3");
-        testCand.setDescricao("Descricao3");
-        testCand.setArea("3");
-        testListCand.add(testCand);
-
-        testCand = new CandidaturaAExposicao(new Expositor(new Utilizador()));
-        testCand.setNomeEmpresa("Empresa4");
-        testCand.setDescricao("Descricao4");
-        testCand.setArea("4");
-        testListCand.add(testCand);
+        modelCands = new ComboBoxModelStandart<>(CTRL.getListaCand());
+        modelStands = new ComboBoxModelStandart<>(CTRL.getListaStands());
+        modelTableAtr = new ModelJTableAtribuicaoStands(listAtrStands);
 
         initComponents();
 
@@ -68,14 +64,15 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
     }
 
     private void alterarComportamentoFecharJFrame() {
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
                 JFrameMenuPrincipal.setVisible(true);
+                dispose();
             }
         });
     }
@@ -124,7 +121,12 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
         jTextPane1.setText("AtribuirStandsUI");
         jScrollPane1.setViewportView(jTextPane1);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(modelStands);
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -145,18 +147,13 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(0, 102, 0));
         jToggleButton1.setText("Adiciona atribuição");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
             }
-        ));
+        });
+
+        jTable1.setModel(modelTableAtr);
         jScrollPane15.setViewportView(jTable1);
 
         jLabel1.setText("Stands:");
@@ -178,6 +175,11 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
         jToggleButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(0, 102, 0));
         jToggleButton2.setText("Confirma atribuições");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("m^2");
 
@@ -186,8 +188,18 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(153, 0, 0));
         jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new ComboBoxModelCandidaturaAExposicao(testListCand));
+        jComboBox1.setModel(modelCands);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -268,7 +280,7 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))))
                 .addGap(2, 2, 2)
@@ -303,15 +315,79 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (jComboBox1.getSelectedItem() != null) {
-            preencherDados();
+            CandidaturaAExposicao cand = listCand.get(jComboBox1.getSelectedIndex());
+            jTextArea1.setText(cand.getDescricao());
+            jTextPane10.setText(String.valueOf(cand.getArea()));
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void preencherDados() {
-        CandidaturaAExposicao cand = testListCand.get(jComboBox1.getSelectedIndex());
-        jTextArea1.setText(cand.getDescricao());
-        jTextPane10.setText(String.valueOf(cand.getArea()));
-    }
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        if (jComboBox2.getSelectedItem() != null) {
+            Stand st = (Stand) listStands.get(jComboBox2.getSelectedIndex());
+            jTextArea2.setText(st.getDescricao());
+            jTextPane12.setText(String.valueOf(st.getArea()));
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if (jComboBox1.getSelectedItem() != null && jComboBox2.getSelectedItem() != null) {
+            CandidaturaAExposicao cand = (CandidaturaAExposicao) jComboBox1.getSelectedItem();
+            Stand stand = (Stand) jComboBox2.getSelectedItem();
+
+            listCand.remove(cand);
+            listStands.remove(stand);
+
+            AtribuicaoStand atr = new AtribuicaoStand(stand, cand, false);
+
+            listAtrStands.add(atr);
+
+            jComboBox1.setSelectedIndex(-1);
+            jComboBox1.revalidate();
+            jComboBox1.repaint();
+
+            jComboBox2.setSelectedIndex(-1);
+            jComboBox2.revalidate();
+            jComboBox2.repaint();
+
+            jTable1.revalidate();
+            jTable1.repaint();
+
+            jTextArea1.setText("");
+            jTextArea2.setText("");
+            jTextPane10.setText("");
+            jTextPane12.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Tem de escolher uma Candidatura e um Stand", "ERRO", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                + "\nOs dados escolhidos até ao momento não foram guardados.",
+                "Dados não guardados",
+                JOptionPane.WARNING_MESSAGE);
+        JFrameMenuPrincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        CTRL.setAtribuicoes(listAtrStands);
+        int returnVal;
+        if (listCand.size() == 0) {
+            returnVal = JOptionPane.showConfirmDialog(this, "Confirma as atribuições inseridas?", "CONFIRM", JOptionPane.YES_NO_OPTION);
+        } else {
+            returnVal = JOptionPane.showConfirmDialog(this, "Existem candidaturas sem Stands atribuidos! Confirma as atribuições, mesmo assim?", "CONFIRM", JOptionPane.YES_NO_OPTION);
+        }
+        if (returnVal == JOptionPane.YES_OPTION) {
+            CTRL.confirm();
+            JOptionPane.showMessageDialog(this, "Atribuicoes registadas com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            JFrameMenuPrincipal.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
