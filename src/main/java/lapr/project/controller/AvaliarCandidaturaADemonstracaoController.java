@@ -39,7 +39,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * Registo de atribuições
      */
     private RegistoAtribuicoesCandidaturasDemonstracao m_ra;
-    
+
     /**
      * Registo de exposições
      */
@@ -88,10 +88,10 @@ public class AvaliarCandidaturaADemonstracaoController {
     /**
      * Guarda o registo de exposições associado ao centro de exposições atual
      */
-    public void getRegistoExposicoes(){
+    public void getRegistoExposicoes() {
         this.m_re = m_centroExposicoes.getRegistoExposicoes();
     }
-    
+
     /**
      * Devolve a lista de exposições que estejam no estado
      * candidaturasAtribuidas e que o utilizador detenha o cargo de FAE sobre
@@ -100,11 +100,11 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @return lista de exposições válidas sobre as quais se pode executar este
      * UC
      */
-    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(String usernameFAE) {
-        return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(usernameFAE);
+    public ArrayList<Exposicao> getListaExposicoes(String usernameFAE) {
+        return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(usernameFAE);
     }
-    
-     /**
+
+    /**
      * Modifica a exposição
      *
      * @param exposicao exposição selecionada
@@ -112,7 +112,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     public void setExposicao(Exposicao exposicao) {
         this.m_exposicao = exposicao;
     }
-    
+
     /**
      * Guarda o registo de demonstrações
      */
@@ -158,7 +158,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * @return candidaturas atribuídas a um fae
      */
     public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAE(String usernameFAE) {
-        return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(usernameFAE);
+        return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(usernameFAE, m_demonstracaoSelecionada);
     }
 
     /**
@@ -185,7 +185,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     public String getDadosCandidatura() {
         return this.m_atribuicaoEscolhida.getCandidaturaAssociada().getDadosCandidatura();
     }
-    
+
     /**
      * Devolve a avaliação de um fae
      *
@@ -199,28 +199,28 @@ public class AvaliarCandidaturaADemonstracaoController {
 
     /**
      * Define novos parametros a serem guardados no objecto Avaliação deste FAE
-     * sobre a candidatura escolhida 
-     * 
+     * sobre a candidatura escolhida
+     *
      * @param ratingConhecimentoSobreTema inteiro de 0-5 que representa o
      * conhecimento do FAE sobre o tema da candidatura/demonstração
-     * @param ratingAdequacaoDadosCandidatura inteiro de 0-5 que representa a 
+     * @param ratingAdequacaoDadosCandidatura inteiro de 0-5 que representa a
      * adequação dos dados da candidatura
      * @param ratingRecomendacaoGlobal inteiro de 0-5 que representa a
      * recomendação do FAE para a candidatura
      */
-    public void setAvaliacao(int ratingConhecimentoSobreTema,int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal ){
+    public void setAvaliacao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal) {
         this.m_avaliacaoDoFae.setAvaliacaoCandidaturaADemonstracao(ratingConhecimentoSobreTema, ratingAdequacaoDadosCandidatura, ratingRecomendacaoGlobal);
     }
-    
+
     /**
      * Atualiza o estado da candidatura e da demonstração atualmente
      * selecionadas pelo FAE na UI para os estados CandidaturasAvaliadas
+     *
+     * @param cand - Candidatura a demonstração
      */
-    public void setEstadoCandiaturaAvaliada() {
+    public void setEstadoCandiaturaAvaliada(CandidaturaADemonstracao cand) {
+        m_cand = cand;
         this.m_estadoCandidatura = this.m_cand.getEstado();
         m_estadoCandidatura.setEstadoCandidaturaADemonstracaoAvaliada();
-
-        this.m_estadoDemonstracao = this.m_demonstracaoSelecionada.getEstadoDemo();
-        m_estadoDemonstracao.setEstadoDemonstracaoCandidaturasAvaliadas();
     }
 }

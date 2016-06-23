@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class ListarCandidaturasADemonstracaoRemovidasControllerTest {
     
@@ -75,6 +75,7 @@ public class ListarCandidaturasADemonstracaoRemovidasControllerTest {
     @Test
     public void testGetListaExposicoesDoOrganizador() {
         System.out.println("getListaExposicoesDoOrganizador");
+        instance.getRegistoExposicoes();
         List<Exposicao> expResult = new ArrayList<Exposicao>();;
         List<Exposicao> result = instance.getListaExposicoesDoOrganizador("");
         assertEquals(expResult, result);

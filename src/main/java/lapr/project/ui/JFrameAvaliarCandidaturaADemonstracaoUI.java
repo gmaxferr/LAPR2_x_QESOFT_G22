@@ -100,20 +100,26 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     public JFrameAvaliarCandidaturaADemonstracaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String username) {
         super("Avaliar candidaturas a demonstração");
 
-        this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.ce = centroExposicoes;
-        this.usernameFAE = username;
-        this.controller = new AvaliarCandidaturaADemonstracaoController(ce);
+        this.controller = new AvaliarCandidaturaADemonstracaoController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(this.usernameFAE);
-        initComponents();
+        this.listaExposicoes = controller.getListaExposicoes(username);
 
-        alterarComportamentoFecharJFrame();
+        if (listaExposicoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não existem exposições com candidaturas a demontração a avaliar.", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else {
+            this.jFrameMenuPrincipal = jFrameMenuPrincipal;
+            this.ce = centroExposicoes;
+            this.usernameFAE = username;
+            initComponents();
 
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+            alterarComportamentoFecharJFrame();
+
+            setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+
+        }
     }
 
     /**
@@ -715,8 +721,8 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
         if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
-            controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
+            controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAE(usernameFAE);
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard3();

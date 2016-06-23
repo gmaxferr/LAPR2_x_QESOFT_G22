@@ -227,7 +227,7 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      * @return caraterísticas da data.
      */
     public String toAnoMesDiaString() {
-        return String.format("%04d/%02d/%02d", ano, mes+1, dia);
+        return String.format("%04d/%02d/%02d", ano, mes, dia);
     }
 
     /**
