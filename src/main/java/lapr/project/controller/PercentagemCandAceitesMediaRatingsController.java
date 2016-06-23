@@ -65,15 +65,6 @@ public class PercentagemCandAceitesMediaRatingsController {
     }
 
     /**
-     * Devolve a lista de exposições que se encontram no estado decididas
-     *
-     * @return lista de exposições no estado decididas
-     */
-    public List<Exposicao> getListaExposicoesEstadoDecididas() {
-        return this.re.getListaExposicoesEstadoCandidaturasDecididas();
-    }
-
-    /**
      * Define uma exposição como a selecionada (pretendida pelo utilizador) e
      * sobre a qual irá ser executado o UC (cálculos)
      *
