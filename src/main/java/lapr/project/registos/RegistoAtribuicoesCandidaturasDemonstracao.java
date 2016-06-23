@@ -46,17 +46,20 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
 
     /**
      * Devolve as candidaturas atribuídas a um fae que se encontrem no estado
-     * atribuidas
+     * atribuidas e avaliadas
      *
      * @param usernameFAE username do fae
      * @return candidaturas atribuídas a um fae
      */
-    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE) {
+    public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE, Demonstracao demo) {
         ArrayList<AtribuicaoCandidaturaDemonstracao> listaAtrib = new ArrayList<>();
         for (AtribuicaoCandidaturaDemonstracao atribuicao : this.m_listaAtribuicao) {
-            if (atribuicao.getCandidaturaAssociada().getEstado().isEstadoCandidaturaADemonstracaoAtribuida()
-                    && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
-                listaAtrib.add(atribuicao);
+            CandidaturaADemonstracao cand = atribuicao.getCandidaturaAssociada();
+            if (cand.getCodigoDemo().equals(demo.getCodigoIdentificacao())) {
+                if ((cand.getEstado().isEstadoCandidaturaADemonstracaoAtribuida() || cand.getEstado().isEstadoCandidaturaADemonstracaoAvaliada() )
+                        && atribuicao.getRegistoFaeAvaliacao().getObjFaeDecisaoDoFae(usernameFAE) != null) {
+                    listaAtrib.add(atribuicao);
+                }
             }
         }
         return listaAtrib;

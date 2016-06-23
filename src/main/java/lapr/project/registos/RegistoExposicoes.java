@@ -261,6 +261,29 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
 
+     /**
+     * Devolve uma lista de exposiçoes no estado candidaturas atribuidas do fae
+     *
+     * @param usernameFAE username do fae
+     * @return lista de exposiçoes no estado candidaturas atribuidas do fae
+     */
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(String usernameFAE) {
+        ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
+        for (Exposicao exposicao : this.m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)) {
+                RegistoDemonstracoes rd = new RegistoDemonstracoes(true);
+                rd = exposicao.getRegistoDemonstracoes();
+                for (Demonstracao d : rd.getListaDemonstracoes()) {
+                    if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAtribuidas()) {
+                        listaExposicoesEstadoCandidaturaAtribuidasDoFAE.add(exposicao);
+                    }
+                }
+            }
+        }
+        return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
+    }
+
+    
     /**
      * Devolve exposições do organizador em que existem demonstrações pendentes
      *

@@ -8,17 +8,37 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um Conflito de interesse da demonstração
+ * 
  * @author G29
  */
 public class ConflitoDeInteresseDemonstracao implements Importable<ConflitoDeInteresseDemonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "ConflitoDeInteresseDemonstracao";
 
+    /**
+     * FAE
+     */
     private FAE m_fae;
+    
+    /**
+     * Candidatura a demonstração
+     */
     private CandidaturaADemonstracao m_candidatura;
+    
+    /**
+     * Tipo de conflito demonstração
+     */
     private TipoConflitoDemonstracao m_tipoConflito;
 
+    /**
+     * Construtor de objetos do tipo ConflitoDeInteresseDemonstracao com os
+     * parâmetros fae, candidatura a demonstração e tipo de conflito a demonstração
+     * 
+     * @param fae fae
+     * @param cand candidatura a demonstração
+     * @param tipoConflito tipo de conflito da demonstração
+     */
     public ConflitoDeInteresseDemonstracao(FAE fae, CandidaturaADemonstracao cand, TipoConflitoDemonstracao tipoConflito) {
         this.m_fae = fae;
         this.m_candidatura = cand;
@@ -26,27 +46,37 @@ public class ConflitoDeInteresseDemonstracao implements Importable<ConflitoDeInt
     }
 
     /**
-     * @return the m_fae
+     * Devolve o fae
+     * @return fae
      */
     public FAE getFae() {
         return m_fae;
     }
 
     /**
-     * @return the m_candidatura
+     * Devolve a candidatura a demonstração
+     * 
+     * @return candidatura a demonstração
      */
     public CandidaturaADemonstracao getCandidatura() {
         return m_candidatura;
     }
 
     /**
-     *
+     * Devolve o tipo de conflito da demonstração
+     * 
      * @return tipo deste conflito
      */
     public TipoConflitoDemonstracao getTipo() {
         return this.m_tipoConflito;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param rc registo candidaturas a exposição
+     */
     public void fix(RegistoCandidaturasAExposicao rc) {
         for (CandidaturaAExposicao cand : rc.getListaCandidaturas()) {
             for (Demonstracao demo : cand.getRegistoDemonstracoes().getListaDemonstracoes()) {

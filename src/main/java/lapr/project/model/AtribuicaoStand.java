@@ -6,52 +6,62 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
- * @author Ricardo Catalao
+ * Representação de uma atribuição stand
+ * 
+ * @author G29
  */
 public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "AtribuicaoStand";
     public static final String DECISAO_ATTR_NAME = "decisao";
 
+    /**
+     * Stand atribuído
+     */
     private Stand m_stand;
+    
+    /**
+     * Candidatura a exposição
+     */
     private CandidaturaAExposicao m_cand;
+    
+    /**
+     * Decisão sobre o stand
+     */
     private boolean m_decisao;
 
+    /**
+     * Construtor de objetos do tipo AtribuicaoStand com os parâmentros
+     * stand, candidatura a exposição e decisao
+     * 
+     * @param m_stand stand atribuido
+     * @param m_cand candidatura a exposição
+     * @param decisao decisão sobre o stand
+     */
     public AtribuicaoStand(Stand m_stand, CandidaturaAExposicao m_cand, boolean decisao) {
         this.m_stand = m_stand;
         this.m_cand = m_cand;
         this.m_decisao = decisao;
     }
 
-    /**
-     * @return the stand
-     */
+   /**
+    * Devolve o stand atribuido
+    * 
+    * @return stand atribuido
+    */
     public Stand getStand() {
         return m_stand;
     }
 
     /**
-     * @param stand the stand to set
-     */
-    public void setStand(Stand stand) {
-        this.m_stand = stand;
-    }
-
-    /**
-     * @return the cand
+     * Devolve a candidatura a exposição
+     * 
+     * @return candidatura a exposição
      */
     public CandidaturaAExposicao getCand() {
         return m_cand;
     }
-
-    /**
-     * @param cand the cand to set
-     */
-    public void setCand(CandidaturaAExposicao cand) {
-        this.m_cand = cand;
-    }
-
+    
     /**
      * Devolve a decisão
      *
@@ -59,6 +69,23 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
      */
     public boolean getDecisao() {
         return this.m_decisao;
+    }
+    
+    /**
+     * Modifica o stand
+     * @param stand novo stand
+     */
+    public void setStand(Stand stand) {
+        this.m_stand = stand;
+    }
+
+    /**
+     * Modifica a candidatura a exposição
+     * 
+     * @param cand nova candidatura a exposição
+     */
+    public void setCand(CandidaturaAExposicao cand) {
+        this.m_cand = cand;
     }
 
     /**
