@@ -55,18 +55,21 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     public JFrameDecidirCandidaturaADemonstracaoUI(JFrame mainMenu, CentroExposicoes centroExposicoes, String username) {
         super("Decidir candidaturas");
         this.mainMenu = mainMenu;
-        initComponents();
 
         this.CTRL = new DecidirCandidaturaADemonstracaoController(centroExposicoes, username);
         CTRL.getRegistoExposicoes();
-        this.listaExposicoes = CTRL.getListaExposicoes();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
+        this.listaExposicoes = CTRL.getListaExposicoes();
+        if (listaExposicoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foram encontradas exposições com candidaturas a demonstrações à espera de serem decididas", "Exposições não encontradas...", JOptionPane.WARNING_MESSAGE);
+            mainMenu.setVisible(true);
+        } else {
+            initComponents();
+            alterarComportamentoFecharJFrame();
 
-        initComponents();
-        alterarComportamentoFecharJFrame();
-
-        setVisible(true);
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            setVisible(true);
+            setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+        }
     }
 
     /**
@@ -686,7 +689,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
             String[] opcoes2 = {"Sim", "Não"};
             int resposta = JOptionPane.showOptionDialog(rootPane, "Decisão guardada!\nDeseja decidir outra candidatura?", "Decisão", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
             if (resposta == 0) {
-                voltarASelecionarExposicao();
+                avancarParaCard3();
             } else {
                 terminarUC();
             }
