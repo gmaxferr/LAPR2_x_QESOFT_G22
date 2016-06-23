@@ -14,7 +14,6 @@ import org.w3c.dom.*;
 public class Produto implements Importable<Produto>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "Produto";
-    public static final String NOME_ELEMENT_NAME = "Nome";
 
     /**
      * Nome do produto
@@ -96,7 +95,7 @@ public class Produto implements Importable<Produto>, Exportable {
         Node n = elementsKeyword.item(0);
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
-            this.m_nome = elem.getElementsByTagName(NOME_ELEMENT_NAME).item(0).getTextContent();
+            this.m_nome = elem.getTextContent();
         }
         return this;
     }
@@ -109,11 +108,7 @@ public class Produto implements Importable<Produto>, Exportable {
             Document document = XMLParser.createDocument();
 
             Element elementProduto = document.createElement(ROOT_ELEMENT_NAME);
-            Element elementNome = document.createElement(NOME_ELEMENT_NAME);
-
-            elementNome.setTextContent(this.m_nome);
-            elementProduto.appendChild(elementNome);
-
+            elementProduto.setTextContent(this.m_nome);
             document.appendChild(elementProduto);
 
             node = elementProduto;

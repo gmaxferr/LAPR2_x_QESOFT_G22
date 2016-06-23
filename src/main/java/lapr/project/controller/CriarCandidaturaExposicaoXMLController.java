@@ -37,6 +37,7 @@ public class CriarCandidaturaExposicaoXMLController {
 
     /**
      * Adiciona a candidatura ao registo de candidaturas da demonstração
+     * @param u
      */
     public void registarCandidatura(Utilizador u) {
         m_c.fix(m_ce.getRegistoUtilizadoresConfirmados(), new RegistoDemonstracoes(true));

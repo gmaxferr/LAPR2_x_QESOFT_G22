@@ -13,7 +13,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
     //Elements
     public static final String ROOT_ELEMENT_NAME = "avaliacao";
-    
+
     public static final String RATING_CONHECIMENTO_TEMA_ELEM_NAME = "conhecimentoFAE";
     public static final String RATING_ADEQ_EXPOSICAO_ELEMENT_NAME = "adequacaoExposicao";
     public static final String RATING_ADEQ_DEMOS_ELEMENT_NAME = "adequacaoDemonstracoes";
@@ -22,30 +22,30 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public static final String RATING_ADEQ_DADOS_CAND_ELEM_NAME = "adequacaoDadosCandidatura";
 
     /**
-     * Rating conhecimento do tema 
+     * Rating conhecimento do tema
      */
     private int m_ratingConhecimentoSobreOTema;
-        
+
     /**
-     * Rating adequação da exposição 
+     * Rating adequação da exposição
      */
     private int m_ratingAdequacaoAExposicao;
-        
+
     /**
-     * Rating adequação das demonstrações 
+     * Rating adequação das demonstrações
      */
     private int m_ratingAdequacaoAsDemos;
-     
+
     /**
      * Rating adequação numero de convites
      */
     private int m_ratingAdequacaoNumConvites;
-    
+
     /**
      * Rating recomendação global
      */
     private int m_ratingRecomendacaoGlobal;
-    
+
     /**
      * Rating adequação dos dados da candidatura
      */
@@ -183,8 +183,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * desta.
      *
      * @param obj objecto a comparar com a avaliação
-     * @return true se o objeto recebido representar uma avaliação equivalente
-     * à avaliação. Caso contrário, retorna false.
+     * @return true se o objeto recebido representar uma avaliação equivalente à
+     * avaliação. Caso contrário, retorna false.
      */
     @Override
     public boolean equals(Object obj) {
@@ -227,7 +227,10 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
             this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ELEMENT_NAME).item(0).getTextContent());
             this.m_ratingAdequacaoNumConvites = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_NUM_CONVITES_ELEM_NAME).item(0).getTextContent());
             this.m_ratingRecomendacaoGlobal = Integer.parseInt(elem.getElementsByTagName(RATING_REC_GLOBAL_ELEMENT_NAME).item(0).getTextContent());
-            this.m_ratingAdequacaoDadosCandidatura = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DADOS_CAND_ELEM_NAME).item(0).getTextContent());
+            NodeList nList2 = elem.getElementsByTagName(RATING_ADEQ_DADOS_CAND_ELEM_NAME);
+            if (nList2.getLength() != 0) {
+                this.m_ratingAdequacaoDadosCandidatura = Integer.parseInt(nList2.item(0).getTextContent());
+            }
         }
 
         return this;
