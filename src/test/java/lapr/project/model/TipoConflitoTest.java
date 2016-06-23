@@ -22,13 +22,13 @@ public class TipoConflitoTest {
     public static void tearDownClass() {
     }
     
-    private TipoConflito tc;
+    private TipoConflito instance;
     private String ID;
     
     @Before
     public void setUp() {
         ID = "id";
-        tc = new TipoConflito(ID);
+        instance = new TipoConflito(ID);
     }
     
     @After
@@ -43,7 +43,7 @@ public class TipoConflitoTest {
         System.out.println("setDadosTipoConflito");
         String tipoConflito = "dados";
 
-        tc.setDadosTipoConflito(tipoConflito);
+        instance.setDadosTipoConflito(tipoConflito);
         
     }
 
@@ -54,9 +54,9 @@ public class TipoConflitoTest {
     public void testGetMecanismoDetecaoConflito() {
         System.out.println("getMecanismoDetecaoConflito");
 
-        MecanismoDetecaoConflito expResult = new MecanismoDetecaoConflito(tc);
-        tc.setMecanismo(expResult);
-        MecanismoDetecaoConflito result = tc.getMecanismoDetecaoConflito();
+        MecanismoDetecaoConflito expResult = new MecanismoDetecaoConflito(instance);
+        instance.setMecanismo(expResult);
+        MecanismoDetecaoConflito result = instance.getMecanismoDetecaoConflito();
         assertEquals(expResult, result);
         
     }
@@ -67,10 +67,14 @@ public class TipoConflitoTest {
     @Test
     public void testImportContentFromXMLNode() throws ParserConfigurationException {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-
-        TipoConflito expResult = null;
-        TipoConflito result = tc.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        TipoConflito expResult = new TipoConflito(ID);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        TipoConflito result = instance;
         assertEquals(expResult, result);
         
     }
@@ -81,11 +85,15 @@ public class TipoConflitoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-
-        Node expResult = null;
-        Node result = tc.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        TipoConflito expResult = new TipoConflito(ID);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        TipoConflito result = instance;
         assertEquals(expResult, result);
-        
     }
 
     /**
@@ -94,9 +102,21 @@ public class TipoConflitoTest {
     @Test
     public void testSetMecanismo() {
         System.out.println("setMecanismo");
-        MecanismoDetecaoConflito m_mec = new MecanismoDetecaoConflito(tc);
-        tc.setMecanismo(m_mec);
+        MecanismoDetecaoConflito m_mec = new MecanismoDetecaoConflito(instance);
+        instance.setMecanismo(m_mec);
 
+    }
+
+    /**
+     * Test of equals method, of class TipoConflito.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object obj = new TipoConflito(ID);
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
     }
     
 }

@@ -6,7 +6,6 @@
 package lapr.project.estados.Exposicao;
 
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAvaliada;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoNaoAvaliada;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
