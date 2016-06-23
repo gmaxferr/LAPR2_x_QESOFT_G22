@@ -7,7 +7,7 @@ import lapr.project.model.Demonstracao;
 
 /**
  * Representação de uma ComboBoxModel de demonstrações.
- * 
+ *
  * @author Ricardo Osório e Ana Leite
  */
 public class ComboBoxModelDemonstracoes extends AbstractListModel implements ComboBoxModel {
@@ -23,9 +23,9 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
     String selection;
 
     /**
-     * Construtor de objetcos do tipo ComboBoxModelDemonstrações com o parâmetro 
+     * Construtor de objetcos do tipo ComboBoxModelDemonstrações com o parâmetro
      * lista de demonstrações.
-     * 
+     *
      * @param listaDemonstracoes lista de demonstrações.
      */
     public ComboBoxModelDemonstracoes(List<Demonstracao> listaDemonstracoes) {
@@ -35,17 +35,20 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
 
     /**
      * Devolve o tamanho da lista de demonstrações.
-     * 
+     *
      * @return tamanho da lista de demonstrações.
      */
     @Override
     public int getSize() {
-        return this.m_listaDemonstracoes.size();
+        if (this.m_listaDemonstracoes != null) {
+            return this.m_listaDemonstracoes.size();
+        }
+        return 0;
     }
 
     /**
      * Devolve uma demonstração.
-     * 
+     *
      * @param index posição da demonstração.
      * @return demonstração.
      */
@@ -56,7 +59,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
 
     /**
      * Define o item selecionado.
-     * 
+     *
      * @param anItem item selecionado.
      */
     @Override
@@ -64,10 +67,10 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
         selection = (String) anItem;
     }
 
-    /** 
+    /**
      * Devolve o item selecionado.
-     * 
-     * @return item selecionado. 
+     *
+     * @return item selecionado.
      */
     @Override
     public Object getSelectedItem() {
