@@ -294,10 +294,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @param dataFimCandDemo - data de fim de candidaturas à demonstração
      */
-    void setDataFimCandidaturas(Data dataFimCandDemo) {
+    void setDataFimCandidaturas(Data dataFimCandDemo, CentroExposicoes ce) {
         if (dataFimCandDemo != null) {
             m_dataFimSubCand = dataFimCandDemo;
             this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
+            this.schedule(new AtivarDetecaoConflitos(ce, this), dataFimCandDemo);
         }
     }
 

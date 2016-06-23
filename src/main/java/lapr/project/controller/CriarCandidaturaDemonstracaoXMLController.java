@@ -25,9 +25,8 @@ public class CriarCandidaturaDemonstracaoXMLController {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element elem = (Element) node;
 
-                Node n2 = elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME).item(0);
-                CandidaturaADemonstracao m_c = new CandidaturaADemonstracao("", "");
-                m_c.importContentFromXMLNode(n2);
+                this.m_c = new CandidaturaADemonstracao("", "");
+                m_c.importContentFromXMLNode(elem);
             }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Ficheiro não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);

@@ -112,7 +112,7 @@ public class ExposicaoTest {
         demo.setEstado(new EstadoDemonstracaoConfirmada(demo));
         demo.setDataInicioCandidaturas(data4);
         demo.setDataFimDetecaoConflitos(data4);
-        demo.setDataFimCandidaturas(data4);
+        demo.setDataFimCandidaturas(data4, new CentroExposicoes());
         e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
     }
 

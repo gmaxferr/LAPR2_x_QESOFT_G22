@@ -45,7 +45,6 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
     private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-    private static final String DESCRICAO_CANDIDATURA_DEMONSTRACAO_POR_OMISSAO = "A apresentar dados da candidatura a demonstração selecionada";
 
     /**
      * Creates new form JFrameCriarCandidaturaDemonstracaoXML

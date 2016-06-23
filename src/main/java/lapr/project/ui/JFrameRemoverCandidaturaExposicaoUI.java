@@ -27,7 +27,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private transient JFrame thisFrame;
     private transient CentroExposicoes m_ce;
     private transient Exposicao m_expo;
-    private transient String username;
+    private transient String m_email;
     private transient RemoverCandidaturaExpoController controller;
     private transient List<CandidaturaAExposicao> m_listaCandidaturas;
     private transient CandidaturaAExposicao m_candidaturaSelecionada;
@@ -40,12 +40,12 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     /**
      * Creates new form JFrameRemoverCandidaturaUI
      */
-    public JFrameRemoverCandidaturaExposicaoUI(JFrame janelaMae, CentroExposicoes ce, String username) {
-        this.controller = new RemoverCandidaturaExpoController(username, ce);
+    public JFrameRemoverCandidaturaExposicaoUI(JFrame janelaMae, CentroExposicoes ce, String email) {
+        this.controller = new RemoverCandidaturaExpoController(m_email, ce);
         this.m_ce = ce;
-        this.username = username;
+        this.m_email = email;
         this.jFrameMenuPrincipal = janelaMae;
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(username);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(email);
         this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
@@ -455,8 +455,8 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                     this.m_expo = e;
                 }
             }
-            if (!this.m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(username).isEmpty()) {
-                this.controller = new RemoverCandidaturaExpoController(username, m_ce);
+            if (!this.m_expo.getRegistoCandidaturasAExposicao().getCandidaturasRepresentante(m_email).isEmpty()) {
+                this.controller = new RemoverCandidaturaExpoController(m_email, m_ce);
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
@@ -468,7 +468,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
 
     private void avancarParaCard2() {
         controller.setExposicao(m_expo);
-        m_listaCandidaturas = controller.getListaCandidaturas(username);
+        m_listaCandidaturas = controller.getListaCandidaturas(m_email);
         jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(m_listaCandidaturas));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
