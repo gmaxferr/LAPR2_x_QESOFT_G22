@@ -38,7 +38,7 @@ public class MenuV2 extends javax.swing.JFrame {
         this.utilizador = utilizador;
         this.centroExposicoes = centroExposicoes;
         this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
-        
+
         initComponents();
         desativarJTabbedPanelDosCargos();
         identificarCargosDoUtilizador();
@@ -526,6 +526,11 @@ public class MenuV2 extends javax.swing.JFrame {
         });
 
         jButton4.setText("Criar stand");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Percentagem de candidaturas aceites e média de ratings");
 
@@ -860,7 +865,6 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jTabbedPaneCargos)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(jButton1)
@@ -1131,15 +1135,15 @@ public class MenuV2 extends javax.swing.JFrame {
         DefinirTipoConflitoController CTRL = new DefinirTipoConflitoController(centroExposicoes);
         CTRL.novoTipoConflito();
         String input = JOptionPane.showInputDialog(this, "Como se vai chamar o novo tipo de conflito?", "Definir Tipos de Conflito");
-        if(input != null){
+        if (input != null) {
             CTRL.setDadosTipoConflito(input);
-            if(CTRL.registaTipoConflito()){
+            if (CTRL.registaTipoConflito()) {
                 JOptionPane.showMessageDialog(this, "Novo tipo de conflito registado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Ocorreu um erro no registo do novo tipo de conflito."
                         + "\n    Erro: Tipo de conflito já existente.", "SUCESSO", JOptionPane.OK_OPTION);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do Utilizador", "CANCEL", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -1222,8 +1226,13 @@ public class MenuV2 extends javax.swing.JFrame {
         new JFrameCriarCandidaturaDemonstracaoXML(centroExposicoes, thisJFrame, utilizador.getEmail());
     }//GEN-LAST:event_jButton33ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.setVisible(false);
+        new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void terminaSessao() {
-        JFrame frame = new LoginV2(centroExposicoes);
+        new LoginV2(centroExposicoes);
         dispose();
     }
 

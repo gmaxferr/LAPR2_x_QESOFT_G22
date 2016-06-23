@@ -17,26 +17,30 @@ import lapr.project.model.*;
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
     /**
-     * JFrame do login. Usada para a voltar a tornar visivél no fim
-     * deste UC
+     * JFrame do login. Usada para a voltar a tornar visivél no fim deste UC
      */
     private transient JFrame jFrameLogin;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
      * Controller deste UC
      */
     private transient RegistarUtilizadorController controller;
-    
+
     /**
      * Utilizador a ser registado
      */
     private transient Utilizador u;
 
+    private static final int LARGURA_JANELA_PASSO1 = 437;
+    private static final int ALTURA_JANELA_PASSO1 = 410;
+
+    private static final int LARGURA_JANELA_PASSO2 = 470;
+    private static final int ALTURA_JANELA_PASSO2 = 380;
 
     /**
      * Creates new form JFrameRegistarUtilizadorUI
@@ -51,7 +55,10 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         this.controller = new RegistarUtilizadorController(centroExposicoes);
         controller.getRegistoUtilizadores();
         u = controller.novoUtilizador();
+
         initComponents();
+
+        setLocationRelativeTo(null);
         alterarComportamentoFecharJFrame();
         setVisible(true);
     }
@@ -62,12 +69,12 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameLogin.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
+                jFrameLogin.setVisible(true);
             }
         });
     }
@@ -89,16 +96,17 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jPasswordField3 = new javax.swing.JPasswordField();
+        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jTextFieldUsername = new javax.swing.JTextField();
+        jPasswordFieldPassword1 = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        jPasswordFieldPassword2 = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTextFieldKeyword = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonCard1Avancar = new javax.swing.JButton();
         card2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -110,10 +118,10 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonRecuar = new javax.swing.JButton();
+        jButtonTerminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -134,18 +142,20 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 
         jLabel5.setText("Password");
 
-        jTextField1.setToolTipText("");
+        jTextFieldNome.setToolTipText("");
 
         jLabel15.setText("Reintroduza a password");
 
         jLabel10.setText("Keyword");
 
-        jTextField4.setToolTipText("Para uma maior segurança, digite uma keyword, que funcionará como chave de encriptação da sua informação pessoal.");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldKeyword.setToolTipText("Para uma maior segurança, digite uma keyword, que funcionará como chave de encriptação da sua informação pessoal.");
+        jTextFieldKeyword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldKeywordActionPerformed(evt);
             }
         });
+
+        jLabel17.setText("(até 4 caracteres)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,19 +173,21 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                                .addComponent(jTextFieldNome)
+                                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPasswordField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(jPasswordFieldPassword1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                .addComponent(jTextFieldUsername, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPasswordFieldPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel17)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -184,51 +196,52 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextFieldKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jLabel2.getAccessibleContext().setAccessibleName("jLabelCard1Nome");
         jLabel3.getAccessibleContext().setAccessibleName("JLabelCard1Email");
         jLabel4.getAccessibleContext().setAccessibleName("jLabelCard1Username");
         jLabel5.getAccessibleContext().setAccessibleName("JLabelCard1Password");
-        jTextField1.getAccessibleContext().setAccessibleName("jTextFieldCard1Nome");
-        jTextField2.getAccessibleContext().setAccessibleName("jTextFieldCard2Email");
-        jTextField3.getAccessibleContext().setAccessibleName("jTextFieldCard1Username");
-        jPasswordField3.getAccessibleContext().setAccessibleName("JPasswordFieldCard1ReintroduzirPassword");
+        jTextFieldNome.getAccessibleContext().setAccessibleName("jTextFieldCard1Nome");
+        jTextFieldEmail.getAccessibleContext().setAccessibleName("jTextFieldCard2Email");
+        jTextFieldUsername.getAccessibleContext().setAccessibleName("jTextFieldCard1Username");
+        jPasswordFieldPassword1.getAccessibleContext().setAccessibleName("JPasswordFieldCard1ReintroduzirPassword");
         jLabel15.getAccessibleContext().setAccessibleName("jLabelCard1ReintroduzaAPassword");
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Avançar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCard1Avancar.setText("Avançar");
+        jButtonCard1Avancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCard1AvancarActionPerformed(evt);
             }
         });
 
@@ -245,10 +258,10 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonCard1Avancar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,26 +269,26 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonCard1Avancar))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("jButtonCard1Recuar");
-        jButton2.getAccessibleContext().setAccessibleName("jButtonCard1Avançar");
+        jButtonCancelar.getAccessibleContext().setAccessibleName("jButtonCard1Recuar");
+        jButtonCard1Avancar.getAccessibleContext().setAccessibleName("jButtonCard1Avançar");
 
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
         card1.setLayout(card1Layout);
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
         );
 
         getContentPane().add(card1, "card1");
@@ -360,17 +373,17 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         jLabel12.getAccessibleContext().setAccessibleName("jLabelCard2EmailApresentar");
         jLabel13.getAccessibleContext().setAccessibleName("jLabelCard2UsernameApresentar");
 
-        jButton3.setText("Recuar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRecuar.setText("Recuar");
+        jButtonRecuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonRecuarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Confirma");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTerminar.setText("Confirmar");
+        jButtonTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonTerminarActionPerformed(evt);
             }
         });
 
@@ -388,9 +401,9 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRecuar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         card2Layout.setVerticalGroup(
@@ -402,32 +415,33 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(0, 51, Short.MAX_VALUE))
+                    .addComponent(jButtonRecuar)
+                    .addComponent(jButtonTerminar))
+                .addGap(0, 92, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleName("jLabelCard2Titulo");
-        jButton3.getAccessibleContext().setAccessibleName("jButtonCard2Recuar");
-        jButton4.getAccessibleContext().setAccessibleName("jButtonCard2Confirma");
+        jButtonRecuar.getAccessibleContext().setAccessibleName("jButtonCard2Recuar");
+        jButtonTerminar.getAccessibleContext().setAccessibleName("jButtonCard2Confirma");
 
         getContentPane().add(card2, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();
         this.jFrameLogin.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * Verifica se duas passwords são iguais
+     *
      * @param jPasswordField3 - primeira password
      * @param jPasswordField2 - segunda password
      * @return true se forem iguais; false caso contrário.
      */
-    private boolean validarPasswordIguais(char[] jPasswordField3, char[] jPasswordField2) {
+    private boolean validarPasswordsIguais(char[] jPasswordField3, char[] jPasswordField2) {
 
         if (jPasswordField3.length == jPasswordField2.length) {
             for (int i = 0; i < jPasswordField3.length; i++) {
@@ -441,28 +455,44 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         return true;
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        boolean valido = validarPasswordIguais(jPasswordField3.getPassword(), jPasswordField2.getPassword());
-        try {
-            if (controller.validaDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText()) == true && valido == true && jTextField4.getText().length()>=4 && jTextField4.getText().length()<=7) {
-                avancarParaCard2();
+    private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
+        if (!camposPorPreencher()) {
+            if (jTextFieldKeyword.getText().length() >= 4 && jTextFieldKeyword.getText().length() <= 7) {
+                if (validarPasswordsIguais(jPasswordFieldPassword1.getPassword(), jPasswordFieldPassword2.getPassword())) {
+                    try {
+                        controller.validaDadosDoUtilizador(jTextFieldNome.getText(), jTextFieldEmail.getText(), jPasswordFieldPassword1.getPassword(), jTextFieldUsername.getText());
+                        avancarParaCard2();
+                    } catch (InvalidPasswordException | InvalidEmailException e) {
+                        JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "As passwords não são iguais!", "Passwords diferentes", JOptionPane.WARNING_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Dados inválidos!", "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "A keyword deve de conter entre 4 a 7 caracteres!", "Keyword inválida", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (InvalidPasswordException | InvalidEmailException e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar campos por preencher!", "Campos vazios", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private boolean camposPorPreencher() {
+        if (jTextFieldNome.getText().isEmpty() || jTextFieldEmail.getText().isEmpty() || jTextFieldUsername.getText().isEmpty() || jTextFieldKeyword.getText().isEmpty() || jPasswordFieldPassword1.getPassword().length == 0 || jPasswordFieldPassword2.getPassword().length == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private void jButtonRecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecuarActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        jPasswordField2.setText("");
-        jPasswordField3.setText("");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        jPasswordFieldPassword2.setText("");
+        jPasswordFieldPassword1.setText("");
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+    }//GEN-LAST:event_jButtonRecuarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        controller.setDadosDoUtilizador(jTextField1.getText(), jTextField2.getText(), jPasswordField3.getPassword(), jTextField3.getText(), jTextField4.getText());
+    private void jButtonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarActionPerformed
+        controller.setDadosDoUtilizador(jTextFieldNome.getText(), jTextFieldEmail.getText(), jPasswordFieldPassword1.getPassword(), jTextFieldUsername.getText(), jTextFieldKeyword.getText());
         try {
             if (!controller.addUtilizador(u)) {
                 JOptionPane.showMessageDialog(rootPane, "Já existe um utilizador com esses dados (email ou username). Insira novos dados!", "Atenção!", JOptionPane.WARNING_MESSAGE);
@@ -477,34 +507,34 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
 
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonTerminarActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldKeywordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldKeywordActionPerformed
 
     private void avancarParaCard2() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador();
-        setSize(470, 380);
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
 
     private void apresentaOsDadosIntroduzidosAnteriormentePeloUtilizador() {
-        jLabel11.setText(jTextField1.getText());
-        jLabel12.setText(jTextField2.getText());
-        jLabel13.setText(jTextField3.getText());
-        jLabel16.setText(jTextField4.getText());
+        jLabel11.setText(jTextFieldNome.getText());
+        jLabel12.setText(jTextFieldEmail.getText());
+        jLabel13.setText(jTextFieldUsername.getText());
+        jLabel16.setText(jTextFieldKeyword.getText());
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonCard1Avancar;
+    private javax.swing.JButton jButtonRecuar;
+    private javax.swing.JButton jButtonTerminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -513,6 +543,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -524,11 +555,11 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JPasswordField jPasswordFieldPassword1;
+    private javax.swing.JPasswordField jPasswordFieldPassword2;
+    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldKeyword;
+    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

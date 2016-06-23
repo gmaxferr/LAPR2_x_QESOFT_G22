@@ -229,11 +229,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param password - password a validar
      * @return true se for válida; false caso contrário.
      */
-    public boolean validaPassword(char[] password) {
-        return Utilitarios.hasLowerCase(password)
+    public boolean validaPassword(char[] password) throws InvalidPasswordException {
+        if (Utilitarios.hasLowerCase(password)
                 && Utilitarios.hasNumber(password)
                 && Utilitarios.hasSinalPontuacao(password)
-                && Utilitarios.hasUpperCase(password);
+                && Utilitarios.hasUpperCase(password)) {
+            return true;
+        } else {
+            throw new InvalidPasswordException("A password introduzida não é válida. Deve de conter uma letra maiuscula, uma minuscula, um número e um sinal de pontuação. ");
+        }
     }
 
     /**
@@ -247,7 +251,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      */
     public boolean validaPassword() {
         char[] decryptesPass = CaesarsCypher.decrypt(m_strPwd, randomCaesarShift, PARCIAL_ALFABET);
-        return validaPassword(decryptesPass);
+        try {
+            return validaPassword(decryptesPass);
+        } catch (InvalidPasswordException e) {
+            return false;
+        }
     }
 
     /**
@@ -271,7 +279,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se os dados do utilizadores forem válidos (todos os campos
      * estão preenchidos). Caso contrário retorna false.
      */
-    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) {
+    public boolean validaDadosDoUtilizador(String nome, char[] password, String username, String email) throws InvalidEmailException, InvalidPasswordException {
         if (validarDadosRepetidosOuInvalidos(nome, password, username, email)) {
             return true;
         }
@@ -279,7 +287,8 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Valida os dados do Utilizador
+     * Valida os dados do Utilizador. Lança exceção InvalidEmailException se o
+     * email for inválido e InvalidPasswordException se a password for invalida.
      *
      * @param nome nome do utilizador
      * @param password password do utilizador
@@ -287,19 +296,15 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @param email email do utilizador
      *
      * @return true se os dados nao forem repetidos ou inválidos. Caso contrário
-     * retorna false
+     * retorna false.
      */
-    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) {
-        try {
-            boolean password1 = validaPassword(password);
-            boolean email1 = validaEmail(email);
-            if (password1 == false || nome.isEmpty() || username.isEmpty() || email1 == false) {
-                return false;
-            }
-            return true;
-        } catch (InvalidEmailException | InvalidPasswordException ex) {
+    public boolean validarDadosRepetidosOuInvalidos(String nome, char[] password, String username, String email) throws InvalidPasswordException, InvalidEmailException {
+        validaPassword(password);
+        validaEmail(email);
+        if (nome.isEmpty() || username.isEmpty()) {
             return false;
         }
+        return true;
     }
 
     /**
@@ -320,7 +325,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
         if (isValidEmail) {
             return true;
         } else {
-            throw new InvalidEmailException("Email inválido!");
+            throw new InvalidEmailException("Email inválido! Deve de estar no formato: endereço@host.dominio\nExemplo: ricardo@hotmail.com");
         }
 
     }
