@@ -1,18 +1,13 @@
 package lapr.project.controller;
 
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class AlterarPerfilDeUtilizadorControllerTest {
 

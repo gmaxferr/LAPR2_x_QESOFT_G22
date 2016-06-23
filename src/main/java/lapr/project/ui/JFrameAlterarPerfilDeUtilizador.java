@@ -9,7 +9,7 @@ import lapr.project.model.CentroExposicoes;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
     private transient AlterarPerfilDeUtilizadorController CTRL;
@@ -25,8 +25,10 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
         CTRL = new AlterarPerfilDeUtilizadorController(ce);
         CTRL.carregaRegistoUtilizadores();
         CTRL.identificaUtilizador(username);
-        alterarComportamentoFecharJFrame();
+        
         initComponents();
+        alterarComportamentoFecharJFrame();
+        
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -90,7 +92,7 @@ public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {
 
         jPasswordField2.setText("jPasswordField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
