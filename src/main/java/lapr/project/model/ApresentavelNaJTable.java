@@ -2,7 +2,7 @@ package lapr.project.model;
 
 /**
  *
- * @author Ricardo Osorio
+ * @author G29
  */
 public interface ApresentavelNaJTable {
     

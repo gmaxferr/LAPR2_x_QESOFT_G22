@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.controller;
 
 import java.util.ArrayList;
@@ -27,31 +22,33 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class ConfirmarStandControllerTest {
-    
+
     private ConfirmarStandController instance;
-    private CentroExposicoes  ce;
+    private CentroExposicoes ce;
     private RegistoExposicoes re;
     private RegistoAtribuicoesStands ras;
     private boolean decisao;
     private AtribuicaoStand atribuicaoStand;
-    private Exposicao e;   
+    private Exposicao e;
     private Utilizador u;
     private Expositor expositor;
-    
+    private CandidaturaAExposicao cand;
+    private Stand stand;
+
     public ConfirmarStandControllerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
@@ -62,16 +59,17 @@ public class ConfirmarStandControllerTest {
         u = new Utilizador();
         expositor = new Expositor(u);
         decisao = true;
-        atribuicaoStand = new AtribuicaoStand(new Stand("a", 2, "descricao"),new CandidaturaAExposicao(expositor),decisao);
+        cand = new CandidaturaAExposicao(expositor);
+        stand = new Stand("a", 2, "descricao");
+        atribuicaoStand = new AtribuicaoStand(stand, cand, decisao);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getRegistoExposicoes method, of class 
-     * ConfirmarStandController.
+     * Test of getRegistoExposicoes method, of class ConfirmarStandController.
      */
     @Test
     public void testGetRegistoExposicoes() {
@@ -80,7 +78,7 @@ public class ConfirmarStandControllerTest {
     }
 
     /**
-     * Test of getListaExposicoesDoRepresentante method, of class 
+     * Test of getListaExposicoesDoRepresentante method, of class
      * ConfirmarStandController.
      */
     @Test
@@ -100,13 +98,13 @@ public class ConfirmarStandControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data(2017,06,10), new Data(2017,06,11), new Data(2017,06,12), new Data(2017,06,13), new Data(2017,06,14),new Local ("l"), ce);
+        Exposicao e = new Exposicao("a", "b", new Data(2017, 06, 10), new Data(2017, 06, 11), new Data(2017, 06, 12), new Data(2017, 06, 13), new Data(2017, 06, 14), new Local("l"), ce);
         instance.setExposicao(e);
-        
+
     }
 
     /**
-     * Test of getRegistoAtribuicoesStands method, of class 
+     * Test of getRegistoAtribuicoesStands method, of class
      * ConfirmarStandController.
      */
     @Test
@@ -117,82 +115,73 @@ public class ConfirmarStandControllerTest {
     }
 
     /**
-     * Test of getAtribuicao method, of class 
-     * ConfirmarStandController.
+     * Test of getAtribuicao method, of class ConfirmarStandController.
      */
     @Test
     public void testGetAtribuicao() {
         System.out.println("getAtribuicao");
-        String email = "";
         instance.setExposicao(e);
         instance.getRegistoAtribuicoesStands();
+        e.getRegistoAtribuicoesStands().getListaAtribuicoesStand().add(atribuicaoStand);
         AtribuicaoStand expResult = atribuicaoStand;
-        AtribuicaoStand result = instance.getAtribuicao(email, new CandidaturaAExposicao(new Expositor(u)));
+        AtribuicaoStand result = instance.getAtribuicao(u.getEmail(), cand);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of setDecisao method, of class ConfirmarStandController.
      */
     @Test
     public void testSetDecisao() {
-        /**
-         * Neste método, a atribuição não é inicializada, daí o erro
-         */
         System.out.println("setDecisao");
-        
-        atribuicaoStand = new AtribuicaoStand(new Stand("stand", 10, "descricao"),
-                new CandidaturaAExposicao(new Expositor(u)),
-                true);
-        e.getRegistoAtribuicoesStands().getListaAtribuicoesStand().add(atribuicaoStand);
         instance.getRegistoExposicoes();
-        instance.getListaExposicoesDoRepresentante(u.getUsername());
+        e.getRegistoAtribuicoesStands().getListaAtribuicoesStand().add(atribuicaoStand);
         instance.setExposicao(e);
         instance.getRegistoAtribuicoesStands();
-        instance.getAtribuicao(u.getEmail(), new CandidaturaAExposicao(new Expositor(u)));
+        instance.getAtribuicao(u.getEmail(), cand);
+
         decisao = true;
+        instance.setCandidaturaAExposicao(cand);
         instance.setDecisao(decisao);
     }
 
     /**
-     * Test of getRegistoCandidaturasAExposicao method, of class ConfirmarStandController.
+     * Test of getRegistoCandidaturasAExposicao method, of class
+     * ConfirmarStandController.
      */
     @Test
     public void testGetRegistoCandidaturasAExposicao() {
         System.out.println("getRegistoCandidaturasAExposicao");
-        ConfirmarStandController instance = null;
+        instance.setExposicao(e);
         instance.getRegistoCandidaturasAExposicao();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getListaCandidaturasDoRepresentante method, of class ConfirmarStandController.
+     * Test of getListaCandidaturasDoRepresentante method, of class
+     * ConfirmarStandController.
      */
     @Test
     public void testGetListaCandidaturasDoRepresentante() {
         System.out.println("getListaCandidaturasDoRepresentante");
-        String email = "";
-        ConfirmarStandController instance = null;
-        List<CandidaturaAExposicao> expResult = null;
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasDoRepresentante(email);
+        instance.getRegistoExposicoes();
+        instance.setExposicao(e);
+        instance.getRegistoCandidaturasAExposicao();
+        e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
+        List<CandidaturaAExposicao> expResult = new ArrayList<CandidaturaAExposicao>();
+        expResult.add(cand);
+        List<CandidaturaAExposicao> result = instance.getListaCandidaturasDoRepresentante(u.getEmail());
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setCandidaturaAExposicao method, of class ConfirmarStandController.
+     * Test of setCandidaturaAExposicao method, of class
+     * ConfirmarStandController.
      */
     @Test
     public void testSetCandidaturaAExposicao() {
         System.out.println("setCandidaturaAExposicao");
-        CandidaturaAExposicao candidatura = null;
-        ConfirmarStandController instance = null;
+        CandidaturaAExposicao candidatura = new CandidaturaAExposicao(new Expositor(u));
         instance.setCandidaturaAExposicao(candidatura);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    
 }

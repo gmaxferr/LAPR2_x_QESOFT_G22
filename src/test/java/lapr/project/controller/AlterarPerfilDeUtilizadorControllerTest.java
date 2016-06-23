@@ -1,18 +1,13 @@
 package lapr.project.controller;
 
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoUtilizadores;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class AlterarPerfilDeUtilizadorControllerTest {
 
@@ -39,13 +34,13 @@ public class AlterarPerfilDeUtilizadorControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
+        instance = new AlterarPerfilDeUtilizadorController(ce);
         u = new Utilizador();
         u.setNome(nome);
         u.setUsername(username);
         u.setPwd(password);
         u.setEmail(email);
         ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(u);
-        instance = new AlterarPerfilDeUtilizadorController(ce);
     }
 
     @After
@@ -116,71 +111,7 @@ public class AlterarPerfilDeUtilizadorControllerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of validaNome method, of class AlterarPerfilDeUtilizadorController.
-     */
-    @Test
-    public void testChangeNome() {
-        System.out.println("changeNome");
-        instance.carregaRegistoUtilizadores();
-        instance.identificaUtilizador("username");
-        String nome = "nome1";
-        boolean expResult = true;
-        boolean result = instance.validaNome(nome);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaUsername method, of class
-     * AlterarPerfilDeUtilizadorController.
-     */
-    @Test
-    public void testValidaUsername() {
-        System.out.println("changeUsername");
-        instance.carregaRegistoUtilizadores();
-        instance.identificaUtilizador("username");
-        String username = "novoUsername";
-        boolean expResult = true;
-        boolean result = instance.validaUsername(username);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaEmail method, of class AlterarPerfilDeUtilizadorController.
-     */
-    @Test
-    public void testValidaEmail() {
-        System.out.println("changeEmail");
-        instance.carregaRegistoUtilizadores();
-        instance.identificaUtilizador("username");
-        String email = "aaa222sd@dss.com";
-        boolean expResult = true;
-        boolean result = instance.validaEmail(email);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaPassword method, of class
-     * AlterarPerfilDeUtilizadorController.
-     */
-    @Test
-    public void testValidaPassword() {
-        System.out.println("changePassword");
-        instance.carregaRegistoUtilizadores();
-        instance.identificaUtilizador("username");
-        boolean expResult = false;
-        boolean result;
-
-        char[] badPassword = {'a', 'b', 'c', 'd', 'e'};
-        result = instance.validaPassword(badPassword);
-        if (!result) {
-            char[] goodPassword = {'a', 'B', '.', '1', 'r', 'l'};
-            expResult = true;
-            result = instance.validaPassword(goodPassword);
-            assertEquals(expResult, result);
-        }
-    }
-
+ 
     /**
      * Test of confirmaAlteracoes method, of class
      * AlterarPerfilDeUtilizadorController.
@@ -201,19 +132,6 @@ public class AlterarPerfilDeUtilizadorControllerTest {
         int result = resultString.length();
         String expResultString = "Alterações Efetuadas:\nNome: alterado.\nEmail: alterado.\nUsername: alterado.\nPassword: alterada.";
         int expResult = expResultString.length();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaNome method, of class AlterarPerfilDeUtilizadorController.
-     */
-    @Test
-    public void testValidaNome() {
-        instance.carregaRegistoUtilizadores();
-        System.out.println("validaNome");
-        String nome = "nomeTestar";
-        boolean expResult = true;
-        boolean result = instance.validaNome(nome);
         assertEquals(expResult, result);
     }
 

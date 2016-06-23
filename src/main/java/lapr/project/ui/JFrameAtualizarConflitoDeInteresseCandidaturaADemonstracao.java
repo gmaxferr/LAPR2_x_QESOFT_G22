@@ -5,7 +5,7 @@ import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.*;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import lapr.project.controller.AtualizarConflitosDeInteresseCandidaturaAExposicaoController;
+import lapr.project.controller.AtualizarConflitoDeInteresseCandidaturaADemonstracaoController;
 import lapr.project.model.*;
 import lapr.project.ui.model.*;
 
@@ -15,7 +15,7 @@ import lapr.project.ui.model.*;
  */
 public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends javax.swing.JFrame {
 
-    private transient AtualizarConflitosDeInteresseCandidaturaAExposicaoController CTRL;
+    private transient AtualizarConflitoDeInteresseCandidaturaADemonstracaoController CTRL;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o nome do local de realização para a exposição selecionada";
@@ -29,17 +29,17 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     /**
      * Lista de candidaturas
      */
-    private transient List<CandidaturaAExposicao> listaCandidaturas;
+    private transient List<CandidaturaADemonstracao> listaCandidaturas;
 
     /**
      *
      */
-    private transient List<ConflitoDeInteresse> listaConflitos;
+    private transient List<ConflitoDeInteresseDemonstracao> listaConflitos;
 
     /**
      *
      */
-    private transient List<TipoConflito> listaTiposConflito;
+    private transient List<TipoConflitoDemonstracao> listaTiposConflito;
 
     private transient List<Demonstracao> listaDemonstracoes;
 
@@ -103,22 +103,6 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabelCard1Titulo1 = new javax.swing.JLabel();
-        botaoSelecionaExpo1 = new javax.swing.JButton();
-        botaoCancelar1 = new javax.swing.JButton();
-        jPanelCard1DescricaoExposicao1 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        textAreaCard1DescricaoExposicao1 = new javax.swing.JTextArea();
-        jPanelCard1Duracao1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabelCard1DataInicio1 = new javax.swing.JLabel();
-        jLabelCard1DataFim1 = new javax.swing.JLabel();
-        jPanelCard1Local1 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextAreaCard1LocalExposicao1 = new javax.swing.JTextArea();
-        comboBoxCard1EscolherExposicao1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
@@ -144,174 +128,26 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         botaoVoltar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         comboBoxSelectTipoConflito = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelCard1Titulo1 = new javax.swing.JLabel();
+        botaoSelecionaExpo1 = new javax.swing.JButton();
+        botaoCancelar1 = new javax.swing.JButton();
+        jPanelCard1DescricaoExposicao1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textAreaCard1DescricaoExposicao1 = new javax.swing.JTextArea();
+        jPanelCard1Duracao1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabelCard1DataInicio1 = new javax.swing.JLabel();
+        jLabelCard1DataFim1 = new javax.swing.JLabel();
+        jPanelCard1Local1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextAreaCard1LocalExposicao1 = new javax.swing.JTextArea();
+        comboBoxCard1EscolherExposicao1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-<<<<<<< HEAD
         setResizable(false);
-=======
         getContentPane().setLayout(new java.awt.CardLayout());
->>>>>>> 343192b45178e2b0d65dc7a43ffbe15e00fafff4
-
-        jLabelCard1Titulo1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabelCard1Titulo1.setText("Escolha a exposição pretendida");
-        jLabelCard1Titulo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        botaoSelecionaExpo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoSelecionaExpo1.setText("Selecionar exposição");
-        botaoSelecionaExpo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSelecionaExpo1ActionPerformed(evt);
-            }
-        });
-
-        botaoCancelar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoCancelar1.setText("Cancelar");
-        botaoCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelar1ActionPerformed(evt);
-            }
-        });
-
-        jPanelCard1DescricaoExposicao1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descricao", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        jPanelCard1DescricaoExposicao1.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane4.setBorder(null);
-        jScrollPane4.setRequestFocusEnabled(false);
-
-        textAreaCard1DescricaoExposicao1.setEditable(false);
-        textAreaCard1DescricaoExposicao1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        textAreaCard1DescricaoExposicao1.setColumns(20);
-        textAreaCard1DescricaoExposicao1.setLineWrap(true);
-        textAreaCard1DescricaoExposicao1.setRows(5);
-        textAreaCard1DescricaoExposicao1.setText("A apresentar a descrição da demonstração selecionada");
-        textAreaCard1DescricaoExposicao1.setToolTipText("");
-        textAreaCard1DescricaoExposicao1.setWrapStyleWord(true);
-        textAreaCard1DescricaoExposicao1.setBorder(null);
-        jScrollPane4.setViewportView(textAreaCard1DescricaoExposicao1);
-
-        jPanelCard1DescricaoExposicao1.add(jScrollPane4, java.awt.BorderLayout.CENTER);
-
-        jPanelCard1Duracao1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("De");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("até");
-
-        jLabelCard1DataInicio1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelCard1DataInicio1.setText("00/00/0000");
-
-        jLabelCard1DataFim1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelCard1DataFim1.setText("00/00/0000");
-
-        javax.swing.GroupLayout jPanelCard1Duracao1Layout = new javax.swing.GroupLayout(jPanelCard1Duracao1);
-        jPanelCard1Duracao1.setLayout(jPanelCard1Duracao1Layout);
-        jPanelCard1Duracao1Layout.setHorizontalGroup(
-            jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCard1Duracao1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelCard1DataInicio1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelCard1DataFim1)
-                .addGap(32, 32, 32))
-        );
-        jPanelCard1Duracao1Layout.setVerticalGroup(
-            jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabelCard1DataInicio1)
-                .addComponent(jLabelCard1DataFim1))
-        );
-
-        jPanelCard1Local1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-
-        jScrollPane5.setBorder(null);
-
-        jTextAreaCard1LocalExposicao1.setEditable(false);
-        jTextAreaCard1LocalExposicao1.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.background"));
-        jTextAreaCard1LocalExposicao1.setColumns(20);
-        jTextAreaCard1LocalExposicao1.setLineWrap(true);
-        jTextAreaCard1LocalExposicao1.setRows(5);
-        jTextAreaCard1LocalExposicao1.setText("A apresentar o local da exposição selecionada");
-        jTextAreaCard1LocalExposicao1.setWrapStyleWord(true);
-        jTextAreaCard1LocalExposicao1.setBorder(null);
-        jScrollPane5.setViewportView(jTextAreaCard1LocalExposicao1);
-
-        javax.swing.GroupLayout jPanelCard1Local1Layout = new javax.swing.GroupLayout(jPanelCard1Local1);
-        jPanelCard1Local1.setLayout(jPanelCard1Local1Layout);
-        jPanelCard1Local1Layout.setHorizontalGroup(
-            jPanelCard1Local1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanelCard1Local1Layout.setVerticalGroup(
-            jPanelCard1Local1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-        );
-
-        comboBoxCard1EscolherExposicao1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        comboBoxCard1EscolherExposicao1.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
-        comboBoxCard1EscolherExposicao1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxCard1EscolherExposicao1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(comboBoxCard1EscolherExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabelCard1Titulo1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelCard1DescricaoExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelCard1Duracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botaoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(botaoSelecionaExpo1))
-                            .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelCard1Titulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBoxCard1EscolherExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanelCard1Duracao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botaoCancelar1)
-                            .addComponent(botaoSelecionaExpo1))
-                        .addGap(0, 134, Short.MAX_VALUE))
-                    .addComponent(jPanelCard1DescricaoExposicao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel1, "card1");
-        jPanel1.getAccessibleContext().setAccessibleName("card1");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel13.setText("Selecione uma demonstração");
@@ -553,6 +389,167 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
 
         getContentPane().add(jPanel4, "card4");
         jPanel4.getAccessibleContext().setAccessibleName("card4");
+
+        jLabelCard1Titulo1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jLabelCard1Titulo1.setText("Escolha a exposição pretendida");
+        jLabelCard1Titulo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        botaoSelecionaExpo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoSelecionaExpo1.setText("Selecionar exposição");
+        botaoSelecionaExpo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSelecionaExpo1ActionPerformed(evt);
+            }
+        });
+
+        botaoCancelar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoCancelar1.setText("Cancelar");
+        botaoCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelar1ActionPerformed(evt);
+            }
+        });
+
+        jPanelCard1DescricaoExposicao1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descricao", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanelCard1DescricaoExposicao1.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setRequestFocusEnabled(false);
+
+        textAreaCard1DescricaoExposicao1.setEditable(false);
+        textAreaCard1DescricaoExposicao1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        textAreaCard1DescricaoExposicao1.setColumns(20);
+        textAreaCard1DescricaoExposicao1.setLineWrap(true);
+        textAreaCard1DescricaoExposicao1.setRows(5);
+        textAreaCard1DescricaoExposicao1.setText("A apresentar a descrição da demonstração selecionada");
+        textAreaCard1DescricaoExposicao1.setToolTipText("");
+        textAreaCard1DescricaoExposicao1.setWrapStyleWord(true);
+        textAreaCard1DescricaoExposicao1.setBorder(null);
+        jScrollPane4.setViewportView(textAreaCard1DescricaoExposicao1);
+
+        jPanelCard1DescricaoExposicao1.add(jScrollPane4, java.awt.BorderLayout.CENTER);
+
+        jPanelCard1Duracao1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("De");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("até");
+
+        jLabelCard1DataInicio1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelCard1DataInicio1.setText("00/00/0000");
+
+        jLabelCard1DataFim1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelCard1DataFim1.setText("00/00/0000");
+
+        javax.swing.GroupLayout jPanelCard1Duracao1Layout = new javax.swing.GroupLayout(jPanelCard1Duracao1);
+        jPanelCard1Duracao1.setLayout(jPanelCard1Duracao1Layout);
+        jPanelCard1Duracao1Layout.setHorizontalGroup(
+            jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCard1Duracao1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelCard1DataInicio1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCard1DataFim1)
+                .addGap(32, 32, 32))
+        );
+        jPanelCard1Duracao1Layout.setVerticalGroup(
+            jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCard1Duracao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelCard1DataInicio1)
+                .addComponent(jLabelCard1DataFim1))
+        );
+
+        jPanelCard1Local1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jScrollPane5.setBorder(null);
+
+        jTextAreaCard1LocalExposicao1.setEditable(false);
+        jTextAreaCard1LocalExposicao1.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.background"));
+        jTextAreaCard1LocalExposicao1.setColumns(20);
+        jTextAreaCard1LocalExposicao1.setLineWrap(true);
+        jTextAreaCard1LocalExposicao1.setRows(5);
+        jTextAreaCard1LocalExposicao1.setText("A apresentar o local da exposição selecionada");
+        jTextAreaCard1LocalExposicao1.setWrapStyleWord(true);
+        jTextAreaCard1LocalExposicao1.setBorder(null);
+        jScrollPane5.setViewportView(jTextAreaCard1LocalExposicao1);
+
+        javax.swing.GroupLayout jPanelCard1Local1Layout = new javax.swing.GroupLayout(jPanelCard1Local1);
+        jPanelCard1Local1.setLayout(jPanelCard1Local1Layout);
+        jPanelCard1Local1Layout.setHorizontalGroup(
+            jPanelCard1Local1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanelCard1Local1Layout.setVerticalGroup(
+            jPanelCard1Local1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+        );
+
+        comboBoxCard1EscolherExposicao1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboBoxCard1EscolherExposicao1.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
+        comboBoxCard1EscolherExposicao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxCard1EscolherExposicao1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(comboBoxCard1EscolherExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabelCard1Titulo1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelCard1DescricaoExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanelCard1Duracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botaoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(botaoSelecionaExpo1))
+                            .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelCard1Titulo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBoxCard1EscolherExposicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelCard1Duracao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelCard1Local1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoCancelar1)
+                            .addComponent(botaoSelecionaExpo1))
+                        .addGap(0, 134, Short.MAX_VALUE))
+                    .addComponent(jPanelCard1DescricaoExposicao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel1, "card1");
+        jPanel1.getAccessibleContext().setAccessibleName("card1");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

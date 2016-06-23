@@ -139,9 +139,12 @@ public class AtribuirCandidaturasAExposicaoController {
         this.m_estadoExposicao = this.m_exposicaoEscolhida.getEstado();
         m_estadoExposicao.setEstadoCandidaturasAtribuidas();
 
-        for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas) {
-            this.m_estadoCandidatura = atribuicao.getCandidaturaAssociada().getEstado();
-            m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+        //Este if serve apenas para poder fazer alguns testes a este método
+        if (this.m_listaAtribuicoesGeradas != null) {
+            for (AtribuicaoCandidatura atribuicao : this.m_listaAtribuicoesGeradas) {
+                this.m_estadoCandidatura = atribuicao.getCandidaturaAssociada().getEstado();
+                m_estadoCandidatura.setEstadoCandidaturaAtribuida();
+            }
         }
 
     }

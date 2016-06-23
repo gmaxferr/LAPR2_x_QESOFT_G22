@@ -17,85 +17,65 @@ import org.w3c.dom.*;
  */
 public class Demonstracao implements Agendavel, Importable<Demonstracao>, Exportable {
 
-    /**
-     *
-     */
     public static final String ROOT_ELEMENT_NAME = "Demonstracao";
-
-    /**
-     *
-     */
     public static final String DATA_INICIO_SUB_CAND_ELEMENT_NAME = "DataInicioSubmissaoCandidaturas";
-
-    /**
-     *
-     */
     public static final String DATA_FIM_SUB_CAND_ELEMENT_NAME = "DataFimSubmissaoCandidaturas";
-
-    /**
-     *
-     */
     public static final String DESCR_ELEMENT_NAME = "Descricao";
-
-    /**
-     *
-     */
     public static final String ID_ATTR_NAME = "ID";
-
-    /**
-     *
-     */
     public static final String ESTADO_ATTR_NAME = "estado";
 
     /**
-     *
+     * Data de inicio de submissão de candidaturas
      */
     private Data m_dataInicioSubCand;
 
     /**
-     *
+     * Data de fim de submissão de candidaturas
      */
     private Data m_dataFimSubCand;
 
     /**
-     *
+     * Data de fim deteção de conflitos
      */
     private Data m_dataFimDetecaoConflitos;
 
     /**
-     *
+     * Descrição da demonstração
      */
     private String m_StrDescricao;
 
     /**
-     *
+     * Código de identificação da demonstração
      */
     private String m_StrCodigoIdentificacao;
 
     /**
-     *
+     * Exposição
      */
     private Exposicao m_expo;
 
     /**
-     *
+     * Registo de recursos
      */
     private RegistoRecursos rc;
 
     /**
-     *
+     * Estado demonstração
      */
     private EstadoDemonstracao m_estado;
 
     /**
-     *
+     * Registo candidaturas a demonstração
      */
     private RegistoCandidaturasADemonstracao m_rcd;
 
+    /**
+     * Registo FAE
+     */
     private RegistoFAE m_rf;
 
     /**
-     *
+     * registo de conflitos da demonstração
      */
     private RegistoConflitosDemonstracao m_rconfDemo;
 
@@ -104,6 +84,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      */
     private RegistoCandidaturasADemonstracaoRemovidas m_rcdr;
 
+    /**
+     * Construtor de objetos do tipo Demonstracao sem parâmetros
+     */
     public Demonstracao() {
         this.rc = new RegistoRecursos();
         this.m_expo = null;
@@ -115,8 +98,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     *
-     * @param descricao
+     * Construto de objetos do tipo demonstracao com o parâmetro descrição
+     * 
+     * @param descricao descrição da demonstração
      */
     public Demonstracao(String descricao) {
         this();
@@ -124,8 +108,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
     }
 
     /**
-     *
-     * @param descricao
+     * Construtor de objetos do tipo Demonstração com os parâmetros descrição 
+     * e exposição
+     * 
+     * @param descricao descrição da demonstração
+     * @param e exposição da demonstração
      */
     public Demonstracao(String descricao, Exposicao e) {
         this();
@@ -294,10 +281,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
      *
      * @param dataFimCandDemo - data de fim de candidaturas à demonstração
      */
-    void setDataFimCandidaturas(Data dataFimCandDemo) {
+    void setDataFimCandidaturas(Data dataFimCandDemo, CentroExposicoes ce) {
         if (dataFimCandDemo != null) {
             m_dataFimSubCand = dataFimCandDemo;
             this.schedule(new AlterarParaCandidaturasFechadas(this), m_dataFimSubCand);
+            this.schedule(new AtivarDetecaoConflitos(ce, this), dataFimCandDemo);
         }
     }
 

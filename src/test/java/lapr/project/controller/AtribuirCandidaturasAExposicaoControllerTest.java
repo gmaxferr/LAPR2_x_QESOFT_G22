@@ -1,10 +1,7 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.dados.DadosInstanciados;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
+import java.util.*;
+import lapr.project.estados.Exposicao.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import lapr.project.registos.RegistoExposicoes;
@@ -19,6 +16,7 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
 
     private AtribuirCandidaturasAExposicaoController instance;
     private CentroExposicoes ce;
+    private Exposicao e;
 
     public AtribuirCandidaturasAExposicaoControllerTest() {
     }
@@ -35,6 +33,7 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
     public void setUp() {
         ce = new CentroExposicoes();
         instance = new AtribuirCandidaturasAExposicaoController(ce, "usernameOrganizador");
+        e = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
     }
 
     @After
@@ -83,28 +82,6 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
     }
 
     /**
-     * Test of setExposicao method, of class
-     * AtribuirCandidaturasAExposicaoController.
-     */
-    @Test
-    public void testSetExposicao() {
-        System.out.println("setExposicao");
-        Exposicao exposicao = new DadosInstanciados().getExpo1();
-        instance.setExposicao(exposicao);
-    }
-
-    /**
-     * Test of setEstadoCandidaturaAtribuida method, of class
-     * AtribuirCandidaturasAExposicaoController.
-     */
-    @Test
-    public void testSetEstadoCandidaturaAtribuida() {
-        System.out.println("setEstadoCandidaturaAtribuida");
-        AtribuirCandidaturasAExposicaoController instance = null;
-        instance.setEstadoCandidaturaAtribuida();
-    }
-
-    /**
      * Test of atribui method, of class
      * AtribuirCandidaturasAExposicaoController.
      */
@@ -117,20 +94,4 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
         List<AtribuicaoCandidatura> result = instance.atribui(mec);
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of atribui method, of class
-     * AtribuirCandidaturasAExposicaoController.
-     */
-    @Test
-    public void testAtribui_Mecanismo_String() {
-        System.out.println("atribui");
-        Mecanismo mec = null;
-        String numeroFAEOuExperiencia = "";
-        AtribuirCandidaturasAExposicaoController instance = null;
-        List<AtribuicaoCandidatura> expResult = null;
-        List<AtribuicaoCandidatura> result = instance.atribui(mec, numeroFAEOuExperiencia);
-        assertEquals(expResult, result);
-    }
-
 }

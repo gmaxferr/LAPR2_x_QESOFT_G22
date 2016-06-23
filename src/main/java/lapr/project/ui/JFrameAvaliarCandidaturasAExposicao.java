@@ -716,7 +716,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void guardarDecisao() {
-        this.avaliacaoDoFae.setAvalicao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
+        this.avaliacaoDoFae.setAvaliacaoCandidaturaAExposicao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoAExposicao.getValue(), jSliderAdequacaoAsDemonstracoes.getValue(), jSliderAdequacaoDoNumeroDeConvites.getValue(), jSliderRecomendacaoGlobal.getValue());
     }
 
     private void voltarASelecionarExposicao() {

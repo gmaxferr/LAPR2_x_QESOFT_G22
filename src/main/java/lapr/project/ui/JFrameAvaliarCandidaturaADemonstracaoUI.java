@@ -21,42 +21,42 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Controller deste UC
      */
     private transient final AvaliarCandidaturaADemonstracaoController controller;
-    
+
     /**
      * Lista de exposições do fae utilizadas para a execução deste UC
      */
     private transient List<Exposicao> listaExposicoes;
-    
+
     /**
      * Lista de demosntrações do fae utilizadas para a execução deste UC
      */
     private transient List<Demonstracao> listaDemonstracoes;
-    
+
     /**
      * Lista das atribuições a candidaturas demonstração
      */
     private transient List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesDoFAE;
-    
+
     /**
      * Avaliação do fae
      */
     private transient Avaliacao avaliacaoDoFae;
-    
+
     /**
      * Username do fae
      */
     private transient String usernameFAE;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes ce;
-    
+
     /**
      * Lista de candidaturas a demonstração
      */
@@ -100,20 +100,26 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     public JFrameAvaliarCandidaturaADemonstracaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String username) {
         super("Avaliar candidaturas a demonstração");
 
-        this.jFrameMenuPrincipal = jFrameMenuPrincipal;
-        this.ce = centroExposicoes;
-        this.usernameFAE = username;
-        this.controller = new AvaliarCandidaturaADemonstracaoController(ce);
+        this.controller = new AvaliarCandidaturaADemonstracaoController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(this.usernameFAE);
-        initComponents();
+        this.listaExposicoes = controller.getListaExposicoes(username);
 
-        alterarComportamentoFecharJFrame();
+        if (listaExposicoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não existem exposições com candidaturas a demontração a avaliar.", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else {
+            this.jFrameMenuPrincipal = jFrameMenuPrincipal;
+            this.ce = centroExposicoes;
+            this.usernameFAE = username;
+            initComponents();
 
-        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+            alterarComportamentoFecharJFrame();
+
+            setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+
+        }
     }
 
     /**
@@ -715,8 +721,8 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
         if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
-            controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
+            controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAE(usernameFAE);
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard3();
@@ -794,27 +800,27 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
-    private void guardarDecisao(){
-         this.avaliacaoDoFae.setAvaliacaoParaDemonstracao(jSliderConhecimentoDoTema.getValue(),jSliderAdequacaoDadosCandidatura.getValue(), jSliderRecomendaçãoGlobal.getValue());
+    private void guardarDecisao() {
+        this.avaliacaoDoFae.setAvaliacaoCandidaturaADemonstracao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoDadosCandidatura.getValue(), jSliderRecomendaçãoGlobal.getValue());
     }
-    
-    private void voltarASelecionarExposicao(){
+
+    private void voltarASelecionarExposicao() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
-    
+
     private void jButtonCard3Recuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3Recuar1ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }//GEN-LAST:event_jButtonCard3Recuar1ActionPerformed
 
-    private void terminarUC(){
+    private void terminarUC() {
         dispose();
         jFrameMenuPrincipal.setVisible(true);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;

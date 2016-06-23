@@ -13,7 +13,7 @@ import org.w3c.dom.*;
 /**
  * Representação de uma CandidaturaAExposicao
  *
- * @author Ana Leite e Ricardo Osório
+ * @author G29
  */
 public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>, Exportable {
 
@@ -35,20 +35,23 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      */
     private EstadoCandidaturaAExposicao m_estado;
 
+    /**
+     * Exposição da candidatura
+     */
     private Exposicao e;
 
     /**
-     * Atributo numero de telemovel de CandidaturaAExposicao.
+     * Numero de telemovel de CandidaturaAExposicao.
      */
     private int m_intTelemovel;
 
     /**
-     * Atributo numero de convites de CandidaturaAExposicao.
+     * Numero de convites de CandidaturaAExposicao.
      */
     private int m_intNumConvites;
 
     /**
-     * Atributo area de CandidaturaAExposicao.
+     * Area de CandidaturaAExposicao.
      */
     private int m_intArea;
 
@@ -96,9 +99,11 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     private List<Keyword> m_keywords;
 
     /**
-     * Contrutor de Candidatura sem parametros.
+     * Contrutor de objetos do tipo CandidaturaAExposição com os parametros
+     * exposição e expositor
      *
-     * @param expositor
+     * @param e exposição da candidatura da exposição
+     * @param expositor expositor da candidatura a exposição
      */
     public CandidaturaAExposicao(Exposicao e, Expositor expositor) {
         this.m_expositor = expositor;
@@ -110,6 +115,11 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         this.m_decisao = new Decisao(false);
     }
 
+    /**
+     * Contrutor de objetos do tipo CandidaturaAExposicao com o parâmetro 
+     * expositor
+     * @param expositor expositor da candidatura a exposição
+     */
     public CandidaturaAExposicao(Expositor expositor) {
         this(null, expositor);
     }
@@ -168,8 +178,22 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return m_expositor.getUsername();
     }
 
+    /**
+     * Devolve o email do expositor
+     * 
+     * @return email do expositor
+     */
     public String getEmailExpositor() {
         return m_expositor.getEmail();
+    }
+    
+     /**
+     * Devolve um ArrayList com os produtos de CandidaturaAExposicao
+     *
+     * @return produtos de CandidaturaAExposicao
+     */
+    public List<Produto> getProdutosExpor() {
+        return this.m_rp.getListaProdutosAExpor();
     }
 
     /**
@@ -193,6 +217,33 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         return this.m_rd;
     }
 
+    /**
+     * Devolve a decisão
+     * 
+     * @return decisão
+     */
+    boolean getDecisao() {
+        return m_decisao.getDecisao();
+    }
+    
+    /**
+     * Devolve o expositor
+     * 
+     * @return expositor
+     */
+    public Expositor getExpositor() {
+        return m_expositor;
+    }
+
+    /**
+     * Devolve o estado da candidatura a exposição
+     * 
+     * @return estado da candidatura a exposição
+     */
+    public EstadoCandidaturaAExposicao getEstado() {
+        return m_estado;
+    }
+    
     /**
      * Define um novo número de telemóvel da empresa
      *
@@ -276,7 +327,44 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public void setDescricao(String m_descricao) {
         this.m_descricao = m_descricao;
     }
+ 
+    /**
+     * Define nova decisao e justificação de candidatura
+     *
+     * @param decisao nova decisao
+     */
+    public void setDecisao(boolean decisao) {
+        this.m_decisao = new Decisao(decisao);
+    }
 
+    /**
+     * Modifica o estado da candidatura a exposição
+     * 
+     * @param ne novo estado da candidatura a exposição
+     */
+    public void setEstado(EstadoCandidaturaAExposicao ne) {
+        this.m_estado = ne;
+    }
+
+    /**
+     * Modifica o expositor
+     * 
+     * @param expositor novo expositor
+     */
+    public void setExpositor(Expositor expositor) {
+        this.m_expositor = expositor;
+    }
+
+    /**
+     * Devolve as caraterísticas da candidatura a exposição (nome da empresa)
+     * 
+     * @return caraterísticas da candidatura a exposição (nome da empresa)
+     */
+    @Override
+    public String toString() {
+        return m_StrNomeEmpresa;
+    }
+    
     /**
      * Cria um novo produto recebendo como parametro o seu nome e adiciona-o ao
      * registo de produtos desta candidatura
@@ -333,48 +421,14 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Devolve um ArrayList com os produtos de CandidaturaAExposicao
+     * Compara a candidaturaAExposição a outro objecto passado por parametro. A comparação
+     * entre duas candidaturaAExposição é feita com atenção a alguns todos os atributos
+     * desta.
      *
-     * @return produtos de CandidaturaAExposicao
+     * @param obj objecto a comparar com a candidaturaAExposição
+     * @return true se o objeto recebido representar uma candidatura equivalente
+     * àcandidaturaAExposição. Caso contrário, retorna false.
      */
-    public List<Produto> getProdutosExpor() {
-        return this.m_rp.getListaProdutosAExpor();
-    }
-
-    /**
-     * Define nova decisao e justificação de candidatura
-     *
-     * @param decisao nova decisao
-     */
-    public void setDecisao(boolean decisao) {
-        this.m_decisao = new Decisao(decisao);
-    }
-
-    public Expositor getExpositor() {
-        return m_expositor;
-    }
-
-    public EstadoCandidaturaAExposicao getEstado() {
-        return m_estado;
-    }
-
-    public void setEstado(EstadoCandidaturaAExposicao ne) {
-        this.m_estado = ne;
-    }
-
-    boolean getDecisao() {
-        return m_decisao.getDecisao();
-    }
-
-    public void setExpositor(Expositor expositor) {
-        this.m_expositor = expositor;
-    }
-
-    @Override
-    public String toString() {
-        return m_StrNomeEmpresa;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
