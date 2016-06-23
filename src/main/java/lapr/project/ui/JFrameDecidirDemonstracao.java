@@ -723,19 +723,32 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
                 getDatas();
                 Data dataAtual = new Data();
-                if(!dataFimDetecaoConflitos.isMaior(dataAtual)&&!dataFimSubCand.isMaior(dataAtual)&&!dataInicioSubCand.isMaior(dataAtual)){
-                if (dataFimSubCand.isMaior(dataInicioSubCand)) {
-                    if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
-                        ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
+                if (!dataFimDetecaoConflitos.isMaior(dataAtual) && !dataFimSubCand.isMaior(dataAtual) && !dataInicioSubCand.isMaior(dataAtual)) {
+                    if (dataFimSubCand.isMaior(dataInicioSubCand)) {
+                        if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
+                            for (int i = 0; i < listaCheckBoxes.size(); i++) {
+                                if (listaCheckBoxes.get(i).isSelected()) {
+                                    decisoes[i] = true;
+                                }
+                            }
+                            for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
+                                if (decisoes[i] == true) {
+                                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
+                                } else {
+                                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
+                                }
+                            }
+                            JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                            ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
+                    JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia " + dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia "+dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
-            }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tem de preencher todas as datas", "Dados obrigatórios", JOptionPane.ERROR_MESSAGE);
             }
@@ -745,13 +758,13 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private void getDatas() {
         int d1 = diaInicioCand.getSelectedIndex() + 1;
         int m1 = mesInicioCand.getSelectedIndex() + 1;
-        int a1 = (Integer) anoInicioCand.getSelectedItem();
+        int a1 = (Integer) Integer.parseInt((String) anoInicioCand.getSelectedItem());
         int d2 = diaFimCand.getSelectedIndex() + 1;
         int m2 = mesFimCand.getSelectedIndex() + 1;
-        int a2 = (Integer) anoFimCand.getSelectedItem();
+        int a2 = (Integer) Integer.parseInt((String) anoFimCand.getSelectedItem());
         int d3 = diaFimDetConf.getSelectedIndex() + 1;
         int m3 = mesFimDetConf.getSelectedIndex() + 1;
-        int a3 = (Integer) anoFimDetConf.getSelectedItem();
+        int a3 = (Integer) Integer.parseInt((String) anoFimDetConf.getSelectedItem());
 
         dataInicioSubCand = new Data(d1, m1, a1);
         dataFimSubCand = new Data(d2, m2, a2);
@@ -771,7 +784,35 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     }//GEN-LAST:event_anoFimDetConfActionPerformed
 
     private void mesFimDetConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesFimDetConfActionPerformed
-        // TODO add your handling code here:
+        int mes = mesFimDetConf.getSelectedIndex() + 1;
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                diaFimDetConf.setModel(new ModelComboBoxDias(31));
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diaFimDetConf.setModel(new ModelComboBoxDias(30));
+                break;
+            case 2:
+                String ano = (String) anoFimDetConf.getSelectedItem();
+                int anoInt = Integer.parseInt(ano);
+                if (Data.isAnoBissexto(anoInt)) {
+                    diaFimDetConf.setModel(new ModelComboBoxDias(29));
+                } else {
+                    diaFimDetConf.setModel(new ModelComboBoxDias(28));
+                }
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_mesFimDetConfActionPerformed
 
     private void diaFimDetConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaFimDetConfActionPerformed
@@ -780,19 +821,6 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende confirmar apenas as demonstrações selecionadas e cancelar as restantes? As decisões serão irreversíveis!", "Confirma?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            for (int i = 0; i < listaCheckBoxes.size(); i++) {
-                if (listaCheckBoxes.get(i).isSelected()) {
-                    decisoes[i] = true;
-                }
-            }
-            for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
-                if (decisoes[i] == true) {
-                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
-                } else {
-                    m_listaDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoCancelada();
-                }
-            }
-            JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
             avancarParaCard3();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
