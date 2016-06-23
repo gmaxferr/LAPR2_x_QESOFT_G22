@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.*;
 import lapr.project.registos.*;
@@ -104,7 +102,7 @@ public class DemonstracaoTest {
     public void testGetDataFimCand() {
         System.out.println("getDataFimCand");
         Data data = new Data(1996, 5, 25);
-        instance.setDataFimCandidaturas(data);
+        instance.setDataFimCandidaturas(data, new CentroExposicoes());
         assertEquals(data, instance.getDataFimCand());
     }
 
@@ -146,7 +144,7 @@ public class DemonstracaoTest {
     public void testSetDataFimCandidaturas() {
         System.out.println("setDataFimCandidaturas");
         Data data = new Data(1996, 5, 25);
-        instance.setDataFimCandidaturas(data);
+        instance.setDataFimCandidaturas(data, new CentroExposicoes());
         assertEquals(data, instance.getDataFimCand());
     }
 
