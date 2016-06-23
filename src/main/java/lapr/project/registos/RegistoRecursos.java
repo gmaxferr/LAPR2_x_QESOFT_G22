@@ -79,6 +79,24 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
         this.m_listaRecursosNecessarios.addAll(listaRecursosNecessarios);
     }
 
+    public void fix(RegistoRecursos m_registoRecursos) {
+        List<Recurso> fixedRecursos = new ArrayList<>();
+        for (Recurso r : m_listaRecursosNecessarios) {
+            boolean isOnList = false;
+            for (Recurso r2 : m_registoRecursos.m_listaRecursosNecessarios) {
+                if (r.equals(r2)) {
+                    fixedRecursos.add(r2);
+                    isOnList = true;
+                    break;
+                }
+            }
+            if (!isOnList) {
+                fixedRecursos.add(r);
+            }
+        }
+        this.m_listaRecursosNecessarios = fixedRecursos;
+    }
+
     @Override
     public RegistoRecursos importContentFromXMLNode(Node node) throws ParserConfigurationException {
         if (node == null) {

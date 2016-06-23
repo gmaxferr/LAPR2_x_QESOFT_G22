@@ -604,7 +604,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void fix(RegistoRecursos m_registoRecursos, RegistoTipoConflitos m_registoTipoConflitos, RegistoUtilizadores m_registoUtilizadores) {
         this.m_ro.fix(m_registoUtilizadores);
-        this.m_rfae.fix(m_registoUtilizadores, this.m_ro);
+        this.m_rfae.fix(m_registoUtilizadores);
         this.m_rexpositores.fix(m_registoUtilizadores);
         this.m_rce.fix(m_registoUtilizadores, this.m_rd);
         this.m_rd.setExposicao(this);
@@ -706,7 +706,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             this.m_ras.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesStands.ROOT_ELEMENT_NAME).item(0));
             this.m_rconf.importContentFromXMLNode(elem.getElementsByTagName(RegistoConflitos.ROOT_ELEMENT_NAME).item(0));
             this.m_rcr.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicaoRemovidas.ROOT_ELEMENT_NAME).item(0));
-            this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME).item(0));
+            this.m_rd.importContentFromXMLNode(elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME + m_rd.TAG_SUFFIX).item(0));
             this.m_rd.setExposicao(this);
             this.m_rexpositores.importContentFromXMLNode(elem.getElementsByTagName(RegistoExpositores.ROOT_ELEMENT_NAME).item(0));
             this.local = new Local("");
