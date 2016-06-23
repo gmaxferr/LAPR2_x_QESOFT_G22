@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.DecidirDemonstracaoController;
 import lapr.project.model.*;
-import lapr.project.ui.model.ModelComboBoxDias;
+import lapr.project.uiModel.ModelComboBoxDias;
 import lapr.project.utils.Data;
 
 /**

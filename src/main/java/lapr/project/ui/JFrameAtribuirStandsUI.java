@@ -18,8 +18,8 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.Expositor;
 import lapr.project.model.Stand;
 import lapr.project.model.Utilizador;
-import lapr.project.ui.model.ComboBoxModelStandart;
-import lapr.project.ui.model.ModelJTableAtribuicaoStands;
+import lapr.project.uiModel.ComboBoxModelStandart;
+import lapr.project.uiModel.ModelJTableAtribuicaoStands;
 
 /**
  *

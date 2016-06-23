@@ -1,7 +1,7 @@
 package lapr.project.ui;
 
 import java.awt.event.*;
-import lapr.project.ui.model.AbstractListModelRecursos;
+import lapr.project.uiModel.AbstractListModelRecursos;
 import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.DefinirRecursoController;

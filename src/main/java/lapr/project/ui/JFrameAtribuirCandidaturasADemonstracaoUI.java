@@ -1,5 +1,9 @@
 package lapr.project.ui;
 
+import lapr.project.uiModel.ModeloJTableUtilizadores;
+import lapr.project.uiModel.ComboBoxModelMecanismos;
+import lapr.project.uiModel.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
@@ -7,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirCandidaturasADemonstracaoController;
 import lapr.project.model.*;
-import lapr.project.ui.model.*;
 
 /**
  *

@@ -20,8 +20,8 @@ import lapr.project.controller.CriarCandidaturaDemonstracaoXMLController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.ui.model.ComboBoxModelDemonstracoes;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.uiModel.ComboBoxModelDemonstracoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 
 /**
  *

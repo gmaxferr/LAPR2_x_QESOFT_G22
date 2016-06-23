@@ -1,6 +1,8 @@
 package lapr.project.ui;
 
-import lapr.project.ui.model.*;
+import lapr.project.uiModel.ComboBoxModelUtilizadores;
+import lapr.project.uiModel.ModelComboBoxDias;
+import lapr.project.uiModel.ModeloJListUtilizadores;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.*;

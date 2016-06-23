@@ -2,7 +2,7 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import lapr.project.ui.model.ModeloListaStands;
+import lapr.project.uiModel.ModeloListaStands;
 import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.CriarStandsController;

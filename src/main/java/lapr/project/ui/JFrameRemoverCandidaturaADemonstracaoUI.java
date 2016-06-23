@@ -1,12 +1,14 @@
 package lapr.project.ui;
 
+import lapr.project.uiModel.ComboBoxModelCandidaturaADemonstracao;
+import lapr.project.uiModel.ComboBoxModelDemonstracoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 import lapr.project.controller.RemoverCandidaturaADemonstracaoController;
 import lapr.project.model.*;
-import lapr.project.ui.model.*;
 
 /**
  *

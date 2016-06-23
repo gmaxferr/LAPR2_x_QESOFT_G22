@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ListarCandidaturasADemonstracaoRemovidasController;
 import lapr.project.model.*;
-import lapr.project.ui.model.ComboBoxModelDemonstracoes;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.uiModel.ComboBoxModelDemonstracoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 
 /**
  *

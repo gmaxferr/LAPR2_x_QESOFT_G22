@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.ConfirmarRegistoController;
 import lapr.project.model.*;
-import lapr.project.ui.model.ComboBoxModelUtilizadores;
+import lapr.project.uiModel.ComboBoxModelUtilizadores;
 
 /**
  *

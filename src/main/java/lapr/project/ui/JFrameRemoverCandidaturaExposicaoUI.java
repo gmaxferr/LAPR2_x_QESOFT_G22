@@ -5,7 +5,7 @@
  */
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RemoverCandidaturaExpoController;
 import lapr.project.model.*;
-import lapr.project.ui.model.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
 
 /**
  *

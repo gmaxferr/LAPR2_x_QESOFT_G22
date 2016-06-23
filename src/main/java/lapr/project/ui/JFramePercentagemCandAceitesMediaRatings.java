@@ -1,12 +1,15 @@
 package lapr.project.ui;
 
+import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.uiModel.ComboBoxModelCandidaturasMostraExpositores;
+import lapr.project.uiModel.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.PercentagemCandAceitesMediaRatingsController;
 import lapr.project.model.*;
-import lapr.project.ui.model.*;
 
 /**
  *

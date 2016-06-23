@@ -15,7 +15,7 @@ import lapr.project.controller.AlterarCandidaturaDemonstracaoController;
 import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
+import lapr.project.uiModel.ComboBoxModelExposicoes;
 
 /**
  *
