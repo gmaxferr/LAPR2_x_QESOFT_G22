@@ -38,6 +38,7 @@ public class LoginV2 extends javax.swing.JFrame {
         thisJFrame = this;
         modificarFecharJanela();
 
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
