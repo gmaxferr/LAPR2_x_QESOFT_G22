@@ -5,8 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoAceite;
@@ -35,6 +33,7 @@ public class CandidaturaADemonstracaoTest {
     public static void tearDownClass() {
     }
 
+    private Demonstracao demo;
     private CandidaturaADemonstracao instance;
     private String dados;
     private String email;
@@ -43,6 +42,8 @@ public class CandidaturaADemonstracaoTest {
     public void setUp() {
         dados = "dados";
         email = "email@b.c";
+        demo = new Demonstracao("");
+        demo.setCodigoIdentificacao("");
         instance = new CandidaturaADemonstracao(dados, email);
     }
 
@@ -135,7 +136,6 @@ public class CandidaturaADemonstracaoTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        instance = new CandidaturaADemonstracao(dados, email);
         Node node = instance.exportContentToXMLNode();
         CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
         try {
@@ -153,7 +153,6 @@ public class CandidaturaADemonstracaoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        instance = new CandidaturaADemonstracao(dados, email);
         Node node = instance.exportContentToXMLNode();
         CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
         try {
@@ -163,6 +162,60 @@ public class CandidaturaADemonstracaoTest {
         }
         CandidaturaADemonstracao result = instance;
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setDemonstracao method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testSetDemonstracao() {
+        System.out.println("setDemonstracao");
+        Demonstracao d = new Demonstracao();
+        instance.setDemonstracao(d);
+    }
+
+    /**
+     * Test of getCodigoDemo method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testGetCodigoDemo() {
+        System.out.println("getCodigoDemo");
+        String expResult = "";
+        instance.setDemonstracao(demo);
+        String result = instance.getCodigoDemo();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setEmailExpositor method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testSetEmailExpositor() {
+        System.out.println("setEmailExpositor");
+        String email = "";
+        instance.setEmailExpositor(email);
+    }
+
+    /**
+     * Test of getDecisao method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testGetDecisao() {
+        System.out.println("getDecisao");
+        boolean expResult = false;
+        instance.setDecisao(false);
+        boolean result = instance.getDecisao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setDecisao method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testSetDecisao() {
+        System.out.println("setDecisao");
+        boolean decisao = false;
+        instance.setDecisao(decisao);
     }
 
 }

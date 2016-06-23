@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.*;
 import org.junit.*;
@@ -294,6 +292,73 @@ public class CentroExposicoesTest {
         RegistoStands m_rStands = new RegistoStands();
         CentroExposicoes instance = new CentroExposicoes();
         instance.setRegistoStands(m_rStands);
+    }
+
+    /**
+     * Test of getRegistoUtilizadoresPendentes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testGetRegistoUtilizadoresPendentes() {
+        System.out.println("getRegistoUtilizadoresPendentes");
+        CentroExposicoes instance = new CentroExposicoes();
+        RegistoUtilizadores expResult = null;
+        RegistoUtilizadores result = instance.getRegistoUtilizadoresPendentes();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRegistoUtilizadoresConfirmados method, of class CentroExposicoes.
+     */
+    @Test
+    public void testGetRegistoUtilizadoresConfirmados() {
+        System.out.println("getRegistoUtilizadoresConfirmados");
+        CentroExposicoes instance = new CentroExposicoes();
+        RegistoUtilizadores expResult = null;
+        RegistoUtilizadores result = instance.getRegistoUtilizadoresConfirmados();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRegistoTiposConflitosDemonstracao method, of class CentroExposicoes.
+     */
+    @Test
+    public void testGetRegistoTiposConflitosDemonstracao() {
+        System.out.println("getRegistoTiposConflitosDemonstracao");
+        CentroExposicoes instance = new CentroExposicoes();
+        RegistoTiposConflitoDemonstracao expResult = null;
+        RegistoTiposConflitoDemonstracao result = instance.getRegistoTiposConflitosDemonstracao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of confirmarRegistoTodosUtilizadores method, of class CentroExposicoes.
+     */
+    @Test
+    public void testConfirmarRegistoTodosUtilizadores() {
+        System.out.println("confirmarRegistoTodosUtilizadores");
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.confirmarRegistoTodosUtilizadores();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoUtilizadoresPendentes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoUtilizadoresPendentes() {
+        System.out.println("setRegistoUtilizadoresPendentes");
+        RegistoUtilizadores m_registoUtilizadores = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoUtilizadoresPendentes(m_registoUtilizadores);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

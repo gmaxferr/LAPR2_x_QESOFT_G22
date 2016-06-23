@@ -1092,6 +1092,22 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
+        AtribuirStandsController CTRL = new AtribuirStandsController(centroExposicoes);
+        this.setVisible(false);
+        JFrame frame = new JFrameAtribuirStandsUI(CTRL, this);
+        Exposicao[] listExpo = CTRL.getListaExposicoes().toArray(new Exposicao[0]);
+        if (listExpo.length > 0) {
+            Exposicao selectedExpo = (Exposicao) JOptionPane.showInputDialog(this, "A qual exposição pretende atribuir os stands?", "", JOptionPane.QUESTION_MESSAGE, null, listExpo, listExpo[0]);
+            if (selectedExpo != null) {
+                CTRL.select(selectedExpo);
+                this.setVisible(false);
+                frame = new JFrameAtribuirStandsUI(CTRL, this);
+            } else {
+                JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do utilizador.", "ERRO", JOptionPane.OK_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não existem exposições num estado disponível para que possa ser possível atribuir stands.", "ERRO", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed

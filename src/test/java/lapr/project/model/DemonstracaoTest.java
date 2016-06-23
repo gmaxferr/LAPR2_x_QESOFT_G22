@@ -346,4 +346,44 @@ public class DemonstracaoTest {
         }
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of setDataInicioCand method, of class Demonstracao.
+     */
+    @Test
+    public void testSetDataInicioCand() {
+        System.out.println("setDataInicioCand");
+        Data dataInicio = null;
+        Demonstracao instance = new Demonstracao();
+        instance.setDataInicioCand(dataInicio);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataFimCand method, of class Demonstracao.
+     */
+    @Test
+    public void testSetDataFimCand() {
+        System.out.println("setDataFimCand");
+        Data dataFim = null;
+        Demonstracao instance = new Demonstracao();
+        instance.setDataFimCand(dataFim);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRegistoFAE method, of class Demonstracao.
+     */
+    @Test
+    public void testGetRegistoFAE() {
+        System.out.println("getRegistoFAE");
+        Demonstracao instance = new Demonstracao();
+        RegistoFAE expResult = null;
+        RegistoFAE result = instance.getRegistoFAE();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }
