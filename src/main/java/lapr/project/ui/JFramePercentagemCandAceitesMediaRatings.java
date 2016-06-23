@@ -20,6 +20,10 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     private List<CandidaturaAExposicao> listaCandidaturasEstadoAvaliadas;
     private float[] listaMediaRatingsPorCandidaturaAExposicao;
     private float[] listaMediaRatingsPorCandidaturaAsDemos;
+    private List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
+    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
+    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
+
     private final JFrame jFrameMenuPrincipal;
 
     private static final int CARD1_ALTURA = 370;
@@ -28,9 +32,6 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     private static final int CARD2_LARGURA = 652;
     private static final int CARD2_ALTURA = 516;
     private transient final CardLayout cardLayout;
-    private final List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
 
     /**
      * Creates new form JFramePercentagemCandAceitesMediaRatings
@@ -44,8 +45,8 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.controller = new PercentagemCandAceitesMediaRatingsController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesEstadoAvaliadas();
-        this.listaAtribDemos = controller.getListaAtribuicoesDemonstracoes();
+        this.listaExposicoes=controller.getListaExposicoesEstadoAvaliadas();
+
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
 

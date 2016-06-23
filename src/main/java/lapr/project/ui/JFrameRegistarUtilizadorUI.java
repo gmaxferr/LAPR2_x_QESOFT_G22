@@ -155,7 +155,7 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setText("(até 4 caracteres)");
+        jLabel17.setText("(entre 4 a 7 caracteres)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -284,11 +284,11 @@ public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
         card1.setLayout(card1Layout);
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
         );
 
         getContentPane().add(card1, "card1");

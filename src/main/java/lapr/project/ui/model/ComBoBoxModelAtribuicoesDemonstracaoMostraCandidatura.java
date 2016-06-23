@@ -39,7 +39,9 @@ public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends Abstr
      */
     @Override
     public int getSize() {
-        return this.m_listaAtribuicoes.size();
+        if (this.m_listaAtribuicoes != null) {
+            return this.m_listaAtribuicoes.size();
+        }return 0;
     }
 
     /**

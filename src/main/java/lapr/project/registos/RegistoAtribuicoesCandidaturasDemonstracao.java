@@ -49,6 +49,7 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
      * atribuidas e avaliadas
      *
      * @param usernameFAE username do fae
+     * @param demo
      * @return candidaturas atribuídas a um fae
      */
     public ArrayList<AtribuicaoCandidaturaDemonstracao> getListaAtribuicoesDoFAEEstadoAtribuidas(String usernameFAE, Demonstracao demo) {

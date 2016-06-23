@@ -5,6 +5,9 @@
  */
 package lapr.project.ui.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import lapr.project.model.Demonstracao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,80 +20,84 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class ComboBoxModelDemonstracoesTest {
-    
+
     public ComboBoxModelDemonstracoesTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private ComboBoxModelDemonstracoes instance;
+    List<Demonstracao> listaDemonstracoes;
+    private Demonstracao demo;
+    private String descricao;
+
     @Before
     public void setUp() {
+        descricao = "desc";
+        demo = new Demonstracao(descricao);
+        listaDemonstracoes = new ArrayList<>();
+        listaDemonstracoes.add(demo);
+        instance = new ComboBoxModelDemonstracoes(listaDemonstracoes);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getSize method, of class ComboBoxModelDemonstracoes.
+     * Test of getSize method, of class
+     * ComboBoxModelDemonstracoes.
      */
     @Test
     public void testGetSize() {
         System.out.println("getSize");
-        ComboBoxModelDemonstracoes instance = null;
-        int expResult = 0;
+        int expResult = 1;
         int result = instance.getSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getElementAt method, of class ComboBoxModelDemonstracoes.
+     * Test of getElementAt method, of class
+     * ComboBoxModelDemonstracoes.
      */
     @Test
     public void testGetElementAt() {
         System.out.println("getElementAt");
         int index = 0;
-        ComboBoxModelDemonstracoes instance = null;
-        Object expResult = null;
+        Object expResult = demo.getCodigoIdentificacao();
         Object result = instance.getElementAt(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setSelectedItem method, of class ComboBoxModelDemonstracoes.
+     * Test of setSelectedItem method, of class
+     * ComboBoxModelDemonstracoes.
      */
     @Test
     public void testSetSelectedItem() {
         System.out.println("setSelectedItem");
-        Object anItem = null;
-        ComboBoxModelDemonstracoes instance = null;
+        Object anItem = demo.getCodigoIdentificacao();
         instance.setSelectedItem(anItem);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getSelectedItem method, of class ComboBoxModelDemonstracoes.
+     * Test of getSelectedItem method, of class
+     * ComboBoxModelDemonstracoes.
      */
     @Test
     public void testGetSelectedItem() {
         System.out.println("getSelectedItem");
-        ComboBoxModelDemonstracoes instance = null;
-        Object expResult = null;
+
+        instance.setSelectedItem(demo.getCodigoIdentificacao());
+        Object expResult = demo.getCodigoIdentificacao();
         Object result = instance.getSelectedItem();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

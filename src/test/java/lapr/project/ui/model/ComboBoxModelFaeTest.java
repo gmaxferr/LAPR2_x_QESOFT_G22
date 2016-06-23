@@ -5,6 +5,10 @@
  */
 package lapr.project.ui.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +21,31 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class ComboBoxModelFaeTest {
-    
+
     public ComboBoxModelFaeTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private ComboBoxModelFae instance;
+    List<FAE> listaFAEs;
+    private FAE fae;
+    private Utilizador u;
     @Before
     public void setUp() {
+        u = new Utilizador("nome", "username", "password".toCharArray(), "email");
+        fae = new FAE(u);
+        listaFAEs = new ArrayList<>();
+        listaFAEs.add(fae);
+        instance = new ComboBoxModelFae(listaFAEs);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,12 +56,9 @@ public class ComboBoxModelFaeTest {
     @Test
     public void testGetSize() {
         System.out.println("getSize");
-        ComboBoxModelFae instance = null;
-        int expResult = 0;
+        int expResult = 1;
         int result = instance.getSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +68,9 @@ public class ComboBoxModelFaeTest {
     public void testGetElementAt() {
         System.out.println("getElementAt");
         int index = 0;
-        ComboBoxModelFae instance = null;
-        Object expResult = null;
+        Object expResult = fae;
         Object result = instance.getElementAt(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +79,8 @@ public class ComboBoxModelFaeTest {
     @Test
     public void testSetSelectedItem() {
         System.out.println("setSelectedItem");
-        Object anItem = null;
-        ComboBoxModelFae instance = null;
+        Object anItem = fae.toString();
         instance.setSelectedItem(anItem);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +89,11 @@ public class ComboBoxModelFaeTest {
     @Test
     public void testGetSelectedItem() {
         System.out.println("getSelectedItem");
-        ComboBoxModelFae instance = null;
-        Object expResult = null;
+
+        instance.setSelectedItem(fae.toString());
+        Object expResult = fae.toString();
         Object result = instance.getSelectedItem();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

@@ -12,7 +12,7 @@ public class ComboBoxModelStandart<T> extends AbstractListModel implements Combo
 
     private transient List<T> list;
 
-    private String selectedItem;
+    private T selectedItem;
     
     public ComboBoxModelStandart(List<T> initialList){
         this.list = initialList;
@@ -30,7 +30,7 @@ public class ComboBoxModelStandart<T> extends AbstractListModel implements Combo
 
     @Override
     public void setSelectedItem(Object anItem) {
-        this.selectedItem = anItem.toString();
+        this.selectedItem = (T)anItem;
     }
 
     @Override

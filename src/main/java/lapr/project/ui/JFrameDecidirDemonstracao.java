@@ -35,16 +35,54 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
     private JFrame thisFrame;
 
     /**
+     * Largura da janela no passo 1
+     */
+    private static final int LARGURA_JANELA_PASSO1 = 710;
+
+    /**
+     * Altura da janela no passo 1
+     */
+    private static final int ALTURA_JANELA_PASSO1 = 370;
+
+    /**
+     * Largura da janela no passo 2
+     */
+    private static final int LARGURA_JANELA_PASSO2 = 722;
+
+    /**
+     * Altura da janela no passo 2
+     */
+    private static final int ALTURA_JANELA_PASSO2 = 500;
+
+    /**
+     * Largura da janela no passo 3
+     */
+    private static final int LARGURA_JANELA_PASSO3 = 722;
+
+    /**
+     * Altura da janela no passo 3
+     */
+    private static final int ALTURA_JANELA_PASSO3 = 500;
+
+    /**
      * Creates new form JFrameDecidirCandidatura
+     *
+     * @param ce Centro de exposições
+     * @param username username do utilizador a executar este UC no momento
+     * @param menuPrincipal JFrame do menu principal
      */
     public JFrameDecidirDemonstracao(CentroExposicoes ce, String username, JFrame menuPrincipal) {
+        super("Decidir demonstração");
         this.listaExposicoes = ce.getRegistoExposicoes().getlistaExposicoesDoOrganizadorComDemos(username);
         this.ctrl = new DecidirDemonstracaoController(ce, username);
         this.janelaMae = menuPrincipal;
+
         initComponents();
-        alterarComportamentoFecharJFrame();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
-        thisFrame = this;
+
+        alterarComportamentoFecharJFrame();
+        setLocationRelativeTo(null);
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
 
@@ -279,7 +317,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxCard1EscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -287,10 +325,9 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
-                            .addComponent(jButtonCard1Avancar))
-                        .addGap(0, 71, Short.MAX_VALUE))
+                            .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -316,7 +353,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         painelDecisoes.setLayout(painelDecisoesLayout);
         painelDecisoesLayout.setHorizontalGroup(
             painelDecisoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         painelDecisoesLayout.setVerticalGroup(
             painelDecisoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +407,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneDecisoes)
+                .addComponent(jScrollPaneDecisoes, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -523,7 +560,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                         .addComponent(mesFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(diaFimCand, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,7 +575,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(diaInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesInicioCand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -599,10 +636,12 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             painelDecisoes.add(jp);
             i++;
         }
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
 
     private void avancarParaCard3() {
         cardLayout.show(getContentPane(), "card3");
+        setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
 
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
@@ -774,7 +813,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende cancelar o processo? Todas as alterações serão perdidas", "Aviso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            thisFrame.dispose();
+            dispose();
             janelaMae.setVisible(true);
         }
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -889,6 +928,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
     private void voltarParaCard1() {
         cardLayout.show(getContentPane(), "card1");
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
 }
