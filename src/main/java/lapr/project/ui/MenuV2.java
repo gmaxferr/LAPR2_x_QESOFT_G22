@@ -1113,7 +1113,7 @@ public class MenuV2 extends javax.swing.JFrame {
             this.setVisible(false);
             JFrame frame = new JFrameConfirmarRegistoUtilizadorUI(thisJFrame, centroExposicoes);
             frame.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(thisJFrame, "Não existem registos de utilizadores pendentes.", "ERRO", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -1131,9 +1131,29 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Exposicao[] listExpo = this.centroExposicoes.getRegistoExposicoes().getListaExposicoesRankingPronto().toArray(new Exposicao[0]);
+        ExportarRankingController CTRL = new ExportarRankingController(centroExposicoes);
+        Exposicao[] listExpo = CTRL.getListaExposicoesRankingPronto().toArray(new Exposicao[0]);
         if (listExpo.length > 0) {
-            JOptionPane.showInputDialog(this, "Escolha o nome da exposição sobre a qual pretende exportar o ranking de keywords.", "Exportar Ranking para CSV", JOptionPane.OK_CANCEL_OPTION, null, listExpo, listExpo[0]);
+            Object option = JOptionPane.showInputDialog(this, "Escolha o nome da exposição sobre a qual pretende exportar o ranking de keywords.", "Exportar Ranking para CSV", JOptionPane.OK_CANCEL_OPTION, null, listExpo, listExpo[0]);
+            if (option != null) {
+                CTRL.select((Exposicao) option);
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showSaveDialog(this);
+                switch (returnVal) {
+                    case JFileChooser.APPROVE_OPTION:
+                        try {
+                            CTRL.export(fc.getSelectedFile());
+                            JOptionPane.showMessageDialog(this, "Informação exportada com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        } catch (FileNotFoundException ex) {
+                        }
+                    case JFileChooser.ERROR_OPTION:
+                        JOptionPane.showMessageDialog(this, "Ocorreu um erro na exportação do ranking para ficheiro CSV.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        break;
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Não existeme exposições sobre as quais exportar o ranking de keywords para CSV se encontra possível.", "ERRO", JOptionPane.OK_OPTION);
         }

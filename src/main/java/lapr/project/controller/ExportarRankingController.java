@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import lapr.project.model.*;
 import lapr.project.registos.RegistoExposicoes;
@@ -65,7 +66,7 @@ public class ExportarRankingController {
      * @param file Ficheiro CSV para onde será exportada a informação
      * @return TRUE se a operação foi bem sucedida, FALSE caso contrário
      */
-    public boolean export(File file) {
-        return keywordRanking.exportCSV(file);
+    public void export(File file) throws FileNotFoundException {
+        keywordRanking.exportCSV(file);
     }
 }
