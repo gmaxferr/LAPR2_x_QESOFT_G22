@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
 import lapr.project.model.*;
@@ -52,6 +53,7 @@ public class AtribuirStandsController {
      */
     public AtribuirStandsController(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
+        listAtr = new ArrayList<>();
     }
 
     /**
