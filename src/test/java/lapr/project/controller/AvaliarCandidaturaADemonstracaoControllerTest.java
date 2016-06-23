@@ -149,7 +149,7 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
      * AvaliarCandidaturaADemonstracaoController.
      */
     @Test
-    public void testGetListaAtribuicoesDoFAE() {
+    public void testGetListaAtribuicoesDoFAE(){
         System.out.println("getListaAtribuicoesDoFAE");
         String usernameFAE = "b";
         instance = new AvaliarCandidaturaADemonstracaoController(ce);

@@ -5,6 +5,11 @@
  */
 package lapr.project.ui.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import lapr.project.model.CandidaturaAExposicao;
+import lapr.project.model.Expositor;
+import lapr.project.model.Utilizador;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,80 +22,86 @@ import static org.junit.Assert.*;
  * @author guima
  */
 public class ComboBoxModelCandidaturasMostraExpositoresTest {
-    
+
     public ComboBoxModelCandidaturasMostraExpositoresTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
+    private ComboBoxModelCandidaturasMostraExpositores instance;
+    List<CandidaturaAExposicao> listaCandidaturas;
+    private CandidaturaAExposicao cand;
+    private Expositor e;
+    private Utilizador u;
+
     @Before
     public void setUp() {
+        u = new Utilizador("a", "b", "Aa.1".toCharArray(), "a@b.c");
+        e = new Expositor(u);
+        cand = new CandidaturaAExposicao(e);
+        listaCandidaturas = new ArrayList<>();
+        listaCandidaturas.add(cand);
+        instance = new ComboBoxModelCandidaturasMostraExpositores(listaCandidaturas);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getSize method, of class ComboBoxModelCandidaturasMostraExpositores.
+     * Test of getSize method, of class
+     * ComboBoxModelCandidaturasMostraExpositores.
      */
     @Test
     public void testGetSize() {
         System.out.println("getSize");
-        ComboBoxModelCandidaturasMostraExpositores instance = null;
-        int expResult = 0;
+        int expResult = 1;
         int result = instance.getSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getElementAt method, of class ComboBoxModelCandidaturasMostraExpositores.
+     * Test of getElementAt method, of class
+     * ComboBoxModelCandidaturasMostraExpositores.
      */
     @Test
     public void testGetElementAt() {
         System.out.println("getElementAt");
         int index = 0;
-        ComboBoxModelCandidaturasMostraExpositores instance = null;
-        Object expResult = null;
+        Object expResult = cand.getEmailExpositor();
         Object result = instance.getElementAt(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setSelectedItem method, of class ComboBoxModelCandidaturasMostraExpositores.
+     * Test of setSelectedItem method, of class
+     * ComboBoxModelCandidaturasMostraExpositores.
      */
     @Test
     public void testSetSelectedItem() {
         System.out.println("setSelectedItem");
-        Object anItem = null;
-        ComboBoxModelCandidaturasMostraExpositores instance = null;
+        Object anItem = cand.getEmailExpositor();
         instance.setSelectedItem(anItem);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getSelectedItem method, of class ComboBoxModelCandidaturasMostraExpositores.
+     * Test of getSelectedItem method, of class
+     * ComboBoxModelCandidaturasMostraExpositores.
      */
     @Test
     public void testGetSelectedItem() {
         System.out.println("getSelectedItem");
-        ComboBoxModelCandidaturasMostraExpositores instance = null;
-        Object expResult = null;
+        
+        instance.setSelectedItem(cand.getEmailExpositor());
+        Object expResult = cand.getEmailExpositor();
         Object result = instance.getSelectedItem();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }
