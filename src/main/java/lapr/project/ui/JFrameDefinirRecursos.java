@@ -1,14 +1,11 @@
 package lapr.project.ui;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import lapr.project.ui.model.AbstractListModelRecursos;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.DefinirRecursoController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Recurso;
+import lapr.project.model.*;
 
 /**
  *
@@ -36,6 +33,7 @@ public class JFrameDefinirRecursos extends javax.swing.JFrame {
 
         alterarComportamentoFecharJFrame();
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     private void alterarComportamentoFecharJFrame() {

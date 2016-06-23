@@ -39,7 +39,9 @@ public class ComboBoxModelCandidaturasMostraExpositores extends AbstractListMode
      */
     @Override
     public int getSize() {
-        return this.m_listaCandidaturas.size();
+        if (this.m_listaCandidaturas != null) {
+            return this.m_listaCandidaturas.size();
+        }return 0;
     }
 
     /**
