@@ -1,15 +1,14 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import lapr.project.dados.DadosInstanciados;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoAceite;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasFechadas;
 import lapr.project.model.*;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoFaeAvaliacao;
+import lapr.project.registos.*;
+import lapr.project.utils.Data;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -108,14 +107,14 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         AtribuicaoCandidatura atribuicao = new AtribuicaoCandidatura(candidatura);
         RegistoFaeAvaliacao registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username1", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvalicao(5, 5, 5, 5, 5);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvaliacaoCandidaturaAExposicao(5, 5, 5, 5, 5);
         listaAtribuicoes.add(atribuicao);
 
         candidatura = new CandidaturaAExposicao(new Expositor(new Utilizador("nome", "username", "password".toCharArray(), "email")));
         atribuicao = new AtribuicaoCandidatura(candidatura);
         registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username2", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvalicao(2, 2, 2, 2, 2);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvaliacaoCandidaturaAExposicao(2, 2, 2, 2, 2);
         listaAtribuicoes.add(atribuicao);
 
         registoAtribuicoes.setListaAtribuicao(listaAtribuicoes);
@@ -126,27 +125,6 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
 
         float[] mediaRatings = {5.0f, 2.0f};
         assertEquals(mediaRatings[0], instance.getMediaRatingsTodasCandidaturasAExposicao()[0], 0.0f);
-    }
-
-    /**
-     * Test of getListaExposicoesEstadoDecididas method, of class
-     * PercentagemCandAceitesMediaRatingsController.
-     */
-    @Test
-    public void testGetListaExposicoesEstadoDecididas() {
-        System.out.println("getListaExposicoesEstadoDecididas");
-
-        Exposicao expo = new Exposicao(ce);
-        ce.getRegistoExposicoes().registaExposicao(expo);
-        expo = new Exposicao(ce);
-        ce.getRegistoExposicoes().registaExposicao(expo);
-
-        PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
-
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoDecididas();
-
-        assertEquals(expResult, result);
     }
 
     /**
@@ -205,14 +183,14 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         AtribuicaoCandidaturaDemonstracao atribuicao = new AtribuicaoCandidaturaDemonstracao(candidatura);
         RegistoFaeAvaliacao registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username1", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvalicao(5, 5, 5, 5, 5);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvaliacaoCandidaturaAExposicao(5, 5, 5, 5, 5);
         listaAtribuicoes.add(atribuicao);
 
         candidatura = new CandidaturaADemonstracao("dados", "email");
         atribuicao = new AtribuicaoCandidaturaDemonstracao(candidatura);
         registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username2", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvalicao(2, 2, 2, 2, 2);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvaliacaoCandidaturaAExposicao(2, 2, 2, 2, 2);
         listaAtribuicoes.add(atribuicao);
 
         registoAtribuicoes.setListaAtribuicao(listaAtribuicoes);
@@ -290,14 +268,14 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         AtribuicaoCandidaturaDemonstracao atribuicao = new AtribuicaoCandidaturaDemonstracao(candidatura);
         RegistoFaeAvaliacao registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username1", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvalicao(5, 5, 5, 5, 5);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username1").setAvaliacaoCandidaturaADemonstracao(5, 5, 5);
         listaAtribuicoes.add(atribuicao);
 
         candidatura = new CandidaturaADemonstracao("dados", "email");
         atribuicao = new AtribuicaoCandidaturaDemonstracao(candidatura);
         registoFAEAvaliacao = atribuicao.getRegistoFaeAvaliacao();
         registoFAEAvaliacao.addFaeAvaliacao(new FAE(new Utilizador("nome", "username2", "password".toCharArray(), "email")));
-        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvalicao(2, 2, 2, 2, 2);
+        registoFAEAvaliacao.getAvaliacaoDoFae("username2").setAvaliacaoCandidaturaADemonstracao(2, 2, 2);
         listaAtribuicoes.add(atribuicao);
 
         registoAtribuicoes.setListaAtribuicao(listaAtribuicoes);
@@ -306,35 +284,19 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         instance.setExposicaoSelecionada(e);
         instance.getRegistoAtribuicoesDemonstracoes();
 
-        float[][] mediaRatings = new float[2][5];
+        float[][] mediaRatings = new float[2][3];
         mediaRatings[0][0] = 5;
         mediaRatings[0][1] = 5;
         mediaRatings[0][2] = 5;
-        mediaRatings[0][3] = 5;
-        mediaRatings[0][4] = 5;
         mediaRatings[1][0] = 2;
         mediaRatings[1][1] = 2;
         mediaRatings[1][2] = 2;
-        mediaRatings[1][3] = 2;
-        mediaRatings[1][4] = 2;
+        assertEquals(mediaRatings[0][0], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[0][0], 0.0f);
         assertEquals(mediaRatings[0][1], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[0][1], 0.0f);
-        assertEquals(mediaRatings[0][4], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[0][4], 0.0f);
-        assertEquals(mediaRatings[1][3], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[1][3], 0.0f);
-    }
-
-    /**
-     * Test of getListaCandidaturasAExposicaoEstadoAvaliadas method, of class
-     * PercentagemCandAceitesMediaRatingsController.
-     */
-    @Test
-    public void testGetListaCandidaturasAExposicaoEstadoAvaliadas() {
-        System.out.println("getListaCandidaturasAExposicaoEstadoAvaliadas");
-        PercentagemCandAceitesMediaRatingsController instance = null;
-        List<CandidaturaAExposicao> expResult = null;
-        List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicaoEstadoAvaliadas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(mediaRatings[0][2], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[0][2], 0.0f);
+        assertEquals(mediaRatings[1][0], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[1][0], 0.0f);
+        assertEquals(mediaRatings[1][1], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[1][1], 0.0f);
+        assertEquals(mediaRatings[1][2], instance.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes()[1][2], 0.0f);
     }
 
     /**
@@ -344,11 +306,27 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
     @Test
     public void testGetListaExposicoesEstadoAvaliadas() {
         System.out.println("getListaExposicoesEstadoAvaliadas");
-        PercentagemCandAceitesMediaRatingsController instance = null;
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getListaExposicoesEstadoAvaliadas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        List<Exposicao> listaExposicoesEsperada = new ArrayList<>();
+
+        RegistoExposicoes re = ce.getRegistoExposicoes();
+        Exposicao exposicao = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        re.registaExposicao(exposicao);
+        exposicao.setEstado(new EstadoExposicaoCandidaturasAvaliadas(exposicao));
+        listaExposicoesEsperada.add(exposicao);
+
+        exposicao = new Exposicao("titulo2", "descricao2", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local2"), ce);
+        re.registaExposicao(exposicao);
+        exposicao.setEstado(new EstadoExposicaoCandidaturasAvaliadas(exposicao));
+        listaExposicoesEsperada.add(exposicao);
+
+        exposicao = new Exposicao("titulo3", "descricao3", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local3"), ce);
+        re.registaExposicao(exposicao);
+        exposicao.setEstado(new EstadoExposicaoCandidaturasFechadas(exposicao));
+
+        PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
+        instance.getRegistoExposicoes();
+
+        assertEquals(listaExposicoesEsperada, instance.getListaExposicoesEstadoAvaliadas());
     }
 }

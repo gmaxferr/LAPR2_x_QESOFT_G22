@@ -348,9 +348,11 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
         return hash;
     }
 
-    public void fix(RegistoCandidaturasAExposicao rCand, Exposicao e, RegistoUtilizadores m_registoUtilizadores) {
+    public void fix(RegistoCandidaturasAExposicao rCand, Exposicao e, RegistoUtilizadores m_registoUtilizadores, RegistoRecursos m_registoRecursos) {
         this.m_rconfDemo.fix(rCand);
         this.m_expo = e;
+        this.m_rf.fix(m_registoUtilizadores);
+        this.rc.fix(m_registoRecursos);
     }
 
     @Override

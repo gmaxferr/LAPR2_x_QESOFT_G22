@@ -169,7 +169,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
             matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
             matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoDadosCandidatura();
-            matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+            matriz[pos][2] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
         }
         int cont = m_listaFaeAvaliacao.size();
         for (int linha = 0; linha < matriz.length; linha++) {

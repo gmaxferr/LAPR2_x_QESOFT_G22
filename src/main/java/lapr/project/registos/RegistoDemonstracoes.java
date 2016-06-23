@@ -20,6 +20,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     public static final String ID_DEMONSTRACAO_ELEMENT_NAME = "id";
 
     private final boolean isOriginal;
+    public final String TAG_SUFFIX;
 
     /**
      * Lista de demostrações existentes
@@ -48,6 +49,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         this.m_listaDemonstracoes = new ArrayList<>();
         this.m_expo = null;
         this.isOriginal = isOriginal;
+        TAG_SUFFIX = isOriginal ? "Original" : "";
     }
 
     /**
@@ -92,28 +94,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * lista de candidaturas a demonstração alida demonstração de
-     * CandidaturaAExposicao recebendo-a como parametro
-     *
-     * @param demonstracao demonstração a ser validads
-     */
-    public void validaDemonstracao(Demonstracao demonstracao) {
-
-        if (validarDadosRepetidosOuInvalidos() == false) {
-            //remove os dados introduzidos anteriormente por estarem repetidos ou invalidos
-        }
-    }
-
-    /**
-     * Valida os dados repetidos pu invalidos de CandidaturaAExposicao
-     *
-     * @return boolean com a confirmação da validação
-     */
-    public boolean validarDadosRepetidosOuInvalidos() {
-        return true;
-    }
-
-    /**
      * Cria uma nova demonstração
      *
      * @param descricao - descrição da demonstração
@@ -130,7 +110,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Define a lista de demonstrações
+     * Define a lista de demonstrações. Cria ID para cada demonstração
+     * adicionada
      *
      * @param listaDemonstracoes lista de demonstrações
      */
@@ -138,6 +119,15 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         for (Demonstracao d : listaDemonstracoes) {
             d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         }
+        this.m_listaDemonstracoes = listaDemonstracoes;
+    }
+
+    /**
+     * Define a lista de demonstrações
+     *
+     * @param listaDemonstracoes lista de demonstrações
+     */
+    public void definirListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.m_listaDemonstracoes = listaDemonstracoes;
     }
 
@@ -286,19 +276,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @param ru registoUtilizadores
      */
     public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand, RegistoUtilizadores ru) {
-        for (Demonstracao d : this.m_listaDemonstracoes) {
-            for (Recurso r : d.getRegistoRecursosNecessarios().getListaDeRecursos()) {
-                for (Recurso r2 : m_registoRecursos.getListaDeRecursos()) {
-                    if (r.equals(r2)) {
-                        r = r2;
-                        break;
-                    }
-                }
-            }
-        }
-
         for (Demonstracao d : m_listaDemonstracoes) {
-            d.fix(rCand, m_expo, ru);
+            d.fix(rCand, m_expo, ru, m_registoRecursos);
         }
     }
 
@@ -307,10 +286,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         if (node == null) {
             return this;
         }
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.newDocument();
-        doc.appendChild(doc.importNode(node, true));
+        Document doc = XMLParser.createDocument(node, true);
 
         Node n = doc.getChildNodes().item(0);
 
@@ -322,7 +298,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
             NodeList nList;
             if (isOriginal) {
                 nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
-            }else{
+            } else {
                 nList = elem.getElementsByTagName(ID_DEMONSTRACAO_ELEMENT_NAME);
             }
             for (int i = 0; i < nList.getLength(); i++) {
@@ -352,7 +328,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME + TAG_SUFFIX);
 
             Node n;
             for (Demonstracao demo : m_listaDemonstracoes) {

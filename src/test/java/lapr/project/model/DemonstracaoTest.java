@@ -312,7 +312,7 @@ public class DemonstracaoTest {
         RegistoUtilizadores ru = new RegistoUtilizadores("tag");
         Exposicao e = new Exposicao(ce);
         RegistoCandidaturasAExposicao rCand = new RegistoCandidaturasAExposicao(e);
-        instance.fix(rCand, e, ru);
+        instance.fix(rCand, e, ru, ce.getRegistoRecursos());
     }
 
     /**

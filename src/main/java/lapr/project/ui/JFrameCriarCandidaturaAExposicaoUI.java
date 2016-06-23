@@ -1,15 +1,10 @@
 package lapr.project.ui;
 
-import lapr.project.ui.model.ComboBoxModelDemonstracoes;
-import lapr.project.ui.model.ModeloListaDemonstracoes;
-import lapr.project.ui.model.ComboBoxModelExposicoes;
-import lapr.project.ui.model.ModeloListaProdutos;
+import lapr.project.ui.model.*;
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import lapr.project.controller.CriarCandidaturaAExposicaoController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;

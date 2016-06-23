@@ -1128,6 +1128,20 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        DefinirTipoConflitoController CTRL = new DefinirTipoConflitoController(centroExposicoes);
+        CTRL.novoTipoConflito();
+        String input = JOptionPane.showInputDialog(this, "Como se vai chamar o novo tipo de conflito?", "Definir Tipos de Conflito");
+        if(input != null){
+            CTRL.setDadosTipoConflito(input);
+            if(CTRL.registaTipoConflito()){
+                JOptionPane.showMessageDialog(this, "Novo tipo de conflito registado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Ocorreu um erro no registo do novo tipo de conflito."
+                        + "\n    Erro: Tipo de conflito já existente.", "SUCESSO", JOptionPane.OK_OPTION);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do Utilizador", "CANCEL", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed

@@ -127,9 +127,8 @@ public class RegistoFAE implements Importable<RegistoFAE>, Exportable {
      * que este objeto agrega.
      *
      * @param m_registoUtilizadores registo de utilizadores
-     * @param m_ro registo de organizadores
      */
-    public void fix(RegistoUtilizadores m_registoUtilizadores, RegistoOrganizadores m_ro) {
+    public void fix(RegistoUtilizadores m_registoUtilizadores) {
         for (FAE fae : m_listaFAE) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
                 if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
