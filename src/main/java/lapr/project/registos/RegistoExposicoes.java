@@ -267,10 +267,10 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      * @param usernameFAE username do fae
      * @return lista de exposiçoes no estado candidaturas atribuidas do fae
      */
-    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasAtribuidasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(String usernameFAE) {
+    public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasDecididasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(String usernameFAE) {
         ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
         for (Exposicao exposicao : this.m_listaExposicoes) {
-            if (exposicao.getEstado().isEstadoCandidaturasAtribuidas() && exposicao.getRegistoFAE().isFAE(usernameFAE)) {
+            if (exposicao.getEstado().isEstadoCandidaturasDecididas()&& exposicao.getRegistoFAE().isFAE(usernameFAE)) {
                 RegistoDemonstracoes rd = new RegistoDemonstracoes(true);
                 rd = exposicao.getRegistoDemonstracoes();
                 for (Demonstracao d : rd.getListaDemonstracoes()) {

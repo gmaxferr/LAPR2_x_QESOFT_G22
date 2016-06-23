@@ -101,7 +101,7 @@ public class AvaliarCandidaturaADemonstracaoController {
      * UC
      */
     public ArrayList<Exposicao> getListaExposicoes(String usernameFAE) {
-        return this.m_re.getListaExposicoesEstadoCandidaturasAtribuidasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(usernameFAE);
+        return this.m_re.getListaExposicoesEstadoCandidaturasDecididasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(usernameFAE);
     }
 
     /**
