@@ -8,8 +8,9 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
- * @author Ana Leite Ricardo Osório
+ * Representação de uma atribuição candidatura (a exposição)
+ * 
+ * @author G29
  */
 public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>, Exportable {
 
@@ -17,14 +18,32 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
     public static final String KEYWORDS_ELEMENT_NAME = "Keywords";
 
+    /**
+     * Candidatura a exposição
+     */
     private CandidaturaAExposicao m_candidatura;
+    
+    /**
+     * Registo FaeAvaliação
+     */
     private RegistoFaeAvaliacao m_rFaeAvaliacao;
 
+    /**
+     * Construtor de objetos do tipo AtribuicaoCandidatura com o parâmetro
+     * candidatura a exposição
+     * 
+     * @param candidaturaAExposicao candidatura a exposição
+     */
     public AtribuicaoCandidatura(CandidaturaAExposicao candidaturaAExposicao) {
         this.m_candidatura = candidaturaAExposicao;
         this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
     }
 
+    /**
+     * Devolve a candidatura a exposição
+     * 
+     * @return candidatura a exposição
+     */
     public CandidaturaAExposicao getCandidaturaAssociada() {
         return this.m_candidatura;
     }
@@ -38,10 +57,22 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
         return this.m_rFaeAvaliacao;
     }
 
+    /**
+     * Adiciona um fae ao registo de FaeAvaliação
+     * 
+     * @param fae fae a ser adicionado ao registo 
+     */
     public void addFaeAvaliacao(FAE fae) {
         this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_rce registo de candidaturas a exposição
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoCandidaturasAExposicao m_rce, RegistoUtilizadores m_registoUtilizadores) {
         for (CandidaturaAExposicao cand : m_rce.getListaCandidaturas()) {
             if (cand.equals(m_candidatura)) {
