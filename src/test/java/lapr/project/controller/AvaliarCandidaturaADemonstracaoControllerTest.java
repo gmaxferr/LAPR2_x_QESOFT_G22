@@ -2,8 +2,6 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
-import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
@@ -27,10 +25,13 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     private Demonstracao d;
     private RegistoDemonstracoes rd;
     private RegistoAtribuicoesCandidaturasDemonstracao racd;
-    private AtribuicaoCandidaturaDemonstracao acd;
+    private AtribuicaoCandidaturaDemonstracao a;
     private Avaliacao avaliacao;
+    private Avaliacao avaliacaoDoFAE;
     private RegistoFaeAvaliacao rfa;
     private CandidaturaADemonstracao cd;
+    private FAE fae;
+    private Utilizador u;
 
     public AvaliarCandidaturaADemonstracaoControllerTest() {
     }
@@ -45,16 +46,23 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
 
     @Before
     public void setUp() {
+        u = new Utilizador("a", "b", "Aa.1".toCharArray(), "a@b.c");
         ce = new CentroExposicoes();
-        e = new Exposicao(ce);
+        ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(u);
+        e = new Exposicao("a", "b", new Data(2015, 05, 03), new Data(2015, 05, 04), new Data(2015, 05, 05), new Data(2015, 05, 06), new Data(2015, 05, 07), new Local("l"), ce);;
         re = ce.getRegistoExposicoes();
         d = new Demonstracao();
         rd = e.getRegistoDemonstracoes();
         racd = e.getRegistoAtribuicoesDemonstracao();
-        cd = new CandidaturaADemonstracao("", "");
-        acd = new AtribuicaoCandidaturaDemonstracao(cd);
-        rfa = acd.getRegistoFaeAvaliacao();
-        avaliacao = acd.getRegistoFaeAvaliacao().getAvaliacaoDoFae("");
+        cd = new CandidaturaADemonstracao("dados", "email");
+        a = new AtribuicaoCandidaturaDemonstracao(cd);
+        fae = new FAE(u);
+        a.addFaeAvaliacao(fae);
+        racd.getListaAtribuicoes().add(a);
+        a = new AtribuicaoCandidaturaDemonstracao(cd);
+        rfa = a.getRegistoFaeAvaliacao();
+        avaliacao = a.getRegistoFaeAvaliacao().getAvaliacaoDoFae("b");
+        instance = new AvaliarCandidaturaADemonstracaoController(ce);
 
     }
 
@@ -73,15 +81,15 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     }
 
     /**
-     * Test of getListaExposicoesEstadoCandidaturasAtribuidasDoFAE method, of
-     * class AvaliarCandidaturaADemonstracaoController.
+     * Test of getListaExposicoes method, of
+ class AvaliarCandidaturaADemonstracaoController.
      */
     @Test
     public void testGetListaExposicoesEstadoCandidaturasAtribuidasDoFAE() {
         System.out.println("getListaExposicoesEstadoCandidaturasAtribuidasDoFAE");
         String usernameFAE = "";
         ArrayList<Exposicao> expResult = new ArrayList<>();
-        ArrayList<Exposicao> result = instance.getListaExposicoesEstadoCandidaturasAtribuidasDoFAE(usernameFAE);
+        ArrayList<Exposicao> result = instance.getListaExposicoes(usernameFAE);
         assertEquals(expResult, result);
     }
 
@@ -92,7 +100,6 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data(2015, 05, 03), new Data(2015, 05, 04), new Data(2015, 05, 05), new Data(2015, 05, 06), new Data(2015, 05, 07), new Local("l"), ce);
         instance.setExposicao(e);
     }
 
@@ -176,7 +183,7 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
         instance.getRegistoExposicoes();
         re.registaExposicao(e);
         instance.getRegistoAtribuicoes();
-        acd.getRegistoFaeAvaliacao();
+        a.getRegistoFaeAvaliacao();
     }
 
     /**
@@ -197,8 +204,8 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     @Test
     public void testGetDadosCandidatura() {
         System.out.println("getDadosCandidatura");
-        acd = new AtribuicaoCandidaturaDemonstracao(cd);
-        String expResult = "";
+        instance.setAtribuicao(a);
+        String expResult = "dados";
         String result = instance.getDadosCandidatura();
         assertEquals(expResult, result);
     }
@@ -210,13 +217,12 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     @Test
     public void testGetAvaliacaoDoFae() {
         System.out.println("getAvaliacaoDoFae");
-        String usernameFAE = "";
+        String usernameFAE = "b";
         instance.setExposicao(e);
-        instance.getRegistoExposicoes();
-        re.registaExposicao(e);
+        instance.setAtribuicao(a);
         instance.getRegistoAtribuicoes();
-        acd.getRegistoFaeAvaliacao();
-        Avaliacao expResult = null;
+        a.getRegistoFaeAvaliacao();
+        Avaliacao expResult = this.avaliacao;
         Avaliacao result = instance.getAvaliacaoDoFae(usernameFAE);
         assertEquals(expResult, result);
     }
@@ -245,6 +251,7 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
         instance.getRegistoExposicoes();
         instance.getRegistoDemonstracoes();
         instance.setDemonstracao(d);
+        
         instance.setEstadoCandiaturaAvaliada();
     }
 
