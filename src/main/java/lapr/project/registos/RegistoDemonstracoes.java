@@ -17,7 +17,6 @@ import org.w3c.dom.*;
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoDemonstracoes";
-    public static final String CONTADOR_ATTR_NAME = "contador";
 
     /**
      * Lista de demostrações existentes
@@ -133,7 +132,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         for (Demonstracao d : listaDemonstracoes) {
-            d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
+            d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         }
         this.m_listaDemonstracoes = listaDemonstracoes;
     }
@@ -170,8 +169,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      * @param m_demoCriada - demonstração a adicionar
      */
     public void addDemo(Demonstracao m_demoCriada) {
-        m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos);
-        m_contadorDemos++;
+        m_demoCriada.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         if (valida(m_demoCriada)) {
             this.m_listaDemonstracoes.add(m_demoCriada);
         }
@@ -324,7 +322,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                 m_listaDemonstracoes.add(demo);
             }
 
-            this.m_contadorDemos = Integer.parseInt(elem.getAttribute(CONTADOR_ATTR_NAME));
+            this.m_contadorDemos = m_listaDemonstracoes.size();
         }
 
         return this;
@@ -345,8 +343,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
                 Node n = demo.exportContentToXMLNode();
                 elementKeyword.appendChild(document.importNode(n, true));
             }
-
-            elementKeyword.setAttribute(CONTADOR_ATTR_NAME, String.valueOf(this.m_contadorDemos));
 
             document.appendChild(elementKeyword);
 
