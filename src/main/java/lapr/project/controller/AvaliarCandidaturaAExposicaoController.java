@@ -228,7 +228,7 @@ public class AvaliarCandidaturaAExposicaoController {
      * recomendação do FAE para a candidatura
      */
     public void setAvalicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
-        this.m_avaliacaoDoFae.setAvalicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
+        this.m_avaliacaoDoFae.setAvaliacaoCandidaturaAExposicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
     }
 
     /**

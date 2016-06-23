@@ -127,7 +127,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
      * menor recomendação global
      */
-    public void setAvalicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
+    public void setAvaliacaoCandidaturaAExposicao(int ratingConhecimentoSobreTema, int ratingAdequacaoAExposicao, int ratingAdequacaoAsDemos, int ratingAdequacaoNumConvites, int ratingRecomendacaoGlobal) {
         this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
         this.m_ratingAdequacaoAExposicao = ratingAdequacaoAExposicao;
         this.m_ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
@@ -146,7 +146,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * @param ratingRecomendacaoGlobal de 0 a 5 sendo 0 o número que representa
      * menor recomendação global
      */
-    public void setAvaliacaoParaDemonstracao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal) {
+    public void setAvaliacaoCandidaturaADemonstracao(int ratingConhecimentoSobreTema, int ratingAdequacaoDadosCandidatura, int ratingRecomendacaoGlobal) {
         this.m_ratingConhecimentoSobreOTema = ratingConhecimentoSobreTema;
         this.m_ratingAdequacaoDadosCandidatura = ratingAdequacaoDadosCandidatura;
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;

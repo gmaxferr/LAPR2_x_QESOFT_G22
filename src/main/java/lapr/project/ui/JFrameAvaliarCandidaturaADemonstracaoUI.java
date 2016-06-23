@@ -21,42 +21,42 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Controller deste UC
      */
     private transient final AvaliarCandidaturaADemonstracaoController controller;
-    
+
     /**
      * Lista de exposições do fae utilizadas para a execução deste UC
      */
     private transient List<Exposicao> listaExposicoes;
-    
+
     /**
      * Lista de demosntrações do fae utilizadas para a execução deste UC
      */
     private transient List<Demonstracao> listaDemonstracoes;
-    
+
     /**
      * Lista das atribuições a candidaturas demonstração
      */
     private transient List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesDoFAE;
-    
+
     /**
      * Avaliação do fae
      */
     private transient Avaliacao avaliacaoDoFae;
-    
+
     /**
      * Username do fae
      */
     private transient String usernameFAE;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes ce;
-    
+
     /**
      * Lista de candidaturas a demonstração
      */
@@ -794,27 +794,27 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         }
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
-    private void guardarDecisao(){
-         this.avaliacaoDoFae.setAvaliacaoParaDemonstracao(jSliderConhecimentoDoTema.getValue(),jSliderAdequacaoDadosCandidatura.getValue(), jSliderRecomendaçãoGlobal.getValue());
+    private void guardarDecisao() {
+        this.avaliacaoDoFae.setAvaliacaoCandidaturaADemonstracao(jSliderConhecimentoDoTema.getValue(), jSliderAdequacaoDadosCandidatura.getValue(), jSliderRecomendaçãoGlobal.getValue());
     }
-    
-    private void voltarASelecionarExposicao(){
+
+    private void voltarASelecionarExposicao() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
-    
+
     private void jButtonCard3Recuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3Recuar1ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }//GEN-LAST:event_jButtonCard3Recuar1ActionPerformed
 
-    private void terminarUC(){
+    private void terminarUC() {
         dispose();
         jFrameMenuPrincipal.setVisible(true);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
