@@ -457,7 +457,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      *
      * @return registo de atribuições
      */
-    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoes() {
+    public RegistoAtribuicoesCandidaturasExposicao getRegistoAtribuicoesExposicao() {
         return this.m_ra;
     }
 

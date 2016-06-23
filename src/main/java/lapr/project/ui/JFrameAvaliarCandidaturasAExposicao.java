@@ -39,7 +39,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
      * @param centroExposicoes
      */
     public JFrameAvaliarCandidaturasAExposicao(JFrame jFrameMenuPrincipal, String usernameFAE, CentroExposicoes centroExposicoes) {
-        super("Avaliar candidaturas");
+        super("Avaliar candidaturas a exposição");
 
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.controller = new AvaliarCandidaturaAExposicaoController(centroExposicoes, usernameFAE);

@@ -131,8 +131,8 @@ public class PercentagemCandAceitesMediaRatingsController {
     /**
      * Guarda o registo de atribuições da exposição selecionada
      */
-    public void getRegistoAtribuicoes() {
-        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoes();
+    public void getRegistoAtribuicoesExposicao() {
+        this.m_rAtribExpos = this.m_exposicaoSelecionada.getRegistoAtribuicoesExposicao();
     }
 
     /**
@@ -181,7 +181,7 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return vetor com média dos ratings por cada posição
      */
-    public float[] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAExposicao() {
         return this.m_rAtribExpos.getMediaRatingsPorCriterioDasCandidaturas();
     }
 
@@ -193,7 +193,22 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return vetor com média dos ratings por cada posição
      */
-    public float[] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
+    public float[][] getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes() {
         return this.m_rAtribDemos.getMediaRatingsPorCriterioDasCandidaturas();
+    }
+
+    /**
+     * Devolve uma lista com as candidaturas à exposição selecionada no estado
+     * avaliadas de forma a que seja possível calcular-se as médias dos ratings
+     *
+     * @return lista das candidaturas da exposição selecionada no estado
+     * Avaliadas
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
+        return this.rce.getListaCandidaturasEstadoAvaliadas();
+    }
+
+    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
+        return this.re.getListaExposicoesEstadoAvaliadas();
     }
 }
