@@ -3,7 +3,6 @@ package lapr.project.model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
-import static lapr.project.model.AtribuicaoCandidatura.ROOT_ELEMENT_NAME;
 import lapr.project.registos.RegistoCandidaturasADemonstracao;
 import lapr.project.registos.RegistoFaeAvaliacao;
 import lapr.project.registos.RegistoUtilizadores;
@@ -13,7 +12,6 @@ import lapr.project.utils.XMLParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
