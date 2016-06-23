@@ -465,7 +465,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(card2, "card3");
+        getContentPane().add(card2, "card2");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Escolha a candidatura pretendida:");
@@ -678,7 +678,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
                     .addContainerGap(246, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(card4, "card5");
+        getContentPane().add(card4, "card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

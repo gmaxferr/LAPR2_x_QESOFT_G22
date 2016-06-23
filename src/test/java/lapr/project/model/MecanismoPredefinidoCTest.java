@@ -94,4 +94,21 @@ public class MecanismoPredefinidoCTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of atribui method, of class MecanismoPredefinidoC.
+     */
+    @Test
+    public void testAtribui_3args() {
+        System.out.println("atribui");
+        Exposicao exposicaoEscolhida = null;
+        Demonstracao demonstracaoEscolhida = null;
+        String numeroLido = "";
+        MecanismoPredefinidoC instance = new MecanismoPredefinidoC();
+        List<AtribuicaoCandidaturaDemonstracao> expResult = null;
+        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(exposicaoEscolhida, demonstracaoEscolhida, numeroLido);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

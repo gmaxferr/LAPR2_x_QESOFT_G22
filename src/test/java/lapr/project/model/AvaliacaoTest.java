@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -174,5 +172,79 @@ public class AvaliacaoTest {
         int expResult = obj.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getRatingAdequacaoDadosCandidatura method, of class Avaliacao.
+     */
+    @Test
+    public void testGetRatingAdequacaoDadosCandidatura() {
+        System.out.println("getRatingAdequacaoDadosCandidatura");
+        Avaliacao instance = new Avaliacao();
+        int expResult = 0;
+        int result = instance.getRatingAdequacaoDadosCandidatura();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMediaRatingsCandidaturaAExposicao method, of class Avaliacao.
+     */
+    @Test
+    public void testGetMediaRatingsCandidaturaAExposicao() {
+        System.out.println("getMediaRatingsCandidaturaAExposicao");
+        Avaliacao instance = new Avaliacao();
+        float expResult = 0.0F;
+        float result = instance.getMediaRatingsCandidaturaAExposicao();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMediaRatingsCandidaturaADemonstracao method, of class Avaliacao.
+     */
+    @Test
+    public void testGetMediaRatingsCandidaturaADemonstracao() {
+        System.out.println("getMediaRatingsCandidaturaADemonstracao");
+        Avaliacao instance = new Avaliacao();
+        float expResult = 0.0F;
+        float result = instance.getMediaRatingsCandidaturaADemonstracao();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setAvaliacaoCandidaturaAExposicao method, of class Avaliacao.
+     */
+    @Test
+    public void testSetAvaliacaoCandidaturaAExposicao() {
+        System.out.println("setAvaliacaoCandidaturaAExposicao");
+        int ratingConhecimentoSobreTema = 0;
+        int ratingAdequacaoAExposicao = 0;
+        int ratingAdequacaoAsDemos = 0;
+        int ratingAdequacaoNumConvites = 0;
+        int ratingRecomendacaoGlobal = 0;
+        Avaliacao instance = new Avaliacao();
+        instance.setAvaliacaoCandidaturaAExposicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setAvaliacaoCandidaturaADemonstracao method, of class Avaliacao.
+     */
+    @Test
+    public void testSetAvaliacaoCandidaturaADemonstracao() {
+        System.out.println("setAvaliacaoCandidaturaADemonstracao");
+        int ratingConhecimentoSobreTema = 0;
+        int ratingAdequacaoDadosCandidatura = 0;
+        int ratingRecomendacaoGlobal = 0;
+        Avaliacao instance = new Avaliacao();
+        instance.setAvaliacaoCandidaturaADemonstracao(ratingConhecimentoSobreTema, ratingAdequacaoDadosCandidatura, ratingRecomendacaoGlobal);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

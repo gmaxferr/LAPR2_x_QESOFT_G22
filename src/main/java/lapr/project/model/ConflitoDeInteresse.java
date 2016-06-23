@@ -10,17 +10,37 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um conflito de interesse
+ * 
  * @author G29
  */
 public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "ConflitoDeInteresse";
 
+    /**
+     * Fae
+     */
     private FAE m_fae;
+    
+    /**
+     * Candidatura a exposição
+     */
     private CandidaturaAExposicao m_candidatura;
+    
+    /**
+     * Tipo de conflito
+     */
     private TipoConflito m_tipoConflito;
 
+    /**
+     * Contrutor de objetos do tipo ConflitoDeInteresse com os parâmetros
+     * candidatura a exposição e tipo de conflito
+     * 
+     * @param fae fae
+     * @param cand candidatura a exposição
+     * @param tipoConflito tipo de conflito
+     */
     public ConflitoDeInteresse(FAE fae, CandidaturaAExposicao cand, TipoConflito tipoConflito) {
         this.m_fae = fae;
         this.m_candidatura = cand;
@@ -28,27 +48,37 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
     }
 
     /**
-     * @return the m_fae
+     * Devolve o fae
+     * @return fae
      */
     public FAE getFae() {
         return m_fae;
     }
 
     /**
-     * @return the m_candidatura
+     * Devolve a candidatura a exposição 
+     * 
+     * @return candidatura a exposição 
      */
     public CandidaturaAExposicao getCandidatura() {
         return m_candidatura;
     }
 
     /**
-     *
+     * Devolve o tipo de conflito
+     * 
      * @return tipo deste conflito
      */
     public TipoConflito getTipo() {
         return this.m_tipoConflito;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param rc registo candidaturas a exposição
+     */
     public void fix(RegistoCandidaturasAExposicao rc) {
         for (CandidaturaAExposicao cand : rc.getListaCandidaturas()) {
             if (this.m_candidatura.equals(cand)) {

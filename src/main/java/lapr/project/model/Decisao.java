@@ -14,18 +14,21 @@ public class Decisao implements Importable<Decisao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "aceite";
 
+    /**
+     * Decisão
+     */
     private boolean m_decisao;
 
     /**
-     * Construtor
-     *
+     * Construtor de objetos do tipo Decisao sem parâmetros
      */
     public Decisao() {
         this.m_decisao = false;
     }
 
     /**
-     * Construtor. Recebe por parametro a decisão tomada pelo Gestor
+     * Construtor de objetos do tipo Decisao recebendo por parametro a decisão 
+     * tomada pelo Gestor
      *
      * @param decisao decisao tomada pelo gestor
      */

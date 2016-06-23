@@ -14,22 +14,40 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- *
- * @author Ana Leite
+ * Representação de uma atribuição candidatura a demonstração
+ * @author G29
  */
 public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoCandidaturaDemonstracao>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "AtribuicaoCandidaturaDemosntracao";
 
+    /**
+     * Candidatura a demonstração
+     */
     private CandidaturaADemonstracao m_candidatura;
 
+    /**
+     * Registo de FaeAvaliacao
+     */
     private RegistoFaeAvaliacao m_rFaeAvaliacao;
 
+    
+    /**
+     * Construtor de objetos do tipo AtribuicaoCandidaturaADemonstracao com o 
+     * parâmetro candidatura a demostração
+     * 
+     * @param candidaturaADemonstracao candidatura a demostração
+     */
     public AtribuicaoCandidaturaDemonstracao(CandidaturaADemonstracao candidaturaADemonstracao) {
         this.m_candidatura = candidaturaADemonstracao;
         this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
     }
 
+    /**
+     * Devolve a candidatura a demonstração
+     * 
+     * @return candidatura a demonstração
+     */
     public CandidaturaADemonstracao getCandidaturaAssociada() {
         return this.m_candidatura;
     }
@@ -43,10 +61,22 @@ public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoC
         return this.m_rFaeAvaliacao;
     }
 
+    /**
+     * Adiciona um fae ao registo FaeAvaliação
+     * 
+     * @param fae fae a ser adicionado ao registo
+     */
     public void addFaeAvaliacao(FAE fae) {
         this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_rce registo de candidaturas a demonstração
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoCandidaturasADemonstracao m_rce, RegistoUtilizadores m_registoUtilizadores) {
         for (CandidaturaADemonstracao cand : m_rce.getListaCandidaturasADemonstracao()) {
             if (cand.equals(m_candidatura)) {

@@ -13,8 +13,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
     //Elements
     public static final String ROOT_ELEMENT_NAME = "avaliacao";
-
-    public static final String JUSTIFICACAO_ELEMENT_NAME = "texto";
+    
     public static final String RATING_CONHECIMENTO_TEMA_ELEM_NAME = "conhecimentoFAE";
     public static final String RATING_ADEQ_EXPOSICAO_ELEMENT_NAME = "adequacaoExposicao";
     public static final String RATING_ADEQ_DEMOS_ELEMENT_NAME = "adequacaoDemonstracoes";
@@ -22,13 +21,39 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     public static final String RATING_REC_GLOBAL_ELEMENT_NAME = "recomendacao";
     public static final String RATING_ADEQ_DADOS_CAND_ELEM_NAME = "adequacaoDadosCandidatura";
 
+    /**
+     * Rating conhecimento do tema 
+     */
     private int m_ratingConhecimentoSobreOTema;
+        
+    /**
+     * Rating adequação da exposição 
+     */
     private int m_ratingAdequacaoAExposicao;
+        
+    /**
+     * Rating adequação das demonstrações 
+     */
     private int m_ratingAdequacaoAsDemos;
+     
+    /**
+     * Rating adequação numero de convites
+     */
     private int m_ratingAdequacaoNumConvites;
+    
+    /**
+     * Rating recomendação global
+     */
     private int m_ratingRecomendacaoGlobal;
+    
+    /**
+     * Rating adequação dos dados da candidatura
+     */
     private int m_ratingAdequacaoDadosCandidatura;
 
+    /**
+     * Construtor de objetos do tipo Avaliação sem parâmetros
+     */
     public Avaliacao() {
     }
 
@@ -152,6 +177,15 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
     }
 
+    /**
+     * Compara a avaliação a outro objecto passado por parametro. A comparação
+     * entre duas avaliações é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com a avaliação
+     * @return true se o objeto recebido representar uma avaliação equivalente
+     * à avaliação. Caso contrário, retorna false.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj != null

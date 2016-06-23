@@ -21,22 +21,22 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
-     * Username do organizador 
+     * Username do organizador
      */
     private transient String usernameOrganizador;
-    
+
     /**
      * Controller deste UC
      */
     private transient ListarCandidaturasAExposicaoRemovidasController controller;
-    
+
     /**
      * Lista de exposições utilizadas para a execução deste UC
      */
@@ -46,16 +46,36 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
      * Descrição da exposição por omisão
      */
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-    
+
     /**
      * Local da exposição por omissão
      */
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-    
+
     /**
      * Data de inicio e de fim da exposição por omissão
      */
     private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
+
+    /**
+     * Largura da janela no passo 1
+     */
+    private static final int LARGURA_JANELA_PASSO1 = 720;
+
+    /**
+     * Altura da janela no passo 1
+     */
+    private static final int ALTURA_JANELA_PASSO1 = 380;
+
+    /**
+     * Largura da janela no passo 2
+     */
+    private static final int LARGURA_JANELA_PASSO2 = 390;
+
+    /**
+     * Altura da janela no passo 2
+     */
+    private static final int ALTURA_JANELA_PASSO2 = 360;
 
     /**
      * Creates new form JFrameListarCandidaturasremovidas
@@ -68,11 +88,13 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         this.controller = new ListarCandidaturasAExposicaoRemovidasController(centroExposicoes);
         controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesDoOrganizador(usernameOrganizador);
+
         initComponents();
-
+        
+        setLocationRelativeTo(null);
         alterarComportamentoFecharJFrame();
-
         setVisible(true);
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
     /**
@@ -81,12 +103,12 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameMenuPrincipal.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
             }
         });
     }
@@ -124,7 +146,8 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         jButtonCard2Recuar = new javax.swing.JButton();
         jButtonCard2Fechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabelCard1Titulo.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -167,11 +190,14 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         jPanelCard1DescricaoExposicao.setLayout(jPanelCard1DescricaoExposicaoLayout);
         jPanelCard1DescricaoExposicaoLayout.setHorizontalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1DescricaoExposicaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelCard1DescricaoExposicaoLayout.setVerticalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1)
         );
 
         jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -193,7 +219,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         jPanelCard1DuracaoLayout.setHorizontalGroup(
             jPanelCard1DuracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCard1DuracaoLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelCard1DataInicio)
@@ -231,11 +257,11 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCard1LocalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                .addComponent(jScrollPane2))
         );
         jPanelCard1LocalLayout.setVerticalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -251,26 +277,29 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card1Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCard1Avancar)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card1Layout.createSequentialGroup()
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
             .addGroup(card1Layout.createSequentialGroup()
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabelCard1Titulo))
+                        .addGap(254, 254, 254)
+                        .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(card1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(card1Layout.createSequentialGroup()
-                                .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButtonCard1Avancar))
-                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabelCard1Titulo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,14 +312,14 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
-                    .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(card1, "card1");
@@ -345,7 +374,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JScrollPaneCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 39, Short.MAX_VALUE)
+                .addGap(18, 75, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCard2Recuar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(jButtonCard2Fechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -368,12 +397,12 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
 
     private void avancarParaCard2() {
         controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        controller.getRegistoCandidaturasAExposicaoRemovidas();;
+        controller.getRegistoCandidaturasAExposicaoRemovidas();
         String[] vetorCandidaturasRemovidas = criarVetorListaCandidaturasAExposicaoRemovidas(controller.getListaCandidaturasAExposicaoRemovidas());
         jListCard2ListaCandidaturas.setListData(vetorCandidaturasRemovidas);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
-
+        setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
 
     private String[] criarVetorListaCandidaturasAExposicaoRemovidas(List<CandidaturaAExposicao> listaCandidaturas) {
@@ -412,6 +441,7 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
 

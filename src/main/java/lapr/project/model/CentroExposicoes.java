@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
 /**
  * Representação de um Centro de Exposições
  *
- * @author Ricardo Osório Ana Leite
+ * @author G29
  */
 public class CentroExposicoes implements Importable<CentroExposicoes>, Exportable {
 
@@ -148,6 +148,11 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return m_registoTipoConflitos;
     }
 
+    /**
+     * Devolve o registo de tipos de conflito das demonstrações
+     * 
+     * @return registo de tipos de conflito das demonstrações
+     */
     public RegistoTiposConflitoDemonstracao getRegistoTiposConflitosDemonstracao() {
         return m_registoTipoConflitosDemonstracao;
     }
@@ -161,6 +166,12 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return this.m_rStands;
     }
 
+    /**
+     * Verifica se o utilizador recebido por parâmetro é um fae
+     * 
+     * @param utilizador utilizador a verificar se é fae
+     * @return true se o utilizador for um fae. caso contrário retorna false.
+     */
     public boolean isFae(Utilizador utilizador) {
         for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
             if (e.getRegistoFAE().isFAE(utilizador.getUsername())) {
@@ -170,6 +181,12 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return false;
     }
 
+    /**
+     * Verifica se o utilizador recebido por parâmetro é um expositor
+     * 
+     * @param utilizador utilizador a verificar se é expositor
+     * @return true se o utilizador for um expositor. caso contrário retorna false.
+     */
     public boolean isExpositor(Utilizador utilizador) {
         try {
             for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
@@ -185,6 +202,12 @@ public class CentroExposicoes implements Importable<CentroExposicoes>, Exportabl
         return false;
     }
 
+    /**
+     * Verifica se o utilizador recebido por parâmetro é um organizador
+     * 
+     * @param utilizador utilizador a verificar se é organizador
+     * @return true se o utilizador for um organizador. caso contrário retorna false.
+     */
     public boolean isOrganizador(Utilizador utilizador) {
         for (Exposicao e : m_registoExposicoes.getListaExposicoes()) {
             for (Organizador o : e.getRegistoOrganizadores().getListaOrganizadores()) {

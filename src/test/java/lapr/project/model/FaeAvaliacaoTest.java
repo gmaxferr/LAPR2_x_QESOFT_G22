@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoUtilizadores;
 import org.junit.After;
@@ -119,6 +117,30 @@ public class FaeAvaliacaoTest {
             result = null;
         }
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setAvaliacao method, of class FaeAvaliacao.
+     */
+    @Test
+    public void testSetAvaliacao() {
+        System.out.println("setAvaliacao");
+        Avaliacao aval = new Avaliacao();
+        instance.setAvaliacao(aval);
+    }
+
+    /**
+     * Test of setAvalicao method, of class FaeAvaliacao.
+     */
+    @Test
+    public void testSetAvalicao() {
+        System.out.println("setAvalicao");
+        int rat1 = 0;
+        int rat2 = 0;
+        int rat3 = 0;
+        int rat4 = 0;
+        int rat5 = 0;
+        instance.setAvalicao(rat1, rat2, rat3, rat4, rat5);
     }
 
 }
