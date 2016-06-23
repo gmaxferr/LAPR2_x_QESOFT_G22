@@ -44,6 +44,15 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof TipoConflito){
+            TipoConflito o = (TipoConflito) obj;
+            return this.ID.equals(o.ID);
+        }
+        return false;
+    }
+
+    @Override
     public TipoConflito importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document document = XMLParser.createDocument(node, true);
 
