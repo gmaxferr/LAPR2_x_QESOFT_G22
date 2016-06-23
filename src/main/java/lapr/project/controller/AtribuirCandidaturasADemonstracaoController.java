@@ -199,21 +199,6 @@ public class AtribuirCandidaturasADemonstracaoController {
     }
 
     /**
-     * Devolve as atribuições geradas.
-     *
-     * @param mec mecanismo.
-     * @param numeroFAEOuExperiencia
-     *
-     * @return atribuições geradas.
-     */
-    public List<AtribuicaoCandidaturaDemonstracao> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
-        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
-        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicao, this.m_demonstracao, numeroFAEOuExperiencia);
-        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
-        return listaAtribuicoesGeradas;
-    }
-
-    /**
      * Regista a atribuição gerada
      *
      * @param listaAtribuicao lista de atribuicoes

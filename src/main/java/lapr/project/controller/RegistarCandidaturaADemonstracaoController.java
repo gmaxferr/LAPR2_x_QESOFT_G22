@@ -34,6 +34,9 @@ public class RegistarCandidaturaADemonstracaoController {
     }
 
     /**
+     * Devolve uma lista com todas as exposições que tenham candidaturas aceites
+     * de um expositor cujo email (forma de identificar) é passado por parametro
+     *
      * @return lista de exposiçoes (nas quais o representante foi integradp) do
      * registo de exposições do centro de exposições. selecionada previamente
      */
@@ -50,7 +53,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public void setExpo(Exposicao e) {
         this.m_e = e;
-        
+
     }
 
     /**

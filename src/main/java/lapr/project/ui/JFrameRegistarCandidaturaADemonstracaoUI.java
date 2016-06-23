@@ -20,11 +20,6 @@ import lapr.project.uiModel.AbstractListModelDemonstracoes;
  */
 public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-    private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-
     private transient RegistarCandidaturaADemonstracaoController CTRL;
     private transient List<Exposicao> listaExposicoes = new ArrayList<>();
     private transient List<Demonstracao> listaDemos = new ArrayList<>();

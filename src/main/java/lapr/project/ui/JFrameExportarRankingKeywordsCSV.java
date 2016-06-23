@@ -1,21 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
+
+import java.awt.CardLayout;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class JFrameExportarRankingKeywordsCSV extends javax.swing.JFrame {
 
+    private final CardLayout cardLayout;
+    private final JFrame menu;
+
     /**
      * Creates new form JFrameExportarRankingKeywordsCSV
+     *
+     * @param menu JFrame do menu principal
      */
-    public JFrameExportarRankingKeywordsCSV() {
+    public JFrameExportarRankingKeywordsCSV(JFrame menu) {
+        this.menu=menu;
+        
         initComponents();
+
+        alterarComportamentoFecharJFrame();
+        this.cardLayout = (CardLayout) getContentPane().getLayout();
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    /**
+     * altera o comportamento da janela ao fechar
+     */
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                dispose();
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                menu.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -42,42 +70,6 @@ public class JFrameExportarRankingKeywordsCSV extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameExportarRankingKeywordsCSV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameExportarRankingKeywordsCSV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameExportarRankingKeywordsCSV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameExportarRankingKeywordsCSV.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameExportarRankingKeywordsCSV().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

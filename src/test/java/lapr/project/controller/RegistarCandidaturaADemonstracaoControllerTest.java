@@ -49,7 +49,7 @@ public class RegistarCandidaturaADemonstracaoControllerTest {
         rd = e.getRegistoDemonstracoes();
         d = new Demonstracao("descricao");
         rd.getListaDemonstracoes().add(d);
-        instance = new RegistarCandidaturaADemonstracaoController(ce, username);
+        instance = new RegistarCandidaturaADemonstracaoController(ce, "a@b.c");
     }
 
     @After
@@ -57,14 +57,13 @@ public class RegistarCandidaturaADemonstracaoControllerTest {
     }
 
     /**
-     * Test of getListaDeExposicoes method, of class
-     * RegistarCandidaturaADemonstracaoController.
+     * Test of getListaDeExposicoesComCandidaturasAceitesDoRepresentante method,
+     * of class RegistarCandidaturaADemonstracaoController.
      */
     @Test
     public void testGetListaDeExposicoes() {
         System.out.println("getListaDeExposicoes");
-        List<Exposicao> expResult = new ArrayList<Exposicao>();
-        expResult.add(e);
+        List<Exposicao> expResult = ce.getRegistoExposicoes().getListaExposicoes();
         List<Exposicao> result = instance.getListaDeExposicoes();
         assertEquals(expResult, result);
     }
