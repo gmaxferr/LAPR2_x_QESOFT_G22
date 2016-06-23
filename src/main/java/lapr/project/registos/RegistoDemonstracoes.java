@@ -17,6 +17,9 @@ import org.w3c.dom.*;
 public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, Exportable {
 
     public static final String ROOT_ELEMENT_NAME = "registoDemonstracoes";
+    public static final String ID_DEMONSTRACAO_ELEMENT_NAME = "id";
+
+    private final boolean isOriginal;
 
     /**
      * Lista de demostrações existentes
@@ -41,9 +44,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     /**
      * Construtor de objetos do tipo RegistoDemonstracoes sem paramentros
      */
-    public RegistoDemonstracoes() {
+    public RegistoDemonstracoes(boolean isOriginal) {
         this.m_listaDemonstracoes = new ArrayList<>();
         this.m_expo = null;
+        this.isOriginal = isOriginal;
     }
 
     /**
@@ -279,6 +283,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
      *
      * @param m_registoRecursos registo de recursos
      * @param rCand registo candidatura
+     * @param ru registoUtilizadores
      */
     public void fix(RegistoRecursos m_registoRecursos, RegistoCandidaturasAExposicao rCand, RegistoUtilizadores ru) {
         for (Demonstracao d : this.m_listaDemonstracoes) {
@@ -314,11 +319,21 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             this.m_listaDemonstracoes.clear();
 
-            NodeList nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+            NodeList nList;
+            if (isOriginal) {
+                nList = elem.getElementsByTagName(Demonstracao.ROOT_ELEMENT_NAME);
+            }else{
+                nList = elem.getElementsByTagName(ID_DEMONSTRACAO_ELEMENT_NAME);
+            }
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
-                Demonstracao demo = new Demonstracao("", m_expo);
-                demo.importContentFromXMLNode(n2);
+                Demonstracao demo;
+                demo = new Demonstracao("", m_expo);
+                if (isOriginal) {
+                    demo.importContentFromXMLNode(n2);
+                } else {
+                    demo.setCodigoIdentificacao(n2.getTextContent());
+                }
                 m_listaDemonstracoes.add(demo);
             }
 
@@ -339,8 +354,14 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
             Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
+            Node n;
             for (Demonstracao demo : m_listaDemonstracoes) {
-                Node n = demo.exportContentToXMLNode();
+                if (isOriginal) {
+                    n = demo.exportContentToXMLNode();
+                } else {
+                    n = document.createElement(ID_DEMONSTRACAO_ELEMENT_NAME);
+                    n.setTextContent(demo.getCodigoIdentificacao());
+                }
                 elementKeyword.appendChild(document.importNode(n, true));
             }
 

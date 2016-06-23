@@ -103,7 +103,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public CandidaturaAExposicao(Exposicao e, Expositor expositor) {
         this.m_expositor = expositor;
         this.m_rp = new RegistoProdutos();
-        this.m_rd = new RegistoDemonstracoes();
+        this.m_rd = new RegistoDemonstracoes(false);
         this.m_keywords = new ArrayList<>();
         setEstado(new EstadoCandidaturaAExposicaoCriada(this));
         this.e = e;
@@ -111,13 +111,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     public CandidaturaAExposicao(Expositor expositor) {
-        this.m_expositor = expositor;
-        this.m_rp = new RegistoProdutos();
-        this.m_rd = new RegistoDemonstracoes();
-        this.m_keywords = new ArrayList<>();
-        setEstado(new EstadoCandidaturaAExposicaoCriada(this));
-        this.e = null;
-        this.m_decisao = new Decisao(false);
+        this(null, expositor);
     }
 
     /**
@@ -482,7 +476,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         }
         for (Demonstracao demo : this.m_rd.getListaDemonstracoes()) {
             for (Demonstracao demo2 : m_rd.getListaDemonstracoes()) {
-                if (demo.equals(demo2)) {
+                if (demo.getCodigoIdentificacao().equals(demo2.getCodigoIdentificacao())) {
                     demo = demo2;
                     break;
                 }
@@ -575,7 +569,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             }
             tempList = elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
-                this.m_rd = new RegistoDemonstracoes();
+                this.m_rd = new RegistoDemonstracoes(false);
                 this.m_rd.importContentFromXMLNode(tempList.item(0));
             }
             tempList = elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME);
