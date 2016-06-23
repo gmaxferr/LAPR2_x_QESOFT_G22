@@ -116,8 +116,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Contrutor de objetos do tipo CandidaturaAExposicao com o parâmetro 
+     * Contrutor de objetos do tipo CandidaturaAExposicao com o parâmetro
      * expositor
+     *
      * @param expositor expositor da candidatura a exposição
      */
     public CandidaturaAExposicao(Expositor expositor) {
@@ -180,14 +181,14 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Devolve o email do expositor
-     * 
+     *
      * @return email do expositor
      */
     public String getEmailExpositor() {
         return m_expositor.getEmail();
     }
-    
-     /**
+
+    /**
      * Devolve um ArrayList com os produtos de CandidaturaAExposicao
      *
      * @return produtos de CandidaturaAExposicao
@@ -219,16 +220,16 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Devolve a decisão
-     * 
+     *
      * @return decisão
      */
     boolean getDecisao() {
         return m_decisao.getDecisao();
     }
-    
+
     /**
      * Devolve o expositor
-     * 
+     *
      * @return expositor
      */
     public Expositor getExpositor() {
@@ -237,13 +238,13 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Devolve o estado da candidatura a exposição
-     * 
+     *
      * @return estado da candidatura a exposição
      */
     public EstadoCandidaturaAExposicao getEstado() {
         return m_estado;
     }
-    
+
     /**
      * Define um novo número de telemóvel da empresa
      *
@@ -327,7 +328,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     public void setDescricao(String m_descricao) {
         this.m_descricao = m_descricao;
     }
- 
+
     /**
      * Define nova decisao e justificação de candidatura
      *
@@ -339,7 +340,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Modifica o estado da candidatura a exposição
-     * 
+     *
      * @param ne novo estado da candidatura a exposição
      */
     public void setEstado(EstadoCandidaturaAExposicao ne) {
@@ -348,7 +349,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Modifica o expositor
-     * 
+     *
      * @param expositor novo expositor
      */
     public void setExpositor(Expositor expositor) {
@@ -357,14 +358,14 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
     /**
      * Devolve as caraterísticas da candidatura a exposição (nome da empresa)
-     * 
+     *
      * @return caraterísticas da candidatura a exposição (nome da empresa)
      */
     @Override
     public String toString() {
         return m_StrNomeEmpresa;
     }
-    
+
     /**
      * Cria um novo produto recebendo como parametro o seu nome e adiciona-o ao
      * registo de produtos desta candidatura
@@ -421,9 +422,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     }
 
     /**
-     * Compara a candidaturaAExposição a outro objecto passado por parametro. A comparação
-     * entre duas candidaturaAExposição é feita com atenção a alguns todos os atributos
-     * desta.
+     * Compara a candidaturaAExposição a outro objecto passado por parametro. A
+     * comparação entre duas candidaturaAExposição é feita com atenção a alguns
+     * todos os atributos desta.
      *
      * @param obj objecto a comparar com a candidaturaAExposição
      * @return true se o objeto recebido representar uma candidatura equivalente
@@ -592,22 +593,22 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             }
 
             NodeList tempList = elem.getElementsByTagName(MORADA_EMPRESA_ELEMENT_NAME);
-            if (tempList.getLength() > 0) {
-                this.m_StrMoradaEmpresa = tempList.item(0).getTextContent();
-            }
+            this.m_StrMoradaEmpresa = tempList.getLength() > 0 ? tempList.item(0).getTextContent() : "";
+
             tempList = elem.getElementsByTagName(NOME_EMPRESA_ELEMENT_NAME);
-            if (tempList.getLength() > 0) {
-                this.m_StrNomeEmpresa = tempList.item(0).getTextContent();
-            }
+            this.m_StrNomeEmpresa = tempList.getLength() > 0 ? tempList.item(0).getTextContent() : "";
+
             tempList = elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
                 this.m_expositor = new Expositor(null);
                 this.m_expositor.importContentFromXMLNode(tempList.item(0));
             }
+            
             tempList = elem.getElementsByTagName(TLM_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
                 this.m_intTelemovel = Integer.parseInt(tempList.item(0).getTextContent());
             }
+            
             tempList = elem.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
                 Node m = tempList.item(0);
@@ -622,11 +623,13 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                     }
                 }
             }
+            
             tempList = elem.getElementsByTagName(RegistoDemonstracoes.ROOT_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
                 this.m_rd = new RegistoDemonstracoes(false);
                 this.m_rd.importContentFromXMLNode(tempList.item(0));
             }
+            
             tempList = elem.getElementsByTagName(RegistoProdutos.ROOT_ELEMENT_NAME);
             if (tempList.getLength() > 0) {
                 this.m_rp = new RegistoProdutos();
