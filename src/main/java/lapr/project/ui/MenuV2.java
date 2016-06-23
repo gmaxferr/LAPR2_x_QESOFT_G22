@@ -1077,6 +1077,22 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        AtribuirStandsController CTRL = new AtribuirStandsController(centroExposicoes);
+        this.setVisible(false);
+        JFrame frame = new JFrameAtribuirStandsUI(CTRL, this);
+        Exposicao[] listExpo = CTRL.getListaExposicoes().toArray(new Exposicao[0]);
+        if (listExpo.length > 0) {
+            Exposicao selectedExpo = (Exposicao) JOptionPane.showInputDialog(this, "A qual exposição pretende atribuir os stands?", "", JOptionPane.QUESTION_MESSAGE, null, listExpo, listExpo[0]);
+            if (selectedExpo != null) {
+                CTRL.select(selectedExpo);
+                this.setVisible(false);
+                frame = new JFrameAtribuirStandsUI(CTRL, this);
+            } else {
+                JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do utilizador.", "ERRO", JOptionPane.OK_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não existem exposições num estado disponível para que possa ser possível atribuir stands.", "ERRO", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -1128,15 +1144,15 @@ public class MenuV2 extends javax.swing.JFrame {
         DefinirTipoConflitoController CTRL = new DefinirTipoConflitoController(centroExposicoes);
         CTRL.novoTipoConflito();
         String input = JOptionPane.showInputDialog(this, "Como se vai chamar o novo tipo de conflito?", "Definir Tipos de Conflito");
-        if(input != null){
+        if (input != null) {
             CTRL.setDadosTipoConflito(input);
-            if(CTRL.registaTipoConflito()){
+            if (CTRL.registaTipoConflito()) {
                 JOptionPane.showMessageDialog(this, "Novo tipo de conflito registado com sucesso.", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Ocorreu um erro no registo do novo tipo de conflito."
                         + "\n    Erro: Tipo de conflito já existente.", "SUCESSO", JOptionPane.OK_OPTION);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do Utilizador", "CANCEL", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton12ActionPerformed
