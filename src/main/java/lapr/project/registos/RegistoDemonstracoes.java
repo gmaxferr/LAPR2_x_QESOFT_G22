@@ -94,15 +94,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Valida os dados repetidos pu invalidos de CandidaturaAExposicao
-     *
-     * @return boolean com a confirmação da validação
-     */
-    public boolean validarDadosRepetidosOuInvalidos() {
-        return true;
-    }
-
-    /**
      * Cria uma nova demonstração
      *
      * @param descricao - descrição da demonstração
@@ -119,7 +110,8 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * Define a lista de demonstrações
+     * Define a lista de demonstrações. Cria ID para cada demonstração
+     * adicionada
      *
      * @param listaDemonstracoes lista de demonstrações
      */
@@ -127,6 +119,15 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         for (Demonstracao d : listaDemonstracoes) {
             d.setCodigoIdentificacao(m_Prefixo + m_contadorDemos++);
         }
+        this.m_listaDemonstracoes = listaDemonstracoes;
+    }
+
+    /**
+     * Define a lista de demonstrações
+     *
+     * @param listaDemonstracoes lista de demonstrações
+     */
+    public void definirListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.m_listaDemonstracoes = listaDemonstracoes;
     }
 

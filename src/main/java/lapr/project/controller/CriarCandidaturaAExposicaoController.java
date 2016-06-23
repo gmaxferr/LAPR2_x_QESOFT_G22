@@ -189,7 +189,7 @@ public class CriarCandidaturaAExposicaoController {
     }
 
     public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes) {
-        this.m_candidaturaCriada.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoes);
+        this.m_candidaturaCriada.getRegistoDemonstracoes().definirListaDemonstracoes(listaDemonstracoes);
     }
 
     public void setEstadoCandidaturaAExposicaoCriada() {
