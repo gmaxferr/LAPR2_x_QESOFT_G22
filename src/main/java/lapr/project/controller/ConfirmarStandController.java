@@ -131,6 +131,7 @@ public class ConfirmarStandController {
     public AtribuicaoStand getAtribuicao(String email, CandidaturaAExposicao cand) {
         for (AtribuicaoStand as : m_RegistoAtribuicoesStand.getListAtribuicoesStandDoRepresentante(email)) {
             if (as.getCand().equals(cand)) {
+                m_atribuicaoStand = as;
                 return as;
             }
         }
