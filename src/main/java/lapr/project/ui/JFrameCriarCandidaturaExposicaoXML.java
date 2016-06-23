@@ -44,7 +44,7 @@ public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
      */
     public JFrameCriarCandidaturaExposicaoXML(CentroExposicoes ce, JFrame janelaMae, Utilizador user) {
         m_ce = ce;
-        m_listaExposicoes = ce.getRegistoExposicoes().getListaExposicoes();
+        m_listaExposicoes = ce.getRegistoExposicoes().getListaExposicoesEstadoCandidaturasAbertas();
         jFrameMenuPrincipal = janelaMae;
         this.m_user = user;
         thisFrame = this;

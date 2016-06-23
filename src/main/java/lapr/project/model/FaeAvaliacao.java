@@ -66,7 +66,7 @@ public class FaeAvaliacao implements Importable<FaeAvaliacao>, Exportable {
     }
 
     public void setAvalicao(int rat1, int rat2, int rat3, int rat4, int rat5) {
-        this.m_avaliacao.setAvalicao(rat1, rat2, rat3, rat4, rat5);
+        this.m_avaliacao.setAvaliacaoCandidaturaAExposicao(rat1, rat2, rat3, rat4, rat5);
     }
 
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
