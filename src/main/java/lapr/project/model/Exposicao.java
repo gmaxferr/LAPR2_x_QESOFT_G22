@@ -29,7 +29,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public static final String DATA_ENCERRAMENTO_CAND_ELEMENT_NAME = "subFim";
     public static final String DATA_FIM_CONFLITOS_ELEMENT_NAME = "dataLimiteConflitos";
 
-    EstadoExposicao m_estado;
+    /**
+     * Estado exposição
+     */
+    private EstadoExposicao m_estado;
+    
     /**
      * Atributo titulo de Exposição
      */
@@ -71,52 +75,67 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     private Local local;
 
     /**
-     *
+     * Registo atribuicoes candidatura a exposicao
      */
     private RegistoAtribuicoesCandidaturasExposicao m_ra;
 
+    /**
+     * Registo das atribuicoes candidatura a demonstracao
+     */
     private RegistoAtribuicoesCandidaturasDemonstracao m_rad;
 
     /**
-     *
+     * Registo dos fae
      */
     private RegistoFAE m_rfae;
 
     /**
-     *
+     * Registo das candidaturas a exposição
      */
     private RegistoCandidaturasAExposicao m_rce;
 
     /**
-     *
+     * Registo candidaturas a exposição removidas
      */
     private RegistoCandidaturasAExposicaoRemovidas m_rcr;
 
     /**
-     *
+     * Registo dos organizadores
      */
     private RegistoOrganizadores m_ro;
 
     /**
-     *
+     * Registo das demonstrações
      */
     private RegistoDemonstracoes m_rd;
 
     /**
-     *
+     * Regsito das atribuições dos stands
      */
     private RegistoAtribuicoesStands m_ras;
 
+    /**
+     * Registo dos conflitos
+     */
     private RegistoConflitos m_rconf;
 
+    /**
+     * Registo dos expositores
+     */
     private RegistoExpositores m_rexpositores;
 
+    /**
+     * KeywordRanking
+     */
     private KeywordRanking m_keywordRanking;
 
+    /**
+     * Centro de exposições
+     */
     private CentroExposicoes m_ce;
 
     /**
-     * Construtor de Exposição sem parametros
+     * Construtor de Exposição com o parâmtros centro de exposições
      *
      * @param ce centro de exposições
      */
@@ -163,7 +182,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Método que valida a exposição
+     * Valida a exposição
      *
      * @return true se a exposição for válida. Caso contrário retorna false.
      */
@@ -372,25 +391,27 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     *
-     * @return
+     * Devolve o registo de fae
+     * 
+     * @return registo de fae
      */
     public RegistoFAE getRegistoFAE() {
         return m_rfae;
     }
 
     /**
-     *
-     * @return
+     * Devolve o registo de candidaturas a exposição
+     * 
+     * @return registo de candidaturas a exposição
      */
     public RegistoCandidaturasAExposicao getRegistoCandidaturasAExposicao() {
         return m_rce;
     }
 
     /**
-     * Método que valida candidatura
+     * Valida candidatura
      *
-     * @param c candidatura
+     * @param c candidatura a exposição
      *
      * @return boolean de confirmação da validação
      */
@@ -398,15 +419,20 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return c.validaCandidatura();
     }
 
+    /**
+     * Modifica o estado da exposição
+     * 
+     * @param estado novo estado da exposição
+     */
     public void setEstado(EstadoExposicao estado) {
         this.m_estado = estado;
     }
 
     /**
-     * Métoto que define nova decisao
+     * Define nova decisao
      *
-     * @param candidaturaAExposicao
-     * @param decisao
+     * @param candidaturaAExposicao candidatura a exposição
+     * @param decisao decisão
      */
     public void setDecisao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
         candidaturaAExposicao.setDecisao(decisao);
@@ -425,8 +451,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     *
-     * @return
+     * Verifica os dados minimos obrigatorios para a exposição
+     * 
+     * @return dados minimos obrigatorios para a exposição
      */
     public boolean dadosMinimosObrigatorios() {
         return m_dataAberturaCandidatura != null
@@ -442,10 +469,20 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 && local != null;
     }
 
+    /**
+     * Devolve o estado da exposição
+     * 
+     * @return estado da exposição
+     */
     public EstadoExposicao getEstado() {
         return m_estado;
     }
 
+    /**
+     * Devolve o registo de conflitos
+     * 
+     * @return registo de conflitos
+     */
     public RegistoConflitos getRegistoConflitos() {
         return this.m_rconf;
     }
@@ -459,10 +496,20 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return this.m_ra;
     }
 
+    /**
+     * Devolve o registo de atribuições da candidatura a demonstração
+     * 
+     * @return registo de atribuições da candidatura a demonstração
+     */
     public RegistoAtribuicoesCandidaturasDemonstracao getRegistoAtribuicoesDemonstracao() {
         return this.m_rad;
     }
 
+    /**
+     * Devolve o registo de organizadores 
+     * 
+     * @return registo de organizadores 
+     */
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
     }
@@ -550,19 +597,32 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @return the m_ce
+     * Devolve o centro de exposições 
+     * 
+     * @return centro de exposições
      */
     public CentroExposicoes getCentroExposicoes() {
         return m_ce;
     }
 
     /**
-     * @param ce the ce to set
+     * Modifica o centro de exposições
+     * 
+     * @param ce novo centro de exposições
      */
     public void setCentroExposicoes(CentroExposicoes ce) {
         this.m_ce = ce;
     }
 
+    /**
+     * Compara a exposição a outro objecto passado por parametro. A comparação
+     * entre duas exposições é feita com atenção a alguns todos os atributos
+     * desta.
+     *
+     * @param obj objecto a comparar com a exposição
+     * @return true se o objeto recebido representar uma exposição equivalente
+     * à exposição. Caso contrário, retorna false.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj != null && obj instanceof Exposicao) {
@@ -881,6 +941,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         return node;
     }
 
+    /**
+     * Adiciona os organizadores selecionados ao registo de organizadores
+     * 
+     * @param m_organizadoresSelecionados organizadores selecionados
+     */
     public void addOrganizadores(List<Organizador> m_organizadoresSelecionados) {
         for (Organizador o : m_organizadoresSelecionados) {
             this.m_ro.addOrganizador(o);
