@@ -180,20 +180,18 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
         Node node = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLParser.createDocument();
 
-            Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+            Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
 
             for (Produto p : m_ProdutosExpor) {
                 Node n = p.exportContentToXMLNode();
-                elementKeyword.appendChild(document.importNode(n, true));
+                elemBase.appendChild(document.importNode(n, true));
             }
 
-            document.appendChild(elementKeyword);
+            document.appendChild(elemBase);
 
-            node = elementKeyword;
+            node = elemBase;
 
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(RegistoProdutos.class.getName()).log(Level.SEVERE, null, ex);
