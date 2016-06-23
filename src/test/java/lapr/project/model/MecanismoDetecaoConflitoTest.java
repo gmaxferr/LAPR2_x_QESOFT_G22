@@ -43,11 +43,9 @@ public class MecanismoDetecaoConflitoTest {
     @Test
     public void testDetetaConflitos() {
         System.out.println("detetaConflitos");
-        Exposicao e = null;
-        MecanismoDetecaoConflito instance = null;
+        Exposicao e = new Exposicao(new CentroExposicoes());
+        MecanismoDetecaoConflito instance = new MecanismoDetecaoConflito(new TipoConflito("id"));
         instance.detetaConflitos(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +56,10 @@ public class MecanismoDetecaoConflitoTest {
         System.out.println("isConflito");
         FAE fae = null;
         CandidaturaAExposicao cand = null;
-        MecanismoDetecaoConflito instance = null;
-        boolean expResult = false;
+        MecanismoDetecaoConflito instance = new MecanismoDetecaoConflito(new TipoConflito("id"));
+        boolean expResult = true;
         boolean result = instance.isConflito(fae, cand);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

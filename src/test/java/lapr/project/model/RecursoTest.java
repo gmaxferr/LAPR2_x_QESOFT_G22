@@ -77,8 +77,8 @@ public class RecursoTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-
-        int expResult = 0;
+        Recurso novoRecurso = new Recurso(titulo);
+        int expResult = novoRecurso.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
     }
@@ -88,11 +88,15 @@ public class RecursoTest {
      */
     @Test
     public void testImportContentFromXMLNode() throws ParserConfigurationException {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-
-        Recurso expResult = null;
-        Recurso result = instance.importContentFromXMLNode(node);
+         System.out.println("importContentFromXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        Recurso expResult = new Recurso(titulo);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Recurso result = instance;
         assertEquals(expResult, result);
     }
 
@@ -102,9 +106,14 @@ public class RecursoTest {
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Recurso expResult = new Recurso(titulo);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Recurso result = instance;
         assertEquals(expResult, result);
     }
 

@@ -95,28 +95,34 @@ public class OrganizadorTest {
     /**
      * Test of importContentFromXMLNode method, of class Organizador.
      */
-    @Test
-    public void testImportContentFromXMLNode() throws ParserConfigurationException {
+     @Test
+    public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-
-        Organizador expResult = null;
-        Organizador result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        Organizador expResult = new Organizador(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Organizador result = instance;
         assertEquals(expResult, result);
-
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Organizador.
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Organizador expResult = new Organizador(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Organizador result = instance;
         assertEquals(expResult, result);
-
     }
-
 }
