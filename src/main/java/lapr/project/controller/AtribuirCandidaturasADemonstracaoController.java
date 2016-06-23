@@ -20,7 +20,7 @@ public class AtribuirCandidaturasADemonstracaoController {
      * executar o UC
      */
     private List<Exposicao> m_listaExpo;
-    
+
     /**
      * Centro de Exposições
      */
@@ -45,7 +45,7 @@ public class AtribuirCandidaturasADemonstracaoController {
      * Registo de atribuições
      */
     private RegistoAtribuicoesCandidaturasDemonstracao m_rad;
-    
+
     /**
      * Registo de exposições
      */
@@ -87,6 +87,22 @@ public class AtribuirCandidaturasADemonstracaoController {
     private List<AtribuicaoCandidaturaDemonstracao> m_listaAtribuicoesGeradas;
 
     /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     * @param numeroFAEOuExperiencia número de FAE ou anos mínimos de
+     * experiência que os FAE devem de ter
+     *
+     * @return atribuições geradas.
+     */
+    public List<AtribuicaoCandidaturaDemonstracao> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
+        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
+        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicao, this.m_demonstracao, numeroFAEOuExperiencia);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
+    }
+
+    /**
      * Constrói uma instância de AtribuirCandidaturasADemonstracaoController
      * recebendo como parâmetro o centro de exposições
      *
@@ -103,7 +119,7 @@ public class AtribuirCandidaturasADemonstracaoController {
     public void getRegistoExposicoes() {
         this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
     }
-     
+
     /**
      * Devolve a lista de Exposições do Organizador
      *
@@ -113,7 +129,7 @@ public class AtribuirCandidaturasADemonstracaoController {
         m_listaExpo = this.m_re.getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(usernameOrganizador);
         return m_listaExpo;
     }
-    
+
     /**
      * Guarda a exposição escolhida pelo utilizador na UI
      *
@@ -122,7 +138,7 @@ public class AtribuirCandidaturasADemonstracaoController {
     public void setExposicao(Exposicao exposicao) {
         this.m_exposicao = exposicao;
     }
-    
+
     /**
      * Guarda o registo de demonstrações
      */
