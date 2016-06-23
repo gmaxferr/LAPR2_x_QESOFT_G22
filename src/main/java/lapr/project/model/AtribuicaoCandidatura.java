@@ -16,8 +16,6 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
     public static final String ROOT_ELEMENT_NAME = "AtribuicaoCandidatura";
 
-    public static final String KEYWORDS_ELEMENT_NAME = "Keywords";
-
     /**
      * Candidatura a exposição
      */
@@ -102,6 +100,7 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
                 prod.importContentFromXMLNode(n2);
                 this.m_candidatura.getProdutosExpor().add(prod);
             }
+            this.m_candidatura.setNomeEmpresa(elem.getElementsByTagName(CandidaturaAExposicao.NOME_EMPRESA_ELEMENT_NAME).item(0).getTextContent());
 
             this.m_rFaeAvaliacao = new RegistoFaeAvaliacao();
             this.m_rFaeAvaliacao.importContentFromXMLNode(elem.getElementsByTagName(RegistoFaeAvaliacao.ROOT_ELEMENT_NAME).item(0));
@@ -118,6 +117,10 @@ public class AtribuicaoCandidatura implements Importable<AtribuicaoCandidatura>,
 
             Element elemBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elemBase);
+            
+            Element elemChild = document.createElement(CandidaturaAExposicao.NOME_EMPRESA_ELEMENT_NAME);
+            elemChild.setTextContent(this.m_candidatura.getNomeEmpresa());
+            elemBase.appendChild(elemChild);
 
             Expositor expositor = this.m_candidatura.getExpositor();
             if (expositor != null) {

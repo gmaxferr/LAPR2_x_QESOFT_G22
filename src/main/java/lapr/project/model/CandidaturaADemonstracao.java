@@ -155,11 +155,11 @@ public class CandidaturaADemonstracao implements Importable<CandidaturaADemonstr
 
     @Override
     public CandidaturaADemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.newDocument();
-
-        doc.appendChild(doc.importNode(node, true));
+        if(node == null){
+            return this;
+        }
+        
+        Document doc = XMLParser.createDocument(node, true);
 
         NodeList nodeList = doc.getChildNodes();
 
