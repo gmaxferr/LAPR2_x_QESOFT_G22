@@ -473,7 +473,7 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoDemonstracoes() {
         System.out.println("getRegistoDemonstracoes");
-        RegistoDemonstracoes expResult = new RegistoDemonstracoes();
+        RegistoDemonstracoes expResult = new RegistoDemonstracoes(true);
         e.setRegistoDemonstracoes(expResult);
         RegistoDemonstracoes result = e.getRegistoDemonstracoes();
         assertEquals(expResult, result);
