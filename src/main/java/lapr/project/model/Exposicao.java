@@ -117,6 +117,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Construtor de Exposição sem parametros
+     *
+     * @param ce centro de exposições
      */
     public Exposicao(CentroExposicoes ce) {
         this.m_ce = ce;
@@ -142,6 +144,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param descricao descrição da exposição
      * @param dataInicio data de inicio da exposição
      * @param dataFim data de fim da exposição
+     * @param dataInicioSubCand
+     * @param dataFimSubCand
+     * @param dataFimDetecaoConflitos
      * @param local local da exposição
      * @param centroExposicoes
      */
@@ -163,11 +168,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return true se a exposição for válida. Caso contrário retorna false.
      */
     public boolean valida() {
-        if (m_strTitulo != null && m_strDescricao != null && m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataInicio != null && m_dataFimDetecaoConflitos != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return m_strTitulo != null && m_strDescricao != null && m_dataAberturaCandidatura != null && m_dataEncerramentoCandidatura != null && m_dataFim != null && m_dataInicio != null && m_dataFimDetecaoConflitos != null;
     }
 
     /**
@@ -405,6 +406,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * Métoto que define nova decisao
      *
      * @param candidaturaAExposicao
+     * @param decisao
      */
     public void setDecisao(CandidaturaAExposicao candidaturaAExposicao, boolean decisao) {
         candidaturaAExposicao.setDecisao(decisao);
@@ -427,7 +429,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @return
      */
     public boolean dadosMinimosObrigatorios() {
-        if (m_dataAberturaCandidatura != null
+        return m_dataAberturaCandidatura != null
                 && m_dataEncerramentoCandidatura != null
                 && m_dataFim != null
                 && m_dataFimDetecaoConflitos != null
@@ -437,11 +439,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 && m_strTitulo.length() > 0
                 && m_strDescricao != null
                 && m_strDescricao.length() > 0
-                && local != null) {
-            return true;
-        } else {
-            return false;
-        }
+                && local != null;
     }
 
     public EstadoExposicao getEstado() {
@@ -699,7 +697,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
             this.m_rfae.importContentFromXMLNode(elem.getElementsByTagName(RegistoFAE.ROOT_ELEMENT_NAME).item(0));
             this.m_rce.importContentFromXMLNode(elem.getElementsByTagName(RegistoCandidaturasAExposicao.ROOT_ELEMENT_NAME).item(0));
-            if (this.m_ra.getListaAtribuicoes().size() == 0) {
+            if (this.m_ra.getListaAtribuicoes().isEmpty()) {
                 this.m_ra.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesCandidaturasExposicao.ROOT_ELEMENT_NAME).item(0));
             }
             this.m_rad.importContentFromXMLNode(elem.getElementsByTagName(RegistoAtribuicoesCandidaturasDemonstracao.ROOT_ELEMENT_NAME).item(0));
@@ -759,7 +757,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                         for (CandidaturaAExposicao cand : getListaCandidaturasAExposicao()) {
                             if (!cand.getEstado().isEstadoCandidaturaRemovida()) {
                                 String[] keywords = cand.getKeywords();
-                                for(String str : keywords){
+                                for (String str : keywords) {
                                     this.m_keywordRanking.addKeyword(str, cand.getDecisao());
                                 }
                             }

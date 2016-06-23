@@ -47,7 +47,7 @@ public class FaeAvaliacaoTest {
         fae = new FAE(u);
         instance = new FaeAvaliacao(fae);
         a = new Avaliacao();
-        a.setAvalicao(rat1, rat2, rat3, rat4, rat5);
+        a.setAvaliacaoCandidaturaAExposicao(rat1, rat2, rat3, rat4, rat5);
         instance.setAvaliacao(a);
     }
 
