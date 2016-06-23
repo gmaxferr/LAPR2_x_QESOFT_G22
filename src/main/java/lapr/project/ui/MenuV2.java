@@ -8,7 +8,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.*;
+import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAbertas;
+import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
 import lapr.project.model.*;
+import lapr.project.utils.Data;
 
 /**
  * Menu principal da aplicação. Permite o acesso a todas as funcionalidades
@@ -35,7 +38,7 @@ public class MenuV2 extends javax.swing.JFrame {
         this.utilizador = utilizador;
         this.centroExposicoes = centroExposicoes;
         this.thisJFrame = (JFrame) SwingUtilities.getRoot(this);
-
+        
         initComponents();
         desativarJTabbedPanelDosCargos();
         identificarCargosDoUtilizador();
@@ -1040,12 +1043,12 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.setVisible(false);
-        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
