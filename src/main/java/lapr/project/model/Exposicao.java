@@ -685,9 +685,18 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         if (lstDemos.size() > 0) {
             if (this.getEstado().isEstadoCandidaturasDecididas()) {
                 for (Demonstracao d : listaDemosComData) {
-                    d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
-                    d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
-                    d.schedule(new AlterarParaConflitosDetetados(d), d.getDataFimDetecaoConflitos());
+                    Data data = d.getDataInicioCand();
+                    if (data != null) {
+                        d.schedule(new AlterarParaCandidaturasAbertas(d), data);
+                    }
+                    data = d.getDataFimCand();
+                    if (data != null) {
+                        d.schedule(new AlterarParaCandidaturasFechadas(d), data);
+                    }
+                    data = d.getDataFimDetecaoConflitos();
+                    if (data != null) {
+                        d.schedule(new AlterarParaConflitosDetetados(d), data);
+                    }
                 }
 
             }
