@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;

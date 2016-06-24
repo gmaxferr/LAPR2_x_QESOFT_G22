@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +15,13 @@ import org.w3c.dom.Node;
  */
 public class ExpositorTest {
 
+    private Expositor instance;
+    private Utilizador u;
+    private String username;
+    private String email;
+    private char[] password;
+    private String nome;
+    
     public ExpositorTest() {
     }
 
@@ -30,6 +35,12 @@ public class ExpositorTest {
 
     @Before
     public void setUp() {
+        username = "username";
+        email = "email@email.com";
+        password="password".toCharArray();
+        nome = "Nome";
+        u = new Utilizador(nome, username, password, email);
+        instance = new Expositor(u);
     }
 
     @After
@@ -42,8 +53,6 @@ public class ExpositorTest {
     @Test
     public void testGetUsername() {
         System.out.println("getM_strUsername");
-        Utilizador u = new Utilizador("Nome", "username", "password".toCharArray(), "email@email.com");
-        Expositor instance = new Expositor(u);
         assertEquals("username", instance.getUsername());
     }
 
@@ -53,8 +62,6 @@ public class ExpositorTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmail");
-        Utilizador u = new Utilizador("Nome", "username", "password".toCharArray(), "email@email.com");
-        Expositor instance = new Expositor(u);
         assertEquals("email@email.com", instance.getEmail());
     }
 
@@ -64,8 +71,6 @@ public class ExpositorTest {
     @Test
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
-        Utilizador u = new Utilizador("Nome", "username", "password".toCharArray(), "email@email.com");
-        Expositor instance = new Expositor(u);
         assertEquals(u, instance.getUtilizador());
     }
 
@@ -76,10 +81,8 @@ public class ExpositorTest {
     public void testSetUtilizador() {
         System.out.println("setUtilizador");
         Utilizador u = new Utilizador("Nome", "username", "password".toCharArray(), "email@email.com");
-        Expositor instance = new Expositor(u);
-        Utilizador u2 = new Utilizador("nome", "username2", "password".toCharArray(), "email2@email.pt");
-        instance.setUtilizador(u2);
-        assertEquals(u2, instance.getUtilizador());
+        instance.setUtilizador(u);
+        assertEquals(u, instance.getUtilizador());
     }
 
     /**
@@ -88,31 +91,31 @@ public class ExpositorTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Expositor instance = null;
-        Expositor expResult = null;
-        Expositor result;
+        Node node = instance.exportContentToXMLNode();
+        Expositor expResult = new Expositor(u);
         try {
-            result = instance.importContentFromXMLNode(node);
+            expResult.importContentFromXMLNode(node);
         } catch (ParserConfigurationException ex) {
-            result = null;
+            expResult = null;
         }
+        Expositor result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Expositor.
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Expositor instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Expositor expResult = new Expositor(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Expositor result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

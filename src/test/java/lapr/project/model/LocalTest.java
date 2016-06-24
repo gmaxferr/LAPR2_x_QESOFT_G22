@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
@@ -11,6 +12,8 @@ import org.w3c.dom.Node;
  */
 public class LocalTest {
 
+    private Local instance;
+    
     public LocalTest() {
     }
 
@@ -24,6 +27,7 @@ public class LocalTest {
 
     @Before
     public void setUp() {
+        instance = new Local("morada");
     }
 
     @After
@@ -57,19 +61,31 @@ public class LocalTest {
     @Test
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Local instance = new Local("morada");
-        assertEquals("morada", instance.getMorada());
+        Node node = instance.exportContentToXMLNode();
+        Local expResult = new Local("morada");
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Local result = instance;
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Local.
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Local instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        Local expResult = new Local("morada");
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Local result = instance;
         assertEquals(expResult, result);
     }
 
@@ -79,12 +95,9 @@ public class LocalTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj = null;
-        Local instance = null;
-        boolean expResult = false;
+        Object obj = new Local("morada");
+        boolean expResult = true;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

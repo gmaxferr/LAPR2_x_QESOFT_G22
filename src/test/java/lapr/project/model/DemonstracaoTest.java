@@ -353,11 +353,8 @@ public class DemonstracaoTest {
     @Test
     public void testSetDataInicioCand() {
         System.out.println("setDataInicioCand");
-        Data dataInicio = null;
-        Demonstracao instance = new Demonstracao();
+        Data dataInicio = new Data(1985,5,20);
         instance.setDataInicioCand(dataInicio);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -366,11 +363,8 @@ public class DemonstracaoTest {
     @Test
     public void testSetDataFimCand() {
         System.out.println("setDataFimCand");
-        Data dataFim = null;
-        Demonstracao instance = new Demonstracao();
+        Data dataFim = new Data(1985,5,24);
         instance.setDataFimCand(dataFim);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -380,10 +374,8 @@ public class DemonstracaoTest {
     public void testGetRegistoFAE() {
         System.out.println("getRegistoFAE");
         Demonstracao instance = new Demonstracao();
-        RegistoFAE expResult = null;
+        RegistoFAE expResult = instance.getRegistoFAE();
         RegistoFAE result = instance.getRegistoFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

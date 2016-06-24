@@ -89,22 +89,33 @@ public class FAETest {
      * Test of importContentFromXMLNode method, of class FAE.
      */
     @Test
-    public void testImportContentFromXMLNode() throws ParserConfigurationException {
+    public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        FAE expResult = null;
-        FAE result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        FAE expResult = new FAE(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        FAE result = instance;
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class FAE.
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        FAE expResult = new FAE(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        FAE result = instance;
         assertEquals(expResult, result);
     }
 

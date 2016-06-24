@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.registos.RegistoCandidaturasAExposicao;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,22 +20,31 @@ import org.w3c.dom.Node;
  * @author JoãoCardoso aka K4rd050
  */
 public class ConflitoDeInteresseDemonstracaoTest {
-    
+
+    private ConflitoDeInteresseDemonstracao instance;
+    private FAE fae;
+    private CandidaturaADemonstracao cand;
+    private TipoConflitoDemonstracao tipoConflito;
+
     public ConflitoDeInteresseDemonstracaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+        fae = new FAE();
+        cand = new CandidaturaADemonstracao("dados", "email");
+        tipoConflito = new TipoConflitoDemonstracao("ID");
+        instance = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,12 +55,9 @@ public class ConflitoDeInteresseDemonstracaoTest {
     @Test
     public void testGetFae() {
         System.out.println("getFae");
-        ConflitoDeInteresseDemonstracao instance = null;
-        FAE expResult = null;
+        FAE expResult = fae;
         FAE result = instance.getFae();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,12 +66,9 @@ public class ConflitoDeInteresseDemonstracaoTest {
     @Test
     public void testGetCandidatura() {
         System.out.println("getCandidatura");
-        ConflitoDeInteresseDemonstracao instance = null;
-        CandidaturaADemonstracao expResult = null;
+        CandidaturaADemonstracao expResult = cand;
         CandidaturaADemonstracao result = instance.getCandidatura();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,12 +77,9 @@ public class ConflitoDeInteresseDemonstracaoTest {
     @Test
     public void testGetTipo() {
         System.out.println("getTipo");
-        ConflitoDeInteresseDemonstracao instance = null;
-        TipoConflitoDemonstracao expResult = null;
+        TipoConflitoDemonstracao expResult = tipoConflito;
         TipoConflitoDemonstracao result = instance.getTipo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,40 +88,43 @@ public class ConflitoDeInteresseDemonstracaoTest {
     @Test
     public void testFix() {
         System.out.println("fix");
-        RegistoCandidaturasAExposicao rc = null;
-        ConflitoDeInteresseDemonstracao instance = null;
+        RegistoCandidaturasAExposicao rc = new RegistoCandidaturasAExposicao(new Exposicao(new CentroExposicoes()));
         instance.fix(rc);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of importContentFromXMLNode method, of class ConflitoDeInteresseDemonstracao.
+     * Test of importContentFromXMLNode method, of class
+     * ConflitoDeInteresseDemonstracao.
      */
     @Test
-    public void testImportContentFromXMLNode() throws Exception {
+    public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
-        Node node = null;
-        ConflitoDeInteresseDemonstracao instance = null;
-        ConflitoDeInteresseDemonstracao expResult = null;
-        ConflitoDeInteresseDemonstracao result = instance.importContentFromXMLNode(node);
+        Node node = instance.exportContentToXMLNode();
+        ConflitoDeInteresseDemonstracao expResult = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        ConflitoDeInteresseDemonstracao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class ConflitoDeInteresseDemonstracao.
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
      */
     @Test
     public void testExportContentToXMLNode() {
         System.out.println("exportContentToXMLNode");
-        ConflitoDeInteresseDemonstracao instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
+        Node node = instance.exportContentToXMLNode();
+        ConflitoDeInteresseDemonstracao expResult = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        ConflitoDeInteresseDemonstracao result = instance;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

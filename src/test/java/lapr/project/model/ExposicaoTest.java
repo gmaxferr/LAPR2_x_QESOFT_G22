@@ -1188,11 +1188,8 @@ public class ExposicaoTest {
     @Test
     public void testSetDataInicio() {
         System.out.println("setDataInicio");
-        Data dataInicio = null;
-        Exposicao instance = null;
-        instance.setDataInicio(dataInicio);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Data dataInicio = new Data(1997, 01, 15);
+        e.setDataInicio(dataInicio);
     }
 
     /**
@@ -1201,11 +1198,8 @@ public class ExposicaoTest {
     @Test
     public void testSetDataFim() {
         System.out.println("setDataFim");
-        Data dataFim = null;
-        Exposicao instance = null;
-        instance.setDataFim(dataFim);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Data dataFim = new Data(1998,2,20);
+        e.setDataFim(dataFim);
     }
 
     /**
@@ -1214,12 +1208,10 @@ public class ExposicaoTest {
     @Test
     public void testGetListaFAE() {
         System.out.println("getListaFAE");
-        Exposicao instance = null;
-        List<FAE> expResult = null;
+        Exposicao instance = e;
+        List<FAE> expResult = new ArrayList<>();
         List<FAE> result = instance.getListaFAE();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -1228,12 +1220,10 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoAtribuicoesExposicao() {
         System.out.println("getRegistoAtribuicoesExposicao");
-        Exposicao instance = null;
-        RegistoAtribuicoesCandidaturasExposicao expResult = null;
+        Exposicao instance = e;
+        RegistoAtribuicoesCandidaturasExposicao expResult = new RegistoAtribuicoesCandidaturasExposicao();
         RegistoAtribuicoesCandidaturasExposicao result = instance.getRegistoAtribuicoesExposicao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -1242,12 +1232,10 @@ public class ExposicaoTest {
     @Test
     public void testGetRegistoAtribuicoesDemonstracao() {
         System.out.println("getRegistoAtribuicoesDemonstracao");
-        Exposicao instance = null;
-        RegistoAtribuicoesCandidaturasDemonstracao expResult = null;
+        Exposicao instance = e;
+        RegistoAtribuicoesCandidaturasDemonstracao expResult = new RegistoAtribuicoesCandidaturasDemonstracao();
         RegistoAtribuicoesCandidaturasDemonstracao result = instance.getRegistoAtribuicoesDemonstracao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

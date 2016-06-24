@@ -124,11 +124,8 @@ public class ConflitoDeInteresseTest {
     @Test
     public void testFix() {
         System.out.println("fix");
-        RegistoCandidaturasAExposicao rc = null;
-        ConflitoDeInteresse instance = null;
+        RegistoCandidaturasAExposicao rc = new RegistoCandidaturasAExposicao(new Exposicao(new CentroExposicoes()));
         instance.fix(rc);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
