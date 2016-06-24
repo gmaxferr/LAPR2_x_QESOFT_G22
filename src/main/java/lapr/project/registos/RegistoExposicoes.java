@@ -160,6 +160,30 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
+     * Devolve uma lista com as exposições em que existem candidaturas aceites
+     * de um representante e que pelo menos uma demonstração das que mostrou
+     * interesse foi confirmada
+     *
+     * @param email email do representante
+     * @return lista com as exposições em que existem candidaturas aceites de um
+     * representante e que pelo menos uma demonstração das que mostrou interesse
+     * foi confirmada
+     */
+    public List<Exposicao> getListaExposicoesComCanditaturasAceitesDoRepresentanteComDemosConfirmadas(String email) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaAceite() && e.peloMenosUmaDemonstracaoAceite(c.getRegistoDemonstracoes().getListaDemonstracoes())) {
+                    listaExpoRep.add(e);
+                    break;
+                }
+            }
+        }
+        return listaExpoRep;
+    }
+
+    /**
      * Devolve uma lista com as exposições em que existem candidaturas de um
      * representante
      *
