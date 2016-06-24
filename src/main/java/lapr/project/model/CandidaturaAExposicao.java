@@ -66,11 +66,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
     private String m_StrMoradaEmpresa;
 
     /**
-     * Descrição da candidatura.
-     */
-    private String m_descricao;
-
-    /**
      * Registo(lista) dos produtos que o expositor pretende expor.
      */
     private RegistoProdutos m_rp;
@@ -313,20 +308,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
      */
     public void setMorada(String morada) {
         this.m_StrMoradaEmpresa = morada;
-    }
-
-    /**
-     * @return a descricao
-     */
-    public String getDescricao() {
-        return m_descricao;
-    }
-
-    /**
-     * @param m_descricao a descricao a definir
-     */
-    public void setDescricao(String m_descricao) {
-        this.m_descricao = m_descricao;
     }
 
     /**

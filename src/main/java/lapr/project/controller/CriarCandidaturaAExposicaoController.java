@@ -46,7 +46,7 @@ public class CriarCandidaturaAExposicaoController {
     /**
      * Centro de exposições.
      */
-    private CentroExposicoes m_centroExposicoes;
+    private final CentroExposicoes m_centroExposicoes;
 
     /**
      * Estado da candidatura
@@ -115,7 +115,7 @@ public class CriarCandidaturaAExposicaoController {
      */
     public void setDados(String nomeEmpresa, String moradaEmpresa, String telemovelEmpresa, String area, String numConvites) throws TelemovelEmpresaErradoException, AreaErradaException, NumeroConvitesErradoException {
         this.m_candidaturaCriada.setNomeEmpresa(nomeEmpresa);
-        this.m_candidaturaCriada.setMorada(area);
+        this.m_candidaturaCriada.setMorada(moradaEmpresa);
         this.m_candidaturaCriada.setTelemovel(telemovelEmpresa);
         this.m_candidaturaCriada.setArea(area);
         this.m_candidaturaCriada.setNumConvites(numConvites);
@@ -192,9 +192,9 @@ public class CriarCandidaturaAExposicaoController {
         this.m_candidaturaCriada.getRegistoDemonstracoes().definirListaDemonstracoes(listaDemonstracoes);
     }
 
-    public void setEstadoCandidaturaAExposicaoCriada() {
+    public boolean setEstadoCandidaturaAExposicaoCriada() {
         this.m_estadoCandidatura = this.m_candidaturaCriada.getEstado();
-        this.m_estadoCandidatura.setEstadoCandidaturaCriada();
+        return m_estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
     public void setKeywords(String keywords) throws KeywordsErradasException {

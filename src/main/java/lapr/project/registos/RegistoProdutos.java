@@ -61,7 +61,6 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
      */
     public Produto criarProduto(String nome) {
         Produto produto = new Produto(nome);
-        m_ProdutosExpor.add(produto);
         return produto;
     }
 
