@@ -154,7 +154,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAcoes = new javax.swing.JMenu();
         jMenuAjuda = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemAjuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -625,7 +625,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -737,13 +737,14 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
         jMenuAjuda.setText("Ajuda");
 
-        jMenuItem1.setText("Preencher campos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAjuda.setText("Preencher campos");
+        jMenuItemAjuda.setEnabled(false);
+        jMenuItemAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemAjudaActionPerformed(evt);
             }
         });
-        jMenuAjuda.add(jMenuItem1);
+        jMenuAjuda.add(jMenuItemAjuda);
 
         jMenuBar1.add(jMenuAjuda);
 
@@ -760,7 +761,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxCard1EscolherExposicao.getSelectedItem() != null) {
             avancarParaCard2();
-            //jButtonRemoverProdutoCandidatura.setEnabled(false);
+            jMenuItemAjuda.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
@@ -802,6 +803,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
+        jMenuItemAjuda.setEnabled(false);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
 
@@ -866,9 +868,9 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
-        //jMenuItemPreencherCampos.setEnabled(true);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
+        jMenuItemAjuda.setEnabled(true);
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
@@ -968,13 +970,13 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCard2IntroduzirKeywordsActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAjudaActionPerformed
         this.jTextFieldCard2DadosEmpresaNomeEmpresa.setText("NomeEmpresa");
         this.jTextFieldCard2DadosEmpresaMorada.setText("MoradaEmpresa");
         this.jTextFieldCard2DadosEmpresaTelemovel.setText("123456789");
         this.jTextFieldCard2DadosCandidaturaArea.setText("25");
         this.jTextFieldCard2DadosCandidaturaNumeroConvites.setText("65");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemAjudaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCard2ParticiparEmDemonstracoes;
@@ -1016,7 +1018,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAcoes;
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAjuda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

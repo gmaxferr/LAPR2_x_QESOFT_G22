@@ -533,7 +533,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
 
             this.m_decisao = new Decisao();
             this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
-            this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
+            //this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
             this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
             this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
             Node n2 = elem.getElementsByTagName(AVALIACOES_ELEMENT_NAME).item(0);
@@ -676,7 +676,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));
 
             Element child = document.createElement(DESCRICAO_ELEMENT_NAME);
-            child.setTextContent(this.m_descricao);
+            //child.setTextContent(this.m_descricao);
             elementCandAExpo.appendChild(child);
 
             child = document.createElement(AREA_ELEMENT_NAME);

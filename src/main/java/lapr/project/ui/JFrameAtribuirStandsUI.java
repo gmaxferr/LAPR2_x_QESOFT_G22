@@ -316,7 +316,7 @@ public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (jComboBox1.getSelectedItem() != null) {
             CandidaturaAExposicao cand = listCand.get(jComboBox1.getSelectedIndex());
-            jTextArea1.setText(cand.getDescricao());
+            //jTextArea1.setText(cand.getDescricao());
             jTextPane10.setText(String.valueOf(cand.getArea()));
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

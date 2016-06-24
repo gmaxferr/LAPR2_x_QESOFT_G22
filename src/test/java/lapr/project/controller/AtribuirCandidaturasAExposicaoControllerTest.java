@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.*;
+import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoProntaAtribuicoes;
 import lapr.project.estados.Exposicao.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
@@ -88,10 +89,20 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
     @Test
     public void testAtribui_Mecanismo() {
         System.out.println("atribui");
-        Mecanismo mec = null;
-        AtribuirCandidaturasAExposicaoController instance = null;
-        List<AtribuicaoCandidatura> expResult = null;
+
+        e.getRegistoFAE().adicionaFAE(new Utilizador("nome", "username", "password".toCharArray(), "email", "1234"));
+        CandidaturaAExposicao cand = e.getRegistoCandidaturasAExposicao().criarCandidatura(new Utilizador("nome1", "username1", "password".toCharArray(), "email", "1234"));
+        e.getRegistoCandidaturasAExposicao().registaCandidatura(cand);
+        Mecanismo mec = new MecanismoPredefinidoA();
+        List<AtribuicaoCandidatura> expResult = new ArrayList<>();
+        cand.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(cand));
+        AtribuicaoCandidatura atrib = new AtribuicaoCandidatura(cand);
+        expResult.add(atrib);
+
+        instance.getRegistoExposicoes();
+        instance.setExposicao(e);
+        instance.getRegistoAtribuicoes();
         List<AtribuicaoCandidatura> result = instance.atribui(mec);
-        assertEquals(expResult, result);
+        assertEquals(expResult.get(0).getCandidaturaAssociada(), result.get(0).getCandidaturaAssociada());
     }
 }

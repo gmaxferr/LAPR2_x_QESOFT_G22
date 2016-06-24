@@ -4,15 +4,14 @@ import lapr.project.model.CandidaturaAExposicao;
 
 /**
  * Representação do EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos
- * 
+ *
  * @author G29
  */
-public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos extends EstadoCandidaturaAExposicao{
-    
-    public EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos (CandidaturaAExposicao cand){
+public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos extends EstadoCandidaturaAExposicao {
+
+    public EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos(CandidaturaAExposicao cand) {
         super(cand);
     }
-    
 
     @Override
     public boolean setEstadoCandidaturaProntaAtribuicoes() {
