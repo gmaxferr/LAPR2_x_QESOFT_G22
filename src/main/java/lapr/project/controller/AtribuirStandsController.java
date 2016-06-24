@@ -7,49 +7,52 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Represnetação do controller do UC Atribuir Stands 
+ * 
  * @author G29
  */
 public class AtribuirStandsController {
 
     /**
-     *
+     * Centro d exposições
      */
     private final CentroExposicoes m_centroDeExposicoes;
 
     /**
-     *
+     * Exposição selecionada
      */
     private Exposicao expo;
 
     /**
-     *
+     * Registo de candidaturas a exposição
      */
     private RegistoCandidaturasAExposicao rc;
 
-    /*
-    
+    /**
+     * Registo de stands
      */
     private RegistoStands rs;
 
     /**
-     *
+     * Registo de atribuições dos stands
      */
     private RegistoAtribuicoesStands ras;
 
     /**
-     *
+     * Lista de candidaturas a exposição
      */
-    List<CandidaturaAExposicao> listCand;
+    private List<CandidaturaAExposicao> listCand;
 
     /**
-     *
+     * Lista de atribuições dos stands
      */
     private List<AtribuicaoStand> listAtr;
 
     /**
-     *
-     * @param centroDeExposicoes
+     * Construtor de objetos do tipo AtribuirStandsController com o parametros
+     * centro de exposições
+     * 
+     * @param centroDeExposicoes centro de exposições
      */
     public AtribuirStandsController(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
@@ -57,8 +60,9 @@ public class AtribuirStandsController {
     }
 
     /**
-     *
-     * @return
+     * Devolve a lista de exposições
+     * 
+     * @return lista de exposições
      */
     public List<Exposicao> getListaExposicoes() {
         RegistoExposicoes re = m_centroDeExposicoes.getRegistoExposicoes();
@@ -66,8 +70,9 @@ public class AtribuirStandsController {
     }
 
     /**
-     *
-     * @return
+     * Devolve a lista de candidaturas a exposição
+     * 
+     * @return lista de candidaturas a exposição
      */
     public List<CandidaturaAExposicao> getListaCand() {
         this.listCand = rc.getListaCandidaturasAceites();
@@ -75,8 +80,9 @@ public class AtribuirStandsController {
     }
 
     /**
+     * Devolve a lista de stands
      *
-     * @return
+     * @return lista de stands
      */
     public List<Stand> getListaStands() {
         rs = m_centroDeExposicoes.getRegistoStands();
@@ -84,8 +90,9 @@ public class AtribuirStandsController {
     }
 
     /**
-     *
-     * @param listAtr
+     * Modifica a lista de atribuições
+     * 
+     * @param listAtr nova lista de atribuições
      */
     public void setAtribuicoes(List<AtribuicaoStand> listAtr) {
         this.listAtr.clear();
@@ -93,7 +100,7 @@ public class AtribuirStandsController {
     }
 
     /**
-     *
+     * Confirma aatribuição dos stands
      */
     public void confirm() {
         ras = expo.getRegistoAtribuicoesStands();
@@ -105,11 +112,13 @@ public class AtribuirStandsController {
     }
 
     /**
-     *
-     * @param expo
+     * Modifica a exposição seleciona e guarda o registo de candidaturas dessa 
+     * exposição
+     * 
+     * @param expo exposição selecionada
      */
     public void select(Exposicao expo) {
-        expo = expo;
+        this.expo = expo;
         rc = expo.getRegistoCandidaturasAExposicao();
     }
 

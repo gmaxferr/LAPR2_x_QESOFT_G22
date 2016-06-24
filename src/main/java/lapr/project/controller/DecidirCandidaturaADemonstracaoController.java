@@ -7,7 +7,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representação do controller do UC Decidir Candidatura A Demonstração
+ * 
  * @author G29
  */
 public class DecidirCandidaturaADemonstracaoController {
@@ -49,12 +50,12 @@ public class DecidirCandidaturaADemonstracaoController {
     private CentroExposicoes m_ce;
 
     /**
-     * username do organizador que iniciou a UC
+     * Username do organizador que iniciou a UC
      */
     private String username;
 
     /**
-     * Construtor do controller do UC17 - Decidir candidaturas a exposição
+     * Construtor de objetos do tipo DecidirCandidaturasAExposição
      *
      * @param ce centro de exposições atual
      */
@@ -141,23 +142,26 @@ public class DecidirCandidaturaADemonstracaoController {
     }
 
     /**
-     *
-     * @return descrição de uma candidatura
+     * Devolve os dados (descrição) de uma candidatura
+     * 
+     * @return os dados (descrição) de uma candidatura
      */
     public String getDadosCandidatura() {
         return this.m_candidaturaSelecionada.getDadosCandidatura();
     }
 
     /**
-     *
-     * @return descrição de uma candidatura
+     * Devolve o email do representante de uma candidatura
+     * 
+     * @return email do representante de uma candidatura
      */
     public String getEmailRep() {
         return this.m_candidaturaSelecionada.getEmailExpositor();
     }
 
     /**
-     *
+     * Devolve a lista de demonstrações em estado avaliadas
+     * 
      * @return lista de demonstrações em estado avaliadas
      */
     public ArrayList<Demonstracao> getListaDemonstracoes() {
@@ -175,21 +179,28 @@ public class DecidirCandidaturaADemonstracaoController {
     }
 
     /**
-     *
-     * @return descrição da demonstração selecioada
+     * Devolve a descrição da demonstração selecionada
+     * 
+     * @return descrição da demonstração selecionada
      */
     public String getDescricaoDemo() {
         return this.m_demonstracaoSelecionada.getDescricao();
     }
 
     /**
-     *
-     * @return codigo de identificação da demonstração selecioada
+     * Devolve o codigo de identificação da demonstração selecinoada
+     * 
+     * @return codigo de identificação da demonstração selecinoada
      */
     public String getCodigoIDDemo() {
         return this.m_demonstracaoSelecionada.getCodigoIdentificacao();
     }
 
+    /**
+     * Devolve a lista de candidaturas em estado avaliadas
+     * 
+     * @return lista de candidaturas em estado avaliadas
+     */
     public List<CandidaturaADemonstracao> getCandidaturas() {
         return m_rc.getListaCandidaturasEstadoAvaliada();
     }

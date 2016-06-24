@@ -7,7 +7,7 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Controller do UC02 - definir fae
+ * Representação do controller do UC Definir FAE
  *
  * @author G29
  */
@@ -54,7 +54,8 @@ public class DefinirFAEController {
     private final List<FAE> listaFaeTemp;
 
     /**
-     * Construtor do controller do UC02
+     * Construtor de objetos do tipo DefinirFAEController com os parametros 
+     * centro de exposições e username do organizador
      *
      * @param centroExposicoes centro de exposições sobre o qual este UC esta a
      * ser executado
@@ -78,7 +79,7 @@ public class DefinirFAEController {
     }
 
     /**
-     * Devolve o registo de exposições existentes
+     * Guarda o registo de exposições existentes
      */
     public void getRegistoExposicoes() {
         this.m_re = this.m_centroExposicoes.getRegistoExposicoes();
@@ -96,14 +97,14 @@ public class DefinirFAEController {
     }
 
     /**
-     * Devolve o registo de utilizadores existentes no centro de exposições
+     * Guarda o registo de utilizadores existentes no centro de exposições
      */
     public void getRegistoUtilizadores() {
         this.m_ru = this.m_centroExposicoes.getRegistoUtilizadoresConfirmados();
     }
 
     /**
-     * Devolve o registo de fae associado à exposição selecionda na UI
+     * Guarda o registo de fae associado à exposição selecionda na UI
      */
     public void getRegistoFAE() {
         this.m_rfae = m_exposicaoSelecionada.getRegistoFAE();
@@ -129,7 +130,7 @@ public class DefinirFAEController {
     }
 
     /**
-     * Devolve o registo dos organizadores da exposição selecionada na UI
+     * Guarda o registo dos organizadores da exposição selecionada na UI
      */
     public void getRegistoOrganizadores() {
         this.m_ro = this.m_exposicaoSelecionada.getRegistoOrganizadores();
@@ -169,7 +170,6 @@ public class DefinirFAEController {
     /**
      * Confirma a adição dos FAE definitivamente. Até aqui a lista de FAE éra
      * uma lista temporária
-     *
      */
     public void confirmaAddFAE() {
         m_rfae.confirmaAddFAE(this.listaFaeTemp);

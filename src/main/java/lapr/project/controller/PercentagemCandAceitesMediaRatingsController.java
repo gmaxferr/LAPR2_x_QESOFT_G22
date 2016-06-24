@@ -5,8 +5,7 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Controller usado pelo UC-24 Calcular percentagem de candidaturas do expositor
- * aceites e média dos ratings por candidatura
+ * Representação do controller do UC PercentagemCandAceitesMediaRatingsController
  *
  * @author G29
  */
@@ -48,7 +47,8 @@ public class PercentagemCandAceitesMediaRatingsController {
     private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
-     * Construtor recebendo como parametro apenas o centro de exposições atual
+     * Construtor de objetos do tipo PercentagemCandAceitesMediaRatingsController 
+     * recebendo como parametro o centro de exposições atual
      *
      * @param ce centro de exposições atual
      */

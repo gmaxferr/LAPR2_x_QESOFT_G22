@@ -52,7 +52,7 @@ public class ConfirmarStandController {
     private CandidaturaAExposicao m_candEscolhida;
 
     /**
-     * Constrói uma instância de ConfirmarStandsController recendo como
+     * Construtor de objetos do tipo ConfirmarStandsController recendo como
      * parâmentro o centro de exposições
      *
      * @param centro_exposicoes centro de exposições

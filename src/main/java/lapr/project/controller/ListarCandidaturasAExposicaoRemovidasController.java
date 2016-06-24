@@ -32,8 +32,8 @@ public class ListarCandidaturasAExposicaoRemovidasController {
     private CentroExposicoes m_centroExposicoes;
 
     /**
-     * Constrói uma instância de ListarCandidaturasAExposicaoController recebendo como
-     * parâmetro o centro de exposições
+     * Construtor de objetos do tipo ListarCandidaturasAExposicaoController 
+     * recebendo como parâmetro o centro de exposições
      *
      * @param centro_exposicoes centro de exposições
      */

@@ -2,20 +2,27 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.estados.Demonstracao.EstadoDemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.MecanismoDetecaoConflitoDemonstracao;
-import lapr.project.model.TipoConflitoDemonstracao;
+import lapr.project.model.*;
 import lapr.project.registos.RegistoTiposConflitoDemonstracao;
 
 /**
- *
+ * Representação do controller do UC Detetar Conflitos Demonstracao
+ * 
  * @author G29
  */
 public class DetetarConflitosDemonstracaoController {
 
+    /**
+     * Centro de exposições
+     */
     private CentroExposicoes m_ce;
 
+    /**
+     * Construtor de objetos do tipo DetetarConflitosDemonstracaoController
+     * com o parametro centro de exposições
+     * 
+     * @param ce centro de exposições
+     */
     public DetetarConflitosDemonstracaoController(CentroExposicoes ce) {
         m_ce = ce;
     }

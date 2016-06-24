@@ -7,7 +7,7 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Controller do caso de uso - criar candidatura.
+ * Representação do controller do UC Criar Candidatura A Exposição
  *
  * @author G29
  */
@@ -54,7 +54,7 @@ public class CriarCandidaturaAExposicaoController {
     private EstadoCandidaturaAExposicao m_estadoCandidatura;
 
     /**
-     * Constrói uma instância de CriarCandidaturaController recebendo como
+     * Construtor de objetos do tipo CriarCandidaturaController recebendo como
      * parâmetro o centro de exposições.
      *
      * @param centroExposicoes centro de exposições
@@ -182,21 +182,39 @@ public class CriarCandidaturaAExposicaoController {
     /**
      * Modifica a lista de produtos.
      *
-     * @param listaProdutos lista de produtos.
+     * @param listaProdutos nova lista de produtos.
      */
     public void setListaProdutosCandidatura(List<Produto> listaProdutos) {
         this.m_candidaturaCriada.getRegistoProdutos().setListaProdutos(listaProdutos);
     }
 
+    /**
+     * Modifica a lista de demonstrações 
+     * 
+     * @param listaDemonstracoes nova lista de demonstrações 
+     */
     public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoes) {
         this.m_candidaturaCriada.getRegistoDemonstracoes().definirListaDemonstracoes(listaDemonstracoes);
     }
 
+    /**
+     * Verifica se o estado da candidatura a exposição está no estado candidatura
+     * criada
+     * 
+     * @return true se estiver no estado candidatura a exposição criada. Caso 
+     * contrário retorna false.
+     */
     public boolean setEstadoCandidaturaAExposicaoCriada() {
         this.m_estadoCandidatura = this.m_candidaturaCriada.getEstado();
         return m_estadoCandidatura.setEstadoCandidaturaCriada();
     }
 
+    /**
+     * Modifica as keywords
+     * 
+     * @param keywords novas keywords
+     * @throws KeywordsErradasException 
+     */
     public void setKeywords(String keywords) throws KeywordsErradasException {
         this.m_candidaturaCriada.setKeywords(keywords);
     }

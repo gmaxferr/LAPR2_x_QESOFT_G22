@@ -7,7 +7,8 @@ import lapr.project.model.*;
 import lapr.project.registos.RegistoExposicoes;
 
 /**
- *
+ * Representação do controller do UC Exportar Ranking 
+ * 
  * @author G29
  */
 public class ExportarRankingController {
@@ -33,7 +34,8 @@ public class ExportarRankingController {
     private KeywordRanking keywordRanking;
 
     /**
-     * Construtor padrão.
+     * Construtor de objetos do tipo ExportarRankingController com o parametro
+     * centro de exposições
      *
      * @param m_centroExposicoes Centro de Exposições
      */
@@ -42,7 +44,10 @@ public class ExportarRankingController {
     }
 
     /**
-     * @return Retorna uma lista de exposições cujo ranking de keywords está
+     * Devolve a lista de exposições cujo ranking de keywords está
+     * pronto para ser exportado
+     * 
+     * @return lista de exposições cujo ranking de keywords está
      * pronto para ser exportado
      */
     public List<Exposicao> getListaExposicoesRankingPronto() {
@@ -64,7 +69,6 @@ public class ExportarRankingController {
      * Exporta o conteúdo para um ficheiro CSV
      *
      * @param file Ficheiro CSV para onde será exportada a informação
-     * @return TRUE se a operação foi bem sucedida, FALSE caso contrário
      */
     public void export(File file) throws FileNotFoundException {
         keywordRanking.exportCSV(file);

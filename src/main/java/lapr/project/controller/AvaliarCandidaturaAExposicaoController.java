@@ -5,7 +5,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representação do controller do UC Avaliar Candidatura A Exposição
+ * 
  * @author G29
  */
 public class AvaliarCandidaturaAExposicaoController {
@@ -48,7 +49,8 @@ public class AvaliarCandidaturaAExposicaoController {
     private Avaliacao m_avaliacaoDoFae;
 
     /**
-     * Construtor da UI do UC Avaliar candidatura à exposição
+     * Construtor de objetos do tipo AvaliarCandidaturaAExposicaoController com
+     * os parametros centro de exposições e username do FAE
      *
      * @param centroExposicoes centro de exposições
      * @param usernameFAE username do FAE a executar este UC

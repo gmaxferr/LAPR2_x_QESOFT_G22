@@ -21,6 +21,12 @@ public class DefinirRecursoController {
      */
     private RegistoRecursos m_rr;
 
+    /**
+     * Construtor de objetos do tipo DefinirRecursoController com o parametro
+     * centro de exposições
+     * 
+     * @param ce centro de exposições
+     */
     public DefinirRecursoController(CentroExposicoes ce) {
         m_ce = ce;
     }
@@ -28,7 +34,7 @@ public class DefinirRecursoController {
     /**
      * Inicializa o registo de recursos e busca a lista de recursos do mesmo.
      *
-     * @return lista de recursos;
+     * @return lista de recursos
      */
     public List<Recurso> getListaRecursos() {
         m_rr = m_ce.getRegistoRecursos();

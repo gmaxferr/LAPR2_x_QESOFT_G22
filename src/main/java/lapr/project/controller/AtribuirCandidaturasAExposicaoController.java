@@ -61,7 +61,8 @@ public class AtribuirCandidaturasAExposicaoController {
     private RegistoExposicoes m_registoExposicoes;
 
     /**
-     * Construtor do controller do UC - atribuir candidaturas
+     * Construtor deobjetos do tipo AtribuirCandidaturasAExposicaoController com
+     * os parametros centro de exposições e username do organizador
      *
      * @param centroExposicoes centro de exposições atual
      * @param usernameOrganizador username do organizador a executar este UC
@@ -74,7 +75,7 @@ public class AtribuirCandidaturasAExposicaoController {
 
     /**
      * Busca e guarda o registo de mecanismo associado ao centro de exposições
-     * atuak
+     * atual
      */
     public void getRegistoMecanismos() {
         this.m_rm = m_centroExposicoes.getRegistoMecanismos();
@@ -107,6 +108,9 @@ public class AtribuirCandidaturasAExposicaoController {
         this.m_exposicaoEscolhida.getRegistoAtribuicoesExposicao();
     }
 
+    /**
+     * Guarda o registo de exposições
+     */
     public void getRegistoExposicoes() {
         this.m_registoExposicoes = this.m_centroExposicoes.getRegistoExposicoes();
     }

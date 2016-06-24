@@ -5,21 +5,42 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representação do controller Alterar Candidatura Demosntracao
+ * 
  * @author G29
  */
 public class AlterarCandidaturaDemonstracaoController {
 
+    /**
+     * Exposição selecionada
+     */
     private Exposicao m_e;
+    
+    /**
+     * Candidatura a demonstração
+     */
     private CandidaturaADemonstracao m_cd;
+    
+    /**
+     * Email do representante
+     */
     private String m_emailExpositor;
+    
+    /**
+     * Dados da candidatura ademonstração
+     */
     private String m_novosDados;
+    
+    /**
+     * Registo de demosntrações
+     */
     private RegistoDemonstracoes m_rd;
 
     /**
-     * Construtor da UC26
+     * Construtor da de objetos do tipo AlterarCandidaturaDemonstracaoController
+     * com os parametros email do representante e exposição
      *
-     * @param email - email do expositor
+     * @param email - email do representante
      * @param e - exposição selecionada
      */
     public AlterarCandidaturaDemonstracaoController(String email, Exposicao e) {
@@ -28,7 +49,8 @@ public class AlterarCandidaturaDemonstracaoController {
     }
 
     /**
-     *
+     * Devolve os novos dados
+     * 
      * @return - novos dados temporários
      */
     public String getNovosDados() {
@@ -36,7 +58,8 @@ public class AlterarCandidaturaDemonstracaoController {
     }
 
     /**
-     *
+     * Devolve a candidatura a demonstração alterada
+     * 
      * @return - candidatura a demonstracao alterada
      */
     public CandidaturaADemonstracao getCandidaturaDemonstracao() {

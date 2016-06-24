@@ -10,11 +10,19 @@ import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
 
 /**
- *
+ * Representação do controller do UC Exportar XML
+ * 
  * @author G29
  */
 public class ExportarXMLController {
 
+    /**
+     * Exporta a informação do centro de exposições para um ficheiros
+     * 
+     * @param filename nome completo do ficheiro
+     * @param ce centro de exposições
+     * @return true se a informação foi exportada. Caso contrário retorna false.
+     */
     public boolean export(String filename, CentroExposicoes ce) {
         try {
             Node node = ce.exportContentToXMLNode();
@@ -27,6 +35,15 @@ public class ExportarXMLController {
         return false;
     }
 
+    /**
+     * Exporta a informação do centro de exposições para um ficheiro e atualiza 
+     * o ficheiro
+     * 
+     * @param filename nome completo do ficheiro
+     * @param ce centro de exposições
+     * @return true se a informação foi exportada e atualizada. Caso contrário
+     * retorna false.
+     */
     public boolean exportAndUpdateProperties(String filename, CentroExposicoes ce) {
         if (export(filename, ce)) {
             File properties = new File(CentroExposicoes.PROPERTIES_FILE_LOCATION);

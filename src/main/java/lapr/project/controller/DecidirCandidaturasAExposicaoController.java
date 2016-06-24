@@ -7,7 +7,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Represnetação do controller do UC Decidir Candidatura A Exposição
+ * 
  * @author G29
  */
 public class DecidirCandidaturasAExposicaoController {
@@ -44,7 +45,8 @@ public class DecidirCandidaturasAExposicaoController {
     private String[] keywords;
 
     /**
-     * Construtor do controller do UC17 - Decidir candidaturas a exposição
+     * Construtor de objetos do tipo DecidirCandidaturasAExposição com o 
+     * parametro centro de exposições
      *
      * @param ce centro de exposições atual
      */

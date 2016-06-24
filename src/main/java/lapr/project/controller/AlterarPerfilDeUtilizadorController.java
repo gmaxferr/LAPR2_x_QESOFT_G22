@@ -10,17 +10,44 @@ import lapr.project.registos.RegistoUtilizadores;
  */
 public class AlterarPerfilDeUtilizadorController {
 
+    /**
+     * Centro de exposições
+     */
     private CentroExposicoes m_ce;
+    
+    /**
+     * Registo de utilizadores
+     */
     private RegistoUtilizadores m_ru;
+    
+    /**
+     * Utilizador
+     */
     private Utilizador m_u;
 
+    /**
+     * Email do utilizador
+     */
     private String m_email;
+    
+    /**
+     * Nome do utilizador
+     */
     private String m_nome;
+    
+    /**
+     * Username do utilizador
+     */
     private String m_username;
+    
+    /**
+     * Password do utilizador
+     */
     private char[] m_password;
 
     /**
-     * Contrutor do controller da UC10 - alterar perfil de utilizador
+     * Contrutor de objetos do tipo AlterarPerfilDeUtilizadorController com o 
+     * parametro centro de exposições
      *
      * @param centroExposicoes - Centro de Exposições
      */
@@ -29,15 +56,15 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * inicializa registo de utilizadores
+     * Guarda o registo de utilizadores
      */
     public void carregaRegistoUtilizadores() {
         m_ru = m_ce.getRegistoUtilizadoresConfirmados();
     }
 
     /**
-     * inicialializa username e utilizador de utilizador e procura utilizador a
-     * inicializar com esse username.
+     * Inicializa o utilizador através da procura do utilizador com o username 
+     * passado por parametro
      *
      * @param username - username de procura
      */
@@ -47,7 +74,7 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * inicializa e retorna nome de utilizador
+     * Inicializa e retorna nome de utilizador
      *
      * @return nome de utilizador
      */
@@ -57,7 +84,7 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * inicializa e retorna email de utilizador
+     * Inicializa e retorna email de utilizador
      *
      * @return email de utilizador
      */
@@ -67,7 +94,7 @@ public class AlterarPerfilDeUtilizadorController {
     }
 
     /**
-     * retorna password de utilizador, transformanso-a numa String
+     * Retorna password de utilizador, transformando-a numa String
      *
      * @return password de utilizador
      */
@@ -83,7 +110,7 @@ public class AlterarPerfilDeUtilizadorController {
     /**
      * Armazena o username do utilizador no controller
      *
-     * @param username - parametro a armazenar
+     * @param username - username armazenar
      */
     public void setUsername(String username) {
         this.m_username = username;
@@ -92,7 +119,7 @@ public class AlterarPerfilDeUtilizadorController {
     /**
      * Armazena a Password do utilizador no controller
      *
-     * @param password - parametro a armazenar
+     * @param password - password a armazenar
      */
     public void setPassword(char[] password) {
         this.m_password = password;
@@ -101,7 +128,7 @@ public class AlterarPerfilDeUtilizadorController {
     /**
      * Armazena o email do utilizador no controller
      *
-     * @param email - parametro a armazenar
+     * @param email - email a armazenar
      */
     public void setEmail(String email) {
         this.m_email = email;
@@ -110,7 +137,7 @@ public class AlterarPerfilDeUtilizadorController {
     /**
      * Armazena o nome do utilizador no controller
      *
-     * @param nome - parametro a armazenar
+     * @param nome - nome a armazenar
      */
     public void setNome(String nome) {
         this.m_nome = nome;
@@ -118,6 +145,7 @@ public class AlterarPerfilDeUtilizadorController {
 
     /**
      * Regista os dados do utilizador, tornando-os efetivos.
+     * 
      * @return string com alterações (para expor ao utilizador)
      */
     public String confirmaAlteracoes() {
