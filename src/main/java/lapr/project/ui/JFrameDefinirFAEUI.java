@@ -507,7 +507,7 @@ public class JFrameDefinirFAEUI extends javax.swing.JFrame {
         if (controller.foramAdicionadosFAE()) {
             controller.confirmaAddFAE();
             if (!controller.setEstado()) {
-                JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE suficientes! Para fins estatísticos é necessário definir pelo menos 2 FAE.", "Fae insuficientes", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Não foram adicionados FAE suficientes! Para a exposição se realizar terão de ser definidos pelos menos dois FAE\naté antes da data de início de submissão de candidaturas.", "Fae insuficientes", JOptionPane.WARNING_MESSAGE);
             }
             finalizarUC();
         } else {
