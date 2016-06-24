@@ -39,6 +39,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         listaExposicoes = CTRL.getListaDeExposicoes();
         if (listaExposicoes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não existem exposições com demonstrações com candidaturas avaliadas.", "Erro", JOptionPane.WARNING_MESSAGE);
+            jFrameMenuPrincipal.setVisible(true);
         } else {
             initComponents();
             alterarComportamentoFecharJFrame();
