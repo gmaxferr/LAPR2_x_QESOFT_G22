@@ -29,16 +29,18 @@ public class AlterarParaFechadaCandidaturas extends TimerTask {
     @Override
     public void run() {
         m_exposicao.getEstado().setEstadoCandidaturasFechadas();
-        boolean change = false;
+        boolean change = true;
         for (CandidaturaAExposicao c : m_exposicao.getRegistoCandidaturasAExposicao().getListaCandidaturas()) {
-            if (c.getEstado().setEstadoCandidaturaAbertaAtualizacaoConflitos()) {
-                change = true;
+            if (!c.getEstado().setEstadoCandidaturaAbertaAtualizacaoConflitos()) {
+                change = false;
             }
         }
         DetetarConflitoController ctrl = new DetetarConflitoController(m_ce);
         ctrl.detetaConflitos(m_exposicao);
-        if (change) {
-            JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição");
+        if (!change) {
+            JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição, no entanto algumas candidaturas não conseguiram mudar de estado.", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ocorreu a deteção de conflitos de interesse da exposição!", "SUCESSO", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
