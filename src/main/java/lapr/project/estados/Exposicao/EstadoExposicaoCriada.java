@@ -3,8 +3,9 @@ package lapr.project.estados.Exposicao;
 import lapr.project.model.Exposicao;
 
 /**
- *
- * @author Ana Leite RicardoOsório
+ * Representação do EstadoExposicaoCriada
+ * 
+ * @author G29
  */
 public class EstadoExposicaoCriada extends EstadoExposicao {
 

@@ -4,8 +4,9 @@ import lapr.project.estados.Estado;
 import lapr.project.model.CandidaturaADemonstracao;
 
 /**
- *
- * @author guilherme
+ * Representação do EstadoCandidaturaADemonstracao
+ * 
+ * @author G29
  */
 public abstract class EstadoCandidaturaADemonstracao implements Estado {
 

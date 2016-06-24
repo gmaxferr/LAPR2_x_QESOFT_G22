@@ -4,7 +4,7 @@ package lapr.project.exceptions;
  * Representa a exceção a ser lançada quando a área (ao criar candidatura) não é
  * válida
  *
- * @author Ricardo Osório e Ana Leite
+ * @author RG29
  */
 public class AreaErradaException extends IllegalArgumentException {
 

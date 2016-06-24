@@ -3,8 +3,9 @@ package lapr.project.estados.CandidaturaADemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
 
 /**
- *
- * @author guilherme
+ * Representação do EstadoCandidaturaADemonstracaoAceite
+ * 
+ * @author G29
  */
 public class EstadoCandidaturaADemonstracaoAceite extends EstadoCandidaturaADemonstracao {
 

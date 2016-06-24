@@ -1,26 +1,26 @@
 package lapr.project.exceptions;
 
 /**
- * Exceção para lidar com situações em que se necessita a introdução de um
- * e-mail e o mesmo é intergralmente inválido
+ * Exceção a ser lançada quando o email é inválido
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class InvalidEmailException extends IllegalArgumentException {
 
-	/**
-	 * Construtor por defeito
-	 */
-	public InvalidEmailException() {
-            super();
-	}
+    /**
+     * Construtor de objetos do tipo InvalidEmailException sem parametros
+     */
+    public InvalidEmailException() {
+        super();
+    }
 
-	/**
-	 * Construtor com mensagem
-	 *
-	 * @param s - Mensagem a ser associada a esta exceção explicando o erro
-	 */
-	public InvalidEmailException(String s) {
-		super(s);
-	}
+    /**
+     * Construtor de objetos do tipo InvalidEmailException com o parametro
+     * mensagem
+     *
+     * @param s - Mensagem a ser associada a esta exceção explicando o erro
+     */
+    public InvalidEmailException(String s) {
+        super(s);
+    }
 }

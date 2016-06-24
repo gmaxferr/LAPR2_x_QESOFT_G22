@@ -6,8 +6,9 @@ import lapr.project.timerTasks.expo.AlterarParaFechadaCandidaturas;
 import lapr.project.utils.Data;
 
 /**
- *
- * @author Ana Leite Ricardo Osório
+ * Representação do EstadoExposicaoCandidaturasAbertas
+ * 
+ * @author G29
  */
 public class EstadoExposicaoCandidaturasAbertas extends EstadoExposicao {
 

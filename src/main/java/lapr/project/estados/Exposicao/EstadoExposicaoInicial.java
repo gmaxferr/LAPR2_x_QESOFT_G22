@@ -6,7 +6,8 @@ import lapr.project.model.*;
 import lapr.project.utils.Data;
 
 /**
- *
+ * Representação do EstadoExposicaoInicial
+ * 
  * @author G29
  */
 public class EstadoExposicaoInicial extends EstadoExposicao {

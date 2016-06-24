@@ -4,8 +4,9 @@ import lapr.project.estados.Estado;
 import lapr.project.model.Exposicao;
 
 /**
- *
- * @author Ricardo Osório e Ana Leite
+ * Representação do EstadoExposicao
+ * 
+ * @author G29
  */
 public abstract class EstadoExposicao implements Estado {
 

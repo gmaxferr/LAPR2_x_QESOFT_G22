@@ -4,7 +4,7 @@ package lapr.project.exceptions;
  * Exceção a ser lançada quando o número de convites (ao criar a candidatura)
  * não é válido
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class NumeroConvitesErradoException extends IllegalArgumentException {
 

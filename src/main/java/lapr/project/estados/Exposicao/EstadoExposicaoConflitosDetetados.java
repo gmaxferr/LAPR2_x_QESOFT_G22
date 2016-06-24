@@ -6,8 +6,9 @@ import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
 import lapr.project.utils.Data;
 
 /**
- *
- * @author Ana Leite Ricardo Osório
+ * Representação do EstadoExposicaoConflitosDetetados
+ * 
+ * @author G29
  */
 public class EstadoExposicaoConflitosDetetados extends EstadoExposicao {
 

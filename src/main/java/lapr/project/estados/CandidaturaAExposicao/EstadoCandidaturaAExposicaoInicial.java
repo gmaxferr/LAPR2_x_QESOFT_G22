@@ -3,8 +3,9 @@ package lapr.project.estados.CandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
- *
- * @author Ricardo Osorio
+ * Representação do EstadoCandidaturaAExposicaoInicial
+ * 
+ * @author G29
  */
 public class EstadoCandidaturaAExposicaoInicial extends EstadoCandidaturaAExposicao {
 
