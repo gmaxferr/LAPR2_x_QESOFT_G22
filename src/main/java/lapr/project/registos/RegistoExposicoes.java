@@ -150,11 +150,9 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getEmailExpositor().equals(email)) {
-                    if (c.getEstado().isEstadoCandidaturaAceite()) {
-                        listaExpoRep.add(e);
-                        break;
-                    }
+                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaAceite()) {
+                    listaExpoRep.add(e);
+                    break;
                 }
             }
         }
@@ -261,7 +259,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
 
-     /**
+    /**
      * Devolve uma lista de exposiçoes no estado candidaturas atribuidas do fae
      *
      * @param usernameFAE username do fae
@@ -270,7 +268,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     public ArrayList<Exposicao> getListaExposicoesEstadoCandidaturasDecididasDoFAEComDemonstracoesEmEstadoCandidaturasAtribuidas(String usernameFAE) {
         ArrayList<Exposicao> listaExposicoesEstadoCandidaturaAtribuidasDoFAE = new ArrayList<>();
         for (Exposicao exposicao : this.m_listaExposicoes) {
-            if (exposicao.getEstado().isEstadoCandidaturasDecididas()&& exposicao.getRegistoFAE().isFAE(usernameFAE)) {
+            if (exposicao.getEstado().isEstadoCandidaturasDecididas() && exposicao.getRegistoFAE().isFAE(usernameFAE)) {
                 RegistoDemonstracoes rd = new RegistoDemonstracoes(true);
                 rd = exposicao.getRegistoDemonstracoes();
                 for (Demonstracao d : rd.getListaDemonstracoes()) {
@@ -283,7 +281,6 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesEstadoCandidaturaAtribuidasDoFAE;
     }
 
-    
     /**
      * Devolve exposições do organizador em que existem demonstrações pendentes
      *

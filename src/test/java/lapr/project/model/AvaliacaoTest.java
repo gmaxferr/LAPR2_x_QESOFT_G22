@@ -181,11 +181,8 @@ public class AvaliacaoTest {
     public void testGetRatingAdequacaoDadosCandidatura() {
         System.out.println("getRatingAdequacaoDadosCandidatura");
         Avaliacao instance = new Avaliacao();
-        int expResult = 0;
-        int result = instance.getRatingAdequacaoDadosCandidatura();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setAvaliacaoCandidaturaADemonstracao(0, 1, 0);
+        assertEquals(1, instance.getRatingRecomendacaoGlobal());
     }
 
     /**
@@ -195,11 +192,8 @@ public class AvaliacaoTest {
     public void testGetMediaRatingsCandidaturaAExposicao() {
         System.out.println("getMediaRatingsCandidaturaAExposicao");
         Avaliacao instance = new Avaliacao();
-        float expResult = 0.0F;
-        float result = instance.getMediaRatingsCandidaturaAExposicao();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setAvaliacaoCandidaturaAExposicao(1, 2, 3, 4, 5);
+        assertEquals(3f, instance.getMediaRatingsCandidaturaAExposicao(), 0.0f);
     }
 
     /**
@@ -209,11 +203,8 @@ public class AvaliacaoTest {
     public void testGetMediaRatingsCandidaturaADemonstracao() {
         System.out.println("getMediaRatingsCandidaturaADemonstracao");
         Avaliacao instance = new Avaliacao();
-        float expResult = 0.0F;
-        float result = instance.getMediaRatingsCandidaturaADemonstracao();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setAvaliacaoCandidaturaADemonstracao(1, 2, 3);
+        assertEquals(2f, instance.getMediaRatingsCandidaturaADemonstracao(), 0.0f);
     }
 
     /**
@@ -222,15 +213,13 @@ public class AvaliacaoTest {
     @Test
     public void testSetAvaliacaoCandidaturaAExposicao() {
         System.out.println("setAvaliacaoCandidaturaAExposicao");
-        int ratingConhecimentoSobreTema = 0;
-        int ratingAdequacaoAExposicao = 0;
-        int ratingAdequacaoAsDemos = 0;
-        int ratingAdequacaoNumConvites = 0;
-        int ratingRecomendacaoGlobal = 0;
         Avaliacao instance = new Avaliacao();
-        instance.setAvaliacaoCandidaturaAExposicao(ratingConhecimentoSobreTema, ratingAdequacaoAExposicao, ratingAdequacaoAsDemos, ratingAdequacaoNumConvites, ratingRecomendacaoGlobal);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setAvaliacaoCandidaturaAExposicao(0, 1, 2, 3, 4);
+        assertEquals(0, instance.getRatingConhecimentoSobreOTema());
+        assertEquals(1, instance.getRatingAdequacaoAExposicao());
+        assertEquals(2, instance.getRatingAdequacaoAsDemos());
+        assertEquals(3, instance.getRatingAdequacaoNumConvites());
+        assertEquals(4, instance.getRatingRecomendacaoGlobal());
     }
 
     /**
@@ -239,12 +228,10 @@ public class AvaliacaoTest {
     @Test
     public void testSetAvaliacaoCandidaturaADemonstracao() {
         System.out.println("setAvaliacaoCandidaturaADemonstracao");
-        int ratingConhecimentoSobreTema = 0;
-        int ratingAdequacaoDadosCandidatura = 0;
-        int ratingRecomendacaoGlobal = 0;
         Avaliacao instance = new Avaliacao();
-        instance.setAvaliacaoCandidaturaADemonstracao(ratingConhecimentoSobreTema, ratingAdequacaoDadosCandidatura, ratingRecomendacaoGlobal);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setAvaliacaoCandidaturaADemonstracao(0, 1, 2);
+        assertEquals(0, instance.getRatingConhecimentoSobreOTema());
+        assertEquals(1, instance.getRatingAdequacaoDadosCandidatura());
+        assertEquals(2, instance.getRatingRecomendacaoGlobal());
     }
 }

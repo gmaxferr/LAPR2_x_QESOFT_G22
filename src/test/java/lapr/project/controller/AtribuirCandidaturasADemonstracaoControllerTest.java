@@ -1,24 +1,10 @@
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Local;
-import lapr.project.model.Mecanismo;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
-import lapr.project.registos.RegistoCandidaturasADemonstracao;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExposicoes;
-import lapr.project.registos.RegistoMecanismos;
+import java.util.*;
+import lapr.project.model.*;
+import lapr.project.registos.*;
 import lapr.project.utils.Data;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
