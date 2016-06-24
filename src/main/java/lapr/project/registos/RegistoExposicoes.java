@@ -422,12 +422,26 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuEstadoFaeDefinidos(String usernameOrg) {
+        List<Exposicao> listaExposicoes = new ArrayList<>();
+        List<Organizador> listOrg;
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            listOrg = exposicao.getListaOrganizadores();
+            for (Organizador organizador : listOrg) {
+                if (validaOrgEExpo(usernameOrg, organizador, exposicao)) {
+                    listaExposicoes.add(exposicao);
+                }
+            }
+        }
+
+        return listaExposicoes;
+    }
+
     private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao) {
         return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
                 && (exposicao.getEstado().isEstadoCriada()
-                || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
-                || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
-                || exposicao.getEstado().isEstadoCompleta());
+                || exposicao.getEstado().isEstadoFAEDefinidosSemDemos());
     }
 
     /**
