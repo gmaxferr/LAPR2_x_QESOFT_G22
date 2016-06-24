@@ -8,10 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.*;
-import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
 import lapr.project.model.*;
-import lapr.project.utils.Data;
 
 /**
  * Menu principal da aplicação. Permite o acesso a todas as funcionalidades
@@ -206,7 +203,6 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -535,13 +531,6 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
-        jButton15.setText("Alterar candidaturas à demos");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
         jButton3.setText("Criar stands");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,9 +556,7 @@ public class MenuV2 extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jButton10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton15))
+                                .addComponent(jButton12))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jButton13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -579,7 +566,7 @@ public class MenuV2 extends javax.swing.JFrame {
                         .addComponent(jButton14)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,8 +579,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
-                    .addComponent(jButton12)
-                    .addComponent(jButton15))
+                    .addComponent(jButton12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13)
@@ -602,7 +588,7 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPaneCargos.addTab("Gestor", jPanel6);
@@ -1048,6 +1034,9 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        this.setVisible(false);
+        JFrame frame = new JFrameRemoverCandidaturaADemonstracaoUI(thisJFrame, utilizador.getEmail(), centroExposicoes);
+
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1104,9 +1093,9 @@ public class MenuV2 extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Operação cancelada a pedido do utilizador.", "ERRO", JOptionPane.OK_OPTION);
             }
-        } else if(listExpo.length == 0 ){
+        } else if (listExpo.length == 0) {
             JOptionPane.showMessageDialog(this, "Não existem exposições num estado disponível para que possa ser possível atribuir stands.", "ERRO", JOptionPane.OK_OPTION);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Não existem stands no centro de exposições.", "ERRO", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton19ActionPerformed
@@ -1177,9 +1166,6 @@ public class MenuV2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-    }//GEN-LAST:event_jButton15ActionPerformed
-
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         ExportarRankingController CTRL = new ExportarRankingController(centroExposicoes);
         Exposicao[] listExpo = CTRL.getListaExposicoesRankingPronto().toArray(new Exposicao[0]);
@@ -1223,6 +1209,9 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        this.setVisible(false);
+        JFrame frame = new JFrameAlterarCandidaturaADemonstracaoUI(centroExposicoes, utilizador.getEmail(), thisJFrame);
+
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -1319,7 +1308,6 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
