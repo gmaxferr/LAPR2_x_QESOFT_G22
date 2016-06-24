@@ -276,6 +276,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
+     * Verifica se das demonstrações desta exposição alguma das aceites é também
+     * alguma das que o representante demonstrou interesse em participar
+     *
+     * @param demonstracaoInteresse
+     * @return true se encontrar pelo menos uma, falso caso contrário
+     */
+    public boolean peloMenosUmaDemonstracaoAceite(List<Demonstracao> demonstracaoInteresse) {
+        for (Demonstracao demoConfirmada : this.getRegistoDemonstracoes().getListaDemonstracoesEstadoConfirmada()) {
+            for (Demonstracao demoInteresse : demonstracaoInteresse) {
+                if (demoConfirmada.equals(demoInteresse)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Define um novo título para esta exposição
      *
      * @param strTitulo novo título para esta exposição

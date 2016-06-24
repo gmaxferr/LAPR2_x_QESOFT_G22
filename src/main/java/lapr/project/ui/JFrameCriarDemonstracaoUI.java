@@ -96,6 +96,8 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
      * @param ce centro de exposições
      */
     public JFrameCriarDemonstracaoUI(String usernameOrg, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
+        super("Criar demonstração");
+        
         controller = new CriarDemonstracaoController(usernameOrg, ce);
         controller.pullRegistosCE(); //getRegistoExposicoes e getRegistoRecursos
         m_listaExposicoes = controller.getListaExposicoesDoOrganizador();
