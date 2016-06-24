@@ -157,21 +157,15 @@ public class AlterarCandidaturaExpoController {
         m_cand.setNumConvites(novoNumConvites);
         if (!keywords.isEmpty()) {
             m_cand.setKeywords(keywords);
-        }
-        if (!keywords.isEmpty()) {
             try {
                 for (Integer i : produtosARemover) {
                     m_cand.removeProduto(i);
                 }
             } catch (IllegalArgumentException e) {
             }
-        }
-        if (!keywords.isEmpty()) {
             for (Alteracao a : produtosAAlterar) {
                 m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
             }
-        }
-        if (!keywords.isEmpty()) {
             for (Produto p : produtosAAdicionar) {
                 m_cand.addProduto(p);
             }

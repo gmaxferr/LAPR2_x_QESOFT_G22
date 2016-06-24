@@ -1127,7 +1127,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
             }
             }else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!\nnNão se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!%nAviso: No caso de ter produtos não se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_terminarAlteracaoBtnActionPerformed
 
@@ -1164,7 +1164,6 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RemoverDemonstracaoActionPerformed
 
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
-        //jMenuItemPreencherCampos.setEnabled(true);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
