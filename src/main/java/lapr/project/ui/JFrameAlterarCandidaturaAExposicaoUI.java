@@ -37,6 +37,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private transient ModeloListaDemonstracoes listModelDemonstracoes;
     private transient List<Demonstracao> listaDemonstracoes;
     private transient int numDemonstracoes;
+    private transient JFrame thisFrame;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
@@ -53,6 +54,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.m_email = email;
         this.numProdutos = 0;
+        this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
         setLocationRelativeTo(null);
@@ -1113,21 +1115,16 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     for (Produto p : modeloJListaProdutosCard2.getListaProdutos()) {
                         controller.adicionarProduto(p);
                     }
-                    dispose();
-                    try {
-                        controller.alterarCandidatura();
-                    } catch (NumeroConvitesErradoException|TelemovelEmpresaErradoException|AreaErradaException|KeywordsErradasException e)
-                        {
-                            
-                        }
-                        jFrameMenuPrincipal.setVisible(true);
-                        JOptionPane.showMessageDialog(rootPane, "Alterações efetuadas com sucesso", "Concluído", JOptionPane.PLAIN_MESSAGE);
-                    }
-                }catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException | KeywordsErradasException exception) {
+                    controller.alterarCandidatura();
+                    thisFrame.dispose();
+                    jFrameMenuPrincipal.setVisible(true);
+                    JOptionPane.showMessageDialog(rootPane, "Alterações efetuadas com sucesso", "Concluído", JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (TelemovelEmpresaErradoException | AreaErradaException | NumeroConvitesErradoException | KeywordsErradasException exception) {
                 JOptionPane.showMessageDialog(rootPane, exception.getMessage(), "Dados inválidos", JOptionPane.WARNING_MESSAGE);
             }
-            }else {
-            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!%nAviso: No caso de ter produtos não se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não pode deixar nenhum campo por preencher!                                         Aviso: No caso de ter produtos não se esqueça de introduzir no mínima duas keywords!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_terminarAlteracaoBtnActionPerformed
 
@@ -1164,6 +1161,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RemoverDemonstracaoActionPerformed
 
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
+        //jMenuItemPreencherCampos.setEnabled(true);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
