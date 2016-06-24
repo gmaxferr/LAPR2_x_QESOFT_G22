@@ -92,11 +92,11 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Construtor de objectos do tipo Utilizador com parametros
-     * 
+     *
      * @param nome nome do utilizador
      * @param username username do utilizador
      * @param password password do utilizador
-     * @param email  email do utilizador
+     * @param email email do utilizador
      */
     public Utilizador(String nome, String username, char[] password, String email) {
         this();
@@ -109,7 +109,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Construtor de objectos do tipo Utilizador com parametros
-     * 
+     *
      * @param nome nome do utilizador
      * @param username username do utilizador
      * @param password password do utilizador
@@ -156,7 +156,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Modifica o boolean do gestor
-     * 
+     *
      * @param b novo boolean do gestor
      */
     public void setIsGestor(boolean b) {
@@ -165,7 +165,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Devolve o boolean do gestor
-     * 
+     *
      * @return boolena do gestor
      */
     public boolean isGestor() {
@@ -210,6 +210,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Devolve o randomCaesarShift
+     *
      * @return randomCaesarShift
      */
     public int getShifts() {
@@ -218,7 +219,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Modifica o randomCaesarShift
-     * 
+     *
      * @param shifts novo randomCaesarShift
      */
     public void setShifts(int shifts) {
@@ -365,7 +366,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Devolve o numero de avaliações que este utilizador já realizou
-     * 
+     *
      * @return numero de avaliações que este utilizador já realizou
      */
     public int getnAvaliacoesDesdeSempre() {
@@ -374,8 +375,9 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Modifica o numero de avaliações que este utilizador já realizou
-     * 
-     * @param nAvaliacoesDesdeSempre novo numero de avaliações que este utilizador já realizou
+     *
+     * @param nAvaliacoesDesdeSempre novo numero de avaliações que este
+     * utilizador já realizou
      */
     public void setnAvaliacoesDesdeSempre(int nAvaliacoesDesdeSempre) {
         this.nAvaliacoesDesdeSempre = nAvaliacoesDesdeSempre;
@@ -383,7 +385,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Devolve a keyword
-     * 
+     *
      * @return keyword
      */
     public String getKeyword() {
@@ -391,8 +393,9 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
     }
 
     /**
-     * Modifica a keyword 
-     * @param keyword nova keyword 
+     * Modifica a keyword
+     *
+     * @param keyword nova keyword
      */
     public void setKeyword(String keyword) {
         this.keyword = keyword;
@@ -400,7 +403,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Valida a keyword
-     * 
+     *
      * @return true se a keywor for válida. Caso contrário retorna false
      */
     public boolean validaKeyword() {
@@ -415,7 +418,7 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
 
     /**
      * Valida a password e a keyword
-     * 
+     *
      * @return true se forem válidas. Caso contrário retorna false.
      */
     public boolean isValid() {
@@ -431,20 +434,13 @@ public class Utilizador implements ApresentavelNaJTable, Importable<Utilizador>,
      * @return true se o objeto recebido representar um utilizador equivalente
      * ao utilizador. Caso contrário, retorna false.
      */
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null
                 && obj instanceof Utilizador) {
             Utilizador o = (Utilizador) obj;
-            if (this.isGestor == o.isGestor
-                    && (this.keyword == null ? o.keyword == null : this.keyword.equals(o.keyword))
-                    && this.nAvaliacoesDesdeSempre == o.nAvaliacoesDesdeSempre
-                    && (this.m_strEmail == null ? o.m_strEmail == null : this.m_strEmail.equals(o.m_strEmail))
-                    && (this.m_strNome == null ? o.m_strNome == null : this.m_strNome.equals(o.m_strNome))
-                    && (this.m_strUsername == null ? o.m_strUsername == null : this.m_strUsername.equals(o.m_strUsername))
-                    && Arrays.equals(CaesarsCypher.decrypt(this.m_strPwd, this.randomCaesarShift, PARCIAL_ALFABET),
-                            CaesarsCypher.decrypt(o.m_strPwd, o.randomCaesarShift, PARCIAL_ALFABET))) {
+            if (this.m_strEmail == null ? o.m_strEmail == null : this.m_strEmail.equals(o.m_strEmail)
+                    || (this.m_strUsername == null ? o.m_strUsername == null : this.m_strUsername.equals(o.m_strUsername))) { // || (OU) foi usado porque ambos os elementos são únicos e algumas instâncias de Utilizadores no sistema, para ocupar menos memória, apenas guardam um dos parâmetros
                 return true;
             }
         }
