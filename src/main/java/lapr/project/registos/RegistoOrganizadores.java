@@ -71,6 +71,12 @@ public class RegistoOrganizadores implements Importable<RegistoOrganizadores>, E
         return this.m_listaOrganizadores;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
         for (Organizador o : m_listaOrganizadores) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {

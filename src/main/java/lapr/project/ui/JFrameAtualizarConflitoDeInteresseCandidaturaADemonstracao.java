@@ -1,10 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelTipoDeConflitoDemonstracao;
-import lapr.project.uiModel.ComboBoxModelCandidaturaADemonstracao;
-import lapr.project.uiModel.ComboBoxModelDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
-import lapr.project.uiModel.AbstractListModelConflitosDeInteresseCandidaturaADemonstracao;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.*;
@@ -13,7 +9,8 @@ import lapr.project.controller.AtualizarConflitoDeInteresseCandidaturaADemonstra
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Atualizar conflitos de interesse candidatura a demonstração
+ * 
  * @author G29
  */
 public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends javax.swing.JFrame {

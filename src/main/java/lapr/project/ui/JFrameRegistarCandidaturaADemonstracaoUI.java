@@ -15,8 +15,9 @@ import lapr.project.model.*;
 import lapr.project.uiModel.AbstractListModelDemonstracoes;
 
 /**
- *
- * @author Guilherme
+ * UI do UC Registar candidatura a demonstração
+ * 
+ * @author G29
  */
 public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 

@@ -10,7 +10,8 @@ import lapr.project.model.*;
 import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
 
 /**
- *
+ * UI do UC Decidir candidatura a exposição
+ * 
  * @author G29
  */
 public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {

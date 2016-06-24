@@ -1,10 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ModeloListaProdutos;
-import lapr.project.uiModel.ComboBoxModelDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
-import lapr.project.uiModel.ModeloListaDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -12,14 +8,12 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.*;
-import lapr.project.exceptions.AreaErradaException;
-import lapr.project.exceptions.KeywordsErradasException;
-import lapr.project.exceptions.NumeroConvitesErradoException;
-import lapr.project.exceptions.TelemovelEmpresaErradoException;
+import lapr.project.exceptions.*;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC  Alterar candidatura a exposicao
+ * 
  * @author G29
  */
 public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {

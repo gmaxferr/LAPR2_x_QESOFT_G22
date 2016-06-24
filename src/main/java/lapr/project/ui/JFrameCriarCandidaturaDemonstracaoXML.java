@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.CardLayout;
@@ -17,15 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.CriarCandidaturaDemonstracaoXMLController;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.uiModel.ComboBoxModelDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.model.*;
+import lapr.project.uiModel.*;
 
 /**
- *
- * @author JoãoCardoso aka K4rd050
+ * UI do UC Criar candidatura demonstracao XML
+ * 
+ * @author G29
  */
 public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
 

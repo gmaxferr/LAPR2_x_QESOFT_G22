@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.timerTasks.demonstracao;
 
 import java.util.TimerTask;
@@ -12,13 +7,23 @@ import lapr.project.estados.Demonstracao.EstadoDemonstracaoConflitosDetetados;
 import lapr.project.model.Demonstracao;
 
 /**
- *
- * @author JoãoCardoso aka K4rd050
+ * Representação de um timer AlterarParaConflitosDetetados
+ * 
+ * @author G29
  */
 public class AlterarParaConflitosDetetados extends TimerTask{
 
+    /**
+     * Demonstração
+     */
     private Demonstracao m_demo;
     
+    /**
+     * Construtor de objetos do tipo AlterarParaConflitosDetetados com o 
+     * parametro demostração
+     * 
+     * @param d demonstração
+     */
     public AlterarParaConflitosDetetados(Demonstracao d){
         m_demo = d;
     }

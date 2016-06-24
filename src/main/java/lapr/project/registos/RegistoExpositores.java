@@ -123,6 +123,12 @@ public class RegistoExpositores implements Importable<RegistoExpositores>, Expor
         return node;
     }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     *
+     * @param m_registoUtilizadores registo de utilizadores
+     */
     public void fix(RegistoUtilizadores m_registoUtilizadores) {
         for (Expositor repr : m_listaExpositores) {
             for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {

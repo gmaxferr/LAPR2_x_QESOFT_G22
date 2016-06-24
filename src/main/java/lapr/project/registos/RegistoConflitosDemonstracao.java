@@ -9,7 +9,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um Registo de Conflitos Demonstração
+ * 
  * @author G29
  */
 public class RegistoConflitosDemonstracao implements Importable<RegistoConflitosDemonstracao>, Exportable {
@@ -22,7 +23,7 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
     private final List<ConflitoDeInteresseDemonstracao> m_listaConflitos;
 
     /**
-     * Construtor de objetos do tipo RegistoConflitos sem parâmetros
+     * Construtor de objetos do tipo RegistoConflitosDemonstracao sem parâmetros
      */
     public RegistoConflitosDemonstracao() {
         this.m_listaConflitos = new ArrayList<>();
@@ -34,6 +35,7 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
      *
      * @param fae - FAE que conflite com uma Candidatura
      * @param cand - Candidatura com que o FAE conflite
+     * @param tipoConflito - tipo de conflito da demonstração
      */
     public void criarConflito(FAE fae, CandidaturaADemonstracao cand, TipoConflitoDemonstracao tipoConflito) {
         ConflitoDeInteresseDemonstracao c = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
@@ -45,6 +47,7 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
      *
      * @param fae - FAE em conflito
      * @param cand - Candidatura em conflito
+     * @param tipo - tipo de conflito da demonstração
      * @return true se for válido; false caso contrário.
      */
     public boolean valida(FAE fae, CandidaturaADemonstracao cand, TipoConflitoDemonstracao tipo) {
@@ -60,7 +63,7 @@ public class RegistoConflitosDemonstracao implements Importable<RegistoConflitos
     /**
      * Devolve a lisat de conflitos de interesse
      *
-     * @return a lista de conflitos
+     * @return a lista de conflitos de interesse
      */
     public List<ConflitoDeInteresseDemonstracao> getListaConflitos() {
         return m_listaConflitos;
