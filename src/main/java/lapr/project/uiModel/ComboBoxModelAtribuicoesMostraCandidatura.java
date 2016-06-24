@@ -40,7 +40,11 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
      */
     @Override
     public int getSize() {
-        return this.m_listaAtribuicoes.size();
+        if (this.m_listaAtribuicoes != null) {
+            return this.m_listaAtribuicoes.size();
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -50,7 +54,8 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
      * @return String com dados de uma candidatura.
      */
     @Override
-    public Object getElementAt(int index) {
+    public Object getElementAt(int index
+    ) {
         CandidaturaAExposicao candidatura = this.m_listaAtribuicoes.get(index).getCandidaturaAssociada();
         String candidaturaExpositor = candidatura.getNomeEmpresa() + "; " + candidatura.getUsernameExpositor();
         return candidaturaExpositor;
@@ -62,7 +67,8 @@ public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel
      * @param anItem item selecionado.
      */
     @Override
-    public void setSelectedItem(Object anItem) {
+    public void setSelectedItem(Object anItem
+    ) {
         selection = (String) anItem;
     }
 

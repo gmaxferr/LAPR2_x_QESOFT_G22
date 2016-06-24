@@ -17,12 +17,12 @@ import lapr.project.model.*;
 public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private final transient JFrame jFrameMenuPrincipal;
-    private static final int CARD3_LARGURA_MINIMA = 400;
-    private static final int CARD3_ALTURA_MINIMA = 240;
+
     private transient final AvaliarCandidaturaAExposicaoController controller;
     private transient final List<Exposicao> listaExposicoes;
     private transient List<AtribuicaoCandidatura> listaAtribuicoesDoFAE;
     private transient Avaliacao avaliacaoDoFae;
+    private final CardLayout cardLayout;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     private static final String[] LISTA_DEMONSTRACOES_POR_OMISSAO = {"A apresentar as demonstrações a que foram mostrado interesse."};
@@ -30,9 +30,11 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
     private static final int CARD1_ALTURA = 370;
     private static final int CARD1_LARGURA = 710;
 
-    private static final int CARD2_LARGURA = 480;
-    private static final int CARD2_ALTURA = 480;
-    private final CardLayout cardLayout;
+    private static final int CARD2_LARGURA = 690;
+    private static final int CARD2_ALTURA = 650;
+
+    private static final int CARD3_LARGURA_MINIMA = 692;
+    private static final int CARD3_ALTURA_MINIMA = 516;
 
     /**
      * Creates new form JFrameDecidirCandidaturas
@@ -441,7 +443,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE));
         jComboBoxCard2EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCard2EscolherCandidaturaActionPerformed(evt);
@@ -492,23 +493,24 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(106, 106, 106))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jButtonCard2Recuar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCard2Avancar)
                 .addGap(47, 47, 47))
             .addGroup(card2Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(card2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                        .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(249, 249, 249))))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,6 +687,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
             controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
             listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAEEstaadoAtribuidas();
+            jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE));
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
             } else {

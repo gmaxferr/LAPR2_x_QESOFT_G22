@@ -22,8 +22,8 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO1 = 705;
     private static final int ALTURA_JANELA_PASSO1 = 390;
 
-    private static final int LARGURA_JANELA_PASSO2 = 480;
-    private static final int ALTURA_JANELA_PASSO2 = 450;
+    private static final int LARGURA_JANELA_PASSO2 = 681;
+    private static final int ALTURA_JANELA_PASSO2 = 500;
 
     private static final int LARGURA_JANELA_PASSO3 = 441;
     private static final int ALTURA_JANELA_PASSO3 = 188;
