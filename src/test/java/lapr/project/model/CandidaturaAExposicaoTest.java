@@ -1,29 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
-import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoProdutos;
-import lapr.project.registos.RegistoUtilizadores;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import lapr.project.estados.CandidaturaAExposicao.*;
+import lapr.project.registos.*;
+import lapr.project.utils.Data;
+import org.junit.*;
 import static org.junit.Assert.*;
 import org.w3c.dom.Node;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class CandidaturaAExposicaoTest {
 
@@ -481,39 +469,11 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testGetEmailExpositor() {
         System.out.println("getEmailExpositor");
-        CandidaturaAExposicao instance = null;
-        String expResult = "";
-        String result = instance.getEmailExpositor();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDescricao method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testGetDescricao() {
-        System.out.println("getDescricao");
-        CandidaturaAExposicao instance = null;
-        String expResult = "";
-        String result = instance.getDescricao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDescricao method, of class CandidaturaAExposicao.
-     */
-    @Test
-    public void testSetDescricao() {
-        System.out.println("setDescricao");
-        String m_descricao = "";
-        CandidaturaAExposicao instance = null;
-        instance.setDescricao(m_descricao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Expositor expositor = new Expositor(new Utilizador("nome", "username", "password".toCharArray(), "email2"));
+        Produto p = instance.criarProduto("produto1");
+        instance.addProduto(p);
+        instance.setExpositor(expositor);
+        assertEquals("email2", instance.getExpositor().getEmail());
     }
 
     /**
@@ -522,11 +482,11 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testSetExpositor() {
         System.out.println("setExpositor");
-        Expositor expositor = null;
-        CandidaturaAExposicao instance = null;
+        Expositor expositor = new Expositor(new Utilizador("nome", "username", "password".toCharArray(), "email"));
+        Produto p = instance.criarProduto("produto1");
+        instance.addProduto(p);
         instance.setExpositor(expositor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("username", instance.getExpositor().getUsername());
     }
 
     /**
@@ -535,12 +495,8 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        CandidaturaAExposicao instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setNomeEmpresa("nomeEmpresa");
+        assertEquals("nomeEmpresa", instance.toString());
     }
 
     /**
@@ -549,12 +505,7 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testGetExposicao() {
         System.out.println("getExposicao");
-        CandidaturaAExposicao instance = null;
-        Exposicao expResult = null;
-        Exposicao result = instance.getExposicao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(e, instance.getExposicao());
     }
 
     /**
@@ -563,11 +514,9 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = null;
-        CandidaturaAExposicao instance = null;
-        instance.setExposicao(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Exposicao expo = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        instance.setExposicao(expo);
+        assertEquals(expo, instance.getExposicao());
     }
 
 }
