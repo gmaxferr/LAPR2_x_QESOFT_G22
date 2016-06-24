@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -1006,9 +1010,8 @@
                       <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="84" pref="84" max="-2" attributes="0"/>
                       <Component id="jRadioButtonCard2Sim" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jRadioButtonCard2Nao" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1019,9 +1022,9 @@
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRadioButtonCard2Sim" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonCard2Nao" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jRadioButtonCard2Nao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonCard2Sim" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1040,6 +1043,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCard2SimActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="buttonGroup1.add(jRadioButtonCard2Sim);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButtonCard2Nao">
               <Properties>
@@ -1049,6 +1055,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCard2NaoActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="buttonGroup1.add(jRadioButtonCard2Nao);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

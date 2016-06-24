@@ -70,6 +70,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         card1 = new javax.swing.JPanel();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jButtonCard1Avancar = new javax.swing.JButton();
@@ -680,6 +681,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
 
         jLabel25.setText("Pretende participar em alguma demonstração?");
 
+        buttonGroup1.add(jRadioButtonCard2Sim);
         jRadioButtonCard2Sim.setText("Sim");
         jRadioButtonCard2Sim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -687,6 +689,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButtonCard2Nao);
         jRadioButtonCard2Nao.setSelected(true);
         jRadioButtonCard2Nao.setText("Não");
         jRadioButtonCard2Nao.addActionListener(new java.awt.event.ActionListener() {
@@ -703,9 +706,8 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel25))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
                 .addComponent(jRadioButtonCard2Sim)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioButtonCard2Nao))
         );
         jPanel5Layout.setVerticalGroup(
@@ -714,9 +716,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel25)
                 .addGap(19, 19, 19)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonCard2Sim)
-                    .addComponent(jRadioButtonCard2Nao)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonCard2Nao)
+                    .addComponent(jRadioButtonCard2Sim)))
         );
 
         voltarParaEscolherCandBtn.setText("Recuar");
@@ -1169,6 +1171,8 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         if (listModelDemonstracoes.getSize() != 0) {
             controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
+            JOptionPane.showMessageDialog(rootPane, "Demonstrações adicionadas", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+            thisFrame.dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
         }
@@ -1185,6 +1189,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarProdutoBtn;
     private javax.swing.JTextField areaTxt;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
