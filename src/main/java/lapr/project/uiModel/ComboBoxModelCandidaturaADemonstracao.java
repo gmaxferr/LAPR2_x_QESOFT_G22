@@ -7,7 +7,7 @@ import lapr.project.model.CandidaturaADemonstracao;
 
 /**
  * Representação de uma ComboBoxModelCandidaturaADemonstracao
- * 
+ *
  * @author G29
  */
 public class ComboBoxModelCandidaturaADemonstracao extends AbstractListModel implements ComboBoxModel {
@@ -18,7 +18,7 @@ public class ComboBoxModelCandidaturaADemonstracao extends AbstractListModel imp
     private transient List<CandidaturaADemonstracao> m_listaCands;
 
     /**
-     * Objeto (Candidaturas) selecionado.
+     * Candidatura selecionada.
      */
     private transient Object selection;
 
@@ -38,8 +38,12 @@ public class ComboBoxModelCandidaturaADemonstracao extends AbstractListModel imp
      *
      * @return tamanho da lista das candidaturas.
      */
+    @Override
     public int getSize() {
-        return this.m_listaCands.size();
+        if (this.m_listaCands != null) {
+            return this.m_listaCands.size();
+        }
+        return 0;
     }
 
     /**
@@ -73,5 +77,4 @@ public class ComboBoxModelCandidaturaADemonstracao extends AbstractListModel imp
         return selection;
     }
 
-    
 }

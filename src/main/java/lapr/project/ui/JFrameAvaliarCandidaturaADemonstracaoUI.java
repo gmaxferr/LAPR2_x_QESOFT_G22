@@ -708,6 +708,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             controller.getRegistoAtribuicoes();
             controller.setDemonstracao(this.listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAE(usernameFAE);
+            jComboBoxCard3EscolherCandidatura.setModel(new ComboBoxModelCandidaturaADemonstracao(listaCandsDemo));
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard3();
             } else {
@@ -794,7 +795,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private void jButtonCard3Recuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3Recuar1ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "card2");
+        cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }//GEN-LAST:event_jButtonCard3Recuar1ActionPerformed
 
