@@ -545,6 +545,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                 case "atribuida":
                     this.m_estado = new EstadoCandidaturaAExposicaoAtribuida(this);
                     break;
+                case "naoAvaliada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoNaoAvaliada(this);
+                    break;
                 case "avaliada":
                     this.m_estado = new EstadoCandidaturaAExposicaoAvaliada(this);
                     break;
