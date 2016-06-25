@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
-import lapr.project.uiModel.ComboBoxModelCandidaturasMostraExpositores;
-import lapr.project.uiModel.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JFrame;

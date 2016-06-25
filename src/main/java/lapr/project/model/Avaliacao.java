@@ -7,7 +7,7 @@ import org.w3c.dom.*;
 
 /**
  * Representação de uma Avaliação
- * 
+ *
  * @author G29
  */
 public class Avaliacao implements Importable<Avaliacao>, Exportable {
@@ -51,6 +51,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * Rating adequação dos dados da candidatura
      */
     private int m_ratingAdequacaoDadosCandidatura;
+
+    /**
+     * Indica se foi tomada uma avaliação para não confundir com o caso de não
+     * ser tomada nenhuma ou o fae dar todos os ratings a zero
+     */
+    private boolean avaliada;
 
     /**
      * Construtor de objetos do tipo Avaliação sem parâmetros
@@ -127,6 +133,15 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     }
 
     /**
+     * Devolve o boolean guardado na variavel avaliada
+     *
+     * @return true se foi feita uma avaliação, falso caso contrário
+     */
+    public boolean isAvaliada() {
+        return this.avaliada;
+    }
+
+    /**
      * Calcula e devolve a média dos ratings associados a esta avaliação
      *
      * @return média dos ratings da avaliação
@@ -159,6 +174,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
         this.m_ratingAdequacaoNumConvites = ratingAdequacaoNumConvites;
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
+        this.avaliada = true;
     }
 
     /**
