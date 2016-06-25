@@ -7,7 +7,7 @@ import lapr.project.utils.Data;
 
 /**
  * Representação do EstadoExposicaoInicial
- * 
+ *
  * @author G29
  */
 public class EstadoExposicaoInicial extends EstadoExposicao {
@@ -17,10 +17,12 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
     private TimerTask inicioSubCand;
     private TimerTask fimSubCand;
     private TimerTask fimDetecaoConflitos;
+    private TimerTask fimAvaliacoes;
 
     private Data data1;
     private Data data2;
     private Data data3;
+    private Data data4;
 
     public EstadoExposicaoInicial(Exposicao exposicao, CentroExposicoes ce) {
         super(exposicao);
@@ -36,8 +38,10 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
 
         data3 = m_exposicao.getDataFimDetecaoConflitos();
 
+        data4 = m_exposicao.getDataFimAvaliacoes();
+
         m_exposicao.setEstado(new EstadoExposicaoCriada(m_exposicao));
-        
+
         inicioSubCand = new AlterarParaAbertaCandidaturas(m_exposicao);
         m_exposicao.schedule(inicioSubCand, data1);
 
@@ -46,6 +50,9 @@ public class EstadoExposicaoInicial extends EstadoExposicao {
 
         fimDetecaoConflitos = new AlterarParaConflitosAtualizados(m_exposicao);
         m_exposicao.schedule(fimDetecaoConflitos, data3);
+
+        fimAvaliacoes = new AlterarParaFimAvaliacoes(m_exposicao);
+        m_exposicao.schedule(fimAvaliacoes, data4);
 
         return true;
     }

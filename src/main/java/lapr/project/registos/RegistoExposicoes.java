@@ -329,16 +329,20 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista de exposições de um fae
+     * Devolve uma lista de exposições que um fae pode atualizar conflitos
      *
      * @param usernameFae username do fae
-     * @return lista de exposições do fae
+     * @return lista de exposições que o fae pode atualizar conflitos
      */
-    public List<Exposicao> getFaeExpos(String usernameFae) {
+    public List<Exposicao> getExposEstadoConflitosDetetadosFae(String usernameFae) {
         List<Exposicao> exposFAE = new ArrayList<>();
         for (Exposicao ex : this.m_listaExposicoes) {
-            if (ex.getRegistoFAE().isFAE(usernameFae) && !ex.getRegistoConflitos().getListaConflitos().isEmpty()) {
-                exposFAE.add(ex);
+            if(ex.getEstado().isEstadoConflitosDetetados()){
+                for(FAE f:ex.getListaFAE()){
+                    if(f.getUsernameFae().equalsIgnoreCase(usernameFae)){
+                        exposFAE.add(ex);
+                    }
+                }
             }
         }
         return exposFAE;
@@ -429,7 +433,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         for (Exposicao exposicao : m_listaExposicoes) {
             listOrg = exposicao.getListaOrganizadores();
             for (Organizador organizador : listOrg) {
-                if (validaOrgEExpo(usernameOrg, organizador, exposicao)) {
+                if (validaOrgEExpo2(usernameOrg, organizador, exposicao)) {
                     listaExposicoes.add(exposicao);
                 }
             }
@@ -439,17 +443,35 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Valida o organizador 
-     * 
+     * verifica se o username recebido por parametro coincide com o do
+     * organizador também recebido por parametro e que a exposição sobre a qual
+     * este organizador detém o cargo esta no estado FaeDefinidosSemDemos
+     *
      * @param usernameOrg usernanme do organizador
      * @param organizador organizador
      * @param exposicao exposição
      * @return true se o organizador for válido. Caso contrário retorna false.
      */
-    private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao) {
+    private boolean validaOrgEExpo2(String usernameOrg, Organizador organizador, Exposicao exposicao) {
         return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
                 && (exposicao.getEstado().isEstadoCriada()
                 || exposicao.getEstado().isEstadoFAEDefinidosSemDemos());
+    }
+
+    /**
+     * Valida organizador
+     *
+     * @param usernameOrg username do organizador
+     * @param organizador organizador
+     * @param exposicao exposicao
+     * @return true se o organizador for válido. Caso contrário retorna false.
+     */
+    private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao) {
+        return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
+                && (exposicao.getEstado().isEstadoCriada()
+                || exposicao.getEstado().isEstadoFAEDefinidosSemDemos()
+                || exposicao.getEstado().isEstadoDemosDefinidasSemFAE()
+                || exposicao.getEstado().isEstadoCompleta());
     }
 
     /**
@@ -478,13 +500,13 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         }
         return result;
     }
-    
+
     /**
-     * Devolve uma lista de exposições do organizador em estado candidatura a 
+     * Devolve uma lista de exposições do organizador em estado candidatura a
      * demonstrações avaliadas
-     * 
+     *
      * @param username username do organozador
-     * @return lista de exposições do organizador em estado candidatura a 
+     * @return lista de exposições do organizador em estado candidatura a
      * demonstrações avaliadas
      */
     public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
@@ -508,8 +530,9 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve a lista de exposições do organizador em estado conflitos alterados
-     * 
+     * Devolve a lista de exposições do organizador em estado conflitos
+     * alterados
+     *
      * @param usernameOrganizador username do organizador
      * @return lista de exposições do organizador em estado conflitos alterados
      */

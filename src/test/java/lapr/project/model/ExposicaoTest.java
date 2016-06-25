@@ -77,7 +77,7 @@ public class ExposicaoTest {
         data5 = new Data("2016-10-09T00:00:00Z");
         data6 = new Data("2016-10-10T00:00:00Z");
         data7 = new Data("2016-10-11T00:00:00Z");
-        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5,data6, local, ce);
         e.setDataFimCandDemo(data6);
         e.setDataInicioCandDemo(data7);
         demo = new Demonstracao("descr");
@@ -1125,7 +1125,7 @@ public class ExposicaoTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        Exposicao expo = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        Exposicao expo = new Exposicao(titulo, desc, data1, data2, data3, data4, data5,data6, local, ce);
         expo.setDataFimCandDemo(data6);
         expo.setDataInicioCandDemo(data7);
         int expResult = expo.hashCode();

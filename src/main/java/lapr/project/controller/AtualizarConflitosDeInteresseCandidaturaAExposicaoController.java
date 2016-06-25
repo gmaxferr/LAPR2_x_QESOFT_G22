@@ -104,7 +104,7 @@ public class AtualizarConflitosDeInteresseCandidaturaAExposicaoController {
      */
     public List<Exposicao> getFaeExpos() {
         re = ce.getRegistoExposicoes();
-        return re.getFaeExpos(usernameFae);
+        return re.getExposEstadoConflitosDetetadosFae(usernameFae);
     }
 
     /**
