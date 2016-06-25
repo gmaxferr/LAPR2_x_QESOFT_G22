@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.registos;
 
 import java.util.ArrayList;
@@ -10,22 +5,8 @@ import java.util.List;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoCandidaturasAvaliadas;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoPendente;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
-import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.KeywordRanking;
-import lapr.project.model.Local;
-import lapr.project.model.Recurso;
-import lapr.project.model.Utilizador;
+import lapr.project.estados.Exposicao.*;
+import lapr.project.model.*;
 import lapr.project.utils.Data;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class RegistoExposicoesTest {
 

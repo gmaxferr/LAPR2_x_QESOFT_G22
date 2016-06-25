@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ana
+ * @author G29
  */
 public class EstadoCandidaturaAExposicaoAtribuidaTest {
 
