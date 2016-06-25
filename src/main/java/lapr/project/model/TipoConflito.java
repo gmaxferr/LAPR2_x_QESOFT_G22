@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -70,6 +71,13 @@ public class TipoConflito implements Importable<TipoConflito>, Exportable {
             return this.ID.equals(o.ID);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.ID);
+        return hash;
     }
 
     @Override

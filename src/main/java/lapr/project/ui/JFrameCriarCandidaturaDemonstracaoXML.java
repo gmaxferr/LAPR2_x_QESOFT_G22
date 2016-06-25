@@ -28,9 +28,9 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
     private transient Exposicao m_expo;
     private transient final List<Exposicao> m_listaExposicoes;
 
-    private CentroExposicoes m_ce;
-    private Demonstracao m_demo;
-    private CriarCandidaturaDemonstracaoXMLController controller;
+    private transient CentroExposicoes m_ce;
+    private transient Demonstracao m_demo;
+    private transient CriarCandidaturaDemonstracaoXMLController controller;
 
     private transient List<Demonstracao> m_listaDemonstracoes;
 

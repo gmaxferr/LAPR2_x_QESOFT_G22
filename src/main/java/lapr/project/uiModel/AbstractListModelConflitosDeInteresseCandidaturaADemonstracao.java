@@ -14,7 +14,7 @@ public class AbstractListModelConflitosDeInteresseCandidaturaADemonstracao exten
     /**
      * Lista de conflitos de interesse a demonstração
      */
-    private List<ConflitoDeInteresseDemonstracao> listaConflitos;
+    private transient List<ConflitoDeInteresseDemonstracao> listaConflitos;
 
     /**
      * Construtor de objetos do tipo AbstractListModelConflitosDeInteresseCandidaturaADemonstracao

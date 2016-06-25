@@ -16,8 +16,8 @@ import lapr.project.uiModel.*;
  */
 public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
 
-    private JFrame mainMenu;
-    private DecidirCandidaturaADemonstracaoController CTRL;
+    private transient JFrame mainMenu;
+    private transient DecidirCandidaturaADemonstracaoController CTRL;
 
     private transient final ArrayList<Exposicao> listaExposicoes;
     private transient ArrayList<Demonstracao> listaDemos;
@@ -34,7 +34,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     private static final int LARGURA_JANELA_PASSO4 = 441;
     private static final int ALTURA_JANELA_PASSO4 = 188;
 
-    private List<CandidaturaADemonstracao> listaCandsDemo;
+    private transient List<CandidaturaADemonstracao> listaCandsDemo;
 
     /**
      * Creates new form JFrameDecidirCandidaturaADemonstracao

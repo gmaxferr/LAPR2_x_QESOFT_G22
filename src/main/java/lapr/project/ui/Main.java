@@ -103,7 +103,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
         }
-        new LoginV2(centroExposicoes);
+        JFrame frame = new LoginV2(centroExposicoes);
     }
 
     private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
