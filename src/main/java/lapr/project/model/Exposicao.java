@@ -174,7 +174,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param local local da exposição
      * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Data dataInicioAvaliacoes, Data dataFimAvaliacoes, Local local, CentroExposicoes centroExposicoes) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Data dataFimAvaliacoes, Local local, CentroExposicoes centroExposicoes) {
         this(centroExposicoes);
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
