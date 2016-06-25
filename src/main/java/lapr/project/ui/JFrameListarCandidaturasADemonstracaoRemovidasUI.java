@@ -545,6 +545,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         controller.setExposicao(listaExposicoesDoOrganizador.get(jComboBoxEscolherExposicao.getSelectedIndex()));
         controller.getRegistoDemonstracoes();
         this.listaDemonstracoes = controller.getListaDemonstracoesDoOrganizadorVariosEstados(usernameOrganizador);
+        jComboBoxEscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(listaDemonstracoes));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
