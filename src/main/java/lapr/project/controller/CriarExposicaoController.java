@@ -100,13 +100,14 @@ public class CriarExposicaoController {
      * @return o objecto Exposição criado com estes parametros ou null se não
      * foi possivel criar com esses parametros
      */
-    public Exposicao setDados(String strTitulo, String strDescricao, Data dataInicio, Data dataFim, Data dataAberturaSubCand, Data dataEncerramentoSubCand, Data dataFimDetecaoConflitos, Local strLocal) {
+    public Exposicao setDados(String strTitulo, String strDescricao, Data dataInicio, Data dataFim, Data dataAberturaSubCand, Data dataEncerramentoSubCand, Data dataFimDetecaoConflitos, Data dataFimAvaliacoes, Local strLocal) {
         m_exposicao.setTitulo(strTitulo);
         m_exposicao.setDescricao(strDescricao);
         m_exposicao.setPeriodo(dataInicio, dataFim);
         m_exposicao.setDataAberturaSubCand(dataAberturaSubCand);
         m_exposicao.setDataEncerramentoSubCand(dataEncerramentoSubCand);
         m_exposicao.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
+        m_exposicao.setDataFimAvaliacoes(dataFimAvaliacoes);
         m_exposicao.setLocal(strLocal);
         if (!m_exposicao.valida()) {
             m_exposicao = null;

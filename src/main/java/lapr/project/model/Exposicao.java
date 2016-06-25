@@ -70,6 +70,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     private Data m_dataFimDetecaoConflitos;
 
     /**
+     * Data em que acaba o período de avaliacoes das candidaturas à exposição
+     */
+    private Data m_dataFimAvaliacoes;
+
+    /**
      * Atributo local de Exposição
      */
     private Local local;
@@ -169,7 +174,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param local local da exposição
      * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes centroExposicoes) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Data dataInicioAvaliacoes, Data dataFimAvaliacoes, Local local, CentroExposicoes centroExposicoes) {
         this(centroExposicoes);
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
@@ -179,6 +184,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+        this.m_dataFimAvaliacoes = dataFimAvaliacoes;
     }
 
     /**
@@ -251,6 +257,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public Data getDataFim() {
         return m_dataFim;
+    }
+
+    /**
+     * Devolve a data de fim do periodo de avaliacoes de candidaturas a
+     * exposição
+     *
+     * @return data de fim do periodo de avaliacoes de candidaturas a exposição
+     */
+    public Data getDataFimAvaliacoes() {
+        return m_dataFimAvaliacoes;
     }
 
     /**
@@ -584,7 +600,18 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @param dataInicioCandDemo the dataInicioCandDemo to set
+     * Permite alterar a data de fim de avaiações das candidaturas
+     * @param dataFimAvaliacoes
+     */
+    public void setDataFimAvaliacoes(Data dataFimAvaliacoes) {
+        m_dataFimAvaliacoes = dataFimAvaliacoes;
+    }
+
+    /**
+     * Permite alterar a data de inicio de submissão de candidaturas das
+     * demonstrações
+     *
+     * @param dataInicioCandDemo
      */
     public void setDataInicioCandDemo(Data dataInicioCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
@@ -596,7 +623,10 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @param dataFimCandDemo the dataFimCandDemo to set
+     * Permite alterar a data de fim de submissão de candidaturas das
+     * demonstrações
+     *
+     * @param dataFimCandDemo
      */
     public void setDataFimCandDemo(Data dataFimCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
@@ -606,6 +636,12 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
+    /**
+     * Permite alterar a data de deteção de conflitos de candidaturas das
+     * demonstrações
+     *
+     * @param dataFimDetecaoConflitos
+     */
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
@@ -731,6 +767,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         Data data2 = this.getDataFimSubCand();
 
         Data data3 = this.getDataFimDetecaoConflitos();
+        
+        Data data4 = this.getDataFimAvaliacoes();
 
         TimerTask inicioSubCand = new AlterarParaAbertaCandidaturas(this);
         this.schedule(inicioSubCand, data1);
@@ -740,6 +778,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
         TimerTask fimDetecaoConflitos = new AlterarParaConflitosAtualizados(this);
         this.schedule(fimDetecaoConflitos, data3);
+        
+        TimerTask fimAvaliacoes = new AlterarParaFimAvaliacoes(this);
+        this.schedule(fimAvaliacoes, data4);
     }
 
     @Override
