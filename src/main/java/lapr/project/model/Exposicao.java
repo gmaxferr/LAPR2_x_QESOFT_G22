@@ -633,9 +633,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setDataFimCandDemo(Data dataFimCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
-            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimCandidaturas(dataFimCandDemo, m_ce);
-            }
+            d.setDataFimCandidaturas(dataFimCandDemo, m_ce);
         }
     }
 
@@ -647,9 +645,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
-            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
-            }
+            d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         }
     }
 
@@ -675,8 +671,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public String toString() {
         return this.m_strTitulo;
     }
-    
-    
+
     /**
      * Compara a exposição a outro objecto passado por parametro. A comparação
      * entre duas exposições é feita com atenção a alguns todos os atributos
