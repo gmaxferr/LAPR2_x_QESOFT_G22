@@ -59,6 +59,10 @@ public abstract class EstadoExposicao implements Estado {
     public boolean setEstadoCandidaturasDecididas() {
         return false;
     }
+    
+    public boolean setEstadoDemosDecididas(){
+        return false;
+    }
 
     public boolean isEstadoInicial() {
         return false;
@@ -105,6 +109,10 @@ public abstract class EstadoExposicao implements Estado {
     }
 
     public boolean isEstadoCandidaturasDecididas() {
+        return false;
+    }
+    
+    public boolean isEstadoDemosDecididas(){
         return false;
     }
 }

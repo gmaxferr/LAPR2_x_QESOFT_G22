@@ -886,9 +886,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     break;
                 case "candsFechadas":
                     this.m_estado = new EstadoExposicaoCandidaturasFechadas(this);
+                    recriarTimersExpo();
                     break;
                 case "conflitosDetetados":
                     this.m_estado = new EstadoExposicaoConflitosDetetados(this);
+                    recriarTimersExpo();
                     break;
                 case "conflitosAlterados":
                     this.m_estado = new EstadoExposicaoConflitosAlterados(this);
@@ -901,17 +903,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     break;
                 case "candsDecididas":
                     this.m_estado = new EstadoExposicaoCandidaturasDecididas(this);
-                    if (!this.m_keywordRanking.isReady()) {
-                        for (CandidaturaAExposicao cand : getListaCandidaturasAExposicao()) {
-                            if (!cand.getEstado().isEstadoCandidaturaRemovida()) {
-                                String[] keywords = cand.getKeywords();
-                                for (String str : keywords) {
-                                    this.m_keywordRanking.addKeyword(str, cand.getDecisao());
-                                }
-                            }
-                        }
-                        this.m_keywordRanking.setReady();
-                    }
+                    checkKeywordRanking();
+                    break;
+                case "demosDecididas":
+                    this.m_estado = new EstadoExposicaoDemonstracoesDecididas(this);
+                    checkKeywordRanking();
                     break;
                 default:
                     break;
@@ -919,6 +915,20 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             recriarTimersDemo();
         }
         return this;
+    }
+
+    private void checkKeywordRanking() {
+        if (!this.m_keywordRanking.isReady()) {
+            for (CandidaturaAExposicao cand : getListaCandidaturasAExposicao()) {
+                if (!cand.getEstado().isEstadoCandidaturaRemovida()) {
+                    String[] keywords = cand.getKeywords();
+                    for (String str : keywords) {
+                        this.m_keywordRanking.addKeyword(str, cand.getDecisao());
+                    }
+                }
+            }
+            this.m_keywordRanking.setReady();
+        }
     }
 
     @Override
@@ -955,6 +965,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsAvaliadas");
             } else if (this.m_estado.isEstadoCandidaturasDecididas()) {
                 elementExpo.setAttribute(ESTADO_ATTR_NAME, "candsDecididas");
+            } else if (this.m_estado.isEstadoDemosDecididas()) {
+                elementExpo.setAttribute(ESTADO_ATTR_NAME, "demosDecididas");
             }
 
             Element elemChild;

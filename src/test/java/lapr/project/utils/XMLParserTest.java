@@ -49,7 +49,7 @@ public class XMLParserTest {
         System.out.println("convertToString");
         Document document = XMLParser.createDocument(new Keyword("keyWordValue").exportContentToXMLNode(), true);
         XMLParser instance = new XMLParser();
-        String expResult = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><keyword>\r\n<value>keyWordValue</value>\r\n</keyword>\r\n";
+        String expResult = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><keyword>keyWordValue</keyword>\r\n";
         String result = instance.convertToString(document);
         assertEquals(expResult, result);
     }
@@ -62,7 +62,7 @@ public class XMLParserTest {
         System.out.println("convertToString");
         Node node = new Keyword("keyWordValue").exportContentToXMLNode();
         XMLParser instance = new XMLParser();
-        String expResult = "<keyword>\r\n<value>keyWordValue</value>\r\n</keyword>\r\n";
+        String expResult = "<keyword>keyWordValue</keyword>\r\n";
         String result = instance.convertToString(node);
         assertEquals(expResult, result);
     }

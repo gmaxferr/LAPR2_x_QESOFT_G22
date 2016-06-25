@@ -107,7 +107,8 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
             Expositor expositor = new Expositor(null);
             expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
 
-            this.m_candidatura.setExpositor(expositor);
+            this.m_candidatura = new CandidaturaAExposicao(expositor);
+            this.m_candidatura.setNomeEmpresa(elem.getElementsByTagName(CandidaturaAExposicao.NOME_EMPRESA_ELEMENT_NAME).item(0).getTextContent());
             NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
@@ -135,11 +136,15 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
             elementBase.appendChild(document.importNode(this.m_tipoConflito.exportContentToXMLNode(), true));
 
             elementBase.appendChild(document.importNode(this.m_candidatura.getExpositor().exportContentToXMLNode(), true));
-
+            
+            Element elemChild = document.createElement(CandidaturaAExposicao.NOME_EMPRESA_ELEMENT_NAME);
+            elemChild.setTextContent(this.m_candidatura.getNomeEmpresa());
+            elementBase.appendChild(elemChild);
+            
             for (Keyword k : this.m_candidatura.getListKeyword()) {
                 elementBase.appendChild(document.importNode(k.exportContentToXMLNode(), true));
             }
-
+            
             document.appendChild(elementBase);
 
             node = elementBase;
