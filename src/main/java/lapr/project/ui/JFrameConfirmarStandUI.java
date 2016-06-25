@@ -5,15 +5,16 @@ import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import lapr.project.controller.ConfirmarStandController;
 import lapr.project.model.*;
+import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
 
 /**
  * UI do UC Confirmar stand
- * 
+ *
  * @author G29
  */
 public class JFrameConfirmarStandUI extends javax.swing.JFrame {
@@ -23,83 +24,72 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
      * deste UC
      */
     private transient JFrame jFrameMenuPrincipal;
-    
+
     /**
      * Centro de exposições
      */
     private transient CentroExposicoes centroExposicoesAtual;
-    
+
     /**
      * Email do representante
      */
     private transient String emailRepresentante;
-    
+
     /**
      * Lista de exposições utilizadas para a execução deste UC
      */
     private transient List<Exposicao> listaExposicoes;
-    
+
     /**
      * Lista de candidatura a exposição para a execução deste UC
      */
     private transient List<CandidaturaAExposicao> listaCandidaturas;
-    
+
     /**
      * Atribuição Stand
      */
     private transient AtribuicaoStand atribuicaoStand;
-    
+
     /**
      * Controller deste UC
      */
     private transient ConfirmarStandController controller;
 
-    private static final int LARGURA_JANELA_PASSO1 = 682;
-    private static final int ALTURA_JANELA_PASSO1 = 308;
+    private static final int LARGURA_JANELA_PASSO1 = 710;
+    private static final int ALTURA_JANELA_PASSO1 = 370;
 
-    private static final int LARGURA_JANELA_PASSO2 = 560;
-    private static final int ALTURA_JANELA_PASSO2 = 483;
+    private static final int LARGURA_JANELA_PASSO2 = 681;
+    private static final int ALTURA_JANELA_PASSO2 = 500;
 
-    private static final int LARGURA_JANELA_PASSO3 = 386;
-    private static final int ALTURA_JANELA_PASSO3 = 352;
+    private static final int LARGURA_JANELA_PASSO3 = 415;
+    private static final int ALTURA_JANELA_PASSO3 = 400;
 
     /**
-     * Descrição da exposição por omissao
-     */
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-    
-    /**
-     * Local da exposição por omissao
-     */
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-    
-    /**
-     * Data de inicio e de fim da exposição por omissao
-     */
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-    
-    /**
-     * Lista de  por omissão
+     * Lista de por omissão
      */
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
     /**
      * Creates new form JFrameConfirmarStand
+     *
      * @param jFrameMenuPrincipal
      * @param centroExposicoes
      * @param emailRepresentante
      */
     public JFrameConfirmarStandUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String emailRepresentante) {
         super("Confirmar Stand");
+
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.centroExposicoesAtual = centroExposicoes;
         this.emailRepresentante = emailRepresentante;
         this.controller = new ConfirmarStandController(centroExposicoes);
         controller.getRegistoExposicoes();;
         this.listaExposicoes = controller.getListaExposicoesDoRepresentante(emailRepresentante);
+
         initComponents();
 
         alterarComportamentoFecharJFrame();
+        setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -109,13 +99,14 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
      */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
-                jFrameMenuPrincipal.setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
                         + "\nOs dados escolhidos até ao momento não foram guardados.",
                         "Dados não guardados",
                         JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
             }
         });
     }
@@ -225,11 +216,16 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         jPanelCard1DescricaoExposicao.setLayout(jPanelCard1DescricaoExposicaoLayout);
         jPanelCard1DescricaoExposicaoLayout.setHorizontalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1DescricaoExposicaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelCard1DescricaoExposicaoLayout.setVerticalGroup(
             jPanelCard1DescricaoExposicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelCard1DescricaoExposicaoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanelCard1Duracao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duração", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -293,7 +289,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         );
         jPanelCard1LocalLayout.setVerticalGroup(
             jPanelCard1LocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2)
         );
 
         jComboBoxEscolherExposicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -321,13 +317,14 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(card1Layout.createSequentialGroup()
                                 .addComponent(jButtonCard1Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButtonCard1Avancar))
-                            .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCard1Avancar)
+                                .addGap(18, 18, 18)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
@@ -338,17 +335,17 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCard1Local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
                             .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -473,10 +470,10 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabelKeywordsDescricaoProdutos))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelKeywordsDescricaoProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jButtonCard2Avancar.setText("Avançar");
@@ -519,14 +516,13 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addComponent(jButtonCard2Avancar)
                 .addGap(47, 47, 47))
             .addGroup(card2Layout.createSequentialGroup()
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel3))
-                    .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76)
+                .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,7 +649,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                         .addComponent(jTextFieldCard3Candidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jTextFieldCard3Stand, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
             .addGroup(card3Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,13 +680,17 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         jButton2.getAccessibleContext().setAccessibleName("jButtonCard2Não");
         jPanelCard3InformaçãoStand.getAccessibleContext().setAccessibleName("Informação");
 
-        getContentPane().add(card3, "card2");
+        getContentPane().add(card3, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCard1AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1AvancarActionPerformed
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
+            controller.setExposicao(this.listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
+            controller.getRegistoCandidaturasAExposicao();
+            listaCandidaturas = controller.getListaCandidaturasDoRepresentante(emailRepresentante);
+            jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(this.listaCandidaturas));
             avancarParaCard2();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
@@ -698,13 +698,11 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
     private void avancarParaCard2() {
-        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
-        listaCandidaturas = controller.getListaCandidaturasDoRepresentante(emailRepresentante);
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
-    
+
     private void jButtonCard1FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard1FecharActionPerformed
         dispose();
         this.jFrameMenuPrincipal.setVisible(true);
@@ -717,22 +715,17 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
-        } else {
-            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setDecisao(false);
-        JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         controller.setDecisao(true);
-        JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void preencherDados() {
@@ -762,7 +755,10 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         String result = "";
         for (int i = 0; i < keywords.length; i++) {
             if (keywords[i] != null) {
-                result += "; " + keywords[i];
+                result += keywords[i];
+            }
+            if (i != keywords.length-1) {
+                result += "; ";
             }
         }
         return result;
@@ -770,6 +766,10 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
         if (jComboBoxCard2EscolherCandidatura.getSelectedItem() != null) {
+            controller.setCandidaturaAExposicao(listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
+            controller.getRegistoAtribuicoesStands();
+            this.atribuicaoStand = controller.getAtribuicao(emailRepresentante, listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
+            jTextAreaCard3DescricaoStand.setText(atribuicaoStand.getStand().getDescricao());
             avancarParaCard3();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma candidatura primeiro!", "Candidatura em falta", JOptionPane.WARNING_MESSAGE);
@@ -777,15 +777,11 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
 
     private void avancarParaCard3() {
-        controller.setCandidaturaAExposicao(listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
-        controller.getRegistoAtribuicoesStands();
-        this.atribuicaoStand = controller.getAtribuicao(emailRepresentante,listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
-        jTextAreaCard3DescricaoStand.setText(atribuicaoStand.getStand().getDescricao());
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
-    
+
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
@@ -797,8 +793,8 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCard3StandActionPerformed
 
     private void jTextFieldCard3CandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard3CandidaturaActionPerformed
-         jTextFieldCard3Candidatura.setText(atribuicaoStand.getCand().getNomeEmpresa());
-         
+        jTextFieldCard3Candidatura.setText(atribuicaoStand.getCand().getNomeEmpresa());
+
     }//GEN-LAST:event_jTextFieldCard3CandidaturaActionPerformed
 
     private void jTextFieldAreaStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAreaStandActionPerformed
