@@ -11,7 +11,7 @@ import lapr.project.utils.QualidadeFaeCalculo.Media;
  */
 public class ModelJTableQualidadeFAE extends AbstractTableModel {
 
-    private final List<Media<FAE>> infoFAEs;
+    private final transient List<Media<FAE>> infoFAEs;
 
     public ModelJTableQualidadeFAE(List<Media<FAE>> infoFAEs) {
         this.infoFAEs = infoFAEs;

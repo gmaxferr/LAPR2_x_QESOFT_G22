@@ -214,7 +214,7 @@ public class RegistoExposicoesTest {
         String email = "mail@mail.com";
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo9);
-        List<Exposicao> result = re.getListaExposicoesComCanditaturasAceitesDoRepresentante(email);
+        List<Exposicao> result = re.getListaExposicoesComCanditaturasComStandAceiteDoRepresentante(email);
         assertEquals(expResult, result);
     }
 

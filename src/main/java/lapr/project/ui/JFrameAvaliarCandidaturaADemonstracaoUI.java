@@ -61,7 +61,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     /**
      * Lista de candidaturas a demonstração
      */
-    private List<CandidaturaADemonstracao> listaCandsDemo;
+    private transient List<CandidaturaADemonstracao> listaCandsDemo;
 
     private static final int LARGURA_JANELA_PASSO1 = 682;
     private static final int ALTURA_JANELA_PASSO1 = 327;

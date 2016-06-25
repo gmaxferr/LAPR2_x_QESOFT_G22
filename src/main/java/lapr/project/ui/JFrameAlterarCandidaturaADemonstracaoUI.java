@@ -24,8 +24,8 @@ public class JFrameAlterarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private transient final List<Exposicao> m_listaExposicoes;
     private transient List<CandidaturaADemonstracao> m_listaCandidaturas;
 
-    private CandidaturaADemonstracao m_candidatura;
-    private AlterarCandidaturaDemonstracaoController controller;
+    private transient CandidaturaADemonstracao m_candidatura;
+    private transient AlterarCandidaturaDemonstracaoController controller;
 
     /**
      * Largura da janela no passo 1

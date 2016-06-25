@@ -20,7 +20,7 @@ public class ComboBoxModelTipoDeConflitoDemonstracao  extends AbstractListModel 
     /**
      * Objeto (tipo de conflito) selecionado.
      */
-    TipoConflitoDemonstracao selection;
+    private transient TipoConflitoDemonstracao selection;
 
     /**
      * Construtor de objetos do tipo ComboBoxModelTipoDeConflito com o

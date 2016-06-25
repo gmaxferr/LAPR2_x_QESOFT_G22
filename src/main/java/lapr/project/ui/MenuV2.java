@@ -130,6 +130,7 @@ public class MenuV2 extends javax.swing.JFrame {
                                         System.exit(0);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                        successfulExport = false;
                                     }
                                 }
                             }
@@ -996,7 +997,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
@@ -1056,7 +1057,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -1066,42 +1067,42 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.setVisible(false);
-        new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         setVisible(false);
-        new JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(utilizador.getUsername(), this.centroExposicoes, this);
+        JFrame frame = new JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(utilizador.getUsername(), this.centroExposicoes, this);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         this.setVisible(false);
-        new JFrameAvaliarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+        JFrame frame = new JFrameAvaliarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.setVisible(false);
-        new JFrameAtribuirCandidaturasAExposicaoUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAtribuirCandidaturasAExposicaoUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.setVisible(false);
-        new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -1129,17 +1130,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         this.setVisible(false);
-        new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+        JFrame frame = new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1162,17 +1163,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         this.setVisible(false);
-        new JFrameAtribuirCandidaturasADemonstracaoUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAtribuirCandidaturasADemonstracaoUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+        JFrame frame = new JFrameDecidirCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getEmail(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getEmail(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1187,7 +1188,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirRecursos(centroExposicoes, this);
+        JFrame frame = new JFrameDefinirRecursos(centroExposicoes, this);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1267,31 +1268,31 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         this.setVisible(false);
-        new JFrameListarCandidaturasADemonstracaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameListarCandidaturasADemonstracaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         this.setVisible(false);
-        new JFrameCriarCandidaturaExposicaoXML(centroExposicoes, thisJFrame, utilizador);
+        JFrame frame = new JFrameCriarCandidaturaExposicaoXML(centroExposicoes, thisJFrame, utilizador);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
-        new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         this.setVisible(false);
-        new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
+        JFrame frame = new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         this.setVisible(false);
-        new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
+        JFrame frame = new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void terminaSessao() {
-        new LoginV2(centroExposicoes);
+        JFrame frame = new LoginV2(centroExposicoes);
         dispose();
     }
 

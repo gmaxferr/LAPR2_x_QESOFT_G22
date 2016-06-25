@@ -138,19 +138,19 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com as exposições em que existem candidaturas aceites
+     * Devolve uma lista com as exposições em que existem candidaturas com stand aceite
      * de um representante
      *
      * @param email email do representante
-     * @return lista com as exposições em que existem candidaturas aceites de um
+     * @return lista com as exposições em que existem candidaturas com stand aceite de um
      * representante
      */
-    public List<Exposicao> getListaExposicoesComCanditaturasAceitesDoRepresentante(String email) {
+    public List<Exposicao> getListaExposicoesComCanditaturasComStandAceiteDoRepresentante(String email) {
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
             for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaAceite()) {
+                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaStandAceite()) {
                     listaExpoRep.add(e);
                     break;
                 }

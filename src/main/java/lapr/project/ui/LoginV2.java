@@ -75,6 +75,7 @@ public class LoginV2 extends javax.swing.JFrame {
                                         System.exit(0);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                        successfulExport = false;
                                     }
                                 }
                             }

@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.logging.*;
 import javax.xml.parsers.*;
 import lapr.project.utils.*;
@@ -63,6 +64,13 @@ public class Local implements Importable<Local>, Exportable {
             return this.m_StrMorada == null ? o.m_StrMorada == null : this.m_StrMorada.equals(o.m_StrMorada);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.m_StrMorada);
+        return hash;
     }
 
     @Override

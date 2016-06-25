@@ -15,17 +15,17 @@ import lapr.project.model.*;
  */
 public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame {
 
-    private PercentagemCandAceitesMediaRatingsController controller;
-    private List<Exposicao> listaExposicoes;
-    private List<CandidaturaAExposicao> listaCandidaturas;
-    private List<CandidaturaAExposicao> listaCandidaturasEstadoAvaliadasOuPosterior;
-    private float[] listaMediaRatingsPorCandidaturaAExposicao;
-    private float[] listaMediaRatingsPorCandidaturaAsDemos;
-    private List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
+    private transient PercentagemCandAceitesMediaRatingsController controller;
+    private transient List<Exposicao> listaExposicoes;
+    private transient List<CandidaturaAExposicao> listaCandidaturas;
+    private transient List<CandidaturaAExposicao> listaCandidaturasEstadoAvaliadasOuPosterior;
+    private transient float[] listaMediaRatingsPorCandidaturaAExposicao;
+    private transient float[] listaMediaRatingsPorCandidaturaAsDemos;
+    private transient List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
+    private transient float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
+    private transient float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
 
-    private final JFrame jFrameMenuPrincipal;
+    private transient final JFrame jFrameMenuPrincipal;
 
     private static final int CARD1_ALTURA = 370;
     private static final int CARD1_LARGURA = 710;
