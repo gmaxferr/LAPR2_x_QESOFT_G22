@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Representação de uma lista de produtos.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class ListaProdutos {
 

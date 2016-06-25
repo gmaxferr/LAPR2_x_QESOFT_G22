@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
 import java.util.ArrayList;
@@ -10,32 +5,8 @@ import java.util.List;
 import java.util.TimerTask;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConfirmada;
-import lapr.project.estados.Exposicao.EstadoExposicao;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAbertas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAtribuidas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasAvaliadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasFechadas;
-import lapr.project.estados.Exposicao.EstadoExposicaoCompleta;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosAlterados;
-import lapr.project.estados.Exposicao.EstadoExposicaoConflitosDetetados;
-import lapr.project.estados.Exposicao.EstadoExposicaoCriada;
-import lapr.project.estados.Exposicao.EstadoExposicaoDemosDefinidasSemFAE;
-import lapr.project.estados.Exposicao.EstadoExposicaoFAEDefinidosSemDemos;
-import lapr.project.estados.Exposicao.EstadoExposicaoInicial;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
-import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
-import lapr.project.registos.RegistoAtribuicoesStands;
-import lapr.project.registos.RegistoCandidaturasAExposicao;
-import lapr.project.registos.RegistoCandidaturasAExposicaoRemovidas;
-import lapr.project.registos.RegistoConflitos;
-import lapr.project.registos.RegistoDemonstracoes;
-import lapr.project.registos.RegistoExpositores;
-import lapr.project.registos.RegistoFAE;
-import lapr.project.registos.RegistoOrganizadores;
-import lapr.project.registos.RegistoRecursos;
-import lapr.project.registos.RegistoTipoConflitos;
-import lapr.project.registos.RegistoUtilizadores;
+import lapr.project.estados.Exposicao.*;
+import lapr.project.registos.*;
 import lapr.project.timerTasks.expo.AlterarParaAbertaCandidaturas;
 import lapr.project.utils.Data;
 import org.junit.After;
@@ -48,7 +19,7 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 public class ExposicaoTest {
 
@@ -106,7 +77,7 @@ public class ExposicaoTest {
         data5 = new Data("2016-10-09T00:00:00Z");
         data6 = new Data("2016-10-10T00:00:00Z");
         data7 = new Data("2016-10-11T00:00:00Z");
-        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        e = new Exposicao(titulo, desc, data1, data2, data3, data4, data5,data6, local, ce);
         e.setDataFimCandDemo(data6);
         e.setDataInicioCandDemo(data7);
         demo = new Demonstracao("descr");
@@ -1154,7 +1125,7 @@ public class ExposicaoTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        Exposicao expo = new Exposicao(titulo, desc, data1, data2, data3, data4, data5, local, ce);
+        Exposicao expo = new Exposicao(titulo, desc, data1, data2, data3, data4, data5,data6, local, ce);
         expo.setDataFimCandDemo(data6);
         expo.setDataInicioCandDemo(data7);
         int expResult = expo.hashCode();

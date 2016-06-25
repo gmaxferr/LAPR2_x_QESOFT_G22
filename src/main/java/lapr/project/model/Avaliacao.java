@@ -6,7 +6,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de uma Avaliação
+ * 
  * @author G29
  */
 public class Avaliacao implements Importable<Avaliacao>, Exportable {

@@ -1,24 +1,20 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelExposicoes;
-import lapr.project.uiModel.ComboBoxModelTipoDeConflito;
-import lapr.project.uiModel.AbstractListModelConflitosDeInteresseCandidaturaAExposicao;
-import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import lapr.project.controller.AtualizarConflitosDeInteresseCandidaturaAExposicaoController;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.ConflitoDeInteresse;
-import lapr.project.model.Exposicao;
-import lapr.project.model.TipoConflito;
+import lapr.project.model.*;
 
 /**
+ * UI do UC Atualizar conflitos de interesse candidatura a exposicao
  *
- * @author guima
+ * @author G29
  */
 public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends JFrame {
 
@@ -34,24 +30,46 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
     private transient List<TipoConflito> listaTiposConflito;
 
     private JFrame mainMenu;
+    private JFrame thisFrame;
 
     /**
      * Creates new form JFrameAtualizarConflitoDeInteresseUI
-     * 
+     *
      * @param usernameFae - unsername do FAE
      * @param ce - Centro de Exposições
      * @param mainMenu - Main Menu (menu principal)
      */
     public JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(String usernameFae, CentroExposicoes ce, JFrame mainMenu) {
-        CTRL = new AtualizarConflitosDeInteresseCandidaturaAExposicaoController(usernameFae, ce);
-        listaExposicoes = CTRL.getFaeExpos();
-        if (!listaExposicoes.isEmpty()) {
-            this.mainMenu = mainMenu;
-            initComponents();
-        }else{
-            JOptionPane.showMessageDialog(null, "Não existem exposições com conflitos.", "Erro", JOptionPane.WARNING_MESSAGE);
+        if (!ce.getRegistoTiposConflitos().getListaTipoConflitos().isEmpty()) {
+            CTRL = new AtualizarConflitosDeInteresseCandidaturaAExposicaoController(usernameFae, ce);
+            listaExposicoes = CTRL.getExposFae();
+            if (!listaExposicoes.isEmpty()) {
+                this.mainMenu = mainMenu;
+                thisFrame = this;
+                alterarComportamentoFecharJFrame();
+                initComponents();
+                setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Não existem exposições com conflitos.", "Erro", JOptionPane.WARNING_MESSAGE);
+                mainMenu.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Os tipos de conflito não estão definidos. Contacte o Gestor de Exposições!.", "Erro", JOptionPane.WARNING_MESSAGE);
             mainMenu.setVisible(true);
         }
+    }
+
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                mainMenu.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -386,8 +404,6 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
         getContentPane().add(jPanel1, "card1");
         jPanel1.getAccessibleContext().setAccessibleName("card1");
 
-        jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos)
-        );
         jScrollPane1.setViewportView(jList1);
 
         jButton3.setText("Voltar");
@@ -489,7 +505,6 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Selecione um tipo de conflito.");
 
-        comboBoxSelectTipoConflito.setModel(new ComboBoxModelTipoDeConflito(listaTiposConflito));
         comboBoxSelectTipoConflito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxSelectTipoConflitoActionPerformed(evt);
@@ -551,9 +566,14 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
         CTRL.setTipoConflito((TipoConflito) comboBoxSelectTipoConflito.getSelectedItem());
         if (CTRL.validaConflito()) {
             CTRL.registaConflito();
-            passaParaPanel2();
-            listaConflitos = CTRL.getListaConflitos();
-            jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos));
+            if (JOptionPane.showConfirmDialog(rootPane, "Pretende adicionar/remover mais conflitos?", "Continuar ou sair?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                thisFrame.dispose();
+                mainMenu.setVisible(true);
+            } else {
+                passaParaPanel2();
+                listaConflitos = CTRL.getListaConflitos();
+                jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos));
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Esse conflito já existe!", "Conflito Repetido.", ERROR_MESSAGE);
         }
@@ -610,11 +630,13 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
     }//GEN-LAST:event_comboBoxCard1EscolherExposicaoActionPerformed
 
     private void botaoSelecionaExpo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionaExpo1ActionPerformed
-        Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao.getSelectedItem();
+        Exposicao e = (Exposicao) listaExposicoes.get(comboBoxCard1EscolherExposicao.getSelectedIndex());
         if (e != null) {
             CTRL.selectExpo(e);
             listaCandidaturas = CTRL.getListaCandidaturas();
             listaConflitos = CTRL.getListaConflitos();
+            jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaAExposicao(listaConflitos));
+
             passaParaPanel2();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
@@ -622,13 +644,13 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
     }//GEN-LAST:event_botaoSelecionaExpo1ActionPerformed
 
     private void botaoCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelar1ActionPerformed
-        dispose();
+        thisFrame.dispose();
         mainMenu.setVisible(true);
     }//GEN-LAST:event_botaoCancelar1ActionPerformed
 
     private void comboBoxCard1EscolherExposicao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCard1EscolherExposicao1ActionPerformed
         if (comboBoxCard1EscolherExposicao.getSelectedItem() != null) {
-            Exposicao e = (Exposicao) comboBoxCard1EscolherExposicao.getSelectedItem();
+            Exposicao e = (Exposicao) listaExposicoes.get(comboBoxCard1EscolherExposicao.getSelectedIndex());
             textAreaCard1DescricaoExposicao.setText(e.getDescricao());
             jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
             jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
@@ -649,6 +671,8 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CTRL.pullRegistoDeTiposDeConflito();
         listaTiposConflito = CTRL.getListaDeTiposConflito();
+        comboBoxSelectTipoConflito.setModel(new ComboBoxModelTipoDeConflito(listaTiposConflito));
+        comboBoxSelectCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturas));
         passaParaPanel3();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -724,4 +748,5 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI extends J
         cardLayout.show(getContentPane(), "card3");
         setSize(this.getSize());
     }
+    
 }

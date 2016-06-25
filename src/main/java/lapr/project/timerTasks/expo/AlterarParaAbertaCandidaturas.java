@@ -5,15 +5,21 @@ import javax.swing.JOptionPane;
 import lapr.project.model.Exposicao;
 
 /**
- *
+ * Represnetação de um timer AlterarParaAbertaCandidaturas
+ * 
  * @author G29
  */
 public class AlterarParaAbertaCandidaturas extends TimerTask {
 
+    /**
+     * Exposição
+     */
     private Exposicao m_exposicao;
 
     /**
-     *
+     * Construtor de objetos do tipo AlterarParaAbertaCandidaturas com o 
+     * parametro exposição
+     * 
      * @param e - exposição
      */
     public AlterarParaAbertaCandidaturas(Exposicao e) {

@@ -43,7 +43,10 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     private Exposicao m_expo;
 
     /**
-     * Construtor de objetos do tipo RegistoDemonstracoes sem paramentros
+     * Construtor de objetos do tipo RegistoDemonstracoes com o paramentro 
+     * isOriginal
+     * 
+     * @param isOriginal
      */
     public RegistoDemonstracoes(boolean isOriginal) {
         this.m_listaDemonstracoes = new ArrayList<>();
@@ -62,7 +65,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     }
 
     /**
-     * @return Devolve a exposição a que pertence este RegistoDemonstracoes
+     * Devolve a exposição a que pertence este RegistoDemonstracoes
+     * 
+     * @return exposição a que pertence este RegistoDemonstracoes
      */
     public Exposicao getExposicao() {
         return m_expo;
@@ -281,6 +286,63 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
     }
 
+    /**
+     * Devolve uma lista com as demonstrações em estado candidaturas avaliadas
+     *
+     * @return lista com as demonstrações em estado candidaturas avaliadas
+     */
+    public ArrayList<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
+        ArrayList<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
+        EstadoDemonstracao estado;
+        for (Demonstracao d : this.m_listaDemonstracoes) {
+            estado = d.getEstadoDemo();
+            if (estado.isEstadoDemonstracaoCandidaturasAvaliadas()) {
+                listaDemosAvaliadas.add(d);
+            }
+        }
+        return listaDemosAvaliadas;
+    }
+
+    /**
+     * Devolve a percentagem de candidaturas de um expositor às demonstrações
+     * aceites.
+     *
+     * @param emailExpositor email do expositor
+     * @return percentagem de candidaturas às demonstrações aceites
+     */
+    public float getPercentagemCandidaturasAceites(String emailExpositor) {
+        List<CandidaturaADemonstracao> listaCandidaturasDoExpositor = getListaCandidaturasAsDemonstracoesDoExpositor(emailExpositor);
+        int cont = listaCandidaturasDoExpositor.size();
+        float candAceites = 0;
+        for (CandidaturaADemonstracao candidatura : listaCandidaturasDoExpositor) {
+            if (candidatura.getEstado().isEstadoCandidaturaADemonstracaoAceite()) {
+                candAceites++;
+            }
+        }
+        if (cont != 0) {
+            return (candAceites / cont) * 100;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Verifica se o FAE é realmente FAE de uma demonstração
+     *
+     * @param username - username do FAE
+     * @return true se for; false caso contrário.
+     */
+    boolean isFaeDeDemo(String username) {
+        boolean isFae = false;
+        for (Demonstracao d : this.m_listaDemonstracoes) {
+            RegistoFAE rf = d.getRegistoFAE();
+            if (rf.isFAE(username)) {
+                isFae = true;
+            }
+        }
+        return isFae;
+    }
+    
     @Override
     public RegistoDemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
         if (node == null) {
@@ -351,6 +413,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return node;
     }
 
+<<<<<<< HEAD
     /**
      * Forma uma lista com as demonstrações em estado avaliadas
      *
@@ -428,4 +491,6 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return listaDemonstracoesDoOrganizador;
     }
 
+=======
+>>>>>>> 63e2092f833bbf5bc9af8acdf14b00740ad99185
 }

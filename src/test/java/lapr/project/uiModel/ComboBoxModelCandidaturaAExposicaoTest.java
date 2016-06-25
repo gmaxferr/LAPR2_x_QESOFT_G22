@@ -1,6 +1,5 @@
 package lapr.project.uiModel;
 
-import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaAExposicao;
@@ -15,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class ComboBoxModelCandidaturaAExposicaoTest {
 

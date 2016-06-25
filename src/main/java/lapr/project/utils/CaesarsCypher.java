@@ -8,7 +8,7 @@ package lapr.project.utils;
  * password encriptada, dificultando a visuaçização da password real através do
  * ficheiro onde está guardado.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public final class CaesarsCypher {
 

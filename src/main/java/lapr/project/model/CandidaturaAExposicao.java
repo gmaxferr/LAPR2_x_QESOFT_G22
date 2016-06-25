@@ -418,7 +418,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         } else if (obj instanceof CandidaturaAExposicao) {
             CandidaturaAExposicao cand = (CandidaturaAExposicao) obj;
             if (this.getRegistoProdutos().equals(cand.getRegistoProdutos())
-                    && this.getExpositor().getUtilizador().equals(cand.getExpositor().getUtilizador())
+                    && this.getExpositor().getUtilizador().getUsername().equals(cand.getExpositor().getUtilizador().getUsername())
                     && this.getNomeEmpresa().equals(cand.getNomeEmpresa())) {
                 return true;
             } else {
@@ -545,6 +545,9 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
                 case "atribuida":
                     this.m_estado = new EstadoCandidaturaAExposicaoAtribuida(this);
                     break;
+                case "naoAvaliada":
+                    this.m_estado = new EstadoCandidaturaAExposicaoNaoAvaliada(this);
+                    break;
                 case "avaliada":
                     this.m_estado = new EstadoCandidaturaAExposicaoAvaliada(this);
                     break;
@@ -572,7 +575,6 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             
             this.m_decisao = new Decisao();
             this.m_decisao.importContentFromXMLNode(elem.getElementsByTagName(Decisao.ROOT_ELEMENT_NAME).item(0));
-            //this.m_descricao = elem.getElementsByTagName(DESCRICAO_ELEMENT_NAME).item(0).getTextContent();
             this.m_intArea = Integer.parseInt(elem.getElementsByTagName(AREA_ELEMENT_NAME).item(0).getTextContent());
             this.m_intNumConvites = Integer.parseInt(elem.getElementsByTagName(NUM_CONVITES_ELEMENT_NAME).item(0).getTextContent());
 
@@ -676,11 +678,7 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
             elementCandAExpo.appendChild(document.importNode(this.m_rd.exportContentToXMLNode(), true));
             elementCandAExpo.appendChild(document.importNode(this.m_rp.exportContentToXMLNode(), true));
 
-            Element child = document.createElement(DESCRICAO_ELEMENT_NAME);
-            //child.setTextContent(this.m_descricao);
-            elementCandAExpo.appendChild(child);
-
-            child = document.createElement(AREA_ELEMENT_NAME);
+            Element child = document.createElement(AREA_ELEMENT_NAME);
             child.setTextContent(String.valueOf(this.m_intArea));
             elementCandAExpo.appendChild(child);
 

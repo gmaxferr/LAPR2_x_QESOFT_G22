@@ -8,9 +8,9 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- * Keyword.
+ * Represnetação de uma Keyword.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class Keyword implements Serializable, Importable<Keyword>, Exportable {
 

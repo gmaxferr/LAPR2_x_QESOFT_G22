@@ -1,31 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.uiModel;
 
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 /**
- *
- * @author JoãoCardoso aka K4rd050
+ * Representação de um ModelComboBoxDias
+ * 
+ * @author G29
  */
 public class ModelComboBoxDias extends AbstractListModel implements ComboBoxModel {
-
+    
+    /**
+     * Vetor que representa 28 dias
+     */
     int[] dias_28 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
+    
+    /**
+     * Vetor que representa 29 dias
+     */
     int[] dias_29 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29};
+    
+    /**
+     * Vetor que representa 30 dias
+     */
     int[] dias_30 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+    
+    /**
+     * Vetor que representa 31 dias
+     */
     int[] dias_31 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
 
+    /**
+     * Objeto selecionado
+     */
     private transient Object selectedItem;
+    
+    /**
+     * Opção
+     */
     private int opcao;
 
+    /**
+     * Construtor de objetos do tipo ModelComboBoxDias com o parametro opção
+     * 
+     * @param opcao opção
+     */
     public ModelComboBoxDias(int opcao) {
         this.opcao = opcao;
     }
 
+    /**
+     * Devolve o tamanho dos vetores que representam dias dependendo da opção selecionda
+     * 
+     * @return tamanho dos vetores que representam dias dependendo da opção selecionda
+     */
     @Override
     public int getSize() {
         switch (this.opcao) {
@@ -42,6 +70,14 @@ public class ModelComboBoxDias extends AbstractListModel implements ComboBoxMode
         }
     }
 
+    /**
+     * Devolve um elemento dos vetores que representam dias dependendo da opção 
+     * selecionada
+     * 
+     * @param index posição do elemento
+     * @return elemento dos vetores que representam dias dependendo da opção 
+     * selecionada
+     */
     @Override
     public Object getElementAt(int index) {
         switch (this.opcao) {
@@ -58,6 +94,11 @@ public class ModelComboBoxDias extends AbstractListModel implements ComboBoxMode
         }
     }
 
+    /**
+     * Modifica o item selecionado
+     * 
+     * @param anItem item selecionado
+     */
     @Override
     public void setSelectedItem(Object anItem) {
         switch (this.opcao) {
@@ -74,6 +115,11 @@ public class ModelComboBoxDias extends AbstractListModel implements ComboBoxMode
         }
     }
 
+    /**
+     * Devolve o item selecionado
+     * 
+     * @return item selecionado
+     */
     @Override
     public Object getSelectedItem() {
         switch (this.opcao) {

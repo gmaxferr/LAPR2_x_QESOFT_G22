@@ -9,7 +9,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um Registo de Candidaturas A Demonstração Removidas
+ * 
  * @author G29
  */
 public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<RegistoCandidaturasADemonstracaoRemovidas>, Exportable {
@@ -41,7 +42,7 @@ public class RegistoCandidaturasADemonstracaoRemovidas implements Importable<Reg
     /**
      * Devolve a lista de candidaturas a demonstracao removidas
      *
-     * @return
+     * @return lista de candidaturas a demonstracao removidas
      */
     public List<CandidaturaADemonstracao> getListaCandidaturasADemonstracaoRemovidas() {
         return this.m_listaCandidaturasRemovidas;

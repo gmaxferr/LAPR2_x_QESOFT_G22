@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.uiModel;
 
 import org.junit.After;
@@ -14,7 +9,7 @@ import org.junit.runners.Suite;
 
 /**
  *
- * @author guima
+ * @author G29
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({lapr.project.uiModel.ComboBoxModelTipoDeConflitoDemonstracaoTest.class, lapr.project.uiModel.ComboBoxModelExposicoesTest.class, lapr.project.uiModel.ComboBoxModelMecanismosTest.class, lapr.project.uiModel.ComboBoxModelDemonstracoesTest.class, lapr.project.uiModel.ModeloListaStandsTest.class, lapr.project.uiModel.ModeloJTableUtilizadoresTest.class, lapr.project.uiModel.ComboBoxModelCandidaturasMostraExpositoresTest.class, lapr.project.uiModel.ModeloJTableDecidirDemonstracoesTest.class, lapr.project.uiModel.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidaturaTest.class, lapr.project.uiModel.ComboBoxModelFaeTest.class, lapr.project.uiModel.ComboBoxModelTipoDeConflitoTest.class, lapr.project.uiModel.ModelComboBoxDiasTest.class, lapr.project.uiModel.ComboBoxModelUtilizadoresTest.class, lapr.project.uiModel.ModeloJListUtilizadoresTest.class, lapr.project.uiModel.AbstractListModelConflitosDeInteresseCandidaturaAExposicaoTest.class, lapr.project.uiModel.AbstractListModelRecursosTest.class, lapr.project.uiModel.AbstractListModelConflitosDeInteresseCandidaturaADemonstracaoTest.class, lapr.project.uiModel.ModeloListaProdutosTest.class, lapr.project.uiModel.ComboBoxModelCandidaturaADemonstracaoTest.class, lapr.project.uiModel.AbstractListModelDemonstracoesTest.class, lapr.project.uiModel.ComboBoxModelCandidaturaAExposicaoTest.class, lapr.project.uiModel.ComboBoxModelAtribuicoesMostraCandidaturaTest.class, lapr.project.uiModel.ModeloListaDemonstracoesTest.class, lapr.project.uiModel.ModeloListExposicaoTest.class})

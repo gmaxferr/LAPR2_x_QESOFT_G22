@@ -11,7 +11,8 @@ import lapr.project.model.*;
 import lapr.project.uiModel.ComboBoxModelUtilizadores;
 
 /**
- *
+ * UI do UC Confirmar registo utilizador
+ * 
  * @author G29
  */
 public class JFrameConfirmarRegistoUtilizadorUI extends javax.swing.JFrame {

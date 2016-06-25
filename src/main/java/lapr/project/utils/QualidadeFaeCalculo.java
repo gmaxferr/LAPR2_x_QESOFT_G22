@@ -12,8 +12,9 @@ import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
+ * Reoresentação de uma QualidadeFaeCalculo
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class QualidadeFaeCalculo {
 
@@ -114,11 +115,11 @@ public class QualidadeFaeCalculo {
      * @return Lista de FAEs cujo valor da media dos desvios seja maior que o
      * desvio padrao passado como limite
      */
-    public List<FAE> getListaFAEsComDesvioPadraoAcimaDe(double desvioPadrao) {
-        List<FAE> result = new ArrayList<>();
+    public List<Media<FAE>> getListaFAEsComDesvioPadraoAcimaDe(double desvioPadrao) {
+        List<Media<FAE>> result = new ArrayList<>();
         for (Media<FAE> fae : mediaDesviosFaes) {
-            if (fae.getMediaDesvios() > desvioPadrao) {
-                result.add(fae.obj);
+            if (fae.getN() >= 30 && fae.getMediaDesvios() > desvioPadrao) {
+                result.add(fae);
                 this.mediaDesviosFaesParaAnalisar.add(fae);
             }
         }
@@ -133,8 +134,7 @@ public class QualidadeFaeCalculo {
      * @return Retorna uma lista inteira de FAEs para a qual a hipotese nula foi
      * rejeitada, para o grau de confiança especificado
      */
-    public List<FAE> testeHipotese(double valorIdeal, double grauConfianca) {
-        List<FAE> res = new ArrayList<>();
+    public List<Media<FAE>> testeHipotese(double valorIdeal, double grauConfianca) {
 
         NormalDistribution phi = new NormalDistribution(0, 1);
         double zCritico = phi.inverseCumulativeProbability(grauConfianca);
@@ -148,26 +148,42 @@ public class QualidadeFaeCalculo {
             double lowerBound = mediaDesvios + delta;
 
             double z0 = (mediaDesvios - valorIdeal) / (desvioPadrao / Math.sqrt(numValores));
+            
+            mediaFAE.setzCritico(zCritico);
+            mediaFAE.setZ0(z0);
 
             if (z0 >= lowerBound) {
-                res.add(mediaFAE.obj);
+                mediaFAE.setDecisao(true);
             }
         }
 
-        return res;
+        return mediaDesviosFaesParaAnalisar;
     }
 
-    private class Media<T> {
+    public class Media<T> {
 
         private final T obj;
 
+        private double zCritico;
+        private double z0;
+
         private List<Double> listaValores;
+
+        private boolean decisao;
 
         public Media(T obj) {
             this.obj = obj;
             this.listaValores = new ArrayList<>();
+            this.decisao = false;
         }
 
+        /**
+         * @return Retorna o objeto T
+         */
+        public T getObject(){
+            return obj;
+        }
+        
         /**
          * @param valor o valor a definir
          */
@@ -193,13 +209,13 @@ public class QualidadeFaeCalculo {
          * @return Devolve a variancia dos valores
          */
         public double getVariancia() {
-            if (!listaValores.isEmpty()) {
+            if (listaValores.size() > 1) {
                 double media = getMedia();
                 double somaVariancias = 0D;
                 for (Double d : listaValores) {
                     somaVariancias += Math.pow(d - media, 2);
                 }
-                return somaVariancias / listaValores.size();
+                return somaVariancias / (listaValores.size() - 1);
             }
             return -1;
         }
@@ -234,6 +250,50 @@ public class QualidadeFaeCalculo {
          */
         public int getN() {
             return listaValores.size();
+        }
+
+        /**
+         * Define uma nova decisao.
+         *
+         * @param decisao decisao a definir
+         */
+        public void setDecisao(boolean decisao) {
+            this.decisao = decisao;
+        }
+
+        /**
+         * @return Retorna se o FAE deve ou não ser avisado
+         */
+        public boolean getDecisao() {
+            return decisao;
+        }
+
+        /**
+         * @return the zCritico
+         */
+        public double getzCritico() {
+            return zCritico;
+        }
+
+        /**
+         * @param zCritico the zCritico to set
+         */
+        public void setzCritico(double zCritico) {
+            this.zCritico = zCritico;
+        }
+
+        /**
+         * @return the z0
+         */
+        public double getZ0() {
+            return z0;
+        }
+
+        /**
+         * @param z0 the z0 to set
+         */
+        public void setZ0(double z0) {
+            this.z0 = z0;
         }
 
         @Override

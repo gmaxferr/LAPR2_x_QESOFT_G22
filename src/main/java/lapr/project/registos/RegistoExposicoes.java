@@ -160,6 +160,30 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
+     * Devolve uma lista com as exposições em que existem candidaturas aceites
+     * de um representante e que pelo menos uma demonstração das que mostrou
+     * interesse foi confirmada
+     *
+     * @param email email do representante
+     * @return lista com as exposições em que existem candidaturas aceites de um
+     * representante e que pelo menos uma demonstração das que mostrou interesse
+     * foi confirmada
+     */
+    public List<Exposicao> getListaExposicoesComCanditaturasAceitesDoRepresentanteComDemosConfirmadas(String email) {
+        List<Exposicao> listaExpoRep = new ArrayList();
+        for (Exposicao e : m_listaExposicoes) {
+            RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
+            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
+                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaAceite() && e.peloMenosUmaDemonstracaoAceite(c.getRegistoDemonstracoes().getListaDemonstracoes())) {
+                    listaExpoRep.add(e);
+                    break;
+                }
+            }
+        }
+        return listaExpoRep;
+    }
+
+    /**
      * Devolve uma lista com as exposições em que existem candidaturas de um
      * representante
      *
@@ -305,16 +329,20 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista de exposições de um fae
+     * Devolve uma lista de exposições que um fae pode atualizar conflitos
      *
      * @param usernameFae username do fae
-     * @return lista de exposições do fae
+     * @return lista de exposições que o fae pode atualizar conflitos
      */
-    public List<Exposicao> getFaeExpos(String usernameFae) {
+    public List<Exposicao> getExposEstadoConflitosDetetadosFae(String usernameFae) {
         List<Exposicao> exposFAE = new ArrayList<>();
         for (Exposicao ex : this.m_listaExposicoes) {
-            if (ex.getRegistoFAE().isFAE(usernameFae) && !ex.getRegistoConflitos().getListaConflitos().isEmpty()) {
-                exposFAE.add(ex);
+            if(ex.getEstado().isEstadoConflitosDetetados()){
+                for(FAE f:ex.getListaFAE()){
+                    if(f.getUsernameFae().equalsIgnoreCase(usernameFae)){
+                        exposFAE.add(ex);
+                    }
+                }
             }
         }
         return exposFAE;
@@ -398,6 +426,46 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         return listaExposicoesDoOrganizador;
     }
 
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCriadaOuEstadoFaeDefinidos(String usernameOrg) {
+        List<Exposicao> listaExposicoes = new ArrayList<>();
+        List<Organizador> listOrg;
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            listOrg = exposicao.getListaOrganizadores();
+            for (Organizador organizador : listOrg) {
+                if (validaOrgEExpo2(usernameOrg, organizador, exposicao)) {
+                    listaExposicoes.add(exposicao);
+                }
+            }
+        }
+
+        return listaExposicoes;
+    }
+
+    /**
+     * verifica se o username recebido por parametro coincide com o do
+     * organizador também recebido por parametro e que a exposição sobre a qual
+     * este organizador detém o cargo esta no estado FaeDefinidosSemDemos
+     *
+     * @param usernameOrg usernanme do organizador
+     * @param organizador organizador
+     * @param exposicao exposição
+     * @return true se o organizador for válido. Caso contrário retorna false.
+     */
+    private boolean validaOrgEExpo2(String usernameOrg, Organizador organizador, Exposicao exposicao) {
+        return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
+                && (exposicao.getEstado().isEstadoCriada()
+                || exposicao.getEstado().isEstadoFAEDefinidosSemDemos());
+    }
+
+    /**
+     * Valida organizador
+     *
+     * @param usernameOrg username do organizador
+     * @param organizador organizador
+     * @param exposicao exposicao
+     * @return true se o organizador for válido. Caso contrário retorna false.
+     */
     private boolean validaOrgEExpo(String usernameOrg, Organizador organizador, Exposicao exposicao) {
         return organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrg)
                 && (exposicao.getEstado().isEstadoCriada()
@@ -431,6 +499,72 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
             }
         }
         return result;
+    }
+
+    /**
+     * Devolve uma lista de exposições do organizador em estado candidatura a
+     * demonstrações avaliadas
+     *
+     * @param username username do organozador
+     * @return lista de exposições do organizador em estado candidatura a
+     * demonstrações avaliadas
+     */
+    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
+        List<Exposicao> result = new ArrayList<>();
+
+        for (Exposicao e : m_listaExposicoes) {
+            for (Organizador o : e.getListaOrganizadores()) {
+                if (o.getUsernameOrganizador().equals(username)) {
+                    for (Demonstracao d : e.getRegistoDemonstracoes().getListaDemonstracoes()) {
+                        if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAvaliadas()) {
+                            result.add(e);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Devolve a lista de exposições do organizador em estado conflitos
+     * alterados
+     *
+     * @param usernameOrganizador username do organizador
+     * @return lista de exposições do organizador em estado conflitos alterados
+     */
+    public List<Exposicao> getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(String usernameOrganizador) {
+        List<Exposicao> listaExposicoesDoOrganizadorEstadoConflitosAlterados = new ArrayList<>();
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && (exposicao.getEstado().isEstadoConflitosAlterados())) {
+                    listaExposicoesDoOrganizadorEstadoConflitosAlterados.add(exposicao);
+                }
+            }
+        }
+
+        return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
+    }
+
+    /**
+     * Devolve uma lista com todas as exposições no estado avaliadas
+     *
+     * @return lista das exposições no estado avaliadas
+     */
+    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
+        List<Exposicao> listaExposicoesEstadoAvaliadas = new ArrayList<>();
+
+        for (Exposicao exposicao : m_listaExposicoes) {
+            if (exposicao.getEstado().isEstadoCandidaturasAvaliadas()) {
+                listaExposicoesEstadoAvaliadas.add(exposicao);
+            }
+        }
+
+        return listaExposicoesEstadoAvaliadas;
     }
 
     /**
@@ -496,56 +630,4 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         }
         return node;
     }
-
-    public List<Exposicao> getListaExposicoesDoOrganizadorEstadoCandidaturasADemonstracoesAvaliadas(String username) {
-        List<Exposicao> result = new ArrayList<>();
-
-        for (Exposicao e : m_listaExposicoes) {
-            for (Organizador o : e.getListaOrganizadores()) {
-                if (o.getUsernameOrganizador().equals(username)) {
-                    for (Demonstracao d : e.getRegistoDemonstracoes().getListaDemonstracoes()) {
-                        if (d.getEstadoDemo().isEstadoDemonstracaoCandidaturasAvaliadas()) {
-                            result.add(e);
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public List<Exposicao> getlistaExposicoesDoOrganizadorEstadoConflitosAlterados(String usernameOrganizador) {
-        List<Exposicao> listaExposicoesDoOrganizadorEstadoConflitosAlterados = new ArrayList<>();
-
-        for (Exposicao exposicao : m_listaExposicoes) {
-            for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador) && (exposicao.getEstado().isEstadoConflitosAlterados())) {
-                    listaExposicoesDoOrganizadorEstadoConflitosAlterados.add(exposicao);
-                }
-            }
-        }
-
-        return listaExposicoesDoOrganizadorEstadoConflitosAlterados;
-    }
-
-    /**
-     * Devolve uma lista com todas as exposições no estado avaliadas
-     *
-     * @return lista das exposições no estado avaliadas
-     */
-    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
-        List<Exposicao> listaExposicoesEstadoAvaliadas = new ArrayList<>();
-
-        for (Exposicao exposicao : m_listaExposicoes) {
-            if (exposicao.getEstado().isEstadoCandidaturasAvaliadas()) {
-                listaExposicoesEstadoAvaliadas.add(exposicao);
-            }
-        }
-
-        return listaExposicoesEstadoAvaliadas;
-    }
-
 }

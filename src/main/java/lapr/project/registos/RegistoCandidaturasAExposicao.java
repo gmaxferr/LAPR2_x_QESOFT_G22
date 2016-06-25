@@ -112,6 +112,11 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         return candidaturasRepLst;
     }
 
+    /**
+     * Devolve a lista de candidaturas em estado pronta a atribuiçoes
+     * 
+     * @return lista de candidaturas em estado pronta a atribuiçoes
+     */
     public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
         List<CandidaturaAExposicao> listCand = new ArrayList<>();
         for (CandidaturaAExposicao cand : getListaCandidaturas()) {

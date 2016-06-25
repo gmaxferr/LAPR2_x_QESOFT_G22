@@ -12,6 +12,7 @@ import lapr.project.controller.PercentagemCandAceitesMediaRatingsController;
 import lapr.project.model.*;
 
 /**
+ * UI do UC Percentagem candidaturas aceites e media dos ratings
  *
  * @author G29
  */
@@ -32,7 +33,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     private static final int CARD1_ALTURA = 370;
     private static final int CARD1_LARGURA = 710;
 
-    private static final int CARD2_LARGURA = 652;
+    private static final int CARD2_LARGURA = 670;
     private static final int CARD2_ALTURA = 516;
     private transient final CardLayout cardLayout;
 
@@ -48,7 +49,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.controller = new PercentagemCandAceitesMediaRatingsController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes=controller.getListaExposicoesEstadoAvaliadas();
+        this.listaExposicoes = controller.getListaExposicoesEstadoAvaliadas();
 
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();

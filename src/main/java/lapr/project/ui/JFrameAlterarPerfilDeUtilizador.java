@@ -8,7 +8,8 @@ import lapr.project.controller.AlterarPerfilDeUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 
 /**
- *
+ * UI do UC Alterar Perfil de utilizador
+ * 
  * @author G29
  */
 public class JFrameAlterarPerfilDeUtilizador extends javax.swing.JFrame {

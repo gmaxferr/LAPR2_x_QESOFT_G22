@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ModeloJTableUtilizadores;
-import lapr.project.uiModel.ComboBoxModelAtribuicoesMostraCandidatura;
-import lapr.project.uiModel.ComboBoxModelMecanismos;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
@@ -13,7 +10,7 @@ import lapr.project.controller.AtribuirCandidaturasAExposicaoController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Atribuir candidaturas a exposicao
  * @author G29
  */
 public class JFrameAtribuirCandidaturasAExposicaoUI extends javax.swing.JFrame {

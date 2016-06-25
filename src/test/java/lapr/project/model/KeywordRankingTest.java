@@ -20,7 +20,7 @@ import org.w3c.dom.Node;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class KeywordRankingTest {
 

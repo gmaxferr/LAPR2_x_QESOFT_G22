@@ -9,7 +9,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um RegistoTiposConflitoDemonstracao
+ * 
  * @author G29
  */
 public class RegistoTiposConflitoDemonstracao implements Importable<RegistoTiposConflitoDemonstracao>, Exportable {

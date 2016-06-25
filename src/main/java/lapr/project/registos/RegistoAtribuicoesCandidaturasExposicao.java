@@ -155,11 +155,6 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         }
     }
 
-    /**
-     *
-     * @param node
-     * @return
-     */
     @Override
     public RegistoAtribuicoesCandidaturasExposicao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document doc = XMLParser.createDocument(node, true);
@@ -183,10 +178,6 @@ public class RegistoAtribuicoesCandidaturasExposicao implements Importable<Regis
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;

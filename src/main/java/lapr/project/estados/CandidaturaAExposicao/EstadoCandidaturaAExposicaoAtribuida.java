@@ -23,6 +23,11 @@ public class EstadoCandidaturaAExposicaoAtribuida extends EstadoCandidaturaAExpo
         return false;
     }
 
+    public boolean setEstadoCandidaturaNaoAvaliada(){
+        this.m_cand.setEstado(new EstadoCandidaturaAExposicaoNaoAvaliada(m_cand));
+        return true;
+    }
+    
     private boolean valida() {
         //TODO
         return true;

@@ -1,11 +1,8 @@
 package lapr.project.registos;
 
-import java.util.List;
 import lapr.project.exceptions.AreaErradaException;
-import lapr.project.model.Stand;
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.w3c.dom.Node;
 
 /**
  *

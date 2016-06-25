@@ -28,6 +28,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     public static final String DATA_ABERTURA_CAND_ELEMENT_NAME = "subInicio";
     public static final String DATA_ENCERRAMENTO_CAND_ELEMENT_NAME = "subFim";
     public static final String DATA_FIM_CONFLITOS_ELEMENT_NAME = "dataLimiteConflitos";
+    public static final String DATA_FIM_AVALIACOES_ELEMENT_NAME = "dataFimAvaliacoes";
 
     /**
      * Estado exposição
@@ -68,6 +69,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * Data em que a acaba a deteção de conflitos
      */
     private Data m_dataFimDetecaoConflitos;
+
+    /**
+     * Data em que acaba o período de avaliacoes das candidaturas à exposição
+     */
+    private Data m_dataFimAvaliacoes;
 
     /**
      * Atributo local de Exposição
@@ -166,10 +172,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * @param dataInicioSubCand
      * @param dataFimSubCand
      * @param dataFimDetecaoConflitos
+     * @param dataFimAvaliacoes
      * @param local local da exposição
      * @param centroExposicoes
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes centroExposicoes) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Data dataFimAvaliacoes, Local local, CentroExposicoes centroExposicoes) {
         this(centroExposicoes);
         this.m_strTitulo = titulo;
         this.m_strDescricao = descricao;
@@ -179,6 +186,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_dataAberturaCandidatura = dataInicioSubCand;
         this.m_dataEncerramentoCandidatura = dataFimSubCand;
         this.m_dataFimDetecaoConflitos = dataFimDetecaoConflitos;
+        this.m_dataFimAvaliacoes = dataFimAvaliacoes;
     }
 
     /**
@@ -254,6 +262,16 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
+     * Devolve a data de fim do periodo de avaliacoes de candidaturas a
+     * exposição
+     *
+     * @return data de fim do periodo de avaliacoes de candidaturas a exposição
+     */
+    public Data getDataFimAvaliacoes() {
+        return m_dataFimAvaliacoes;
+    }
+
+    /**
      * Devolve o local da exposição
      *
      * @return local da exposição
@@ -273,6 +291,24 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public RegistoCandidaturasAExposicaoRemovidas getRegistoCandidaturasAExposicaoRemovidas() {
         return m_rcr;
+    }
+
+    /**
+     * Verifica se das demonstrações desta exposição alguma das aceites é também
+     * alguma das que o representante demonstrou interesse em participar
+     *
+     * @param demonstracaoInteresse
+     * @return true se encontrar pelo menos uma, falso caso contrário
+     */
+    public boolean peloMenosUmaDemonstracaoAceite(List<Demonstracao> demonstracaoInteresse) {
+        for (Demonstracao demoConfirmada : this.getRegistoDemonstracoes().getListaDemonstracoesEstadoConfirmada()) {
+            for (Demonstracao demoInteresse : demonstracaoInteresse) {
+                if (demoConfirmada.equals(demoInteresse)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -566,7 +602,19 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @param dataInicioCandDemo the dataInicioCandDemo to set
+     * Permite alterar a data de fim de avaiações das candidaturas
+     *
+     * @param dataFimAvaliacoes
+     */
+    public void setDataFimAvaliacoes(Data dataFimAvaliacoes) {
+        m_dataFimAvaliacoes = dataFimAvaliacoes;
+    }
+
+    /**
+     * Permite alterar a data de inicio de submissão de candidaturas das
+     * demonstrações
+     *
+     * @param dataInicioCandDemo
      */
     public void setDataInicioCandDemo(Data dataInicioCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
@@ -578,7 +626,10 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * @param dataFimCandDemo the dataFimCandDemo to set
+     * Permite alterar a data de fim de submissão de candidaturas das
+     * demonstrações
+     *
+     * @param dataFimCandDemo
      */
     public void setDataFimCandDemo(Data dataFimCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
@@ -588,6 +639,12 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         }
     }
 
+    /**
+     * Permite alterar a data de deteção de conflitos de candidaturas das
+     * demonstrações
+     *
+     * @param dataFimDetecaoConflitos
+     */
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
             if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
@@ -714,6 +771,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
         Data data3 = this.getDataFimDetecaoConflitos();
 
+        Data data4 = this.getDataFimAvaliacoes();
+
         TimerTask inicioSubCand = new AlterarParaAbertaCandidaturas(this);
         this.schedule(inicioSubCand, data1);
 
@@ -722,6 +781,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
         TimerTask fimDetecaoConflitos = new AlterarParaConflitosAtualizados(this);
         this.schedule(fimDetecaoConflitos, data3);
+
+        TimerTask fimAvaliacoes = new AlterarParaFimAvaliacoes(this);
+        this.schedule(fimAvaliacoes, data4);
     }
 
     @Override
@@ -771,6 +833,13 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             this.m_dataInicio.importContentFromXMLNode(elem2);
             if (this.m_dataInicio.equals(invalidData)) {
                 this.m_dataInicio = null;
+            }
+
+            elem2 = (Element) elem.getElementsByTagName(DATA_FIM_AVALIACOES_ELEMENT_NAME).item(0);
+            this.m_dataFimAvaliacoes = new Data(1, 1, 1);
+            this.m_dataFimAvaliacoes.importContentFromXMLNode(elem2);
+            if (this.m_dataFimAvaliacoes.equals(invalidData)) {
+                this.m_dataFimAvaliacoes = null;
             }
 
             this.m_ro.importContentFromXMLNode(elem.getElementsByTagName(RegistoOrganizadores.ROOT_ELEMENT_NAME).item(0));
@@ -935,6 +1004,14 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                 elemChild.setTextContent(new Data(1, 1, 1).exportContentToXMLNode().getTextContent());
             } else {
                 elemChild.setTextContent(this.m_dataFimDetecaoConflitos.exportContentToXMLNode().getTextContent());
+            }
+            elementExpo.appendChild(elemChild);
+
+            elemChild = document.createElement(DATA_FIM_AVALIACOES_ELEMENT_NAME);
+            if (this.m_dataFimAvaliacoes == null) {
+                elemChild.setTextContent(new Data(1, 1, 1).exportContentToXMLNode().getTextContent());
+            } else {
+                elemChild.setTextContent(this.m_dataFimAvaliacoes.exportContentToXMLNode().getTextContent());
             }
             elementExpo.appendChild(elemChild);
 
