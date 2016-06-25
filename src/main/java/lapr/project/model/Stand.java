@@ -7,7 +7,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um Stand
+ * 
  * @author G29
  */
 public class Stand implements Importable<Stand>, Exportable {

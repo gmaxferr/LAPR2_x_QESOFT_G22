@@ -8,7 +8,7 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- * Keyword com score.
+ * Representação de um Keyword com score.
  *
  * @author G29
  */

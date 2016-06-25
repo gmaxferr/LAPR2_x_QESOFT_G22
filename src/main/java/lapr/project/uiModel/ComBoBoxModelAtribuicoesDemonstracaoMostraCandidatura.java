@@ -6,7 +6,8 @@ import javax.swing.ComboBoxModel;
 import lapr.project.model.*;
 
 /**
- *
+ * Representação de uma ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura
+ * 
  * @author G29
  */
 public class ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura extends AbstractListModel implements ComboBoxModel {

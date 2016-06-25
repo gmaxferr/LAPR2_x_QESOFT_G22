@@ -8,7 +8,7 @@ import lapr.project.model.Demonstracao;
 /**
  * Representação de uma ComboBoxModel de demonstrações.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class ComboBoxModelDemonstracoes extends AbstractListModel implements ComboBoxModel {
 

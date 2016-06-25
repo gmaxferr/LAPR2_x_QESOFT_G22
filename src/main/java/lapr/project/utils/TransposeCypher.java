@@ -1,13 +1,11 @@
 package lapr.project.utils;
 
-import java.util.Arrays;
-
 /**
  * Cifra de Transposição em colunas.<!-- -->Permita a encriptação de arrays de
  * caracteres usando uma técnica de transposição em colunas e com auxílio de uma
  * palavra-chave.<!-- -->Esta cifra acrescenta difusão à mensagem.
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class TransposeCypher {
 

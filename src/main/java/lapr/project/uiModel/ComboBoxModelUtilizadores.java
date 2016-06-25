@@ -1,6 +1,5 @@
 package lapr.project.uiModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
@@ -23,11 +22,22 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
      */
     private String usernameUtilizadorSelecionado;
 
+    /**
+     * Construtor de objetos do tipo ComboBoxModelUtilizadores com o parametro
+     * lista de utilizadore
+     * 
+     * @param listaUtilizadores lista de utilizadore
+     */
     public ComboBoxModelUtilizadores(List<Utilizador> listaUtilizadores) {
         this.usernameUtilizadorSelecionado = null;
         this.m_listaUtilizadores = listaUtilizadores;
     }
 
+    /**
+     * Adiciona um utilizador novo à lista de utilizadores
+     * 
+     * @param utilizadorNovo novo utilizador a ser adicionado
+     */
     public void adicionarUtilizador(Utilizador utilizadorNovo) {
         this.m_listaUtilizadores.add(utilizadorNovo);
     }
@@ -66,11 +76,23 @@ public class ComboBoxModelUtilizadores extends AbstractListModel implements Comb
 
     }
 
+    /**
+     * Devolve um utilizador
+     *
+     * @param index posição do utilizador
+     * @return utilizador
+     */
+
     @Override
     public Object getElementAt(int index) {
         return this.m_listaUtilizadores.get(index).getUsername();
     }
 
+    /**
+     * Remove um utilizador da lista de utilizadore
+     * 
+     * @param utilizador utilizador a ser removido
+     */
     public void removerUtilizador(Utilizador utilizador) {
         this.m_listaUtilizadores.remove(utilizador);
     }
