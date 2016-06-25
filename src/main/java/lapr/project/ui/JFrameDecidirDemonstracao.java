@@ -16,22 +16,22 @@ import lapr.project.utils.Data;
  * @author G29
  */
 public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
-
+    
     private transient DecidirDemonstracaoController ctrl;
     private transient List<Exposicao> listaExposicoes;
-
+    
     private transient boolean[] decisoes;
     private transient Exposicao expoSelecionada;
     private transient final JFrame janelaMae;
     private transient CardLayout cardLayout;
-
+    
     private transient List<Demonstracao> m_listaDemonstracoes = new ArrayList();
     private transient Data dataInicioSubCand;
     private transient Data dataFimSubCand;
     private transient Data dataFimDetecaoConflitos;
-
+    
     private List<JCheckBox> listaCheckBoxes = new ArrayList();
-
+    
     private JFrame thisFrame;
 
     /**
@@ -75,17 +75,18 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         super("Decidir demonstração");
         this.listaExposicoes = ce.getRegistoExposicoes().getlistaExposicoesDoOrganizadorComDemos(username);
         this.ctrl = new DecidirDemonstracaoController(ce, username);
+        this.thisFrame = this;
         this.janelaMae = menuPrincipal;
-
+        
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
-
+        
         alterarComportamentoFecharJFrame();
         setLocationRelativeTo(null);
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
         setVisible(true);
     }
-
+    
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
@@ -621,7 +622,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
-
+    
     private void inicializarCard2() {
         listaCheckBoxes = new ArrayList<>();
         for (int i = 0; i < m_listaDemonstracoes.size(); i++) {
@@ -638,7 +639,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         }
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
-
+    
     private void avancarParaCard3() {
         cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
@@ -759,10 +760,10 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
 
     private void confirmarDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDatasActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Confirma as datas inseridas?", "Confirma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf != null) {
+            if (diaInicioCand.getSelectedItem() != null && diaFimCand.getSelectedItem() != null && diaFimDetConf.getSelectedItem() != null) {
                 getDatas();
                 Data dataAtual = new Data();
-                if (!dataFimDetecaoConflitos.isMaior(dataAtual) && !dataFimSubCand.isMaior(dataAtual) && !dataInicioSubCand.isMaior(dataAtual)) {
+                if (dataFimDetecaoConflitos.isMaior(dataAtual) && dataFimSubCand.isMaior(dataAtual) && dataInicioSubCand.isMaior(dataAtual)) {
                     if (dataFimSubCand.isMaior(dataInicioSubCand)) {
                         if (dataFimDetecaoConflitos.isMaior(dataFimSubCand)) {
                             for (int i = 0; i < listaCheckBoxes.size(); i++) {
@@ -779,11 +780,13 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                             }
                             JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
                             ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
+                            thisFrame.dispose();
+                            janelaMae.setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "A data de fim de deteção de conflitos de interesse não pode ser anterior à encerramento do período de submissão de candidaturas", "Dados inválidos", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR);
+                        JOptionPane.showMessageDialog(rootPane, "A data de encerramento do período de submissão de candidaturas não pode ser anterior à data de abertura", "Dados inválidos", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Nenhuma data pode ser anterior ao dia " + dataAtual.toAnoMesDiaString(), "Data/as Inválida/aa", JOptionPane.ERROR_MESSAGE);
@@ -793,7 +796,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_confirmarDatasActionPerformed
-
+    
     private void getDatas() {
         int d1 = diaInicioCand.getSelectedIndex() + 1;
         int m1 = mesInicioCand.getSelectedIndex() + 1;
@@ -804,12 +807,12 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         int d3 = diaFimDetConf.getSelectedIndex() + 1;
         int m3 = mesFimDetConf.getSelectedIndex() + 1;
         int a3 = (Integer) Integer.parseInt((String) anoFimDetConf.getSelectedItem());
-
-        dataInicioSubCand = new Data(d1, m1, a1);
-        dataFimSubCand = new Data(d2, m2, a2);
-        dataFimDetecaoConflitos = new Data(d3, m3, a3);
+        
+        dataInicioSubCand = new Data(a1, m1, d1);
+        dataFimSubCand = new Data(a2, m2, d2);
+        dataFimDetecaoConflitos = new Data(a3, m3, d3);
     }
-
+    
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Tem a certeza que pretende cancelar o processo? Todas as alterações serão perdidas", "Aviso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -925,10 +928,10 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
         inicializarCard2();
         cardLayout.show(getContentPane(), "card2");
     }
-
+    
     private void voltarParaCard1() {
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
-
+    
 }
