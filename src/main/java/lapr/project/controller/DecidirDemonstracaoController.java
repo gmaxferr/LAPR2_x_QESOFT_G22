@@ -132,6 +132,7 @@ public class DecidirDemonstracaoController {
         this.m_expo.setDataInicioCandDemo(dataInicioCandDemo);
         this.m_expo.setDataFimCandDemo(dataFimCandDemo);
         this.m_expo.setDataFimDetecaoConflitosDemo(dataFimDetecaoConflitos);
+        this.m_expo.getEstado().setEstadoDemosDecididas();
     }
 
 }
