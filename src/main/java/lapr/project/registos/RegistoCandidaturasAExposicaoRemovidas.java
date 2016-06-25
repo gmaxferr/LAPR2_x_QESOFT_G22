@@ -4,14 +4,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.*;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.Exposicao;
-import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lapr.project.model.*;
+import lapr.project.utils.*;
+import org.w3c.dom.*;
 
 /**
  * Representação de um RegistoCandidaturasAExposicaoRemovidas
@@ -22,6 +17,9 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
 
     public static final String ROOT_ELEMENT_NAME = "registoCandidaturasAExposicaoRemovidas";
 
+    /**
+     * Exposição
+     */
     public final Exposicao e;
 
     /**
@@ -30,8 +28,10 @@ public class RegistoCandidaturasAExposicaoRemovidas implements Importable<Regist
     private List<CandidaturaAExposicao> m_listaCandidaturasRemovidas;
 
     /**
-     * Contrutor de objetos do tipo RegistoCandidaturasAExposicaoRemovidas sem
-     * parâmetros.
+     * Contrutor de objetos do tipo RegistoCandidaturasAExposicaoRemovidas com 
+     * o parâmetro exposição
+     * 
+     * @param e exposição
      */
     public RegistoCandidaturasAExposicaoRemovidas(Exposicao e) {
         this.m_listaCandidaturasRemovidas = new ArrayList<>();

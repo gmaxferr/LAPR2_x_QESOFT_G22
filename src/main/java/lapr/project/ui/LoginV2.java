@@ -14,7 +14,8 @@ import lapr.project.model.*;
 import lapr.project.utils.Utilitarios;
 
 /**
- *
+ * UI do Login
+ * 
  * @author G29
  */
 public class LoginV2 extends javax.swing.JFrame {

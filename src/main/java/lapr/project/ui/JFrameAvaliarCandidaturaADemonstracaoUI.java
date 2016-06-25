@@ -12,7 +12,8 @@ import lapr.project.controller.AvaliarCandidaturaADemonstracaoController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC  Avaliar candidatura a demonstracao
+ * 
  * @author G29
  */
 public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame {

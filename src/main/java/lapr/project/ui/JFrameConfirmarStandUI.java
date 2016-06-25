@@ -12,7 +12,8 @@ import lapr.project.controller.ConfirmarStandController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Confirmar stand
+ * 
  * @author G29
  */
 public class JFrameConfirmarStandUI extends javax.swing.JFrame {

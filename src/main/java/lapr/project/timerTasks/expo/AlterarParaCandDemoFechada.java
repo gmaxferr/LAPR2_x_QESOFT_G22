@@ -5,13 +5,23 @@ import javax.swing.JOptionPane;
 import lapr.project.model.*;
 
 /**
- *
+ * Representação de um timer AlterarParaCandDemoFechada
+ * 
  * @author G29
  */
 public class AlterarParaCandDemoFechada extends TimerTask {
     
+    /**
+     * Exposição
+     */
     private final Exposicao m_exposicao;
 
+    /**
+     * Construtor de objetos do tipo AlterarParaCandDemoFechada com o 
+     * parametro exposição
+     * 
+     * @param m_exposicao exposição
+     */
     public AlterarParaCandDemoFechada(Exposicao m_exposicao) {
         this.m_exposicao = m_exposicao;
     }

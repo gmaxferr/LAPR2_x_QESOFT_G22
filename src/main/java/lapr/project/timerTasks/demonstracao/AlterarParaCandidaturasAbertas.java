@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.timerTasks.demonstracao;
 
 import java.util.TimerTask;
@@ -10,16 +5,22 @@ import javax.swing.JOptionPane;
 import lapr.project.model.Demonstracao;
 
 /**
- *
- * @author JoãoCardoso aka K4rd050
+ * Representação de um timer AlterarParaCandidaturasAbertas
+ * 
+ * @author G29
  */
 public class AlterarParaCandidaturasAbertas extends TimerTask{
 
+    /**
+     * Demonstração
+     */
     private final Demonstracao m_demo;
 
     /**
-     *
-     * @param e - exposição
+     * Construtor de objetos do tipo ALterarParaCandidaturasAbertas com o 
+     * parametro demonstração
+     * 
+     * @param d - demonstração
      */
     public AlterarParaCandidaturasAbertas(Demonstracao d) {
         m_demo = d;

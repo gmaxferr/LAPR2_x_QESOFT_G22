@@ -6,15 +6,21 @@ import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.Exposicao;
 
 /**
- *
+ * Representação de um timer AlterarParaConflitosAtualizados
+ * 
  * @author G29
  */
 public class AlterarParaConflitosAtualizados extends TimerTask {
 
+    /**
+     * Exposição
+     */
     private final Exposicao m_exposicao;
 
     /**
-     *
+     * Construtor de objetos do tipo AlterarParaConflitosAtualizados com o 
+     * parametro exposição
+     * 
      * @param e - exposição
      */
     public AlterarParaConflitosAtualizados(Exposicao e) {

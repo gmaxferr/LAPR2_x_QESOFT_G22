@@ -12,7 +12,8 @@ import lapr.project.controller.PercentagemCandAceitesMediaRatingsController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Percentagem candidaturas aceites e media dos ratings
+ * 
  * @author G29
  */
 public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame {

@@ -12,7 +12,8 @@ import lapr.project.uiModel.ComboBoxModelDemonstracoes;
 import lapr.project.uiModel.ComboBoxModelExposicoes;
 
 /**
- *
+ * UI do UC Listar candidaturas a demonstração removidas
+ * 
  * @author G29
  */
 public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swing.JFrame {

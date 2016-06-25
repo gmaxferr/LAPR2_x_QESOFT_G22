@@ -9,7 +9,7 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- * Representação um registo de utilizadores
+ * Representação de um registo de utilizadores
  *
  * @author G29
  */
@@ -24,7 +24,10 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     private final List<Utilizador> m_listaUtilizadores;
 
     /**
-     * Construtor de objectos do tipo RegistoUtilizadores sem parametros
+     * Construtor de objectos do tipo RegistoUtilizadores com o parametro
+     * tagSuffix 
+     * 
+     * @param tagSuffix
      */
     public RegistoUtilizadores(String tagSuffix) {
         this.TAG_SUFFIX = tagSuffix;
@@ -49,7 +52,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * Método de validação: Verifica se existe algum utilizador já registado no
+     * Verifica se existe algum utilizador já registado no
      * centro de exposições com o mesmo username ou com o email (estes dois
      * atributos devem ser únicos).
      *
@@ -68,7 +71,8 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
      * Verifica se o nome do utilizador é valido
      *
      * @param nome - nome a verificar
-     * @return
+     * 
+     * @return true se o nome for válido. Caso contrário retorna false
      */
     public boolean validaNome(String nome) {
         return !nome.isEmpty();
@@ -95,7 +99,7 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
     }
 
     /**
-     * valida o username verificando se já existe algum utilizador portador do
+     * Valida o username verificando se já existe algum utilizador portador do
      * mesmo e se a string que contem o username não está vazia.
      *
      * @param username - username a validar.
@@ -152,11 +156,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         m_listaUtilizadores.add(u);
     }
 
-    /**
-     *
-     * @param node
-     * @return
-     */
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document doc = XMLParser.createDocument(node, true);
@@ -180,10 +179,6 @@ public class RegistoUtilizadores implements Importable<RegistoUtilizadores>, Exp
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;

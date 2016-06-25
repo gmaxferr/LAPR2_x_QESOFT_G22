@@ -1,8 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelCandidaturaADemonstracao;
-import lapr.project.uiModel.ComboBoxModelDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
@@ -11,7 +9,8 @@ import lapr.project.controller.RemoverCandidaturaADemonstracaoController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Remover candidatura a demonstração
+ * 
  * @author G29
  */
 public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame {

@@ -12,7 +12,8 @@ import lapr.project.controller.CriarDemonstracaoController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Criar demonstracao
+ * 
  * @author G29
  */
 public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {

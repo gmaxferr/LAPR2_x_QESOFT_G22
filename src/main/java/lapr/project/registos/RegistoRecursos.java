@@ -33,6 +33,7 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
      * Cria um recurso
      *
      * @param nomeRecurso nome do recurso a ser criado
+     * @return true se o recurso foi criado. Caso contrário retorna false.
      */
     public boolean criarRecurso(String nomeRecurso) {
         boolean valido = false;
@@ -78,7 +79,22 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
     public void setListaRecursosNecessarios(List<Recurso> listaRecursosNecessarios) {
         this.m_listaRecursosNecessarios.addAll(listaRecursosNecessarios);
     }
+    
+    /**
+     * Adiciona um recurso à lista dos mesmos
+     *
+     * @param rec - recurso a adicionar
+     */
+    private void adiciona(Recurso rec) {
+        this.m_listaRecursosNecessarios.add(rec);
+    }
 
+    /**
+     * Conserta o valor das referências das variáveis guardados pelos objetos
+     * que este objeto agrega.
+     * 
+     * @param m_registoRecursos registo de recursos
+     */
     public void fix(RegistoRecursos m_registoRecursos) {
         List<Recurso> fixedRecursos = new ArrayList<>();
         for (Recurso r : m_listaRecursosNecessarios) {
@@ -149,14 +165,5 @@ public class RegistoRecursos implements Importable<RegistoRecursos>, Exportable 
             Logger.getLogger(RegistoRecursos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return node;
-    }
-
-    /**
-     * Adiciona um recurso à lista dos mesmos
-     *
-     * @param rec - recurso a adicionar
-     */
-    private void adiciona(Recurso rec) {
-        this.m_listaRecursosNecessarios.add(rec);
     }
 }

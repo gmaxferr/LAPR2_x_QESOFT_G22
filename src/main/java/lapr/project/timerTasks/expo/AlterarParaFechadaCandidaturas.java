@@ -3,21 +3,29 @@ package lapr.project.timerTasks.expo;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DetetarConflitoController;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Exposicao;
+import lapr.project.model.*;
 
 /**
- *
+ * Representação de um timer AlterarParaFechadaCandidaturas
+ * 
  * @author G29
  */
 public class AlterarParaFechadaCandidaturas extends TimerTask {
 
+    /**
+     * Exposição
+     */
     private final Exposicao m_exposicao;
+    
+    /**
+     * Centro de exposições
+     */
     private final CentroExposicoes m_ce;
 
     /**
-     *
+     * Construtor de objetos do tipo AlterarParaFechadaCandidaturas com os
+     * parametros exposição e centro de exposições
+     * 
      * @param e - exposição
      * @param ce - centro de exposições
      */

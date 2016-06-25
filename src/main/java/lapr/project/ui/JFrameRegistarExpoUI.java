@@ -1,8 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelUtilizadores;
-import lapr.project.uiModel.ModelComboBoxDias;
-import lapr.project.uiModel.ModeloJListUtilizadores;
+import lapr.project.uiModel.*;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.*;
@@ -12,7 +10,8 @@ import lapr.project.model.*;
 import lapr.project.utils.Data;
 
 /**
- *
+ * UI do UC Registar Exposicao
+ * 
  * @author G29
  */
 public class JFrameRegistarExpoUI extends javax.swing.JFrame {
