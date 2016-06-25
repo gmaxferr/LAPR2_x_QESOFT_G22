@@ -22,13 +22,13 @@ public class DadosInstanciados {
     public DadosInstanciados() {
         email1 = "a@iol.com";
         ce = new CentroExposicoes();
-        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 21), new Data(2016, 6, 22), new Data(2016, 6, 23), new Data(2016, 6, 24), new Data(2016, 6, 25), new Data(2016, 6, 27), new Local("local"), ce);
+        expo1 = inicializarNovaExposicao("titulo", "descricao", new Data(2016, 6, 20), new Data(2016, 6, 21), new Data(2016, 6, 22), new Data(2016, 6, 23), new Data(2016, 6, 24), new Local("local"), ce);
         user1 = new Utilizador("user1name", "user1", getPass(), getEmail1());
         representante1 = new Expositor(getUser1());
     }
 
-    public Exposicao inicializarNovaExposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Data dataInicioAvaliacoes, Data dataFimAvaliacoes, Local local, CentroExposicoes ce) {
-        Exposicao e = new Exposicao(titulo, descricao, dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, dataInicioAvaliacoes, dataFimAvaliacoes, local, ce);
+    public Exposicao inicializarNovaExposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataFimDetecaoConflitos, Local local, CentroExposicoes ce) {
+        Exposicao e = new Exposicao(titulo, descricao, dataInicio, dataFim, dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos, local, ce);
         RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
         Demonstracao d = new Demonstracao("descricao", e);
         RegistoRecursos rr = d.getRegistoRecursosNecessarios();
