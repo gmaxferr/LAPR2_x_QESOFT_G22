@@ -296,6 +296,9 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
      * caso contrário devolve false.
      */
     public boolean isMaior(Data outraData) {
+        if(outraData == null){
+            return true;
+        }
         int totalDias = contaDias();
         int totalDias1 = outraData.contaDias();
 
