@@ -671,6 +671,12 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
         this.m_ce = ce;
     }
 
+    @Override
+    public String toString() {
+        return this.m_strTitulo;
+    }
+    
+    
     /**
      * Compara a exposição a outro objecto passado por parametro. A comparação
      * entre duas exposições é feita com atenção a alguns todos os atributos
