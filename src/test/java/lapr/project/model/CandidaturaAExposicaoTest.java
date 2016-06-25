@@ -514,7 +514,7 @@ public class CandidaturaAExposicaoTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao expo = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        Exposicao expo = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(),new Data(), new Local("local"), ce);
         instance.setExposicao(expo);
         assertEquals(expo, instance.getExposicao());
     }

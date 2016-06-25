@@ -44,6 +44,7 @@ public class RegistoExposicoesTest {
     Exposicao expo1, expo2, expo3, expo4, expo5, expo6, expo7, expo8, expo9, expo10, expo11;
     KeywordRanking rank = new KeywordRanking();
     CandidaturaAExposicao cand;
+
     public RegistoExposicoesTest() {
         ce = new CentroExposicoes();
         re = ce.getRegistoExposicoes();
@@ -57,35 +58,35 @@ public class RegistoExposicoesTest {
 
         expo1 = new Exposicao(ce);
 
-        expo2 = new Exposicao("titulo2", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo2 = new Exposicao("titulo2", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo2.setEstado(new EstadoExposicaoCandidaturasAvaliadas(expo2));
 
-        expo3 = new Exposicao("titulo3", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo3 = new Exposicao("titulo3", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo3.getRegistoOrganizadores().addOrganizador(user1);
         expo3.getRegistoOrganizadores().addOrganizador(user1);
         expo3.setEstado(new EstadoExposicaoCandidaturasDecididas(expo3));
         expo3.getKeywordRanking().setReady();
 
-        expo4 = new Exposicao("titulo4", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo4 = new Exposicao("titulo4", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo4.setEstado(new EstadoExposicaoCandidaturasAbertas(expo4));
 
-        expo5 = new Exposicao("titulo5", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo5 = new Exposicao("titulo5", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo5.getRegistoOrganizadores().addOrganizador(user1);
         expo5.setEstado(new EstadoExposicaoCriada(expo5));
 
-        expo6 = new Exposicao("titulo6", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo6 = new Exposicao("titulo6", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo6.getRegistoOrganizadores().addOrganizador(user2);
         expo6.setEstado(new EstadoExposicaoCriada(expo6));
 
-        expo7 = new Exposicao("titulo7", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo7 = new Exposicao("titulo7", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo7.getRegistoOrganizadores().addOrganizador(user2);
         expo7.setEstado(new EstadoExposicaoDemosDefinidasSemFAE(expo7));
 
-        expo8 = new Exposicao("titulo8", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo8 = new Exposicao("titulo8", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo8.getRegistoOrganizadores().addOrganizador(user2);
         expo8.setEstado(new EstadoExposicaoFAEDefinidosSemDemos(expo8));
-        
-        expo9 = new Exposicao("titulo9", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+
+        expo9 = new Exposicao("titulo9", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo9.getRegistoOrganizadores().addOrganizador(user3);
         expo9.getRegistoFAE().adicionaFAE(user1);
         CandidaturaAExposicao cand1 = expo9.getRegistoCandidaturasAExposicao().criarCandidatura(user3);
@@ -97,15 +98,15 @@ public class RegistoExposicoesTest {
         demo1.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
         expo9.getRegistoDemonstracoes().addDemo(demo1);
 
-        expo10 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
-        
-        expo11 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+        expo10 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
+
+        expo11 = new Exposicao("titulo10", "desc2", data1, data1, data1, data1, data1, data1, new Local("Rua das flores... :P"), ce);
         expo11.getRegistoOrganizadores().addOrganizador(user3);
         Demonstracao demo2 = expo11.getRegistoDemonstracoes().novaDemonstracao("Outra demonstração");
         demo2.setEstado(new EstadoDemonstracaoCandidaturasAvaliadas(demo2));
         demo2.getRegistoRecursosNecessarios().getListaDeRecursos().add(new Recurso("electricidade"));
         expo11.getRegistoDemonstracoes().addDemo(demo2);
-        
+
         re.getListaExposicoes().add(expo1);
         re.getListaExposicoes().add(expo2);
         re.getListaExposicoes().add(expo3);
@@ -175,7 +176,8 @@ public class RegistoExposicoesTest {
         boolean result = re.registaExposicao(e);
         assertEquals(expResult, result);
 
-        e = new Exposicao("titulo", "desc", new Data(2016, 1, 2), new Data(2018, 1, 3), new Data(2016, 1, 3), new Data(2016, 1, 4), new Data(2016, 1, 6), new Local("Rua das flores... :P"), ce);
+        e = new Exposicao("titulo", "desc", new Data(2016, 1, 2), new Data(2018, 1, 3), new Data(2016, 1, 3), new Data(2016, 1, 4), new Data(2016, 1, 6), new Data(2016, 1, 7), new Local("Rua das flores... :P"), ce
+        );
         expResult = true;
         result = re.registaExposicao(e);
         assertEquals(expResult, result);

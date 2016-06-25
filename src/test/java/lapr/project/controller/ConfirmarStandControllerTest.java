@@ -98,7 +98,7 @@ public class ConfirmarStandControllerTest {
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data(2017, 06, 10), new Data(2017, 06, 11), new Data(2017, 06, 12), new Data(2017, 06, 13), new Data(2017, 06, 14), new Local("l"), ce);
+        Exposicao e = new Exposicao("a", "b", new Data(2017, 06, 10), new Data(2017, 06, 11), new Data(2017, 06, 12), new Data(2017, 06, 13), new Data(2017, 06, 14),new Data(2017,06,15), new Local("l"), ce);
         instance.setExposicao(e);
 
     }

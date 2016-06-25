@@ -310,17 +310,17 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         List<Exposicao> listaExposicoesEsperada = new ArrayList<>();
 
         RegistoExposicoes re = ce.getRegistoExposicoes();
-        Exposicao exposicao = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        Exposicao exposicao = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(),new Data(), new Local("local"), ce);
         re.registaExposicao(exposicao);
         exposicao.setEstado(new EstadoExposicaoCandidaturasAvaliadas(exposicao));
         listaExposicoesEsperada.add(exposicao);
 
-        exposicao = new Exposicao("titulo2", "descricao2", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local2"), ce);
+        exposicao = new Exposicao("titulo2", "descricao2", new Data(), new Data(), new Data(), new Data(), new Data(),new Data(), new Local("local2"), ce);
         re.registaExposicao(exposicao);
         exposicao.setEstado(new EstadoExposicaoCandidaturasAvaliadas(exposicao));
         listaExposicoesEsperada.add(exposicao);
 
-        exposicao = new Exposicao("titulo3", "descricao3", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local3"), ce);
+        exposicao = new Exposicao("titulo3", "descricao3", new Data(), new Data(), new Data(), new Data(), new Data(),new Data(), new Local("local3"), ce);
         re.registaExposicao(exposicao);
         exposicao.setEstado(new EstadoExposicaoCandidaturasFechadas(exposicao));
 
