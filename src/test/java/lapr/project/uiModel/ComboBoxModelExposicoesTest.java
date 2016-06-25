@@ -46,7 +46,7 @@ public class ComboBoxModelExposicoesTest {
     public void setUp() {
         titulo = "titulo";
         descricao = "desc";
-        e = new Exposicao(titulo, descricao, new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Local("local"), new CentroExposicoes());
+        e = new Exposicao(titulo, descricao, new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 01, 8), new Data(2012, 1, 9), new Data(2012, 1, 10), new Local("local"), new CentroExposicoes());
         listaExposicoes = new ArrayList<>();
         listaExposicoes.add(e);
         instance = new ComboBoxModelExposicoes(listaExposicoes);

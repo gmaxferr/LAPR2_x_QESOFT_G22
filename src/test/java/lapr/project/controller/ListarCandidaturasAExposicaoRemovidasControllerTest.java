@@ -21,24 +21,24 @@ import static org.junit.Assert.*;
  * @author G29
  */
 public class ListarCandidaturasAExposicaoRemovidasControllerTest {
-    
+
     private ListarCandidaturasAExposicaoRemovidasController instance;
     private CentroExposicoes ce;
     private RegistoCandidaturasAExposicaoRemovidas rcr;
     private RegistoExposicoes re;
     private Exposicao e;
-    
+
     public ListarCandidaturasAExposicaoRemovidasControllerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
@@ -47,14 +47,14 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
         rcr = e.getRegistoCandidaturasAExposicaoRemovidas();
         instance = new ListarCandidaturasAExposicaoRemovidasController(ce);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getRegistoExposicoes method, of class 
- ListarCandidaturasAExposicaoRemovidasController.
+     * Test of getRegistoExposicoes method, of class
+     * ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
     public void testGetRegistoExposicoes() {
@@ -63,8 +63,8 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
     }
 
     /**
-     * Test of getListaExposicoesDoOrganizador method, of class 
- ListarCandidaturasAExposicaoRemovidasController.
+     * Test of getListaExposicoesDoOrganizador method, of class
+     * ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
     public void testGetListaExposicoesDoOrganizador() {
@@ -78,19 +78,19 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
     }
 
     /**
-     * Test of setExposicao method, of class 
- ListarCandidaturasAExposicaoRemovidasController.
+     * Test of setExposicao method, of class
+     * ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
     public void testSetExposicao() {
         System.out.println("setExposicao");
-        Exposicao e = new Exposicao("a", "b", new Data(2015,05,03), new Data(2015,05,04),  new Data(2015,05,05),  new Data(2015,05,06),  new Data(2015,05,07),new Local ("l"), ce);
+        Exposicao e = new Exposicao("a", "b", new Data(2015, 05, 03), new Data(2015, 05, 04), new Data(2015, 05, 05), new Data(2015, 05, 06), new Data(2015, 05, 07), new Data(2015, 05, 8), new Data(2015, 05, 9), new Local("l"), ce);
         instance.setExposicao(e);
     }
 
     /**
-     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class 
- ListarCandidaturasAExposicaoRemovidasController.
+     * Test of getRegistoCandidaturasAExposicaoRemovidas method, of class
+     * ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
     public void testGetRegistoCandidaturasRemovidas() {
@@ -100,8 +100,8 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
     }
 
     /**
-     * Test of getListaCandidaturasAExposicaoRemovidas method, of class 
- ListarCandidaturasAExposicaoRemovidasController.
+     * Test of getListaCandidaturasAExposicaoRemovidas method, of class
+     * ListarCandidaturasAExposicaoRemovidasController.
      */
     @Test
     public void testGetListaCandidaturasRemovidas() {
@@ -113,5 +113,5 @@ public class ListarCandidaturasAExposicaoRemovidasControllerTest {
         List<CandidaturaAExposicao> result = instance.getListaCandidaturasAExposicaoRemovidas();
         assertEquals(expResult, result);
     }
-    
+
 }

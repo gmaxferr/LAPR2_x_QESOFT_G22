@@ -52,7 +52,7 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
         u = new Utilizador("a", "b", "Aa.1".toCharArray(), "a@b.c");
         ce = new CentroExposicoes();
         ce.getRegistoUtilizadoresConfirmados().getListaUtilizadores().add(u);
-        e = new Exposicao("a", "b", new Data(2015, 05, 03), new Data(2015, 05, 04), new Data(2015, 05, 05), new Data(2015, 05, 06), new Data(2015, 05, 07), new Local("l"), ce);;
+        e = new Exposicao("a", "b", new Data(2015, 05, 03), new Data(2015, 05, 04), new Data(2015, 05, 05), new Data(2015, 05, 06), new Data(2015, 05, 07), new Data(2015, 5, 8), new Data(2015, 5, 9), new Local("l"), ce);;
         re = ce.getRegistoExposicoes();
         d = new Demonstracao();
         rd = e.getRegistoDemonstracoes();

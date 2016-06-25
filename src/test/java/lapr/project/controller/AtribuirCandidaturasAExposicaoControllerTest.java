@@ -34,7 +34,7 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
     public void setUp() {
         ce = new CentroExposicoes();
         instance = new AtribuirCandidaturasAExposicaoController(ce, "usernameOrganizador");
-        e = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        e = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
     }
 
     @After
@@ -64,14 +64,14 @@ public class AtribuirCandidaturasAExposicaoControllerTest {
         List<Exposicao> listaExposicoes = new ArrayList<>();
 
         RegistoExposicoes re = ce.getRegistoExposicoes();
-        Exposicao expo = new Exposicao("titulo1", "descricao1", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("morada1"), ce);
+        Exposicao expo = new Exposicao("titulo1", "descricao1", new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Local("morada1"), ce);
         expo.getRegistoOrganizadores().addOrganizador(new Utilizador("nome", "usernameOrganizador", "password".toCharArray(), "email"));
         expo.getRegistoOrganizadores().addOrganizador(new Utilizador("nome", "username2", "password".toCharArray(), "email2"));
         re.registaExposicao(expo);
         expo.setEstado(new EstadoExposicaoConflitosAlterados(expo));
         listaExposicoes.add(expo);
 
-        expo = new Exposicao("titulo2", "descricao2", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("morada2"), ce);
+        expo = new Exposicao("titulo2", "descricao2", new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Local("morada2"), ce);
         re.registaExposicao(expo);
         expo.getRegistoOrganizadores().addOrganizador(new Utilizador("nome", "usernameOrganizador", "password".toCharArray(), "email"));
         expo.getRegistoOrganizadores().addOrganizador(new Utilizador("nome", "username2", "password".toCharArray(), "email2"));

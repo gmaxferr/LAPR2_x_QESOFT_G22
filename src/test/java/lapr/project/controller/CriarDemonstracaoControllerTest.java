@@ -44,7 +44,7 @@ public class CriarDemonstracaoControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        e = new Exposicao("titulo", "descricao", new Data(2015, 01, 03), new Data(2015, 01, 04), new Data(2015, 01, 05), new Data(2015, 01, 06), new Data(2015, 01, 07), new Local("Local"), ce);
+        e = new Exposicao("titulo", "descricao", new Data(2015, 01, 03), new Data(2015, 01, 04), new Data(2015, 01, 05), new Data(2015, 01, 06), new Data(2015, 01, 07), new Data(2015, 1, 8), new Data(2015, 1, 9), new Local("Local"), ce);
         instance = new CriarDemonstracaoController("b", ce);
         Utilizador u = new Utilizador("a", "b", new char[]{'a', 'b', 'c', 's'}, "d");
         Organizador o = new Organizador(u);

@@ -33,7 +33,7 @@ public class CriarCandidaturaAExposicaoControllerTest {
     @Before
     public void setUp() {
         ce = new CentroExposicoes();
-        e = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        e = new Exposicao("titulo", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
         controller = new CriarCandidaturaAExposicaoController(ce);
     }
 
@@ -49,7 +49,7 @@ public class CriarCandidaturaAExposicaoControllerTest {
     public void testGetListaExposicoesEstadoCandidaturasAbertas() {
         System.out.println("getListaExposicoesEstadoCandidaturasAbertas");
         RegistoExposicoes re = ce.getRegistoExposicoes();
-        Exposicao e = new Exposicao("titulo2", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
+        Exposicao e = new Exposicao("titulo2", "descricao", new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Data(), new Local("local"), ce);
         e.setEstado(new EstadoExposicaoCandidaturasAbertas(e));
         List<Exposicao> expResult = re.getListaExposicoesEstadoCandidaturasAbertas();
         controller.getRegistoExposicoes();

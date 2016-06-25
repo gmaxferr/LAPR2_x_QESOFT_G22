@@ -5,9 +5,14 @@
  */
 package lapr.project.model;
 
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoAceite;
+import lapr.project.utils.XMLParser;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +48,7 @@ public class CandidaturaADemonstracaoTest {
         dados = "dados";
         email = "email@b.c";
         demo = new Demonstracao("");
-        demo.setCodigoIdentificacao("");
+        demo.setCodigoIdentificacao("Demo_01");
         instance = new CandidaturaADemonstracao(dados, email);
     }
 
@@ -137,6 +142,7 @@ public class CandidaturaADemonstracaoTest {
     public void testImportContentFromXMLNode() {
         System.out.println("importContentFromXMLNode");
         Node node = instance.exportContentToXMLNode();
+        XMLParser parser = new XMLParser();
         CandidaturaADemonstracao expResult = new CandidaturaADemonstracao(dados, email);
         try {
             expResult.importContentFromXMLNode(node);
@@ -180,7 +186,7 @@ public class CandidaturaADemonstracaoTest {
     @Test
     public void testGetCodigoDemo() {
         System.out.println("getCodigoDemo");
-        String expResult = "";
+        String expResult = "Demo_01";
         instance.setDemonstracao(demo);
         String result = instance.getCodigoDemo();
         assertEquals(expResult, result);
