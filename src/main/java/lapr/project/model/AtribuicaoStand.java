@@ -128,6 +128,8 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
             elemBase.appendChild(document.importNode(this.m_cand.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_stand.exportContentToXMLNode(), true));
             elemBase.setAttribute(DECISAO_ATTR_NAME, String.valueOf(m_decisao));
+            
+            node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoStand.class.getName()).log(Level.SEVERE, null, ex);
         }
