@@ -104,10 +104,7 @@ public class ConflitoDeInteresse implements Importable<ConflitoDeInteresse>, Exp
             this.m_fae.importContentFromXMLNode(elem.getElementsByTagName(FAE.ROOT_ELEMENT_NAME).item(0));
             this.m_tipoConflito = new TipoConflito("");
             this.m_tipoConflito.importContentFromXMLNode(elem.getElementsByTagName(TipoConflito.ROOT_ELEMENT_NAME).item(0));
-            Expositor expositor = new Expositor(null);
-            expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
 
-            this.m_candidatura.setExpositor(expositor);
             NodeList nList = elem.getElementsByTagName(Keyword.ROOT_ELEMENT_NAME);
             for (int i = 0; i < nList.getLength(); i++) {
                 Node n2 = nList.item(i);
