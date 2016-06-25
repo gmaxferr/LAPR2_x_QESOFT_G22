@@ -15,6 +15,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     //Elements
     public static final String ROOT_ELEMENT_NAME = "avaliacao";
 
+    public static final String AVALIADA_ATTR_NAME = "avaliada";
+
     public static final String RATING_CONHECIMENTO_TEMA_ELEM_NAME = "conhecimentoFAE";
     public static final String RATING_ADEQ_EXPOSICAO_ELEMENT_NAME = "adequacaoExposicao";
     public static final String RATING_ADEQ_DEMOS_ELEMENT_NAME = "adequacaoDemonstracoes";
@@ -239,6 +241,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
 
+            this.avaliada = Boolean.valueOf(elem.getAttribute(AVALIADA_ATTR_NAME));
             this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ELEM_NAME).item(0).getTextContent());
             this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ELEMENT_NAME).item(0).getTextContent());
             this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ELEMENT_NAME).item(0).getTextContent());
@@ -262,6 +265,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
+            
+            elementBase.setAttribute(AVALIADA_ATTR_NAME, String.valueOf(this.avaliada));
 
             Element elemChild = document.createElement(RATING_ADEQ_DEMOS_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAsDemos));
