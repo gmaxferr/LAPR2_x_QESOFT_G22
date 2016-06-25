@@ -5,7 +5,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Representação do controller do UC PercentagemCandAceitesMediaRatingsController
+ * Representação do controller do UC
+ * PercentagemCandAceitesMediaRatingsController
  *
  * @author G29
  */
@@ -47,8 +48,9 @@ public class PercentagemCandAceitesMediaRatingsController {
     private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
-     * Construtor de objetos do tipo PercentagemCandAceitesMediaRatingsController 
-     * recebendo como parametro o centro de exposições atual
+     * Construtor de objetos do tipo
+     * PercentagemCandAceitesMediaRatingsController recebendo como parametro o
+     * centro de exposições atual
      *
      * @param ce centro de exposições atual
      */
