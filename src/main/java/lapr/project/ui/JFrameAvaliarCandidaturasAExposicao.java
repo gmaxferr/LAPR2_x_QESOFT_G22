@@ -805,9 +805,12 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private String card2CriarStringKeywords(String[] keywords) {
         String result = "";
-        for (String keyword : keywords) {
-            if (keyword != null) {
-                result += "; " + keyword;
+        for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i] != null) {
+                result += keywords[i];
+            }
+            if (i != keywords.length-1) {
+                result += "; ";
             }
         }
         return result;
