@@ -4,6 +4,7 @@ import java.util.List;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 import lapr.project.utils.QualidadeFaeCalculo;
+import lapr.project.utils.QualidadeFaeCalculo.Media;
 
 /**
  * Representação do controller do UC Qualidade FAE
@@ -44,7 +45,7 @@ public class QualidadeFaeController {
      * @return lista de FAEs cujo valor da media dos desvios seja maior que o
      * desvio padrao passado como limite
      */
-    public List<FAE> getListaFAE() {
+    public List<Media<FAE>> getListaFAE() {
         qualFaeCalc = new QualidadeFaeCalculo();
         RegistoExposicoes re = ce.getRegistoExposicoes();
         List<Exposicao> listExpo = re.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
@@ -72,7 +73,7 @@ public class QualidadeFaeController {
      * @return lista inteira de FAEs para a qual a hipotese nula foi
      * rejeitada, para o grau de confiança especificado
      */
-    public List<FAE> testeHipotese(double grauConfianca) {
+    public List<Media<FAE>> testeHipotese(double grauConfianca) {
         return qualFaeCalc.testeHipotese(DESVIO_MAXIMO_PERMITIDO, grauConfianca);
     }
 
