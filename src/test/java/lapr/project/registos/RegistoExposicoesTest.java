@@ -300,7 +300,7 @@ public class RegistoExposicoesTest {
         String usernameFae = "user1";
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo9);
-        List<Exposicao> result = re.getFaeExpos(usernameFae);
+        List<Exposicao> result = re.getExposEstadoConflitosDetetadosFae(usernameFae);
         assertEquals(expResult, result);
     }
 
