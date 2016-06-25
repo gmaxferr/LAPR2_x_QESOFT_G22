@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.uiModel;
 
 import java.util.List;
@@ -11,8 +6,9 @@ import javax.swing.ComboBoxModel;
 import lapr.project.model.FAE;
 
 /**
- *
- * @author guilherme
+ * Represnetação de uma ComboBoxModelFae
+ * 
+ * @author G29
  */
 public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel {
 
@@ -60,7 +56,7 @@ public class ComboBoxModelFae extends AbstractListModel implements ComboBoxModel
     /**
      * Define o item selecionado.
      *
-     * @param anItem item selcionado.
+     * @param anItem item selecionado.
      */
     @Override
     public void setSelectedItem(Object anItem) {

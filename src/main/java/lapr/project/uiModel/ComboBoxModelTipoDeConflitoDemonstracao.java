@@ -3,12 +3,12 @@ package lapr.project.uiModel;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
-import lapr.project.model.TipoConflito;
 import lapr.project.model.TipoConflitoDemonstracao;
 
 /**
+ * Representação de uma ComboBoxModelTipoDeConflitoDemonstracao
  *
- * @author guilherme
+ * @author G29
  */
 public class ComboBoxModelTipoDeConflitoDemonstracao  extends AbstractListModel implements ComboBoxModel {
 

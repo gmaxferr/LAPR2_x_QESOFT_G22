@@ -12,7 +12,8 @@ import lapr.project.uiModel.ModelComboBoxDias;
 import lapr.project.utils.Data;
 
 /**
- *
+ * UI do UC Decidir Demonstracao
+ * 
  * @author G29
  */
 public class JFrameDecidirDemonstracao extends javax.swing.JFrame {

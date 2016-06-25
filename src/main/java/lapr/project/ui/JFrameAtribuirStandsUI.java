@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
@@ -12,18 +7,13 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirStandsController;
-import lapr.project.model.AtribuicaoStand;
-import lapr.project.model.CandidaturaAExposicao;
-import lapr.project.model.Exposicao;
-import lapr.project.model.Expositor;
-import lapr.project.model.Stand;
-import lapr.project.model.Utilizador;
-import lapr.project.uiModel.ComboBoxModelStandart;
-import lapr.project.uiModel.ModelJTableAtribuicaoStands;
+import lapr.project.model.*;
+import lapr.project.uiModel.*;
 
 /**
- *
- * @author Ricardo Catalao
+ * UI dso UC  Atribuir Stands
+ * 
+ * @author G29
  */
 public class JFrameAtribuirStandsUI extends javax.swing.JFrame {
 

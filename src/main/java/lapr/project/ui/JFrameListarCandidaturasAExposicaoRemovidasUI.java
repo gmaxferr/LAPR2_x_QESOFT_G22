@@ -11,8 +11,9 @@ import lapr.project.controller.ListarCandidaturasAExposicaoRemovidasController;
 import lapr.project.model.*;
 
 /**
- *
- * @author Ana Leite
+ * UI do UC Listar candidaturas a exposição removidas
+ * 
+ * @author G29
  */
 public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.JFrame {
 

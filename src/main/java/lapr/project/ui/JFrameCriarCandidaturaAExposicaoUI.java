@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ModeloListaProdutos;
-import lapr.project.uiModel.ComboBoxModelDemonstracoes;
-import lapr.project.uiModel.ModeloListaDemonstracoes;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
@@ -13,7 +10,8 @@ import lapr.project.exceptions.*;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Criar candidatura a exposicao
+ * 
  * @author Grupo 29
  */
 public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {

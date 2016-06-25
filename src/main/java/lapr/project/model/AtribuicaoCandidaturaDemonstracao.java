@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 
 /**
  * Representação de uma atribuição candidatura a demonstração
+ * 
  * @author G29
  */
 public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoCandidaturaDemonstracao>, Exportable {

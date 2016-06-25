@@ -8,7 +8,7 @@ import lapr.project.model.CandidaturaAExposicao;
 /**
  * Representação de uma ComboBoxModel de atribuições.
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class ComboBoxModelAtribuicoesMostraCandidatura extends AbstractListModel implements ComboBoxModel {
 

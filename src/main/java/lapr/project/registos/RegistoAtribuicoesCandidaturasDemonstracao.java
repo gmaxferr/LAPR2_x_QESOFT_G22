@@ -9,7 +9,8 @@ import lapr.project.utils.*;
 import org.w3c.dom.*;
 
 /**
- *
+ * Representação de um Registo de ATribuições de Candidaturas a Demonstração
+ * 
  * @author G29
  */
 public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<RegistoAtribuicoesCandidaturasDemonstracao>, Exportable {
@@ -22,7 +23,8 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
     private List<AtribuicaoCandidaturaDemonstracao> m_listaAtribuicao;
 
     /**
-     * Construtor de objetos do tipo RegistoAtribuicoes sem parâmetros
+     * Construtor de objetos do tipo RegistoAtribuicoesCandidaturasDemonstracao
+     * sem parâmetros
      */
     public RegistoAtribuicoesCandidaturasDemonstracao() {
         this.m_listaAtribuicao = new ArrayList<>();
@@ -188,10 +190,6 @@ public class RegistoAtribuicoesCandidaturasDemonstracao implements Importable<Re
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;

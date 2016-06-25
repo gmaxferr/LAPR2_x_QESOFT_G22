@@ -4,7 +4,8 @@ import java.util.List;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representação de um  MecanismoDetecaoConflitoDemonstracao
+ * 
  * @author G29
  */
 public class MecanismoDetecaoConflitoDemonstracao {

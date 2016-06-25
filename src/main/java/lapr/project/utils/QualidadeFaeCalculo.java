@@ -12,8 +12,9 @@ import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
- *
- * @author Ricardo Catalao
+ * Reoresentação de uma QualidadeFaeCalculo
+ * 
+ * @author G29
  */
 public class QualidadeFaeCalculo {
 

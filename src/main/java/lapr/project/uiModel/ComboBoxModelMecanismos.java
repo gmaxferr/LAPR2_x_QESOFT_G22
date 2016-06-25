@@ -8,7 +8,7 @@ import lapr.project.model.Mecanismo;
 /**
  * Representação de uma ComboBoxModel de mecanismos.
  * 
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class ComboBoxModelMecanismos extends AbstractListModel implements ComboBoxModel {
 

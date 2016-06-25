@@ -2,11 +2,11 @@ package lapr.project.utils;
 
 import lapr.project.model.*;
 import java.util.*;
-import lapr.project.registos.RegistoUtilizadores;
 
 /**
- *
- * @author j040_
+ * Representação de uma classe Utilitarios
+ * 
+ * @author G29
  */
 public class Utilitarios {
 

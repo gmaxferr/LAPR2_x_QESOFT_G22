@@ -5,7 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- *
+ * UI do UC Exportar Ranking Keywords CSV
+ * 
  * @author G29
  */
 public class JFrameExportarRankingKeywordsCSV extends javax.swing.JFrame {

@@ -10,7 +10,8 @@ import lapr.project.model.*;
 import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
 
 /**
- *
+ * UI do UC Decidir candidatura a exposição
+ * 
  * @author G29
  */
 public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
@@ -25,8 +26,8 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO2 = 681;
     private static final int ALTURA_JANELA_PASSO2 = 500;
 
-    private static final int LARGURA_JANELA_PASSO3 = 441;
-    private static final int ALTURA_JANELA_PASSO3 = 188;
+    private static final int LARGURA_JANELA_PASSO3 = 451;
+    private static final int ALTURA_JANELA_PASSO3 = 220;
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     private final CardLayout cardLayout;
@@ -77,6 +78,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         card1 = new javax.swing.JPanel();
         jLabelCard1Titulo = new javax.swing.JLabel();
         jButtonCard1Avancar = new javax.swing.JButton();
@@ -123,7 +125,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         jRadioButtonCard3Nao = new javax.swing.JRadioButton();
         jRadioButtonCard3Sim = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -412,7 +414,6 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturasDaExposicaoSelecionada));
         jComboBoxCard2EscolherCandidatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCard2EscolherCandidaturaActionPerformed(evt);
@@ -493,9 +494,11 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Decisão"));
 
+        buttonGroup1.add(jRadioButtonCard3Nao);
         jRadioButtonCard3Nao.setSelected(true);
         jRadioButtonCard3Nao.setText("Rejeitar");
 
+        buttonGroup1.add(jRadioButtonCard3Sim);
         jRadioButtonCard3Sim.setText("Aceitar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -560,6 +563,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
             controller.setExposicao(listaExposicoes.get(jComboBoxCard1EscolherExposicao.getSelectedIndex()));
             controller.getRegistoCandidaturas();
             this.listaCandidaturasDaExposicaoSelecionada = controller.getListaCandidaturas();
+            this.jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturasDaExposicaoSelecionada));
             if (!listaCandidaturasDaExposicaoSelecionada.isEmpty()) {
                 avancarParaCard2();
             } else {
@@ -609,12 +613,15 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
         jListCard2ListaProdutos.setListData(vetorProdutosCandSelecionada);
         jLabelKeywordsDescricaoProdutos.setText(card2CriarStringKeywords(cand.getKeywords()));
     }
-    
-    private String card2CriarStringKeywords(String[]keywords){
-        String result="";
+
+    private String card2CriarStringKeywords(String[] keywords) {
+        String result = "";
         for (int i = 0; i < keywords.length; i++) {
-            if(keywords[i]!=null){
-                result+="; "+keywords[i];
+            if (keywords[i] != null) {
+                result += keywords[i];
+            }
+            if (i != keywords.length-1) {
+                result += "; ";
             }
         }
         return result;
@@ -658,6 +665,10 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void voltarASelecionarExposicao() {
+        controller.getListaCandidaturas();
+        this.jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelCandidaturaAExposicao(listaCandidaturasDaExposicaoSelecionada));
+        controller.getListaExposicoesEstadoCandidaturasAvaliadas();
+        this.jComboBoxCard1EscolherExposicao.setModel(new ComboBoxModelExposicoes(this.listaExposicoes));
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
@@ -673,6 +684,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;

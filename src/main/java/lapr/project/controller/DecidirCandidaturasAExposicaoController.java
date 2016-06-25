@@ -3,12 +3,13 @@ package lapr.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicao;
+import lapr.project.estados.Exposicao.EstadoExposicao;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
  * Represnetação do controller do UC Decidir Candidatura A Exposição
- * 
+ *
  * @author G29
  */
 public class DecidirCandidaturasAExposicaoController {
@@ -45,7 +46,7 @@ public class DecidirCandidaturasAExposicaoController {
     private String[] keywords;
 
     /**
-     * Construtor de objetos do tipo DecidirCandidaturasAExposição com o 
+     * Construtor de objetos do tipo DecidirCandidaturasAExposição com o
      * parametro centro de exposições
      *
      * @param ce centro de exposições atual
@@ -86,7 +87,7 @@ public class DecidirCandidaturasAExposicaoController {
      * @return lista de candidatura à exposição selecionada
      */
     public List<CandidaturaAExposicao> getListaCandidaturas() {
-        return this.m_rc.getListaCandidaturas();
+        return this.m_rc.getListaCandidaturasEstadoAvaliadas();
     }
 
     /**
@@ -155,12 +156,12 @@ public class DecidirCandidaturasAExposicaoController {
      */
     public void setDecisao(boolean decisao) {
         this.m_candidaturaSelecionada.setDecisao(decisao);
+        getKeywords();
         if (decisao) {
             setEstadoCandidaturaAceite();
             for (String keyword : keywords) {
                 this.m_exposicaoSelecionada.getKeywordRanking().addKeyword(keyword, true);
             }
-
         } else {
             setEstadoCandidaturaRejeitada();
             for (String keyword : keywords) {
@@ -193,6 +194,8 @@ public class DecidirCandidaturasAExposicaoController {
     private void setEstadoCandidaturaAceite() {
         EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
         estado.setEstadoCandidaturaAceite();
+        EstadoExposicao estadoExpo=this.m_exposicaoSelecionada.getEstado();
+        estadoExpo.setEstadoCandidaturasDecididas();
     }
 
     /**
@@ -201,6 +204,8 @@ public class DecidirCandidaturasAExposicaoController {
     private void setEstadoCandidaturaRejeitada() {
         EstadoCandidaturaAExposicao estado = this.m_candidaturaSelecionada.getEstado();
         estado.setEstadoCandidaturaRejeitada();
+        EstadoExposicao estadoExpo=this.m_exposicaoSelecionada.getEstado();
+        estadoExpo.setEstadoCandidaturasDecididas();
     }
 
 }

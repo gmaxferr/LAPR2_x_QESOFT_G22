@@ -6,8 +6,9 @@ import javax.swing.ComboBoxModel;
 import lapr.project.model.TipoConflito;
 
 /**
- *
- * @author guilherme
+ * Representação de uma ComboBoxModelTipoDeConflito 
+ * 
+ * @author G29
  */
 public class ComboBoxModelTipoDeConflito  extends AbstractListModel implements ComboBoxModel {
 

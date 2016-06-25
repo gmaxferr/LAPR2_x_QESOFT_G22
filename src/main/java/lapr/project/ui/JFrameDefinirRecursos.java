@@ -8,7 +8,8 @@ import lapr.project.controller.DefinirRecursoController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC definir recursos
+ * 
  * @author G29
  */
 public class JFrameDefinirRecursos extends javax.swing.JFrame {

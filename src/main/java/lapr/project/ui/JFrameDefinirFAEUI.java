@@ -10,7 +10,8 @@ import lapr.project.controller.DefinirFAEController;
 import lapr.project.model.*;
 
 /**
- *
+ * UI do UC Definir FAE
+ * 
  * @author G29
  */
 public class JFrameDefinirFAEUI extends javax.swing.JFrame {

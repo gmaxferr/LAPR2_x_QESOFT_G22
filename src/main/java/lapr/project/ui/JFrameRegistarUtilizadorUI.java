@@ -6,13 +6,13 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
-import lapr.project.exceptions.InvalidEmailException;
-import lapr.project.exceptions.InvalidPasswordException;
+import lapr.project.exceptions.*;
 import lapr.project.model.*;
 
 /**
- *
- * @author Ana Leite
+ * UI do UC Registar Utilizador
+ * 
+ * @author G29
  */
 public class JFrameRegistarUtilizadorUI extends javax.swing.JFrame {
 

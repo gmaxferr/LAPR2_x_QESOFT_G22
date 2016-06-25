@@ -69,7 +69,9 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
     }
 
     /**
-     * @return Retorna a lista de todas as Avaliações deste registo
+     * Devolve a lista de todas as avaliações deste registo
+     * 
+     * @return lista de todas as Avaliações deste registo
      */
     public List<FaeAvaliacao> getListaFaeAvaliacao() {
         return m_listaFaeAvaliacao;
@@ -191,12 +193,6 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
     }
 
-    /**
-     *
-     * @param node
-     * @return
-     * @throws ParserConfigurationException
-     */
     @Override
     public RegistoFaeAvaliacao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -223,10 +219,6 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
