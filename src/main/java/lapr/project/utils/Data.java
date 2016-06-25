@@ -103,6 +103,9 @@ public class Data implements Comparable<Data>, Importable<Data>, Exportable {
         ano = dataAtual.get(Calendar.YEAR);
         mes = dataAtual.get(Calendar.MONTH)+1;
         dia = dataAtual.get(Calendar.DATE);
+        hora = dataAtual.get(Calendar.HOUR_OF_DAY);
+        minuto = dataAtual.get(Calendar.MINUTE);
+        segundo = dataAtual.get(Calendar.SECOND);
     }
 
     /**
