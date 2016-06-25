@@ -408,4 +408,24 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return isFae;
     }
 
+    /**
+     * Devolve a lista de demonstrações de um FAE que podem ter os seus
+     * conflitos atualizados (conflitos detetados)
+     *
+     * @param username
+     * @return lista de demonstrações
+     */
+    public List<Demonstracao> getListaDemonstracoesEstadoConflitosDetetados(String username) {
+        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
+
+        for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            if (demonstracao.getEstadoDemo().isEstadoDemonstracaoConflitosDetetados()) {
+                if (isFaeDeDemo(username)) {
+                    listaDemonstracoesDoOrganizador.add(demonstracao);
+                }
+            }
+        }
+        return listaDemonstracoesDoOrganizador;
+    }
+
 }
