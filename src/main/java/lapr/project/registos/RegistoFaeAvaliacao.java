@@ -156,10 +156,10 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
                 numAvaliacoesNaoAvaliadas++;
             }
         }
-        int cont = m_listaFaeAvaliacao.size();
+        int cont = (m_listaFaeAvaliacao.size() - numAvaliacoesNaoAvaliadas);
         for (int linha = 0; linha < matriz.length; linha++) {
             for (int coluna = 0; coluna < 5; coluna++) {
-                matriz[linha][coluna] = matriz[linha][coluna] / cont - numAvaliacoesNaoAvaliadas;
+                matriz[linha][coluna] = matriz[linha][coluna] / cont;
             }
         }
     }

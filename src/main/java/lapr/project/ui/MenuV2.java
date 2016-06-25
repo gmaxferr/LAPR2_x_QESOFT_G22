@@ -45,6 +45,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
         setVisible(true);
         setLocationRelativeTo(null);
+        setSize(1200, 560);
     }
 
     /**
@@ -221,6 +222,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -720,39 +722,51 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setText("Percentagem de candidaturas aceites e média de ratings");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(jButton16)
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton25)
-                            .addComponent(jButton24))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton32)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jButton22)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton21))
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jButton19)
-                                    .addGap(64, 64, 64)
-                                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jButton17))))
-                        .addGap(0, 482, Short.MAX_VALUE))))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton25)
+                                    .addComponent(jButton24)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(279, 279, 279)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jButton19)
+                                            .addGap(64, 64, 64)
+                                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(44, 44, 44)
+                                            .addComponent(jButton17)))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jButton22)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jButton21))))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jButton32))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(jButton15)))
+                .addContainerGap(520, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -768,11 +782,18 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton18)
                     .addComponent(jButton17)
                     .addComponent(jButton16))
-                .addGap(0, 55, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22)
-                    .addComponent(jButton21)
-                    .addComponent(jButton32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton32)
+                            .addComponent(jButton22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton21)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton15)
                 .addGap(23, 23, 23))
         );
 
@@ -1264,6 +1285,11 @@ public class MenuV2 extends javax.swing.JFrame {
         new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        this.setVisible(false);
+        new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     private void terminaSessao() {
         new LoginV2(centroExposicoes);
         dispose();
@@ -1318,6 +1344,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;

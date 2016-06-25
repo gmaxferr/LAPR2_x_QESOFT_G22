@@ -39,7 +39,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     public JFrameRemoverCandidaturaADemonstracaoUI(JFrame janelaMae, String emailExpositor, CentroExposicoes ce) {
         this.emailExpositor = emailExpositor;
         this.jFrameMenuPrincipal = janelaMae;
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(emailExpositor);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(emailExpositor);
         this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();

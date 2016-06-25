@@ -114,7 +114,7 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
 
     /**
      * Devolve a lista de candidaturas em estado pronta a atribuiçoes
-     * 
+     *
      * @return lista de candidaturas em estado pronta a atribuiçoes
      */
     public List<CandidaturaAExposicao> getListaCandidaturasEstadoProntaAtribuicoes() {
@@ -139,6 +139,28 @@ public class RegistoCandidaturasAExposicao implements Importable<RegistoCandidat
         for (CandidaturaAExposicao cand : getListaCandidaturas()) {
             EstadoCandidaturaAExposicao state = cand.getEstado();
             if (state.isEstadoCandidaturaAvaliada()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
+
+    /**
+     * Devolve uma lista das candidaturas no estado Avaliadas ou posterior de
+     * forma a poderem ser cálculadas as médias dos ratings
+     *
+     * @return lista de candidaturas no estado Avaliadas ou posterior
+     */
+    public List<CandidaturaAExposicao> getListaCandidaturasEstadoAvaliadasOuSuperior() {
+        List<CandidaturaAExposicao> listCand = new ArrayList<>();
+        for (CandidaturaAExposicao cand : getListaCandidaturas()) {
+            EstadoCandidaturaAExposicao state = cand.getEstado();
+            if (state.isEstadoCandidaturaAvaliada()
+                    || state.isEstadoCandidaturaAceite()
+                    || state.isEstadoCandidaturaRejeitada()
+                    || state.isEstadoCandidaturaStandAceite()
+                    || state.isEstadoCandidaturaStandRecusado()
+                    || state.isEstadoCandidaturaStandsAtribuidos()) {
                 listCand.add(cand);
             }
         }

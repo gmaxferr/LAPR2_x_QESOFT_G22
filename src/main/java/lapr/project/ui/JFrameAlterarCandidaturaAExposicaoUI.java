@@ -44,7 +44,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
      */
     public JFrameAlterarCandidaturaAExposicaoUI(String email, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
         super("Alterar candidatura a exposição");
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(email);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(email);
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.m_email = email;
         this.numProdutos = 0;

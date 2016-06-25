@@ -44,7 +44,7 @@ public class AbstractListModelDemonstracoes extends AbstractListModel {
      */
     @Override
     public Object getElementAt(int i) {
-        return m_listaDemonstracoes.get(i);
+        return m_listaDemonstracoes.get(i).getDescricao();
     }
 
 }

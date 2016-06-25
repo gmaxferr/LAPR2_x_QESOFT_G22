@@ -198,8 +198,8 @@ public class PercentagemCandAceitesMediaRatingsController {
      * @return lista das candidaturas da exposição selecionada no estado
      * Avaliadas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
-        return this.rce.getListaCandidaturasEstadoAvaliadas();
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadasOuSuperior() {
+        return this.rce.getListaCandidaturasEstadoAvaliadasOuSuperior();
     }
 
     /**
@@ -207,7 +207,7 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return lista com as exposições no estado avaliadas
      */
-    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
-        return this.re.getListaExposicoesEstadoAvaliadas();
+    public List<Exposicao> getListaExposicoesEstadoAvaliadasOuSuperior() {
+        return this.re.getListaExposicoesEstadoAvaliadasOuPosterior();
     }
 }

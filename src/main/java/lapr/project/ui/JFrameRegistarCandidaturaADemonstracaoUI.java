@@ -16,34 +16,44 @@ import lapr.project.uiModel.AbstractListModelDemonstracoes;
 
 /**
  * UI do UC Registar candidatura a demonstração
- * 
+ *
  * @author G29
  */
 public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
-    private transient RegistarCandidaturaADemonstracaoController CTRL;
+    private transient RegistarCandidaturaADemonstracaoController controller;
     private transient List<Exposicao> listaExposicoes = new ArrayList<>();
     private transient List<Demonstracao> listaDemos = new ArrayList<>();
     private transient JFrame jFrameMenuPrincipal;
 
-    ;
+    private static final int CARD1_ALTURA = 370;
+    private static final int CARD1_LARGURA = 740;
+
+    private static final int CARD2_LARGURA = 690;
+    private static final int CARD2_ALTURA = 370;
+
+    private static final int CARD3_LARGURA = 500;
+    private static final int CARD3_ALTURA = 370;
+
     /**
      * Cria interface de Registar Candidatura a uma Demonstracao
-     * 
+     *
      * @param janelaMae - Menu principal
      * @param ce - Centro de Exposções
      * @param usernameRep - username do representante
      */
     public JFrameRegistarCandidaturaADemonstracaoUI(JFrame janelaMae, CentroExposicoes ce, String usernameRep) {
-        CTRL = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
+        controller = new RegistarCandidaturaADemonstracaoController(ce, usernameRep);
         jFrameMenuPrincipal = janelaMae;
-        listaExposicoes = CTRL.getListaDeExposicoes();
+        listaExposicoes = controller.getListaDeExposicoes();
         if (listaExposicoes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não existem exposições com demonstrações no período de candidaturas.", "Erro", JOptionPane.WARNING_MESSAGE);
             jFrameMenuPrincipal.setVisible(true);
         } else {
             initComponents();
+            setLocationRelativeTo(null);
             alterarComportamentoFecharJFrame();
+            setSize(CARD1_LARGURA, CARD1_ALTURA);
             setVisible(true);
         }
     }
@@ -53,6 +63,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
      */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
                 jFrameMenuPrincipal.setVisible(true);
                 dispose();
@@ -107,9 +118,8 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         textAreaCard3 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Criar Candidatura A Demonstração");
-        setAlwaysOnTop(true);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -280,7 +290,6 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
         jLabel4.setText("Selecione uma das demonstrações abaixo a que quer submeter candidatura:");
 
-        listaCard2.setModel(new AbstractListModelDemonstracoes(listaDemos));
         listaCard2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(listaCard2);
 
@@ -422,7 +431,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, "card4");
+        getContentPane().add(jPanel3, "card3");
         jPanel3.getAccessibleContext().setAccessibleName("card3");
 
         pack();
@@ -432,7 +441,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
         if (listaCard2.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Ainda não selecionou nenhuma demonstração!", "Atenção!", ERROR_MESSAGE);
         } else {
-            CTRL.setDemo(listaCard2.getSelectedIndex());
+            controller.setDemo(listaCard2.getSelectedIndex());
             passaParaPanel3();
         }
     }//GEN-LAST:event_botaoContinuarActionPerformed
@@ -440,11 +449,12 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if (textAreaCard3.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ainda não escreveu nenhum dado do formulário!", "Atenção!", ERROR_MESSAGE);
-        } else if (CTRL.setFormularioDados(textAreaCard3.getText().trim())) {
-            CTRL.RegistaCandADemo();
+        } else if (controller.setFormularioDados(textAreaCard3.getText().trim())) {
+            controller.RegistaCandADemo();
+            controller.transitaEstado();
+            dispose();
             JOptionPane.showMessageDialog(null, "Candidatura Registada!", "Sucesso", PLAIN_MESSAGE);
             jFrameMenuPrincipal.setVisible(true);
-            dispose();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -459,6 +469,9 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
 
     private void botaoSelecionaExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionaExpoActionPerformed
         if (comboBoxCard1EscolherExposicao.getSelectedItem() != null) {
+            controller.setExpo(this.listaExposicoes.get(comboBoxCard1EscolherExposicao.getSelectedIndex()));
+            listaDemos = controller.getListaDemos();
+            listaCard2.setModel(new AbstractListModelDemonstracoes(listaDemos));
             passaParaPanel2();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
@@ -477,7 +490,7 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
             jTextAreaCard1LocalExposicao.setText(e.getLocal().getMorada());
             jLabelCard1DataInicio.setText(e.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(e.getDataFim().toString());
-            CTRL.setExpo(e);
+            controller.setExpo(e);
         }
     }//GEN-LAST:event_comboBoxCard1EscolherExposicaoActionPerformed
 
@@ -529,20 +542,19 @@ public class JFrameRegistarCandidaturaADemonstracaoUI extends JFrame {
     private void passaParaPanel1() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
-        setSize(this.getSize());
-
+        setSize(CARD1_LARGURA, CARD1_ALTURA);
     }
 
     private void passaParaPanel2() {
-        listaDemos = CTRL.getListaDemos();
+
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
-        setSize(this.getSize());
+        setSize(CARD2_LARGURA, CARD2_ALTURA);
     }
 
     private void passaParaPanel3() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
-        setSize(this.getSize());
+        setSize(CARD3_LARGURA, CARD3_ALTURA);
     }
 }

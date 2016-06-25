@@ -46,7 +46,7 @@ public class JFrameCriarCandidaturaDemonstracaoXML extends javax.swing.JFrame {
         this.m_ce = ce;
         this.emailExpositor = emailExpositor;
         this.jFrameMenuPrincipal = janelaMae;
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(emailExpositor);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(emailExpositor);
         this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
