@@ -142,12 +142,17 @@ public class ConfirmarStandController {
     }
 
     /**
-     * Modifica a decisão do representante
+     * Modifica a decisão do representante e altera o estado da candidatura para
+     * StandAceite ou StandRejeitado dependendo da decisao do expositor
      *
-     * @param decisao nova decisão
+     * @param decisao decisão
      */
     public void setDecisao(boolean decisao) {
         this.m_atribuicaoStand.setDecisao(decisao);
-
+        if (decisao) {
+            this.m_candEscolhida.getEstado().setEstadoCandidaturaStandAceite();
+        } else {
+            this.m_candEscolhida.getEstado().setEstadoCandidaturaStandRecusado();
+        }
     }
 }

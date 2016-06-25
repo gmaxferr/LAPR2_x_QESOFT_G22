@@ -171,8 +171,8 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         List<Exposicao> listaExpoRep = new ArrayList();
         for (Exposicao e : m_listaExposicoes) {
             RegistoCandidaturasAExposicao rc = e.getRegistoCandidaturasAExposicao();
-            for (CandidaturaAExposicao c : rc.getListaCandidaturas()) {
-                if (c.getEmailExpositor().equals(email) && c.getEstado().isEstadoCandidaturaStandsAtribuidos()) {
+            for (CandidaturaAExposicao c : rc.getListaCandidaturasEstadoStandsAtribuidos()) {
+                if (c.getEmailExpositor().equals(email)) {
                     listaExpoRep.add(e);
                     break;
                 }

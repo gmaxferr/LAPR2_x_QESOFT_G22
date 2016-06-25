@@ -61,7 +61,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private static final int LARGURA_JANELA_PASSO2 = 681;
     private static final int ALTURA_JANELA_PASSO2 = 500;
 
-    private static final int LARGURA_JANELA_PASSO3 = 415;
+    private static final int LARGURA_JANELA_PASSO3 = 405;
     private static final int ALTURA_JANELA_PASSO3 = 400;
 
     /**
@@ -165,12 +165,10 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         jPanelCard3InformaçãoStand = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextFieldAreaStand = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaCard3DescricaoStand = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
-        jTextFieldCard3Candidatura = new javax.swing.JTextField();
-        jTextFieldCard3Stand = new javax.swing.JTextField();
+        jLabelAreaStand = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -565,12 +563,6 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
         jLabel13.setText("Área:");
 
-        jTextFieldAreaStand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAreaStandActionPerformed(evt);
-            }
-        });
-
         jScrollPane3.setBorder(null);
         jScrollPane3.setRequestFocusEnabled(false);
 
@@ -587,23 +579,26 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
 
         jLabel16.setText("Descrição:");
 
+        jLabelAreaStand.setText("area");
+
         javax.swing.GroupLayout jPanelCard3InformaçãoStandLayout = new javax.swing.GroupLayout(jPanelCard3InformaçãoStand);
         jPanelCard3InformaçãoStand.setLayout(jPanelCard3InformaçãoStandLayout);
         jPanelCard3InformaçãoStandLayout.setHorizontalGroup(
             jPanelCard3InformaçãoStandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCard3InformaçãoStandLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanelCard3InformaçãoStandLayout.createSequentialGroup()
                 .addGroup(jPanelCard3InformaçãoStandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addGroup(jPanelCard3InformaçãoStandLayout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabelAreaStand)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 224, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCard3InformaçãoStandLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanelCard3InformaçãoStandLayout.setVerticalGroup(
             jPanelCard3InformaçãoStandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,26 +606,13 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE)
                 .addGroup(jPanelCard3InformaçãoStandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextFieldAreaStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAreaStand))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jTextFieldCard3Candidatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCard3CandidaturaActionPerformed(evt);
-            }
-        });
-
-        jTextFieldCard3Stand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCard3StandActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
         card3.setLayout(card3Layout);
@@ -639,23 +621,17 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
             .addGroup(card3Layout.createSequentialGroup()
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelCard3InformaçãoStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(card3Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel4))
                     .addGroup(card3Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jTextFieldCard3Candidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jTextFieldCard3Stand, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(324, Short.MAX_VALUE))
-            .addGroup(card3Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanelCard3InformaçãoStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,16 +639,12 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCard3Candidatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCard3Stand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelCard3InformaçãoStand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jLabel4.getAccessibleContext().setAccessibleName("jLabelCard2Titulo");
@@ -721,11 +693,15 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.setDecisao(false);
         JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        this.jFrameMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         controller.setDecisao(true);
         JOptionPane.showMessageDialog(null, "Decisão feita com sucesso!", "Decisão", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        this.jFrameMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void preencherDados() {
@@ -757,7 +733,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
             if (keywords[i] != null) {
                 result += keywords[i];
             }
-            if (i != keywords.length-1) {
+            if (i != keywords.length - 1) {
                 result += "; ";
             }
         }
@@ -770,6 +746,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
             controller.getRegistoAtribuicoesStands();
             this.atribuicaoStand = controller.getAtribuicao(emailRepresentante, listaCandidaturas.get(jComboBoxCard2EscolherCandidatura.getSelectedIndex()));
             jTextAreaCard3DescricaoStand.setText(atribuicaoStand.getStand().getDescricao());
+            jLabelAreaStand.setText(Integer.toString(atribuicaoStand.getStand().getArea()));
             avancarParaCard3();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma candidatura primeiro!", "Candidatura em falta", JOptionPane.WARNING_MESSAGE);
@@ -787,20 +764,6 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
-
-    private void jTextFieldCard3StandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard3StandActionPerformed
-        jTextFieldCard3Stand.setText(atribuicaoStand.getStand().getID());
-    }//GEN-LAST:event_jTextFieldCard3StandActionPerformed
-
-    private void jTextFieldCard3CandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCard3CandidaturaActionPerformed
-        jTextFieldCard3Candidatura.setText(atribuicaoStand.getCand().getNomeEmpresa());
-
-    }//GEN-LAST:event_jTextFieldCard3CandidaturaActionPerformed
-
-    private void jTextFieldAreaStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAreaStandActionPerformed
-        String area = Integer.toString(atribuicaoStand.getStand().getArea());
-        jTextFieldAreaStand.setText(area);
-    }//GEN-LAST:event_jTextFieldAreaStandActionPerformed
 
     private void jComboBoxCard2EscolherCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCard2EscolherCandidaturaActionPerformed
         if (jComboBoxCard2EscolherCandidatura.getSelectedItem() != null) {
@@ -835,6 +798,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelAreaStand;
     private javax.swing.JLabel jLabelCard1DataFim;
     private javax.swing.JLabel jLabelCard1DataInicio;
     private javax.swing.JLabel jLabelCard1Titulo;
@@ -857,8 +821,5 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaCard1DescricaoExposicao;
     private javax.swing.JTextArea jTextAreaCard1LocalExposicao;
     private javax.swing.JTextArea jTextAreaCard3DescricaoStand;
-    private javax.swing.JTextField jTextFieldAreaStand;
-    private javax.swing.JTextField jTextFieldCard3Candidatura;
-    private javax.swing.JTextField jTextFieldCard3Stand;
     // End of variables declaration//GEN-END:variables
 }
