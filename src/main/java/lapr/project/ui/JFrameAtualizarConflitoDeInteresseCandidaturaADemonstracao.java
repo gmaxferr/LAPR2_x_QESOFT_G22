@@ -61,6 +61,7 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
         this.mainMenu = mainMenu;
         CTRL = new AtualizarConflitoDeInteresseCandidaturaADemonstracaoController(username, ce);
         listaExposicoes = CTRL.getFaeExpos();
+        CTRL.identificaFAE();
         if (listaExposicoes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não existem Exposições para as quais é FAE de uma demonstração.");
             mainMenu.setVisible(true);
@@ -626,6 +627,8 @@ public class JFrameAtualizarConflitoDeInteresseCandidaturaADemonstracao extends 
             CTRL.setTipoConflito(tipo);
             if (CTRL.validaConflito()) {
                 CTRL.registaConflito();
+                
+                //para reiniciar a lista a apresentar:
                 listaConflitos = CTRL.getListaConflitos();
                 jList1.setModel(new AbstractListModelConflitosDeInteresseCandidaturaADemonstracao(listaConflitos));
                 passaParaPanel3();

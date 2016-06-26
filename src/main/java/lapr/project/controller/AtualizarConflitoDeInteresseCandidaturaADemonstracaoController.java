@@ -5,9 +5,9 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Representação do controller do UC Atualizar Conflito De Interesse Candidatura 
+ * Representação do controller do UC Atualizar Conflito De Interesse Candidatura
  * A Demonstracao
- * 
+ *
  * @author G29
  */
 public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
@@ -16,27 +16,27 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      * Registo conflitos da demonstração
      */
     private RegistoConflitosDemonstracao m_rc;
-    
+
     /**
      * Registo de FAE's
      */
     private RegistoFAE m_rf;
-    
+
     /**
      * Registo de demonstrações
      */
     private RegistoDemonstracoes m_rd;
-    
+
     /**
      * Registo de atribuições candidatura a demonstração
      */
     private RegistoAtribuicoesCandidaturasDemonstracao m_rad;
-    
+
     /**
      * Regsito tipos de conflito a de mosntração
      */
     private RegistoTiposConflitoDemonstracao m_rtc;
-    
+
     /**
      * Registo de exposições
      */
@@ -46,41 +46,41 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      * Centro de exposições
      */
     private CentroExposicoes m_ce;
-    
+
     /**
      * USername do fae
      */
     private String username;
-    
+
     /**
      * Exposição selecionada
      */
     private Exposicao e;
-    
+
     /**
      * Demonstração selecionada
      */
     private Demonstracao d;
-    
+
     /**
      * FAE
      */
     private FAE fae;
-    
+
     /**
      * Candidatura a demonstração
      */
     private CandidaturaADemonstracao cand;
-    
+
     /**
      * tipo de conflito a demonstração
      */
     private TipoConflitoDemonstracao tipo;
-    
 
     /**
-     * Construtor de objetos do tipo AtualizarConflitoDeInteresseCandidaturaADemonstracaoController
-     * com os paramentros username e centro de exposições
+     * Construtor de objetos do tipo
+     * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController com os
+     * paramentros username e centro de exposições
      *
      * @param username - username do FAE que iniciou o caso de uso
      * @param ce - Centro de Exposições
@@ -90,13 +90,16 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
         this.username = username;
     }
 
-    public void identificaFAE(){
+    /**
+     * identifica um FAE a partir do seu username
+     */
+    public void identificaFAE() {
         this.fae = m_rf.getFAE(username);
     }
-    
+
     /**
      * Devolve a lista de conflitos da exposição pretendida
-     * 
+     *
      * @return lista de conflitos da exposição pretendida
      */
     public List<ConflitoDeInteresseDemonstracao> getListaConflitos() {
@@ -132,7 +135,7 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
         this.e = e;
         m_rd = e.getRegistoDemonstracoes();
     }
-   
+
     /**
      * Guarda a demonstração pretendida no Controller
      *
@@ -153,7 +156,7 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
 
     /**
      * Devolve a lista de candidaturas da exposição selecionada
-     * 
+     *
      * @return lista de candidaturas da exposição selecionada
      */
     public List<CandidaturaADemonstracao> getListaCandidaturas() {
@@ -180,8 +183,8 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
     }
 
     /**
-      Lista de FAE's da demonstração selecionada
-      * 
+     * Lista de FAE's da demonstração selecionada
+     *
      * @return lista de FAE da demonstracao selecionada
      */
     public List<FAE> getListaFae() {
@@ -205,9 +208,11 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
     }
 
     /**
-     * Devolve a lista de tipos de conflito de demonstrações do centro de exposições
-     * 
-     * @return lista de tipos de conflito de demonstrações do centro de exposições
+     * Devolve a lista de tipos de conflito de demonstrações do centro de
+     * exposições
+     *
+     * @return lista de tipos de conflito de demonstrações do centro de
+     * exposições
      */
     public List<TipoConflitoDemonstracao> getListaDeTiposConflito() {
         return m_rtc.getListaTipoConflitos();
@@ -215,10 +220,10 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
 
     /**
      * Devolve a lista de demonstrações
-     * 
+     *
      * @return lista de demonstrações
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        return m_rd.getListaDemonstracoesEstadoConflitosDetetados(username);
+        return m_rd.getListaDemonstracoesEstadoConflitosDetetadosDoFAE(username);
     }
 }

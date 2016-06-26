@@ -359,7 +359,7 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
         for (Exposicao e : this.m_listaExposicoes) {
             RegistoDemonstracoes rd = e.getRegistoDemonstracoes();
             if (rd.isFaeDeDemo(username)) {
-                if (e.getRegistoFAE().isFAE(username) && !e.getRegistoConflitos().getListaConflitos().isEmpty()) {
+                if (e.getRegistoFAE().isFAE(username)) {
                     exposFAE.add(e);
                 }
             }

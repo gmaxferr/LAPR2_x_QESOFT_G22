@@ -2,7 +2,9 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoProntaAAtribuicao;
 import lapr.project.estados.Demonstracao.EstadoDemonstracaoConflitosDetetados;
+import lapr.project.model.AtribuicaoCandidaturaDemonstracao;
 import lapr.project.model.CandidaturaADemonstracao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.ConflitoDeInteresseDemonstracao;
@@ -11,6 +13,7 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.TipoConflitoDemonstracao;
 import lapr.project.model.Utilizador;
+import lapr.project.registos.RegistoAtribuicoesCandidaturasDemonstracao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,13 +59,13 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
         d = new Demonstracao("desc", e);
         cand = new CandidaturaADemonstracao("dados", "emailRep");
 
+        fae = new FAE(u);
         e.getRegistoFAE().getListaFAE().add(fae);
         e.getRegistoDemonstracoes().getListaDemonstracoes().add(d);
         d.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().add(cand);
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         u.setEmail(email);
         u.setUsername(username);
-        fae = new FAE(u);
         d.getRegistoFAE().getListaFAE().add(fae);
         e.getRegistoFAE().getListaFAE().add(fae);
         conf = new ConflitoDeInteresseDemonstracao(fae, cand, tipo);
@@ -97,7 +100,8 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
     @Test
     public void testRemoveConflito() {
         System.out.println("removeConflito");
-        d.getRegistoConflitosDemonstracao().getListaConflitos().add(conf);
+        instance.selectDemo(d);
+        instance.getListaConflitos();
         instance.removeConflito(conf);
     }
 
@@ -156,6 +160,11 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
         System.out.println("getListaCandidaturas");
         List<CandidaturaADemonstracao> expResult = new ArrayList<>();
         expResult.add(cand);
+        instance.selectExpo(e);
+        instance.selectDemo(d);
+        cand.setEstado(new EstadoCandidaturaADemonstracaoProntaAAtribuicao(cand));
+        RegistoAtribuicoesCandidaturasDemonstracao racd = e.getRegistoAtribuicoesDemonstracao();
+        racd.getListaAtribuicoes().add(new AtribuicaoCandidaturaDemonstracao(cand));
         List<CandidaturaADemonstracao> result = instance.getListaCandidaturas();
         assertEquals(expResult, result);
     }
@@ -231,6 +240,8 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
         System.out.println("getListaDeTiposConflito");
         List<TipoConflitoDemonstracao> expResult = new ArrayList<>();
         expResult.add(tipo);
+        instance.pullRegistoDeTiposDeConflito();
+        ce.getRegistoTiposConflitosDemonstracao().getListaTipoConflitos().add(tipo);
         List<TipoConflitoDemonstracao> result = instance.getListaDeTiposConflito();
         assertEquals(expResult, result);
     }

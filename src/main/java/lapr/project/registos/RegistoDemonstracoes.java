@@ -43,9 +43,9 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
     private Exposicao m_expo;
 
     /**
-     * Construtor de objetos do tipo RegistoDemonstracoes com o paramentro 
+     * Construtor de objetos do tipo RegistoDemonstracoes com o paramentro
      * isOriginal
-     * 
+     *
      * @param isOriginal
      */
     public RegistoDemonstracoes(boolean isOriginal) {
@@ -66,7 +66,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
 
     /**
      * Devolve a exposição a que pertence este RegistoDemonstracoes
-     * 
+     *
      * @return exposição a que pertence este RegistoDemonstracoes
      */
     public Exposicao getExposicao() {
@@ -342,7 +342,7 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         }
         return isFae;
     }
-    
+
     @Override
     public RegistoDemonstracoes importContentFromXMLNode(Node node) throws ParserConfigurationException {
         if (node == null) {
@@ -413,84 +413,23 @@ public class RegistoDemonstracoes implements Importable<RegistoDemonstracoes>, E
         return node;
     }
 
-<<<<<<< HEAD
     /**
-     * Forma uma lista com as demonstrações em estado avaliadas
      *
-     * @return lista formada
+     * @param username - username do FAE a verificar se faz parte de uma
+     * demontração
+     * @return demontrações do FAE enviado como parametro e que estejam no
+     * estado ConflitosDetetados.
      */
-    public ArrayList<Demonstracao> getListaDemonstracoesEmEstadoCandidaturasAvaliadas() {
-        ArrayList<Demonstracao> listaDemosAvaliadas = new ArrayList<Demonstracao>();
-        EstadoDemonstracao estado;
-        for (Demonstracao d : this.m_listaDemonstracoes) {
-            estado = d.getEstadoDemo();
-            if (estado.isEstadoDemonstracaoCandidaturasAvaliadas()) {
-                listaDemosAvaliadas.add(d);
-            }
-        }
-        return listaDemosAvaliadas;
-    }
-
-    /**
-     * Devolve a percentagem de candidaturas de um expositor às demonstrações
-     * aceites.
-     *
-     * @param emailExpositor email do expositor
-     * @return percentagem de candidaturas às demonstrações aceites
-     */
-    public float getPercentagemCandidaturasAceites(String emailExpositor) {
-        List<CandidaturaADemonstracao> listaCandidaturasDoExpositor = getListaCandidaturasAsDemonstracoesDoExpositor(emailExpositor);
-        int cont = listaCandidaturasDoExpositor.size();
-        float candAceites = 0;
-        for (CandidaturaADemonstracao candidatura : listaCandidaturasDoExpositor) {
-            if (candidatura.getEstado().isEstadoCandidaturaADemonstracaoAceite()) {
-                candAceites++;
-            }
-        }
-        if (cont != 0) {
-            return (candAceites / cont) * 100;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Verifica se o FAE é realmente FAE de uma demonstração
-     *
-     * @param username - username do FAE
-     * @return true se for; false caso contrário.
-     */
-    boolean isFaeDeDemo(String username) {
-        boolean isFae = false;
-        for (Demonstracao d : this.m_listaDemonstracoes) {
-            RegistoFAE rf = d.getRegistoFAE();
-            if (rf.isFAE(username)) {
-                isFae = true;
-            }
-        }
-        return isFae;
-    }
-
-    /**
-     * Devolve a lista de demonstrações de um FAE que podem ter os seus
-     * conflitos atualizados (conflitos detetados)
-     *
-     * @param username
-     * @return lista de demonstrações
-     */
-    public List<Demonstracao> getListaDemonstracoesEstadoConflitosDetetados(String username) {
-        List<Demonstracao> listaDemonstracoesDoOrganizador = new ArrayList<>();
-
+    public List<Demonstracao> getListaDemonstracoesEstadoConflitosDetetadosDoFAE(String username) {
+        List<Demonstracao> listaDemonstracoes = new ArrayList<>();
         for (Demonstracao demonstracao : m_listaDemonstracoes) {
+            RegistoFAE rf = demonstracao.getRegistoFAE();
+            if (rf.isFAE(username));
             if (demonstracao.getEstadoDemo().isEstadoDemonstracaoConflitosDetetados()) {
-                if (isFaeDeDemo(username)) {
-                    listaDemonstracoesDoOrganizador.add(demonstracao);
-                }
+                listaDemonstracoes.add(demonstracao);
             }
         }
-        return listaDemonstracoesDoOrganizador;
+        return listaDemonstracoes;
     }
 
-=======
->>>>>>> 63e2092f833bbf5bc9af8acdf14b00740ad99185
 }
