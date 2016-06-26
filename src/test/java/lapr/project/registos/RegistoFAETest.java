@@ -106,6 +106,28 @@ public class RegistoFAETest {
     }
 
     /**
+     * Test of isFAE method, of class RegistoFAE. Testa se depois de tentar
+     * adicionar um FAE inválido a variável isFAE relacionada com este
+     * utilizador atualiza
+     */
+    @Test
+    public void testIsFAEUtilizadorInvalido() {
+        System.out.println("isFAE Testa se depois de tentar adicionar um FAE inválido a variável isFAE relacionada com o utilizador atualiza");
+        Exposicao expo = new DadosInstanciados().getExpo1();
+        Utilizador u = new Utilizador("Ricardo", "Ricardo", "password".toCharArray(), "email@hot.com");
+        expo.getRegistoFAE().adicionaFAE(u);
+        u = new Utilizador("Ricardo2", "Ricardo", "password".toCharArray(), "email@hot.com");
+        expo.getRegistoFAE().adicionaFAE(u); //nao adiciona
+        boolean existe = false;
+        for(FAE fae : expo.getRegistoFAE().getListaFAE()){
+            if(fae.getUtilizador().equals(u)){
+                existe = true;
+            }
+        }
+        assertEquals(false, existe);
+    }
+
+    /**
      * Test of getFAE method, of class RegistoFAE. Testa se devolve o FAE
      * passando o username de um FAE correto por parametro
      */

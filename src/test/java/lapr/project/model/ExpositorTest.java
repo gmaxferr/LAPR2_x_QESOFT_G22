@@ -84,4 +84,38 @@ public class ExpositorTest {
         instance.setUtilizador(u);
         assertEquals(u, instance.getUtilizador());
     }
+
+    /**
+     * Test of importContentFromXMLNode method, of class Expositor.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        Expositor expResult = new Expositor(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Expositor result = instance;
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        Expositor expResult = new Expositor(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        Expositor result = instance;
+        assertEquals(expResult, result);
+    }
 }

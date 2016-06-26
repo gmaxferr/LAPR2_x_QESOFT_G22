@@ -84,4 +84,39 @@ public class FAETest {
         String result = instance.toString();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of importContentFromXMLNode method, of class FAE.
+     */
+    @Test
+    public void testImportContentFromXMLNode() {
+        System.out.println("importContentFromXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        FAE expResult = new FAE(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        FAE result = instance;
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
+     */
+    @Test
+    public void testExportContentToXMLNode() {
+        System.out.println("exportContentToXMLNode");
+        Node node = instance.exportContentToXMLNode();
+        FAE expResult = new FAE(u);
+        try {
+            expResult.importContentFromXMLNode(node);
+        } catch (ParserConfigurationException ex) {
+            expResult = null;
+        }
+        FAE result = instance;
+        assertEquals(expResult, result);
+    }
+
 }
