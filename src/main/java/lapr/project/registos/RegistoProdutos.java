@@ -136,7 +136,7 @@ public class RegistoProdutos implements Importable<RegistoProdutos>, Exportable 
             return true;
         } else if (obj instanceof RegistoProdutos) {
             RegistoProdutos rp = (RegistoProdutos) obj;
-            return this.getListaProdutosAExpor().containsAll(rp.getListaProdutosAExpor());
+            return this.getListaProdutosAExpor().equals(rp.getListaProdutosAExpor());
         }
         return false;
     }
