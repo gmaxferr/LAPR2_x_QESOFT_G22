@@ -50,19 +50,6 @@ public class RegistoStandsTest {
      * Stand com ID de outro já existente
      */
     @Test
-    public void testCriarStandIDRepetido() {
-        System.out.println("criarStandComIDRepetido");
-        RegistoStands rStands = new RegistoStands();
-        rStands.criarStand("ID1", "15", "descricao"); //valido
-        boolean valida = rStands.criarStand("ID1", "16", "descricao"); //id repetido
-        assertEquals(false, valida);
-    }
-
-    /**
-     * Test of criarStand method, of class RegistoStands. Testa adicionar um
-     * Stand com ID de outro já existente
-     */
-    @Test
     public void testCriarStand() {
         System.out.println("criarStand");
         RegistoStands rStands = new RegistoStands();
