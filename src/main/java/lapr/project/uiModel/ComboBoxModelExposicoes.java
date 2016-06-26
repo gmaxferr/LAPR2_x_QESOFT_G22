@@ -20,7 +20,7 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
     /**
      * Objeto selecionado.
      */
-    String selection;
+    private String selection;
 
     /**
      * Construtor de objetos do tipo ComboBoxModelExposições com o parâmetro
@@ -40,7 +40,9 @@ public class ComboBoxModelExposicoes extends AbstractListModel implements ComboB
      */
     @Override
     public int getSize() {
-        return this.m_listaExposicoes.size();
+        if (this.m_listaExposicoes != null) {
+            return this.m_listaExposicoes.size();
+        }return 0;
     }
 
     /**
