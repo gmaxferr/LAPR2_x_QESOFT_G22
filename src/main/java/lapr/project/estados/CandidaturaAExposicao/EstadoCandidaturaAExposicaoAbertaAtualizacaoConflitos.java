@@ -15,15 +15,7 @@ public class EstadoCandidaturaAExposicaoAbertaAtualizacaoConflitos extends Estad
 
     @Override
     public boolean setEstadoCandidaturaProntaAtribuicoes() {
-        if (valida()) {
-            this.m_cand.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(m_cand));
-            return true;
-        }
-        return false;
-    }
-
-    private boolean valida() {
-        //TODO
+        this.m_cand.setEstado(new EstadoCandidaturaAExposicaoProntaAtribuicoes(m_cand));
         return true;
     }
 
