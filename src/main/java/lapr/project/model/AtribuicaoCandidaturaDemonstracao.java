@@ -71,6 +71,16 @@ public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoC
         this.m_rFaeAvaliacao.addFaeAvaliacao(fae);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof AtribuicaoCandidaturaDemonstracao){
+            AtribuicaoCandidaturaDemonstracao o = (AtribuicaoCandidaturaDemonstracao) obj;
+            return this.m_candidatura.equals(o.m_candidatura)
+                    && this.m_rFaeAvaliacao.equals(o.getRegistoFaeAvaliacao());
+        }
+        return false;
+    }
+
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
@@ -88,15 +98,6 @@ public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoC
         this.m_rFaeAvaliacao.fix(m_registoUtilizadores);
     }
 
-    /**
-     * TESTE USE ONLY
-     *
-     * @param m_rFaeAvaliacao the m_rFaeAvaliacao to set
-     */
-    public void setRegistoFaeAvaliacao(RegistoFaeAvaliacao m_rFaeAvaliacao) {
-        this.m_rFaeAvaliacao = m_rFaeAvaliacao;
-    }
-
     @Override
     public AtribuicaoCandidaturaDemonstracao importContentFromXMLNode(Node node) throws ParserConfigurationException {
         Document document = XMLParser.createDocument(node, true);
@@ -104,9 +105,6 @@ public class AtribuicaoCandidaturaDemonstracao implements Importable<AtribuicaoC
         Node n = document.getChildNodes().item(0);
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
-
-            Expositor expositor = new Expositor(null);
-            expositor.importContentFromXMLNode(elem.getElementsByTagName(Expositor.ROOT_ELEMENT_NAME).item(0));
 
             this.m_candidatura = new CandidaturaADemonstracao(null, null);
             this.m_candidatura.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaADemonstracao.ROOT_ELEMENT_NAME).item(0));

@@ -186,6 +186,30 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof RegistoFaeAvaliacao) {
+            RegistoFaeAvaliacao o = (RegistoFaeAvaliacao) obj;
+            if (this.m_listaFaeAvaliacao.size() == o.m_listaFaeAvaliacao.size()) {
+                for (FaeAvaliacao fAval : this.m_listaFaeAvaliacao) {
+                    boolean exists = false;
+                    for (FaeAvaliacao fAval2 : o.m_listaFaeAvaliacao) {
+                        if (fAval.getFaeAssociado().equals(fAval2.getFaeAssociado())) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     /**
      * Conserta o valor das referências das variáveis guardados pelos objetos
      * que este objeto agrega.
