@@ -103,12 +103,9 @@ public class JFrameListarCandidaturasAExposicaoRemovidasUI extends javax.swing.J
      */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
                 dispose();
-                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "\nOs dados escolhidos até ao momento não foram guardados.",
-                        "Dados não guardados",
-                        JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
             }
         });
