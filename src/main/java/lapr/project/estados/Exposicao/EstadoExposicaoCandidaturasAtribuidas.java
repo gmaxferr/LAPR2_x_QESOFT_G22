@@ -8,7 +8,7 @@ import lapr.project.utils.Data;
 
 /**
  * Representação do EstadoExposicaoCandidaturasAtribuidas
- * 
+ *
  * @author G29
  */
 public class EstadoExposicaoCandidaturasAtribuidas extends EstadoExposicao {
@@ -17,7 +17,6 @@ public class EstadoExposicaoCandidaturasAtribuidas extends EstadoExposicao {
         super(exposicao);
     }
 
-
     @Override
     public boolean setEstadoCandidaturasAvaliadas() {
         if (valida()) {
@@ -25,7 +24,8 @@ public class EstadoExposicaoCandidaturasAtribuidas extends EstadoExposicao {
             Data currentDate = new Data();
             if (currentDate.isMaior(this.m_exposicao.getDataFimAvaliacoes())) {
                 TimerTask task = new AlterarParaFimAvaliacoes(m_exposicao);
-                task.run();
+                Thread myThread = new Thread(task);
+                myThread.start();
             }
             return true;
         } else {

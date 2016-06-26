@@ -31,7 +31,7 @@ public class JFrameDecidirCandidaturasAExposicaoUI extends javax.swing.JFrame {
 
     private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
     private final CardLayout cardLayout;
-    private List<CandidaturaAExposicao> listaCandidaturasDaExposicaoSelecionada;
+    private transient List<CandidaturaAExposicao> listaCandidaturasDaExposicaoSelecionada;
 
     /**
      * Creates new form JFrameDecidirCandidaturasAExposicaoUI

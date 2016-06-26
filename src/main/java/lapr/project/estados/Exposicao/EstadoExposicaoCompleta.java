@@ -7,7 +7,7 @@ import lapr.project.utils.Data;
 
 /**
  * Representação do EstadoExposicaoCompleta
- * 
+ *
  * @author G29
  */
 public class EstadoExposicaoCompleta extends EstadoExposicao {
@@ -21,9 +21,10 @@ public class EstadoExposicaoCompleta extends EstadoExposicao {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasAbertas(this.m_exposicao));
             Data currentDate = new Data();
-            if(currentDate.isMaior(this.m_exposicao.getDataInicioSubCand())){
+            if (currentDate.isMaior(this.m_exposicao.getDataInicioSubCand())) {
                 TimerTask task = new AlterarParaAbertaCandidaturas(m_exposicao);
-                task.run();
+                Thread myThread = new Thread(task);
+                myThread.start();
             }
             return true;
         } else {

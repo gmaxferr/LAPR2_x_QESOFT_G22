@@ -6,7 +6,7 @@ import lapr.project.registos.*;
 
 /**
  * Representação do controller Alterar Candidatura Demosntracao
- * 
+ *
  * @author G29
  */
 public class AlterarCandidaturaDemonstracaoController {
@@ -15,22 +15,22 @@ public class AlterarCandidaturaDemonstracaoController {
      * Exposição selecionada
      */
     private Exposicao m_e;
-    
+
     /**
      * Candidatura a demonstração
      */
     private CandidaturaADemonstracao m_cd;
-    
+
     /**
      * Email do representante
      */
     private String m_emailExpositor;
-    
+
     /**
      * Dados da candidatura ademonstração
      */
     private String m_novosDados;
-    
+
     /**
      * Registo de demosntrações
      */
@@ -41,16 +41,14 @@ public class AlterarCandidaturaDemonstracaoController {
      * com os parametros email do representante e exposição
      *
      * @param email - email do representante
-     * @param e - exposição selecionada
      */
-    public AlterarCandidaturaDemonstracaoController(String email, Exposicao e) {
-        m_e = e;
+    public AlterarCandidaturaDemonstracaoController(String email) {
         m_emailExpositor = email;
     }
 
     /**
      * Devolve os novos dados
-     * 
+     *
      * @return - novos dados temporários
      */
     public String getNovosDados() {
@@ -59,7 +57,7 @@ public class AlterarCandidaturaDemonstracaoController {
 
     /**
      * Devolve a candidatura a demonstração alterada
-     * 
+     *
      * @return - candidatura a demonstracao alterada
      */
     public CandidaturaADemonstracao getCandidaturaDemonstracao() {
@@ -102,8 +100,17 @@ public class AlterarCandidaturaDemonstracaoController {
         List<CandidaturaADemonstracao> lstCands = new ArrayList<>();
         for (Demonstracao d : lstDemos) {
             RegistoCandidaturasADemonstracao rcd = d.getRegistoCandidaturasADemonstracao();
-            lstCands.addAll(rcd.getListaCandidaturasADemonstracaoRep(d,m_emailExpositor));
+            lstCands.addAll(rcd.getListaCandidaturasADemonstracaoRep(d, m_emailExpositor));
         }
         return lstCands;
+    }
+
+    /**
+     * Define uma nova exposição sobre aqual se vai trabalhar
+     *
+     * @param e exposição
+     */
+    public void setExposicao(Exposicao e) {
+        this.m_e = e;
     }
 }

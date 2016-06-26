@@ -22,7 +22,8 @@ public class EstadoExposicaoCandidaturasAbertas extends EstadoExposicao {
         Data currentDate = new Data();
         if (currentDate.isMaior(this.m_exposicao.getDataFimSubCand())) {
             TimerTask task = new AlterarParaFechadaCandidaturas(m_exposicao, m_exposicao.getCentroExposicoes());
-            task.run();
+            Thread myThread = new Thread(task);
+            myThread.start();
         }
         return true;
     }

@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelAtribuicoesMostraCandidatura;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.util.List;
@@ -686,7 +685,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
         if (jComboBoxEscolherExposicao.getSelectedItem() != null) {
             controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
             controller.getRegistoAtribuicoes();
-            listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAEEstaadoAtribuidas();
+            listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAE();
             jComboBoxCard2EscolherCandidatura.setModel(new ComboBoxModelAtribuicoesMostraCandidatura(listaAtribuicoesDoFAE));
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard2();
@@ -732,6 +731,7 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         guardarDecisao();
+        controller.setEstadoCandidaturaAvaliada();
         String[] opcoes2 = {"Sim", "Não"};
         int resposta = JOptionPane.showOptionDialog(rootPane, "Avaliação guardada!\nDeseja avaliar outra candidatura?", "Avaliação", 0, JOptionPane.QUESTION_MESSAGE, null, opcoes2, opcoes2[1]);
         if (resposta == 0) {
@@ -805,9 +805,12 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
     private String card2CriarStringKeywords(String[] keywords) {
         String result = "";
-        for (String keyword : keywords) {
-            if (keyword != null) {
-                result += "; " + keyword;
+        for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i] != null) {
+                result += keywords[i];
+            }
+            if (i != keywords.length-1) {
+                result += "; ";
             }
         }
         return result;

@@ -98,7 +98,7 @@ public class RegistoCandidaturasADemonstracao implements Importable<RegistoCandi
 
     /**
      * Devolve a lista de candidaturaas em estado avaliada
-     * 
+     *
      * @return lista de candidaturas em estado Avaliada
      */
     public List<CandidaturaADemonstracao> getListaCandidaturasEstadoAvaliada() {
@@ -106,6 +106,17 @@ public class RegistoCandidaturasADemonstracao implements Importable<RegistoCandi
         for (CandidaturaADemonstracao cand : m_listaCandidaturasADemonstracao) {
             EstadoCandidaturaADemonstracao estado = cand.getEstado();
             if (estado.isEstadoCandidaturaADemonstracaoAvaliada()) {
+                listCand.add(cand);
+            }
+        }
+        return listCand;
+    }
+
+    public List<CandidaturaADemonstracao> getListaCandidaturasEstadoProntaAAtribuicao() {
+        List<CandidaturaADemonstracao> listCand = new ArrayList<>();
+        for (CandidaturaADemonstracao cand : m_listaCandidaturasADemonstracao) {
+            EstadoCandidaturaADemonstracao estado = cand.getEstado();
+            if (estado.isEstadoCandidaturaADemonstracaoProntaAAtribuicao()) {
                 listCand.add(cand);
             }
         }

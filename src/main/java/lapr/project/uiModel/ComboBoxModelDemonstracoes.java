@@ -20,7 +20,7 @@ public class ComboBoxModelDemonstracoes extends AbstractListModel implements Com
     /**
      * Objeto selecionado.
      */
-    String selection;
+    private String selection;
 
     /**
      * Construtor de objetcos do tipo ComboBoxModelDemonstrações com o parâmetro

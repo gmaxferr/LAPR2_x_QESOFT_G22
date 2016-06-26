@@ -105,6 +105,7 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
 
+            this.m_cand = new CandidaturaAExposicao(null);
             this.m_cand.importContentFromXMLNode(elem.getElementsByTagName(CandidaturaAExposicao.ROOT_ELEMENT_NAME).item(0));
 
             this.m_stand = new Stand("", 0, "");
@@ -128,6 +129,8 @@ public class AtribuicaoStand implements Importable<AtribuicaoStand>, Exportable 
             elemBase.appendChild(document.importNode(this.m_cand.exportContentToXMLNode(), true));
             elemBase.appendChild(document.importNode(this.m_stand.exportContentToXMLNode(), true));
             elemBase.setAttribute(DECISAO_ATTR_NAME, String.valueOf(m_decisao));
+            
+            node = elemBase;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(AtribuicaoStand.class.getName()).log(Level.SEVERE, null, ex);
         }

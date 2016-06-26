@@ -111,8 +111,7 @@ public class RegistoAtribuicoesStands implements Importable<RegistoAtribuicoesSt
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
 
             for (AtribuicaoStand atrStand : this.m_listaAtribuicoesStand) {
-                Node n = atrStand.exportContentToXMLNode();
-                elementBase.appendChild(document.importNode(n, true));
+                elementBase.appendChild(atrStand.exportContentToXMLNode());
             }
 
             document.appendChild(elementBase);

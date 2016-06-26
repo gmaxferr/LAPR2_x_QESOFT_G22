@@ -1,10 +1,9 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelCandidaturaAExposicao;
-import lapr.project.uiModel.ComboBoxModelCandidaturasMostraExpositores;
-import lapr.project.uiModel.ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,23 +17,23 @@ import lapr.project.model.*;
  */
 public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame {
 
-    private PercentagemCandAceitesMediaRatingsController controller;
-    private List<Exposicao> listaExposicoes;
-    private List<CandidaturaAExposicao> listaCandidaturas;
-    private List<CandidaturaAExposicao> listaCandidaturasEstadoAvaliadas;
-    private float[] listaMediaRatingsPorCandidaturaAExposicao;
-    private float[] listaMediaRatingsPorCandidaturaAsDemos;
-    private List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
-    private float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
+    private transient PercentagemCandAceitesMediaRatingsController controller;
+    private transient List<Exposicao> listaExposicoes;
+    private transient List<CandidaturaAExposicao> listaCandidaturas;
+    private transient List<CandidaturaAExposicao> listaCandidaturasEstadoAvaliadasOuPosterior;
+    private transient float[] listaMediaRatingsPorCandidaturaAExposicao;
+    private transient float[] listaMediaRatingsPorCandidaturaAsDemos;
+    private transient List<AtribuicaoCandidaturaDemonstracao> listaAtribDemos;
+    private transient float[][] matrizMediaRatingsPorCriterioDasCandidaturasAExposicao;
+    private transient float[][] matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes;
 
-    private final JFrame jFrameMenuPrincipal;
+    private transient final JFrame jFrameMenuPrincipal;
 
     private static final int CARD1_ALTURA = 370;
     private static final int CARD1_LARGURA = 710;
 
-    private static final int CARD2_LARGURA = 670;
-    private static final int CARD2_ALTURA = 516;
+    private static final int CARD2_LARGURA = 696;
+    private static final int CARD2_ALTURA = 555;
     private transient final CardLayout cardLayout;
 
     /**
@@ -49,14 +48,32 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
         this.jFrameMenuPrincipal = jFrameMenuPrincipal;
         this.controller = new PercentagemCandAceitesMediaRatingsController(centroExposicoes);
         controller.getRegistoExposicoes();
-        this.listaExposicoes = controller.getListaExposicoesEstadoAvaliadas();
+        this.listaExposicoes = controller.getListaExposicoesEstadoAvaliadasOuSuperior();
 
         initComponents();
         this.cardLayout = (CardLayout) getContentPane().getLayout();
 
+        alterarComportamentoFecharJFrame();
         setLocationRelativeTo(null);
         setVisible(true);
         setSize(CARD1_LARGURA, CARD1_ALTURA);
+    }
+
+    /**
+     * Altera o comportamente de clicar no botão de fechar nesta janela
+     */
+    private void alterarComportamentoFecharJFrame() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                dispose();
+                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
+                        + "\nOs dados escolhidos até ao momento não foram guardados.",
+                        "Dados não guardados",
+                        JOptionPane.WARNING_MESSAGE);
+                jFrameMenuPrincipal.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -122,7 +139,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
         jLabel13 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -309,7 +326,6 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
 
         jLabel6.setText("%");
 
-        jComboBoxCandidaturasAExposicao.setModel(new ComboBoxModelCandidaturaAExposicao(this.listaCandidaturasEstadoAvaliadas));
         jComboBoxCandidaturasAExposicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCandidaturasAExposicaoActionPerformed(evt);
@@ -335,7 +351,6 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
             }
         });
 
-        jComboBoxExpositores.setModel(new ComboBoxModelCandidaturasMostraExpositores(this.listaCandidaturas));
         jComboBoxExpositores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxExpositoresActionPerformed(evt);
@@ -354,7 +369,6 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
 
         jLabel12.setText("Candidatura às demonstrações");
 
-        jComboBoxCandidaturasAsDemonstracoes.setModel(new ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura(this.listaAtribDemos));
         jComboBoxCandidaturasAsDemonstracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCandidaturasAsDemonstracoesActionPerformed(evt);
@@ -414,20 +428,21 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
                                     .addGap(73, 73, 73)
                                     .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(card2Layout.createSequentialGroup()
-                                            .addGap(79, 79, 79)
-                                            .addComponent(jComboBoxExpositores, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(card2Layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addGap(5, 5, 5)
-                                            .addComponent(jLabelPercentagemCandidaturasAsDemosAceites, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel10))
-                                        .addGroup(card2Layout.createSequentialGroup()
                                             .addComponent(jLabel5)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabelPercentagemCandidaturasAExpoAceites, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelPercentagemCandidaturasAExpoAceites, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel6))))
+                                            .addComponent(jLabel6))
+                                        .addGroup(card2Layout.createSequentialGroup()
+                                            .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addGroup(card2Layout.createSequentialGroup()
+                                                    .addGap(67, 67, 67)
+                                                    .addComponent(jComboBoxExpositores, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(5, 5, 5)
+                                            .addComponent(jLabelPercentagemCandidaturasAsDemosAceites, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel10))))
                                 .addGroup(card2Layout.createSequentialGroup()
                                     .addGap(113, 113, 113)
                                     .addComponent(jLabel3))
@@ -447,23 +462,16 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
                                 .addContainerGap()
                                 .addComponent(jLabel18)
                                 .addGap(18, 18, 18)))
-                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(card2Layout.createSequentialGroup()
-                                    .addComponent(jLabelCriterioCand1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(126, 126, 126))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                                    .addComponent(jLabelCriterioCand6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(jLabel20)
-                                    .addGap(38, 38, 38)))
-                            .addGroup(card2Layout.createSequentialGroup()
-                                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelCriterioCand3, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                                    .addComponent(jLabelCriterioCand4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                                    .addComponent(jLabelCriterioCand5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(126, 126, 126))
-                            .addComponent(jLabelCriterioCand2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelCriterioCand2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(jLabelCriterioCand3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCriterioCand4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCriterioCand5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCriterioCand6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCriterioCand1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel20)
+                        .addGap(38, 38, 38)
                         .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(card2Layout.createSequentialGroup()
                                 .addComponent(jLabelCriterioDemo2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -480,26 +488,24 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
                                 .addComponent(jLabel21)))))
                 .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(card2Layout.createSequentialGroup()
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE))
-                    .addGroup(card2Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxCandidaturasAExposicao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
-                        .addGap(46, 46, 46)))
-                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(14, 14, 14))
-                    .addComponent(jComboBoxCandidaturasAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
+            .addGroup(card2Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCandidaturasAExposicao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(card2Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(81, 81, 81)
+                        .addComponent(jComboBoxCandidaturasAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12))
+                .addGap(70, 70, 70))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +539,7 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
                     .addComponent(jComboBoxCandidaturasAExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxCandidaturasAsDemonstracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(card2Layout.createSequentialGroup()
                         .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -586,15 +592,19 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
             controller.setExposicaoSelecionada(this.listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
             controller.getRegistoCandidaturasAExposicao();
             this.listaCandidaturas = controller.getListaCandidaturasAExposicao();
-            listaCandidaturasEstadoAvaliadas = controller.getListaCandidaturasAExposicaoEstadoAvaliadas();
+            listaCandidaturasEstadoAvaliadasOuPosterior = controller.getListaCandidaturasAExposicaoEstadoAvaliadasOuSuperior();
             controller.getRegistoAtribuicoesExposicao();
             controller.getRegistoAtribuicoesDemonstracoes();
             controller.getRegistoDemonstracoes();
+            this.listaAtribDemos = controller.getListaAtribuicoesDemonstracoes();
             if (!listaCandidaturas.isEmpty()) {
                 this.listaMediaRatingsPorCandidaturaAExposicao = controller.getMediaRatingsTodasCandidaturasAExposicao();
                 this.listaMediaRatingsPorCandidaturaAsDemos = controller.getMediaRatingsTodasCandidaturasAsDemonstracoes();
                 this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao = controller.getMediaRatingsPorCriterioDasCandidaturasAExposicao();
                 this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes = controller.getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes();
+                jComboBoxCandidaturasAExposicao.setModel(new ComboBoxModelCandidaturaAExposicao(this.listaCandidaturasEstadoAvaliadasOuPosterior));
+                jComboBoxCandidaturasAsDemonstracoes.setModel(new ComBoBoxModelAtribuicoesDemonstracaoMostraCandidatura(listaAtribDemos));
+                jComboBoxExpositores.setModel(new ComboBoxModelCandidaturasMostraExpositores(listaCandidaturas));
                 avancarParaCard2();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não existem candidaturas já decididas para esta exposição. Falta de imformação para os cálculos.", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
@@ -635,24 +645,26 @@ public class JFramePercentagemCandAceitesMediaRatings extends javax.swing.JFrame
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBoxCandidaturasAExposicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCandidaturasAExposicaoActionPerformed
-        jLabelCriterioCand1.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][0]));
-        jLabelCriterioCand2.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][1]));
-        jLabelCriterioCand3.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][2]));
-        jLabelCriterioCand4.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][3]));
-        jLabelCriterioCand5.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][4]));
-        jLabelCriterioCand6.setText(Float.toString(listaMediaRatingsPorCandidaturaAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()]));
+        jLabelCriterioCand1.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][0]));
+        jLabelCriterioCand2.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][1]));
+        jLabelCriterioCand3.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][2]));
+        jLabelCriterioCand4.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][3]));
+        jLabelCriterioCand5.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()][4]));
+        jLabelCriterioCand6.setText(String.format("%.2f", listaMediaRatingsPorCandidaturaAExposicao[jComboBoxCandidaturasAExposicao.getSelectedIndex()]));
     }//GEN-LAST:event_jComboBoxCandidaturasAExposicaoActionPerformed
 
     private void jComboBoxExpositoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxExpositoresActionPerformed
-        jLabelPercentagemCandidaturasAExpoAceites.setText(Float.toString(controller.getPercentagemCandidaturasAExposicaoAceitesDoExpositor((String) jComboBoxExpositores.getSelectedItem())));
-        jLabelPercentagemCandidaturasAsDemosAceites.setText(Float.toString(controller.getPercentagemCandidaturasAsDemonstracoesAceitesDoExpositor((String) jComboBoxExpositores.getSelectedItem())));
+        jLabelPercentagemCandidaturasAExpoAceites.setText(String.format("%.2f", controller.getPercentagemCandidaturasAExposicaoAceitesDoExpositor((String) jComboBoxExpositores.getSelectedItem())));
+        jLabelPercentagemCandidaturasAsDemosAceites.setText(String.format("%.2f", controller.getPercentagemCandidaturasAsDemonstracoesAceitesDoExpositor((String) jComboBoxExpositores.getSelectedItem())));
     }//GEN-LAST:event_jComboBoxExpositoresActionPerformed
 
     private void jComboBoxCandidaturasAsDemonstracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCandidaturasAsDemonstracoesActionPerformed
-        jLabelCriterioDemo1.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][0]));
-        jLabelCriterioDemo2.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][1]));
-        jLabelCriterioDemo3.setText(Float.toString(this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][2]));
-        jLabelCriterioDemo2.setText(Float.toString(listaMediaRatingsPorCandidaturaAsDemos[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()]));
+        if (jComboBoxCandidaturasAsDemonstracoes.getSelectedItem() != null) {
+            jLabelCriterioDemo1.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][0]));
+            jLabelCriterioDemo2.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][1]));
+            jLabelCriterioDemo3.setText(String.format("%.2f", this.matrizMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()][2]));
+            jLabelCriterioDemo2.setText(String.format("%.2f", listaMediaRatingsPorCandidaturaAsDemos[jComboBoxCandidaturasAsDemonstracoes.getSelectedIndex()]));
+        }
     }//GEN-LAST:event_jComboBoxCandidaturasAsDemonstracoesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,7 +7,7 @@ import lapr.project.registos.*;
 
 /**
  * Representação do controller do UC Registar Candidatura a Demonstração
- * 
+ *
  * @author G29
  */
 public class RegistarCandidaturaADemonstracaoController {
@@ -16,27 +16,27 @@ public class RegistarCandidaturaADemonstracaoController {
      * Exposição selecionada
      */
     private Exposicao m_e;
-    
+
     /**
      * Demonstração selecionada
      */
     private Demonstracao m_d;
-    
+
     /**
      * Dados do formulário para preencher
      */
     private String m_dados;
-    
+
     /**
      * Candidatura a demonstração
      */
-    private CandidaturaADemonstracao m_cand; 
-   
+    private CandidaturaADemonstracao m_cand;
+
     /**
      * Centro de exposições
      */
     private CentroExposicoes m_ce;
-    
+
     /**
      * Email do representante
      */
@@ -46,12 +46,12 @@ public class RegistarCandidaturaADemonstracaoController {
      * Registo de exposições
      */
     private RegistoExposicoes m_re;
-    
+
     /**
      * Registo de demonstrações
      */
     private RegistoDemonstracoes m_rd;
-    
+
     /**
      * Registo de candidaturas a demonstração
      */
@@ -61,11 +61,11 @@ public class RegistarCandidaturaADemonstracaoController {
      * Lista de demonstrações da exposição selecionada
      */
     private List<Demonstracao> m_listDemos;
-    
+
     /**
      * Lista de exposições do representante
      */
-    private List<Exposicao> m_listExpos; 
+    private List<Exposicao> m_listExpos;
 
     /**
      * Estado candidatura a demonstração
@@ -73,9 +73,9 @@ public class RegistarCandidaturaADemonstracaoController {
     private EstadoCandidaturaADemonstracao m_estado;
 
     /**
-     * Construtor de objetos do tipo RegistarCandidaturaADemonstracaoController 
+     * Construtor de objetos do tipo RegistarCandidaturaADemonstracaoController
      * com os parametros centro de exposições e email
-     * 
+     *
      * @param ce centro de exposições
      * @param email email do representante
      */
@@ -93,7 +93,7 @@ public class RegistarCandidaturaADemonstracaoController {
      */
     public List<Exposicao> getListaDeExposicoes() {
         m_re = m_ce.getRegistoExposicoes();
-        m_listExpos = m_re.getListaExposicoesComCanditaturasAceitesDoRepresentante(m_emailRep);
+        m_listExpos = m_re.getListaExposicoesComCanditaturasComStandAceiteDoRepresentante(m_emailRep);
         return m_listExpos;
     }
 
@@ -120,13 +120,13 @@ public class RegistarCandidaturaADemonstracaoController {
     /**
      * Devolve a lista de demonstrações do registo de demonstrações da exposição
      * selecionada previamente
-     * 
+     *
      * @return lista de demonstrações do registo de demonstrações da exposição
      * selecionada previamente
      */
     public List<Demonstracao> getListaDemos() {
         m_rd = m_e.getRegistoDemonstracoes();
-        m_listDemos = m_rd.getListaDemonstracoes();
+        m_listDemos = m_rd.getListaDemonstracoesEstadoConfirmada();
         return m_listDemos;
     }
 

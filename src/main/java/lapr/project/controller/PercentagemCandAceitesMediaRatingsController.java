@@ -5,7 +5,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Representação do controller do UC PercentagemCandAceitesMediaRatingsController
+ * Representação do controller do UC
+ * PercentagemCandAceitesMediaRatingsController
  *
  * @author G29
  */
@@ -47,8 +48,9 @@ public class PercentagemCandAceitesMediaRatingsController {
     private RegistoAtribuicoesCandidaturasDemonstracao m_rAtribDemos;
 
     /**
-     * Construtor de objetos do tipo PercentagemCandAceitesMediaRatingsController 
-     * recebendo como parametro o centro de exposições atual
+     * Construtor de objetos do tipo
+     * PercentagemCandAceitesMediaRatingsController recebendo como parametro o
+     * centro de exposições atual
      *
      * @param ce centro de exposições atual
      */
@@ -198,8 +200,8 @@ public class PercentagemCandAceitesMediaRatingsController {
      * @return lista das candidaturas da exposição selecionada no estado
      * Avaliadas
      */
-    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadas() {
-        return this.rce.getListaCandidaturasEstadoAvaliadas();
+    public List<CandidaturaAExposicao> getListaCandidaturasAExposicaoEstadoAvaliadasOuSuperior() {
+        return this.rce.getListaCandidaturasEstadoAvaliadasOuSuperior();
     }
 
     /**
@@ -207,7 +209,7 @@ public class PercentagemCandAceitesMediaRatingsController {
      *
      * @return lista com as exposições no estado avaliadas
      */
-    public List<Exposicao> getListaExposicoesEstadoAvaliadas() {
-        return this.re.getListaExposicoesEstadoAvaliadas();
+    public List<Exposicao> getListaExposicoesEstadoAvaliadasOuSuperior() {
+        return this.re.getListaExposicoesEstadoAvaliadasOuPosterior();
     }
 }

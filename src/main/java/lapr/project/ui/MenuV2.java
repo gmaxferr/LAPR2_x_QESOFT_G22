@@ -2,9 +2,7 @@ package lapr.project.ui;
 
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -47,6 +45,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
         setVisible(true);
         setLocationRelativeTo(null);
+        setSize(1200, 560);
     }
 
     /**
@@ -131,6 +130,7 @@ public class MenuV2 extends javax.swing.JFrame {
                                         System.exit(0);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Erro na gravação dos dados.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                                        successfulExport = false;
                                     }
                                 }
                             }
@@ -223,6 +223,7 @@ public class MenuV2 extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -722,39 +723,51 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setText("Percentagem de candidaturas aceites e média de ratings");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(jButton16)
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton25)
-                            .addComponent(jButton24))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton32)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jButton22)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton21))
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jButton19)
-                                    .addGap(64, 64, 64)
-                                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jButton17))))
-                        .addGap(0, 482, Short.MAX_VALUE))))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton25)
+                                    .addComponent(jButton24)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(279, 279, 279)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jButton19)
+                                            .addGap(64, 64, 64)
+                                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(44, 44, 44)
+                                            .addComponent(jButton17)))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jButton22)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jButton21))))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jButton32))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(jButton15)))
+                .addContainerGap(520, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -770,11 +783,18 @@ public class MenuV2 extends javax.swing.JFrame {
                     .addComponent(jButton18)
                     .addComponent(jButton17)
                     .addComponent(jButton16))
-                .addGap(0, 55, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22)
-                    .addComponent(jButton21)
-                    .addComponent(jButton32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton32)
+                            .addComponent(jButton22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton21)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton15)
                 .addGap(23, 23, 23))
         );
 
@@ -977,7 +997,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameRegistarExpoUI(centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jMenuItemGuardarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGuardarDadosActionPerformed
@@ -1037,7 +1057,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         this.setVisible(false);
-        new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameConfirmarStandUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -1047,42 +1067,42 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.setVisible(false);
-        new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameRemoverCandidaturaExposicaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.setVisible(false);
-        new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
+        JFrame frame = new JFrameRegistarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, this.utilizador.getEmail());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAvaliarCandidaturasAExposicao(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         setVisible(false);
-        new JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(utilizador.getUsername(), this.centroExposicoes, this);
+        JFrame frame = new JFrameAtualizarConflitoDeInteresseCandidaturaAExposicaoUI(utilizador.getUsername(), this.centroExposicoes, this);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         this.setVisible(false);
-        new JFrameAvaliarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+        JFrame frame = new JFrameAvaliarCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameDefinirFAEUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.setVisible(false);
-        new JFrameAtribuirCandidaturasAExposicaoUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAtribuirCandidaturasAExposicaoUI(thisJFrame, this.utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.setVisible(false);
-        new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameCriarDemonstracaoUI(this.utilizador.getUsername(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -1110,22 +1130,29 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameDecidirCandidaturasAExposicaoUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         this.setVisible(false);
-        new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameListarCandidaturasAExposicaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
+        JFrame frame = new JFrameDecidirDemonstracao(centroExposicoes, this.utilizador.getUsername(), thisJFrame);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         try {
-            double nivelConfiance = Double.parseDouble(JOptionPane.showInputDialog(this, "Qual o nível de confiança que pretende que seja utilizado nos cálculos estatísticos?"));
+            String input = JOptionPane.showInputDialog(this, "Qual o nível de confiança que pretende que seja utilizado nos cálculos estatísticos?");
+            if (input == null || input.trim().length() == 0) {
+                throw new NumberFormatException();
+            }
+            double nivelConfiance = Double.parseDouble(input);
+            if (nivelConfiance < 0) {
+                throw new NumberFormatException();
+            }
             QualidadeFaeController CTRL = new QualidadeFaeController(centroExposicoes);
             if (CTRL.getListaFAE().size() > 0) {
                 List<Media<FAE>> infoFAEs = CTRL.testeHipotese(nivelConfiance);
@@ -1143,17 +1170,17 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         this.setVisible(false);
-        new JFrameAtribuirCandidaturasADemonstracaoUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
+        JFrame frame = new JFrameAtribuirCandidaturasADemonstracaoUI(thisJFrame, utilizador.getUsername(), centroExposicoes);
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         this.setVisible(false);
-        new JFrameDecidirCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
+        JFrame frame = new JFrameDecidirCandidaturaADemonstracaoUI(thisJFrame, centroExposicoes, utilizador.getUsername());
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.setVisible(false);
-        new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getEmail(), centroExposicoes, thisJFrame);
+        JFrame frame = new JFrameAlterarCandidaturaAExposicaoUI(utilizador.getEmail(), centroExposicoes, thisJFrame);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1168,7 +1195,7 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        new JFrameDefinirRecursos(centroExposicoes, this);
+        JFrame frame = new JFrameDefinirRecursos(centroExposicoes, this);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1248,26 +1275,31 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         this.setVisible(false);
-        new JFrameListarCandidaturasADemonstracaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
+        JFrame frame = new JFrameListarCandidaturasADemonstracaoRemovidasUI(thisJFrame, centroExposicoes, this.utilizador.getUsername());
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         this.setVisible(false);
-        new JFrameCriarCandidaturaExposicaoXML(centroExposicoes, thisJFrame, utilizador);
+        JFrame frame = new JFrameCriarCandidaturaExposicaoXML(centroExposicoes, thisJFrame, utilizador);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
-        new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
+        JFrame frame = new JFrameCriarStandsUI(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         this.setVisible(false);
-        new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
+        JFrame frame = new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        this.setVisible(false);
+        JFrame frame = new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     private void terminaSessao() {
-        new LoginV2(centroExposicoes);
+        JFrame frame = new LoginV2(centroExposicoes);
         dispose();
     }
 
@@ -1320,6 +1352,7 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;

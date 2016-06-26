@@ -781,6 +781,7 @@ public class JFrameDecidirDemonstracao extends javax.swing.JFrame {
                             }
                             JOptionPane.showMessageDialog(rootPane, "Decisões registadas!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
                             ctrl.setDatas(dataInicioSubCand, dataFimSubCand, dataFimDetecaoConflitos);
+                            ctrl.registarDecisoes();
                             thisFrame.dispose();
                             janelaMae.setVisible(true);
                         } else {

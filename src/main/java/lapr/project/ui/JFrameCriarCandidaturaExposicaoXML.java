@@ -21,13 +21,13 @@ import lapr.project.uiModel.ComboBoxModelExposicoes;
  */
 public class JFrameCriarCandidaturaExposicaoXML extends javax.swing.JFrame {
 
-    private JFrame jFrameMenuPrincipal;
-    private JFrame thisFrame;
-    private List<Exposicao> m_listaExposicoes;
-    private Exposicao m_expo;
-    private CentroExposicoes m_ce;
-    private CriarCandidaturaExposicaoXMLController controller;
-    private Utilizador m_user;
+    private transient JFrame jFrameMenuPrincipal;
+    private transient JFrame thisFrame;
+    private transient List<Exposicao> m_listaExposicoes;
+    private transient Exposicao m_expo;
+    private transient CentroExposicoes m_ce;
+    private transient CriarCandidaturaExposicaoXMLController controller;
+    private transient Utilizador m_user;
 
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";

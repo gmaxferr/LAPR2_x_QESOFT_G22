@@ -2,9 +2,8 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="title" type="java.lang.String" value="Criar Candidatura A Demonstra&#xe7;&#xe3;o"/>
-    <Property name="alwaysOnTop" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -399,9 +398,6 @@
           <SubComponents>
             <Component class="javax.swing.JList" name="listaCard2">
               <Properties>
-                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new AbstractListModelDemonstracoes(listaDemos)" type="code"/>
-                </Property>
                 <Property name="selectionMode" type="int" value="0"/>
               </Properties>
               <AuxValues>
@@ -442,7 +438,7 @@
       </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card4"/>
+          <CardConstraints cardName="card3"/>
         </Constraint>
       </Constraints>
 

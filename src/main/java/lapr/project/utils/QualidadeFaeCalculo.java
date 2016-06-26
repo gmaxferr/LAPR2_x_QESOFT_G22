@@ -107,7 +107,7 @@ public class QualidadeFaeCalculo {
 
         double mediaDesvios = res.getMediaDesvios();
         double desvioPadrao = Math.sqrt(res.getVarianciaDesvios());
-        return new NormalDistribution(res.getMedia(), Double.compare(desvioPadrao, 0D) == 0 ? Double.MIN_VALUE : desvioPadrao);
+        return new NormalDistribution(mediaDesvios, Double.compare(desvioPadrao, 0D) == 0 ? Double.MIN_VALUE : desvioPadrao);
     }
 
     /**

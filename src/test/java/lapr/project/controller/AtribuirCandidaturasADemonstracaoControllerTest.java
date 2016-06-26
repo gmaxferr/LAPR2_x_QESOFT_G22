@@ -44,6 +44,7 @@ public class AtribuirCandidaturasADemonstracaoControllerTest {
         re = ce.getRegistoExposicoes();
         d = new Demonstracao();
         rd = e.getRegistoDemonstracoes();
+        rd.addDemo(d);
         rm = ce.getRegistoMecanismos();
         rcd = d.getRegistoCandidaturasADemonstracao();
         racd = e.getRegistoAtribuicoesDemonstracao();
@@ -219,9 +220,11 @@ public class AtribuirCandidaturasADemonstracaoControllerTest {
     public void testAtribui_Mecanismo_String() {
         System.out.println("atribui");
         e.getRegistoFAE().adicionaFAE(new Utilizador("nome", "username", "password".toCharArray(), "email", "1234"));
+        
         CandidaturaADemonstracao cand = new CandidaturaADemonstracao("dados", "email");
         d.getRegistoCandidaturasADemonstracao().adiciona(cand);
         Mecanismo mec = new MecanismoPredefinidoA();
+        
         List<AtribuicaoCandidaturaDemonstracao> expResult = new ArrayList<>();
         cand.setEstado(new EstadoCandidaturaADemonstracaoProntaAAtribuicao(cand));
         AtribuicaoCandidaturaDemonstracao atrib = new AtribuicaoCandidaturaDemonstracao(cand);

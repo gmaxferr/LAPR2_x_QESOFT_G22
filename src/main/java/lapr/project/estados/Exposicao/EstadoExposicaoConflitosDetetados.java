@@ -7,7 +7,7 @@ import lapr.project.utils.Data;
 
 /**
  * Representação do EstadoExposicaoConflitosDetetados
- * 
+ *
  * @author G29
  */
 public class EstadoExposicaoConflitosDetetados extends EstadoExposicao {
@@ -23,7 +23,8 @@ public class EstadoExposicaoConflitosDetetados extends EstadoExposicao {
             Data currentDate = new Data();
             if (currentDate.isMaior(this.m_exposicao.getDataFimDetecaoConflitos())) {
                 TimerTask task = new AlterarParaConflitosAtualizados(m_exposicao);
-                task.run();
+                Thread myThread = new Thread(task);
+                myThread.start();
             }
             return true;
         } else {

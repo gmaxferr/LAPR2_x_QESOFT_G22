@@ -49,15 +49,15 @@ public class QualidadeFaeCalculoTest {
         u2 = new Utilizador("nome2", "username2", "SecretCode-1234".toCharArray(), "mail2@mail.com", "BLUE");
         fae1 = new FAE(u1);
         fae2 = new FAE(u2);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 30; i++) {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae1);
-            int v = i < 10 ? 1 : 3;
+            int v = i < 15 ? 1 : 3;
             fAval.setAvalicao(v, v, v, v, v);
             atr.getRegistoFaeAvaliacao().getListaFaeAvaliacao().add(fAval);
             ra.getListaAtribuicoes().add(atr);
         }
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 60; i++) {
             AtribuicaoCandidatura atr = new AtribuicaoCandidatura(cand);
             FaeAvaliacao fAval = new FaeAvaliacao(fae2);
             int v = 5;
@@ -142,7 +142,7 @@ public class QualidadeFaeCalculoTest {
         instance.getListaFAEsComDesvioPadraoAcimaDe(1D);
 
         List<Media<FAE>> result = instance.testeHipotese(1D, grauConfianca);
-        
+
         if (result.size() != expResult.size()) {
             fail("O tamanho das listas é diferente");
         } else {
@@ -155,7 +155,11 @@ public class QualidadeFaeCalculoTest {
         expResult.remove(fae1);
         grauConfianca = 1.0;
         result = instance.testeHipotese(1D, grauConfianca);
-        assertEquals(expResult, result);
+
+        for (int i = 0; i < result.size(); i++) {
+            Media<FAE> mFae = result.get(i);
+            assertEquals(mFae.getDecisao(), !expResult.contains(mFae.getObject()));
+        }
     }
 
 }

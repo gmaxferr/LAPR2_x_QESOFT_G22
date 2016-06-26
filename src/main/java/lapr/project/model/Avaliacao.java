@@ -7,13 +7,15 @@ import org.w3c.dom.*;
 
 /**
  * Representação de uma Avaliação
- * 
+ *
  * @author G29
  */
 public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
     //Elements
     public static final String ROOT_ELEMENT_NAME = "avaliacao";
+
+    public static final String AVALIADA_ATTR_NAME = "avaliada";
 
     public static final String RATING_CONHECIMENTO_TEMA_ELEM_NAME = "conhecimentoFAE";
     public static final String RATING_ADEQ_EXPOSICAO_ELEMENT_NAME = "adequacaoExposicao";
@@ -51,6 +53,12 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
      * Rating adequação dos dados da candidatura
      */
     private int m_ratingAdequacaoDadosCandidatura;
+
+    /**
+     * Indica se foi tomada uma avaliação para não confundir com o caso de não
+     * ser tomada nenhuma ou o fae dar todos os ratings a zero
+     */
+    private boolean avaliada;
 
     /**
      * Construtor de objetos do tipo Avaliação sem parâmetros
@@ -127,6 +135,15 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
     }
 
     /**
+     * Devolve o boolean guardado na variavel avaliada
+     *
+     * @return true se foi feita uma avaliação, falso caso contrário
+     */
+    public boolean isAvaliada() {
+        return this.avaliada;
+    }
+
+    /**
      * Calcula e devolve a média dos ratings associados a esta avaliação
      *
      * @return média dos ratings da avaliação
@@ -159,6 +176,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         this.m_ratingAdequacaoAsDemos = ratingAdequacaoAsDemos;
         this.m_ratingAdequacaoNumConvites = ratingAdequacaoNumConvites;
         this.m_ratingRecomendacaoGlobal = ratingRecomendacaoGlobal;
+        this.avaliada = true;
     }
 
     /**
@@ -223,6 +241,7 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
         if (n.getNodeType() == Node.ELEMENT_NODE) {
             Element elem = (Element) n;
 
+            this.avaliada = Boolean.valueOf(elem.getAttribute(AVALIADA_ATTR_NAME));
             this.m_ratingConhecimentoSobreOTema = Integer.parseInt(elem.getElementsByTagName(RATING_CONHECIMENTO_TEMA_ELEM_NAME).item(0).getTextContent());
             this.m_ratingAdequacaoAExposicao = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_EXPOSICAO_ELEMENT_NAME).item(0).getTextContent());
             this.m_ratingAdequacaoAsDemos = Integer.parseInt(elem.getElementsByTagName(RATING_ADEQ_DEMOS_ELEMENT_NAME).item(0).getTextContent());
@@ -246,6 +265,8 @@ public class Avaliacao implements Importable<Avaliacao>, Exportable {
 
             Element elementBase = document.createElement(ROOT_ELEMENT_NAME);
             document.appendChild(elementBase);
+            
+            elementBase.setAttribute(AVALIADA_ATTR_NAME, String.valueOf(this.avaliada));
 
             Element elemChild = document.createElement(RATING_ADEQ_DEMOS_ELEMENT_NAME);
             elemChild.setTextContent(String.valueOf(this.m_ratingAdequacaoAsDemos));

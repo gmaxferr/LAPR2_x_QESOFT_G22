@@ -56,7 +56,8 @@ public class AlterarCandidaturaDemonstracaoControllerTest {
         ce.getRegistoUtilizadoresPendentes().getListaUtilizadores().add(u);
         cand = new CandidaturaADemonstracao("daods", email);
         d.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().add(cand);
-        instance = new AlterarCandidaturaDemonstracaoController(email, e);
+        instance = new AlterarCandidaturaDemonstracaoController(email);
+        instance.setExposicao(e);
     }
 
     @After

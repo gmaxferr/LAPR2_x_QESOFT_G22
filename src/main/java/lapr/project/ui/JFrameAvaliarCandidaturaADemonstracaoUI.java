@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.uiModel.ComboBoxModelCandidaturaADemonstracao;
-import lapr.project.uiModel.ComboBoxModelExposicoes;
+import lapr.project.uiModel.*;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -12,8 +11,8 @@ import lapr.project.controller.AvaliarCandidaturaADemonstracaoController;
 import lapr.project.model.*;
 
 /**
- * UI do UC  Avaliar candidatura a demonstracao
- * 
+ * UI do UC Avaliar candidatura a demonstracao
+ *
  * @author G29
  */
 public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame {
@@ -62,7 +61,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     /**
      * Lista de candidaturas a demonstração
      */
-    private List<CandidaturaADemonstracao> listaCandsDemo;
+    private transient List<CandidaturaADemonstracao> listaCandsDemo;
 
     private static final int LARGURA_JANELA_PASSO1 = 682;
     private static final int ALTURA_JANELA_PASSO1 = 327;
@@ -77,27 +76,11 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private static final int ALTURA_JANELA_PASSO4 = 416;
 
     /**
-     * Descrição da demonstração por omissão
-     */
-    private static final String DESCRICAO_DEMONSTRACAO_POR_OMISSAO = "A apresentar a descricao da exposição selecionada.";
-
-    /**
-     * Descrição da exposição por omissão
-     */
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
-
-    /**
-     * Local da exposição por omissão
-     */
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
-
-    /**
-     * Data de inicio e de fim da exposição por omissão
-     */
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-
-    /**
      * Creates new form JFrameAvaliarCandidaturaADemonstracaoUI
+     *
+     * @param jFrameMenuPrincipal JFrame do menu
+     * @param centroExposicoes centro de exposições atual
+     * @param username username do FAE
      */
     public JFrameAvaliarCandidaturaADemonstracaoUI(JFrame jFrameMenuPrincipal, CentroExposicoes centroExposicoes, String username) {
         super("Avaliar candidaturas a demonstração");
@@ -119,7 +102,6 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             alterarComportamentoFecharJFrame();
 
             setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
-            setResizable(false);
             setLocationRelativeTo(null);
             setVisible(true);
 
@@ -131,6 +113,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
      */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
                 jFrameMenuPrincipal.setVisible(true);
                 dispose();
@@ -196,7 +179,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         jLabelRecomendacaoGlobal = new javax.swing.JLabel();
         jSliderRecomendaçãoGlobal = new javax.swing.JSlider();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -482,7 +465,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
         jLabel6.setText("Email do Representante: ");
 
-        emailRep.setText(" - ");
+        emailRep.setText(" A apresentar o email do representante");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -491,11 +474,11 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailRep, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailRep, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -696,8 +679,10 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     }//GEN-LAST:event_jButtonCard1AvancarActionPerformed
 
     private void avancarParaCard2() {
+        controller.setExposicao(listaExposicoes.get(jComboBoxEscolherExposicao.getSelectedIndex()));
         controller.getRegistoDemonstracoes();
         this.listaDemonstracoes = controller.getListaDemonstracoesEstadoCandidaturasAtribuidas(this.usernameFAE);
+        jComboBoxEscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(this.listaDemonstracoes));
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
@@ -715,33 +700,29 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
-        } else {
-            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
     private void jButtonCard2AvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2AvancarActionPerformed
         if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
             controller.getRegistoAtribuicoes();
-            controller.setDemonstracao(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
+            controller.setDemonstracao(this.listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()));
             listaAtribuicoesDoFAE = controller.getListaAtribuicoesDoFAE(usernameFAE);
+            jComboBoxCard3EscolherCandidatura.setModel(new ComboBoxModelCandidaturaADemonstracao(listaCandsDemo));
             if (!listaAtribuicoesDoFAE.isEmpty()) {
                 avancarParaCard3();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Não lhe foram atribuidas candidaturas para esta exposição!", "Sem candidaturas", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma exposição primeiro!", "Exposição em falta", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Tem de selecionar uma demonstração primeiro!", "Demonstração em falta", JOptionPane.WARNING_MESSAGE);
 
         }
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
 
     private void avancarParaCard3() {
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "card2");
+        cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
 
@@ -754,8 +735,6 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private void jComboBoxEscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherDemonstracaoActionPerformed
         if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
             jTextAreaCard1DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()).getDescricao());
-        } else {
-            jTextAreaCard1DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherDemonstracaoActionPerformed
 
@@ -816,7 +795,7 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
 
     private void jButtonCard3Recuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3Recuar1ActionPerformed
         CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), "card2");
+        cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }//GEN-LAST:event_jButtonCard3Recuar1ActionPerformed
 

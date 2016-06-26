@@ -10,6 +10,7 @@ import lapr.project.controller.ImportarXMLController;
 import lapr.project.exceptions.*;
 import lapr.project.model.*;
 import lapr.project.registos.*;
+import lapr.project.utils.Data;
 import org.w3c.dom.Node;
 
 /**
@@ -103,7 +104,8 @@ public class Main {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Dados inválidos.", JOptionPane.WARNING_MESSAGE);
 
         }
-        new LoginV2(centroExposicoes);
+
+        JFrame frame = new LoginV2(centroExposicoes);
     }
 
     private static void instanciarPelaPrimeiraVez(CentroExposicoes centroExposicoes) {
@@ -118,6 +120,10 @@ public class Main {
         utilizador = ru.identificarUtilizadorPeloUsername("Ricardo");
         utilizador.setIsGestor(true);
 
+        //Instanciar muitos utilizadores
+//        for (int i = 1; i <= 60; i++) {
+//            centroExposicoes.getRegistoUtilizadoresPendentes().addUtilizador(new Utilizador("Utilizador_" + i, "utilizador" + i, "Abc-1".toCharArray(), "utilizador" + i + "@email.pt", "123456"));
+//        }
         JOptionPane.showMessageDialog(null, "Foram criados vários utilizadores para facilitar o uso do programa, tanto para testes como para avaliação. "
                 + "\nCriamos um utilizador por cada membro do grupo, o seu username é o nome da pessoa e a password"
                 + "\n é igual parar todos: \"Abc-1\".\n"

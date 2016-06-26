@@ -14,7 +14,7 @@ public class ModelJTableAtribuicaoStands extends AbstractTableModel {
     /**
      * Lista de atribuições
      */
-    private List<AtribuicaoStand> listAtr;
+    private transient List<AtribuicaoStand> listAtr;
 
     /**
      * Construtor de objetos do tipo ModelJTableAtribuicaoStands com o paramentro

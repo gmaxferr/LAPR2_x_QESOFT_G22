@@ -633,9 +633,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setDataFimCandDemo(Data dataFimCandDemo) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
-            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimCandidaturas(dataFimCandDemo, m_ce);
-            }
+            d.setDataFimCandidaturas(dataFimCandDemo, m_ce);
         }
     }
 
@@ -647,9 +645,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setDataFimDetecaoConflitosDemo(Data dataFimDetecaoConflitos) {
         for (Demonstracao d : m_rd.getListaDemonstracoes()) {
-            if (d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
-                d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
-            }
+            d.setDataFimDetecaoConflitos(dataFimDetecaoConflitos);
         }
     }
 
@@ -669,6 +665,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void setCentroExposicoes(CentroExposicoes ce) {
         this.m_ce = ce;
+    }
+
+    @Override
+    public String toString() {
+        return this.m_strTitulo;
     }
 
     /**
@@ -894,9 +895,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     break;
                 case "conflitosAlterados":
                     this.m_estado = new EstadoExposicaoConflitosAlterados(this);
+                    recriarTimersExpo();
                     break;
                 case "candsAtribuidas":
                     this.m_estado = new EstadoExposicaoCandidaturasAtribuidas(this);
+                    recriarTimersExpo();
                     break;
                 case "candsAvaliadas":
                     this.m_estado = new EstadoExposicaoCandidaturasAvaliadas(this);

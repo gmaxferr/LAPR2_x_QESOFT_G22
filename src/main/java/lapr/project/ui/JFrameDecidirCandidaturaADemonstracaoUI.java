@@ -1,10 +1,8 @@
 package lapr.project.ui;
 
 import java.awt.CardLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.*;
+import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DecidirCandidaturaADemonstracaoController;
@@ -13,14 +11,13 @@ import lapr.project.uiModel.*;
 
 /**
  * UI do UC Decidir candidatura a demonstracao
- * 
+ *
  * @author G29
  */
 public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
 
-    private JFrame mainMenu;
-    private DecidirCandidaturaADemonstracaoController CTRL;
-    private CentroExposicoes ce;
+    private transient JFrame mainMenu;
+    private transient DecidirCandidaturaADemonstracaoController CTRL;
 
     private transient final ArrayList<Exposicao> listaExposicoes;
     private transient ArrayList<Demonstracao> listaDemos;
@@ -37,10 +34,14 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     private static final int LARGURA_JANELA_PASSO4 = 441;
     private static final int ALTURA_JANELA_PASSO4 = 188;
 
-    private List<CandidaturaADemonstracao> listaCandsDemo;
+    private transient List<CandidaturaADemonstracao> listaCandsDemo;
 
     /**
      * Creates new form JFrameDecidirCandidaturaADemonstracao
+     *
+     * @param mainMenu JFrame do menu
+     * @param centroExposicoes centro de exposições atual
+     * @param username username do organizador
      */
     public JFrameDecidirCandidaturaADemonstracaoUI(JFrame mainMenu, CentroExposicoes centroExposicoes, String username) {
         super("Decidir candidaturas");
@@ -56,8 +57,9 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
             initComponents();
             alterarComportamentoFecharJFrame();
 
-            setVisible(true);
+            setLocationRelativeTo(null);
             setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
+            setVisible(true);
         }
     }
 
@@ -115,7 +117,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
         jRadioNao = new javax.swing.JRadioButton();
         jRadioSim = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -479,7 +481,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -586,6 +588,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
 
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
                 setVisible(false);
                 JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."

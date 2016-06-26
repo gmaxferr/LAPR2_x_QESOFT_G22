@@ -19,7 +19,7 @@ public class ComboBoxModelStandart<T> extends AbstractListModel implements Combo
     /**
      * Item seleciondao
      */
-    private T selectedItem;
+    private transient T selectedItem;
     
     /**
      * Construtor de objetos do tipo ComboBoxModelStandart com o parametro 

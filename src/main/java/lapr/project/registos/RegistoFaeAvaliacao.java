@@ -70,7 +70,7 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
 
     /**
      * Devolve a lista de todas as avaliações deste registo
-     * 
+     *
      * @return lista de todas as Avaliações deste registo
      */
     public List<FaeAvaliacao> getListaFaeAvaliacao() {
@@ -144,14 +144,19 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
      * @param pos linha atual (posição da candidatura nas linhas da matriz)
      */
     public void somarRatingsDaCandidaturaAExposicaoAMatriz(float[][] matriz, int pos) {
+        int numAvaliacoesNaoAvaliadas = 0;
         for (FaeAvaliacao FaeAvaliacao : this.m_listaFaeAvaliacao) {
-            matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
-            matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
-            matriz[pos][2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
-            matriz[pos][3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
-            matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+            if (FaeAvaliacao.getAvaliacao().isAvaliada()) {
+                matriz[pos][0] += FaeAvaliacao.getAvaliacao().getRatingConhecimentoSobreOTema();
+                matriz[pos][1] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAExposicao();
+                matriz[pos][2] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoAsDemos();
+                matriz[pos][3] += FaeAvaliacao.getAvaliacao().getRatingAdequacaoNumConvites();
+                matriz[pos][4] += FaeAvaliacao.getAvaliacao().getRatingRecomendacaoGlobal();
+            } else {
+                numAvaliacoesNaoAvaliadas++;
+            }
         }
-        int cont = m_listaFaeAvaliacao.size();
+        int cont = (m_listaFaeAvaliacao.size() - numAvaliacoesNaoAvaliadas);
         for (int linha = 0; linha < matriz.length; linha++) {
             for (int coluna = 0; coluna < 5; coluna++) {
                 matriz[linha][coluna] = matriz[linha][coluna] / cont;
@@ -179,6 +184,30 @@ public class RegistoFaeAvaliacao implements Importable<RegistoFaeAvaliacao>, Exp
                 matriz[linha][coluna] = matriz[linha][coluna] / cont;
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof RegistoFaeAvaliacao) {
+            RegistoFaeAvaliacao o = (RegistoFaeAvaliacao) obj;
+            if (this.m_listaFaeAvaliacao.size() == o.m_listaFaeAvaliacao.size()) {
+                for (FaeAvaliacao fAval : this.m_listaFaeAvaliacao) {
+                    boolean exists = false;
+                    for (FaeAvaliacao fAval2 : o.m_listaFaeAvaliacao) {
+                        if (fAval.getFaeAssociado().equals(fAval2.getFaeAssociado())) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     /**

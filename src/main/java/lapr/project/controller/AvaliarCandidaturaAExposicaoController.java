@@ -6,7 +6,7 @@ import lapr.project.registos.*;
 
 /**
  * Representação do controller do UC Avaliar Candidatura A Exposição
- * 
+ *
  * @author G29
  */
 public class AvaliarCandidaturaAExposicaoController {
@@ -93,8 +93,8 @@ public class AvaliarCandidaturaAExposicaoController {
      *
      * @return lista de atribuiçoes do FAE a executar este UC
      */
-    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAEEstaadoAtribuidas() {
-        return this.m_ra.getListaAtribuicoesDoFAEEstadoAtribuidas(this.m_usernameFAE);
+    public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesDoFAE() {
+        return this.m_ra.getListaAtribuicoesDoFAE(this.m_usernameFAE);
     }
 
     /**
@@ -240,6 +240,10 @@ public class AvaliarCandidaturaAExposicaoController {
      */
     public void setExposicao(Exposicao exposicao) {
         this.m_exposicaoSelecionada = exposicao;
+    }
+
+    public void setEstadoCandidaturaAvaliada() {
+        this.m_atribuicaoEscolhida.getCandidaturaAssociada().getEstado().setEstadoCandidaturaAvaliada();
     }
 
 }

@@ -327,6 +327,6 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
         PercentagemCandAceitesMediaRatingsController instance = new PercentagemCandAceitesMediaRatingsController(ce);
         instance.getRegistoExposicoes();
 
-        assertEquals(listaExposicoesEsperada, instance.getListaExposicoesEstadoAvaliadas());
+        assertEquals(listaExposicoesEsperada, instance.getListaExposicoesEstadoAvaliadasOuSuperior());
     }
 }

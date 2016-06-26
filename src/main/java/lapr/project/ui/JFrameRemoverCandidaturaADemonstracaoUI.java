@@ -24,8 +24,8 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     private transient List<Demonstracao> m_listaDemonstracoes;
     private transient List<CandidaturaADemonstracao> m_listaCandidaturas;
     
-    private List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
-    private RemoverCandidaturaADemonstracaoController controller;
+    private transient List<CandidaturaADemonstracao> m_listaCandidaturasRemovidas;
+    private transient RemoverCandidaturaADemonstracaoController controller;
     
     private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da esposição selecionada";
     private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização da exposição selecionada";
@@ -39,7 +39,7 @@ public class JFrameRemoverCandidaturaADemonstracaoUI extends javax.swing.JFrame 
     public JFrameRemoverCandidaturaADemonstracaoUI(JFrame janelaMae, String emailExpositor, CentroExposicoes ce) {
         this.emailExpositor = emailExpositor;
         this.jFrameMenuPrincipal = janelaMae;
-        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAbertas(emailExpositor);
+        this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(emailExpositor);
         this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
