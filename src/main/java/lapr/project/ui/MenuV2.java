@@ -10,6 +10,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.QualidadeFaeCalculo.Media;
+import lapr.project.utils.XMLParser;
+import org.w3c.dom.Node;
 
 /**
  * Menu principal da aplicação. Permite o acesso a todas as funcionalidades
@@ -571,6 +573,11 @@ public class MenuV2 extends javax.swing.JFrame {
         });
 
         jButton3.setText("Importar Exposição via XML");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1295,6 +1302,23 @@ public class MenuV2 extends javax.swing.JFrame {
         this.setVisible(false);
         JFrame frame = new JFramePercentagemCandAceitesMediaRatings(thisJFrame, centroExposicoes);
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(thisJFrame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String filename = f.getAbsolutePath();
+            ImportarExposicaoXMLController CTRL;
+            try {
+                CTRL = new ImportarExposicaoXMLController(centroExposicoes, filename);
+                CTRL.registarExposicao();
+                JOptionPane.showMessageDialog(null, "Exposiçao carregada com sucesso", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+            } catch (ParserConfigurationException ex) {
+                JOptionPane.showMessageDialog(null, "Erro na leitura do ficheiro.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void terminaSessao() {
         JFrame frame = new LoginV2(centroExposicoes);
