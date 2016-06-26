@@ -421,10 +421,9 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      */
     public List<Exposicao> getListaExposicoesEstadoCandidaturasDecididas() {
         List<Exposicao> listExpo = new ArrayList<>();
-        List<Exposicao> listaExpo = getListaExposicoes();
         for (Exposicao e : m_listaExposicoes) {
             EstadoExposicao state = e.getEstado();
-            if (state.isEstadoCandidaturasDecididas()) {
+            if (state.isEstadoDemosDecididas()) {
                 listExpo.add(e);
             }
         }

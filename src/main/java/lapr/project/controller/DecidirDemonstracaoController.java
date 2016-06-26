@@ -122,6 +122,7 @@ public class DecidirDemonstracaoController {
      * Regista decisões para as demonstrações pendentes da exposição
      */
     public void registarDecisoes() {
+        m_listDemonstracoes = m_rd.getListaDemonstracoes();
         for (int i = 0; i < m_listDemonstracoes.size(); i++) {
             if (m_decisoesTemp[i]) {
                 m_listDemonstracoes.get(i).getEstadoDemo().setEstadoDemonstracaoConfirmada();
