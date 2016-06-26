@@ -86,40 +86,4 @@ public class ConflitoDeInteresseDemonstracaoTest {
         RegistoCandidaturasAExposicao rc = new RegistoCandidaturasAExposicao(new Exposicao(new CentroExposicoes()));
         instance.fix(rc);
     }
-
-    /**
-     * Test of importContentFromXMLNode method, of class
-     * ConflitoDeInteresseDemonstracao.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = instance.exportContentToXMLNode();
-        ConflitoDeInteresseDemonstracao expResult = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
-        try {
-            expResult.importContentFromXMLNode(node);
-        } catch (ParserConfigurationException ex) {
-            expResult = null;
-        }
-        ConflitoDeInteresseDemonstracao result = instance;
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of exportContentToXMLNode method, of class CandidaturaADemonstracao.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        Node node = instance.exportContentToXMLNode();
-        ConflitoDeInteresseDemonstracao expResult = new ConflitoDeInteresseDemonstracao(fae, cand, tipoConflito);
-        try {
-            expResult.importContentFromXMLNode(node);
-        } catch (ParserConfigurationException ex) {
-            expResult = null;
-        }
-        ConflitoDeInteresseDemonstracao result = instance;
-        assertEquals(expResult, result);
-    }
-
 }

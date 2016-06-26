@@ -57,18 +57,6 @@ public class RegistarCandidaturaADemonstracaoControllerTest {
     }
 
     /**
-     * Test of getListaDeExposicoesComCandidaturasAceitesDoRepresentante method,
-     * of class RegistarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testGetListaDeExposicoes() {
-        System.out.println("getListaDeExposicoes");
-        List<Exposicao> expResult = ce.getRegistoExposicoes().getListaExposicoes();
-        List<Exposicao> result = instance.getListaDeExposicoes();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of setExpo method, of class
      * RegistarCandidaturaADemonstracaoController.
      */
@@ -76,33 +64,6 @@ public class RegistarCandidaturaADemonstracaoControllerTest {
     public void testSetExpo() {
         System.out.println("setExpo");
         instance.setExpo(e);
-    }
-
-    /**
-     * Test of setDemo method, of class
-     * RegistarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testSetDemo() {
-        System.out.println("setDemo");
-        int indexSelectedDemo = 0;
-        instance.setExpo(e);
-        instance.getListaDemos();
-        instance.setDemo(indexSelectedDemo);
-    }
-
-    /**
-     * Test of getListaDemos method, of class
-     * RegistarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testGetListaDemos() {
-        instance.setExpo(e);
-        System.out.println("getListaDemos");
-        List<Demonstracao> expResult = new ArrayList<Demonstracao>();
-        expResult.add(d);
-        List<Demonstracao> result = instance.getListaDemos();
-        assertEquals(expResult, result);
     }
 
     /**
@@ -130,37 +91,4 @@ public class RegistarCandidaturaADemonstracaoControllerTest {
         boolean result = instance.setFormularioDados(dados);
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of RegistaCandADemo method, of class
-     * RegistarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testRegistaCandADemo() {
-        System.out.println("RegistaCandADemo");
-        instance.setExpo(e);
-        instance.getListaDemos();
-        instance.setDemo(0);
-        instance.setFormularioDados("dados");
-
-        boolean expResult = true;
-        boolean result = instance.RegistaCandADemo();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of transitaEstado method, of class
-     * RegistarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testTransitaEstado() {
-        System.out.println("transitaEstado");
-        instance.setExpo(e);
-        instance.getListaDemos();
-        instance.setDemo(0);
-        instance.setFormularioDados("dados");
-        instance.RegistaCandADemo();
-        instance.transitaEstado();
-    }
-
 }

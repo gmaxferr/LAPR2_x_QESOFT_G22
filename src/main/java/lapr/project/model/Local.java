@@ -75,6 +75,9 @@ public class Local implements Importable<Local>, Exportable {
 
     @Override
     public Local importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        if(node == null){
+            return null;
+        }
         Document document = XMLParser.createDocument(node, true);
 
         Node n = document.getChildNodes().item(0);

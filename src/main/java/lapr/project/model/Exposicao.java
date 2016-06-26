@@ -1040,7 +1040,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
             elementExpo.appendChild(document.importNode(this.m_rexpositores.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_rfae.exportContentToXMLNode(), true));
             elementExpo.appendChild(document.importNode(this.m_ro.exportContentToXMLNode(), true));
-            elementExpo.appendChild(document.importNode(this.local.exportContentToXMLNode(), true));
+            if (this.local != null) {
+                elementExpo.appendChild(document.importNode(this.local.exportContentToXMLNode(), true));
+            }
             elementExpo.appendChild(document.importNode(this.m_keywordRanking.exportContentToXMLNode(), true));
 
             node = elementExpo;

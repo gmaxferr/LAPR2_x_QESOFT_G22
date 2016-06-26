@@ -139,54 +139,6 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
     }
 
     /**
-     * Test of registaConflito method, of class
-     * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testRegistaConflito() {
-        System.out.println("registaConflito");
-        instance.setCandidatura(cand);
-        instance.setTipoConflito(tipo);
-        instance.identificaFAE();
-        instance.registaConflito();
-    }
-
-    /**
-     * Test of getListaCandidaturas method, of class
-     * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testGetListaCandidaturas() {
-        System.out.println("getListaCandidaturas");
-        List<CandidaturaADemonstracao> expResult = new ArrayList<>();
-        expResult.add(cand);
-        instance.selectExpo(e);
-        instance.selectDemo(d);
-        cand.setEstado(new EstadoCandidaturaADemonstracaoProntaAAtribuicao(cand));
-        RegistoAtribuicoesCandidaturasDemonstracao racd = e.getRegistoAtribuicoesDemonstracao();
-        racd.getListaAtribuicoes().add(new AtribuicaoCandidaturaDemonstracao(cand));
-        List<CandidaturaADemonstracao> result = instance.getListaCandidaturas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaConflito method, of class
-     * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testValidaConflito() {
-        System.out.println("validaConflito");
-        boolean expResult = true;
-        instance.setTipoConflito(tipo);
-        instance.selectDemo(d);
-        instance.selectExpo(e);
-        instance.identificaFAE();
-        
-        boolean result = instance.validaConflito();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of setCandidatura method, of class
      * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController.
      */
@@ -209,16 +161,6 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoControllerTest 
         instance.selectDemo(d);
         List<FAE> result = instance.getListaFae();
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setTipoConflito method, of class
-     * AtualizarConflitoDeInteresseCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testSetTipoConflito() {
-        System.out.println("setTipoConflito");
-        instance.setTipoConflito(tipo);
     }
 
     /**

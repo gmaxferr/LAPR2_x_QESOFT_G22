@@ -175,17 +175,6 @@ public class AvaliacaoTest {
     }
 
     /**
-     * Test of getRatingAdequacaoDadosCandidatura method, of class Avaliacao.
-     */
-    @Test
-    public void testGetRatingAdequacaoDadosCandidatura() {
-        System.out.println("getRatingAdequacaoDadosCandidatura");
-        Avaliacao instance = new Avaliacao();
-        instance.setAvaliacaoCandidaturaADemonstracao(0, 1, 0);
-        assertEquals(1, instance.getRatingRecomendacaoGlobal());
-    }
-
-    /**
      * Test of getMediaRatingsCandidaturaAExposicao method, of class Avaliacao.
      */
     @Test

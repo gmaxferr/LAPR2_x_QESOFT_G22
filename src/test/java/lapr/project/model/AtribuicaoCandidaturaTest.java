@@ -129,17 +129,4 @@ public class AtribuicaoCandidaturaTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setRegistoFaeAvaliacao method, of class AtribuicaoCandidatura.
-     */
-    @Test
-    public void testSetRegistoFaeAvaliacao() {
-        System.out.println("setRegistoFaeAvaliacao");
-        RegistoFaeAvaliacao m_rFaeAvaliacao = null;
-        AtribuicaoCandidatura instance = null;
-        instance.setRegistoFaeAvaliacao(m_rFaeAvaliacao);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }

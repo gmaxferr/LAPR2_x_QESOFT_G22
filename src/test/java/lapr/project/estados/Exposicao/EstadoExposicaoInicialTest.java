@@ -54,17 +54,6 @@ public class EstadoExposicaoInicialTest {
     }
 
     /**
-     * Test of setEstadoCriada method, of class EstadoExposicaoInicial.
-     */
-    @Test
-    public void testSetEstadoCriada() {
-        System.out.println("setEstadoCriada");
-        boolean expResult = true;
-        boolean result = instance.setEstadoCriada();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isEstadoInicial method, of class EstadoExposicaoInicial.
      */
     @Test

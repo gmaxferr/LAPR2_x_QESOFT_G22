@@ -238,21 +238,6 @@ public class PercentagemCandAceitesMediaRatingsControllerTest {
     }
 
     /**
-     * Test of getMediaRatingsPorCriterioDasCandidaturasAExposicao method, of
-     * class PercentagemCandAceitesMediaRatingsController.
-     */
-    @Test
-    public void testGetMediaRatingsPorCriterioDasCandidaturasAExposicao() {
-        System.out.println("getMediaRatingsPorCriterioDasCandidaturasAExposicao");
-        PercentagemCandAceitesMediaRatingsController instance = null;
-        float[][] expResult = null;
-        float[][] result = instance.getMediaRatingsPorCriterioDasCandidaturasAExposicao();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getMediaRatingsPorCriterioDasCandidaturasAsDemonstracoes method,
      * of class PercentagemCandAceitesMediaRatingsController.
      */

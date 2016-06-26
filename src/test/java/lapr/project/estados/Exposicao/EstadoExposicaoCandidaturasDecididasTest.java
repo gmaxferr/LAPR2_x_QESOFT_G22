@@ -50,18 +50,6 @@ public class EstadoExposicaoCandidaturasDecididasTest {
     }
 
     /**
-     * Test of setEstadoCandidaturasDecididas method, of class
-     * EstadoExposicaoCandidaturasDecididas.
-     */
-    @Test
-    public void testSetEstadoCandidaturasDecididas() {
-        System.out.println("setEstadoCandidaturasDecididas");
-        boolean expResult = false;
-        boolean result = instance.setEstadoCandidaturasDecididas();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isEstadoCandidaturasDecididas method, of class
      * EstadoExposicaoCandidaturasDecididas.
      */

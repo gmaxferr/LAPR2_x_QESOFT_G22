@@ -145,37 +145,6 @@ public class AvaliarCandidaturaADemonstracaoControllerTest {
     }
 
     /**
-     * Test of getListaAtribuicoesDoFAE method, of class
-     * AvaliarCandidaturaADemonstracaoController.
-     */
-    @Test
-    public void testGetListaAtribuicoesDoFAE(){
-        System.out.println("getListaAtribuicoesDoFAE");
-        String usernameFAE = "b";
-        instance = new AvaliarCandidaturaADemonstracaoController(ce);
-        instance.getRegistoExposicoes();
-        instance.setExposicao(e);
-        ce.getRegistoExposicoes().getListaExposicoes().add(e);
-        instance.getRegistoAtribuicoes();
-        instance.getRegistoDemonstracoes();
-        Demonstracao demo = new Demonstracao("descricao", e);
-        CandidaturaADemonstracao candDemo = new CandidaturaADemonstracao("dados", "mail");
-        demo.setCodigoIdentificacao("codigoID");
-        instance.setDemonstracao(demo);
-        candDemo.setDemonstracao(demo);
-        candDemo.setEstado(new EstadoCandidaturaADemonstracaoAvaliada(candDemo));
-        demo.getRegistoCandidaturasADemonstracao().getListaCandidaturasADemonstracao().add(candDemo);
-        AtribuicaoCandidaturaDemonstracao atCandDemo = new AtribuicaoCandidaturaDemonstracao(candDemo);
-        atCandDemo.addFaeAvaliacao(fae);
-        e.getRegistoAtribuicoesDemonstracao().getListaAtribuicoes().add(atCandDemo);
-        e.getRegistoDemonstracoes().getListaDemonstracoes().add(demo);
-        ArrayList<AtribuicaoCandidaturaDemonstracao> expResult = new ArrayList<>();
-        expResult.add(atCandDemo);
-        ArrayList<AtribuicaoCandidaturaDemonstracao> result = instance.getListaAtribuicoesDoFAE(usernameFAE);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getRegistoFaeAvalicao method, of class
      * AvaliarCandidaturaADemonstracaoController.
      */

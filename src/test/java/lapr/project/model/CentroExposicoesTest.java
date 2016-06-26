@@ -297,42 +297,6 @@ public class CentroExposicoesTest {
     }
 
     /**
-     * Test of getRegistoUtilizadoresPendentes method, of class CentroExposicoes.
-     */
-    @Test
-    public void testGetRegistoUtilizadoresPendentes() {
-        System.out.println("getRegistoUtilizadoresPendentes");
-        CentroExposicoes instance = new CentroExposicoes();
-        RegistoUtilizadores expResult = new RegistoUtilizadores("");
-        RegistoUtilizadores result = instance.getRegistoUtilizadoresPendentes();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getRegistoUtilizadoresConfirmados method, of class CentroExposicoes.
-     */
-    @Test
-    public void testGetRegistoUtilizadoresConfirmados() {
-        System.out.println("getRegistoUtilizadoresConfirmados");
-        CentroExposicoes instance = new CentroExposicoes();
-        RegistoUtilizadores expResult = new RegistoUtilizadores("");
-        RegistoUtilizadores result = instance.getRegistoUtilizadoresConfirmados();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getRegistoTiposConflitosDemonstracao method, of class CentroExposicoes.
-     */
-    @Test
-    public void testGetRegistoTiposConflitosDemonstracao() {
-        System.out.println("getRegistoTiposConflitosDemonstracao");
-        CentroExposicoes instance = new CentroExposicoes();
-        RegistoTiposConflitoDemonstracao expResult = new RegistoTiposConflitoDemonstracao();
-        RegistoTiposConflitoDemonstracao result = instance.getRegistoTiposConflitosDemonstracao();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of confirmarRegistoTodosUtilizadores method, of class CentroExposicoes.
      */
     @Test
