@@ -1145,7 +1145,14 @@ public class MenuV2 extends javax.swing.JFrame {
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         try {
-            double nivelConfiance = Double.parseDouble(JOptionPane.showInputDialog(this, "Qual o nível de confiança que pretende que seja utilizado nos cálculos estatísticos?"));
+            String input = JOptionPane.showInputDialog(this, "Qual o nível de confiança que pretende que seja utilizado nos cálculos estatísticos?");
+            if (input == null || input.trim().length() == 0) {
+                throw new NumberFormatException();
+            }
+            double nivelConfiance = Double.parseDouble(input);
+            if (nivelConfiance < 0) {
+                throw new NumberFormatException();
+            }
             QualidadeFaeController CTRL = new QualidadeFaeController(centroExposicoes);
             if (CTRL.getListaFAE().size() > 0) {
                 List<Media<FAE>> infoFAEs = CTRL.testeHipotese(nivelConfiance);
