@@ -88,13 +88,11 @@ public class Produto implements Importable<Produto>, Exportable {
 
     @Override
     public Produto importContentFromXMLNode(Node node) throws ParserConfigurationException {
-        Document document = XMLParser.createDocument(node, true);
-
-        NodeList elementsKeyword = document.getChildNodes();
-
-        Node n = elementsKeyword.item(0);
-        if (n.getNodeType() == Node.ELEMENT_NODE) {
-            Element elem = (Element) n;
+        if(node == null){
+            return null;
+        }
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element elem = (Element) node;
             this.m_nome = elem.getTextContent();
         }
         return this;

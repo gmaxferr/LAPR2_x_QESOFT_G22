@@ -13,7 +13,7 @@ import lapr.project.uiModel.ComboBoxModelExposicoes;
 
 /**
  * UI do UC Listar candidaturas a demonstração removidas
- * 
+ *
  * @author G29
  */
 public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swing.JFrame {
@@ -73,7 +73,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
      * Largura da janela no passo 3
      */
     private static final int LARGURA_JANELA_PASSO3 = 720;
-    
+
     /**
      * Altura da janela no passo 3
      */
@@ -110,8 +110,8 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
         this.controller = new ListarCandidaturasADemonstracaoRemovidasController(centroExposicoes);
         controller.getRegistoExposicoes();
         listaExposicoesDoOrganizador = controller.getListaExposicoesDoOrganizador(usernameOrganizador);
-        initComponents();
 
+        initComponents();
         alterarComportamentoFecharJFrame();
 
         setLocationRelativeTo(null);
@@ -124,12 +124,9 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
      */
     private void alterarComportamentoFecharJFrame() {
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent windowEvent) {
                 dispose();
-                JOptionPane.showMessageDialog(rootPane, "Fechou a janela antes de terminar o processo."
-                        + "\nOs dados escolhidos até ao momento não foram guardados.",
-                        "Dados não guardados",
-                        JOptionPane.WARNING_MESSAGE);
                 jFrameMenuPrincipal.setVisible(true);
             }
         });
@@ -482,7 +479,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Recuar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCard3Fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         getContentPane().add(card3, "card3");
@@ -572,7 +569,7 @@ public class JFrameListarCandidaturasADemonstracaoRemovidasUI extends javax.swin
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 
     private void jComboBoxEscolherDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscolherDemonstracaoActionPerformed
-      if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
+        if (jComboBoxEscolherDemonstracao.getSelectedItem() != null) {
             jTextAreaCard1DescricaoDemonstracao.setText(listaDemonstracoes.get(jComboBoxEscolherDemonstracao.getSelectedIndex()).getDescricao());
         } else {
             jTextAreaCard1DescricaoDemonstracao.setText(DESCRICAO_DEMONSTRACAO_POR_OMISSAO);
