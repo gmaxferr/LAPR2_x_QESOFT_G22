@@ -106,7 +106,9 @@ public class JFrameAvaliarCandidaturaADemonstracaoUI extends javax.swing.JFrame 
         this.listaExposicoes = controller.getListaExposicoes(username);
 
         if (listaExposicoes.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não existem exposições com candidaturas a demontração a avaliar.", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Não existem exposições com candidaturas a demonstrações a avaliar.", "Erro", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+            jFrameMenuPrincipal.setVisible(true);
         } else {
             this.jFrameMenuPrincipal = jFrameMenuPrincipal;
             this.ce = centroExposicoes;
