@@ -464,7 +464,6 @@ public class JFrameAvaliarCandidaturasAExposicao extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Demonstrações a que foram mostrado interesse:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jListCard2ListaDemonstracoes.setModel(null);
         jScrollPane4.setViewportView(jListCard2ListaDemonstracoes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
