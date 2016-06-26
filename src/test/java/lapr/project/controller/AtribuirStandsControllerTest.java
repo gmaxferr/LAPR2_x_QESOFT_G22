@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.CandidaturaAExposicao.EstadoCandidaturaAExposicaoAceite;
 import lapr.project.estados.Exposicao.EstadoExposicaoCandidaturasDecididas;
+import lapr.project.estados.Exposicao.EstadoExposicaoDemonstracoesDecididas;
 import lapr.project.model.AtribuicaoStand;
 import lapr.project.model.CandidaturaAExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -50,7 +51,7 @@ public class AtribuirStandsControllerTest {
         cand.setEstado(new EstadoCandidaturaAExposicaoAceite(cand));
         ce.getRegistoStands().getListaStands().add(stand);
         e.getRegistoCandidaturasAExposicao().getListaCandidaturas().add(cand);
-        e.setEstado(new EstadoExposicaoCandidaturasDecididas(e));
+        e.setEstado(new EstadoExposicaoDemonstracoesDecididas(e));
         ce.getRegistoExposicoes().getListaExposicoes().add(e);
         instance = new AtribuirStandsController(ce);
     }
