@@ -390,6 +390,9 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 case "confirmada":
                     this.m_estado = new EstadoDemonstracaoConfirmada(this);
                     break;
+                case "datasDefinidas":
+                    this.m_estado = new EstadoDemonstracaoDatasDefinidas(this);
+                    break;
                 case "candidaturasAbertas":
                     this.m_estado = new EstadoDemonstracaoCandidaturasAbertas(this);
                     break;
@@ -404,6 +407,12 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                     break;
                 case "candidaturasDecididas":
                     this.m_estado = new EstadoDemonstracaoCandidaturasDecididas(this);
+                    break;
+                case "conflitosAlterados":
+                    this.m_estado = new EstadoDemonstracaoConflitosAlterados(this);
+                    break;
+                case "conflitosDetetados":
+                    this.m_estado = new EstadoDemonstracaoConflitosDetetados(this);
                     break;
                 default:
                     break;
@@ -456,6 +465,8 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "cancelada");
             } else if (this.m_estado.isEstadoDemonstracaoConfirmada()) {
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "confirmada");
+            } else if (this.m_estado.isEstadoDemonstracaoDatasDefinidas()) {
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "datasDefinidas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasAbertas()) {
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasAbertas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasFechadas()) {
@@ -466,6 +477,10 @@ public class Demonstracao implements Agendavel, Importable<Demonstracao>, Export
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasAvaliadas");
             } else if (this.m_estado.isEstadoDemonstracaoCandidaturasDecididas()) {
                 elemBase.setAttribute(ESTADO_ATTR_NAME, "candidaturasDecididas");
+            } else if (this.m_estado.isEstadoDemonstracaoConflitosAlterados()) {
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "conflitosAlterados");
+            } else if (this.m_estado.isEstadoDemonstracaoConflitosDetetados()) {
+                elemBase.setAttribute(ESTADO_ATTR_NAME, "conflitosDetetados");
             }
 
             node = elemBase;
