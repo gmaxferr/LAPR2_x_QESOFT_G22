@@ -55,16 +55,4 @@ public class AbstractListModelDemonstracoesTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getElementAt method, of class AbstractListModelDemonstracoes.
-     */
-    @Test
-    public void testGetElementAt() {
-        System.out.println("getElementAt");
-        int i = 0;
-        Demonstracao expResult = demo;
-        Demonstracao result = (Demonstracao) instance.getElementAt(i);
-        assertEquals(expResult, result);
-    }
-
 }

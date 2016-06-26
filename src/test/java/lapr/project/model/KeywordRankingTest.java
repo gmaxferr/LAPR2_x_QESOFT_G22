@@ -185,40 +185,4 @@ public class KeywordRankingTest {
         boolean result = instance.isReady();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of importContentFromXMLNode method, of class KeywordRanking.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        KeywordRanking instance = new KeywordRanking();
-        Node node = instance.exportContentToXMLNode();
-        KeywordRanking expResult = new KeywordRanking();
-        try {
-            expResult.importContentFromXMLNode(node);
-        } catch (ParserConfigurationException ex) {
-            expResult = null;
-        }
-        KeywordRanking result = instance;
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of exportContentToXMLNode method, of class KeywordRanking.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        KeywordRanking instance = new KeywordRanking();
-        Node node = instance.exportContentToXMLNode();
-        KeywordRanking expResult = new KeywordRanking();
-        try {
-            expResult.importContentFromXMLNode(node);
-        } catch (ParserConfigurationException ex) {
-            expResult = null;
-        }
-        KeywordRanking result = instance;
-        assertEquals(expResult, result);
-    }
 }

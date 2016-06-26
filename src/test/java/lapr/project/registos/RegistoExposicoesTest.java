@@ -205,33 +205,6 @@ public class RegistoExposicoesTest {
     }
 
     /**
-     * Test of getListaExposicoesComCanditaturasAceitesDoRepresentante method,
-     * of class RegistoExposicoes.
-     */
-    @Test
-    public void testGetListaExposicoesComCanditaturasAceitesDoRepresentante() {
-        System.out.println("getListaExposicoesComCanditaturasAceitesDoRepresentante");
-        String email = "mail@mail.com";
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo9);
-        List<Exposicao> result = re.getListaExposicoesComCanditaturasComStandAceiteDoRepresentante(email);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getExposicoesDoRepresentante method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testGetExposicoesDoRepresentante() {
-        System.out.println("getExposicoesDoRepresentante");
-        String email = "mail@mail.com";
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo1);
-        List<Exposicao> result = re.getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(email);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getListaExposicoesEstadoCandidaturasAvaliadas method, of class
      * RegistoExposicoes.
      */
@@ -273,32 +246,6 @@ public class RegistoExposicoesTest {
     }
 
     /**
-     * Test of getFaeExpos method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testGetFaeExpos() {
-        System.out.println("getFaeExpos");
-        String usernameFae = "user1";
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo9);
-        List<Exposicao> result = re.getExposEstadoConflitosDetetadosFae(usernameFae);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getListaExposicoesEstadoCandidaturasDecididas method, of class
-     * RegistoExposicoes.
-     */
-    @Test
-    public void testGetListaExposicoesEstadoCandidaturasDecididas() {
-        System.out.println("getListaExposicoesEstadoCandidaturasDecididas");
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo3);
-        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasDecididas();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getListaExposicoesRankingPronto method, of class
      * RegistoExposicoes.
      */
@@ -308,36 +255,6 @@ public class RegistoExposicoesTest {
         List<Exposicao> expResult = new ArrayList<>();
         expResult.add(expo3);
         List<Exposicao> result = re.getListaExposicoesRankingPronto();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos
-     * method, of class RegistoExposicoes.
-     */
-    @Test
-    public void testGetlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos() {
-        System.out.println("getlistaExposicoesDoOrganizadorEstadoCriadaOuFAEDefinidosSemDemos");
-        String usernameOrg = "user2";
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo6);
-        expResult.add(expo8);
-        List<Exposicao> result = re.getListaExposicoesDoOrganizadorAteEstadoAbertoACandidaturas(usernameOrg);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado method,
-     * of class RegistoExposicoes.
-     */
-    @Test
-    public void testGetListaExposicoesEstadoCandidaturasAvaliadasOuAvancado() {
-        System.out.println("getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado");
-        List<Exposicao> expResult = new ArrayList<>();
-        expResult.add(expo2);
-        expResult.add(expo3);
-        expResult.add(expo10);
-        List<Exposicao> result = re.getListaExposicoesEstadoCandidaturasAvaliadasOuAvancado();
         assertEquals(expResult, result);
     }
 
