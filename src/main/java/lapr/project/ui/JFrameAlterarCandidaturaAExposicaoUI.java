@@ -1173,6 +1173,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
             JOptionPane.showMessageDialog(rootPane, "Demonstrações adicionadas", "Sucesso", JOptionPane.PLAIN_MESSAGE);
             thisFrame.dispose();
+            jFrameMenuPrincipal.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
         }
