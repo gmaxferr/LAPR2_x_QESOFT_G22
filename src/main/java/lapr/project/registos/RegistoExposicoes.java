@@ -138,12 +138,12 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista com as exposições em que existem candidaturas com stand aceite
-     * de um representante
+     * Devolve uma lista com as exposições em que existem candidaturas com stand
+     * aceite de um representante
      *
      * @param email email do representante
-     * @return lista com as exposições em que existem candidaturas com stand aceite de um
-     * representante
+     * @return lista com as exposições em que existem candidaturas com stand
+     * aceite de um representante
      */
     public List<Exposicao> getListaExposicoesComCanditaturasComStandAceiteDoRepresentante(String email) {
         List<Exposicao> listaExpoRep = new ArrayList();
@@ -359,14 +359,15 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
      */
     public List<Exposicao> getlistaExposicoesDoOrganizadorComDemos(String usernameOrganizador) {
         ArrayList<Exposicao> listaExposicoesDoOrganizador = new ArrayList<>();
-
         //encontra as exposições do organizador autenticado no sistema.
         for (Exposicao exposicao : m_listaExposicoes) {
-            if (exposicao.getRegistoDemonstracoes().getDemonstracoesPendentes().size() > 0) {
-                for (Organizador organizador : exposicao.getListaOrganizadores()) {
-                    if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
-                        listaExposicoesDoOrganizador.add(exposicao);
-                        break;
+            if (!exposicao.getEstado().isEstadoDemosDecididas()) {
+                if (exposicao.getRegistoDemonstracoes().getDemonstracoesPendentes().size() > 0) {
+                    for (Organizador organizador : exposicao.getListaOrganizadores()) {
+                        if (organizador.getUsernameOrganizador().equalsIgnoreCase(usernameOrganizador)) {
+                            listaExposicoesDoOrganizador.add(exposicao);
+                            break;
+                        }
                     }
                 }
             }

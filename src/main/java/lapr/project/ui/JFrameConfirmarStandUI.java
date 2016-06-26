@@ -83,7 +83,7 @@ public class JFrameConfirmarStandUI extends javax.swing.JFrame {
         this.centroExposicoesAtual = centroExposicoes;
         this.emailRepresentante = emailRepresentante;
         this.controller = new ConfirmarStandController(centroExposicoes);
-        controller.getRegistoExposicoes();;
+        controller.getRegistoExposicoes();
         this.listaExposicoes = controller.getListaExposicoesDoRepresentante(emailRepresentante);
 
         initComponents();
