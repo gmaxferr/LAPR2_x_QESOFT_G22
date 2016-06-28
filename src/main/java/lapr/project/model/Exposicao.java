@@ -33,7 +33,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * Estado exposição
      */
     private EstadoExposicao m_estado;
-    
+
     /**
      * Atributo titulo de Exposição
      */
@@ -392,7 +392,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de fae
-     * 
+     *
      * @return registo de fae
      */
     public RegistoFAE getRegistoFAE() {
@@ -401,7 +401,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de candidaturas a exposição
-     * 
+     *
      * @return registo de candidaturas a exposição
      */
     public RegistoCandidaturasAExposicao getRegistoCandidaturasAExposicao() {
@@ -421,7 +421,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Modifica o estado da exposição
-     * 
+     *
      * @param estado novo estado da exposição
      */
     public void setEstado(EstadoExposicao estado) {
@@ -452,7 +452,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Verifica os dados minimos obrigatorios para a exposição
-     * 
+     *
      * @return dados minimos obrigatorios para a exposição
      */
     public boolean dadosMinimosObrigatorios() {
@@ -471,7 +471,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o estado da exposição
-     * 
+     *
      * @return estado da exposição
      */
     public EstadoExposicao getEstado() {
@@ -480,7 +480,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de conflitos
-     * 
+     *
      * @return registo de conflitos
      */
     public RegistoConflitos getRegistoConflitos() {
@@ -498,7 +498,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Devolve o registo de atribuições da candidatura a demonstração
-     * 
+     *
      * @return registo de atribuições da candidatura a demonstração
      */
     public RegistoAtribuicoesCandidaturasDemonstracao getRegistoAtribuicoesDemonstracao() {
@@ -506,9 +506,9 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Devolve o registo de organizadores 
-     * 
-     * @return registo de organizadores 
+     * Devolve o registo de organizadores
+     *
+     * @return registo de organizadores
      */
     public RegistoOrganizadores getRegistoOrganizadores() {
         return this.m_ro;
@@ -597,8 +597,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
     }
 
     /**
-     * Devolve o centro de exposições 
-     * 
+     * Devolve o centro de exposições
+     *
      * @return centro de exposições
      */
     public CentroExposicoes getCentroExposicoes() {
@@ -607,7 +607,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Modifica o centro de exposições
-     * 
+     *
      * @param ce novo centro de exposições
      */
     public void setCentroExposicoes(CentroExposicoes ce) {
@@ -620,8 +620,8 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      * desta.
      *
      * @param obj objecto a comparar com a exposição
-     * @return true se o objeto recebido representar uma exposição equivalente
-     * à exposição. Caso contrário, retorna false.
+     * @return true se o objeto recebido representar uma exposição equivalente à
+     * exposição. Caso contrário, retorna false.
      */
     @Override
     public boolean equals(Object obj) {
@@ -676,14 +676,23 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
      */
     public void recriarTimersDemo() {
         List<Demonstracao> lstDemos = m_rd.getListaDemonstracoes();
-        if (this.getEstado().isEstadoCandidaturasDecididas()) {
-            for (Demonstracao d : lstDemos) {
-                d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
-                d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
-                d.schedule(new AlterarParaConflitosDetetados(d), d.getDataFimDetecaoConflitos());
+        List<Demonstracao> listaDemosComData = new ArrayList<>();
+        for (Demonstracao d : lstDemos) {
+            if (!d.getEstadoDemo().isEstadoDemonstracaoPendente() && !d.getEstadoDemo().isEstadoDemonstracaoConfirmada()) {
+                listaDemosComData.add(d);
             }
-
         }
+        if (lstDemos.size() > 0) {
+            if (this.getEstado().isEstadoCandidaturasDecididas()) {
+                for (Demonstracao d : listaDemosComData) {
+                    d.schedule(new AlterarParaCandidaturasAbertas(d), d.getDataInicioCand());
+                    d.schedule(new AlterarParaCandidaturasFechadas(d), d.getDataFimCand());
+                    d.schedule(new AlterarParaConflitosDetetados(d), d.getDataFimDetecaoConflitos());
+                }
+
+            }
+        }
+
     }
 
     /**
@@ -943,7 +952,7 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
 
     /**
      * Adiciona os organizadores selecionados ao registo de organizadores
-     * 
+     *
      * @param m_organizadoresSelecionados organizadores selecionados
      */
     public void addOrganizadores(List<Organizador> m_organizadoresSelecionados) {

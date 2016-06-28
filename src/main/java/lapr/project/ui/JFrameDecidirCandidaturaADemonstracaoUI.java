@@ -46,7 +46,6 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     private static final int LARGURA_JANELA_PASSO4 = 441;
     private static final int ALTURA_JANELA_PASSO4 = 188;
 
-    private final CardLayout cardLayout;
     private List<CandidaturaADemonstracao> listaCandsDemo;
 
     /**
@@ -58,7 +57,6 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
 
         this.CTRL = new DecidirCandidaturaADemonstracaoController(centroExposicoes, username);
         CTRL.getRegistoExposicoes();
-        this.cardLayout = (CardLayout) getContentPane().getLayout();
         this.listaExposicoes = CTRL.getListaExposicoes();
         if (listaExposicoes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não foram encontradas exposições com candidaturas a demonstrações à espera de serem decididas", "Exposições não encontradas...", JOptionPane.WARNING_MESSAGE);
@@ -609,6 +607,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     }
 
     private void avancarParaCard2() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }
@@ -636,11 +635,13 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     }
 
     private void avancarParaCard3() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }
 
     private void avancarParaCard4() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card4");
         setSize(LARGURA_JANELA_PASSO4, ALTURA_JANELA_PASSO4);
     }
@@ -675,6 +676,7 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_jButtonCard2AvancarActionPerformed
 
     private void jButtonCard2RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard2RecuarActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card2");
         setSize(LARGURA_JANELA_PASSO2, ALTURA_JANELA_PASSO2);
     }//GEN-LAST:event_jButtonCard2RecuarActionPerformed
@@ -699,11 +701,13 @@ public class JFrameDecidirCandidaturaADemonstracaoUI extends JFrame {
     }//GEN-LAST:event_jButtonCard3TerminarActionPerformed
 
     private void voltarASelecionarExposicao() {
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card1");
         setSize(LARGURA_JANELA_PASSO1, ALTURA_JANELA_PASSO1);
     }
 
     private void jButtonCard3RecuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3RecuarActionPerformed
+        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
         cardLayout.show(getContentPane(), "card3");
         setSize(LARGURA_JANELA_PASSO3, ALTURA_JANELA_PASSO3);
     }//GEN-LAST:event_jButtonCard3RecuarActionPerformed
