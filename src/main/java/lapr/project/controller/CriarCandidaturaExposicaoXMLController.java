@@ -9,15 +9,36 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- *
+ * Representação do controller do UC Criar Candidatura A Exposição XML
+ * 
  * @author G29
  */
 public class CriarCandidaturaExposicaoXMLController {
 
+    /**
+     * Candidatura a exposição
+     */
     private CandidaturaAExposicao m_c;
+    
+    /**
+     * Exposição selecionada
+     */
     private Exposicao m_e;
+    
+    /**
+     * Centro de exposições
+     */
     private CentroExposicoes m_ce;
 
+    /**
+     * Contrutor de objetos do tipo CriarCandidaturaExposicaoXMLController com
+     * os parametros centro de exposições, exposição e nome do ficheiro
+     * 
+     * @param ce centro de exposições
+     * @param e exposição 
+     * @param filename nome do ficheiro
+     * @throws ParserConfigurationException 
+     */
     public CriarCandidaturaExposicaoXMLController(CentroExposicoes ce, Exposicao e, String filename) throws ParserConfigurationException {
         this.m_ce = ce;
         this.m_e = e;
@@ -36,8 +57,9 @@ public class CriarCandidaturaExposicaoXMLController {
     }
 
     /**
-     * Adiciona a candidatura ao registo de candidaturas da demonstração
-     * @param u
+     * Adiciona a candidatura ao registo de candidaturas da exposição
+     * 
+     * @param u utilizador
      */
     public void registarCandidatura(Utilizador u) {
         m_c.fix(m_ce.getRegistoUtilizadoresConfirmados(), new RegistoDemonstracoes(true));

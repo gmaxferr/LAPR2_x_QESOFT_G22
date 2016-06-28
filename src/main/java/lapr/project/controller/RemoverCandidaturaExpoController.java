@@ -7,7 +7,8 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- *
+ * Representaçao do controller do UC Remover Candidatura Exposição
+ * 
  * @author G29
  */
 public class RemoverCandidaturaExpoController {
@@ -43,9 +44,10 @@ public class RemoverCandidaturaExpoController {
     private RegistoAtribuicoesCandidaturasExposicao m_ra;
 
     /**
-     * Construtor do controller da UC18 - remover candidatura a uma exposição
+     * Construtor de objetos do tipo RemoverCandidaturaExpoController com 
+     * os parametros email e centro de exposições
      *
-     * @param username - username do utilizador logado
+     * @param email - email do utilizador logado
      * @param ce - centro de exposições
      */
     public RemoverCandidaturaExpoController(String email, CentroExposicoes ce) {
@@ -53,6 +55,11 @@ public class RemoverCandidaturaExpoController {
         this.m_ce = ce;
     }
 
+    /**
+     * Devolve a lista de atribuicoes do fae 
+     * 
+     * @return lista de atribuicoes do fae 
+     */
     public ArrayList<AtribuicaoCandidatura> getListaAtribuicoesComOFAE() {
         return this.m_ra.getListaAtribuicoesDoFAE(this.m_emailFAE);
     }
@@ -71,7 +78,7 @@ public class RemoverCandidaturaExpoController {
      * Obtém a lista de exposições em que o representante logado possui
      * candidaturas
      *
-     * @param username - username do representante
+     * @param email - email do representante
      * @return - lista de exposições em que o representante logado possui
      * candidaturas
      */
@@ -85,7 +92,7 @@ public class RemoverCandidaturaExpoController {
     /**
      * Obtém a lista de candidaturas do representante
      *
-     * @param username - username do representante
+     * @param email email do representante
      * @return - lista de candidaturas do representante
      */
     public List<CandidaturaAExposicao> getListaCandidaturas(String email) {
@@ -104,10 +111,18 @@ public class RemoverCandidaturaExpoController {
         m_exposicaoSelecionada = e;
     }
 
+    /**
+     * Seleciona a candidatura a remover
+     * 
+     * @param c candidatura a remover
+     */
     public void setCandidaturaARemover(CandidaturaAExposicao c) {
         m_candidaturaARemover = c;
     }
 
+    /**
+     * Remove efetivamente a candidatura selecionada para remover
+     */
     public void removerCandidatura() {
         RegistoCandidaturasAExposicaoRemovidas rcr = m_exposicaoSelecionada.getRegistoCandidaturasAExposicaoRemovidas();
         rcr.adicionarCandidatura(m_candidaturaARemover);

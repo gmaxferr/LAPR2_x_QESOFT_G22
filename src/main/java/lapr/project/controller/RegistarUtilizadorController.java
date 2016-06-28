@@ -27,7 +27,7 @@ public class RegistarUtilizadorController {
     private CentroExposicoes m_centroExpo;
 
     /**
-     * Constrói uma instância de RegistarUtilizadorController recendo como
+     * Construtor de objetos do tipo RegistarUtilizadorController recendo como
      * parâmentro o centro de exposições
      *
      * @param centroExposicoes centro de exposições

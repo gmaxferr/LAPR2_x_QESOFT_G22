@@ -45,7 +45,8 @@ public class CriarExposicaoController {
     private EstadoExposicao m_estadoExposicao;
 
     /**
-     * Construtor do controller
+     * Construtor de objetos do tipo CriarExposicaoController com o paramentro
+     * centro de exposições
      *
      * @param centro_exposicoes centro de exposições atual
      */

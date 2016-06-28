@@ -44,7 +44,7 @@ public class ListarCandidaturasADemonstracaoRemovidasController {
     private CentroExposicoes m_centroExposicoes;
 
     /**
-     * Constrói uma instância de ListarCandidaturasADemonstracacaoController
+     * Construtor de objetos do tipo ListarCandidaturasADemonstracacaoController
      * recebendo como parâmetro o centro de exposições
      *
      * @param centroExposicoes centro de exposições
@@ -53,6 +53,9 @@ public class ListarCandidaturasADemonstracaoRemovidasController {
         this.m_centroExposicoes = centroExposicoes;
     }
 
+    /**
+     * Guarda o registo de exposições
+     */
     public void getRegistoExposicoes(){
         this.m_re = m_centroExposicoes.getRegistoExposicoes();
     }

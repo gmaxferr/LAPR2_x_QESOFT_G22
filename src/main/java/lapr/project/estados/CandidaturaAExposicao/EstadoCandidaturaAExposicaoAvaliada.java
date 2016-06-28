@@ -3,8 +3,9 @@ package lapr.project.estados.CandidaturaAExposicao;
 import lapr.project.model.CandidaturaAExposicao;
 
 /**
- *
- * @author Ana Leite
+ * Represnetação do EstadoCandidaturaAExposicaoAvaliada
+ * 
+ * @author G29
  */
 public class EstadoCandidaturaAExposicaoAvaliada extends EstadoCandidaturaAExposicao {
 

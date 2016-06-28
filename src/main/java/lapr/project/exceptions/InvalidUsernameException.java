@@ -1,26 +1,26 @@
 package lapr.project.exceptions;
 
 /**
- * Exceção para lidar com situações em que se necessita a introdução de um
- * e-mail e o mesmo é intergralmente inválido
+ * Exceção a ser lançada quando o username introduzido é inválido
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class InvalidUsernameException extends IllegalArgumentException {
 
-	/**
-	 * Construtor por defeito
-	 */
-	public InvalidUsernameException() {
-            super();
-	}
+    /**
+     * Construtor de objetos do tipo InvalidUsernameException sem parametros
+     */
+    public InvalidUsernameException() {
+        super();
+    }
 
-	/**
-	 * Construtor com mensagem
-	 *
-	 * @param s - Mensagem a passar a esta exceção explicando o erro
-	 */
-	public InvalidUsernameException(String s) {
-		super(s);
-	}
+    /**
+     * Construtor de objetos do tipo InvalidUsernameException com o paramentro
+     * mensagme
+     *
+     * @param s - Mensagem a passar a esta exceção explicando o erro
+     */
+    public InvalidUsernameException(String s) {
+        super(s);
+    }
 }

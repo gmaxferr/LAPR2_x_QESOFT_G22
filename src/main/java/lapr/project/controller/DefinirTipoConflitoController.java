@@ -27,7 +27,8 @@ public class DefinirTipoConflitoController {
     private TipoConflito m_TipoConflito;
 
     /**
-     * Construtor padrão que recebe como argumentos o Centro de Exposições.
+     * Construtor de objetos do tipo DefinirTipoConflitoController com o parametro
+     * centro de exposições
      *
      * @param centroExposicoes Centro de Exposições
      */
@@ -37,6 +38,8 @@ public class DefinirTipoConflitoController {
 
     /**
      * Define os dados necessários para o novo tipo de conflito.
+     * 
+     * @param tipoConflito dados necessários para o novo tipo de conflito.
      */
     public void setDadosTipoConflito(String tipoConflito) {
         m_TipoConflito.setDadosTipoConflito(tipoConflito);
@@ -53,6 +56,9 @@ public class DefinirTipoConflitoController {
     /**
      * Regista o tipo de conflito criado no registo de tipos de conflito do
      * Centro de Exposições.
+     * 
+     * @return true se o tipo de conflito foi adicionado à lista de tipos de
+     * conflito. Caso contrário retorna false.
      */
     public boolean registaTipoConflito() {
         return m_RegistoTiposConflito.add(m_TipoConflito);

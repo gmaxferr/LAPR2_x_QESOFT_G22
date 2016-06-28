@@ -4,7 +4,7 @@ package lapr.project.exceptions;
  * Representa a exceção a ser lançada quando o número de telemóvel (ao criar a
  * candidatura) não é válido
  *
- * @author Ricardo Osório e Ana Leite
+ * @author G29
  */
 public class TelemovelEmpresaErradoException extends IllegalArgumentException {
 

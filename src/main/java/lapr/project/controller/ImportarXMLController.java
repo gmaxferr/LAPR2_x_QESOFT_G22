@@ -10,7 +10,8 @@ import lapr.project.utils.XMLParser;
 import org.w3c.dom.Node;
 
 /**
- *
+ * Representação do controller do UC Importar XML
+ * 
  * @author G29
  */
 public class ImportarXMLController {

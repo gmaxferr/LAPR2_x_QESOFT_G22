@@ -6,7 +6,7 @@ import lapr.project.model.*;
 import lapr.project.registos.*;
 
 /**
- * Controller do UC-Criar demonstração
+ * Representação do controller do UC Criar Demonstração
  *
  * @author G29
  */
@@ -58,9 +58,9 @@ public class CriarDemonstracaoController {
     private List<Recurso> m_listaRecursosParaDemonstracao;
 
     /**
-     * Contrutor que recebe por parametro o username do organizador a executar
-     * este UC no momento e o centro de exposições atual
-     *
+     * Contrutor de objetos do tipo CriardemonstracaoController com os parametros
+     * username do organizador e centro de exposições
+     * 
      * @param usernameOrg username do organizador
      * @param ce centro de exposições atual
      */
@@ -70,6 +70,8 @@ public class CriarDemonstracaoController {
     }
 
     /**
+     * Devolve a lista de recursos do Registo de Recursos do Centro de Exposições
+     * 
      * @return lista de recursos do Registo de Recursos do Centro de Exposições
      */
     public List<Recurso> getListaDeRecursos() {
@@ -77,7 +79,9 @@ public class CriarDemonstracaoController {
     }
 
     /**
-     *
+     * Devolve a lista de exposições, do organizador, que não têm demonstrações
+     * definidas
+     * 
      * @return lista de exposições, do organizador, que não têm demonstrações
      * definidas
      */
@@ -86,7 +90,7 @@ public class CriarDemonstracaoController {
     }
 
     /**
-     * Armazen a exposição selecionada pelo utilizador neste controller
+     * Armazena a exposição selecionada pelo utilizador neste controller
      *
      * @param e - exposição selecionada
      */

@@ -33,7 +33,7 @@ public class ConfirmarRegistoController {
     CentroExposicoes m_centroExpo;
 
     /**
-     * Constrói uma instância de ConfirmarRegistarController recendo como
+     * Construtor de objetos do tipo ConfirmarRegistarController recendo como
      * parâmentro o centro de exposições
      * 
      * @param centroExposicoes centro de exposições

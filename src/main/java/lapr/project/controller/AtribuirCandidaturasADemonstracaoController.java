@@ -57,7 +57,7 @@ public class AtribuirCandidaturasADemonstracaoController {
     private List<Demonstracao> m_listaDemos;
 
     /**
-     * Exposição
+     * Exposição selecionada
      */
     private Exposicao m_exposicao;
 
@@ -87,23 +87,7 @@ public class AtribuirCandidaturasADemonstracaoController {
     private List<AtribuicaoCandidaturaDemonstracao> m_listaAtribuicoesGeradas;
 
     /**
-     * Devolve as atribuições geradas.
-     *
-     * @param mec mecanismo.
-     * @param numeroFAEOuExperiencia número de FAE ou anos mínimos de
-     * experiência que os FAE devem de ter
-     *
-     * @return atribuições geradas.
-     */
-    public List<AtribuicaoCandidaturaDemonstracao> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
-        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
-        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicao, this.m_demonstracao, numeroFAEOuExperiencia);
-        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
-        return listaAtribuicoesGeradas;
-    }
-
-    /**
-     * Constrói uma instância de AtribuirCandidaturasADemonstracaoController
+     * Construtor de objetos do tipo AtribuirCandidaturasADemonstracaoController
      * recebendo como parâmetro o centro de exposições
      *
      * @param centroExposicoes centro de exposições
@@ -213,7 +197,23 @@ public class AtribuirCandidaturasADemonstracaoController {
         this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
         return listaAtribuicoesGeradas;
     }
-
+    
+    /**
+     * Devolve as atribuições geradas.
+     *
+     * @param mec mecanismo.
+     * @param numeroFAEOuExperiencia número de FAE ou anos mínimos de
+     * experiência que os FAE devem de ter
+     *
+     * @return atribuições geradas.
+     */
+    public List<AtribuicaoCandidaturaDemonstracao> atribui(Mecanismo mec, String numeroFAEOuExperiencia) {
+        MecanismoIteragivel mecanismo = (MecanismoIteragivel) mec;
+        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicoesGeradas = mecanismo.atribui(this.m_exposicao, this.m_demonstracao, numeroFAEOuExperiencia);
+        this.m_listaAtribuicoesGeradas = listaAtribuicoesGeradas;
+        return listaAtribuicoesGeradas;
+    }
+    
     /**
      * Regista a atribuição gerada
      *

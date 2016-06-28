@@ -6,29 +6,74 @@ import lapr.project.registos.*;
 import lapr.project.utils.Data;
 
 /**
- *
+ * represnetação co controller do UC Decidir Demonstracao
+ * 
  * @author G29
  */
 public class DecidirDemonstracaoController {
 
+    /**
+     * Username do organizador
+     */
     private String m_usernameOrganizador;
+    
+    /**
+     * Registo de exposições
+     */
     private RegistoExposicoes m_re;
+    
+    /**
+     * Registo de demonstrações
+     */
     private RegistoDemonstracoes m_rd;
+    
+    /**
+     * Lista de demonstrações
+     */
     private List<Demonstracao> m_listDemonstracoes;
+    
+    /**
+     * Lista de decisões para as demonstrações pendentes da exposição
+     * selecionada
+     */
     private boolean[] m_decisoesTemp;
+    
+    /**
+     * Exposição selecionda
+     */
     private Exposicao m_expo;
 
+    /**
+     * Data de inicio da candidatura a demonstração
+     */
     Data dataInicioCandDemo;
+    
+    /**
+     * Data de dim da candidatura a demonstração
+     */
     Data dataFimCandDemo;
+    
+    /**
+     * Data de fim de deteção de conflitos
+     */
     Data dataFimDetecaoConflitos;
 
+    /**
+     * Construtor de objetos do tipo DecirdirDemonstracaoController com os 
+     * parametros centro de exposições e username do organizador
+     * 
+     * @param ce centro de exposições
+     * @param username username do organizador
+     */
     public DecidirDemonstracaoController(CentroExposicoes ce, String username) {
         m_re = ce.getRegistoExposicoes();
         m_usernameOrganizador = username;
     }
 
     /**
-     *
+     * Devolve lista de decisões para as demonstrações pendentes da exposição
+     * selecionada
+     * 
      * @return lista de decisões para as demonstrações pendentes da exposição
      * selecionada
      */
@@ -36,6 +81,11 @@ public class DecidirDemonstracaoController {
         return m_decisoesTemp;
     }
 
+    /**
+     * Devolve a lista de exposições do organizador
+     * 
+     * @return lista de exposições do organizador
+     */
     public List<Exposicao> getListaExposOrganizador() {
         return m_re.getlistaExposicoesDoOrganizadorComDemos(m_usernameOrganizador);
     }

@@ -32,7 +32,8 @@ public class RemoverCandidaturaADemonstracaoController {
     private CandidaturaADemonstracao m_candARemover;
 
     /**
-     * Construtor do UC29
+     * Construtor de objetos do tipo RemoverCandidaturaADemonstracaoController 
+     * com os paramentros exposição e email
      *
      * @param e - exposição selecionada
      * @param email - email do expositor
@@ -58,6 +59,7 @@ public class RemoverCandidaturaADemonstracaoController {
      * Seleciona a demonstração pretendida
      *
      * @param d - demonstração pretendida
+     * @return lista de candidaturas a demonstração do representante
      */
     public List<CandidaturaADemonstracao> setDemo(Demonstracao d) {
         m_demo = d;

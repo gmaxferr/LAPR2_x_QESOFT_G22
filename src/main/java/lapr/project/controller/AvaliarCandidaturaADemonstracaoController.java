@@ -3,7 +3,6 @@ package lapr.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracao;
-import lapr.project.estados.Demonstracao.EstadoDemonstracao;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 
@@ -26,7 +25,7 @@ public class AvaliarCandidaturaADemonstracaoController {
     private RegistoDemonstracoes m_rd;
 
     /**
-     * Exposição
+     * Exposição selecionada
      */
     private Exposicao m_exposicao;
 
@@ -71,8 +70,8 @@ public class AvaliarCandidaturaADemonstracaoController {
     private EstadoCandidaturaADemonstracao m_estadoCandidatura;
 
     /**
-     * Constrói uma instância de AvaliarCandidaturaADemonstracaoController
-     * recebendo como parâmetro o centro de exposições
+     * Construtor de objetos do tipo AvaliarCandidaturaADemonstracaoController
+     * como o parâmetro o centro de exposições
      *
      * @param centroExposicoes centro de exposições
      */
@@ -209,8 +208,8 @@ public class AvaliarCandidaturaADemonstracaoController {
     }
 
     /**
-     * Atualiza o estado da candidatura e da demonstração atualmente
-     * selecionadas pelo FAE na UI para os estados CandidaturasAvaliadas
+     * Atualiza o estado da candidatura atualmente
+     * selecionada pelo FAE na UI para o estado CandidaturaADemonstracaoAvaliada
      *
      * @param cand - Candidatura a demonstração
      */

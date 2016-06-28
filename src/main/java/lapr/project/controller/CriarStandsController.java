@@ -6,7 +6,8 @@ import lapr.project.model.*;
 import lapr.project.registos.RegistoStands;
 
 /**
- *
+ * Representação do controller do UC Criar Stands
+ * 
  * @author G29
  */
 public class CriarStandsController {
@@ -22,7 +23,8 @@ public class CriarStandsController {
     private RegistoStands rStands;
 
     /**
-     * Construtor do controller do UC23
+     * Construtor de objetos do tipo CriarStandsController com o parametro 
+     * centro de exposições
      *
      * @param ce Centro de exposições atual
      */

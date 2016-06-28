@@ -6,7 +6,8 @@ import lapr.project.model.*;
 import lapr.project.registos.RegistoTipoConflitos;
 
 /**
- *
+ * Representação do controller do UC Detetar Conflito
+ * 
  * @author G29
  */
 public class DetetarConflitoController {
@@ -17,7 +18,8 @@ public class DetetarConflitoController {
     private final CentroExposicoes m_centroExposicoes;
 
     /**
-     * Construtor padrão de DetetarConflitoController.
+     * Construtor de objetos do tipo DetetarConflitoController com o parametro
+     * centro de exposições
      *
      * @param centroExposicoes Centro de Exposições
      */
