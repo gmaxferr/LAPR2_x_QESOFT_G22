@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.exceptions.KeywordsErradasException;
 import lapr.project.model.*;
@@ -84,6 +85,7 @@ public class AlterarCandidaturaExpoController {
      * @param username username do representante
      */
     public AlterarCandidaturaExpoController(String username) {
+        produtosAAdicionar=new ArrayList<>();
         this.m_username = username;
         keywords = "";
     }
@@ -142,7 +144,7 @@ public class AlterarCandidaturaExpoController {
     public int getTelemovel() {
         return m_cand.getTelemovel();
     }
-
+    
     /**
      * Devolve a area
      * 
