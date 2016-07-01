@@ -11,7 +11,7 @@ import lapr.project.model.*;
 
 /**
  * UI do UC Criar candidatura a exposicao
- * 
+ *
  * @author Grupo 29
  */
 public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
@@ -822,7 +822,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                     if (!listaDemonstracoes.isEmpty()) {
                         jComboBoxCard3EscolherDemonstracao.setModel(new ComboBoxModelDemonstracoes(this.listaDemonstracoes));
                         avancarParaCard3();
-                        //jMenuItemPreencherCampos.setEnabled(false);
+                        jMenuItemAjuda.setEnabled(false);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Não existem demonstrações a decorrer para a exposição escolhida", "Sem demonstrações", JOptionPane.WARNING_MESSAGE);
                         jRadioButtonCard2Nao.setSelected(true);
