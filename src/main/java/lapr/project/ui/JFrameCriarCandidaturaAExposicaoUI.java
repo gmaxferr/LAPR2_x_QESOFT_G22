@@ -792,6 +792,7 @@ public class JFrameCriarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         if (listModelDemonstracoes.getSize() != 0) {
             controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
+            controller.setListaProdutosCandidatura(modeloJListaProdutosCard2.getListaProdutos());
             finalizarCandidatura();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);

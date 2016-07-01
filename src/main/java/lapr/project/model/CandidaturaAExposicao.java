@@ -738,4 +738,8 @@ public class CandidaturaAExposicao implements Importable<CandidaturaAExposicao>,
         }
         return node;
     }
+
+    public void limparKeywords() {
+        this.m_keywords.clear();
+    }
 }

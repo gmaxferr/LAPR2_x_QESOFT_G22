@@ -27,11 +27,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
     private transient RemoverCandidaturaExpoController controller;
     private transient List<CandidaturaAExposicao> m_listaCandidaturas;
     private transient CandidaturaAExposicao m_candidaturaSelecionada;
-
-    private static final String DESCRICAO_EXPOSICAO_POR_OMISSAO = "A apresentar a descrição da exposição selecionada";
-    private static final String LOCAL_EXPOSICAO_POR_OMISSAO = "A apresentar o local de realização para a exposição selecionada";
-    private static final String DATA_INICIO_E_FIM_POR_OMISSAO = "00/00/0000";
-    private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
+private static final String[] LISTA_PRODUTOS_POR_OMISSAO = {"A apresentar os produtos a expor pela candidatura selecionada."};
 
     /**
      * Creates new form JFrameRemoverCandidaturaUI
@@ -42,7 +38,6 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
         this.m_email = email;
         this.jFrameMenuPrincipal = janelaMae;
         this.m_listaExposicoes = ce.getRegistoExposicoes().getExposicoesDoRepresentanteCandidaturasAExposicaoAbertas(email);
-        this.thisFrame = this;
         initComponents();
         alterarComportamentoFecharJFrame();
         setVisible(true);
@@ -255,7 +250,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxEscolherExposicao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(card1Layout.createSequentialGroup()
                         .addComponent(jPanelCard1Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -263,10 +258,9 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCard1Fechar)
-                            .addComponent(jButtonCard1Avancar))
-                        .addGap(0, 133, Short.MAX_VALUE))
+                            .addComponent(jButtonCard1Avancar)))
                     .addComponent(jPanelCard1DescricaoExposicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         getContentPane().add(card1, "card1");
@@ -430,7 +424,7 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBoxCard2EscolherCandidatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -482,11 +476,6 @@ public class JFrameRemoverCandidaturaExposicaoUI extends javax.swing.JFrame {
             jTextAreaCard1LocalExposicao.setText(expo.getLocal().getMorada());
             jLabelCard1DataInicio.setText(expo.getDataInicio().toAnoMesDiaString());
             jLabelCard1DataFim.setText(expo.getDataFim().toAnoMesDiaString());
-        } else {
-            jTextAreaCard1DescricaoExposicao.setText(DESCRICAO_EXPOSICAO_POR_OMISSAO);
-            jTextAreaCard1LocalExposicao.setText(LOCAL_EXPOSICAO_POR_OMISSAO);
-            jLabelCard1DataInicio.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
-            jLabelCard1DataFim.setText(DATA_INICIO_E_FIM_POR_OMISSAO);
         }
     }//GEN-LAST:event_jComboBoxEscolherExposicaoActionPerformed
 

@@ -17,62 +17,62 @@ public class AlterarCandidaturaExpoController {
      * Registo de candidaturas a exposição
      */
     private RegistoCandidaturasAExposicao m_rc;
-    
+
     /**
      * Exposição selecionada
      */
     private Exposicao m_exposicao;
-    
+
     /**
      * Candidatura a exposição
      */
     private CandidaturaAExposicao m_cand;
-    
+
     /**
      * Username do representante
      */
     private String m_username;
-    
+
     /**
      * Novo nome da empresa
      */
     private String novoNomeEmpresa;
-    
+
     /**
      * Nova morada da empresa
      */
     private String novaMoradaEmpresa;
-    
+
     /**
      * Novo telemovel
      */
     private String novoTelemovel;
-    
+
     /**
      * Nova area
      */
     private String novaArea;
-    
+
     /**
      * Novo numero de convites
      */
     private String novoNumConvites;
-    
+
     /**
      * Novas keywords
      */
     private String keywords;
-    
+
     /**
      * Lista de produtos a remover
      */
     private List<Integer> produtosARemover;
-    
+
     /**
      * Lista de produtos a adicionar
      */
     private List<Produto> produtosAAdicionar;
-    
+
     /**
      * Lista de produtos a alterar
      */
@@ -81,18 +81,18 @@ public class AlterarCandidaturaExpoController {
     /**
      * Constutor de objetos do tipo AlterarCandidaturaExpoController com o
      * parametro username do representante
-     * 
+     *
      * @param username username do representante
      */
     public AlterarCandidaturaExpoController(String username) {
-        produtosAAdicionar=new ArrayList<>();
+        produtosAAdicionar = new ArrayList<>();
         this.m_username = username;
         keywords = "";
     }
 
     /**
      * Modifica a exposição e guarda o registo de candidaturas a exposição
-     * 
+     *
      * @param e exposição selecionada
      */
     public void setExposicao(Exposicao e) {
@@ -111,7 +111,7 @@ public class AlterarCandidaturaExpoController {
 
     /**
      * Devolve a lista de candidaturas do representante
-     * 
+     *
      * @return lista de candidaturas do representante logado
      */
     public List<CandidaturaAExposicao> getM_ListaCandidaturasRepresentante() {
@@ -120,7 +120,7 @@ public class AlterarCandidaturaExpoController {
 
     /**
      * Devolve o nome da empresa
-     * 
+     *
      * @return nome da empresa
      */
     public String getNomeEmpresa() {
@@ -129,7 +129,7 @@ public class AlterarCandidaturaExpoController {
 
     /**
      * Devolve a morada da empresa
-     * 
+     *
      * @return morada da empresa
      */
     public String getMorada() {
@@ -138,16 +138,16 @@ public class AlterarCandidaturaExpoController {
 
     /**
      * Devolve o telemovel
-     * 
+     *
      * @return telemovel
      */
     public int getTelemovel() {
         return m_cand.getTelemovel();
     }
-    
+
     /**
      * Devolve a area
-     * 
+     *
      * @return area
      */
     public float getArea() {
@@ -156,7 +156,7 @@ public class AlterarCandidaturaExpoController {
 
     /**
      * Devolve o numero de convites
-     * 
+     *
      * @return numero de convites
      */
     public int getNumConvites() {
@@ -212,43 +212,34 @@ public class AlterarCandidaturaExpoController {
     /**
      * Regista as alterções na candidatura
      */
-    public void alterarCandidatura() {
+    public void alterarCandidatura(List<Produto> listaProdutosnova) {
         m_cand.setNomeEmpresa(novoNomeEmpresa);
         m_cand.setMorada(novaMoradaEmpresa);
         m_cand.setTelemovel(novoTelemovel);
         m_cand.setArea(novaArea);
         m_cand.setNumConvites(novoNumConvites);
         if (!keywords.isEmpty()) {
+            m_cand.limparKeywords();
             m_cand.setKeywords(keywords);
-            try {
-                for (Integer i : produtosARemover) {
-                    m_cand.removeProduto(i);
-                }
-            } catch (IllegalArgumentException e) {
-            }
-            for (Alteracao a : produtosAAlterar) {
-                m_cand.editProduto(a.getIndiceProduto(), a.getNovoProduto());
-            }
-            for (Produto p : produtosAAdicionar) {
-                m_cand.addProduto(p);
-            }
+            m_cand.getRegistoProdutos().setListaProdutos(listaProdutosnova);
         }
     }
 
     /**
      * Modifica as keywords
-     * 
+     *
      * @param keywords keywords a alterar
-     * @throws KeywordsErradasException 
+     * @throws KeywordsErradasException
      */
-    public void setKeywords(String keywords) throws KeywordsErradasException {
+    public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 
     /**
      * Modifica a lista de demonstrações adicionadas
-     * 
-     * @param listaDemonstracoesAdicionadas nova lista de demonstrações adicionadas
+     *
+     * @param listaDemonstracoesAdicionadas nova lista de demonstrações
+     * adicionadas
      */
     public void setListaDemonstracoesCandidatura(List<Demonstracao> listaDemonstracoesAdicionadas) {
         m_cand.getRegistoDemonstracoes().setListaDemonstracoes(listaDemonstracoesAdicionadas);
@@ -263,16 +254,16 @@ public class AlterarCandidaturaExpoController {
          * Indice do produto
          */
         int indiceProduto;
-        
+
         /**
          * Novo produto
          */
         String novoProduto;
 
         /**
-         * Construtor de objetos do tipo Alteracao com os parametros indice e 
+         * Construtor de objetos do tipo Alteracao com os parametros indice e
          * novo nome
-         * 
+         *
          * @param index indice do produto
          * @param novoNome novo nome do produto
          */
@@ -283,7 +274,7 @@ public class AlterarCandidaturaExpoController {
 
         /**
          * Devolve o indice do produto
-         * 
+         *
          * @return indice do produto
          */
         public int getIndiceProduto() {
@@ -292,7 +283,7 @@ public class AlterarCandidaturaExpoController {
 
         /**
          * Devolve o novo produto
-         * 
+         *
          * @return novo produto
          */
         public String getNovoProduto() {

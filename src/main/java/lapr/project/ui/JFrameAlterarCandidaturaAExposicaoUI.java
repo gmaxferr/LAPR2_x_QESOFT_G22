@@ -68,7 +68,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     /**
      * Largura da janela no passo 2
      */
-    private static final int LARGURA_JANELA_PASSO4 = 515;
+    private static final int LARGURA_JANELA_PASSO4 = 535;
 
     /**
      * Altura da janela no passo 2
@@ -883,12 +883,12 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+            .addComponent(jScrollPane5)
         );
 
         jButtonCard3AdicionarDemonstracao.setText("Adicionar");
@@ -931,34 +931,34 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
         card4Layout.setHorizontalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(card4Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jButtonCard3Recuar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCard3Terminar)
-                .addGap(78, 78, 78))
-            .addGroup(card4Layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(jLabel26)
-                .addContainerGap(156, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
-                        .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonCard3RemoverDemonstracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCard3AdicionarDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                    .addGroup(card4Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel26))
+                    .addGroup(card4Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
-                        .addComponent(jComboBoxCard3EscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(260, 260, 260))))
+                            .addGroup(card4Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(card4Layout.createSequentialGroup()
+                                        .addComponent(jButtonCard3Recuar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(272, 272, 272)
+                                        .addComponent(jButtonCard3Terminar))
+                                    .addGroup(card4Layout.createSequentialGroup()
+                                        .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jButtonCard3RemoverDemonstracao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButtonCard3AdicionarDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(29, 29, 29)
+                                        .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27)
+                                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(147, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jComboBoxCard3EscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(213, 213, 213))
         );
         card4Layout.setVerticalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -968,7 +968,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCard3EscolherDemonstracao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -979,11 +979,11 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCard3RemoverDemonstracao)
                         .addGap(18, 18, 18)))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCard3Recuar)
                     .addComponent(jButtonCard3Terminar))
-                .addContainerGap())
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         getContentPane().add(card4, "card4");
@@ -1153,7 +1153,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_adicionarProdutoBtnActionPerformed
 
     private void removerProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerProdutoBtnActionPerformed
-        if (!jListCard2ListaProdutos.isSelectionEmpty()) {
+        if (jListCard2ListaProdutos.isSelectionEmpty()) {
             modeloJListaProdutosCard2.removeProduto((String) jListCard2ListaProdutos.getSelectedValue());
             numProdutos--;
             if (numProdutos == 0) {
@@ -1210,10 +1210,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
                         jRadioButtonCard2Nao.setSelected(true);
                     }
                 } else {
-                    for (Produto p : modeloJListaProdutosCard2.getListaProdutos()) {
-                        controller.adicionarProduto(p);
-                    }
-                    controller.alterarCandidatura();
+                    controller.alterarCandidatura(modeloJListaProdutosCard2.getListaProdutos());
                     thisFrame.dispose();
                     jFrameMenuPrincipal.setVisible(true);
                     JOptionPane.showMessageDialog(rootPane, "Alterações efetuadas com sucesso", "Concluído", JOptionPane.PLAIN_MESSAGE);
@@ -1265,8 +1262,9 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     private void jButtonCard3TerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCard3TerminarActionPerformed
         if (listModelDemonstracoes.getSize() != 0) {
             controller.setListaDemonstracoesCandidatura(listModelDemonstracoes.getListaDemonstracoesAdicionadas());
-            JOptionPane.showMessageDialog(rootPane, "Demonstrações adicionadas", "Sucesso", JOptionPane.PLAIN_MESSAGE);
-            thisFrame.dispose();
+            controller.alterarCandidatura(modeloJListaProdutosCard2.getListaProdutos());
+            dispose();
+            JOptionPane.showMessageDialog(rootPane, "Candidatura alterada!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
             jFrameMenuPrincipal.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Não foi adicionada nenhuma demonstração! Se não quiser adicionar nenhuma demonstração retorne ao passo anterior e seleciona a respectiva opção.", "Nenhuma demonstração", JOptionPane.WARNING_MESSAGE);
