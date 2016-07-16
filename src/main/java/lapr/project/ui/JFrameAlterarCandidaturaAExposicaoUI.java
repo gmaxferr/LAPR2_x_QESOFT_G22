@@ -1153,7 +1153,7 @@ public class JFrameAlterarCandidaturaAExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_adicionarProdutoBtnActionPerformed
 
     private void removerProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerProdutoBtnActionPerformed
-        if (jListCard2ListaProdutos.isSelectionEmpty()) {
+        if (!jListCard2ListaProdutos.isSelectionEmpty()) {
             modeloJListaProdutosCard2.removeProduto((String) jListCard2ListaProdutos.getSelectedValue());
             numProdutos--;
             if (numProdutos == 0) {
