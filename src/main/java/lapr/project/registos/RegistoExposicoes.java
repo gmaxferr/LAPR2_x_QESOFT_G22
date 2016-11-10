@@ -329,16 +329,20 @@ public class RegistoExposicoes implements Importable<RegistoExposicoes>, Exporta
     }
 
     /**
-     * Devolve uma lista de exposições de um fae
+     * Devolve uma lista de exposições que um fae pode atualizar conflitos
      *
      * @param usernameFae username do fae
-     * @return lista de exposições do fae
+     * @return lista de exposições que o fae pode atualizar conflitos
      */
-    public List<Exposicao> getFaeExpos(String usernameFae) {
+    public List<Exposicao> getExposEstadoConflitosDetetadosFae(String usernameFae) {
         List<Exposicao> exposFAE = new ArrayList<>();
         for (Exposicao ex : this.m_listaExposicoes) {
-            if (ex.getRegistoFAE().isFAE(usernameFae) && !ex.getRegistoConflitos().getListaConflitos().isEmpty()) {
-                exposFAE.add(ex);
+            if(ex.getEstado().isEstadoConflitosDetetados()){
+                for(FAE f:ex.getListaFAE()){
+                    if(f.getUsernameFae().equalsIgnoreCase(usernameFae)){
+                        exposFAE.add(ex);
+                    }
+                }
             }
         }
         return exposFAE;
