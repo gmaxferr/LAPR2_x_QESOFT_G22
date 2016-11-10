@@ -2,6 +2,8 @@ package lapr.project.ui;
 
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +11,7 @@ import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
+import lapr.project.utils.QualidadeFaeCalculo.Media;
 
 /**
  * Menu principal da aplicação. Permite o acesso a todas as funcionalidades
@@ -1121,7 +1124,21 @@ public class MenuV2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-
+        try {
+            double nivelConfiance = Double.parseDouble(JOptionPane.showInputDialog(this, "Qual o nível de confiança que pretende que seja utilizado nos cálculos estatísticos?"));
+            QualidadeFaeController CTRL = new QualidadeFaeController(centroExposicoes);
+            if (CTRL.getListaFAE().size() > 0) {
+                List<Media<FAE>> infoFAEs = CTRL.testeHipotese(nivelConfiance);
+                setVisible(false);
+                JFrame frame = new JFrameQualidadeFAEUI(this, nivelConfiance, infoFAEs);
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível executar esta UC. Isto pode ser devido a:"
+                        + "\n    Nenhum dos FAEs existentes tem pelo menos 30 avaliações."
+                        + "\n    Nenhum dos FAEs com pelo menos 30 avaliações tem um desvio padrão maior a 1.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O número introduzido não é válido.", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed

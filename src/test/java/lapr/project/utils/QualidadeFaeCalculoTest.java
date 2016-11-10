@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.utils;
 
 import java.util.ArrayList;
@@ -14,6 +9,7 @@ import lapr.project.model.FAE;
 import lapr.project.model.FaeAvaliacao;
 import lapr.project.model.Utilizador;
 import lapr.project.registos.RegistoAtribuicoesCandidaturasExposicao;
+import lapr.project.utils.QualidadeFaeCalculo.Media;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Ricardo Catalao
+ * @author G29
  */
 public class QualidadeFaeCalculoTest {
 
@@ -116,9 +112,16 @@ public class QualidadeFaeCalculoTest {
 
         instance.calcMedia(cand, ra);
         instance.calcMediaAndVariance(fae1, ra);
-        List<FAE> result = instance.getListaFAEsComDesvioPadraoAcimaDe(variancia);
+        List<Media<FAE>> result = instance.getListaFAEsComDesvioPadraoAcimaDe(variancia);
 
-        assertEquals(expResult, result);
+        if (result.size() != expResult.size()) {
+            fail("O tamanho das listas é diferente");
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+                Media<FAE> mFae = result.get(i);
+                assertEquals(mFae.getObject(), expResult.get(i));
+            }
+        }
     }
 
     /**
@@ -138,8 +141,16 @@ public class QualidadeFaeCalculoTest {
         instance.calcMediaAndVariance(fae1, ra);
         instance.getListaFAEsComDesvioPadraoAcimaDe(1D);
 
-        List<FAE> result = instance.testeHipotese(1D, grauConfianca);
-        assertEquals(expResult, result);
+        List<Media<FAE>> result = instance.testeHipotese(1D, grauConfianca);
+        
+        if (result.size() != expResult.size()) {
+            fail("O tamanho das listas é diferente");
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+                Media<FAE> mFae = result.get(i);
+                assertEquals(mFae.getObject(), expResult.get(i));
+            }
+        }
 
         expResult.remove(fae1);
         grauConfianca = 1.0;

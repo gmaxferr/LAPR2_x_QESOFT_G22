@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class AlterarCandidaturaDemonstracaoControllerTest {
 

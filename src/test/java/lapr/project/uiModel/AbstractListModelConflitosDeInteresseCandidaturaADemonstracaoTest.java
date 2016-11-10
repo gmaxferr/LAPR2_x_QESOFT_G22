@@ -1,6 +1,5 @@
 package lapr.project.uiModel;
 
-import lapr.project.uiModel.AbstractListModelConflitosDeInteresseCandidaturaADemonstracao;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaADemonstracao;
@@ -17,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author guilherme
+ * @author G29
  */
 public class AbstractListModelConflitosDeInteresseCandidaturaADemonstracaoTest {
 

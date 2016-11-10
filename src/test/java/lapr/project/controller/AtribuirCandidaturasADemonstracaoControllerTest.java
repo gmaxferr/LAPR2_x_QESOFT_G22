@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import java.util.*;
+import lapr.project.estados.CandidaturaADemonstracao.EstadoCandidaturaADemonstracaoProntaAAtribuicao;
 import lapr.project.model.*;
 import lapr.project.registos.*;
 import lapr.project.utils.Data;
@@ -192,25 +193,22 @@ public class AtribuirCandidaturasADemonstracaoControllerTest {
     @Test
     public void testAtribui_Mecanismo() {
         System.out.println("atribui");
-        instance.setExposicao(e); 
-        re.registaExposicao(e);
-        instance.getRegistoExposicoes();
-       
-        instance.getRegistoAtribuicoes();
-        Mecanismo mec = new Mecanismo() {
-            @Override
-            public String getNome() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public String getDescricao() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
+         e.getRegistoFAE().adicionaFAE(new Utilizador("nome", "username", "password".toCharArray(), "email", "1234"));
+        CandidaturaADemonstracao cand = new CandidaturaADemonstracao("dados", "email");
+        d.getRegistoCandidaturasADemonstracao().adiciona(cand);
+        Mecanismo mec = new MecanismoPredefinidoA();
         List<AtribuicaoCandidaturaDemonstracao> expResult = new ArrayList<>();
+        cand.setEstado(new EstadoCandidaturaADemonstracaoProntaAAtribuicao(cand));
+        AtribuicaoCandidaturaDemonstracao atrib = new AtribuicaoCandidaturaDemonstracao(cand);
+        expResult.add(atrib);
+
+        instance.getRegistoExposicoes();
+        instance.setExposicao(e);
+        instance.getRegistoDemonstracoes();
+        instance.setDemonstracao(d);
+        instance.getRegistoAtribuicoes();
         List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(mec);
-        assertEquals(expResult, result);
+        assertEquals(expResult.get(0).getCandidaturaAssociada(), result.get(0).getCandidaturaAssociada());
     }
 
     /**
@@ -220,33 +218,24 @@ public class AtribuirCandidaturasADemonstracaoControllerTest {
     @Test
     public void testAtribui_Mecanismo_String() {
         System.out.println("atribui");
-        Mecanismo mec = null;
-        String numeroFAEOuExperiencia = "";
-        List<AtribuicaoCandidaturaDemonstracao> expResult = null;
-        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(mec, numeroFAEOuExperiencia);
-        assertEquals(expResult, result);
-    }
+        e.getRegistoFAE().adicionaFAE(new Utilizador("nome", "username", "password".toCharArray(), "email", "1234"));
+        CandidaturaADemonstracao cand = new CandidaturaADemonstracao("dados", "email");
+        d.getRegistoCandidaturasADemonstracao().adiciona(cand);
+        Mecanismo mec = new MecanismoPredefinidoA();
+        List<AtribuicaoCandidaturaDemonstracao> expResult = new ArrayList<>();
+        cand.setEstado(new EstadoCandidaturaADemonstracaoProntaAAtribuicao(cand));
+        AtribuicaoCandidaturaDemonstracao atrib = new AtribuicaoCandidaturaDemonstracao(cand);
+        expResult.add(atrib);
 
-    /**
-     * Test of registaAtribuicao method, of class
-     * AtribuirCandidaturasADemonstracaoController.
-     */
-    @Test
-    public void testRegistaAtribuicao() {
-        System.out.println("registaAtribuicao");
-        List<AtribuicaoCandidaturaDemonstracao> listaAtribuicao = new ArrayList<>();
+        instance.getRegistoExposicoes();
+        instance.setExposicao(e);
+        instance.getRegistoDemonstracoes();
+        instance.setDemonstracao(d);
         instance.getRegistoAtribuicoes();
-        instance.registaAtribuicao(listaAtribuicao);
+        List<AtribuicaoCandidaturaDemonstracao> result = instance.atribui(mec);
+        assertEquals(expResult.get(0).getCandidaturaAssociada(), result.get(0).getCandidaturaAssociada());
     }
 
-    /**
-     * Test of setEstadoCandidaturaAtribuida method, of class
-     * AtribuirCandidaturasADemonstracaoController.
-     */
-    @Test
-    public void testSetEstadoCandidaturaAtribuida() {
-        System.out.println("setEstadoCandidaturaAtribuida");
-        instance.setEstadoCandidaturaAtribuida();
-    }
+
 
 }
