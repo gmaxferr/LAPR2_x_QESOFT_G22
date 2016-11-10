@@ -1040,7 +1040,6 @@ public class MenuV2 extends javax.swing.JFrame {
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
         this.setVisible(false);
         JFrame frame = new JFrameRemoverCandidaturaADemonstracaoUI(thisJFrame, utilizador.getEmail(), centroExposicoes);
-
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1099,8 +1098,10 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         } else if (listExpo.length == 0) {
             JOptionPane.showMessageDialog(this, "Não existem exposições num estado disponível para que possa ser possível atribuir stands.", "ERRO", JOptionPane.OK_OPTION);
+            setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Não existem stands no centro de exposições.", "ERRO", JOptionPane.OK_OPTION);
+            setVisible(true);
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
