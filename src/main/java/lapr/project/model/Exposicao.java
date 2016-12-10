@@ -894,9 +894,11 @@ public class Exposicao implements Agendavel, Importable<Exposicao>, Exportable {
                     break;
                 case "conflitosAlterados":
                     this.m_estado = new EstadoExposicaoConflitosAlterados(this);
+                    recriarTimersExpo();
                     break;
                 case "candsAtribuidas":
                     this.m_estado = new EstadoExposicaoCandidaturasAtribuidas(this);
+                    recriarTimersExpo();
                     break;
                 case "candsAvaliadas":
                     this.m_estado = new EstadoExposicaoCandidaturasAvaliadas(this);
