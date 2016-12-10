@@ -19,4 +19,14 @@ public class EstadoExposicaoCandidaturasDecididas extends EstadoExposicao {
         return true;
     }
 
+    @Override
+    public boolean setEstadoCandidaturasDecididas(){
+        return true;
+    }
+    
+    @Override
+    public boolean setEstadoDemosDecididas(){
+        m_exposicao.setEstado(new EstadoExposicaoDemonstracoesDecididas(m_exposicao));
+        return true;
+    }
 }

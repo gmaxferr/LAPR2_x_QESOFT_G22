@@ -1,6 +1,10 @@
 package lapr.project.estados.Exposicao;
 
+import java.util.TimerTask;
 import lapr.project.model.Exposicao;
+import lapr.project.timerTasks.expo.AlterarParaConflitosAtualizados;
+import lapr.project.timerTasks.expo.AlterarParaFimAvaliacoes;
+import lapr.project.utils.Data;
 
 /**
  * Representação do EstadoExposicaoCandidaturasAtribuidas
@@ -18,6 +22,11 @@ public class EstadoExposicaoCandidaturasAtribuidas extends EstadoExposicao {
     public boolean setEstadoCandidaturasAvaliadas() {
         if (valida()) {
             this.m_exposicao.setEstado(new EstadoExposicaoCandidaturasAvaliadas(this.m_exposicao));
+            Data currentDate = new Data();
+            if (currentDate.isMaior(this.m_exposicao.getDataFimAvaliacoes())) {
+                TimerTask task = new AlterarParaFimAvaliacoes(m_exposicao);
+                task.run();
+            }
             return true;
         } else {
             return false;
