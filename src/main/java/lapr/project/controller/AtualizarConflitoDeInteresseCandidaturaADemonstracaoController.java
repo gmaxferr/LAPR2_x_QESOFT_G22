@@ -18,11 +18,6 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
     private RegistoConflitosDemonstracao m_rc;
     
     /**
-     * Registo das Candidaturas a demonstração
-     */
-    private RegistoCandidaturasADemonstracao m_rcand;
-    
-    /**
      * Registo de FAE's
      */
     private RegistoFAE m_rf;
@@ -95,6 +90,10 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
         this.username = username;
     }
 
+    public void identificaFAE(){
+        this.fae = m_rf.getFAE(username);
+    }
+    
     /**
      * Devolve a lista de conflitos da exposição pretendida
      * 
@@ -220,6 +219,6 @@ public class AtualizarConflitoDeInteresseCandidaturaADemonstracaoController {
      * @return lista de demonstrações
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return m_rd.getListaDemonstracoesEstadoConflitosDetetados(username);
     }
 }

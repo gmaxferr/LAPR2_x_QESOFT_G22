@@ -13,7 +13,7 @@ import lapr.project.model.*;
 
 /**
  * UI do UC Criar demonstracao
- * 
+ *
  * @author G29
  */
 public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
@@ -94,12 +94,13 @@ public class JFrameCriarDemonstracaoUI extends javax.swing.JFrame {
      *
      * @param usernameOrg username do organizador a executar este UC
      * @param ce centro de exposições
+     * @param jFrameMenuPrincipal jFrame do menu
      */
     public JFrameCriarDemonstracaoUI(String usernameOrg, CentroExposicoes ce, JFrame jFrameMenuPrincipal) {
         super("Criar demonstração");
-        
+
         controller = new CriarDemonstracaoController(usernameOrg, ce);
-        controller.pullRegistosCE(); //getRegistoExposicoes e getRegistoRecursos
+        controller.pullRegistosCE();
         m_listaExposicoes = controller.getListaExposicoesDoOrganizador();
         this.m_usernameOrg = usernameOrg;
         this.m_ce = ce;

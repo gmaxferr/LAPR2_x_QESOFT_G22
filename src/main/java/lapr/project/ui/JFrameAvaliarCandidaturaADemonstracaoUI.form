@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -570,11 +570,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="0" pref="622" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="emailRep" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="emailRep" min="-2" pref="479" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -620,7 +620,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="emailRep">
               <Properties>
-                <Property name="text" type="java.lang.String" value=" - "/>
+                <Property name="text" type="java.lang.String" value=" A apresentar o email do representante"/>
               </Properties>
             </Component>
           </SubComponents>

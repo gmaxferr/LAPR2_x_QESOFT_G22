@@ -2,9 +2,7 @@ package lapr.project.ui;
 
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
